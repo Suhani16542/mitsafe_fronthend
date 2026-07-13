@@ -473,9 +473,10 @@ export default function HireDevelopersPage() {
               
               <select
                 required
+                defaultValue=""
                 className="bg-[#008FED]/5 dark:bg-white/5 border border-[#008FED]/15 dark:border-white/10 focus:border-[#008FED] outline-none text-xs sm:text-sm text-slate-600 dark:text-slate-300 rounded-xl px-4 py-3 w-full transition-colors"
               >
-                <option value="" disabled selected>Role Needed</option>
+                <option value="" disabled>Role Needed</option>
                 <option value="frontend">Frontend Developer</option>
                 <option value="backend">Backend Developer</option>
                 <option value="fullstack">Full Stack Developer</option>

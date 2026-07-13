@@ -43,6 +43,7 @@ export default function RootLayout({
     <html
       lang="en"
       className="scroll-smooth"
+      suppressHydrationWarning
       style={{
         ["--font-outfit" as any]: "'Outfit', system-ui, -apple-system, sans-serif",
         ["--font-space-grotesk" as any]: "'Space Grotesk', system-ui, -apple-system, sans-serif",
@@ -51,6 +52,10 @@ export default function RootLayout({
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://api.fontshare.com/v2/css?f=satoshi@300,400,500,700,900&f=clash-display@600,700&display=swap"
           rel="stylesheet"
         />
         {/* Inline script to prevent theme flash before hydration */}

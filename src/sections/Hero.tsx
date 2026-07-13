@@ -314,11 +314,7 @@ export default function Hero() {
       onMouseLeave={() => setIsHovered(false)}
       style={{ fontFamily: "'Satoshi', sans-serif" }}
     >
-      {/* Self-contained Font loaders for Satoshi & Clash Display by Fontshare */}
-      <link
-        href="https://api.fontshare.com/v2/css?f=satoshi@300,400,500,700,900&f=clash-display@600,700&display=swap"
-        rel="stylesheet"
-      />
+      {/* Font loaders for Satoshi & Clash Display are moved to layout.tsx head */}
 
       {/* Moving background gradient */}
       <div className="absolute inset-0 moving-gradient-bg opacity-20 pointer-events-none" />
@@ -768,7 +764,7 @@ export default function Hero() {
                   <div className="relative w-full h-full rounded-3xl overflow-hidden border-4 border-[#0B1A2E] shadow-[0_20px_50px_rgba(0,212,255,0.1)] bg-[#071426]">
                     <div className="w-full h-full overflow-hidden relative group">
                       <Image
-                        src={slideImages[currentSlide]}
+                        src={slideImages[currentSlide % slideImages.length] || "/hero-image.png"}
                         alt={currentService.title}
                         fill
                         className="object-cover img-zoom-hover"
