@@ -1,26 +1,1423 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
-@theme inline {
+@theme {
+  --color-brand-cyan: var(--brand-cyan);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-card: var(--brand-card);
+  --color-brand-card-hover: var(--brand-card-hover);
+  --color-brand-border: var(--brand-border);
+  --color-brand-border-glow: var(--brand-border-glow);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  
+  --font-sans: var(--font-outfit), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --brand-cyan: #008FED; /* Primary accent: bright blue/cyan in light mode */
+  --brand-blue: #0077D4;
+  --brand-dark: #FAFBFF; /* Soft White */
+  --brand-card: rgba(250, 251, 255, 0.85); /* Soft White Glass */
+  --brand-card-hover: rgba(255, 255, 255, 0.95);
+  --brand-border: rgba(0, 143, 237, 0.12); /* Soft Blue border */
+  --brand-border-glow: rgba(0, 143, 237, 0.35);
+  
+  --background: #FAFBFF; /* Soft White */
+  --foreground: #0F172A; /* slate-900 */
+  
+  --card-glow-color: rgba(0, 143, 237, 0.12);
+}
+
+.dark {
+  --brand-cyan: #00D4FF;
+  --brand-blue: #008FED;
+  --brand-dark: #071426;
+  --brand-card: rgba(11, 26, 46, 0.7);
+  --brand-card-hover: rgba(15, 34, 61, 0.85);
+  --brand-border: rgba(0, 212, 255, 0.15);
+  --brand-border-glow: rgba(0, 212, 255, 0.4);
+  
+  --background: #071426;
+  --foreground: #FFFFFF;
+  
+  --card-glow-color: rgba(0, 212, 255, 0.22);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* Global Transition system for smooth theme switches */
+body, header, footer, section, .glow-card, h1, h2, h3, h4, p, span, a, button, border {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--brand-card);
+  border: 1px solid var(--background);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-cyan);
+}
+
+/* Cyber grid background in space mode */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(0, 212, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center center;
+}
+
+/* Glowing text highlight in space mode */
+.text-gradient {
+  background: linear-gradient(135deg, #FFFFFF 20%, #E2E8F0 50%, #00D4FF 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.text-gradient-cyan-blue {
+  background: linear-gradient(90deg, #00D4FF 0%, #008FED 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Infinite text ticker */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 35s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* Custom perspective utilities for 3D card tilt */
+.perspective-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Glow effects */
+.glow-accent {
+  filter: drop-shadow(0 0 12px rgba(0, 212, 255, 0.25));
+}
+
+.pulse-dot {
+  position: relative;
+}
+
+.pulse-dot::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background-color: #00D4FF;
+  animation: pulse-ring 1.8s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.33);
+    opacity: 1;
+  }
+  80%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   GLOBAL SPACE THEME OVERRIDES
+   ========================================================================== */
+
+.text-brand-cyan { 
+   color: #00D4FF !important;
+}
+
+.text-white-btn,
+.bg-gradient-to-r *,
+.bg-brand-glow-active * {
+   color: #FFFFFF !important;
+}
+
+.border-white\/5,
+.border-zinc-800,
+.border-slate-800,
+.border-brand-glow {
+   border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.shadow-xl,
+.shadow-2xl,
+.shadow-brand-glow-sm {
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+.hover-shadow-glow-lg:hover {
+   box-shadow: 0 20px 45px rgba(0, 212, 255, 0.15) !important;
+}
+
+/* Premium Animations & Easing Curves */
+.cubic-easing {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Smooth fade-in down animation for Navbar items on initial load */
+@keyframes navItemSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to navbar elements on load */
+header nav > div {
+  animation: navItemSlideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+header nav > div:nth-child(1) { animation-delay: 0.1s; }
+header nav > div:nth-child(2) { animation-delay: 0.15s; }
+header nav > div:nth-child(3) { animation-delay: 0.2s; }
+header nav > div:nth-child(4) { animation-delay: 0.25s; }
+header nav > div:nth-child(5) { animation-delay: 0.3s; }
+header nav > div:nth-child(6) { animation-delay: 0.35s; }
+
+/* Subtle moving gradient background */
+@keyframes movingGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.moving-gradient-bg {
+  background: linear-gradient(-45deg, rgba(7, 20, 38, 0.95), rgba(11, 26, 46, 0.9), rgba(15, 34, 61, 0.8), rgba(7, 20, 38, 0.95));
+  background-size: 400% 400%;
+  animation: movingGradient 15s ease infinite;
+}
+
+/* Floating particles background animation */
+@keyframes floatParticle {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Image zoom hover effect */
+.img-zoom-hover {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-zoom-hover:hover {
+  transform: scale(1.08);
+}
+
+/* Hover glow borders */
+.glow-border-hover {
+  position: relative;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glow-border-hover::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.4), rgba(11, 26, 46, 0.4));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.glow-border-hover:hover::after {
+  opacity: 1;
+}
+
+/* Custom Curved Clip Paths matching the screenshots */
+.curved-clip-hero {
+  clip-path: ellipse(85% 100% at 85% 0%);
+}
+
+@media (max-width: 1024px) {
+  .curved-clip-hero {
+    clip-path: none;
+  }
+}
+
+/* Floating Tech Particles */
+.floating-particle {
+  position: absolute;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  opacity: 0;
+}
+
+/* Custom premium showcase animations */
+@keyframes gradient-sweep {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+.gradient-sweep-text {
+  background: linear-gradient(90deg, #00D4FF, #008FED, #FFFFFF, #00D4FF);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-sweep 4s linear infinite;
+}
+
+@keyframes draw-path {
+  0% {
+    stroke-dashoffset: 200;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+.animate-circuit-path {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 200;
+  animation: draw-path 6s linear infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.35;
+    filter: drop-shadow(0 0 2px rgba(0, 212, 255, 0.4));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.85));
+  }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s infinite ease-in-out;
+}
+
+@keyframes particle-up {
+  0% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+}
+.animate-particle-up {
+  animation: particle-up 4s infinite ease-in-out;
+}
+
+@keyframes arrow-shoot {
+  0% {
+    transform: translate(80px, -80px) rotate(-45deg);
+    opacity: 0;
+  }
+  75% {
+    transform: translate(-3px, 3px) rotate(-45deg);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(1px, -1px) rotate(-45deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(-45deg);
+    opacity: 1;
+  }
+}
+.animate-arrow-shoot {
+  animation: arrow-shoot 0.9s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+.animate-dash-flow {
+  stroke-dasharray: 8, 8;
+  animation: dash-flow 3s linear infinite;
+}
+
+/* ==========================================================================
+   GLOBAL DARK THEME BACKGROUND AND TEXT RE-MAPS
+   ========================================================================== */
+
+/* Cosmic space background styled after reference image */
+.dark .cosmic-home-wrapper {
+  background-color: #030712 !important;
+  background-image: 
+    /* Concentric orbital rings */
+    radial-gradient(circle at 100% 100%, transparent 40%, rgba(0, 212, 255, 0.02) 40.2%, rgba(0, 212, 255, 0.02) 40.7%, transparent 40.9%, transparent 60%, rgba(124, 58, 237, 0.015) 60.2%, rgba(124, 58, 237, 0.015) 60.7%, transparent 60.9%),
+    radial-gradient(circle at 0% 0%, transparent 60%, rgba(0, 212, 255, 0.015) 60.2%, rgba(0, 212, 255, 0.015) 60.7%, transparent 60.9%),
+    
+    /* Cross star glows (simulating larger twinkling stars) */
+    radial-gradient(circle at 35% 25%, #ffffff 0.5px, transparent 2px),
+    radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.8) 0%, transparent 15px),
+    radial-gradient(circle at 75% 55%, #ffffff 0.5px, transparent 2px),
+    radial-gradient(circle at 75% 55%, rgba(0, 212, 255, 0.8) 0%, transparent 15px),
+
+    /* Tiny static star field */
+    radial-gradient(circle at 10% 15%, #ffffff 0.5px, transparent 1.5px),
+    radial-gradient(circle at 15% 45%, #ffffff 0.5px, transparent 1.5px),
+    radial-gradient(circle at 20% 75%, #ffffff 0.5px, transparent 1.5px),
+    radial-gradient(circle at 30% 60%, #ffffff 0.5px, transparent 1.5px),
+    radial-gradient(circle at 45% 10%, #ffffff 0.5px, transparent 1.5px),
+    radial-gradient(circle at 55% 85%, #ffffff 0.5px, transparent 1.5px),
+    radial-gradient(circle at 65% 30%, #ffffff 0.5px, transparent 1.5px),
+    radial-gradient(circle at 70% 80%, #ffffff 0.5px, transparent 1.5px),
+    radial-gradient(circle at 80% 40%, #ffffff 0.5px, transparent 1.5px),
+    radial-gradient(circle at 90% 70%, #ffffff 0.5px, transparent 1.5px),
+    radial-gradient(circle at 95% 20%, #ffffff 0.5px, transparent 1.5px),
+
+    /* Nebula clouds in navy + green/teal/purple/magenta blending seamlessly */
+    radial-gradient(circle at 25% 20%, rgba(13, 148, 136, 0.16) 0%, rgba(13, 148, 136, 0.04) 30%, transparent 70%),
+    radial-gradient(circle at 85% 15%, rgba(124, 58, 237, 0.20) 0%, rgba(124, 58, 237, 0.05) 35%, transparent 75%),
+    radial-gradient(circle at 75% 65%, rgba(219, 39, 119, 0.12) 0%, rgba(219, 39, 119, 0.03) 30%, transparent 70%),
+    radial-gradient(circle at 15% 80%, rgba(249, 115, 22, 0.08) 0%, rgba(249, 115, 22, 0.02) 25%, transparent 65%),
+    radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 60%) !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+}
+
+/* Home Page specific background overrides for seamless look */
+.dark .cosmic-home-wrapper .bg-white, 
+.dark .cosmic-home-wrapper .bg-slate-50, 
+.dark .cosmic-home-wrapper .bg-slate-100, 
+.dark .cosmic-home-wrapper .bg-zinc-50, 
+.dark .cosmic-home-wrapper .bg-zinc-100, 
+.dark .cosmic-home-wrapper .bg-\[\#F8F7FC\]\/80,
+.dark .cosmic-home-wrapper .bg-\#F8F7FC,
+.dark .cosmic-home-wrapper .bg-purple-50 {
+  background-color: transparent !important;
+}
+
+.dark .cosmic-home-wrapper section:nth-of-type(even), 
+.dark .cosmic-home-wrapper .bg-\[\#F3F0FA\],
+.dark .cosmic-home-wrapper .bg-gradient-to-br.from-white.to-slate-50 {
+  background-color: rgba(11, 26, 46, 0.25) !important;
+  background-image: none !important;
+}
+
+/* Overriding light mode backgrounds */
+.dark .bg-white, 
+.dark .bg-slate-50, 
+.dark .bg-slate-100, 
+.dark .bg-zinc-50, 
+.dark .bg-zinc-100, 
+.dark .bg-\[\#F8F7FC\]\/80,
+.dark .bg-\#F8F7FC,
+.dark .bg-purple-50 {
+  background-color: #071426 !important;
+}
+
+/* Alternative background sections (e.g. alternating darker section blocks) */
+.dark section:nth-of-type(even), 
+.dark .bg-\[\#F3F0FA\],
+.dark .bg-gradient-to-br.from-white.to-slate-50 {
+  background-color: #0B1A2E !important;
+  background-image: none !important;
+}
+
+/* Sub-card default styles */
+.dark .bg-white\/70, 
+.dark .bg-white\/60, 
+.dark .bg-white\/80, 
+.dark .bg-white\/90,
+.dark .bg-slate-50\/70,
+.dark .bg-slate-50\/60,
+.dark .bg-slate-50\/80,
+.dark .bg-slate-50\/90 {
+  background-color: rgba(11, 26, 46, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* Direct text overrides */
+.dark .text-slate-900, 
+.dark .text-slate-800, 
+.dark .text-slate-700, 
+.dark .text-zinc-900, 
+.dark .text-zinc-800, 
+.dark .text-\[\#1E1A39\] {
+  color: #FFFFFF !important;
+}
+
+.dark .text-slate-600, 
+.dark .text-slate-500, 
+.dark .text-slate-400, 
+.dark .text-zinc-600, 
+.dark .text-zinc-500, 
+.dark .text-zinc-400 {
+  color: #94A3B8 !important;
+}
+
+/* Border overrides */
+.dark .border-slate-200,
+.dark .border-slate-300,
+.dark .border-zinc-200,
+.dark .border-zinc-300,
+.dark .border-\[\#E5E2F0\],
+.dark .border-\[\#E5E2F0\]\/80,
+.dark .border-purple-50,
+.dark .border-purple-100 {
+  border-color: rgba(0, 212, 255, 0.15) !important;
+}
+
+/* Grid lines overrides */
+.dark .bg-slate-200,
+.dark .bg-purple-300,
+.dark .bg-slate-100\/70 {
+  background-color: rgba(0, 212, 255, 0.08) !important;
+}
+
+/* ==========================================================================
+   GLOBAL LIGHT THEME OVERRIDES (when NOT in dark mode)
+   ========================================================================== */
+
+/* Light mode specific wrapper setup: Soft White with radial blue/cyan/purple gradients (Premium SaaS look) */
+:root:not(.dark) .cosmic-home-wrapper {
+  background-color: #FAFBFF !important;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(0, 143, 237, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 90% 40%, rgba(0, 212, 255, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(124, 58, 237, 0.03) 0%, transparent 50%) !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+}
+
+/* Light Mode Hero & breathing glow tweaks */
+:root:not(.dark) .moving-gradient-bg {
+  background: linear-gradient(-45deg, rgba(245, 249, 255, 0.9), rgba(242, 247, 255, 0.85), rgba(224, 247, 255, 0.7), rgba(245, 249, 255, 0.9)) !important;
+}
+
+:root:not(.dark) .blur-3xl.bg-gradient-to-r {
+  background-image: linear-gradient(to right, rgba(0, 143, 237, 0.05), rgba(0, 229, 255, 0.08), rgba(0, 143, 237, 0.05)) !important;
+}
+
+/* Headings Gradient Style in Light Mode: Dark Gray (#0F172A) to Logo Blue (#008FED) */
+:root:not(.dark) h1,
+:root:not(.dark) h2,
+:root:not(.dark) .heading-gradient,
+:root:not(.dark) .text-gradient-cyan-blue,
+:root:not(.dark) .text-gradient {
+  background: linear-gradient(135deg, #0F172A 20%, #1E293B 65%, #008FED 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important; /* Ensure solid color overrides do not break the gradient */
+}
+
+/* Paragraphs & Muted Descriptions in Light Mode: Dark Gray (#334155) */
+:root:not(.dark) p,
+:root:not(.dark) .text-slate-600,
+:root:not(.dark) .text-slate-500,
+:root:not(.dark) .text-slate-400,
+:root:not(.dark) .text-zinc-600,
+:root:not(.dark) .text-zinc-500,
+:root:not(.dark) .text-zinc-400 {
+  color: #334155 !important;
+}
+
+/* Section Headings or titles that are solid color in light mode */
+:root:not(.dark) .text-slate-900, 
+:root:not(.dark) .text-slate-800, 
+:root:not(.dark) .text-slate-700, 
+:root:not(.dark) .text-zinc-900, 
+:root:not(.dark) .text-zinc-800, 
+:root:not(.dark) .text-\[\#1E1A39\] {
+  color: #0F172A !important;
+}
+
+/* Adjusting hardcoded background colors (#0B1A2E, #071426, etc.) in light mode to SaaS look */
+:root:not(.dark) .bg-\[\#0B1A2E\]\/98,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/95,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/90,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/85,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/70,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/60,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/30 {
+  background-color: #FAFBFF !important; /* Soft White */
+  border-color: rgba(0, 143, 237, 0.12) !important;
+  box-shadow: 0 10px 30px rgba(0, 143, 237, 0.03) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+:root:not(.dark) .bg-\[\#0B1A2E\]\/98:hover,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/95:hover,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/90:hover,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/85:hover,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/70:hover,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/60:hover {
+  background-color: #FFFFFF !important;
+  border-color: rgba(0, 143, 237, 0.4) !important;
+  box-shadow: 0 20px 40px rgba(0, 143, 237, 0.1) !important;
+}
+
+:root:not(.dark) .bg-\[\#071426\] {
+  background-color: #FAFBFF !important; /* Soft White */
+}
+
+/* Alternating background sections in light mode */
+:root:not(.dark) section:nth-of-type(even), 
+:root:not(.dark) .bg-\[\#F3F0FA\],
+:root:not(.dark) .bg-gradient-to-br.from-white.to-slate-50 {
+  background-color: #F5F9FF !important; /* Very Light Blue */
+  background-image: none !important;
+}
+
+:root:not(.dark) .bg-white,
+:root:not(.dark) .bg-slate-50,
+:root:not(.dark) .bg-slate-100,
+:root:not(.dark) .bg-zinc-50,
+:root:not(.dark) .bg-zinc-100,
+:root:not(.dark) .bg-\[\#F8F7FC\]\/80,
+:root:not(.dark) .bg-\#F8F7FC,
+:root:not(.dark) .bg-purple-50 {
+  background-color: #FAFBFF !important; /* Soft White */
+}
+
+/* Glass card default styles in light mode */
+:root:not(.dark) .bg-white\/70, 
+:root:not(.dark) .bg-white\/60, 
+:root:not(.dark) .bg-white\/80, 
+:root:not(.dark) .bg-white\/90,
+:root:not(.dark) .bg-slate-50\/70,
+:root:not(.dark) .bg-slate-50\/60,
+:root:not(.dark) .bg-slate-50\/80,
+:root:not(.dark) .bg-slate-50\/90 {
+  background-color: rgba(250, 251, 255, 0.8) !important; /* Soft White Glass */
+  border-color: rgba(0, 143, 237, 0.1) !important;
+  box-shadow: 0 10px 30px rgba(0, 143, 237, 0.03) !important;
+}
+
+/* Navbar specific Light Mode styling */
+:root:not(.dark) .bg-\[\#071426\]\/90,
+:root:not(.dark) .bg-\[\#071426\]\/75 {
+  background-color: rgba(253, 254, 255, 0.8) !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 4px 30px rgba(0, 143, 237, 0.04), 0 1px 3px rgba(0, 143, 237, 0.02) !important;
+  border-color: rgba(0, 143, 237, 0.08) !important;
+}
+
+:root:not(.dark) .text-\[\#E2E8F0\] {
+  color: #1E293B !important; /* dark slate navigation links */
+}
+
+/* Nav links hover to Logo Blue */
+:root:not(.dark) .group:hover .text-\[\#E2E8F0\],
+:root:not(.dark) .group:hover .group-hover\:text-white {
+  color: #008FED !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* Active links in light mode */
+:root:not(.dark) .text-\[\#00E5FF\],
+:root:not(.dark) .text-\[\#00D4FF\] {
+  color: #008FED !important;
+}
+
+/* Adjusting borders */
+:root:not(.dark) .border-\[rgba\(0\,212\,255\,0\.15\)\],
+:root:not(.dark) .border-\[rgba\(0\,212\,255\,0\.08\)\],
+:root:not(.dark) .border-white\/5 {
+  border-color: rgba(0, 143, 237, 0.12) !important;
+}
+
+:root:not(.dark) .border-slate-200,
+:root:not(.dark) .border-slate-300,
+:root:not(.dark) .border-zinc-200,
+:root:not(.dark) .border-zinc-300,
+:root:not(.dark) .border-\[\#E5E2F0\],
+:root:not(.dark) .border-\[\#E5E2F0\]\/80,
+:root:not(.dark) .border-purple-50,
+:root:not(.dark) .border-purple-100 {
+  border-color: rgba(0, 143, 237, 0.12) !important;
+}
+
+/* Badges & Icons border and text colors */
+:root:not(.dark) .text-white:not(button):not(a):not(.bg-gradient-to-r *):not(.bg-\[\#00D4FF\] *):not(.bg-\[\#008FED\] *):not(.bg-gradient-to-br *):not(footer *) {
+  color: #0F172A !important;
+}
+
+:root:not(.dark) .bg-\[\#00D4FF\]\/10,
+:root:not(.dark) .bg-\[\#00D4FF\]\/12,
+:root:not(.dark) .bg-\[\#00D4FF\]\/15,
+:root:not(.dark) .bg-\[\#00D4FF\]\/20,
+:root:not(.dark) .bg-\[\#00D4FF\]\/2\.5,
+:root:not(.dark) .bg-\[\#00D4FF\]\/5 {
+  background-color: rgba(0, 143, 237, 0.08) !important;
+}
+
+:root:not(.dark) .border-\[\#00D4FF\]\/20,
+:root:not(.dark) .border-\[\#00D4FF\]\/30 {
+  border-color: rgba(0, 143, 237, 0.25) !important;
+}
+
+/* Footer specific Light Mode styling */
+:root:not(.dark) footer.bg-\[\#071426\] {
+  background-color: #F5F9FF !important; /* Very Light Blue background */
+  border-color: rgba(0, 143, 237, 0.12) !important;
+}
+
+:root:not(.dark) footer .bg-slate-800 {
+  background-color: rgba(0, 143, 237, 0.08) !important;
+}
+
+:root:not(.dark) footer a:hover {
+  background-color: #008FED !important;
+  color: #FFFFFF !important;
+  border-color: #008FED !important;
+  box-shadow: 0 10px 20px rgba(0, 143, 237, 0.25) !important;
+}
+
+:root:not(.dark) footer .text-slate-400 {
+  color: #475569 !important;
+}
+
+/* ==========================================================================
+   FAQ SECTION CARDS & ACCORDIONS (LIGHT MODE SPECIFIC)
+   ========================================================================== */
+
+/* FAQ Section Card Premium Gradients and Borders in Light Mode */
+:root:not(.dark) .group\/card.border {
+  /* Default State: Premium gradient, soft border, subtle shadow */
+  background: linear-gradient(135deg, #FAFBFF 0%, #F5F9FF 100%) !important;
+  border-color: rgba(0, 143, 237, 0.12) !important;
+  box-shadow: 0 8px 30px rgba(0, 143, 237, 0.03) !important;
+}
+
+:root:not(.dark) .group\/card.border:hover {
+  /* Hover State: lift, blue glow, blue border, shadow */
+  background: linear-gradient(135deg, #FFFFFF 0%, #F2F7FF 100%) !important;
+  border-color: rgba(0, 143, 237, 0.35) !important;
+  box-shadow: 0 15px 35px rgba(0, 143, 237, 0.08) !important;
+  transform: translateY(-2px);
+}
+
+:root:not(.dark) .bg-\[\#0B1A2E\] {
+  /* Open state background in light mode */
+  background: linear-gradient(135deg, #FFFFFF 0%, #EEF4FF 100%) !important;
+  border-color: rgba(0, 143, 237, 0.3) !important;
+  box-shadow: 0 15px 35px rgba(0, 143, 237, 0.08) !important;
+}
+
+/* FAQ Accordion Toggle Button in Light Mode */
+:root:not(.dark) button.rotate-90 {
+  background-color: #008FED !important;
+  border-color: #008FED !important;
+  color: #FFFFFF !important;
+}
+
+:root:not(.dark) button:not(.rotate-90).bg-\[\#071426\] {
+  background-color: #F5F9FF !important;
+  border-color: rgba(0, 143, 237, 0.15) !important;
+  color: #475569 !important;
+}
+
+:root:not(.dark) .group\/card:hover button:not(.rotate-90).bg-\[\#071426\] {
+  background-color: #008FED !important;
+  border-color: #008FED !important;
+  color: #FFFFFF !important;
+}
+
+
+/* ==========================================================================
+   BLOG SECTION CARDS & BUTTONS (LIGHT MODE SPECIFIC)
+   ========================================================================== */
+
+/* Blog Card overrides in Light Mode */
+:root:not(.dark) .from-\[\#0F223C\]\/95 {
+  --tw-gradient-from: #FAFBFF !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, #F5F9FF) !important;
+}
+
+:root:not(.dark) .to-\[\#071325\]\/95 {
+  --tw-gradient-to: #F2F7FF !important;
+}
+
+:root:not(.dark) .border-white\/10 {
+  border-color: rgba(0, 143, 237, 0.12) !important;
+}
+
+:root:not(.dark) .shadow-\[0_12px_40px_rgba\(0\,0\,0\,0\.3\)\] {
+  box-shadow: 0 12px 40px rgba(0, 143, 237, 0.03) !important;
+}
+
+/* Hover State Blog Card */
+:root:not(.dark) .border-\[\#00E5FF\]\/40 {
+  border-color: rgba(0, 143, 237, 0.4) !important;
+}
+
+:root:not(.dark) .shadow-\[0_20px_50px_rgba\(0\,229\,255\,0\.06\)\,0_0_20px_rgba\(0\,212\,255\,0\.04\)\] {
+  box-shadow: 0 20px 45px rgba(0, 143, 237, 0.12) !important;
+}
+
+:root:not(.dark) .bg-white\/10 {
+  background-color: rgba(0, 143, 237, 0.08) !important;
+}
+
+/* Blog Card Read Post Button */
+:root:not(.dark) .bg-\[\#07111F\] {
+  background-color: #008FED !important;
+  border-color: transparent !important;
+}
+
+:root:not(.dark) .hover\:bg-\[\#00E5FF\]:hover {
+  background-color: #0077D4 !important;
+  color: #FFFFFF !important;
+}
+
+/* ==========================================================================
+   SUBPAGES LIGHT MODE OVERRIDES
+   ========================================================================== */
+
+/* Subpages specific background overrides in Light Mode */
+:root:not(.dark) .cosmic-company-wrapper,
+:root:not(.dark) .cosmic-industries-wrapper,
+:root:not(.dark) .cosmic-solutions-wrapper,
+:root:not(.dark) .cosmic-services-wrapper,
+:root:not(.dark) .cosmic-servicedetail-wrapper,
+:root:not(.dark) .cosmic-portfolio-wrapper,
+:root:not(.dark) .cosmic-hire-wrapper,
+:root:not(.dark) .cosmic-insights-wrapper,
+:root:not(.dark) .cosmic-contact-wrapper {
+  background-color: #F3F7FC !important; /* Premium light blue-gray base */
+  background-image: 
+    radial-gradient(circle at 5% 10%, rgba(0, 143, 237, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 95% 30%, rgba(0, 212, 255, 0.07) 0%, transparent 40%),
+    radial-gradient(circle at 20% 60%, rgba(124, 58, 237, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 80% 85%, rgba(0, 229, 255, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.03) 0%, transparent 50%) !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+}
+
+:root:not(.dark) .cosmic-company-wrapper section:nth-of-type(odd),
+:root:not(.dark) .cosmic-industries-wrapper section:nth-of-type(odd),
+:root:not(.dark) .cosmic-solutions-wrapper section:nth-of-type(odd),
+:root:not(.dark) .cosmic-services-wrapper section:nth-of-type(odd),
+:root:not(.dark) .cosmic-servicedetail-wrapper section:nth-of-type(odd),
+:root:not(.dark) .cosmic-portfolio-wrapper section:nth-of-type(odd),
+:root:not(.dark) .cosmic-hire-wrapper section:nth-of-type(odd),
+:root:not(.dark) .cosmic-insights-wrapper section:nth-of-type(odd) {
+  background-color: rgba(253, 254, 255, 0.45) !important;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(245, 249, 255, 0.6) 100%) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+:root:not(.dark) .cosmic-company-wrapper section:nth-of-type(even),
+:root:not(.dark) .cosmic-industries-wrapper section:nth-of-type(even),
+:root:not(.dark) .cosmic-solutions-wrapper section:nth-of-type(even),
+:root:not(.dark) .cosmic-services-wrapper section:nth-of-type(even),
+:root:not(.dark) .cosmic-servicedetail-wrapper section:nth-of-type(even),
+:root:not(.dark) .cosmic-portfolio-wrapper section:nth-of-type(even),
+:root:not(.dark) .cosmic-hire-wrapper section:nth-of-type(even),
+:root:not(.dark) .cosmic-insights-wrapper section:nth-of-type(even) {
+  background-color: rgba(240, 246, 255, 0.7) !important; /* Soft Light Blue */
+  background-image: linear-gradient(180deg, rgba(245, 249, 255, 0.6) 0%, rgba(232, 241, 255, 0.8) 100%) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+/* SVG curved dividers in Light Mode */
+:root:not(.dark) .fill-\[\#071426\] {
+  fill: rgba(253, 254, 255, 0.45) !important;
+}
+:root:not(.dark) .fill-\[\#0B1A2E\] {
+  fill: rgba(240, 246, 255, 0.7) !important;
+}
+
+/* Extra Heading Gradients for Subpages in Light Mode */
+:root:not(.dark) .gradient-sweep-text {
+  background: linear-gradient(135deg, #0F172A 20%, #1E293B 65%, #008FED 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+/* Card background, border and shadow overrides in Light Mode */
+:root:not(.dark) .bg-\[\#071426\]\/50,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/50,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/55,
+:root:not(.dark) .bg-\[\#F3F0FA\]\/70,
+:root:not(.dark) .bg-white\/70 {
+  position: relative !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+  background-color: rgba(253, 254, 255, 0.85) !important; /* Soft off-white glass */
+  border: 1px solid rgba(0, 143, 237, 0.15) !important; /* Premium soft blue border */
+  box-shadow: 0 8px 24px rgba(0, 143, 237, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.8) !important; /* Inner gloss shadow */
+  transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1), background-color 350ms ease, border-color 350ms ease, box-shadow 350ms ease !important;
+}
+
+:root:not(.dark) .bg-\[\#071426\]\/50 *,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/50 *,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/55 *,
+:root:not(.dark) .bg-\[\#F3F0FA\]\/70 *,
+:root:not(.dark) .bg-white\/70 * {
+  transition: color 350ms ease, border-color 350ms ease, background-color 350ms ease !important;
+}
+
+:root:not(.dark) .bg-\[\#071426\]\/50::before,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/50::before,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/55::before,
+:root:not(.dark) .bg-\[\#F3F0FA\]\/70::before,
+:root:not(.dark) .bg-white\/70::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 100% !important;
+  background: linear-gradient(180deg, rgba(230, 242, 255, 0.95) 0%, rgba(200, 225, 255, 0.95) 100%) !important; /* Soft premium blue/cyan gradient */
+  transform: translateY(-100%) !important;
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+}
+
+:root:not(.dark) .bg-\[\#071426\]\/50:hover,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/50:hover,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/55:hover,
+:root:not(.dark) .bg-\[\#F3F0FA\]\/70:hover,
+:root:not(.dark) .bg-white\/70:hover,
+:root:not(.dark) .hover\:bg-\[\#0B1A2E\]\/80:hover,
+:root:not(.dark) .hover\:bg-\[\#071426\]\/85:hover,
+:root:not(.dark) .hover\:bg-\[\#0B1A2E\]\/85:hover {
+  background-color: #FFFFFF !important;
+  border-color: rgba(0, 143, 237, 0.45) !important; /* Accent border on hover */
+  box-shadow: 0 20px 40px rgba(0, 143, 237, 0.15), 0 0 15px rgba(0, 212, 255, 0.08) !important; /* Premium glow and shadow */
+  transform: translateY(-6px) !important; /* Smooth lift */
+}
+
+:root:not(.dark) .bg-\[\#071426\]\/50:hover::before,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/50:hover::before,
+:root:not(.dark) .bg-\[\#0B1A2E\]\/55:hover::before,
+:root:not(.dark) .bg-\[\#F3F0FA\]\/70:hover::before,
+:root:not(.dark) .bg-white\/70:hover::before,
+:root:not(.dark) .hover\:bg-\[\#0B1A2E\]\/80:hover::before,
+:root:not(.dark) .hover\:bg-\[\#071426\]\/85:hover::before,
+:root:not(.dark) .hover\:bg-\[\#0B1A2E\]\/85:hover::before {
+  transform: translateY(0) !important;
+}
+
+/* Unify Card Borders & Hover Glows in Light Mode */
+:root:not(.dark) .border-red-500\/20,
+:root:not(.dark) .border-emerald-500\/20,
+:root:not(.dark) .border-blue-500\/20,
+:root:not(.dark) .border-amber-500\/20,
+:root:not(.dark) .border-rose-500\/20,
+:root:not(.dark) .border-cyan-500\/20,
+:root:not(.dark) .border-indigo-500\/20,
+:root:not(.dark) .border-orange-500\/20,
+:root:not(.dark) .border-sky-500\/20,
+:root:not(.dark) .border-purple-500\/20,
+:root:not(.dark) .border-teal-500\/20,
+:root:not(.dark) .border-\[\#7C3AED\]\/20,
+:root:not(.dark) .border-\[\#00D4FF\]\/20,
+:root:not(.dark) .border-\[\#E5E2F0\]\/10,
+:root:not(.dark) .border-\[\#E5E2F0\]\/20,
+:root:not(.dark) .border-white\/10,
+:root:not(.dark) .border-white\/5 {
+  border-color: rgba(0, 143, 237, 0.12) !important;
+}
+
+:root:not(.dark) .hover\:border-red-500\/45:hover,
+:root:not(.dark) .hover\:border-emerald-500\/45:hover,
+:root:not(.dark) .hover\:border-blue-500\/45:hover,
+:root:not(.dark) .hover\:border-amber-500\/45:hover,
+:root:not(.dark) .hover\:border-rose-500\/45:hover,
+:root:not(.dark) .hover\:border-cyan-500\/45:hover,
+:root:not(.dark) .hover\:border-indigo-500\/45:hover,
+:root:not(.dark) .hover\:border-orange-500\/45:hover,
+:root:not(.dark) .hover\:border-sky-500\/45:hover,
+:root:not(.dark) .hover\:border-purple-500\/45:hover,
+:root:not(.dark) .hover\:border-teal-500\/45:hover,
+:root:not(.dark) .hover\:border-\[\#7C3AED\]\/45:hover,
+:root:not(.dark) .hover\:border-\[\#00D4FF\]\/45:hover,
+:root:not(.dark) .hover\:border-white\/20:hover,
+:root:not(.dark) .hover\:border-blue-500\/35:hover,
+:root:not(.dark) .hover\:border-emerald-500\/35:hover,
+:root:not(.dark) .hover\:border-yellow-500\/35:hover,
+:root:not(.dark) .hover\:border-purple-500\/35:hover,
+:root:not(.dark) .hover\:border-sky-500\/35:hover,
+:root:not(.dark) .hover\:border-indigo-500\/35:hover,
+:root:not(.dark) .hover\:border-\[\#00D4FF\]\/35:hover {
+  border-color: rgba(0, 143, 237, 0.35) !important;
+}
+
+:root:not(.dark) .hover\:shadow-\[0_15px_30px_rgba\(239\,68\,68\,0\.18\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_15px_30px_rgba\(16\,185\,129\,0\.18\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_15px_30px_rgba\(59\,130\,246\,0\.18\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_15px_30px_rgba\(245\,158\,11\,0\.18\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_15px_30px_rgba\(244\,63\,94\,0\.18\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_15px_30px_rgba\(6\,182\,212\,0\.18\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_15px_30px_rgba\(99\,102\,241\,0\.18\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_15px_30px_rgba\(249\,115\,22\,0\.18\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_15px_30px_rgba\(14\,165\,233\,0\.18\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_15px_30px_rgba\(168\,85\,247\,0\.18\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_15px_30px_rgba\(20\,184\,166\,0\.18\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_12px_24px_rgba\(124\,58\,237\,0\.12\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_12px_24px_rgba\(0\,212\,255\,0\.12\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_0_15px_rgba\(0\,212\,255\,0\.15\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_0_15px_rgba\(255\,255\,255\,0\.08\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_0_15px_rgba\(59\,130\,246\,0\.15\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_0_15px_rgba\(16\,185\,129\,0\.15\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_0_15px_rgba\(234\,179\,8\,0\.15\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_0_15px_rgba\(168\,85\,247\,0\.15\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_0_15px_rgba\(14\,165\,233\,0\.15\)\]:hover,
+:root:not(.dark) .hover\:shadow-\[0_0_15px_rgba\(99\,102\,241\,0\.15\)\]:hover {
+  box-shadow: 0 15px 35px rgba(0, 143, 237, 0.08) !important;
+}
+
+/* Card details and icon wrapper styling overrides in Light Mode */
+:root:not(.dark) .bg-white\/5 {
+  background-color: rgba(0, 143, 237, 0.04) !important;
+}
+:root:not(.dark) .border-white\/10 {
+  border-color: rgba(0, 143, 237, 0.08) !important;
+}
+
+/* CTA panel background and border overrides in Light Mode */
+:root:not(.dark) .bg-\[\#0B1A2E\]\/60,
+:root:not(.dark) .bg-\[\#071426\]\/60 {
+  background-color: #FAFBFF !important;
+  border-color: rgba(0, 143, 237, 0.12) !important;
+  box-shadow: 0 10px 30px rgba(0, 143, 237, 0.03) !important;
+}
+
+:root:not(.dark) .bg-\[\#0B1A2E\]\/60:hover,
+:root:not(.dark) .bg-\[\#071426\]\/60:hover {
+  background-color: #FFFFFF !important;
+  border-color: rgba(0, 143, 237, 0.35) !important;
+  box-shadow: 0 15px 35px rgba(0, 143, 237, 0.08) !important;
+}
+
+:root:not(.dark) .border-\[\#00D4FF\]\/15,
+:root:not(.dark) .border-\[\#00D4FF\]\/25 {
+  border-color: rgba(0, 143, 237, 0.15) !important;
+}
+
+/* Paragraph text colors (and headers / labels mapping to standard gray) in Light Mode */
+:root:not(.dark) .text-slate-200,
+:root:not(.dark) .text-slate-300,
+:root:not(.dark) .text-slate-350,
+:root:not(.dark) .text-slate-355,
+:root:not(.dark) .text-slate-400,
+:root:not(.dark) .text-zinc-450 {
+  color: #334155 !important;
+}
+
+/* Icon / highlights and checkmark components overrides in Light Mode */
+:root:not(.dark) .text-\[\#7C3AED\],
+:root:not(.dark) .text-blue-500,
+:root:not(.dark) .text-emerald-500,
+:root:not(.dark) .text-\[\#EAB308\],
+:root:not(.dark) .text-purple-500,
+:root:not(.dark) .text-sky-400,
+:root:not(.dark) .text-indigo-400,
+:root:not(.dark) .text-emerald-450 {
+  color: #008FED !important;
+}
+
+:root:not(.dark) .bg-\[\#7C3AED\]\/10 {
+  background-color: rgba(0, 143, 237, 0.08) !important;
+}
+:root:not(.dark) .border-\[\#7C3AED\]\/25 {
+  border-color: rgba(0, 143, 237, 0.25) !important;
+}
+:root:not(.dark) .group-hover\:bg-\[\#7C3AED\]:hover,
+:root:not(.dark) .group:hover .group-hover\:bg-\[\#7C3AED\] {
+  background-color: #008FED !important;
+  color: #FFFFFF !important;
+}
+
+/* Card Hover text highlight overrides in Light Mode */
+:root:not(.dark) .group:hover .group-hover\:text-\[\#00D4FF\],
+:root:not(.dark) .group:hover .group-hover\:text-\[\#00E5FF\],
+:root:not(.dark) .group-hover\:text-\[\#00D4FF\]:hover,
+:root:not(.dark) .group-hover\:text-\[\#00E5FF\]:hover {
+  color: #008FED !important;
+}
+
+/* Services Pages Light Mode Mapping Overrides */
+:root:not(.dark) .cosmic-services-wrapper .bg-white\/90 {
+  background-color: rgba(243, 247, 252, 0.4) !important;
+}
+
+:root:not(.dark) .cosmic-servicedetail-wrapper .bg-\[\#F8F7FC\]\/50 {
+  background-color: transparent !important;
+}
+
+:root:not(.dark) .bg-\[\#F3F0FA\] {
+  background-color: rgba(0, 143, 237, 0.06) !important;
+}
+
+:root:not(.dark) .bg-\[\#F3F0FA\]\/50 {
+  background-color: rgba(0, 143, 237, 0.04) !important;
+}
+
+:root:not(.dark) .border-\[\#E5E2F0\]\/50 {
+  border-color: rgba(0, 143, 237, 0.08) !important;
+}
+
+:root:not(.dark) .bg-\[\#F3F0FA\]\/40 {
+  background-color: rgba(0, 143, 237, 0.04) !important;
+}
+
+:root:not(.dark) .bg-\[\#7C3AED\]\/5 {
+  background-color: rgba(0, 143, 237, 0.04) !important;
+}
+
+:root:not(.dark) .border-\[\#7C3AED\]\/15 {
+  border-color: rgba(0, 143, 237, 0.15) !important;
+}
+
+:root:not(.dark) .bg-\[\#7C3AED\]\/20 {
+  background-color: rgba(0, 143, 237, 0.15) !important;
+}
+
+:root:not(.dark) .border-\[\#7C3AED\] {
+  border-color: #008FED !important;
+}
+
+:root:not(.dark) .bg-purple-100\/40 {
+  background-color: rgba(0, 143, 237, 0.08) !important;
+}
+
+:root:not(.dark) .bg-purple-200\/20 {
+  background-color: rgba(0, 229, 255, 0.05) !important;
+}
+
+:root:not(.dark) .from-\[\#7C3AED\] {
+  --tw-gradient-from: #008FED !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, #00D4FF) !important;
+}
+
+:root:not(.dark) .to-\[\#A78BFA\] {
+  --tw-gradient-to: #00D4FF !important;
+}
+
+:root:not(.dark) .cosmic-servicedetail-wrapper .bg-gradient-to-tr.from-\[\#7C3AED\]\/90 {
+  background-image: linear-gradient(135deg, #D9E8FC 0%, #B5D5FC 100%) !important;
+  border: 1px solid rgba(0, 143, 237, 0.25) !important;
+  box-shadow: 0 15px 35px rgba(0, 143, 237, 0.06) !important;
+  color: #1E1A39 !important;
+}
+
+:root:not(.dark) .cosmic-servicedetail-wrapper .from-\[\#7C3AED\]\/90 h2 {
+  color: #1E1A39 !important;
+}
+
+:root:not(.dark) .cosmic-servicedetail-wrapper .from-\[\#7C3AED\]\/90 p {
+  color: #4A5568 !important;
+}
+
+:root:not(.dark) .cosmic-servicedetail-wrapper .from-\[\#7C3AED\]\/90 .bg-white\/20 {
+  background-color: rgba(0, 143, 237, 0.08) !important;
+  border-color: rgba(0, 143, 237, 0.15) !important;
+  color: #008FED !important;
+}
+
+/* Portfolio link inside Light CTA */
+:root:not(.dark) .cosmic-servicedetail-wrapper .from-\[\#7C3AED\]\/90 a[href="/portfolio"] {
+  border-color: rgba(0, 143, 237, 0.25) !important;
+  color: #008FED !important;
+}
+
+:root:not(.dark) .cosmic-servicedetail-wrapper .from-\[\#7C3AED\]\/90 a[href="/portfolio"]:hover {
+  background-color: rgba(0, 143, 237, 0.06) !important;
+  border-color: #008FED !important;
+}
+
+/* Fix secondary button hover contrast in Light Mode */
+:root:not(.dark) a.text-\[\#008FED\].border-\[\#008FED\]:hover,
+:root:not(.dark) button.text-\[\#008FED\].border-\[\#008FED\]:hover,
+:root:not(.dark) .cosmic-servicedetail-wrapper .from-\[\#7C3AED\]\/90 a[href="/contact"]:hover {
+  background-color: #008FED !important;
+  color: #FFFFFF !important;
+  border-color: #008FED !important;
+  box-shadow: 0 4px 14px rgba(0, 143, 237, 0.4) !important;
+}
+
+:root:not(.dark) .bg-purple-300 {
+  background-color: rgba(0, 143, 237, 0.08) !important;
+}
+
+:root:not(.dark) .text-slate-600 {
+  color: #334155 !important;
+}
+
+:root:not(.dark) .bg-\[\#7C3AED\] {
+  background-color: #008FED !important;
+}
+
+/* 2. DARK MODE SUPPORT FOR SERVICES PAGES */
+.dark .cosmic-services-wrapper,
+.dark .cosmic-servicedetail-wrapper,
+.dark .cosmic-portfolio-wrapper,
+.dark .cosmic-hire-wrapper,
+.dark .cosmic-insights-wrapper,
+.dark .cosmic-contact-wrapper {
+  background-color: #071426 !important;
+  color: #FFFFFF !important;
+}
+
+/* Translucent grids and backgrounds in dark mode */
+.dark .cosmic-services-wrapper .bg-white,
+.dark .cosmic-servicedetail-wrapper .bg-white,
+.dark .cosmic-services-wrapper .bg-white\/90,
+.dark .cosmic-servicedetail-wrapper .bg-white\/70,
+.dark .cosmic-servicedetail-wrapper .bg-white\/50,
+.dark .cosmic-servicedetail-wrapper .bg-\[\#F8F7FC\]\/50,
+.dark .cosmic-portfolio-wrapper .bg-white,
+.dark .cosmic-portfolio-wrapper .bg-white\/70,
+.dark .cosmic-portfolio-wrapper .bg-white\/90,
+.dark .cosmic-hire-wrapper .bg-white,
+.dark .cosmic-hire-wrapper .bg-white\/70,
+.dark .cosmic-insights-wrapper .bg-white,
+.dark .cosmic-insights-wrapper .bg-white\/70,
+.dark .cosmic-insights-wrapper .bg-white\/90,
+.dark .cosmic-contact-wrapper .bg-white,
+.dark .cosmic-contact-wrapper .bg-white\/70,
+.dark .cosmic-contact-wrapper .bg-white\/90 {
+  background-color: transparent !important;
+}
+
+.dark .cosmic-services-wrapper section,
+.dark .cosmic-servicedetail-wrapper section,
+.dark .cosmic-portfolio-wrapper section,
+.dark .cosmic-hire-wrapper section,
+.dark .cosmic-insights-wrapper section,
+.dark .cosmic-contact-wrapper section {
+  background-color: transparent !important;
+}
+
+/* Dark Mode Cards */
+.dark .cosmic-services-wrapper .glow-card,
+.dark .cosmic-servicedetail-wrapper .bg-white\/70,
+.dark .cosmic-servicedetail-wrapper .border-border,
+.dark .cosmic-servicedetail-wrapper .bg-white\/70.border,
+.dark .cosmic-portfolio-wrapper .bg-white\/70,
+.dark .cosmic-hire-wrapper .bg-white\/70,
+.dark .cosmic-insights-wrapper .bg-white\/70,
+.dark .cosmic-contact-wrapper .bg-white\/70 {
+  background-color: rgba(11, 26, 46, 0.7) !important;
+  border-color: rgba(0, 212, 255, 0.15) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* Glowing network icon container */
+.dark .cosmic-services-wrapper .bg-\[\#F3F0FA\]\/50 {
+  background-color: rgba(11, 26, 46, 0.5) !important;
+  border-color: rgba(0, 212, 255, 0.15) !important;
+}
+
+/* Dark Mode Cards Hover */
+.dark .cosmic-services-wrapper .glow-card:hover,
+.dark .cosmic-servicedetail-wrapper .bg-white\/70:hover,
+.dark .cosmic-portfolio-wrapper .bg-white\/70:hover,
+.dark .cosmic-hire-wrapper .bg-white\/70:hover,
+.dark .cosmic-insights-wrapper .bg-white\/70:hover,
+.dark .cosmic-contact-wrapper .bg-white\/70:hover {
+  background-color: rgba(15, 34, 61, 0.85) !important;
+  border-color: rgba(0, 212, 255, 0.4) !important;
+  box-shadow: 0 20px 45px rgba(0, 212, 255, 0.15) !important;
+}
+
+/* Dark Mode Text overrides */
+.dark .cosmic-services-wrapper h1,
+.dark .cosmic-services-wrapper h2,
+.dark .cosmic-services-wrapper h3,
+.dark .cosmic-services-wrapper h4,
+.dark .cosmic-servicedetail-wrapper h1,
+.dark .cosmic-servicedetail-wrapper h2,
+.dark .cosmic-servicedetail-wrapper h3,
+.dark .cosmic-servicedetail-wrapper h4,
+.dark .cosmic-portfolio-wrapper h1,
+.dark .cosmic-portfolio-wrapper h2,
+.dark .cosmic-portfolio-wrapper h3,
+.dark .cosmic-portfolio-wrapper h4,
+.dark .cosmic-hire-wrapper h1,
+.dark .cosmic-hire-wrapper h2,
+.dark .cosmic-hire-wrapper h3,
+.dark .cosmic-hire-wrapper h4,
+.dark .cosmic-insights-wrapper h1,
+.dark .cosmic-insights-wrapper h2,
+.dark .cosmic-insights-wrapper h3,
+.dark .cosmic-insights-wrapper h4,
+.dark .cosmic-contact-wrapper h1,
+.dark .cosmic-contact-wrapper h2,
+.dark .cosmic-contact-wrapper h3,
+.dark .cosmic-contact-wrapper h4 {
+  color: #FFFFFF !important;
+}
+
+.dark .cosmic-services-wrapper p,
+.dark .cosmic-servicedetail-wrapper p,
+.dark .cosmic-services-wrapper .text-slate-650,
+.dark .cosmic-services-wrapper .text-slate-600,
+.dark .cosmic-services-wrapper .text-slate-500,
+.dark .cosmic-servicedetail-wrapper .text-slate-600,
+.dark .cosmic-servicedetail-wrapper .text-slate-500,
+.dark .cosmic-portfolio-wrapper p,
+.dark .cosmic-portfolio-wrapper .text-slate-500,
+.dark .cosmic-hire-wrapper p,
+.dark .cosmic-hire-wrapper .text-slate-500,
+.dark .cosmic-insights-wrapper p,
+.dark .cosmic-insights-wrapper .text-slate-500,
+.dark .cosmic-contact-wrapper p,
+.dark .cosmic-contact-wrapper .text-slate-500 {
+  color: #94A3B8 !important;
+}
+
+.dark .cosmic-services-wrapper .text-slate-900,
+.dark .cosmic-servicedetail-wrapper .text-slate-800,
+.dark .cosmic-servicedetail-wrapper .text-\[\#1E1A39\],
+.dark .cosmic-portfolio-wrapper .text-\[\#1E1A39\],
+.dark .cosmic-hire-wrapper .text-\[\#1E1A39\],
+.dark .cosmic-insights-wrapper .text-\[\#1E1A39\],
+.dark .cosmic-contact-wrapper .text-\[\#1E1A39\],
+.dark .cosmic-contact-wrapper .text-\[\#0B1530\] {
+  color: #FFFFFF !important;
+}
+
+/* Accordions in dark mode */
+.dark .cosmic-servicedetail-wrapper .border-\[\#E5E2F0\]\/80 {
+  border-color: rgba(0, 212, 255, 0.15) !important;
+  background-color: rgba(11, 26, 46, 0.7) !important;
+}
+
+.dark .cosmic-servicedetail-wrapper .border-\[\#E5E2F0\]\/80 button {
+  color: #FFFFFF !important;
+}
+
+.dark .cosmic-servicedetail-wrapper .border-\[\#E5E2F0\]\/80 button:hover {
+  color: #00D4FF !important;
+}
+
+/* Timeline process overrides in dark mode */
+.dark .cosmic-servicedetail-wrapper .border-purple-100 {
+  border-color: rgba(0, 212, 255, 0.15) !important;
+}
+
+.dark .cosmic-servicedetail-wrapper .bg-white.shadow-sm {
+  background-color: rgba(11, 26, 46, 0.95) !important;
+  border-color: rgba(0, 212, 255, 0.25) !important;
+  color: #00D4FF !important;
+}
+
+/* Dark Mode accent colors (cyan) */
+.dark .cosmic-services-wrapper .text-\[\#7C3AED\],
+.dark .cosmic-servicedetail-wrapper .text-\[\#7C3AED\] {
+  color: #00D4FF !important;
+}
+
+.dark .cosmic-services-wrapper .bg-\[\#7C3AED\]\/5,
+.dark .cosmic-servicedetail-wrapper .bg-\[\#7C3AED\]\/5 {
+  background-color: rgba(0, 212, 255, 0.08) !important;
+}
+
+.dark .cosmic-services-wrapper .border-\[\#7C3AED\]\/15,
+.dark .cosmic-servicedetail-wrapper .border-\[\#7C3AED\]\/15 {
+  border-color: rgba(0, 212, 255, 0.25) !important;
+}
+
+/* Gradients */
+.dark .from-\[\#7C3AED\] {
+  --tw-gradient-from: #008FED !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, #00D4FF) !important;
+}
+
+.dark .to-\[\#A78BFA\] {
+  --tw-gradient-to: #00D4FF !important;
+}
+
+.dark .from-\[\#7C3AED\]\/90 {
+  --tw-gradient-from: #008FED !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, #00D4FF) !important;
+}
+
+.dark .to-\[\#A78BFA\]\/90 {
+  --tw-gradient-to: #00D4FF !important;
+}
+
+/* Timeline point and badges */
+.dark .cosmic-servicedetail-wrapper .bg-\[\#F3F0FA\] {
+  background-color: rgba(0, 212, 255, 0.08) !important;
+}
+
+.dark .cosmic-servicedetail-wrapper .bg-\[\#F3F0FA\]\/40 {
+  background-color: rgba(11, 26, 46, 0.4) !important;
+  border-color: rgba(0, 212, 255, 0.15) !important;
+}
+
+.dark .cosmic-servicedetail-wrapper .bg-gradient-to-tr.from-\[\#7C3AED\]\/90 {
+  background-image: linear-gradient(to top right, rgba(0, 119, 212, 0.95), rgba(0, 212, 255, 0.95)) !important;
+}
+
+.dark .cosmic-servicedetail-wrapper .bg-purple-300 {
+  background-color: rgba(0, 212, 255, 0.15) !important;
+}
+
+

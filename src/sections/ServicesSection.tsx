@@ -1,0 +1,348 @@
+"use client";
+
+import React, { useState, useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import {
+  Code,
+  Smartphone,
+  Search,
+  Globe,
+  Share2,
+  HelpCircle,
+  ShieldAlert,
+  ArrowUpRight,
+} from "lucide-react";
+
+const homeServices = [
+  {
+    title: "Website Design & Development",
+    desc: "Website design services refer to creating and designing a website, including tasks such as layout, color palette, and typography.",
+    icon: Code,
+    color: "from-[#00D4FF] to-[#008FED]",
+    tags: ["Custom Layouts", "Responsive Design", "WordPress & CMS", "E-commerce Platforms"],
+    showcase: [
+      "/web-app-design-woman.png",
+      "/metro-fintech-mockup.png",
+      "/farming-sustainability-mockup.png",
+    ],
+    slug: "/services/web-development",
+  },
+  {
+    title: "Android & iOS App Development",
+    desc: "Modern Technology offer the various types of application development services Android & iOS including custom API integrations.",
+    icon: Smartphone,
+    color: "from-[#00D4FF] to-[#008FED]",
+    tags: ["Android & iOS Apps", "Custom API Integrations", "Cross-Platform", "Mobile UX/UI"],
+    showcase: [
+      "/anyuni-mockup.png",
+      "/zupee-mockup.png",
+      "/pricing-devices-mockup.png",
+    ],
+    slug: "/services/mobile-app-development",
+  },
+  {
+    title: "Search Engine Optimization",
+    desc: "Search engine optimization (SEO) is the process of improving the quality and volume of web traffic to a website or web page.",
+    icon: Search,
+    color: "from-[#00D4FF] to-[#E0F7FF]",
+    tags: ["On-Page/Off-Page", "Keyword Optimization", "Traffic Analysis", "SEO Audit"],
+    showcase: [
+      "/seo-keyboard-mockup.png",
+      "/tradingview-mockup.png",
+      "/raichand-mockup.png",
+    ],
+    slug: "/services/digital-marketing",
+  },
+  {
+    title: "Web Hosting Service",
+    desc: "Web hosting service is a type of Internet hosting service that hosts websites for clients, providing secure data storages.",
+    icon: Globe,
+    color: "from-[#00D4FF] to-[#008FED]",
+    tags: ["Secure Cloud Server", "99.9% Uptime", "SSD Data Storage", "24/7 Active Monitoring"],
+    showcase: [
+      "/farming-sustainability-mockup.png",
+      "/hero-bg.png",
+      "/contact-team-illustration.png",
+    ],
+    slug: "/services/cloud-devops",
+  },
+  {
+    title: "Social Media Marketing",
+    desc: "Social media marketing is the use of social media platforms and websites to promote a product or service, boosting brand values.",
+    icon: Share2,
+    color: "from-[#00D4FF] to-[#008FED]",
+    tags: ["Brand Campaigns", "Lead Generation", "Engagement Growth", "Social Media Strategy"],
+    showcase: [
+      "/tradingview-mockup.png",
+      "/video-editing-mockup.png",
+      "/anyuni-mockup.png",
+    ],
+    slug: "/services/digital-marketing",
+  },
+  {
+    title: "IT Consultations",
+    desc: "IT consulting services help clients plan, design, and implement their information technology systems to align with goals.",
+    icon: HelpCircle,
+    color: "from-[#00D4FF] to-[#E0F7FF]",
+    tags: ["Infrastructure Audit", "Technology Roadmaps", "System Architecture", "Solutions Blueprint"],
+    showcase: [
+      "/contact-team-illustration.png",
+      "/wedding-matrimony-mockup.png",
+      "/metro-fintech-mockup.png",
+    ],
+    slug: "/services/software-development",
+  },
+  {
+    title: "Cyber Security Solutions",
+    desc: "Cybersecurity solutions help clients protect their systems, networks, programs, and data from cyber attacks and threats.",
+    icon: ShieldAlert,
+    color: "from-[#00D4FF] to-[#008FED]",
+    tags: ["Data Encryption", "Threat Prevention", "Firewall Setup", "Vulnerability Assessment"],
+    showcase: [
+      "/zupee-mockup.png",
+      "/pricing-devices-mockup.png",
+      "/seo-keyboard-mockup.png",
+    ],
+    slug: "/services/cloud-devops",
+  },
+];
+
+export default function ServicesSection() {
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = (idx: number) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredIdx(idx);
+    }, 350);
+  };
+
+  const handleMouseLeave = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    setHoveredIdx(null);
+  };
+
+  const handleCardClick = (e: React.MouseEvent, idx: number) => {
+    const target = e.target as HTMLElement;
+    if (target.closest("a") || target.closest("button")) {
+      return;
+    }
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    setHoveredIdx((prev) => (prev === idx ? null : idx));
+  };
+
+  return (
+    <section
+      id="services"
+      className="bg-[#F3F0FA] py-20 md:py-28 relative overflow-hidden border-t border-purple-50"
+      style={{ fontFamily: "'Satoshi', sans-serif" }}
+    >
+      {/* 5 Vertical Background Grid Lines */}
+      <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.25]">
+        <div className="w-[1px] bg-slate-200 h-full" />
+        <div className="w-[1px] bg-slate-200 h-full hidden sm:block" />
+        <div className="w-[1px] bg-slate-200 h-full" />
+        <div className="w-[1px] bg-slate-200 h-full hidden sm:block" />
+        <div className="w-[1px] bg-slate-200 h-full" />
+      </div>
+
+      {/* Decorative Floating shapes */}
+      <motion.div
+        className="absolute rounded-full border border-[#00D4FF]/8 pointer-events-none z-0"
+        style={{ width: "260px", height: "260px", left: "2%", top: "15%" }}
+        animate={{
+          y: [0, -20, 0],
+          rotate: [0, 360],
+        }}
+        transition={{
+          duration: 25,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+      <motion.div
+        className="absolute rounded-full bg-[#00D4FF]/2.5 pointer-events-none z-0 blur-2xl"
+        style={{ width: "220px", height: "220px", right: "5%", bottom: "10%" }}
+        animate={{
+          y: [0, 25, 0],
+          x: [0, -15, 0],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-left mb-16">
+          {/* Badge */}
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/10 px-4.5 py-1 text-xs font-bold uppercase tracking-wider text-[#00D4FF] font-display shadow-sm">
+            OUR SERVICES
+          </div>
+          {/* Title (Clash Display font) */}
+          <h2
+            style={{ fontFamily: "'Clash Display', sans-serif" }}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1E1A39] tracking-[-0.03em] leading-tight"
+          >
+            Perfect IT Solutions <br />
+            For Your Business
+          </h2>
+        </div>
+
+        {/* Services Rows Container */}
+        <div className="flex flex-col gap-6 w-full">
+          {homeServices.map((service, idx) => {
+            const isHovered = hoveredIdx === idx;
+            const Icon = service.icon;
+
+            return (
+              <motion.div
+                key={idx}
+                onMouseEnter={() => handleMouseEnter(idx)}
+                onMouseLeave={handleMouseLeave}
+                onClick={(e) => handleCardClick(e, idx)}
+                className={`group relative w-full border rounded-[2rem] p-8 md:p-10 overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-sm select-none ${
+                  isHovered
+                    ? `bg-gradient-to-r ${service.color} border-transparent shadow-[0_20px_50px_rgba(36,138,253,0.18)] scale-[1.01]`
+                    : "bg-white/60 border-slate-200/50 hover:border-slate-300"
+                }`}
+                layout="position"
+              >
+                {/* Horizontal row contents */}
+                <div className="grid grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
+                  {/* Left Column: Icon + Title & CTA Link */}
+                  <div className="col-span-12 md:col-span-5 lg:col-span-4 flex flex-col items-start gap-4">
+                    <div className="flex items-center gap-3.5">
+                      <div
+                        className={`p-3 rounded-2xl border transition-all duration-300 shadow-sm shrink-0 ${
+                          isHovered
+                            ? "bg-white/15 border-white/10 text-white"
+                            : "bg-[#00D4FF]/10 border-[#00D4FF]/20 text-[#00D4FF]"
+                        }`}
+                      >
+                        <Icon className="w-5.5 h-5.5" />
+                      </div>
+                      <h3
+                        className={`font-display text-xl sm:text-2xl lg:text-3xl font-bold leading-tight tracking-tight transition-colors duration-300 ${
+                          isHovered ? "text-white" : "text-[#1E1A39]"
+                        }`}
+                      >
+                        {service.title}
+                      </h3>
+                    </div>
+
+                    <Link
+                      href={service.slug}
+                      className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 group/link ${
+                        isHovered ? "text-white" : "text-[#00D4FF]"
+                      }`}
+                    >
+                      <span>Explore Service</span>
+                      <ArrowUpRight
+                        className={`w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 ${
+                          isHovered ? "text-white" : "text-[#00D4FF]"
+                        }`}
+                      />
+                    </Link>
+                  </div>
+
+                  {/* Middle Column: Service Description */}
+                  <div className="col-span-12 md:col-span-4 lg:col-span-5">
+                    <p
+                      className={`text-sm sm:text-base leading-relaxed font-medium transition-colors duration-300 ${
+                        isHovered ? "text-slate-100" : "text-slate-500"
+                      }`}
+                    >
+                      {service.desc}
+                    </p>
+                  </div>
+
+                  {/* Right Column: Tags Stack */}
+                  <div className="col-span-12 md:col-span-3 lg:col-span-3 flex flex-wrap md:flex-col md:items-end gap-2 justify-start md:justify-center">
+                    {service.tags.map((tag, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className={`text-[10px] sm:text-xs font-semibold py-1.5 px-3.5 rounded-full border transition-all duration-300 tracking-wide uppercase ${
+                          isHovered
+                            ? "bg-white/10 border-white/15 text-white/90"
+                            : "bg-[#F3F0FA] border-slate-200/50 text-slate-600"
+                        }`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Expandable Image Showcase Container (Refokus hover reveal) */}
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: isHovered ? "auto" : 0,
+                    opacity: isHovered ? 1 : 0,
+                    marginTop: isHovered ? 28 : 0,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 90,
+                    damping: 18,
+                    mass: 0.8,
+                  }}
+                  className="overflow-hidden w-full relative"
+                >
+                  {/* Thin horizontal line separator inside card when active */}
+                  <div
+                    className={`w-full h-[1px] transition-colors duration-300 mb-6 ${
+                      isHovered ? "bg-white/15" : "bg-transparent"
+                    }`}
+                  />
+
+                  {/* Showcase Images Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-1">
+                    {service.showcase.map((imgUrl, imgIdx) => (
+                      <motion.div
+                        key={imgIdx}
+                        initial={{ y: 50, opacity: 0, scale: 0.95 }}
+                        animate={
+                          isHovered
+                            ? { y: 0, opacity: 1, scale: 1 }
+                            : { y: 50, opacity: 0, scale: 0.95 }
+                        }
+                        transition={{
+                          type: "spring",
+                          stiffness: 85,
+                          damping: 17,
+                          delay: isHovered ? imgIdx * 0.06 : 0,
+                        }}
+                        className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-md border border-white/5 bg-slate-900/10"
+                      >
+                        <Image
+                          src={imgUrl}
+                          alt={`${service.title} Showcase ${imgIdx + 1}`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, 33vw"
+                          className="object-cover hover:scale-105 transition-transform duration-500"
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
