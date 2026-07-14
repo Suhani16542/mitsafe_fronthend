@@ -12,6 +12,7 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset";
   icon?: React.ReactNode;
   iconPosition?: "left" | "right";
+  style?: React.CSSProperties;
 }
 
 export default function Button({
@@ -23,6 +24,7 @@ export default function Button({
   type = "button",
   icon,
   iconPosition = "right",
+  style,
 }: ButtonProps) {
   const baseStyles =
     "inline-flex items-center justify-center font-display font-medium rounded-full transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.98] outline-none cursor-pointer text-sm md:text-base px-6 py-3 md:px-8 md:py-3.5 gap-2 select-none tracking-wide";
@@ -50,14 +52,14 @@ export default function Button({
 
   if (href) {
     return (
-      <Link href={href} className={mergedClasses}>
+      <Link href={href} className={mergedClasses} style={style}>
         {renderContent()}
       </Link>
     );
   }
 
   return (
-    <button type={type} onClick={onClick} className={mergedClasses}>
+    <button type={type} onClick={onClick} className={mergedClasses} style={style}>
       {renderContent()}
     </button>
   );

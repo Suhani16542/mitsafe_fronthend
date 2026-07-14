@@ -301,7 +301,7 @@ export default function PortfolioSection() {
       </div>
 
       {/* MOBILE PREMIUM VERTICAL COLLAPSIBLE/SCROLLING VERSION (sm/md screens) */}
-      <div className="block lg:hidden py-24 px-6 relative overflow-hidden border-t border-[rgba(0,212,255,0.15)]">
+      <div className="block lg:hidden py-20 px-6 relative overflow-hidden border-t border-[rgba(0,212,255,0.15)]">
         
         {/* Glow details for Mobile */}
         <div className="absolute top-[20%] left-[-10%] w-[300px] h-[300px] rounded-full bg-[#00D4FF]/3 blur-[90px] pointer-events-none -z-10" />

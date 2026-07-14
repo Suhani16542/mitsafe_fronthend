@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, ArrowRight, Star, Check } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight, Star, Check, Shield, Activity } from "lucide-react";
 import ParticleBackground from "@/components/ParticleBackground";
 import { servicesData } from "@/data/services";
 
@@ -26,121 +26,19 @@ const typingPhrases = [
   "AI Solutions",
 ];
 
-function TeamAvatar({ index }: { index: number }) {
-  const gradients = [
-    { start: "#00D4FF", end: "#008FED" },
-    { start: "#00E5FF", end: "#071426" },
-    { start: "#008FED", end: "#0B1A2E" },
-    { start: "#E0F7FF", end: "#00D4FF" },
-    { start: "#00D4FF", end: "#0B1A2E" },
-  ];
-  const grad = gradients[index % gradients.length];
 
-  return (
-    <svg viewBox="0 0 100 100" className="w-full h-full select-none pointer-events-none">
-      <defs>
-        <linearGradient id={`avatar-grad-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor={grad.start} />
-          <stop offset="100%" stopColor={grad.end} />
-        </linearGradient>
-      </defs>
-      <circle cx="50" cy="50" r="48" fill={`url(#avatar-grad-${index})`} stroke="#FFFFFF" strokeWidth="3" />
-      
-      {index === 0 && (
-        <>
-          <circle cx="50" cy="40" r="15" fill="#FFFFFF" opacity="0.95" />
-          <path d="M24,78 C24,62 36,56 50,56 C64,56 76,62 76,78 Z" fill="#FFFFFF" opacity="0.95" />
-          <rect x="42" y="36" width="16" height="4" rx="2" fill="#00D4FF" />
-        </>
-      )}
-      {index === 1 && (
-        <>
-          <circle cx="50" cy="40" r="16" fill="#FFFFFF" opacity="0.95" />
-          <path d="M22,78 C22,62 34,56 50,56 C66,56 78,62 78,78 Z" fill="#FFFFFF" opacity="0.95" />
-          <path d="M34,40 C34,25 66,25 66,40" stroke="#008FED" strokeWidth="3" fill="none" />
-        </>
-      )}
-      {index === 2 && (
-        <>
-          <circle cx="50" cy="38" r="14" fill="#FFFFFF" opacity="0.95" />
-          <path d="M26,76 C26,62 38,54 50,54 C62,54 74,62 74,76 Z" fill="#FFFFFF" opacity="0.95" />
-          <circle cx="45" cy="38" r="2" fill="#00D4FF" />
-          <circle cx="55" cy="38" r="2" fill="#00D4FF" />
-        </>
-      )}
-      {index === 3 && (
-        <>
-          <circle cx="50" cy="40" r="15" fill="#FFFFFF" opacity="0.95" />
-          <path d="M24,78 C24,62 36,56 50,56 C64,56 76,62 76,78 Z" fill="#FFFFFF" opacity="0.95" />
-          <polygon points="50,30 45,42 55,42" fill="#10B981" />
-        </>
-      )}
-      {index === 4 && (
-        <>
-          <circle cx="50" cy="40" r="15" fill="#FFFFFF" opacity="0.95" />
-          <path d="M24,78 C24,62 36,56 50,56 C64,56 76,62 76,78 Z" fill="#FFFFFF" opacity="0.95" />
-          <circle cx="45" cy="36" r="3" fill="none" stroke="#3B82F6" strokeWidth="2" />
-          <circle cx="55" cy="36" r="3" fill="none" stroke="#3B82F6" strokeWidth="2" />
-          <line x1="48" y1="36" x2="52" y2="36" stroke="#3B82F6" strokeWidth="2" />
-        </>
-      )}
-    </svg>
-  );
-}
 
-const CursorIcon = () => (
-  <svg className="w-3.5 h-3.5 fill-current text-current transform -rotate-90 shrink-0" viewBox="0 0 24 24">
-    <path d="M21 3L3 10.53v.97l6.84 2.8L12.65 21h.97L21 3z" />
-  </svg>
-);
-
-const avatarsData = [
-  {
-    role: "DevOps Specialist",
-    slug: "devops-specialist",
-    xOffset: -45,
-    yOffset: -30,
-    left: "12%",
-    top: "22%",
-    isGreen: false,
-  },
-  {
-    role: "Web Developer",
-    slug: "web-developer",
-    xOffset: 30,
-    yOffset: 45,
-    left: "22%",
-    bottom: "16%",
-    isGreen: true,
-  },
-  {
-    role: "AI Assistant",
-    slug: "ai-assistant",
-    xOffset: -15,
-    yOffset: 35,
-    left: "48%",
-    top: "22%",
-    isGreen: false,
-  },
-  {
-    role: "UI/UX Designer",
-    slug: "ui-ux-designer",
-    xOffset: 40,
-    yOffset: -35,
-    right: "22%",
-    bottom: "16%",
-    isGreen: true,
-  },
-  {
-    role: "Mobile Expert",
-    slug: "mobile-expert",
-    xOffset: -35,
-    yOffset: -20,
-    right: "12%",
-    top: "22%",
-    isGreen: false,
-  },
-];
+const heroDescriptions: Record<string, string> = {
+  "web-development": "We engineer high-speed headless storefronts, pixel-perfect corporate portals, and custom SaaS platforms. Our responsive layouts are optimized for Core Web Vitals, maximum SEO visibility, and secure content delivery systems that establish immediate user trust.",
+  "mobile-app-development": "Launch cross-platform iOS and Android apps powered by Flutter or React Native alongside native Swift and Kotlin layers. We design background sync managers, local data caches, and push notification flows optimized for App Store validation.",
+  "software-development": "Accelerate operations with bespoke desktop software and scalable API microservices built on C# .NET, Java, and Python. We refactor complex legacy databases, automate internal workflows, and index schemas for heavy multi-threaded runs.",
+  "ai-automation": "Unleash cognitive agent automation integrated with Pinecone vector databases, RAG prompt guardrails, and autonomous self-triggering email and Slack pipelines. Eliminate manual operations and scale internal workflow velocity instantly.",
+  "ui-ux-design": "Develop premium corporate identity packages, interactive high-fidelity Figma prototypes, and modular design systems. We optimize user journey navigation paths, task success rates, and interface layouts for maximum visual conversion rates.",
+  "ecommerce-solutions": "Scale online sales pipelines with headless commerce frontends, custom Stripe payment integrations, and automated inventory sync loops. Our setups are built to load instantly, streamline product indexing, and decrease cart abandonment rates.",
+  "crm-erp": "Unify your databases into a custom student ledger, enterprise CRM dashboard, or pipeline tracker with role-based permissions. Avoid admin fee leaks, eliminate tracking delays, and generate real-time profit and operational reports.",
+  "api-integration": "Link your software systems via secure OAuth2 credentials, custom webhook processors, and bulletproof background data synchronization middleware. We build GraphQL and REST endpoints designed for low latency and automated error recovery.",
+  "cloud-devops": "Deploy private virtual server networks, Kubernetes container clusters, and automated CI/CD pipelines managed via Terraform IaC. Secure continuous integration checks, zero-downtime hot releases, and Prometheus log telemetry alerts."
+};
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -309,12 +207,15 @@ export default function Hero() {
 
   return (
     <div
-      className="relative w-full overflow-hidden bg-white min-h-[95vh] flex flex-col justify-start pt-12 lg:pt-14 pb-16"
+      className="relative w-full overflow-hidden bg-[url('/light1.jpg')] dark:bg-[#071426] bg-cover bg-center bg-no-repeat min-h-[110vh] lg:min-h-[115vh] flex flex-col justify-start pt-28 sm:pt-32 lg:pt-36 pb-24"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ fontFamily: "'Satoshi', sans-serif" }}
     >
       {/* Font loaders for Satoshi & Clash Display are moved to layout.tsx head */}
+
+      {/* Subtle Light Mode background overlay for black text legibility */}
+      <div className="absolute inset-0 bg-white/60 dark:bg-transparent z-0 pointer-events-none" />
 
       {/* Moving background gradient */}
       <div className="absolute inset-0 moving-gradient-bg opacity-20 pointer-events-none" />
@@ -431,7 +332,7 @@ export default function Hero() {
       />
 
       {/* Slide Wipe Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full flex-grow flex flex-col justify-start">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full flex-grow flex flex-col justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -439,208 +340,31 @@ export default function Hero() {
             initial="initial"
             animate="animate"
             exit="exit"
-            className="w-full flex flex-col justify-start"
+            className="w-full flex flex-col justify-center mt-3 lg:mt-4"
           >
-            {/* ==========================================================================
-               1. INTRO TYPOGRAPHY SECTION: Centered Clash Display Header with High Clearance
-               ========================================================================== */}
-            <div className="relative w-full flex flex-col items-center justify-center pt-12 pb-6 min-h-[140px] sm:min-h-[180px] overflow-visible border-none bg-transparent">
-              
-              {/* Subtle glowing fireflies / jugnu lights around the text and anim */}
-              <div className="absolute inset-0 pointer-events-none overflow-visible z-0 flex items-center justify-center">
-                {[
-                  // Soft moving fireflies
-                  { id: 1, left: "15%", top: "25%", size: 3.5, dur: 5.5, delay: 0 },
-                  { id: 2, left: "85%", top: "20%", size: 4, dur: 6.2, delay: 1 },
-                  { id: 3, left: "25%", top: "70%", size: 3, dur: 5.8, delay: 2 },
-                  { id: 4, left: "75%", top: "75%", size: 4.5, dur: 7, delay: 0.5 },
-                  // Small glowing dots / sparkles
-                  { id: 5, left: "40%", top: "15%", size: 1.8, dur: 4.0, delay: 1.2 },
-                  { id: 6, left: "60%", top: "80%", size: 2.2, dur: 4.8, delay: 0.8 },
-                  { id: 7, left: "50%", top: "30%", size: 2.0, dur: 5.0, delay: 2.5 },
-                ].map((pt) => (
-                  <motion.div
-                    key={pt.id}
-                    animate={{
-                      opacity: [0.08, 0.8, 0.08],
-                      scale: [0.8, 1.2, 0.8],
-                      x: [0, 10, -6, 0],
-                      y: [0, -14, 8, 0],
-                    }}
-                    transition={{
-                      duration: pt.dur,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: pt.delay,
-                    }}
-                    className="absolute rounded-full bg-[#00E5FF] shadow-[0_0_8px_#00E5FF,0_0_15px_rgba(0,229,255,0.3)]"
-                    style={{
-                      left: pt.left,
-                      top: pt.top,
-                      width: `${pt.size}px`,
-                      height: `${pt.size}px`,
-                    }}
-                  />
-                ))}
-              </div>
-
-              {/* Entrance animated wrapper for the brand header */}
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col items-center justify-center relative w-full overflow-visible z-10"
-              >
-                {/* Continuous subtle floating container */}
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full">
+              {/* Left Column: Heading and copy copy */}
+              <div className="lg:col-span-7 flex flex-col items-start text-left w-full">
+                {/* Subtag line */}
                 <motion.div
-                  animate={{ y: [0, -4, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  className="flex flex-col items-center justify-center relative w-full overflow-visible"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, delay: 0.1 }}
+                  className="inline-flex items-center gap-2 rounded-full border border-purple-100 dark:border-purple-900 bg-[#F3F0FA] dark:bg-[#1C142A] px-4 py-1 text-[10.5px] font-bold uppercase tracking-[0.08em] text-black dark:text-slate-200 shadow-sm"
                 >
-                  {/* Breathing gradient glow behind the text & animation */}
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.12, 1],
-                      opacity: [0.8, 1, 0.8],
-                    }}
-                    transition={{
-                      duration: 6,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="absolute w-[320px] sm:w-[520px] h-[120px] bg-gradient-to-r from-[#7C3AED]/15 via-[#00E5FF]/10 to-[#7C3AED]/15 rounded-full blur-3xl pointer-events-none -z-10"
-                  />
-
-
-                  {/* Massive Bold Minimalist Satoshi / Clash Display text with animated futuristic gradient shine */}
-                  <motion.h1
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-                    style={{ fontFamily: "'Clash Display', sans-serif" }}
-                    className="text-6xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-bold tracking-[-0.02em] leading-none text-center select-none relative z-10 flex justify-center items-center text-black dark:text-white drop-shadow-[0_2px_15px_rgba(0,0,0,0.08)]"
-                  >
-                    MITSAFE
-                  </motion.h1>
-
-                  {/* Thin animated gradient underline */}
-                  <div className="relative mt-5 w-44 sm:w-60 h-[3px] rounded-full overflow-hidden bg-slate-200/40 z-10">
-                    <motion.div
-                      initial={{ width: 0, opacity: 0 }}
-                      animate={{ width: "100%", opacity: 1 }}
-                      transition={{ duration: 1.2, delay: 1.4, ease: "easeOut" }}
-                      className="h-full bg-gradient-to-r from-[#7C3AED] via-[#00E5FF] to-[#7C3AED] relative"
-                    >
-                      <motion.div
-                        animate={{
-                          x: ["-100%", "100%"],
-                        }}
-                        transition={{
-                          duration: 3.5,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                        className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/50 to-transparent"
-                      />
-                    </motion.div>
-                  </div>
-
-                  {/* Short premium tagline */}
-                  <motion.p
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.6, ease: "easeOut" }}
-                    className="mt-4 text-[10px] sm:text-xs font-bold tracking-[0.25em] text-[#7C3AED]/90 uppercase font-sans text-center z-10"
-                  >
-                    Enterprise AI & Digital Automation Systems
-                  </motion.p>
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F5A623] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F5A623]"></span>
+                  </span>
+                  We Build {typedText}
                 </motion.div>
-              </motion.div>
 
-              {/* Floating circular avatars and cursor pills centered around the text wrapper */}
-              {avatarsData.map((avatar, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.7, y: 15 }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    y: 0,
-                    x: mousePos.x * avatar.xOffset * 0.4,
-                  }}
-                  transition={{
-                    opacity: { duration: 0.5, delay: 0.2 + idx * 0.08 },
-                    scale: { type: "spring", stiffness: 100, damping: 15, delay: 0.2 + idx * 0.08 },
-                    y: { type: "spring", stiffness: 80, damping: 12, delay: 0.2 + idx * 0.08 },
-                    x: { type: "spring", stiffness: 60, damping: 15 },
-                  }}
-                  style={{
-                    position: "absolute",
-                    left: avatar.left,
-                    top: avatar.top,
-                    bottom: avatar.bottom,
-                    right: avatar.right,
-                    zIndex: 20,
-                  }}
-                >
-                  <Link href={`/roles/${avatar.slug}`} className="pointer-events-auto block">
-                    {/* Slow float effect + Slight hover scale */}
-                    <motion.div
-                      animate={{
-                        y: [0, idx % 2 === 0 ? -6 : 6, 0],
-                        x: [0, idx % 2 === 0 ? 4 : -4, 0],
-                      }}
-                      whileHover={{ scale: 1.06, y: idx % 2 === 0 ? -10 : 2 }}
-                      transition={{
-                        y: {
-                          duration: 4.5 + idx * 0.5,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        },
-                        x: {
-                          duration: 4.5 + idx * 0.5,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        },
-                        scale: { duration: 0.25, ease: "easeOut" }
-                      }}
-                      className="flex items-center gap-2 group cursor-pointer"
-                    >
-                      {/* Circle Avatar crop */}
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden shadow-md border-2 border-white hover:scale-105 transition-transform duration-300">
-                        <TeamAvatar index={idx} />
-                      </div>
-
-                      {/* Cursor Tag */}
-                      <div
-                        className={`flex items-center gap-1.2 px-2 py-0.5 text-[9px] sm:text-xs font-bold rounded-lg shadow-sm border transition-all duration-300 ${
-                          avatar.isGreen
-                            ? "bg-[#8BE83A] text-slate-900 border-[#7cd02d]/25 group-hover:bg-[#9cf050]"
-                            : "bg-[#7C3AED] text-white border-purple-500/25 group-hover:bg-[#8b4bf6]"
-                        }`}
-                      >
-                        <CursorIcon />
-                        <span>{avatar.role}</span>
-                      </div>
-                    </motion.div>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* ==========================================================================
-               2. CREDFLOW BASE HERO LAYOUT: Spacious 2-Column Split Grid below Header
-               ========================================================================== */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mt-8 lg:mt-10">
-              {/* Left Column: Spacious Typography & CTAs */}
-              <div className="lg:col-span-7 flex flex-col items-start text-left relative z-10">
                 {/* Service Heading word-by-word staggered reveal */}
                 <motion.h2
                   variants={headingContainerVariants}
                   initial="hidden"
                   animate="visible"
-                  style={{ fontFamily: "'Clash Display', sans-serif" }}
-                  className="text-4xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-bold text-slate-900 leading-[1.2] tracking-[-0.03em] flex flex-wrap gap-x-2.5 gap-y-0.5"
+                  className="mt-4 text-4xl sm:text-5xl md:text-5xl lg:text-[3.2rem] xl:text-[4.2rem] font-extrabold text-black dark:text-white leading-[1.15] tracking-tight flex flex-wrap gap-x-2.5 gap-y-0.5 max-w-2xl text-left"
                 >
                   {titleWords.map((word, i) => (
                     <span key={i} className="overflow-hidden inline-flex py-1 -my-1">
@@ -654,39 +378,25 @@ export default function Hero() {
                   ))}
                 </motion.h2>
 
-                {/* Subtag line */}
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: 1.35 }}
-                  className="mt-4 inline-flex items-center gap-2 rounded-full border border-purple-100 bg-[#F3F0FA] px-4 py-1 text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#7C3AED] shadow-sm"
-                >
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F5A623] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F5A623]"></span>
-                  </span>
-                  We Build {typedText}
-                </motion.div>
-
                 {/* Description */}
                 <motion.p
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.45 }}
-                  className="mt-5 text-sm sm:text-[14.5px] md:text-base text-slate-500 leading-relaxed max-w-xl font-medium tracking-wide"
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="mt-3.5 text-sm sm:text-[14.5px] md:text-base text-black/85 dark:text-slate-300 leading-relaxed max-w-xl font-medium tracking-wide text-left"
                 >
-                  {currentService.longDescription}
+                  {heroDescriptions[currentService.slug] || currentService.longDescription}
                 </motion.p>
 
                 {/* Bullet checklist features */}
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 1.55 }}
-                  className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full"
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-xl"
                 >
                   {currentService.features.slice(0, 4).map((feat, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-600">
+                    <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-black/90 dark:text-slate-300">
                       <div className="w-4.5 h-4.5 rounded-full bg-[#00D4FF]/10 flex items-center justify-center text-[#00D4FF] shrink-0 border border-[#00D4FF]/20 shadow-sm">
                         <Check className="w-3 h-3 stroke-[3.5px]" />
                       </div>
@@ -699,19 +409,14 @@ export default function Hero() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 1.65 }}
-                  className="mt-8 flex flex-wrap items-center gap-4 w-full sm:w-auto"
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                  className="mt-6 flex flex-wrap items-center gap-4 w-full sm:w-auto"
                 >
                   <motion.a
                     href="#services"
-                    whileHover={{
-                      scale: 1.04,
-                      x: mousePos.x * 12,
-                      y: mousePos.y * 12,
-                    }}
+                    whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 350, damping: 12 }}
-                    className="inline-flex items-center justify-center gap-2 bg-[#00D4FF] hover:bg-[#00BCE0] text-[#071426] font-bold text-sm px-6 py-3.5 rounded-full shadow-[0_6px_22px_rgba(0,212,255,0.25)] hover:shadow-[0_10px_28px_rgba(0,212,255,0.4)] transition-shadow duration-300 border border-transparent cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#00D4FF] to-[#008FED] hover:from-[#00E5FF] hover:to-[#008FED]/90 text-white font-extrabold text-sm px-6 py-3.5 rounded-full shadow-[0_4px_14px_rgba(0,212,255,0.25)] hover:shadow-[0_8px_24px_rgba(0,212,255,0.45)] transition-all duration-300 border border-transparent cursor-pointer"
                   >
                     <span>Explore Services</span>
                     <ArrowRight className="w-4.5 h-4.5" />
@@ -719,14 +424,9 @@ export default function Hero() {
 
                   <motion.a
                     href="/contact"
-                    whileHover={{
-                      scale: 1.04,
-                      x: mousePos.x * 12,
-                      y: mousePos.y * 12,
-                    }}
+                    whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 350, damping: 12 }}
-                    className="inline-flex items-center justify-center gap-2 bg-[#0B1A2E] hover:bg-[#071426] text-white hover:text-[#00D4FF] font-bold text-sm px-6 py-3.5 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.03)] border border-[rgba(0,212,255,0.15)] hover:border-[#00D4FF]/30 cursor-pointer transition-colors"
+                    className="inline-flex items-center justify-center gap-2.5 bg-[#0B1A2E]/5 hover:bg-[#0B1A2E]/10 dark:bg-[#0B1A2E]/60 dark:hover:bg-[#071426]/80 text-black dark:text-white font-bold text-sm px-6 py-3.5 rounded-full shadow-sm hover:shadow-md border border-slate-200 dark:border-[rgba(0,212,255,0.15)] hover:border-slate-300 dark:hover:border-[#00D4FF]/30 cursor-pointer transition-all duration-300"
                   >
                     <span>Get in Touch</span>
                   </motion.a>
@@ -734,50 +434,163 @@ export default function Hero() {
               </div>
 
               {/* Right Column: High-End Service Illustration Mockup Preview */}
-              <motion.div
-                initial={{ opacity: 0, x: 55, scale: 0.96 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 0.75, delay: 1.75, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:col-span-5 relative flex justify-center items-center mt-8 lg:mt-0 z-10"
-              >
+              <div className="lg:col-span-5 relative flex justify-center items-center mt-8 lg:mt-0 z-10 w-full">
+                
+                {/* Subtle glow background behind the mockup */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-cyan-500/5 to-transparent blur-2xl rounded-full scale-90 -z-10 pointer-events-none" />
+
+                {/* FLOATING DECORATIVE ELEMENTS */}
+                {/* Glass Stat Card 1 */}
                 <motion.div
+                  className="absolute -left-16 top-6 bg-white/10 dark:bg-slate-900/40 backdrop-blur-md border border-white/20 dark:border-white/10 p-2.5 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] flex flex-col gap-1 w-32 text-left cursor-default pointer-events-auto z-20 hidden xl:flex"
                   animate={{
-                    y: [0, -8, 0],
-                    x: mousePos.x * 16,
+                    y: [0, -6, 0],
                   }}
                   transition={{
-                    y: {
-                      duration: 5.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    },
-                    x: {
-                      type: "spring",
-                      stiffness: 60,
-                      damping: 15,
-                    }
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
                   }}
-                  style={{ y: mousePos.y * 16 }}
-                  className="relative w-full aspect-[4/3] max-w-[460px] select-none"
                 >
-                  {/* Premium Rounded Frame Shadow (CredFlow Visual Style) */}
-                  <div className="relative w-full h-full rounded-3xl overflow-hidden border-4 border-[#0B1A2E] shadow-[0_20px_50px_rgba(0,212,255,0.1)] bg-[#071426]">
-                    <div className="w-full h-full overflow-hidden relative group">
-                      <Image
-                        src={slideImages[currentSlide % slideImages.length] || "/hero-image.png"}
-                        alt={currentService.title}
-                        fill
-                        className="object-cover img-zoom-hover"
-                        priority
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/5 to-transparent pointer-events-none" />
-                    </div>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[8px] uppercase tracking-wider text-slate-450 dark:text-slate-400 font-bold">System Status</span>
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                    </span>
                   </div>
-
-                  <div className="absolute -bottom-4 -left-4 w-28 h-28 bg-gradient-to-tr from-[#00D4FF]/15 to-[#008FED]/10 blur-xl rounded-full -z-10 animate-pulse" />
-                  <div className="absolute -top-4 -right-4 w-32 h-32 bg-gradient-to-br from-[#00D4FF]/8 to-transparent blur-2xl rounded-full -z-10" />
+                  <div className="flex items-center gap-1 mt-0.5">
+                    <div className="w-4.5 h-4.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 shrink-0">
+                      <Shield className="w-2.5 h-2.5" />
+                    </div>
+                    <span className="text-[10px] font-black text-black dark:text-white">99.9% Uptime</span>
+                  </div>
                 </motion.div>
-              </motion.div>
+
+                {/* Glass Sphere 1 (Bottom Left) */}
+                <motion.div
+                  className="absolute -left-10 -bottom-8 w-11 h-11 rounded-full border border-white/30 dark:border-white/15 backdrop-blur-[5px] shadow-[inset_0_1.5px_3px_rgba(255,255,255,0.4),0_10px_20px_rgba(0,0,0,0.15)] z-20 hidden lg:block"
+                  style={{
+                    background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 40%, rgba(0,0,0,0.3) 100%)"
+                  }}
+                  animate={{
+                    y: [0, 8, 0],
+                    x: [0, 4, 0],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.5,
+                  }}
+                />
+
+                {/* Glowing Cyan Diamond (Top Left) */}
+                <motion.div
+                  className="absolute -left-4 -top-8 w-6 h-6 border border-cyan-400/40 bg-cyan-400/5 rounded-md shadow-[0_0_12px_rgba(34,211,238,0.25)] flex items-center justify-center z-20 hidden lg:block"
+                  animate={{
+                    y: [0, -8, 0],
+                    rotate: [45, 405],
+                  }}
+                  transition={{
+                    duration: 7,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
+                >
+                  <div className="w-1 h-1 bg-cyan-405 rounded-full animate-pulse" />
+                </motion.div>
+
+                {/* Glass Sphere 2 (Top Right) */}
+                <motion.div
+                  className="absolute -right-10 -top-8 w-12 h-12 rounded-full border border-white/30 dark:border-white/15 backdrop-blur-[5px] shadow-[inset_0_1.5px_3px_rgba(255,255,255,0.4),0_10px_20px_rgba(0,0,0,0.15)] z-20 hidden lg:block"
+                  style={{
+                    background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 40%, rgba(0,0,0,0.3) 100%)"
+                  }}
+                  animate={{
+                    y: [0, -10, 0],
+                    x: [0, -5, 0],
+                  }}
+                  transition={{
+                    duration: 5.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.2,
+                  }}
+                />
+
+                {/* Glass Stat Card 2 */}
+                <motion.div
+                  className="absolute -right-16 bottom-6 bg-white/10 dark:bg-slate-900/40 backdrop-blur-md border border-white/20 dark:border-white/10 p-2.5 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] flex flex-col gap-1 w-32 text-left cursor-default pointer-events-auto z-20 hidden xl:flex"
+                  animate={{
+                    y: [0, 8, 0],
+                  }}
+                  transition={{
+                    duration: 4.8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.7,
+                  }}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[8px] uppercase tracking-wider text-slate-455 dark:text-slate-400 font-bold">API Performance</span>
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00D4FF] opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#00D4FF]"></span>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1 mt-0.5">
+                    <div className="w-4.5 h-4.5 rounded-md bg-[#00D4FF]/10 border border-[#00D4FF]/20 flex items-center justify-center text-[#00D4FF] shrink-0">
+                      <Activity className="w-2.5 h-2.5" />
+                    </div>
+                    <span className="text-[10px] font-black text-black dark:text-white">12ms Latency</span>
+                  </div>
+                </motion.div>
+
+                {/* Glowing Purple Ring (Bottom Right) */}
+                <motion.div
+                  className="absolute -right-6 -bottom-8 w-6 h-6 border border-purple-400/40 bg-purple-400/5 rounded-full shadow-[0_0_12px_rgba(192,132,252,0.25)] flex items-center justify-center z-20 hidden lg:block"
+                  animate={{
+                    y: [0, -6, 0],
+                    rotate: [0, -360],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                >
+                  <div className="w-3 h-3 border border-purple-400/30 rounded-full" />
+                </motion.div>
+
+                {/* ORIGINAL FRAME STYLE SHOWCASE */}
+                <div className="relative w-full max-w-[440px] aspect-[4/3] select-none mx-auto">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentSlide}
+                      initial={{ opacity: 0, scale: 0.96, y: 15 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.98, y: -10 }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute inset-0 w-full h-full"
+                    >
+                      <div className="relative w-full h-full rounded-3xl overflow-hidden border-4 border-[#0B1A2E] shadow-[0_20px_50px_rgba(0,212,255,0.1)] bg-[#071426]">
+                        <div className="w-full h-full overflow-hidden relative group">
+                          <Image
+                            src={slideImages[currentSlide % slideImages.length] || "/hero-image.png"}
+                            alt={serviceTitle}
+                            fill
+                            className="object-cover img-zoom-hover select-none"
+                            priority
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/5 to-transparent pointer-events-none" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>
@@ -806,9 +619,8 @@ export default function Hero() {
           <button
             key={idx}
             onClick={() => setCurrentSlide(idx)}
-            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-              currentSlide === idx ? "w-6 bg-[#00D4FF]" : "w-2 bg-slate-650 hover:bg-[#00D4FF]/50"
-            }`}
+            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${currentSlide === idx ? "w-6 bg-[#00D4FF]" : "w-2 bg-slate-650 hover:bg-[#00D4FF]/50"
+              }`}
             aria-label={`Go to slide page ${idx + 1}`}
           />
         ))}

@@ -250,7 +250,7 @@ function BlogCard({ post, idx, revealed, onReveal, isDesktop }: BlogCardProps) {
   }, [isCardInView, revealed, idx, onReveal]);
 
   return (
-    <div ref={cardRef} className="relative w-full max-w-[430px] mx-auto lg:mx-0">
+    <div ref={cardRef} className="relative w-full max-w-[490px] mx-auto lg:mx-0">
       {/* Soft Light Burst around card on reveal */}
       {revealed && (
         <motion.div
@@ -312,7 +312,7 @@ function BlogCard({ post, idx, revealed, onReveal, isDesktop }: BlogCardProps) {
           </div>
 
           {/* Divider line */}
-          <span className="w-full h-px bg-white/10 my-6 block" />
+          <span className="w-full h-px bg-white/10 my-4.5 block" />
 
           {/* Bottom Footer metadata & button row */}
           <div className="flex items-center justify-between mt-auto gap-4">
@@ -381,8 +381,7 @@ export default function BlogSection() {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="bg-[#071426] py-32 md:py-44 relative overflow-hidden border-t 
-border-white/5 font-sans"
+      className="bg-[#071426] py-20 md:py-24 relative overflow-hidden border-t border-white/5 font-sans"
       style={{
         backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px)",
         backgroundSize: "28px 28px",
@@ -548,14 +547,14 @@ bg-gradient-to-bl from-[#008FED]/3 to-transparent blur-[150px] pointer-events-no
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-24 max-w-3xl mx-auto">
+        <div className="text-center mb-12 max-w-3xl mx-auto">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/10 px-5 py-2 text-xs font-bold uppercase tracking-widest text-[#00D4FF] font-display shadow-sm"
+            className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#00D4FF] font-display shadow-sm"
           >
             <Sparkles className="w-3.5 h-3.5 text-[#00D4FF]" />
             <span>ARTICLE JOURNAL</span>
@@ -579,14 +578,14 @@ bg-gradient-to-bl from-[#008FED]/3 to-transparent blur-[150px] pointer-events-no
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="mt-6 text-base text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed"
+            className="mt-4 text-base text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed"
           >
             Latest Blogs and updates can be provided to you. In this section we also provide latest technology related updates.
           </motion.p>
         </div>
 
         {/* Alternate Zig-Zag Timeline Layout */}
-        <div className="flex flex-col w-full relative mt-16 max-w-5xl mx-auto">
+        <div className="flex flex-col w-full relative mt-12 max-w-5xl mx-auto">
           
           {/* Center background guide line (desktop only) */}
           {isDesktop && (

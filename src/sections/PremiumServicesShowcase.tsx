@@ -431,7 +431,7 @@ export default function PremiumServicesShowcase() {
   return (
     <section
       id="premium-showcase"
-      className="bg-[#F8F7FC]/80 py-24 relative overflow-hidden border-t border-[#E5E2F0]/80"
+      className="bg-[#F8F7FC]/80 py-20 md:py-24 relative overflow-hidden border-t border-[#E5E2F0]/80"
       style={{ fontFamily: "'Satoshi', sans-serif" }}
     >
       {/* 5 Vertical Background Grid Lines */}

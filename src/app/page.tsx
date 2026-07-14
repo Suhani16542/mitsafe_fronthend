@@ -1,14 +1,18 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import Hero from "@/sections/Hero";
-import PremiumServicesShowcase from "@/sections/PremiumServicesShowcase";
-import ServicesSection from "@/sections/ServicesSection";
-import WhyChooseUs from "@/sections/WhyChooseUs";
-import WelcomeSection from "@/sections/WelcomeSection";
-import FAQSection from "@/sections/FAQSection";
-import PortfolioSection from "@/sections/PortfolioSection";
-import MovingCrossStripSection from "@/sections/MovingCrossStripSection";
-import TestimonialsSection from "@/sections/TestimonialsSection";
-import BlogSection from "@/sections/BlogSection";
+
+// Dynamically load below-the-fold components to reduce First Load JS bundle size
+const PremiumServicesShowcase = dynamic(() => import("@/sections/PremiumServicesShowcase"));
+const ServicesSection = dynamic(() => import("@/sections/ServicesSection"));
+const MitsafeSection = dynamic(() => import("@/sections/MitsafeSection"));
+const WhyChooseUs = dynamic(() => import("@/sections/WhyChooseUs"));
+const WelcomeSection = dynamic(() => import("@/sections/WelcomeSection"));
+const FAQSection = dynamic(() => import("@/sections/FAQSection"));
+const PortfolioSection = dynamic(() => import("@/sections/PortfolioSection"));
+const MovingCrossStripSection = dynamic(() => import("@/sections/MovingCrossStripSection"));
+const TestimonialsSection = dynamic(() => import("@/sections/TestimonialsSection"));
+const BlogSection = dynamic(() => import("@/sections/BlogSection"));
 
 export default function Home() {
   return (
@@ -16,6 +20,7 @@ export default function Home() {
       <Hero />
       <PremiumServicesShowcase />
       <ServicesSection />
+      <MitsafeSection />
       <WhyChooseUs />
       <WelcomeSection />
       <FAQSection />

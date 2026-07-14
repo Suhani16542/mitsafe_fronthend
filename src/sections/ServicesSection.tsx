@@ -143,7 +143,7 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="bg-[#F3F0FA] py-20 md:py-28 relative overflow-hidden border-t border-purple-50"
+      className="bg-[#F3F0FA] py-20 md:py-24 relative overflow-hidden border-t border-purple-50"
       style={{ fontFamily: "'Satoshi', sans-serif" }}
     >
       {/* 5 Vertical Background Grid Lines */}

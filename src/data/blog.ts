@@ -19,7 +19,7 @@ export const blogData: BlogPost[] = [
     author: "Alex Rivers",
     date: "July 2, 2026",
     readTime: "5 Min Read",
-    summary: "Explore how Next.js 16 and React 19 change server-side data loading, styling architectures, and SEO optimization frameworks.",
+    summary: "Explore how Next.js 16 and React 19 change server-side data loading, styling architectures, and SEO optimization frameworks. Learn how the new Turbopack compiler optimizes build caching, handles streaming server-side hydration pipelines, and automates asset preloading to boost Core Web Vitals automatically.",
     content: `
       <p>Next.js 16 is here, bringing massive upgrades in speed, compiler efficiency, and server-side components. Working alongside React 19, this version simplifies key states that previously required complex third-party libraries. In this deep dive, we explore how next-generation web architectures are constructed.</p>
       
@@ -40,7 +40,7 @@ export const blogData: BlogPost[] = [
     author: "Elena Vance",
     date: "June 25, 2026",
     readTime: "7 Min Read",
-    summary: "A practical guide to connecting Large Language Models to internal databases using secure RAG systems and autonomous agents.",
+    summary: "A practical guide to connecting Large Language Models to internal databases using secure RAG systems and autonomous agents. Discover structural patterns for conversational memory databases, semantic vector indexes, role-based access control filters, and automated agent pipelines to scale operations securely.",
     content: `
       <p>Artificial Intelligence has moved past simple chat prompts. Modern enterprises are integrating autonomous agents capable of making decisions, querying records, and executing customer-support tasks without human oversight. How do we build these securely?</p>
       
@@ -58,7 +58,7 @@ export const blogData: BlogPost[] = [
     author: "Marcus Chen",
     date: "June 18, 2026",
     readTime: "6 Min Read",
-    summary: "How to containerize applications, configure auto-scaling blocks, and reduce cloud costs on AWS or Google Cloud.",
+    summary: "How to containerize applications, configure auto-scaling blocks, and reduce cloud costs on AWS or Google Cloud. We detail how to analyze idle compute nodes, implement metric-based horizontal pod auto-scalers, setup spot instances, and build cost monitoring dashboards to optimize cloud budgets.",
     content: `
       <p>Scaling application clusters during peak traffic periods can lead to massive server bills if not designed properly. Kubernetes provides the ideal platform for managing containers, dynamically scaling nodes, and optimizing server costs.</p>
     `,

@@ -127,12 +127,13 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="bg-[#F3F0FA] py-32 md:py-44 relative overflow-hidden border-t border-purple-50 font-sans"
-    >
+    <div className="w-full px-6 lg:px-8">
+      <section
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="bg-[#F3F0FA] py-14 md:py-16 relative overflow-hidden border border-purple-100 rounded-[2rem] max-w-6xl mx-auto font-sans shadow-sm"
+      >
       {/* Background Cyber Grid lines */}
       <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.25]">
         {[...Array(5)].map((_, i) => (
@@ -143,32 +144,32 @@ export default function TestimonialsSection() {
       {/* Rotating Background Vector Light Rings */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-200/40 bg-transparent pointer-events-none z-0 hidden lg:block"
-        style={{ width: "750px", height: "750px" }}
+        style={{ width: "550px", height: "550px" }}
         animate={{ rotate: 360 }}
         transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
       />
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-slate-200/40 bg-transparent pointer-events-none z-0 hidden lg:block"
-        style={{ width: "550px", height: "550px" }}
+        style={{ width: "400px", height: "400px" }}
         animate={{ rotate: -360 }}
         transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
       />
 
       {/* Ambient gradient glows */}
-      <div className="absolute top-[20%] left-1/4 w-[500px] h-[500px] rounded-full bg-[#00D4FF]/3 blur-[130px] pointer-events-none z-0" />
-      <div className="absolute bottom-[20%] right-1/4 w-[500px] h-[500px] rounded-full bg-[#008FED]/2 blur-[135px] pointer-events-none z-0" />
+      <div className="absolute top-[20%] left-1/4 w-[350px] h-[350px] rounded-full bg-[#00D4FF]/3 blur-[100px] pointer-events-none z-0" />
+      <div className="absolute bottom-[20%] right-1/4 w-[350px] h-[350px] rounded-full bg-[#008FED]/2 blur-[100px] pointer-events-none z-0" />
 
       <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10 flex flex-col items-center">
         
         {/* Section Header */}
-        <div className="text-center mb-20 flex flex-col items-center">
+        <div className="text-center mb-12 flex flex-col items-center">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/10 px-5 py-2 text-xs font-bold uppercase tracking-widest text-[#00D4FF] font-display shadow-sm"
+            className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest text-[#00D4FF] font-display shadow-sm"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>CLIENT REVIEWS</span>
@@ -180,7 +181,7 @@ export default function TestimonialsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             style={{ fontFamily: "'Clash Display', sans-serif" }}
-            className="text-3xl sm:text-4xl font-bold text-[#1E1A39] tracking-[-0.03em] leading-tight"
+            className="text-2xl sm:text-3xl font-bold text-[#1E1A39] tracking-[-0.03em] leading-tight"
           >
             When Our Clients Say
           </motion.h2>
@@ -189,7 +190,7 @@ export default function TestimonialsSection() {
         {/* Large circular background behind the testimonial card with floating animation */}
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none z-0 bg-[#0B1A2E]/5 dark:bg-[#0B1A2E]/10"
-          style={{ width: "620px", height: "620px" }}
+          style={{ width: "450px", height: "450px" }}
           animate={{
             y: [-15, 15, -15],
             x: [-10, 10, -10],
@@ -207,42 +208,42 @@ export default function TestimonialsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-4xl text-center flex flex-col items-center bg-[#0B1A2E]/90 border border-[rgba(0,212,255,0.15)] rounded-[3rem] p-10 md:p-16 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,212,255,0.06)] group overflow-hidden"
+          className="relative w-full max-w-3xl text-center flex flex-col items-center bg-[#0B1A2E]/90 border border-[rgba(0,212,255,0.15)] rounded-3xl p-8 md:p-12 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,212,255,0.06)] group overflow-hidden"
         >
           {/* Subtle glow border line */}
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#00D4FF] to-[#008FED] opacity-70" />
 
           {/* Subtle background quotes */}
-          <div className="absolute -top-6 left-6 w-32 h-32 text-slate-200/50 select-none pointer-events-none font-serif text-[18rem] leading-none">
+          <div className="absolute -top-6 left-6 w-24 h-24 text-slate-200/50 select-none pointer-events-none font-serif text-[14rem] leading-none">
             &ldquo;
           </div>
 
           {/* Centered Heart Graphic Icon */}
-          <div className="w-20 h-20 relative flex items-center justify-center bg-gradient-to-tr from-[#00D4FF] to-[#008FED] rounded-3xl shadow-[0_12px_35px_rgba(0, 212, 255, 0.2)] hover:scale-105 transition-transform duration-500 mb-10 z-10">
-            <Heart className="w-10 h-10 text-[#071426] fill-current animate-pulse" />
+          <div className="w-14 h-14 relative flex items-center justify-center bg-gradient-to-tr from-[#00D4FF] to-[#008FED] rounded-2xl shadow-[0_12px_35px_rgba(0,212,255,0.2)] hover:scale-105 transition-transform duration-500 mb-6 z-10">
+            <Heart className="w-7 h-7 text-[#071426] fill-current animate-pulse" />
           </div>
 
           {/* Immersive text quotes editorial layout */}
-          <p className="text-lg sm:text-2xl md:text-xl leading-relaxed text-slate-700 italic font-normal z-10 max-w-3xl font-display">
+          <p className="text-sm sm:text-lg leading-relaxed text-slate-700 italic font-normal z-10 max-w-2xl font-display">
             &ldquo;The range of services offered by Modern Technology is diverse, catering to various design needs. Whether it&apos;s graphic design, web design, or branding, their team exhibits versatility and a knack for understanding the unique requirements of each project.&rdquo;
           </p>
 
           {/* Author info */}
-          <div className="flex flex-col gap-1.5 mt-10 z-10">
-            <h4 className="font-display text-lg font-bold text-[#1E1A39] tracking-wide">
+          <div className="flex flex-col gap-1 mt-6 z-10">
+            <h4 className="font-display text-base font-bold text-[#1E1A39] tracking-wide">
               T-zer Cabz
             </h4>
-            <span className="text-[10px] text-[#00D4FF] font-extrabold uppercase tracking-widest font-mono bg-[#00D4FF]/10 border border-[#00D4FF]/20 px-3.5 py-1 rounded-full">
+            <span className="text-[9px] text-[#00D4FF] font-extrabold uppercase tracking-widest font-mono bg-[#00D4FF]/10 border border-[#00D4FF]/20 px-3 py-0.5 rounded-full">
               Customer
             </span>
           </div>
         </motion.div>
 
         {/* Separator line */}
-        <span className="w-full h-px bg-slate-200 mt-24 mb-16" />
+        <span className="w-full h-px bg-slate-200 mt-16 mb-12" />
 
         {/* Dynamic reactive Client Logo nodes */}
-        <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-8 items-center justify-center max-w-4xl mx-auto">
+        <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-center max-w-3xl mx-auto">
           {partnerLogos.map((logo, idx) => (
             <PartnerLogoCard
               key={idx}
@@ -256,5 +257,6 @@ export default function TestimonialsSection() {
 
       </div>
     </section>
+    </div>
   );
 }

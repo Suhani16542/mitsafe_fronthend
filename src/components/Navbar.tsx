@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Menu, 
-  X, 
-  ChevronDown, 
+import {
+  Menu,
+  X,
+  ChevronDown,
   ArrowRight,
   Send,
   Code,
@@ -43,41 +43,36 @@ const iconMap: Record<string, React.ComponentType<any>> = {
 const dropdownVariants = {
   hidden: {
     opacity: 0,
-    y: 16,
-    scale: 0.98,
-    filter: "blur(6px)"
+    y: 8,
+    scale: 0.99,
   },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    filter: "blur(0px)",
     transition: {
-      duration: 0.38,
-      ease: [0.16, 1, 0.3, 1] as const,
-      staggerChildren: 0.08,
-      delayChildren: 0.05
+      duration: 0.18,
+      ease: "easeOut" as const,
     }
   },
   exit: {
     opacity: 0,
-    y: 10,
-    scale: 0.98,
-    filter: "blur(4px)",
+    y: 4,
+    scale: 0.99,
     transition: {
-      duration: 0.22,
-      ease: "easeInOut" as const
+      duration: 0.12,
+      ease: "easeIn" as const
     }
   }
 };
 
 const menuItemVariants = {
-  hidden: { opacity: 0, x: -8 },
+  hidden: { opacity: 0, x: -4 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.3,
+      duration: 0.15,
       ease: "easeOut" as const
     }
   }
@@ -86,15 +81,13 @@ const menuItemVariants = {
 const columnVariants = {
   hidden: {
     opacity: 0,
-    y: 12,
-    filter: "blur(3px)",
+    y: 6,
   },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: {
-      duration: 0.45,
+      duration: 0.15,
       ease: "easeOut" as const,
     },
   },
@@ -120,9 +113,12 @@ export default function Navbar() {
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [activeCategorySlug, setActiveCategorySlug] = useState<string>("web-development");
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const pathname = usePathname();
 
-  const activeService = servicesData.find(s => s.slug === activeCategorySlug) || servicesData[0];
+  const activeService = useMemo(() => {
+    return servicesData.find(s => s.slug === activeCategorySlug) || servicesData[0];
+  }, [activeCategorySlug]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -140,6 +136,7 @@ export default function Navbar() {
   useEffect(() => {
     setMobileMenuOpen(false);
     setServicesDropdownOpen(false);
+    setMobileServicesOpen(false);
   }, [pathname]);
 
   const navLinks = [
@@ -147,20 +144,17 @@ export default function Navbar() {
     { name: "Company", href: "/company" },
     { name: "Services", href: "/#premium-showcase", hasDropdown: true },
     { name: "Industries", href: "/industries" },
-    { name: "Solutions", href: "/solutions" },
     { name: "Portfolio", href: "/portfolio" },
     { name: "Hire Developers", href: "/hire-developers" },
-    { name: "Insights", href: "/insights" },
   ];
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b ${
-          scrolled
-            ? "bg-[#FAFBFF]/90 dark:bg-[#071426]/90 border-[#008FED]/15 dark:border-[rgba(0,212,255,0.15)] shadow-md dark:shadow-[0_10px_30px_rgba(0,212,255,0.08)] backdrop-blur-md py-2"
-            : "bg-[#FAFBFF]/75 dark:bg-[#071426]/75 border-b border-[#008FED]/10 dark:border-[rgba(0,212,255,0.08)] shadow-sm dark:shadow-[0_4px_20px_rgba(0,212,255,0.03)] backdrop-blur-md py-3"
-        }`}
+        className={`fixed z-50 left-1/2 -translate-x-1/2 w-[90%] md:w-[86%] lg:w-[82%] max-w-[1120px] transition-all duration-300 border rounded-[30px] backdrop-blur-xl ${scrolled
+            ? "top-5 bg-white/80 dark:bg-[#071426]/75 border-slate-200/50 dark:border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_10px_35px_rgba(0,0,0,0.25)] py-0.5"
+            : "top-6 bg-white/75 dark:bg-[#071426]/70 border-slate-200/40 dark:border-white/5 shadow-[0_6px_20px_rgba(0,0,0,0.02)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.15)] py-1"
+          }`}
       >
         {/* Subtle Glowing Fireflies floating in the background */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
@@ -192,16 +186,16 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between relative z-10">
-          
+        <div className="w-full px-5 sm:px-6 lg:px-8 flex items-center justify-between relative z-10">
+
           {/* Logo - kept exactly as it was, with cyan drop shadow highlight */}
           <Link href="/" className="flex items-center gap-3 group">
             <Image
               src="/mt-logo.png"
               alt="Modern Technology Logo"
-              width={188}
-              height={58}
-              className="h-auto w-[170px] filter drop-shadow-[0_0_10px_rgba(0,229,255,0.35)] brightness-105 transition-transform duration-300 group-hover:scale-[1.02] dark:invert-0"
+              width={108}
+              height={33}
+              className="h-auto w-[108px] filter drop-shadow-[0_0_10px_rgba(0,229,255,0.35)] brightness-105 transition-transform duration-300 group-hover:scale-[1.02] dark:invert-0"
               priority
             />
           </Link>
@@ -232,7 +226,7 @@ export default function Navbar() {
                 >
                   {/* Premium Active highlighted appearance */}
                   {isActive && (
-                    <span className="absolute inset-0 bg-[#008FED]/5 dark:bg-gradient-to-r dark:from-[#00E5FF]/4 dark:to-[#7C3AED]/6 border border-[#008FED]/15 dark:border-[#00E5FF]/15 rounded-xl shadow-[0_0_10px_rgba(0,143,237,0.05)] dark:shadow-[0_0_10px_rgba(0,229,255,0.1)] backdrop-blur-[2px] -z-10" />
+                    <span className="absolute inset-0 bg-[#008FED]/5 dark:bg-gradient-to-r dark:from-[#00E5FF]/4 dark:to-[#7C3AED]/6 border border-[#008FED]/15 dark:border-[#00E5FF]/15 rounded-full shadow-[0_0_10px_rgba(0,143,237,0.05)] dark:shadow-[0_0_10px_rgba(0,229,255,0.1)] backdrop-blur-[2px] -z-10" />
                   )}
 
                   {/* Scaling Link Text Wrapper */}
@@ -252,18 +246,17 @@ export default function Navbar() {
                           }
                         }
                       }}
-                      className={`font-display font-medium text-sm tracking-wide transition-all duration-300 flex items-center gap-1.5 cursor-pointer select-none px-3.5 py-1.5 rounded-lg ${
-                        isActive
+                      style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
+                      className={`font-medium text-[12px] tracking-wide transition-all duration-300 flex items-center gap-1.5 cursor-pointer select-none px-2.5 py-0.5 rounded-full ${isActive
                           ? "text-[#008FED] dark:text-[#00E5FF] font-bold"
                           : "text-slate-650 dark:text-[#E2E8F0] hover:text-[#008FED] dark:hover:text-white"
-                      }`}
+                        }`}
                     >
                       <span>{link.name}</span>
                       {link.hasDropdown && (
                         <ChevronDown
-                          className={`w-4 h-4 opacity-70 transition-transform duration-300 ${
-                            link.name === "Services" && servicesDropdownOpen ? "rotate-180" : ""
-                          }`}
+                          className={`w-4 h-4 opacity-70 transition-transform duration-300 ${link.name === "Services" && servicesDropdownOpen ? "rotate-180" : ""
+                            }`}
                         />
                       )}
                     </Link>
@@ -273,9 +266,9 @@ export default function Navbar() {
                   {!isActive && hoveredLink === link.name && (
                     <motion.span
                       layoutId="navHoverPill"
-                      className="absolute inset-0 bg-[#008FED]/5 dark:bg-gradient-to-r dark:from-[#00D4FF]/8 dark:to-[#008FED]/12 border border-[#008FED]/25 dark:border-[#00D4FF]/35 rounded-xl backdrop-blur-sm -z-10"
+                      className="absolute inset-0 bg-[#008FED]/5 dark:bg-gradient-to-r dark:from-[#00D4FF]/8 dark:to-[#008FED]/12 border border-[#008FED]/25 dark:border-[#00D4FF]/35 rounded-full backdrop-blur-sm -z-10"
                       initial={{ opacity: 0 }}
-                      animate={{ 
+                      animate={{
                         opacity: 1,
                         boxShadow: [
                           "0 0 15px rgba(0,143,237,0.1), inset 0 1px 1px rgba(255,255,255,0.8)",
@@ -284,7 +277,7 @@ export default function Navbar() {
                         ]
                       }}
                       exit={{ opacity: 0 }}
-                      transition={{ 
+                      transition={{
                         layout: { type: "spring", stiffness: 350, damping: 28 },
                         boxShadow: { repeat: Infinity, duration: 2, ease: "easeInOut" }
                       }}
@@ -335,16 +328,16 @@ export default function Navbar() {
                           initial="hidden"
                           animate="visible"
                           exit="exit"
-                          className="fixed left-[52.5%] -translate-x-1/2 top-full mt-3.5 w-[92vw] lg:w-[940px] xl:w-[1020px] bg-white dark:bg-[#0B1A2E]/98 border border-[#008FED]/15 dark:border-[#00D4FF]/20 rounded-[32px] p-7 shadow-md dark:shadow-[0_35px_80px_-15px_rgba(0,0,0,0.5)] backdrop-blur-2xl z-50 grid grid-cols-12 gap-6 origin-top will-change-transform font-sans text-slate-800 dark:text-white"
+                          className="fixed left-[52.5%] -translate-x-1/2 top-full mt-3 w-[92vw] lg:w-[940px] xl:w-[1020px] bg-white/95 dark:bg-[#071426]/95 border border-slate-200/80 dark:border-white/10 rounded-3xl p-6 shadow-[0_30px_70px_rgba(0,0,0,0.08)] dark:shadow-[0_40px_90px_rgba(0,0,0,0.5)] backdrop-blur-3xl z-50 grid grid-cols-12 gap-6 origin-top will-change-transform font-sans text-slate-800 dark:text-white"
                           onMouseEnter={() => setServicesDropdownOpen(true)}
                           onMouseLeave={() => setServicesDropdownOpen(false)}
                         >
                           {/* 1. Left Side: Service Categories */}
                           <motion.div
                             variants={columnVariants}
-                            className="col-span-12 lg:col-span-4 border-r border-[#008FED]/10 dark:border-[#00D4FF]/15 pr-4 flex flex-col gap-1.5 max-h-[440px] overflow-y-auto"
+                            className="col-span-12 lg:col-span-4 border-r border-slate-100 dark:border-white/5 pr-4 flex flex-col gap-1.5 max-h-[440px] overflow-y-auto"
                           >
-                            <span className="text-[10px] font-bold tracking-widest text-[#008FED] dark:text-[#00D4FF] uppercase font-mono mb-2 px-3">
+                            <span className="text-[10px] font-bold tracking-widest text-[#00D4FF] uppercase font-mono mb-2.5 px-3">
                               Categories
                             </span>
                             {servicesData.map((srv) => {
@@ -354,20 +347,18 @@ export default function Navbar() {
                                 <button
                                   key={srv.slug}
                                   onMouseEnter={() => setActiveCategorySlug(srv.slug)}
-                                  className={`group/btn flex items-center gap-3.5 p-3 rounded-2xl text-left transition-all duration-300 w-full cursor-pointer border ${
-                                    isCatActive
-                                      ? "bg-[#008FED]/10 dark:bg-[#00D4FF]/20 border-[#008FED]/25 dark:border-[#00D4FF]/35 text-[#008FED] dark:text-[#00D4FF] shadow-sm"
-                                      : "bg-transparent border-transparent text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-[#008FED] dark:hover:text-white"
-                                  }`}
+                                  className={`group/btn flex items-center gap-3.5 p-2.5 rounded-xl text-left transition-all duration-200 w-full cursor-pointer border ${isCatActive
+                                      ? "bg-gradient-to-r from-[#00D4FF]/10 to-[#008FED]/5 dark:from-[#00D4FF]/15 dark:to-[#008FED]/5 border-[#008FED]/30 dark:border-[#00D4FF]/30 text-[#008FED] dark:text-[#00D4FF] shadow-[0_4px_20px_rgba(0,212,255,0.05)]"
+                                      : "bg-transparent border-transparent text-slate-500 dark:text-slate-400 hover:bg-slate-50/50 dark:hover:bg-white/5 hover:text-[#008FED] dark:hover:text-[#00D4FF] hover:translate-x-1"
+                                    }`}
                                 >
                                   <div
-                                    className={`w-8 h-8 rounded-xl flex items-center justify-center border transition-all duration-300 ${
-                                      isCatActive
-                                        ? "bg-[#008FED] dark:bg-[#00D4FF] text-white dark:text-[#071426] border-transparent"
-                                        : "bg-[#008FED]/5 dark:bg-[#008FED]/15 border-[#008FED]/15 dark:border-[#00D4FF]/30 text-[#008FED] dark:text-[#00D4FF] group-hover/btn:scale-110 group-hover/btn:bg-[#008FED]/15 dark:group-hover/btn:bg-[#00D4FF]/25"
-                                    }`}
+                                    className={`w-7 h-7 rounded-lg flex items-center justify-center border transition-all duration-200 ${isCatActive
+                                        ? "bg-gradient-to-tr from-[#00D4FF] to-[#008FED] text-white dark:text-[#071426] border-transparent shadow-[0_0_12px_rgba(0,212,255,0.3)]"
+                                        : "bg-[#008FED]/5 dark:bg-[#008FED]/15 border-[#008FED]/10 dark:border-[#00D4FF]/20 text-[#008FED] dark:text-[#00D4FF] group-hover/btn:scale-105"
+                                      }`}
                                   >
-                                    <IconComponent className="w-4 h-4" />
+                                    <IconComponent className="w-3.5 h-3.5" />
                                   </div>
                                   <span className="text-xs font-bold font-sans">
                                     {srv.title}
@@ -380,29 +371,29 @@ export default function Navbar() {
                           {/* 2. Center: Selected Service Preview */}
                           <motion.div
                             variants={columnVariants}
-                            className="col-span-12 lg:col-span-4 bg-slate-50 dark:bg-[#071426]/40 border border-[#008FED]/10 dark:border-[#00D4FF]/20 rounded-[24px] p-5.5 flex flex-col justify-between gap-5 relative overflow-hidden group/preview"
+                            className="col-span-12 lg:col-span-4 bg-slate-50/80 dark:bg-[#0B1A2E]/50 border border-slate-100 dark:border-white/5 rounded-2xl p-5 flex flex-col justify-between gap-5 relative overflow-hidden group/preview"
                           >
-                            <div className="absolute inset-0 bg-gradient-to-tr from-[#008FED]/5 dark:from-[#00D4FF]/12 to-transparent opacity-0 group-hover/preview:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                            
+                            <div className="absolute inset-0 bg-gradient-to-tr from-[#008FED]/5 dark:from-[#00D4FF]/8 to-transparent opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
                             {/* Top */}
-                            <div className="flex flex-col gap-3.5 relative z-10 transition-transform duration-500 group-hover/preview:scale-[1.02] origin-left">
-                              <span className="text-[9px] font-bold tracking-widest text-[#008FED] dark:text-[#00D4FF] uppercase font-mono">
+                            <div className="flex flex-col gap-3 relative z-10 text-left">
+                              <span className="text-[9px] font-bold tracking-widest text-[#00D4FF] uppercase font-mono">
                                 Overview
                               </span>
-                              <h3 className="text-lg font-bold text-[#1E1A39] dark:text-white group-hover/preview:text-[#008FED] dark:group-hover/preview:text-[#00D4FF] transition-colors duration-300">
+                              <h3 className="text-base font-bold text-[#1E1A39] dark:text-white group-hover/preview:text-[#008FED] dark:group-hover/preview:text-[#00D4FF] transition-colors duration-300">
                                 {activeService.title}
                               </h3>
-                              <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
-                                {activeService.longDescription.slice(0, 140)}...
+                              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                                {activeService.longDescription.slice(0, 160)}...
                               </p>
                             </div>
 
                             {/* Action Button */}
-                            <div className="relative z-10">
+                            <div className="relative z-10 text-left">
                               <Link
                                 href={`/services/${activeService.slug}`}
                                 onClick={() => setServicesDropdownOpen(false)}
-                                className="inline-flex items-center gap-2 px-4.5 py-2 bg-[#008FED] dark:bg-[#00D4FF] text-white dark:text-[#071426] rounded-full text-xs font-bold hover:bg-[#0077D4] dark:hover:bg-[#00BCE0] transition-all duration-300 group/btn"
+                                className="inline-flex items-center gap-2 px-4.5 py-2 bg-gradient-to-r from-[#00D4FF] to-[#008FED] text-[#071426] font-bold rounded-full text-xs hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all duration-300 group/btn cursor-pointer"
                               >
                                 <span>Explore Service</span>
                                 <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
@@ -415,16 +406,16 @@ export default function Navbar() {
                             variants={columnVariants}
                             className="col-span-12 lg:col-span-4 flex flex-col gap-5 max-h-[440px] overflow-y-auto pr-2"
                           >
-                            <div className="flex flex-col gap-5">
+                            <div className="flex flex-col gap-4 text-left">
                               {activeService.subServiceGroups.slice(0, 2).map((group, groupIdx) => (
                                 <div key={groupIdx} className="flex flex-col gap-2">
                                   <span className="text-[9px] font-bold tracking-widest text-[#008FED]/85 dark:text-[#00D4FF]/85 uppercase font-mono">
                                     {group.name}
                                   </span>
-                                  <ul className="flex flex-col gap-1.5">
+                                  <ul className="flex flex-col gap-2">
                                     {group.items.slice(0, 4).map((item, itemIdx) => (
-                                      <li key={itemIdx} className="text-[11px] text-slate-500 dark:text-slate-400 hover:text-[#008FED] dark:hover:text-white transition-colors cursor-default font-normal flex items-center gap-1.5">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-[#008FED]/50 dark:bg-[#00D4FF]/50" />
+                                      <li key={itemIdx} className="text-[11px] text-slate-500 dark:text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-all duration-200 cursor-pointer font-normal flex items-center gap-2 group/item">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-[#008FED]/40 dark:bg-[#00D4FF]/40 group-hover/item:bg-[#00D4FF] transition-colors" />
                                         {item}
                                       </li>
                                     ))}
@@ -434,15 +425,15 @@ export default function Navbar() {
                             </div>
 
                             {/* Tech Stack Pills */}
-                            <div className="border-t border-[#008FED]/10 dark:border-[#00D4FF]/15 pt-3 flex flex-col gap-2">
+                            <div className="border-t border-slate-100 dark:border-white/5 pt-3 flex flex-col gap-2 text-left">
                               <span className="text-[9px] font-bold tracking-widest text-slate-500 dark:text-slate-400 uppercase font-mono">
                                 Technologies We Use
                               </span>
-                              <div className="flex flex-wrap gap-1">
+                              <div className="flex flex-wrap gap-1.5">
                                 {activeService.technologies.slice(0, 5).map((tech, techIdx) => (
                                   <span
                                     key={techIdx}
-                                    className="text-[9px] font-bold px-2 py-0.5 rounded-md border border-[#008FED]/25 dark:border-[#00D4FF]/30 bg-[#008FED]/5 dark:bg-[#00D4FF]/12 text-[#008FED] dark:text-[#00D4FF] tracking-wide"
+                                    className="text-[9px] font-bold px-2.5 py-0.5 rounded-full border border-slate-200/50 dark:border-white/10 bg-slate-50 dark:bg-white/5 hover:bg-[#00D4FF]/10 hover:border-[#00D4FF]/30 hover:text-[#00D4FF] hover:scale-105 transition-all duration-300 tracking-wide cursor-default select-none shadow-sm"
                                   >
                                     {tech}
                                   </span>
@@ -466,7 +457,7 @@ export default function Navbar() {
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-lg border border-slate-200 dark:border-[rgba(0,212,255,0.15)] bg-slate-150 dark:bg-[#0B1A2E]/60 hover:bg-slate-200 dark:hover:bg-[#071426]/80 text-[#008FED] dark:text-[#00D4FF] hover:text-[#0077D4] dark:hover:text-[#00E5FF] transition-all duration-300 shadow-md hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center relative overflow-hidden group"
+              className="p-1 rounded-full border border-slate-200 dark:border-[rgba(0,212,255,0.15)] bg-slate-150 dark:bg-[#0B1A2E]/60 hover:bg-slate-200 dark:hover:bg-[#071426]/80 text-[#008FED] dark:text-[#00D4FF] hover:text-[#0077D4] dark:hover:text-[#00E5FF] transition-all duration-300 shadow-md hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center relative overflow-hidden group"
               aria-label="Toggle Theme"
             >
               {/* Sun icon for Dark mode (toggles to Light) */}
@@ -481,7 +472,8 @@ export default function Navbar() {
                 href="/contact"
                 variant="primary"
                 icon={<Send className="w-3.5 h-3.5 text-white" />}
-                className="!bg-gradient-to-r !from-[#00D4FF] !to-[#008FED] hover:!from-[#00E5FF] hover:!to-[#008FED]/80 !border-transparent !shadow-[0_4px_12px_rgba(0,212,255,0.2)] hover:!shadow-[0_4px_20px_rgba(0,212,255,0.35)] !py-2 !px-4.5 !text-[13px] !font-bold !rounded-lg hover:scale-[1.02] active:scale-[0.98]"
+                style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
+                className="!bg-gradient-to-r !from-[#00D4FF] !to-[#008FED] hover:!from-[#00E5FF] hover:!to-[#008FED]/80 !border-transparent !shadow-[0_4px_12px_rgba(0,212,255,0.2)] hover:!shadow-[0_4px_20px_rgba(0,212,255,0.35)] !py-1 !px-3 !text-[11px] !font-bold !rounded-full hover:scale-[1.02] active:scale-[0.98]"
               >
                 Contact Us
               </Button>
@@ -491,7 +483,7 @@ export default function Navbar() {
           {/* Mobile Hamburg Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-slate-650 dark:text-slate-350 hover:text-[#008FED] dark:hover:text-white transition-colors cursor-pointer"
+            className="lg:hidden p-1 text-slate-650 dark:text-slate-350 hover:text-[#008FED] dark:hover:text-white transition-colors cursor-pointer"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -550,53 +542,51 @@ export default function Navbar() {
                       <div key={link.name}>
                         {link.name === "Services" ? (
                           <div className="flex flex-col gap-1.5">
-                            <Link
-                              href="/#premium-showcase"
-                              onClick={(e) => {
-                                setMobileMenuOpen(false);
-                                if (pathname === "/") {
-                                  e.preventDefault();
-                                  const element = document.getElementById("premium-showcase");
-                                  if (element) {
-                                    element.scrollIntoView({ behavior: "smooth" });
-                                  }
-                                }
-                              }}
-                              className={`font-display text-[14px] font-semibold block py-2 px-3.5 rounded-lg transition-colors ${
-                                isActive ? "bg-[#008FED]/10 dark:bg-[#00D4FF]/15 text-[#008FED] dark:text-[#00E5FF]" : "text-slate-650 dark:text-slate-300 hover:bg-[#008FED]/5 dark:hover:bg-white/5 hover:text-[#008FED] dark:hover:text-white"
-                              }`}
+                            <button
+                              onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                              className={`font-display text-[14px] font-semibold w-full text-left block py-2 px-3.5 rounded-lg transition-colors cursor-pointer ${isActive ? "bg-[#008FED]/10 dark:bg-[#00D4FF]/15 text-[#008FED] dark:text-[#00E5FF]" : "text-slate-650 dark:text-slate-300 hover:bg-[#008FED]/5 dark:hover:bg-white/5 hover:text-[#008FED] dark:hover:text-white"
+                                }`}
                             >
                               <div className="flex items-center justify-between">
                                 <span>{link.name}</span>
-                                <ChevronDown className="w-4 h-4 opacity-50" />
+                                <ChevronDown className={`w-4 h-4 opacity-50 transition-transform duration-300 ${mobileServicesOpen ? "rotate-180" : ""}`} />
                               </div>
-                            </Link>
-                            <div className="pl-4 flex flex-col gap-3 mt-2 border-l border-[#008FED]/20 dark:border-[#00D4FF]/25 font-sans">
-                              {servicesData.map((srv) => {
-                                const IconComponent = iconMap[srv.iconName] || Code;
-                                return (
-                                  <Link
-                                    key={srv.slug}
-                                    href={`/services/${srv.slug}`}
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="text-xs text-slate-500 dark:text-slate-400 hover:text-[#008FED] dark:hover:text-[#00E5FF] flex items-center gap-2.5 py-0.5 transition-colors duration-200"
-                                  >
-                                    <IconComponent className="w-3.5 h-3.5 text-[#008FED]/70 dark:text-[#00E5FF]/75" />
-                                    {srv.title}
-                                  </Link>
-                                );
-                              })}
-                            </div>
+                            </button>
+                            <AnimatePresence initial={false}>
+                              {mobileServicesOpen && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                                  className="pl-4 flex flex-col gap-3 mt-2 border-l border-[#008FED]/20 dark:border-[#00D4FF]/25 font-sans overflow-hidden"
+                                >
+                                  {servicesData.map((srv) => {
+                                    const IconComponent = iconMap[srv.iconName] || Code;
+                                    return (
+                                      <Link
+                                        key={srv.slug}
+                                        href={`/services/${srv.slug}`}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="text-xs text-slate-500 dark:text-slate-400 hover:text-[#008FED] dark:hover:text-[#00E5FF] flex items-center gap-2.5 py-1 transition-colors duration-200"
+                                      >
+                                        <IconComponent className="w-3.5 h-3.5 text-[#008FED]/70 dark:text-[#00E5FF]/75" />
+                                        {srv.title}
+                                      </Link>
+                                    );
+                                  })}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
                           </div>
                         ) : (
                           <Link
                             href={link.href}
                             onClick={() => setMobileMenuOpen(false)}
-                            className={`font-display text-[14px] font-semibold block py-2 px-3.5 rounded-lg transition-colors ${
-                              isActive
+                            className={`font-display text-[14px] font-semibold block py-2 px-3.5 rounded-lg transition-colors ${isActive
                                 ? "bg-[#008FED]/10 dark:bg-[#00D4FF]/15 text-[#008FED] dark:text-[#00E5FF]"
                                 : "text-slate-650 dark:text-slate-300 hover:bg-[#008FED]/5 dark:hover:bg-white/5 hover:text-[#008FED] dark:hover:text-white"
-                            }`}
+                              }`}
                           >
                             <div className="flex items-center justify-between">
                               <span>{link.name}</span>

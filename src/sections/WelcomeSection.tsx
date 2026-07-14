@@ -94,7 +94,7 @@ export default function WelcomeSection() {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="group relative bg-white text-slate-800 py-32 md:py-44 overflow-hidden border-t border-purple-50 font-sans"
+      className="group relative bg-white text-slate-800 py-20 md:py-24 overflow-hidden border-t border-purple-50 font-sans"
     >
       {/* Cyber Grid Lines */}
       <div className="absolute inset-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.25]">

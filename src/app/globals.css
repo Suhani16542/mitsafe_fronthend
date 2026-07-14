@@ -13,8 +13,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   
-  --font-sans: var(--font-outfit), system-ui, -apple-system, sans-serif;
-  --font-display: var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
+  --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-display: 'Sora', system-ui, -apple-system, sans-serif;
 }
 
 :root {
@@ -50,9 +50,56 @@
 body {
   background-color: var(--background) !important;
   color: var(--foreground) !important;
-  font-family: var(--font-sans);
+  font-family: 'Manrope', sans-serif !important;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Premium Sitewide Typography Overrides (Sora & Manrope) */
+
+/* Headings, section titles, card titles, and navigation links */
+h1, h2, h3, h4, h5, h6,
+.font-display,
+.font-heading,
+.clash-display,
+[style*="Clash Display"],
+[style*="Satoshi"],
+.nav-link,
+.navigation-item,
+.navbar-link,
+.menu-item,
+nav,
+nav a,
+header a {
+  font-family: 'Sora', sans-serif !important;
+  letter-spacing: -0.015em !important;
+}
+
+/* Force child text elements inside headings or navigation to inherit Sora */
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .font-display *, .font-heading *, nav a *, header a * {
+  font-family: 'Sora', sans-serif !important;
+}
+
+/* Paragraphs, descriptions, buttons, form fields, and body text */
+p,
+span:not(h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .font-display *, .font-heading *, nav *, header *, [class*="badge"], [class*="pill"]),
+a:not(nav *, header *),
+button,
+input,
+textarea,
+select,
+form,
+li,
+.font-sans,
+[style*="Manrope"] {
+  font-family: 'Manrope', sans-serif !important;
+}
+
+/* Explicit fallback for paragraph desc tags inside Satoshi blocks */
+[style*="Satoshi"] p,
+[style*="Satoshi"] span,
+[style*="Satoshi"] li {
+  font-family: 'Manrope', sans-serif !important;
 }
 
 /* Global Transition system for smooth theme switches */
@@ -1418,6 +1465,26 @@ header nav > div:nth-child(6) { animation-delay: 0.35s; }
 
 .dark .cosmic-servicedetail-wrapper .bg-purple-300 {
   background-color: rgba(0, 212, 255, 0.15) !important;
+}
+
+/* Infinite Carousel Marquee */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-scroll {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 40s linear infinite;
+}
+
+.animate-marquee-scroll:hover {
+  animation-play-state: paused;
 }
 
 

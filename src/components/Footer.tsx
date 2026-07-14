@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { MapPin, Phone, Mail } from "lucide-react";
 import { servicesData } from "@/data/services";
 
 // Social SVG Icons matching the original style
@@ -74,7 +75,10 @@ function Magnetic({ children }: { children: React.ReactElement }) {
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#071426] border-t border-[rgba(0,212,255,0.15)] overflow-hidden pt-24 pb-12 font-sans">
+    <footer className="relative bg-[#071426] overflow-hidden pt-16 pb-10 font-sans">
+      {/* Premium glowing divider line above footer */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00D4FF]/30 to-transparent z-10" />
+
       {/* Background Grid Lines */}
       <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.25]">
         <div className="w-[1px] bg-slate-800 h-full" />
@@ -90,8 +94,8 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pb-16 border-b border-[rgba(0,212,255,0.15)]">
+        {/* Main Grid: 7 columns on xl, 4 columns on lg, 3 on md, 2 on sm, 1 on mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-8 pb-12 border-b border-[rgba(0,212,255,0.12)]">
           
           {/* Brand Col */}
           <div className="flex flex-col gap-4">
@@ -101,45 +105,69 @@ export default function Footer() {
                 alt="Modern Technology Logo"
                 width={150}
                 height={45}
-                className="h-auto w-[140px] filter drop-shadow-[0_0_8px_rgba(0,212,255,0.15)] brightness-100"
+                className="h-auto w-[130px] filter drop-shadow-[0_0_8px_rgba(0,212,255,0.15)] brightness-100"
               />
             </Link>
-            <p className="text-slate-400 text-sm leading-relaxed mt-4 font-normal max-w-xs">
+            <p className="text-slate-400 text-[13px] leading-relaxed mt-3 font-normal">
               We focus on the needs of small to middle market businesses to improve and grow their return.
             </p>
-            <div className="flex items-center gap-3.5 mt-6">
+            <div className="flex items-center gap-3 mt-4">
               <Magnetic>
-                <a href="#" aria-label="Twitter" className="w-10 h-10 rounded-full bg-[#0B1A2E]/70 border border-[rgba(0,212,255,0.15)] hover:bg-[#00D4FF] hover:text-[#071426] hover:border-[#00D4FF] text-slate-400 hover:shadow-lg hover:shadow-[#00D4FF]/20 flex items-center justify-center transition-all duration-300">
+                <motion.a 
+                  whileHover={{ scale: 1.1, rotate: 6 }}
+                  whileTap={{ scale: 0.95 }}
+                  href="#" 
+                  aria-label="Twitter" 
+                  className="w-9 h-9 rounded-full bg-[#0B1A2E]/70 border border-[rgba(0,212,255,0.15)] hover:bg-[#00D4FF] hover:text-[#071426] hover:border-[#00D4FF] text-slate-400 hover:shadow-[0_0_15px_rgba(0,212,255,0.3)] flex items-center justify-center transition-all duration-300 cursor-pointer"
+                >
                   <TwitterIcon />
-                </a>
+                </motion.a>
               </Magnetic>
               <Magnetic>
-                <a href="#" aria-label="Google Plus" className="w-10 h-10 rounded-full bg-[#0B1A2E]/70 border border-[rgba(0,212,255,0.15)] hover:bg-[#00D4FF] hover:text-[#071426] hover:border-[#00D4FF] text-slate-400 hover:shadow-lg hover:shadow-[#00D4FF]/20 flex items-center justify-center transition-all duration-300">
+                <motion.a 
+                  whileHover={{ scale: 1.1, rotate: -6 }}
+                  whileTap={{ scale: 0.95 }}
+                  href="#" 
+                  aria-label="Google Plus" 
+                  className="w-9 h-9 rounded-full bg-[#0B1A2E]/70 border border-[rgba(0,212,255,0.15)] hover:bg-[#00D4FF] hover:text-[#071426] hover:border-[#00D4FF] text-slate-400 hover:shadow-[0_0_15px_rgba(0,212,255,0.3)] flex items-center justify-center transition-all duration-300 cursor-pointer"
+                >
                   <GooglePlusIcon />
-                </a>
+                </motion.a>
               </Magnetic>
               <Magnetic>
-                <a href="#" aria-label="Pinterest" className="w-10 h-10 rounded-full bg-[#0B1A2E]/70 border border-[rgba(0,212,255,0.15)] hover:bg-[#00D4FF] hover:text-[#071426] hover:border-[#00D4FF] text-slate-400 hover:shadow-lg hover:shadow-[#00D4FF]/20 flex items-center justify-center transition-all duration-300">
+                <motion.a 
+                  whileHover={{ scale: 1.1, rotate: 6 }}
+                  whileTap={{ scale: 0.95 }}
+                  href="#" 
+                  aria-label="Pinterest" 
+                  className="w-9 h-9 rounded-full bg-[#0B1A2E]/70 border border-[rgba(0,212,255,0.15)] hover:bg-[#00D4FF] hover:text-[#071426] hover:border-[#00D4FF] text-slate-400 hover:shadow-[0_0_15px_rgba(0,212,255,0.3)] flex items-center justify-center transition-all duration-300 cursor-pointer"
+                >
                   <PinterestIcon />
-                </a>
+                </motion.a>
               </Magnetic>
               <Magnetic>
-                <a href="#" aria-label="Linkedin" className="w-10 h-10 rounded-full bg-[#0B1A2E]/70 border border-[rgba(0,212,255,0.15)] hover:bg-[#00D4FF] hover:text-[#071426] hover:border-[#00D4FF] text-slate-400 hover:shadow-lg hover:shadow-[#00D4FF]/20 flex items-center justify-center transition-all duration-300">
+                <motion.a 
+                  whileHover={{ scale: 1.1, rotate: -6 }}
+                  whileTap={{ scale: 0.95 }}
+                  href="#" 
+                  aria-label="Linkedin" 
+                  className="w-9 h-9 rounded-full bg-[#0B1A2E]/70 border border-[rgba(0,212,255,0.15)] hover:bg-[#00D4FF] hover:text-[#071426] hover:border-[#00D4FF] text-slate-400 hover:shadow-[0_0_15px_rgba(0,212,255,0.3)] flex items-center justify-center transition-all duration-300 cursor-pointer"
+                >
                   <LinkedinIcon />
-                </a>
+                </motion.a>
               </Magnetic>
             </div>
           </div>
 
           {/* Column 2: Services */}
-          <div className="flex flex-col gap-5 lg:pl-4">
-            <h3 className="font-display text-xs font-bold tracking-widest text-[#00D4FF] uppercase">
+          <div className="flex flex-col gap-4 text-left">
+            <h3 className="font-display text-[11px] font-extrabold tracking-widest text-[#00D4FF] uppercase">
               Services
             </h3>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-2.5">
               {servicesData.slice(0, 6).map((srv) => (
                 <li key={srv.slug}>
-                  <Link href={`/services/${srv.slug}`} className="text-sm font-medium text-slate-400 hover:text-[#00D4FF] hover:translate-x-1.5 transition-transform duration-300 block">
+                  <Link href={`/services/${srv.slug}`} className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">
                     {srv.title}
                   </Link>
                 </li>
@@ -148,52 +176,150 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Community */}
-          <div className="flex flex-col gap-5 lg:pl-4">
-            <h3 className="font-display text-xs font-bold tracking-widest text-[#00D4FF] uppercase">
+          <div className="flex flex-col gap-4 text-left">
+            <h3 className="font-display text-[11px] font-extrabold tracking-widest text-[#00D4FF] uppercase">
               Community
             </h3>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-2.5">
               <li>
-                <Link href="/about" className="text-sm font-medium text-slate-400 hover:text-[#00D4FF] hover:translate-x-1.5 transition-transform duration-300 block">About Us</Link>
+                <Link href="/about" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">About Us</Link>
               </li>
               <li>
-                <Link href="/portfolio" className="text-sm font-medium text-slate-400 hover:text-[#00D4FF] hover:translate-x-1.5 transition-transform duration-300 block">Our Portfolio</Link>
+                <Link href="/portfolio" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">Our Portfolio</Link>
               </li>
               <li>
-                <Link href="/contact" className="text-sm font-medium text-slate-400 hover:text-[#00D4FF] hover:translate-x-1.5 transition-transform duration-300 block">Contact Us</Link>
+                <Link href="/contact" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">Contact Us</Link>
               </li>
             </ul>
           </div>
 
           {/* Column 4: Quick Links */}
-          <div className="flex flex-col gap-5 lg:pl-4">
-            <h3 className="font-display text-xs font-bold tracking-widest text-[#00D4FF] uppercase">
+          <div className="flex flex-col gap-4 text-left">
+            <h3 className="font-display text-[11px] font-extrabold tracking-widest text-[#00D4FF] uppercase">
               Quick Links
             </h3>
+            <ul className="flex flex-col gap-2.5">
+              <li>
+                <Link href="/about" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">About Us</Link>
+              </li>
+              <li>
+                <Link href="#" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">Refund and Returns Policy</Link>
+              </li>
+              <li>
+                <Link href="#" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">Terms &amp; Conditions</Link>
+              </li>
+              <li>
+                <Link href="#" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link href="#" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">Legal Policy</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 5: India Office */}
+          <div className="flex flex-col gap-4 text-left">
+            <h3 className="font-display text-[11px] font-extrabold tracking-widest text-[#00D4FF] uppercase flex items-center gap-1.5 select-none">
+              <span>🇮🇳</span> India Office
+            </h3>
             <ul className="flex flex-col gap-3">
-              <li>
-                <Link href="/about" className="text-sm font-medium text-slate-400 hover:text-[#00D4FF] hover:translate-x-1.5 transition-transform duration-300 block">About Us</Link>
+              <li className="flex items-start gap-2 group/info select-none">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 mt-0.5 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                  <MapPin className="w-3 h-3" />
+                </div>
+                <span className="text-xs text-slate-400 leading-normal">
+                  Sector 62, Noida, UP 201301
+                </span>
               </li>
-              <li>
-                <Link href="#" className="text-sm font-medium text-slate-400 hover:text-[#00D4FF] hover:translate-x-1.5 transition-transform duration-300 block">Refund and Returns Policy</Link>
+              <li className="flex items-center gap-2 group/info select-none">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                  <Phone className="w-3 h-3" />
+                </div>
+                <span className="text-xs text-slate-400 hover:text-[#00D4FF] transition-colors cursor-pointer">
+                  +91 98765 43210
+                </span>
               </li>
-              <li>
-                <Link href="#" className="text-sm font-medium text-slate-400 hover:text-[#00D4FF] hover:translate-x-1.5 transition-transform duration-300 block">Terms &amp; Conditions</Link>
+              <li className="flex items-center gap-2 group/info select-none">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                  <Mail className="w-3 h-3" />
+                </div>
+                <span className="text-xs text-slate-400 hover:text-[#00D4FF] transition-colors cursor-pointer break-all">
+                  india@mitsafe.com
+                </span>
               </li>
-              <li>
-                <Link href="#" className="text-sm font-medium text-slate-400 hover:text-[#00D4FF] hover:translate-x-1.5 transition-transform duration-300 block">Privacy Policy</Link>
+            </ul>
+          </div>
+
+          {/* Column 6: Dubai Office */}
+          <div className="flex flex-col gap-4 text-left">
+            <h3 className="font-display text-[11px] font-extrabold tracking-widest text-[#00D4FF] uppercase flex items-center gap-1.5 select-none">
+              <span>🇦🇪</span> Dubai Office
+            </h3>
+            <ul className="flex flex-col gap-3">
+              <li className="flex items-start gap-2 group/info select-none">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 mt-0.5 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                  <MapPin className="w-3 h-3" />
+                </div>
+                <span className="text-xs text-slate-400 leading-normal">
+                  Business Bay, Dubai, UAE
+                </span>
               </li>
-              <li>
-                <Link href="#" className="text-sm font-medium text-slate-400 hover:text-[#00D4FF] hover:translate-x-1.5 transition-transform duration-300 block">Legal Policy</Link>
+              <li className="flex items-center gap-2 group/info select-none">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                  <Phone className="w-3 h-3" />
+                </div>
+                <span className="text-xs text-slate-400 hover:text-[#00D4FF] transition-colors cursor-pointer">
+                  +971 4 123 4567
+                </span>
+              </li>
+              <li className="flex items-center gap-2 group/info select-none">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                  <Mail className="w-3 h-3" />
+                </div>
+                <span className="text-xs text-slate-400 hover:text-[#00D4FF] transition-colors cursor-pointer break-all">
+                  dubai@mitsafe.com
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 7: USA Office */}
+          <div className="flex flex-col gap-4 text-left">
+            <h3 className="font-display text-[11px] font-extrabold tracking-widest text-[#00D4FF] uppercase flex items-center gap-1.5 select-none">
+              <span>🇺🇸</span> USA Office
+            </h3>
+            <ul className="flex flex-col gap-3">
+              <li className="flex items-start gap-2 group/info select-none">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 mt-0.5 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                  <MapPin className="w-3 h-3" />
+                </div>
+                <span className="text-xs text-slate-400 leading-normal">
+                  100 Pine St, SF, CA 94111
+                </span>
+              </li>
+              <li className="flex items-center gap-2 group/info select-none">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                  <Phone className="w-3 h-3" />
+                </div>
+                <span className="text-xs text-slate-400 hover:text-[#00D4FF] transition-colors cursor-pointer">
+                  +1 (555) 019-2834
+                </span>
+              </li>
+              <li className="flex items-center gap-2 group/info select-none">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                  <Mail className="w-3 h-3" />
+                </div>
+                <span className="text-xs text-slate-400 hover:text-[#00D4FF] transition-colors cursor-pointer break-all">
+                  usa@mitsafe.com
+                </span>
               </li>
             </ul>
           </div>
 
         </div>
 
-
         {/* Footer Bottom */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <span className="text-xs font-semibold text-slate-400">
             © {new Date().getFullYear()} Modern Technology. All rights reserved.
           </span>
