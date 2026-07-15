@@ -93,18 +93,7 @@ const columnVariants = {
   },
 };
 
-const navbarFireflies = [
-  { id: 1, left: "15%", top: "30%", size: 3, duration: 6, delay: 0, color: "#00E5FF" },
-  { id: 2, left: "45%", top: "60%", size: 2.5, duration: 8, delay: 1.5, color: "#008FED" },
-  { id: 3, left: "75%", top: "25%", size: 3.5, duration: 7, delay: 0.5, color: "#00E5FF" },
-  { id: 4, left: "90%", top: "50%", size: 2, duration: 9, delay: 2, color: "#008FED" },
-];
 
-const hoverFireflies = [
-  { id: 101, left: "10%", top: "15%", size: 2, xAnim: [-2, 4, -2], yAnim: [-3, 3, -3], duration: 1.5, color: "#00E5FF" },
-  { id: 102, left: "80%", top: "70%", size: 1.8, xAnim: [3, -3, 3], yAnim: [2, -4, 2], duration: 1.8, color: "#7C3AED" },
-  { id: 103, left: "45%", top: "75%", size: 2.2, xAnim: [-3, 3, -3], yAnim: [3, -3, 3], duration: 1.6, color: "#00E5FF" },
-];
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
@@ -151,57 +140,27 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed z-50 left-1/2 -translate-x-1/2 w-[90%] md:w-[86%] lg:w-[82%] max-w-[1120px] transition-all duration-300 border rounded-[30px] backdrop-blur-xl ${scrolled
-            ? "top-5 bg-white/80 dark:bg-[#071426]/75 border-slate-200/50 dark:border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_10px_35px_rgba(0,0,0,0.25)] py-0.5"
-            : "top-6 bg-white/75 dark:bg-[#071426]/70 border-slate-200/40 dark:border-white/5 shadow-[0_6px_20px_rgba(0,0,0,0.02)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.15)] py-1"
+        className={`fixed z-50 left-1/2 -translate-x-1/2 w-[82%] max-w-[1120px] transition-all duration-300 border border-white/20 dark:border-white/10 rounded-full backdrop-blur-2xl bg-white/75 dark:bg-[#071426]/70 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_12px_45px_rgba(0,0,0,0.3)] h-[76px] flex items-center ${scrolled
+            ? "top-4"
+            : "top-6"
           }`}
       >
-        {/* Subtle Glowing Fireflies floating in the background */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-          {navbarFireflies.map((ff) => (
-            <motion.div
-              key={ff.id}
-              animate={{
-                opacity: [0.08, 0.7, 0.08],
-                scale: [0.8, 1.2, 0.8],
-                x: [0, 10, -5, 0],
-                y: [0, -8, 6, 0],
-              }}
-              transition={{
-                duration: ff.duration,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: ff.delay,
-              }}
-              className="absolute rounded-full font-sans"
-              style={{
-                left: ff.left,
-                top: ff.top,
-                width: `${ff.size}px`,
-                height: `${ff.size}px`,
-                backgroundColor: ff.color,
-                boxShadow: `0 0 8px ${ff.color}, 0 0 15px ${ff.color}80`,
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="w-full px-5 sm:px-6 lg:px-8 flex items-center justify-between relative z-10">
+        <div className="w-full px-6 sm:px-8 lg:px-10 flex items-center justify-between relative z-10 h-full">
 
           {/* Logo - kept exactly as it was, with cyan drop shadow highlight */}
           <Link href="/" className="flex items-center gap-3 group">
             <Image
               src="/mt-logo.png"
               alt="Modern Technology Logo"
-              width={108}
-              height={33}
-              className="h-auto w-[108px] filter drop-shadow-[0_0_10px_rgba(0,229,255,0.35)] brightness-105 transition-transform duration-300 group-hover:scale-[1.02] dark:invert-0"
+              width={138}
+              height={42}
+              className="h-auto w-[138px] filter drop-shadow-[0_0_10px_rgba(0,229,255,0.35)] brightness-105 transition-transform duration-300 group-hover:scale-[1.02] invert dark:invert-0"
               priority
             />
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1.5 xl:gap-3">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 justify-center h-full">
             {navLinks.map((link) => {
               const isActive =
                 pathname === link.href ||
@@ -210,7 +169,7 @@ export default function Navbar() {
               return (
                 <div
                   key={link.name}
-                  className="relative px-1 py-1 group"
+                  className="relative group flex items-center py-2 px-1 rounded-full h-full"
                   onMouseEnter={() => {
                     setHoveredLink(link.name);
                     if (link.name === "Services") {
@@ -224,16 +183,20 @@ export default function Navbar() {
                     }
                   }}
                 >
-                  {/* Premium Active highlighted appearance */}
+                  {/* Premium Active highlighted appearance - Capsule line under text */}
                   {isActive && (
-                    <span className="absolute inset-0 bg-[#008FED]/5 dark:bg-gradient-to-r dark:from-[#00E5FF]/4 dark:to-[#7C3AED]/6 border border-[#008FED]/15 dark:border-[#00E5FF]/15 rounded-full shadow-[0_0_10px_rgba(0,143,237,0.05)] dark:shadow-[0_0_10px_rgba(0,229,255,0.1)] backdrop-blur-[2px] -z-10" />
+                    <motion.span
+                      layoutId="activeNavPill"
+                      className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-6 h-[3px] bg-[#2563FF] rounded-full"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
                   )}
 
                   {/* Scaling Link Text Wrapper */}
                   <motion.div
-                    animate={hoveredLink === link.name ? { scale: 1.03 } : { scale: 1 }}
-                    transition={{ duration: 0.28, ease: "easeOut" }}
-                    className="relative z-10"
+                    animate={hoveredLink === link.name ? { scale: 1.05 } : { scale: 1 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    className="relative z-10 flex items-center h-full"
                   >
                     <Link
                       href={link.href}
@@ -247,9 +210,9 @@ export default function Navbar() {
                         }
                       }}
                       style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
-                      className={`font-medium text-[12px] tracking-wide transition-all duration-300 flex items-center gap-1.5 cursor-pointer select-none px-2.5 py-0.5 rounded-full ${isActive
-                          ? "text-[#008FED] dark:text-[#00E5FF] font-bold"
-                          : "text-slate-650 dark:text-[#E2E8F0] hover:text-[#008FED] dark:hover:text-white"
+                      className={`font-semibold text-[15px] tracking-wide transition-all duration-300 flex items-center gap-1.5 cursor-pointer select-none px-2.5 py-1.5 relative group/item whitespace-nowrap ${isActive
+                        ? "text-[#2563FF] font-bold"
+                        : "text-slate-655 dark:text-[#E2E8F0] hover:text-[#2563FF] dark:hover:text-[#2563FF]"
                         }`}
                     >
                       <span>{link.name}</span>
@@ -259,65 +222,13 @@ export default function Navbar() {
                             }`}
                         />
                       )}
+                      
+                      {/* Hover Underline effect (only when NOT active) */}
+                      {!isActive && (
+                        <span className="absolute bottom-1 left-2.5 right-2.5 h-[2px] bg-[#2563FF] scale-x-0 group-hover/item:scale-x-100 transition-transform duration-300 origin-center" />
+                      )}
                     </Link>
                   </motion.div>
-
-                  {/* Redesigned Premium Hover Pill Background */}
-                  {!isActive && hoveredLink === link.name && (
-                    <motion.span
-                      layoutId="navHoverPill"
-                      className="absolute inset-0 bg-[#008FED]/5 dark:bg-gradient-to-r dark:from-[#00D4FF]/8 dark:to-[#008FED]/12 border border-[#008FED]/25 dark:border-[#00D4FF]/35 rounded-full backdrop-blur-sm -z-10"
-                      initial={{ opacity: 0 }}
-                      animate={{
-                        opacity: 1,
-                        boxShadow: [
-                          "0 0 15px rgba(0,143,237,0.1), inset 0 1px 1px rgba(255,255,255,0.8)",
-                          "0 0 25px rgba(0,143,237,0.15), inset 0 1px 1px rgba(255,255,255,0.85)",
-                          "0 0 15px rgba(0,143,237,0.1), inset 0 1px 1px rgba(255,255,255,0.8)"
-                        ]
-                      }}
-                      exit={{ opacity: 0 }}
-                      transition={{
-                        layout: { type: "spring", stiffness: 350, damping: 28 },
-                        boxShadow: { repeat: Infinity, duration: 2, ease: "easeInOut" }
-                      }}
-                    />
-                  )}
-
-                  {/* Hover firefly particles gathering around the hovered link */}
-                  <AnimatePresence>
-                    {hoveredLink === link.name && (
-                      <>
-                        {hoverFireflies.map((hf) => (
-                          <motion.div
-                            key={hf.id}
-                            initial={{ opacity: 0, scale: 0.2 }}
-                            animate={{
-                              opacity: [0, 0.8, 0],
-                              scale: [0.5, 1.2, 0.5],
-                              x: hf.xAnim,
-                              y: hf.yAnim,
-                            }}
-                            exit={{ opacity: 0 }}
-                            transition={{
-                              duration: hf.duration,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                            className="absolute rounded-full pointer-events-none"
-                            style={{
-                              left: hf.left,
-                              top: hf.top,
-                              width: `${hf.size}px`,
-                              height: `${hf.size}px`,
-                              backgroundColor: hf.color,
-                              boxShadow: `0 0 6px ${hf.color}, 0 0 10px ${hf.color}66`
-                            }}
-                          />
-                        ))}
-                      </>
-                    )}
-                  </AnimatePresence>
 
                   {/* Services Mega Menu */}
                   {link.name === "Services" && (
@@ -348,14 +259,14 @@ export default function Navbar() {
                                   key={srv.slug}
                                   onMouseEnter={() => setActiveCategorySlug(srv.slug)}
                                   className={`group/btn flex items-center gap-3.5 p-2.5 rounded-xl text-left transition-all duration-200 w-full cursor-pointer border ${isCatActive
-                                      ? "bg-gradient-to-r from-[#00D4FF]/10 to-[#008FED]/5 dark:from-[#00D4FF]/15 dark:to-[#008FED]/5 border-[#008FED]/30 dark:border-[#00D4FF]/30 text-[#008FED] dark:text-[#00D4FF] shadow-[0_4px_20px_rgba(0,212,255,0.05)]"
-                                      : "bg-transparent border-transparent text-slate-500 dark:text-slate-400 hover:bg-slate-50/50 dark:hover:bg-white/5 hover:text-[#008FED] dark:hover:text-[#00D4FF] hover:translate-x-1"
+                                    ? "bg-gradient-to-r from-[#00D4FF]/10 to-[#008FED]/5 dark:from-[#00D4FF]/15 dark:to-[#008FED]/5 border-[#008FED]/30 dark:border-[#00D4FF]/30 text-[#008FED] dark:text-[#00D4FF] shadow-[0_4px_20px_rgba(0,212,255,0.05)]"
+                                    : "bg-transparent border-transparent text-slate-500 dark:text-slate-400 hover:bg-slate-50/50 dark:hover:bg-white/5 hover:text-[#008FED] dark:hover:text-[#00D4FF] hover:translate-x-1"
                                     }`}
                                 >
                                   <div
                                     className={`w-7 h-7 rounded-lg flex items-center justify-center border transition-all duration-200 ${isCatActive
-                                        ? "bg-gradient-to-tr from-[#00D4FF] to-[#008FED] text-white dark:text-[#071426] border-transparent shadow-[0_0_12px_rgba(0,212,255,0.3)]"
-                                        : "bg-[#008FED]/5 dark:bg-[#008FED]/15 border-[#008FED]/10 dark:border-[#00D4FF]/20 text-[#008FED] dark:text-[#00D4FF] group-hover/btn:scale-105"
+                                      ? "bg-gradient-to-tr from-[#00D4FF] to-[#008FED] text-white dark:text-[#071426] border-transparent shadow-[0_0_12px_rgba(0,212,255,0.3)]"
+                                      : "bg-[#008FED]/5 dark:bg-[#008FED]/15 border-[#008FED]/10 dark:border-[#00D4FF]/20 text-[#008FED] dark:text-[#00D4FF] group-hover/btn:scale-105"
                                       }`}
                                   >
                                     <IconComponent className="w-3.5 h-3.5" />
@@ -446,7 +357,6 @@ export default function Navbar() {
                       )}
                     </AnimatePresence>
                   )}
-
                 </div>
               );
             })}
@@ -471,9 +381,9 @@ export default function Navbar() {
               <Button
                 href="/contact"
                 variant="primary"
-                icon={<Send className="w-3.5 h-3.5 text-white" />}
+                icon={<Send className="w-3.5 h-3.5 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 rotate-[-15deg]" />}
                 style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
-                className="!bg-gradient-to-r !from-[#00D4FF] !to-[#008FED] hover:!from-[#00E5FF] hover:!to-[#008FED]/80 !border-transparent !shadow-[0_4px_12px_rgba(0,212,255,0.2)] hover:!shadow-[0_4px_20px_rgba(0,212,255,0.35)] !py-1 !px-3 !text-[11px] !font-bold !rounded-full hover:scale-[1.02] active:scale-[0.98]"
+                className="!bg-gradient-to-r !from-[#2563FF] !to-[#6C63FF] hover:!from-[#2563FF]/90 hover:!to-[#6C63FF]/90 !border-transparent !shadow-[0_4px_14px_rgba(37,99,255,0.25)] hover:!shadow-[0_6px_20px_rgba(108,99,255,0.35)] !py-2.5 !px-5 !text-[14px] !font-semibold !rounded-full hover:scale-[1.03] active:scale-[0.97] hover:-translate-y-0.5 group"
               >
                 Contact Us
               </Button>
@@ -483,7 +393,7 @@ export default function Navbar() {
           {/* Mobile Hamburg Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-1 text-slate-650 dark:text-slate-350 hover:text-[#008FED] dark:hover:text-white transition-colors cursor-pointer"
+            className="lg:hidden p-1 text-slate-655 dark:text-slate-355 hover:text-[#2563FF] dark:hover:text-white transition-colors cursor-pointer"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -584,8 +494,8 @@ export default function Navbar() {
                             href={link.href}
                             onClick={() => setMobileMenuOpen(false)}
                             className={`font-display text-[14px] font-semibold block py-2 px-3.5 rounded-lg transition-colors ${isActive
-                                ? "bg-[#008FED]/10 dark:bg-[#00D4FF]/15 text-[#008FED] dark:text-[#00E5FF]"
-                                : "text-slate-650 dark:text-slate-300 hover:bg-[#008FED]/5 dark:hover:bg-white/5 hover:text-[#008FED] dark:hover:text-white"
+                              ? "bg-[#008FED]/10 dark:bg-[#00D4FF]/15 text-[#008FED] dark:text-[#00E5FF]"
+                              : "text-slate-650 dark:text-slate-300 hover:bg-[#008FED]/5 dark:hover:bg-white/5 hover:text-[#008FED] dark:hover:text-white"
                               }`}
                           >
                             <div className="flex items-center justify-between">

@@ -4,19 +4,105 @@ import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, ArrowRight, Star, Check, Shield, Activity } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight, Star, Check, Shield, Activity, Users, Globe, Briefcase } from "lucide-react";
 import ParticleBackground from "@/components/ParticleBackground";
 import { servicesData } from "@/data/services";
 
-const slideImages = [
-  "/web-app-design-woman.png",
-  "/anyuni-mockup.png",
-  "/zupee-mockup.png",
-  "/pricing-devices-mockup.png",
-  "/hero-image.png",
-  "/farming-sustainability-mockup.png",
-  "/tradingview-mockup.png",
-];
+const techIconsByService: Record<string, { name: string; icon: string }[]> = {
+  "web-development": [
+    { name: "React", icon: "⚛️" },
+    { name: "Next.js", icon: "▲" },
+    { name: "TypeScript", icon: "TS" },
+    { name: "Node.js", icon: "🟢" },
+    { name: "Tailwind", icon: "🎨" },
+    { name: "PostgreSQL", icon: "🐘" },
+  ],
+  "mobile-app-development": [
+    { name: "Flutter", icon: "🐦" },
+    { name: "React Native", icon: "⚛️" },
+    { name: "Swift", icon: "🍎" },
+    { name: "Kotlin", icon: "🅺" },
+    { name: "Firebase", icon: "🔥" },
+    { name: "Push Notify", icon: "🔔" },
+  ],
+  "software-development": [
+    { name: ".NET", icon: "❖" },
+    { name: "Java", icon: "☕" },
+    { name: "Python", icon: "🐍" },
+    { name: "Docker", icon: "🐳" },
+    { name: "Kubernetes", icon: "☸" },
+    { name: "PostgreSQL", icon: "🐘" },
+  ],
+  "ai-automation": [
+    { name: "Python", icon: "🐍" },
+    { name: "OpenAI", icon: "🤖" },
+    { name: "LangChain", icon: "🦜" },
+    { name: "Pinecone", icon: "🌲" },
+    { name: "HuggingFace", icon: "🤗" },
+    { name: "Flows", icon: "⚙️" },
+  ],
+  "ui-ux-design": [
+    { name: "Figma", icon: "❖" },
+    { name: "Illustrator", icon: "Ai" },
+    { name: "Photoshop", icon: "Ps" },
+    { name: "After Effects", icon: "Ae" },
+    { name: "Miro", icon: "M" },
+    { name: "Wireframe", icon: "✏️" },
+  ],
+  "ecommerce-solutions": [
+    { name: "Next.js", icon: "▲" },
+    { name: "Shopify API", icon: "🛍️" },
+    { name: "Stripe", icon: "💳" },
+    { name: "Redis", icon: "🔴" },
+    { name: "WooCommerce", icon: "🛒" },
+    { name: "PostgreSQL", icon: "🐘" },
+  ],
+  "crm-erp": [
+    { name: "React", icon: "⚛️" },
+    { name: "Go", icon: "🐹" },
+    { name: "PostgreSQL", icon: "🐘" },
+    { name: "Docker", icon: "🐳" },
+    { name: "AWS RDS", icon: "☁️" },
+    { name: "Node.js", icon: "🟢" },
+  ],
+  "api-integration": [
+    { name: "GraphQL", icon: "☤" },
+    { name: "REST API", icon: "🔌" },
+    { name: "OAuth2", icon: "🔑" },
+    { name: "Webhooks", icon: "🪝" },
+    { name: "Node.js", icon: "🟢" },
+    { name: "Redis", icon: "🔴" },
+  ],
+  "cloud-devops": [
+    { name: "AWS", icon: "☁️" },
+    { name: "Kubernetes", icon: "☸" },
+    { name: "Terraform", icon: "🏗️" },
+    { name: "Docker", icon: "🐳" },
+    { name: "CI/CD", icon: "🔄" },
+    { name: "Prometheus", icon: "📊" },
+  ],
+  "digital-marketing": [
+    { name: "Google Ads", icon: "📈" },
+    { name: "Meta Ads", icon: "👥" },
+    { name: "SEO Opt.", icon: "🔍" },
+    { name: "Social Media", icon: "📱" },
+    { name: "Analytics", icon: "📊" },
+    { name: "Email Marketing", icon: "✉️" },
+  ]
+};
+
+const slideImagesBySlug: Record<string, string> = {
+  "web-development": "/hero-web-dev.png",
+  "mobile-app-development": "/hero-mobile-dev.png",
+  "software-development": "/hero-software-dev.png",
+  "ai-automation": "/hero-ai-solutions.png",
+  "ui-ux-design": "/hero-ui-ux.png",
+  "ecommerce-solutions": "/hero-ecommerce.png",
+  "crm-erp": "/hero-crm-erp.png",
+  "api-integration": "/hero-api.png",
+  "cloud-devops": "/hero-cloud-devops.png",
+  "digital-marketing": "/hero-web-dev.png",
+};
 
 const typingPhrases = [
   "Websites",
@@ -152,25 +238,22 @@ export default function Hero() {
   // Cuberto-Style Shutter/Clip-path slide transition variants
   const slideVariants = {
     initial: {
-      clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
-      opacity: 0.85,
-      scale: 1.015,
+      opacity: 0,
+      scale: 1.012,
     },
     animate: {
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
       opacity: 1,
       scale: 1,
       transition: {
-        duration: 0.8,
+        duration: 0.55,
         ease: [0.16, 1, 0.3, 1] as const,
       },
     },
     exit: {
-      clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-      opacity: 0.85,
-      scale: 0.985,
+      opacity: 0,
+      scale: 0.988,
       transition: {
-        duration: 0.65,
+        duration: 0.45,
         ease: [0.16, 1, 0.3, 1] as const,
       },
     },
@@ -205,117 +288,51 @@ export default function Hero() {
     },
   };
 
+  const featureCards = [
+    { name: "AI Powered", icon: "🧠" },
+    { name: "Mobile Apps", icon: "📱" },
+    { name: "Cloud Solutions", icon: "☁️" },
+    { name: "Web Development", icon: "💻" },
+    { name: "Secure APIs", icon: "🔒" },
+    { name: "24/7 Support", icon: "📞" },
+  ];
+
   return (
     <div
-      className="relative w-full overflow-hidden bg-[url('/light1.jpg')] dark:bg-[#071426] bg-cover bg-center bg-no-repeat min-h-[110vh] lg:min-h-[115vh] flex flex-col justify-start pt-28 sm:pt-32 lg:pt-36 pb-24"
+      className="relative w-full overflow-hidden bg-[#F7FAFF] dark:bg-[#071426] min-h-[110vh] lg:min-h-[115vh] flex flex-col justify-start pt-28 sm:pt-32 lg:pt-36 pb-24"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ fontFamily: "'Satoshi', sans-serif" }}
     >
-      {/* Font loaders for Satoshi & Clash Display are moved to layout.tsx head */}
+      {/* Light Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#E2E8F0_1px,transparent_1px),linear-gradient(to_bottom,#E2E8F0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-35 dark:opacity-[0.08] pointer-events-none" />
 
-      {/* Subtle Light Mode background overlay for black text legibility */}
-      <div className="absolute inset-0 bg-white/60 dark:bg-transparent z-0 pointer-events-none" />
+      {/* Mesh Gradient Glows */}
+      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-[#2563FF]/15 to-[#00BFFF]/15 blur-[130px] pointer-events-none -z-10" />
+      <div className="absolute top-[20%] right-[-10%] w-[550px] h-[550px] rounded-full bg-gradient-to-tr from-[#6C63FF]/12 to-[#2563FF]/12 blur-[120px] pointer-events-none -z-10 animate-pulse" />
+      <div className="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-[#00BFFF]/8 blur-[120px] pointer-events-none -z-10" />
 
       {/* Moving background gradient */}
-      <div className="absolute inset-0 moving-gradient-bg opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 moving-gradient-bg opacity-10 pointer-events-none" />
 
       {/* Floating particles */}
       <ParticleBackground />
 
       {/* Cyber Grid */}
-      <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 cyber-grid opacity-5 pointer-events-none" />
 
       {/* 5 Vertical Background Grid Lines matching the reference screenshot */}
-      <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.45]">
-        <div className="w-[1px] bg-slate-100/70 h-full" />
-        <div className="w-[1px] bg-slate-100/70 h-full hidden sm:block" />
-        <div className="w-[1px] bg-slate-100/70 h-full" />
-        <div className="w-[1px] bg-slate-100/70 h-full hidden sm:block" />
-        <div className="w-[1px] bg-slate-100/70 h-full" />
+      <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.3]">
+        <div className="w-[1px] bg-slate-200/50 dark:bg-white/5 h-full" />
+        <div className="w-[1px] bg-slate-200/50 dark:bg-white/5 h-full hidden sm:block" />
+        <div className="w-[1px] bg-slate-200/50 dark:bg-white/5 h-full" />
+        <div className="w-[1px] bg-slate-200/50 dark:bg-white/5 h-full hidden sm:block" />
+        <div className="w-[1px] bg-slate-200/50 dark:bg-white/5 h-full" />
       </div>
-
-      {/* ==========================================================================
-         DECORATIVE FLOATING CIRCLES AND SOFT SHAPES (Tactile parallax theme elements)
-         ========================================================================== */}
-      {/* 1. Large Outline Blue Ring */}
-      <motion.div
-        className="absolute rounded-full border-2 border-[#7C3AED]/8 pointer-events-none z-0"
-        style={{ width: "240px", height: "240px", left: "6%", top: "12%" }}
-        animate={{
-          y: [0, -22, 0],
-          rotate: [0, 360],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
-
-      {/* 2. Soft Blurry Orange Glow Orb */}
-      <motion.div
-        className="absolute rounded-full bg-[#F5A623]/3 pointer-events-none z-0 blur-2xl"
-        style={{ width: "180px", height: "180px", right: "10%", top: "28%" }}
-        animate={{
-          y: [0, 24, 0],
-          x: [0, -18, 0],
-        }}
-        transition={{
-          duration: 14,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* 3. Medium Outline Orange Ring */}
-      <motion.div
-        className="absolute rounded-full border border-[#F5A623]/10 pointer-events-none z-0"
-        style={{ width: "190px", height: "190px", right: "18%", bottom: "16%" }}
-        animate={{
-          y: [0, -16, 0],
-          rotate: [360, 0],
-        }}
-        transition={{
-          duration: 16,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
-
-      {/* 4. Small Solid Blue Sphere */}
-      <motion.div
-        className="absolute rounded-full bg-[#7C3AED]/6 pointer-events-none z-0 shadow-sm"
-        style={{ width: "22px", height: "22px", left: "16%", bottom: "30%" }}
-        animate={{
-          y: [0, 26, 0],
-          x: [0, 14, 0],
-        }}
-        transition={{
-          duration: 11,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* 5. Small Solid Orange Sphere */}
-      <motion.div
-        className="absolute rounded-full bg-[#F5A623]/8 pointer-events-none z-0 shadow-sm"
-        style={{ width: "16px", height: "16px", right: "35%", top: "16%" }}
-        animate={{
-          y: [0, -22, 0],
-          x: [0, -16, 0],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
 
       {/* Lagged Mouse Follower Glow (Tactile cursor coordinates) */}
       <motion.div
-        className="absolute w-[450px] h-[450px] rounded-full bg-[#7C3AED]/4 blur-[135px] pointer-events-none"
+        className="absolute w-[450px] h-[450px] rounded-full bg-[#2563FF]/3 blur-[135px] pointer-events-none"
         animate={{
           x: mousePos.x * 55,
           y: mousePos.y * 55,
@@ -323,7 +340,7 @@ export default function Hero() {
         transition={{ type: "spring", stiffness: 45, damping: 18 }}
       />
       <motion.div
-        className="absolute w-[400px] h-[400px] rounded-full bg-[#F5A623]/3 blur-[140px] pointer-events-none"
+        className="absolute w-[400px] h-[400px] rounded-full bg-[#6C63FF]/3 blur-[140px] pointer-events-none"
         animate={{
           x: mousePos.x * -55,
           y: mousePos.y * -55,
@@ -342,21 +359,22 @@ export default function Hero() {
             exit="exit"
             className="w-full flex flex-col justify-center mt-3 lg:mt-4"
           >
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full">
-              {/* Left Column: Heading and copy copy */}
-              <div className="lg:col-span-7 flex flex-col items-start text-left w-full">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 items-start w-full">
+              {/* Left Column: Heading and copy */}
+              <div className="lg:col-span-7 flex flex-col items-start text-left w-full lg:-mt-6 pt-2 lg:pl-12">
+                
                 {/* Subtag line */}
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: 0.1 }}
-                  className="inline-flex items-center gap-2 rounded-full border border-purple-100 dark:border-purple-900 bg-[#F3F0FA] dark:bg-[#1C142A] px-4 py-1 text-[10.5px] font-bold uppercase tracking-[0.08em] text-black dark:text-slate-200 shadow-sm"
+                  className="inline-flex items-center gap-2 rounded-full border border-blue-200/40 bg-[#2563FF]/5 dark:bg-[#2563FF]/15 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider text-[#2563FF] dark:text-[#00BFFF] shadow-sm font-sans"
                 >
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F5A623] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F5A623]"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2563FF] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563FF]"></span>
                   </span>
-                  We Build {typedText}
+                  🚀 WE BUILD {currentService.title}
                 </motion.div>
 
                 {/* Service Heading word-by-word staggered reveal */}
@@ -364,18 +382,22 @@ export default function Hero() {
                   variants={headingContainerVariants}
                   initial="hidden"
                   animate="visible"
-                  className="mt-4 text-4xl sm:text-5xl md:text-5xl lg:text-[3.2rem] xl:text-[4.2rem] font-extrabold text-black dark:text-white leading-[1.15] tracking-tight flex flex-wrap gap-x-2.5 gap-y-0.5 max-w-2xl text-left"
+                  className="mt-5 text-4xl sm:text-5xl md:text-6xl lg:text-[4.6rem] font-black text-[#0F172A] dark:text-white leading-[1.1] tracking-tight max-w-2xl text-left"
+                  style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
                 >
-                  {titleWords.map((word, i) => (
-                    <span key={i} className="overflow-hidden inline-flex py-1 -my-1">
-                      <motion.span
-                        variants={headingWordVariants}
-                        className="inline-block"
-                      >
-                        {word}
-                      </motion.span>
-                    </span>
-                  ))}
+                  {titleWords.map((word, i) => {
+                    const isLast = i === titleWords.length - 1;
+                    return (
+                      <span key={i} className="overflow-hidden inline-flex py-1 -my-1 mr-3">
+                        <motion.span
+                          variants={headingWordVariants}
+                          className={`inline-block ${isLast ? "text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] to-[#6C63FF] dark:from-[#00BFFF] dark:to-[#6C63FF]" : ""}`}
+                        >
+                          {word}
+                        </motion.span>
+                      </span>
+                    );
+                  })}
                 </motion.h2>
 
                 {/* Description */}
@@ -383,26 +405,33 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="mt-3.5 text-sm sm:text-[14.5px] md:text-base text-black/85 dark:text-slate-300 leading-relaxed max-w-xl font-medium tracking-wide text-left"
+                  className="mt-5 text-[15px] text-[#475569] dark:text-slate-300 leading-relaxed max-w-[580px] font-medium tracking-wide text-left animate-fadeIn"
                 >
                   {heroDescriptions[currentService.slug] || currentService.longDescription}
                 </motion.p>
 
-                {/* Bullet checklist features */}
+                {/* Tech stack square cards (exactly like reference image) */}
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.4 }}
-                  className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-xl"
+                  className="mt-6 flex flex-wrap gap-3.5 w-full justify-start"
                 >
-                  {currentService.features.slice(0, 4).map((feat, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-black/90 dark:text-slate-300">
-                      <div className="w-4.5 h-4.5 rounded-full bg-[#00D4FF]/10 flex items-center justify-center text-[#00D4FF] shrink-0 border border-[#00D4FF]/20 shadow-sm">
-                        <Check className="w-3 h-3 stroke-[3.5px]" />
-                      </div>
-                      <span className="truncate">{feat}</span>
+                  {(techIconsByService[currentService.slug] || []).map((tech, idx) => (
+                    <div
+                      key={idx}
+                      className="flex flex-col items-center justify-center bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 w-[74px] h-[74px] rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_20px_rgba(37,99,255,0.08)] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    >
+                      <span className="text-2xl mb-1">{tech.icon}</span>
+                      <span className="text-[9.5px] font-extrabold text-[#475569] dark:text-slate-300 text-center px-1 truncate w-full font-sans">
+                        {tech.name}
+                      </span>
                     </div>
                   ))}
+                  {/* Decorative Add card */}
+                  <div className="flex items-center justify-center bg-[#2563FF]/5 border border-dashed border-[#2563FF]/30 w-[74px] h-[74px] rounded-2xl cursor-default text-[#2563FF] hover:bg-[#2563FF]/10 transition-colors">
+                    <span className="text-xl font-bold">+</span>
+                  </div>
                 </motion.div>
 
                 {/* Magnetic CTAs */}
@@ -410,190 +439,179 @@ export default function Hero() {
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.5 }}
-                  className="mt-6 flex flex-wrap items-center gap-4 w-full sm:w-auto"
+                  className="mt-8 flex flex-wrap items-center gap-5 w-full justify-start"
                 >
+                  {/* Primary CTA */}
                   <motion.a
                     href="#services"
-                    whileHover={{ scale: 1.04 }}
+                    whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#00D4FF] to-[#008FED] hover:from-[#00E5FF] hover:to-[#008FED]/90 text-white font-extrabold text-sm px-6 py-3.5 rounded-full shadow-[0_4px_14px_rgba(0,212,255,0.25)] hover:shadow-[0_8px_24px_rgba(0,212,255,0.45)] transition-all duration-300 border border-transparent cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#2563FF] to-[#6C63FF] hover:from-[#2563FF]/95 hover:to-[#6C63FF]/95 text-white font-extrabold text-sm px-7 py-4 rounded-full shadow-[0_4px_14px_rgba(37,99,255,0.25)] hover:shadow-[0_8px_24px_rgba(37,99,255,0.45)] transition-all duration-300 cursor-pointer group relative overflow-hidden"
                   >
                     <span>Explore Services</span>
-                    <ArrowRight className="w-4.5 h-4.5" />
+                    <ArrowRight className="w-4.5 h-4.5 group-hover:translate-x-1 transition-transform" />
                   </motion.a>
 
+                  {/* Secondary CTA */}
                   <motion.a
                     href="/contact"
-                    whileHover={{ scale: 1.04 }}
+                    whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center gap-2.5 bg-[#0B1A2E]/5 hover:bg-[#0B1A2E]/10 dark:bg-[#0B1A2E]/60 dark:hover:bg-[#071426]/80 text-black dark:text-white font-bold text-sm px-6 py-3.5 rounded-full shadow-sm hover:shadow-md border border-slate-200 dark:border-[rgba(0,212,255,0.15)] hover:border-slate-300 dark:hover:border-[#00D4FF]/30 cursor-pointer transition-all duration-300"
+                    className="inline-flex items-center justify-center gap-2 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md text-[#0F172A] dark:text-white font-bold text-sm px-7 py-4 rounded-full shadow-sm hover:shadow-md border border-slate-200 dark:border-white/10 hover:border-slate-350 dark:hover:border-white/20 transition-all duration-300 cursor-pointer"
                   >
-                    <span>Get in Touch</span>
+                    <span>View Portfolio</span>
+                    <span className="text-[#2563FF] text-[10px] ml-1">▶</span>
                   </motion.a>
                 </motion.div>
+
               </div>
 
-              {/* Right Column: High-End Service Illustration Mockup Preview */}
-              <div className="lg:col-span-5 relative flex justify-center items-center mt-8 lg:mt-0 z-10 w-full">
+              {/* Right Column: Premium custom animated illustration (aligned exactly like reference screenshot) */}
+              <div className="lg:col-span-5 relative flex justify-center items-center lg:-mt-8 lg:-ml-8 xl:-ml-12 mt-6 z-30 w-full select-none">
                 
-                {/* Subtle glow background behind the mockup */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-cyan-500/5 to-transparent blur-2xl rounded-full scale-90 -z-10 pointer-events-none" />
+                {/* Background aura gradient glow */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#2563FF]/15 via-[#6C63FF]/15 to-transparent blur-3xl rounded-full scale-90 pointer-events-none -z-10" />
 
-                {/* FLOATING DECORATIVE ELEMENTS */}
-                {/* Glass Stat Card 1 */}
-                <motion.div
-                  className="absolute -left-16 top-6 bg-white/10 dark:bg-slate-900/40 backdrop-blur-md border border-white/20 dark:border-white/10 p-2.5 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] flex flex-col gap-1 w-32 text-left cursor-default pointer-events-auto z-20 hidden xl:flex"
-                  animate={{
-                    y: [0, -6, 0],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-[8px] uppercase tracking-wider text-slate-450 dark:text-slate-400 font-bold">System Status</span>
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1 mt-0.5">
-                    <div className="w-4.5 h-4.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 shrink-0">
-                      <Shield className="w-2.5 h-2.5" />
-                    </div>
-                    <span className="text-[10px] font-black text-black dark:text-white">99.9% Uptime</span>
-                  </div>
-                </motion.div>
+                {/* Overlapping glowing background elements */}
+                <div className="absolute w-[440px] h-[440px] rounded-full border border-blue-500/10 dark:border-blue-400/5 -z-10 pointer-events-none scale-105" />
 
-                {/* Glass Sphere 1 (Bottom Left) */}
-                <motion.div
-                  className="absolute -left-10 -bottom-8 w-11 h-11 rounded-full border border-white/30 dark:border-white/15 backdrop-blur-[5px] shadow-[inset_0_1.5px_3px_rgba(255,255,255,0.4),0_10px_20px_rgba(0,0,0,0.15)] z-20 hidden lg:block"
-                  style={{
-                    background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 40%, rgba(0,0,0,0.3) 100%)"
-                  }}
-                  animate={{
-                    y: [0, 8, 0],
-                    x: [0, 4, 0],
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5,
-                  }}
-                />
-
-                {/* Glowing Cyan Diamond (Top Left) */}
-                <motion.div
-                  className="absolute -left-4 -top-8 w-6 h-6 border border-cyan-400/40 bg-cyan-400/5 rounded-md shadow-[0_0_12px_rgba(34,211,238,0.25)] flex items-center justify-center z-20 hidden lg:block"
-                  animate={{
-                    y: [0, -8, 0],
-                    rotate: [45, 405],
-                  }}
-                  transition={{
-                    duration: 7,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1,
-                  }}
-                >
-                  <div className="w-1 h-1 bg-cyan-405 rounded-full animate-pulse" />
-                </motion.div>
-
-                {/* Glass Sphere 2 (Top Right) */}
-                <motion.div
-                  className="absolute -right-10 -top-8 w-12 h-12 rounded-full border border-white/30 dark:border-white/15 backdrop-blur-[5px] shadow-[inset_0_1.5px_3px_rgba(255,255,255,0.4),0_10px_20px_rgba(0,0,0,0.15)] z-20 hidden lg:block"
-                  style={{
-                    background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 40%, rgba(0,0,0,0.3) 100%)"
-                  }}
-                  animate={{
-                    y: [0, -10, 0],
-                    x: [0, -5, 0],
-                  }}
-                  transition={{
-                    duration: 5.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.2,
-                  }}
-                />
-
-                {/* Glass Stat Card 2 */}
-                <motion.div
-                  className="absolute -right-16 bottom-6 bg-white/10 dark:bg-slate-900/40 backdrop-blur-md border border-white/20 dark:border-white/10 p-2.5 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] flex flex-col gap-1 w-32 text-left cursor-default pointer-events-auto z-20 hidden xl:flex"
-                  animate={{
-                    y: [0, 8, 0],
-                  }}
-                  transition={{
-                    duration: 4.8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.7,
-                  }}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-[8px] uppercase tracking-wider text-slate-455 dark:text-slate-400 font-bold">API Performance</span>
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00D4FF] opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#00D4FF]"></span>
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1 mt-0.5">
-                    <div className="w-4.5 h-4.5 rounded-md bg-[#00D4FF]/10 border border-[#00D4FF]/20 flex items-center justify-center text-[#00D4FF] shrink-0">
-                      <Activity className="w-2.5 h-2.5" />
-                    </div>
-                    <span className="text-[10px] font-black text-black dark:text-white">12ms Latency</span>
-                  </div>
-                </motion.div>
-
-                {/* Glowing Purple Ring (Bottom Right) */}
-                <motion.div
-                  className="absolute -right-6 -bottom-8 w-6 h-6 border border-purple-400/40 bg-purple-400/5 rounded-full shadow-[0_0_12px_rgba(192,132,252,0.25)] flex items-center justify-center z-20 hidden lg:block"
-                  animate={{
-                    y: [0, -6, 0],
-                    rotate: [0, -360],
-                  }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                >
-                  <div className="w-3 h-3 border border-purple-400/30 rounded-full" />
-                </motion.div>
-
-                {/* ORIGINAL FRAME STYLE SHOWCASE */}
-                <div className="relative w-full max-w-[440px] aspect-[4/3] select-none mx-auto">
+                {/* Main Illustration container matching target dimensions and spacing */}
+                <div className="relative w-full max-w-[580px] h-[430px] flex items-center justify-center p-0 overflow-visible">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={currentSlide}
-                      initial={{ opacity: 0, scale: 0.96, y: 15 }}
+                      initial={{ opacity: 0, scale: 0.96, y: 10 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.98, y: -10 }}
-                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute inset-0 w-full h-full"
+                      exit={{ opacity: 0, scale: 0.98, y: -8 }}
+                      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                      className="relative w-full flex justify-center items-center overflow-visible"
                     >
-                      <div className="relative w-full h-full rounded-3xl overflow-hidden border-4 border-[#0B1A2E] shadow-[0_20px_50px_rgba(0,212,255,0.1)] bg-[#071426]">
-                        <div className="w-full h-full overflow-hidden relative group">
-                          <Image
-                            src={slideImages[currentSlide % slideImages.length] || "/hero-image.png"}
-                            alt={serviceTitle}
-                            fill
-                            className="object-cover img-zoom-hover select-none"
-                            priority
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/5 to-transparent pointer-events-none" />
-                        </div>
-                      </div>
+                      <Image
+                        src={slideImagesBySlug[currentService.slug] || "/hero-web-dev.png"}
+                        alt={currentService.title}
+                        width={580}
+                        height={430}
+                        className="max-w-full max-h-full w-auto h-auto object-contain select-none z-10 mix-blend-multiply dark:mix-blend-normal"
+                        priority
+                      />
                     </motion.div>
                   </AnimatePresence>
+                  {/* Tag 1: Uptime */}
+                  <motion.div
+                    className="absolute -left-12 top-6 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3 py-1.5 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex items-center gap-1.5 z-20"
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <span className="text-emerald-500">🛡️</span>
+                    <span className="text-[10.5px] font-extrabold text-slate-800 dark:text-white font-sans">99.99% Uptime</span>
+                  </motion.div>
+
+                  {/* Tag 2: AI Powered */}
+                  <motion.div
+                    className="absolute right-2 -top-10 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3 py-1.5 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex items-center gap-1.5 z-20"
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+                  >
+                    <span className="text-purple-500">🧠</span>
+                    <span className="text-[10.5px] font-extrabold text-slate-800 dark:text-white font-sans">AI Powered Solutions</span>
+                  </motion.div>
+
+                  {/* Tag 3: API Ready */}
+                  <motion.div
+                    className="absolute -right-12 top-28 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3 py-1.5 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex items-center gap-1.5 z-20"
+                    animate={{ y: [0, 8, 0] }}
+                    transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
+                  >
+                    <span className="text-blue-500">🔌</span>
+                    <span className="text-[10.5px] font-extrabold text-slate-800 dark:text-white font-sans">API Ready</span>
+                  </motion.div>
+
+                  {/* Tag 4: Response latency */}
+                  <motion.div
+                    className="absolute -right-14 bottom-24 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3 py-1.5 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex items-center gap-1.5 z-20"
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                  >
+                    <span className="text-amber-500">⚡</span>
+                    <span className="text-[10.5px] font-extrabold text-slate-800 dark:text-white font-sans">12ms Response Time</span>
+                  </motion.div>
+
+                  {/* Tag 5: Projects Delivered */}
+                  <motion.div
+                    className="absolute -right-6 -bottom-6 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3.5 py-2 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex items-center gap-1.5 z-20"
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
+                  >
+                    <span className="text-blue-600">👥</span>
+                    <span className="text-[10.5px] font-extrabold text-slate-800 dark:text-white font-sans">500+ Projects</span>
+                  </motion.div>
                 </div>
               </div>
+
             </div>
           </motion.div>
         </AnimatePresence>
+
+        {/* Global feature cards */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full mt-16 max-w-7xl mx-auto z-20">
+          {featureCards.map((feat, idx) => (
+            <div
+              key={idx}
+              className="bg-white/50 dark:bg-slate-900/40 backdrop-blur-md border border-slate-200/40 dark:border-white/10 rounded-2xl p-4 flex items-center gap-3 shadow-[0_4px_12px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_24px_rgba(37,99,255,0.06)] hover:-translate-y-1 transition-all duration-300 cursor-default group"
+            >
+              <div className="w-10 h-10 rounded-xl bg-[#2563FF]/10 flex items-center justify-center text-lg text-[#2563FF] shrink-0 group-hover:scale-110 transition-transform">
+                {feat.icon}
+              </div>
+              <span className="text-[13px] font-extrabold text-[#0F172A] dark:text-white font-sans tracking-wide">
+                {feat.name}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom stats row */}
+        <div className="w-full max-w-7xl mx-auto mt-10 bg-white/40 dark:bg-slate-900/40 backdrop-blur-lg border border-slate-200/50 dark:border-white/10 rounded-3xl py-6 px-8 grid grid-cols-2 lg:grid-cols-4 gap-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)] divide-y lg:divide-y-0 lg:divide-x divide-slate-200/40 dark:divide-white/5 z-20 mb-8">
+          <div className="flex items-center gap-4 justify-center py-2 lg:py-0">
+            <div className="w-12 h-12 rounded-full bg-[#2563FF]/10 flex items-center justify-center text-[#2563FF]">
+              <Briefcase className="w-5 h-5" />
+            </div>
+            <div className="text-left">
+              <div className="text-xl font-black text-[#0F172A] dark:text-white">500+</div>
+              <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Projects Delivered</div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 justify-center py-2 lg:py-0">
+            <div className="w-12 h-12 rounded-full bg-[#6C63FF]/10 flex items-center justify-center text-[#6C63FF]">
+              <Users className="w-5 h-5" />
+            </div>
+            <div className="text-left">
+              <div className="text-xl font-black text-[#0F172A] dark:text-white">50+</div>
+              <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Expert Developers</div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 justify-center py-2 lg:py-0">
+            <div className="w-12 h-12 rounded-full bg-[#2563FF]/10 flex items-center justify-center text-[#2563FF]">
+              <Globe className="w-5 h-5" />
+            </div>
+            <div className="text-left">
+              <div className="text-xl font-black text-[#0F172A] dark:text-white">15+</div>
+              <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Countries Served</div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 justify-center py-2 lg:py-0">
+            <div className="w-12 h-12 rounded-full bg-[#6C63FF]/10 flex items-center justify-center text-[#6C63FF]">
+              <Star className="w-5 h-5" />
+            </div>
+            <div className="text-left">
+              <div className="text-xl font-black text-[#0F172A] dark:text-white">99%</div>
+              <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Client Satisfaction</div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       {/* Navigation Arrows */}
