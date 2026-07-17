@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowRight, Star, Check, Shield, Activity, Users, Globe, Briefcase } from "lucide-react";
 import ParticleBackground from "@/components/ParticleBackground";
+import { useTheme } from "@/components/ThemeProvider";
 import { servicesData } from "@/data/services";
 
 const techIconsByService: Record<string, { name: string; icon: string }[]> = {
@@ -91,17 +92,47 @@ const techIconsByService: Record<string, { name: string; icon: string }[]> = {
   ]
 };
 
-const slideImagesBySlug: Record<string, string> = {
-  "web-development": "/hero-web-dev.png",
-  "mobile-app-development": "/hero-mobile-dev.png",
-  "software-development": "/hero-software-dev.png",
-  "ai-automation": "/hero-ai-solutions.png",
-  "ui-ux-design": "/hero-ui-ux.png",
-  "ecommerce-solutions": "/hero-ecommerce.png",
-  "crm-erp": "/hero-crm-erp.png",
-  "api-integration": "/hero-api.png",
-  "cloud-devops": "/hero-cloud-devops.png",
-  "digital-marketing": "/hero-web-dev.png",
+const slideImagesBySlug: Record<string, { light: string; dark: string }> = {
+  "web-development": {
+    light: "/images/hero/light/hero-web-light.png",
+    dark: "/images/hero/dark/hero-web-dark.png",
+  },
+  "mobile-app-development": {
+    light: "/images/hero/light/hero-mobile-light.png",
+    dark: "/images/hero/dark/hero-mobile-dark.png",
+  },
+  "software-development": {
+    light: "/images/hero/light/hero-software-light.png",
+    dark: "/images/hero/dark/hero-software-dark.png",
+  },
+  "ai-automation": {
+    light: "/images/hero/light/hero-ai-light.png",
+    dark: "/images/hero/dark/hero-ai-dark.png",
+  },
+  "ui-ux-design": {
+    light: "/images/hero/light/hero-uiux-light.png",
+    dark: "/images/hero/dark/hero-uiux-dark.png",
+  },
+  "ecommerce-solutions": {
+    light: "/images/hero/light/hero-ecommerce-light.png",
+    dark: "/images/hero/dark/hero-ecommerce-dark.png",
+  },
+  "crm-erp": {
+    light: "/images/hero/light/hero-crm-light.png",
+    dark: "/images/hero/dark/hero-crm-dark.png",
+  },
+  "api-integration": {
+    light: "/images/hero/light/hero-api-light.png",
+    dark: "/images/hero/dark/hero-api-dark.png",
+  },
+  "cloud-devops": {
+    light: "/images/hero/light/hero-cloud-light.png",
+    dark: "/images/hero/dark/hero-cloud-dark.png",
+  },
+  "digital-marketing": {
+    light: "/images/hero/light/hero-digital-light.png",
+    dark: "/images/hero/dark/hero-digital-dark.png",
+  },
 };
 
 const typingPhrases = [
@@ -127,6 +158,7 @@ const heroDescriptions: Record<string, string> = {
 };
 
 export default function Hero() {
+  const { theme } = useTheme();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const totalSlides = servicesData.length;
@@ -304,52 +336,36 @@ export default function Hero() {
       onMouseLeave={() => setIsHovered(false)}
       style={{ fontFamily: "'Satoshi', sans-serif" }}
     >
-      {/* Light Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#E2E8F0_1px,transparent_1px),linear-gradient(to_bottom,#E2E8F0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-35 dark:opacity-[0.08] pointer-events-none" />
+      {/* Premium clean ambient gradient – no grid, no lines */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#EEF4FF] via-[#F7FAFF] to-[#EBF3FF] dark:from-[#071426] dark:via-[#081830] dark:to-[#0A1A2E] pointer-events-none" />
 
-      {/* Mesh Gradient Glows */}
-      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-[#2563FF]/15 to-[#00BFFF]/15 blur-[130px] pointer-events-none -z-10" />
-      <div className="absolute top-[20%] right-[-10%] w-[550px] h-[550px] rounded-full bg-gradient-to-tr from-[#6C63FF]/12 to-[#2563FF]/12 blur-[120px] pointer-events-none -z-10 animate-pulse" />
-      <div className="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-[#00BFFF]/8 blur-[120px] pointer-events-none -z-10" />
+      {/* Soft radial color bleed – top-left blue */}
+      <div className="absolute top-[-8%] left-[-5%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#2563FF]/10 to-[#00BFFF]/8 blur-[120px] pointer-events-none" />
+      {/* Soft radial color bleed – right purple */}
+      <div className="absolute top-[15%] right-[-8%] w-[480px] h-[480px] rounded-full bg-gradient-to-tr from-[#6C63FF]/8 to-[#2563FF]/8 blur-[110px] pointer-events-none" />
+      {/* Soft radial color bleed – bottom center */}
+      <div className="absolute bottom-[-5%] left-[25%] w-[400px] h-[400px] rounded-full bg-[#00BFFF]/5 blur-[100px] pointer-events-none" />
 
       {/* Moving background gradient */}
-      <div className="absolute inset-0 moving-gradient-bg opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 moving-gradient-bg opacity-8 pointer-events-none" />
 
       {/* Floating particles */}
       <ParticleBackground />
 
-      {/* Cyber Grid */}
-      <div className="absolute inset-0 cyber-grid opacity-5 pointer-events-none" />
-
-      {/* 5 Vertical Background Grid Lines matching the reference screenshot */}
-      <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.3]">
-        <div className="w-[1px] bg-slate-200/50 dark:bg-white/5 h-full" />
-        <div className="w-[1px] bg-slate-200/50 dark:bg-white/5 h-full hidden sm:block" />
-        <div className="w-[1px] bg-slate-200/50 dark:bg-white/5 h-full" />
-        <div className="w-[1px] bg-slate-200/50 dark:bg-white/5 h-full hidden sm:block" />
-        <div className="w-[1px] bg-slate-200/50 dark:bg-white/5 h-full" />
-      </div>
-
-      {/* Lagged Mouse Follower Glow (Tactile cursor coordinates) */}
+      {/* Lagged Mouse Follower Glow */}
       <motion.div
-        className="absolute w-[450px] h-[450px] rounded-full bg-[#2563FF]/3 blur-[135px] pointer-events-none"
-        animate={{
-          x: mousePos.x * 55,
-          y: mousePos.y * 55,
-        }}
+        className="absolute w-[380px] h-[380px] rounded-full bg-[#2563FF]/4 blur-[120px] pointer-events-none"
+        animate={{ x: mousePos.x * 50, y: mousePos.y * 50 }}
         transition={{ type: "spring", stiffness: 45, damping: 18 }}
       />
       <motion.div
-        className="absolute w-[400px] h-[400px] rounded-full bg-[#6C63FF]/3 blur-[140px] pointer-events-none"
-        animate={{
-          x: mousePos.x * -55,
-          y: mousePos.y * -55,
-        }}
+        className="absolute w-[320px] h-[320px] rounded-full bg-[#6C63FF]/4 blur-[120px] pointer-events-none"
+        animate={{ x: mousePos.x * -50, y: mousePos.y * -50 }}
         transition={{ type: "spring", stiffness: 45, damping: 18 }}
       />
 
       {/* Slide Wipe Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full flex-grow flex flex-col justify-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full flex-grow flex flex-col justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -359,10 +375,12 @@ export default function Hero() {
             exit="exit"
             className="w-full flex flex-col justify-center mt-3 lg:mt-4"
           >
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 items-start w-full">
-              {/* Left Column: Heading and copy */}
-              <div className="lg:col-span-7 flex flex-col items-start text-left w-full lg:-mt-6 pt-2 lg:pl-12">
-                
+            {/* ── Two-Column Grid ── */}
+            <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center w-full">
+
+              {/* ── LEFT COLUMN ── */}
+              <div className="lg:col-span-6 flex flex-col items-start text-left w-full lg:pl-6 xl:pl-10">
+
                 {/* Subtag line */}
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
@@ -377,12 +395,12 @@ export default function Hero() {
                   🚀 WE BUILD {currentService.title}
                 </motion.div>
 
-                {/* Service Heading word-by-word staggered reveal */}
+                {/* Heading */}
                 <motion.h2
                   variants={headingContainerVariants}
                   initial="hidden"
                   animate="visible"
-                  className="mt-5 text-4xl sm:text-5xl md:text-6xl lg:text-[4.6rem] font-black text-[#0F172A] dark:text-white leading-[1.1] tracking-tight max-w-2xl text-left"
+                  className="mt-4 text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-black text-[#0F172A] dark:text-white leading-[1.1] tracking-tight max-w-xl text-left"
                   style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
                 >
                   {titleWords.map((word, i) => {
@@ -405,51 +423,51 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="mt-5 text-[15px] text-[#475569] dark:text-slate-300 leading-relaxed max-w-[580px] font-medium tracking-wide text-left animate-fadeIn"
+                  className="mt-5 text-[14.5px] text-[#475569] dark:text-slate-300 leading-relaxed max-w-[480px] font-medium tracking-wide text-left"
                 >
                   {heroDescriptions[currentService.slug] || currentService.longDescription}
                 </motion.p>
 
-                {/* Tech stack square cards (exactly like reference image) */}
+                {/* Tech stack cards */}
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.4 }}
-                  className="mt-6 flex flex-wrap gap-3.5 w-full justify-start"
+                  className="mt-6 flex flex-wrap gap-2 w-full justify-start"
                 >
                   {(techIconsByService[currentService.slug] || []).map((tech, idx) => (
                     <div
                       key={idx}
-                      className="flex flex-col items-center justify-center bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/10 w-[74px] h-[74px] rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_20px_rgba(37,99,255,0.08)] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                      className="flex flex-col items-center justify-center bg-white dark:bg-slate-900/80 border border-slate-100 dark:border-white/10 w-[62px] h-[62px] rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_6px_16px_rgba(37,99,255,0.1)] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer shrink-0"
                     >
-                      <span className="text-2xl mb-1">{tech.icon}</span>
-                      <span className="text-[9.5px] font-extrabold text-[#475569] dark:text-slate-300 text-center px-1 truncate w-full font-sans">
+                      <span className="text-xl mb-0.5">{tech.icon}</span>
+                      <span className="text-[8.5px] font-extrabold text-[#475569] dark:text-slate-300 text-center px-0.5 truncate w-full font-sans leading-tight">
                         {tech.name}
                       </span>
                     </div>
                   ))}
-                  {/* Decorative Add card */}
-                  <div className="flex items-center justify-center bg-[#2563FF]/5 border border-dashed border-[#2563FF]/30 w-[74px] h-[74px] rounded-2xl cursor-default text-[#2563FF] hover:bg-[#2563FF]/10 transition-colors">
-                    <span className="text-xl font-bold">+</span>
+                  {/* Decorative + card */}
+                  <div className="flex items-center justify-center bg-[#2563FF]/5 border border-dashed border-[#2563FF]/30 w-[62px] h-[62px] rounded-xl cursor-default text-[#2563FF] hover:bg-[#2563FF]/10 transition-colors shrink-0">
+                    <span className="text-lg font-bold">+</span>
                   </div>
                 </motion.div>
 
-                {/* Magnetic CTAs */}
+                {/* CTA Buttons */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.5 }}
-                  className="mt-8 flex flex-wrap items-center gap-5 w-full justify-start"
+                  className="mt-7 flex flex-wrap items-center gap-3 w-full justify-start"
                 >
                   {/* Primary CTA */}
                   <motion.a
                     href="#services"
                     whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#2563FF] to-[#6C63FF] hover:from-[#2563FF]/95 hover:to-[#6C63FF]/95 text-white font-extrabold text-sm px-7 py-4 rounded-full shadow-[0_4px_14px_rgba(37,99,255,0.25)] hover:shadow-[0_8px_24px_rgba(37,99,255,0.45)] transition-all duration-300 cursor-pointer group relative overflow-hidden"
+                    className="inline-flex items-center justify-center gap-2 h-12 bg-gradient-to-r from-[#2563FF] to-[#6C63FF] hover:from-[#2563FF]/95 hover:to-[#6C63FF]/95 text-white font-extrabold text-sm px-7 rounded-full shadow-[0_4px_14px_rgba(37,99,255,0.25)] hover:shadow-[0_8px_24px_rgba(37,99,255,0.45)] transition-all duration-300 cursor-pointer group relative overflow-hidden"
                   >
                     <span>Explore Services</span>
-                    <ArrowRight className="w-4.5 h-4.5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </motion.a>
 
                   {/* Secondary CTA */}
@@ -457,26 +475,23 @@ export default function Hero() {
                     href="/contact"
                     whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center gap-2 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md text-[#0F172A] dark:text-white font-bold text-sm px-7 py-4 rounded-full shadow-sm hover:shadow-md border border-slate-200 dark:border-white/10 hover:border-slate-350 dark:hover:border-white/20 transition-all duration-300 cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 h-12 bg-white/60 dark:bg-slate-900/40 backdrop-blur-md text-[#0F172A] dark:text-white font-bold text-sm px-7 rounded-full shadow-sm hover:shadow-md border border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20 transition-all duration-300 cursor-pointer"
                   >
                     <span>View Portfolio</span>
-                    <span className="text-[#2563FF] text-[10px] ml-1">▶</span>
+                    <span className="text-[#2563FF] text-[10px]">▶</span>
                   </motion.a>
                 </motion.div>
 
               </div>
 
-              {/* Right Column: Premium custom animated illustration (aligned exactly like reference screenshot) */}
-              <div className="lg:col-span-5 relative flex justify-center items-center lg:-mt-8 lg:-ml-8 xl:-ml-12 mt-6 z-30 w-full select-none">
-                
-                {/* Background aura gradient glow */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#2563FF]/15 via-[#6C63FF]/15 to-transparent blur-3xl rounded-full scale-90 pointer-events-none -z-10" />
+              {/* ── RIGHT COLUMN ── */}
+              <div className="lg:col-span-6 relative flex justify-center items-center lg:-ml-4 mt-8 lg:mt-0 z-30 w-full select-none">
 
-                {/* Overlapping glowing background elements */}
-                <div className="absolute w-[440px] h-[440px] rounded-full border border-blue-500/10 dark:border-blue-400/5 -z-10 pointer-events-none scale-105" />
+                {/* Very soft ambient glow – no large circle, blends with bg */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#2563FF]/8 via-[#6C63FF]/6 to-transparent blur-[80px] rounded-full pointer-events-none" />
 
-                {/* Main Illustration container matching target dimensions and spacing */}
-                <div className="relative w-full max-w-[580px] h-[430px] flex items-center justify-center p-0 overflow-visible">
+                {/* Main Illustration container */}
+                <div className="relative w-full max-w-[620px] h-[460px] flex items-center justify-center overflow-visible">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={currentSlide}
@@ -487,18 +502,24 @@ export default function Hero() {
                       className="relative w-full flex justify-center items-center overflow-visible"
                     >
                       <Image
-                        src={slideImagesBySlug[currentService.slug] || "/hero-web-dev.png"}
+                        src={
+                          (theme === "dark"
+                            ? slideImagesBySlug[currentService.slug]?.light
+                            : slideImagesBySlug[currentService.slug]?.dark) ||
+                          "/images/hero/dark/hero-web-dark.png"
+                        }
                         alt={currentService.title}
-                        width={580}
-                        height={430}
-                        className="max-w-full max-h-full w-auto h-auto object-contain select-none z-10 mix-blend-multiply dark:mix-blend-normal"
+                        width={620}
+                        height={460}
+                        className="max-w-full max-h-full w-auto h-auto object-contain select-none z-10 mix-blend-multiply dark:mix-blend-normal drop-shadow-[0_8px_40px_rgba(37,99,255,0.12)]"
                         priority
                       />
                     </motion.div>
                   </AnimatePresence>
-                  {/* Tag 1: Uptime */}
+
+                  {/* Tag 1: Uptime – left-side, clear of navbar */}
                   <motion.div
-                    className="absolute -left-12 top-6 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3 py-1.5 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex items-center gap-1.5 z-20"
+                    className="absolute -left-10 top-14 bg-white/92 dark:bg-slate-900/85 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3 py-1.5 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-1.5 z-20"
                     animate={{ y: [0, -8, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                   >
@@ -506,9 +527,9 @@ export default function Hero() {
                     <span className="text-[10.5px] font-extrabold text-slate-800 dark:text-white font-sans">99.99% Uptime</span>
                   </motion.div>
 
-                  {/* Tag 2: AI Powered */}
+                  {/* Tag 2: AI Powered – top-right, lower so it never touches navbar */}
                   <motion.div
-                    className="absolute right-2 -top-10 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3 py-1.5 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex items-center gap-1.5 z-20"
+                    className="absolute right-4 top-4 bg-white/92 dark:bg-slate-900/85 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3 py-1.5 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-1.5 z-20"
                     animate={{ y: [0, -10, 0] }}
                     transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
                   >
@@ -516,9 +537,9 @@ export default function Hero() {
                     <span className="text-[10.5px] font-extrabold text-slate-800 dark:text-white font-sans">AI Powered Solutions</span>
                   </motion.div>
 
-                  {/* Tag 3: API Ready */}
+                  {/* Tag 3: API Ready – right-middle */}
                   <motion.div
-                    className="absolute -right-12 top-28 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3 py-1.5 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex items-center gap-1.5 z-20"
+                    className="absolute -right-8 top-[38%] bg-white/92 dark:bg-slate-900/85 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3 py-1.5 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-1.5 z-20"
                     animate={{ y: [0, 8, 0] }}
                     transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
                   >
@@ -526,9 +547,9 @@ export default function Hero() {
                     <span className="text-[10.5px] font-extrabold text-slate-800 dark:text-white font-sans">API Ready</span>
                   </motion.div>
 
-                  {/* Tag 4: Response latency */}
+                  {/* Tag 4: Response latency – right-lower */}
                   <motion.div
-                    className="absolute -right-14 bottom-24 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3 py-1.5 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex items-center gap-1.5 z-20"
+                    className="absolute -right-10 bottom-28 bg-white/92 dark:bg-slate-900/85 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3 py-1.5 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-1.5 z-20"
                     animate={{ y: [0, -6, 0] }}
                     transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                   >
@@ -536,15 +557,16 @@ export default function Hero() {
                     <span className="text-[10.5px] font-extrabold text-slate-800 dark:text-white font-sans">12ms Response Time</span>
                   </motion.div>
 
-                  {/* Tag 5: Projects Delivered */}
+                  {/* Tag 5: Projects – bottom-right */}
                   <motion.div
-                    className="absolute -right-6 -bottom-6 bg-white/90 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3.5 py-2 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex items-center gap-1.5 z-20"
+                    className="absolute right-2 -bottom-4 bg-white/92 dark:bg-slate-900/85 backdrop-blur-md border border-slate-200/50 dark:border-white/10 px-3.5 py-2 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-1.5 z-20"
                     animate={{ y: [0, -8, 0] }}
                     transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
                   >
                     <span className="text-blue-600">👥</span>
                     <span className="text-[10.5px] font-extrabold text-slate-800 dark:text-white font-sans">500+ Projects</span>
                   </motion.div>
+
                 </div>
               </div>
 
@@ -553,7 +575,7 @@ export default function Hero() {
         </AnimatePresence>
 
         {/* Global feature cards */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full mt-16 max-w-7xl mx-auto z-20">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full mt-14 max-w-7xl mx-auto z-20">
           {featureCards.map((feat, idx) => (
             <div
               key={idx}
@@ -570,7 +592,7 @@ export default function Hero() {
         </div>
 
         {/* Bottom stats row */}
-        <div className="w-full max-w-7xl mx-auto mt-10 bg-white/40 dark:bg-slate-900/40 backdrop-blur-lg border border-slate-200/50 dark:border-white/10 rounded-3xl py-6 px-8 grid grid-cols-2 lg:grid-cols-4 gap-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)] divide-y lg:divide-y-0 lg:divide-x divide-slate-200/40 dark:divide-white/5 z-20 mb-8">
+        <div className="w-full max-w-7xl mx-auto mt-8 bg-white/40 dark:bg-slate-900/40 backdrop-blur-lg border border-slate-200/50 dark:border-white/10 rounded-3xl py-6 px-8 grid grid-cols-2 lg:grid-cols-4 gap-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)] divide-y lg:divide-y-0 lg:divide-x divide-slate-200/40 dark:divide-white/5 z-20 mb-8">
           <div className="flex items-center gap-4 justify-center py-2 lg:py-0">
             <div className="w-12 h-12 rounded-full bg-[#2563FF]/10 flex items-center justify-center text-[#2563FF]">
               <Briefcase className="w-5 h-5" />
@@ -617,18 +639,18 @@ export default function Hero() {
       {/* Navigation Arrows */}
       <button
         onClick={handlePrev}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-[#0B1A2E]/85 backdrop-blur-md border border-[rgba(0,212,255,0.15)] flex items-center justify-center text-slate-350 hover:text-[#00D4FF] hover:border-[#00D4FF] hover:bg-[#071426] hover:scale-105 active:scale-95 shadow-md transition-all duration-300 hidden md:flex cursor-pointer"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 dark:bg-[#0B1A2E]/85 backdrop-blur-md border border-slate-200/60 dark:border-[rgba(0,212,255,0.15)] flex items-center justify-center text-slate-500 dark:text-slate-350 hover:text-[#2563FF] dark:hover:text-[#00D4FF] hover:border-[#2563FF] dark:hover:border-[#00D4FF] hover:scale-105 active:scale-95 shadow-md transition-all duration-300 hidden md:flex cursor-pointer"
         aria-label="Previous service"
       >
-        <ChevronLeft className="w-5 h-5 stroke-[2.5px]" />
+        <ChevronLeft className="w-4 h-4 stroke-[2.5px]" />
       </button>
 
       <button
         onClick={handleNext}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-[#0B1A2E]/85 backdrop-blur-md border border-[rgba(0,212,255,0.15)] flex items-center justify-center text-slate-350 hover:text-[#00D4FF] hover:border-[#00D4FF] hover:bg-[#071426] hover:scale-105 active:scale-95 shadow-md transition-all duration-300 hidden md:flex cursor-pointer"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 dark:bg-[#0B1A2E]/85 backdrop-blur-md border border-slate-200/60 dark:border-[rgba(0,212,255,0.15)] flex items-center justify-center text-slate-500 dark:text-slate-350 hover:text-[#2563FF] dark:hover:text-[#00D4FF] hover:border-[#2563FF] dark:hover:border-[#00D4FF] hover:scale-105 active:scale-95 shadow-md transition-all duration-300 hidden md:flex cursor-pointer"
         aria-label="Next service"
       >
-        <ChevronRight className="w-5 h-5 stroke-[2.5px]" />
+        <ChevronRight className="w-4 h-4 stroke-[2.5px]" />
       </button>
 
       {/* Pagination Page Dots */}
@@ -637,7 +659,7 @@ export default function Hero() {
           <button
             key={idx}
             onClick={() => setCurrentSlide(idx)}
-            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${currentSlide === idx ? "w-6 bg-[#00D4FF]" : "w-2 bg-slate-650 hover:bg-[#00D4FF]/50"
+            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${currentSlide === idx ? "w-6 bg-[#2563FF] dark:bg-[#00D4FF]" : "w-2 bg-slate-300 dark:bg-slate-650 hover:bg-[#2563FF]/50 dark:hover:bg-[#00D4FF]/50"
               }`}
             aria-label={`Go to slide page ${idx + 1}`}
           />

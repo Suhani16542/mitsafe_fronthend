@@ -129,6 +129,7 @@ export default function Navbar() {
   }, [pathname]);
 
   const navLinks = [
+   
     { name: "Home", href: "/" },
     { name: "Company", href: "/company" },
     { name: "Services", href: "/#premium-showcase", hasDropdown: true },
@@ -141,8 +142,8 @@ export default function Navbar() {
     <>
       <header
         className={`fixed z-50 left-1/2 -translate-x-1/2 w-[82%] max-w-[1120px] transition-all duration-300 border border-white/20 dark:border-white/10 rounded-full backdrop-blur-2xl bg-white/75 dark:bg-[#071426]/70 shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_12px_45px_rgba(0,0,0,0.3)] h-[76px] flex items-center ${scrolled
-            ? "top-4"
-            : "top-6"
+          ? "top-4"
+          : "top-6"
           }`}
       >
         <div className="w-full px-6 sm:px-8 lg:px-10 flex items-center justify-between relative z-10 h-full">
@@ -222,7 +223,7 @@ export default function Navbar() {
                             }`}
                         />
                       )}
-                      
+
                       {/* Hover Underline effect (only when NOT active) */}
                       {!isActive && (
                         <span className="absolute bottom-1 left-2.5 right-2.5 h-[2px] bg-[#2563FF] scale-x-0 group-hover/item:scale-x-100 transition-transform duration-300 origin-center" />
