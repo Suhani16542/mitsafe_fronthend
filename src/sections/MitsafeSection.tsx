@@ -80,7 +80,7 @@ const avatarsData = [
     xOffset: -45,
     yOffset: -30,
     left: "12%",
-    top: "22%",
+    top: "18%",
     isGreen: false,
   },
   {
@@ -88,8 +88,8 @@ const avatarsData = [
     slug: "web-developer",
     xOffset: 30,
     yOffset: 45,
-    left: "22%",
-    bottom: "16%",
+    left: "18%",
+    bottom: "10%",
     isGreen: true,
   },
   {
@@ -97,8 +97,9 @@ const avatarsData = [
     slug: "ai-assistant",
     xOffset: -15,
     yOffset: 35,
-    left: "48%",
-    top: "22%",
+    left: "50%",
+    top: "2%",
+    transform: "translateX(-50%)",
     isGreen: false,
   },
   {
@@ -106,8 +107,8 @@ const avatarsData = [
     slug: "ui-ux-designer",
     xOffset: 40,
     yOffset: -35,
-    right: "22%",
-    bottom: "16%",
+    right: "18%",
+    bottom: "10%",
     isGreen: true,
   },
   {
@@ -115,8 +116,8 @@ const avatarsData = [
     slug: "mobile-expert",
     xOffset: -35,
     yOffset: -20,
-    right: "12%",
-    top: "22%",
+    right: "10%",
+    top: "18%",
     isGreen: false,
   },
 ];
@@ -252,7 +253,7 @@ export default function MitsafeSection() {
 
       {/* Section Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full flex flex-col items-center justify-center">
-        <div className="relative w-full flex flex-col items-center justify-center min-h-[220px] sm:min-h-[260px] overflow-visible border-none bg-transparent">
+        <div className="relative w-full flex flex-col items-center justify-center min-h-[280px] sm:min-h-[320px] md:min-h-[360px] overflow-visible border-none bg-transparent">
           {/* Subtle glowing fireflies / jugnu lights around the text and anim */}
           <div className="absolute inset-0 pointer-events-none overflow-visible z-0 flex items-center justify-center">
             {[
@@ -353,7 +354,7 @@ export default function MitsafeSection() {
             </motion.div>
           </motion.div>
 
-          {/* Floating circular avatars and cursor pills */}
+          {/* Floating circular avatars and cursor pills — radial arrangement around MITSAFE */}
           {avatarsData.map((avatar, idx) => (
             <motion.div
               key={idx}
@@ -370,12 +371,14 @@ export default function MitsafeSection() {
                 y: { type: "spring", stiffness: 80, damping: 12, delay: 0.2 + idx * 0.08 },
                 x: { type: "spring", stiffness: 60, damping: 15 },
               }}
+              className="hidden sm:block"
               style={{
                 position: "absolute",
                 left: avatar.left,
                 top: avatar.top,
                 bottom: avatar.bottom,
                 right: avatar.right,
+                transform: avatar.transform,
                 zIndex: 20,
               }}
             >
@@ -401,12 +404,12 @@ export default function MitsafeSection() {
                   }}
                   className="flex items-center gap-2 group cursor-pointer"
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden shadow-md border-2 border-white hover:scale-105 transition-transform duration-300">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full overflow-hidden shadow-md border-2 border-white hover:scale-105 transition-transform duration-300">
                     <TeamAvatar index={idx} />
                   </div>
 
                   <div
-                    className={`flex items-center gap-1.2 px-2 py-0.5 text-[9px] sm:text-xs font-bold rounded-lg shadow-sm border transition-all duration-300 ${
+                    className={`flex items-center gap-1 px-2 py-0.5 text-[9px] sm:text-[10px] md:text-xs font-bold rounded-lg shadow-sm border transition-all duration-300 whitespace-nowrap ${
                       avatar.isGreen
                         ? "bg-[#8BE83A] text-slate-900 border-[#7cd02d]/25 group-hover:bg-[#9cf050]"
                         : "bg-[#2563FF] text-white border-blue-500/25 group-hover:bg-[#3b72f6]"
@@ -419,6 +422,48 @@ export default function MitsafeSection() {
               </Link>
             </motion.div>
           ))}
+
+          {/* Mobile-only: badges in a horizontal scrollable row below the heading */}
+          <div className="flex sm:hidden flex-wrap justify-center items-center gap-2.5 mt-6 px-2 z-20">
+            {avatarsData.map((avatar, idx) => (
+              <motion.div
+                key={`mobile-${idx}`}
+                initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{
+                  opacity: { duration: 0.4, delay: 0.15 + idx * 0.06 },
+                  scale: { type: "spring", stiffness: 100, damping: 15, delay: 0.15 + idx * 0.06 },
+                  y: { type: "spring", stiffness: 80, damping: 12, delay: 0.15 + idx * 0.06 },
+                }}
+              >
+                <Link href={`/roles/${avatar.slug}`} className="pointer-events-auto block">
+                  <motion.div
+                    animate={{
+                      y: [0, idx % 2 === 0 ? -4 : 4, 0],
+                    }}
+                    transition={{
+                      y: { duration: 4 + idx * 0.3, repeat: Infinity, ease: "easeInOut" },
+                    }}
+                    className="flex items-center gap-1.5 group cursor-pointer"
+                  >
+                    <div className="w-8 h-8 rounded-full overflow-hidden shadow-sm border-2 border-white shrink-0">
+                      <TeamAvatar index={idx} />
+                    </div>
+                    <div
+                      className={`flex items-center gap-1 px-1.5 py-0.5 text-[8px] font-bold rounded-md shadow-sm border transition-all duration-300 whitespace-nowrap ${
+                        avatar.isGreen
+                          ? "bg-[#8BE83A] text-slate-900 border-[#7cd02d]/25"
+                          : "bg-[#2563FF] text-white border-blue-500/25"
+                      }`}
+                    >
+                      <CursorIcon />
+                      <span>{avatar.role}</span>
+                    </div>
+                  </motion.div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

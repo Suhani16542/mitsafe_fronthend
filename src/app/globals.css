@@ -770,7 +770,7 @@ header nav > div:nth-child(6) { animation-delay: 0.35s; }
   background-color: rgba(0, 143, 237, 0.08) !important;
 }
 
-:root:not(.dark) footer a:hover {
+:root:not(.dark) footer a:hover:not(.group\/office) {
   background-color: #008FED !important;
   color: #FFFFFF !important;
   border-color: #008FED !important;

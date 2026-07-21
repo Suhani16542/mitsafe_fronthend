@@ -218,103 +218,118 @@ export default function Footer() {
           </div>
 
           {/* Column 5: India Office */}
-          <div className="flex flex-col gap-4 text-left">
-            <h3 className="font-display text-[11px] font-extrabold tracking-widest text-[#00D4FF] uppercase flex items-center gap-1.5 select-none">
-              <span>🇮🇳</span> India Office
+          <a
+            href="https://www.google.com/maps/search/Sector+62,+Noida,+UP+201301"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col gap-4 text-left cursor-pointer rounded-lg p-2.5 -m-2.5 transition-all duration-300 group/office"
+          >
+            <h3 className="font-display text-[11px] font-extrabold tracking-[0.15em] text-[#00D4FF] uppercase flex items-center gap-1.5 select-none">
+              <span>🇮🇳</span> India
             </h3>
             <ul className="flex flex-col gap-3">
               <li className="flex items-start gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 mt-0.5 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 mt-0.5 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
                   <MapPin className="w-3 h-3" />
                 </div>
-                <span className="text-xs text-slate-400 leading-normal">
+                <span className="text-xs text-slate-400 leading-normal group-hover/office:text-slate-300 transition-colors">
                   Sector 62, Noida, UP 201301
                 </span>
               </li>
               <li className="flex items-center gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
                   <Phone className="w-3 h-3" />
                 </div>
-                <span className="text-xs text-slate-400 hover:text-[#00D4FF] transition-colors cursor-pointer">
+                <span className="text-xs text-slate-400 group-hover/office:text-slate-300 transition-colors">
                   +91 98765 43210
                 </span>
               </li>
               <li className="flex items-center gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
                   <Mail className="w-3 h-3" />
                 </div>
-                <span className="text-xs text-slate-400 hover:text-[#00D4FF] transition-colors cursor-pointer break-all">
+                <span className="text-xs text-slate-400 group-hover/office:text-slate-300 transition-colors break-all">
                   india@mitsafe.com
                 </span>
               </li>
             </ul>
-          </div>
+          </a>
 
           {/* Column 6: Dubai Office */}
-          <div className="flex flex-col gap-4 text-left">
-            <h3 className="font-display text-[11px] font-extrabold tracking-widest text-[#00D4FF] uppercase flex items-center gap-1.5 select-none">
-              <span>🇦🇪</span> Dubai Office
+          <a
+            href="https://www.google.com/maps/search/Business+Bay,+Dubai,+UAE"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col gap-4 text-left cursor-pointer rounded-lg p-2.5 -m-2.5 transition-all duration-300 group/office"
+          >
+            <h3 className="font-display text-[11px] font-extrabold tracking-[0.15em] text-[#00D4FF] uppercase flex items-center gap-1.5 select-none">
+              <span>🇦🇪</span> Dubai
             </h3>
             <ul className="flex flex-col gap-3">
               <li className="flex items-start gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 mt-0.5 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 mt-0.5 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
                   <MapPin className="w-3 h-3" />
                 </div>
-                <span className="text-xs text-slate-400 leading-normal">
+                <span className="text-xs text-slate-400 leading-normal group-hover/office:text-slate-300 transition-colors">
                   Business Bay, Dubai, UAE
                 </span>
               </li>
               <li className="flex items-center gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
                   <Phone className="w-3 h-3" />
                 </div>
-                <span className="text-xs text-slate-400 hover:text-[#00D4FF] transition-colors cursor-pointer">
+                <span className="text-xs text-slate-400 group-hover/office:text-slate-300 transition-colors">
                   +971 4 123 4567
                 </span>
               </li>
               <li className="flex items-center gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
                   <Mail className="w-3 h-3" />
                 </div>
-                <span className="text-xs text-slate-400 hover:text-[#00D4FF] transition-colors cursor-pointer break-all">
+                <span className="text-xs text-slate-400 group-hover/office:text-slate-300 transition-colors break-all">
                   dubai@mitsafe.com
                 </span>
               </li>
             </ul>
-          </div>
+          </a>
 
           {/* Column 7: USA Office */}
-          <div className="flex flex-col gap-4 text-left">
-            <h3 className="font-display text-[11px] font-extrabold tracking-widest text-[#00D4FF] uppercase flex items-center gap-1.5 select-none">
-              <span>🇺🇸</span> USA Office
+          <a
+            href="https://www.google.com/maps/search/100+Pine+St,+San+Francisco,+CA+94111"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col gap-4 text-left cursor-pointer rounded-lg p-2.5 -m-2.5 transition-all duration-300 group/office"
+          >
+            <h3 className="font-display text-[11px] font-extrabold tracking-[0.15em] text-[#00D4FF] uppercase flex items-center gap-1.5 select-none">
+              <span>🇺🇸</span> USA
             </h3>
             <ul className="flex flex-col gap-3">
               <li className="flex items-start gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 mt-0.5 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 mt-0.5 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
                   <MapPin className="w-3 h-3" />
                 </div>
-                <span className="text-xs text-slate-400 leading-normal">
+                <span className="text-xs text-slate-400 leading-normal group-hover/office:text-slate-300 transition-colors">
                   100 Pine St, SF, CA 94111
                 </span>
               </li>
               <li className="flex items-center gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
                   <Phone className="w-3 h-3" />
                 </div>
-                <span className="text-xs text-slate-400 hover:text-[#00D4FF] transition-colors cursor-pointer">
+                <span className="text-xs text-slate-400 group-hover/office:text-slate-300 transition-colors">
                   +1 (555) 019-2834
                 </span>
               </li>
               <li className="flex items-center gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/info:border-[#00D4FF]/30 border border-transparent transition-colors">
+                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
                   <Mail className="w-3 h-3" />
                 </div>
-                <span className="text-xs text-slate-400 hover:text-[#00D4FF] transition-colors cursor-pointer break-all">
+                <span className="text-xs text-slate-400 group-hover/office:text-slate-300 transition-colors break-all">
                   usa@mitsafe.com
                 </span>
               </li>
             </ul>
-          </div>
+          </a>
 
         </div>
 
