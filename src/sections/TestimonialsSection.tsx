@@ -132,7 +132,7 @@ export default function TestimonialsSection() {
         ref={containerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="bg-[#F3F0FA] py-14 md:py-16 relative overflow-hidden border border-purple-100 rounded-[2rem] max-w-6xl mx-auto font-sans shadow-sm"
+        className="bg-[#F3F0FA] pt-7 pb-6 md:pt-9 md:pb-8 relative overflow-hidden border border-purple-100 rounded-[2rem] max-w-6xl mx-auto font-sans shadow-sm"
       >
       {/* Background Cyber Grid lines */}
       <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.25]">
@@ -162,7 +162,7 @@ export default function TestimonialsSection() {
       <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10 flex flex-col items-center">
         
         {/* Section Header */}
-        <div className="text-center mb-12 flex flex-col items-center">
+        <div className="text-center mb-6 flex flex-col items-center">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -181,9 +181,9 @@ export default function TestimonialsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             style={{ fontFamily: "'Clash Display', sans-serif" }}
-            className="text-2xl sm:text-3xl font-bold text-[#1E1A39] tracking-[-0.03em] leading-tight"
+            className="text-2xl sm:text-3xl font-bold text-[#0F172A] dark:text-white tracking-[-0.03em] leading-tight"
           >
-            When Our Clients Say
+            When Our <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] to-[#00D4FF] dark:from-[#00BFFF] dark:to-[#00D4FF]">Clients Say</span>
           </motion.h2>
         </div>
 
@@ -240,7 +240,7 @@ export default function TestimonialsSection() {
         </motion.div>
 
         {/* Separator line */}
-        <span className="w-full h-px bg-slate-200 mt-16 mb-12" />
+        <span className="w-full h-px bg-slate-200 mt-10 mb-8" />
 
         {/* Dynamic reactive Client Logo nodes */}
         <div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-center max-w-3xl mx-auto">

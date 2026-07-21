@@ -55,7 +55,7 @@ export default function WhyChooseUs() {
   const isRightColInView = useInView(rightColRef, { once: false, amount: 0.2 });
 
   return (
-    <section id="about" className="bg-[#F3F0FA] dark:bg-[#071426] pt-20 md:pt-24 pb-20 md:pb-24 relative overflow-hidden border-t border-purple-50 dark:border-white/5">
+    <section id="about" className="bg-[#F3F0FA] dark:bg-[#071426] pt-12 md:pt-16 pb-12 md:pb-16 relative overflow-hidden border-t border-purple-50 dark:border-white/5">
       {/* 5 Vertical Background Grid Lines */}
       <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.3] dark:opacity-[0.15]">
         <div className="w-[1px] bg-slate-200 dark:bg-white/10 h-full" />
@@ -111,10 +111,17 @@ export default function WhyChooseUs() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               style={{ fontFamily: "'Clash Display', sans-serif" }}
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E1A39] dark:text-white leading-tight tracking-[-0.03em] mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-black dark:text-white leading-tight tracking-[-0.03em] mb-6"
             >
-              MT Games with latest technology <br className="hidden md:inline" />
-              and high end support
+              <span className="relative inline-block pb-1">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] to-[#00D4FF]">MT Games</span>
+                <span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#2563FF] to-[#00D4FF] rounded-full animate-pulse" />
+              </span>{" "}
+              with{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] to-[#00D4FF]">latest technology</span>{" "}
+              <br className="hidden md:inline" />
+              and{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] to-[#00D4FF]">high end support</span>
             </motion.h2>
 
             {/* Description with Horizontal Slide + Fade In */}
@@ -137,8 +144,11 @@ export default function WhyChooseUs() {
               className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-10"
             >
               {bulletPoints.map((pt, idx) => (
-                <li key={idx} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#00D4FF]/10 border border-[#00D4FF]/20 flex items-center justify-center text-[#00D4FF] shrink-0">
+                <li
+                  key={idx}
+                  className="bg-white/40 dark:bg-slate-900/30 border border-slate-200/40 dark:border-white/5 rounded-2xl p-4 flex items-center gap-3 transition-all duration-350 ease-out group hover:-translate-y-1.5 hover:bg-blue-50/20 dark:hover:bg-blue-950/15 hover:border-[#2563FF] hover:shadow-[0_8px_20px_rgba(37,99,255,0.08)] cursor-default"
+                >
+                  <div className="w-6 h-6 rounded-full bg-[#00D4FF]/10 border border-[#00D4FF]/20 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover:bg-[#2563FF]/15 group-hover:border-[#2563FF] group-hover:shadow-[0_0_8px_rgba(37,99,255,0.3)] transition-all duration-350">
                     <Check className="w-3.5 h-3.5 stroke-[3px]" />
                   </div>
                   <span className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 font-display">

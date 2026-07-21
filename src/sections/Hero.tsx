@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, ArrowRight, Star, Check, Shield, Activity, Users, Globe, Briefcase } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import ParticleBackground from "@/components/ParticleBackground";
 import { useTheme } from "@/components/ThemeProvider";
 import { servicesData } from "@/data/services";
@@ -591,48 +591,7 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* Bottom stats row */}
-        <div className="w-full max-w-7xl mx-auto mt-8 bg-white/40 dark:bg-slate-900/40 backdrop-blur-lg border border-slate-200/50 dark:border-white/10 rounded-3xl py-6 px-8 grid grid-cols-2 lg:grid-cols-4 gap-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)] divide-y lg:divide-y-0 lg:divide-x divide-slate-200/40 dark:divide-white/5 z-20 mb-8">
-          <div className="flex items-center gap-4 justify-center py-2 lg:py-0">
-            <div className="w-12 h-12 rounded-full bg-[#2563FF]/10 flex items-center justify-center text-[#2563FF]">
-              <Briefcase className="w-5 h-5" />
-            </div>
-            <div className="text-left">
-              <div className="text-xl font-black text-[#0F172A] dark:text-white">500+</div>
-              <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Projects Delivered</div>
-            </div>
-          </div>
 
-          <div className="flex items-center gap-4 justify-center py-2 lg:py-0">
-            <div className="w-12 h-12 rounded-full bg-[#6C63FF]/10 flex items-center justify-center text-[#6C63FF]">
-              <Users className="w-5 h-5" />
-            </div>
-            <div className="text-left">
-              <div className="text-xl font-black text-[#0F172A] dark:text-white">50+</div>
-              <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Expert Developers</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 justify-center py-2 lg:py-0">
-            <div className="w-12 h-12 rounded-full bg-[#2563FF]/10 flex items-center justify-center text-[#2563FF]">
-              <Globe className="w-5 h-5" />
-            </div>
-            <div className="text-left">
-              <div className="text-xl font-black text-[#0F172A] dark:text-white">15+</div>
-              <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Countries Served</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4 justify-center py-2 lg:py-0">
-            <div className="w-12 h-12 rounded-full bg-[#6C63FF]/10 flex items-center justify-center text-[#6C63FF]">
-              <Star className="w-5 h-5" />
-            </div>
-            <div className="text-left">
-              <div className="text-xl font-black text-[#0F172A] dark:text-white">99%</div>
-              <div className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Client Satisfaction</div>
-            </div>
-          </div>
-        </div>
 
       </div>
 

@@ -76,7 +76,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="bg-[#F3F0FA] text-slate-800 py-20 md:py-24 relative overflow-hidden border-t border-purple-50 font-sans">
+    <section id="faq" className="bg-[#F3F0FA] text-slate-800 py-12 md:py-16 relative overflow-hidden border-t border-purple-50 font-sans">
       
       {/* Background Cyber Grid Lines */}
       <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.25]">

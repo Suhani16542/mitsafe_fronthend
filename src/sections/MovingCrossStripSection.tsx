@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "@/components/ThemeProvider";
 
 const marqueeItems = [
   "WEBSITE DEVELOPMENT",
@@ -19,33 +20,54 @@ const marqueeItems = [
 ];
 
 export default function MovingCrossStripSection() {
+  const { theme } = useTheme();
+
+  // Back ribbon colors based on theme:
+  // - Light theme: Black -> Dark Blue -> Medium Blue gradient
+  // - Dark theme: White -> Light Blue gradient
+  const backBgColor = theme === "dark" 
+    ? "bg-gradient-to-r from-white/95 via-[#DBEAFE]/90 to-[#93C5FD]/85 backdrop-blur-md" 
+    : "bg-gradient-to-r from-[#0B0F19]/95 via-[#14213D]/95 to-[#1D4ED8]/95 backdrop-blur-md";
+
+  const backTextColor = theme === "dark"
+    ? "text-[#0B0F19]"
+    : "text-white";
+
+  const backShadowClass = theme === "dark"
+    ? "shadow-[0_8px_30px_rgba(255,255,255,0.05)] border-y border-white/20"
+    : "shadow-[0_8px_30px_rgba(0,0,0,0.15)] border-y border-white/5";
+
+  const backAccentColor = theme === "dark"
+    ? "text-[#1D4ED8]"
+    : "text-[#90CDF4]";
+
   return (
-    <section className="relative overflow-hidden w-full bg-transparent py-6 sm:py-8 md:py-10 z-10 flex flex-col justify-center min-h-[140px] sm:min-h-[165px] md:min-h-[190px]">
+    <section className="relative overflow-hidden w-full bg-transparent py-4 sm:py-6 md:py-8 z-10 flex flex-col justify-center min-h-[120px] sm:min-h-[140px] md:min-h-[160px]">
       <div className="relative w-full h-[100px] sm:h-[125px] flex items-center justify-center">
-        {/* Lower Strip: Corporate Deep Slate -> Charcoal Gradient with Accent Blue Stars */}
+        {/* Lower Strip: Adaptive back ribbon depending on theme */}
         <MarqueeStrip
           items={marqueeItems}
           direction="right"
           speed={400} // Speed remains identical as requested
-          bgColor="bg-gradient-to-r from-[#071426]/95 via-[#0B1A2E]/95 to-[#071426]/95 backdrop-blur-md"
-          textColor="text-white"
+          bgColor={backBgColor}
+          textColor={backTextColor}
           rotateStyle={{ transform: "translateY(-50%) rotate(2.5deg)" }}
           zIndexClass="z-0"
-          shadowClass="shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-y border-white/5"
-          accentColor="text-[#00D4FF]"
+          shadowClass={backShadowClass}
+          accentColor={backAccentColor}
         />
 
-        {/* Upper Strip: Dynamic Brand Blue -> Aqua Gradient with Accent Orange Stars */}
+        {/* Upper Strip: Premium Gradient with Glass Effect & Soft Blue Glow */}
         <MarqueeStrip
           items={marqueeItems}
           direction="left"
           speed={360} // Speed remains identical as requested
-          bgColor="bg-gradient-to-r from-[#00D4FF]/95 via-[#008FED]/95 to-[#00D4FF]/95 backdrop-blur-md"
-          textColor="text-[#071426]"
+          bgColor="bg-gradient-to-r from-[#1A365D]/90 via-[#2B6CB0]/85 to-[#1A365D]/90 backdrop-blur-md"
+          textColor="text-white"
           rotateStyle={{ transform: "translateY(-50%) rotate(-2.5deg)" }}
           zIndexClass="z-10"
-          shadowClass="shadow-[0_10px_35px_rgba(0,212,255,0.15)] border-y border-white/10"
-          accentColor="text-white"
+          shadowClass="shadow-[0_10px_35px_rgba(37,99,255,0.18)] border-y border-white/20"
+          accentColor="text-[#90CDF4]"
         />
       </div>
     </section>
@@ -102,7 +124,7 @@ function MarqueeStrip({
               <span className={`${accentColor} drop-shadow-[0_1px_3px_rgba(0,0,0,0.15)]`}>
                 ✦
               </span>
-              <span className="font-bold tracking-wider">{item}</span>
+              <span className="font-bold tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">{item}</span>
             </span>
           ))}
         </motion.div>

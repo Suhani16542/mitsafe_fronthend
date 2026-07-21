@@ -2,6 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { setWasmUrl } from "@lottiefiles/dotlottie-react";
+
+if (typeof window !== "undefined") {
+  setWasmUrl("/dotlottie-player.wasm");
+}
 
 // Dynamically import the DotLottieReact player to disable SSR and enable lazy loading.
 const DotLottieReact = dynamic(

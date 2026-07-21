@@ -75,7 +75,7 @@ function Magnetic({ children }: { children: React.ReactElement }) {
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#071426] overflow-hidden pt-16 pb-10 font-sans">
+    <footer className="relative bg-[#071426] overflow-hidden pt-12 pb-8 font-sans">
       {/* Premium glowing divider line above footer */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00D4FF]/30 to-transparent z-10" />
 

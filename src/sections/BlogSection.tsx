@@ -381,7 +381,7 @@ export default function BlogSection() {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="bg-[#071426] py-20 md:py-24 relative overflow-hidden border-t border-white/5 font-sans"
+      className="bg-[#071426] py-12 md:py-16 relative overflow-hidden border-t border-white/5 font-sans"
       style={{
         backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px)",
         backgroundSize: "28px 28px",
@@ -554,9 +554,9 @@ bg-gradient-to-bl from-[#008FED]/3 to-transparent blur-[150px] pointer-events-no
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#00D4FF] font-display shadow-sm"
+            className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#2563FF]/20 bg-[#2563FF]/5 dark:border-[#00D4FF]/20 dark:bg-[#00D4FF]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] font-display shadow-sm"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#00D4FF]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#2563FF] dark:text-[#00D4FF]" />
             <span>ARTICLE JOURNAL</span>
           </motion.div>
           
@@ -567,18 +567,27 @@ bg-gradient-to-bl from-[#008FED]/3 to-transparent blur-[150px] pointer-events-no
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             style={{ fontFamily: "'Clash Display', sans-serif" }}
-            className="text-4xl sm:text-5xl font-bold text-white tracking-[-0.03em] leading-tight"
+            className="text-4xl sm:text-5xl font-bold text-[#0F172A] dark:text-white tracking-[-0.03em] leading-tight"
           >
-            Read Our Latest News
+            Read Our <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] to-[#00D4FF] dark:from-[#00BFFF] dark:to-[#00D4FF]">Latest News</span>
           </motion.h2>
+          
+          {/* Subtle blue accent line */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="w-20 h-1 bg-gradient-to-r from-[#2563FF] to-[#00D4FF] mx-auto mt-4 rounded-full origin-center"
+          />
           
           {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="mt-4 text-base text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.25 }}
+            className="mt-4 text-base text-slate-500 dark:text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed"
           >
             Latest Blogs and updates can be provided to you. In this section we also provide latest technology related updates.
           </motion.p>

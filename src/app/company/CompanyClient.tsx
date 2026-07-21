@@ -143,7 +143,7 @@ export default function CompanyClient() {
         <motion.div 
           animate={{ y: [0, -30, 0], x: [0, 20, 0], opacity: [0.08, 0.22, 0.08] }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[12%] left-[4%] w-[380px] h-[380px] bg-[#00D4FF]/8 rounded-full blur-[90px]"
+          className="absolute top-[12%] left-[4%] w-[380px] h-[380px] bg-[#2563FF]/8 rounded-full blur-[90px]"
         />
         <motion.div 
           animate={{ y: [0, 40, 0], x: [0, -25, 0], opacity: [0.06, 0.18, 0.06] }}
@@ -178,13 +178,13 @@ export default function CompanyClient() {
               ease: "easeInOut",
               delay: f.delay 
             }}
-            className="absolute rounded-full bg-[#00D4FF]"
+            className="absolute rounded-full bg-[#2563FF]"
             style={{
               left: f.left,
               top: f.top,
               width: `${f.size}px`,
               height: `${f.size}px`,
-              boxShadow: `0 0 10px #00D4FF`
+              boxShadow: `0 0 10px #2563FF`
             }}
           />
         ))}
@@ -214,7 +214,7 @@ export default function CompanyClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[rgba(0,212,255,0.25)] bg-[#00D4FF]/10 px-4.5 py-1.5 text-xs font-semibold tracking-wider text-[#00D4FF] uppercase backdrop-blur-sm shadow-sm">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[rgba(0,212,255,0.25)] bg-[#2563FF]/10 px-4.5 py-1.5 text-xs font-semibold tracking-wider text-[#2563FF] uppercase backdrop-blur-sm shadow-sm">
               <Sparkles className="w-3.5 h-3.5" />
               Empowering Digital Growth
             </span>
@@ -226,10 +226,10 @@ export default function CompanyClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             style={{ fontFamily: "'Clash Display', sans-serif" }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-4xl"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-4xl text-[#2563FF]"
           >
             Engineering the Future of <br />
-            <span className="gradient-sweep-text">Modern Technology</span>
+            Modern Technology
           </motion.h1>
 
           {/* Paragraph */}
@@ -269,12 +269,12 @@ export default function CompanyClient() {
                 variants={slideInLeft}
                 className="flex flex-col gap-4"
               >
-                <span className="text-xs font-bold text-[#00D4FF] uppercase tracking-wider font-mono">
+                <span className="text-xs font-bold text-[#2563FF] uppercase tracking-wider font-mono">
                   // WHO WE ARE
                 </span>
                 <h2 
                   style={{ fontFamily: "'Clash Display', sans-serif" }}
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] leading-tight"
                 >
                   Pioneering Next-Gen Software & Intelligent Systems
                 </h2>
@@ -289,7 +289,7 @@ export default function CompanyClient() {
               {/* Vision, Mission, and Philosophy Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-6">
                 {[
-                  { title: "Our Vision", desc: "To lead global digital innovation with systems that scale automatically and operate safely.", border: "border-[#00D4FF]/20 hover:border-[#00D4FF]/45 hover:shadow-[0_12px_24px_rgba(0,212,255,0.12)]", glow: "text-[#00D4FF]" },
+                  { title: "Our Vision", desc: "To lead global digital innovation with systems that scale automatically and operate safely.", border: "border-[#2563FF]/20 hover:border-[#2563FF]/45 hover:shadow-[0_12px_24px_rgba(0,212,255,0.12)]", glow: "text-[#2563FF]" },
                   { title: "Our Mission", desc: "To build zero-compromise digital products focused on code speed, modularity, and high security.", border: "border-[#7C3AED]/20 hover:border-[#7C3AED]/45 hover:shadow-[0_12px_24px_rgba(124,58,237,0.12)]", glow: "text-[#7C3AED]" },
                   { title: "Philosophy", desc: "Innovation without stability is a liability. We prioritize customer metrics and systems uptime above all.", border: "border-emerald-500/20 hover:border-emerald-500/45 hover:shadow-[0_12px_24px_rgba(16,185,129,0.12)]", glow: "text-emerald-450" }
                 ].map((item, idx) => (
@@ -319,7 +319,7 @@ export default function CompanyClient() {
               variants={slideInRight}
               className="lg:col-span-5 relative flex justify-center items-center"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#00D4FF]/15 to-transparent rounded-[32px] blur-2xl pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#2563FF]/15 to-transparent rounded-[32px] blur-2xl pointer-events-none" />
               <div className="relative border border-[#E5E2F0]/20 rounded-[32px] overflow-hidden shadow-lg aspect-[4/3] w-full group/img">
                 <Image 
                   src="/about_company.png" 
@@ -346,12 +346,12 @@ export default function CompanyClient() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <span className="text-xs font-bold text-[#00D4FF] uppercase tracking-wider font-mono">
+            <span className="text-xs font-bold text-[#2563FF] uppercase tracking-wider font-mono">
               // WHAT WE DO
             </span>
             <h2 
               style={{ fontFamily: "'Clash Display', sans-serif" }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mt-3"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] mt-3"
             >
               Enterprise-Grade Tech Services
             </h2>
@@ -360,7 +360,7 @@ export default function CompanyClient() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { title: "AI Solutions", icon: Brain, desc: "Developing state-of-the-art predictive models, NLP frameworks, and AI workflows tailored to your operational endpoints.", color: "border-[#7C3AED]/20 hover:border-[#7C3AED]/45 hover:shadow-[0_15px_30px_rgba(124,58,237,0.18)]" },
-              { title: "Web Development", icon: Code, desc: "Engineering modular Next.js web applications, headless CMS platforms, and high-performance, responsive systems.", color: "border-[#00D4FF]/20 hover:border-[#00D4FF]/45 hover:shadow-[0_15px_30px_rgba(0,212,255,0.18)]" },
+              { title: "Web Development", icon: Code, desc: "Engineering modular Next.js web applications, headless CMS platforms, and high-performance, responsive systems.", color: "border-[#2563FF]/20 hover:border-[#2563FF]/45 hover:shadow-[0_15px_30px_rgba(0,212,255,0.18)]" },
               { title: "Mobile App Development", icon: Smartphone, desc: "Building fluid cross-platform (React Native/Flutter) and native mobile apps designed with robust offline caching.", color: "border-[#008FED]/20 hover:border-[#008FED]/45 hover:shadow-[0_15px_30px_rgba(0,143,237,0.18)]" },
               { title: "UI/UX Design", icon: Palette, desc: "Formulating premium visual guidelines, interactive layout mockups, and client journeys centered on conversion metrics.", color: "border-purple-500/20 hover:border-purple-500/45 hover:shadow-[0_15px_30px_rgba(168,85,247,0.18)]" },
               { title: "Cloud Infrastructure", icon: Cloud, desc: "Orchestrating auto-scaling cloud clusters, server arrays, database replication, and zero-downtime architecture.", color: "border-emerald-500/20 hover:border-emerald-500/45 hover:shadow-[0_15px_30px_rgba(16,185,129,0.18)]" },
@@ -383,10 +383,10 @@ export default function CompanyClient() {
                   className={`bg-[#0B1A2E]/55 border ${srv.color} rounded-[24px] p-6 shadow-sm flex flex-col justify-between gap-5 relative overflow-hidden group hover:bg-[#0B1A2E]/80 transition-all duration-300 cursor-default`}
                 >
                   <div className="flex flex-col gap-4">
-                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#00D4FF] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#2563FF] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                       <IconComponent className="w-6 h-6" />
                     </div>
-                    <h3 className="font-display text-lg sm:text-xl font-bold text-white group-hover:text-[#00D4FF] transition-colors duration-250">
+                    <h3 className="font-display text-lg sm:text-xl font-bold text-white group-hover:text-[#2563FF] transition-colors duration-250">
                       {srv.title}
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
@@ -412,19 +412,19 @@ export default function CompanyClient() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <span className="text-xs font-bold text-[#00D4FF] uppercase tracking-wider font-mono">
+            <span className="text-xs font-bold text-[#2563FF] uppercase tracking-wider font-mono">
               // OUR PROCESS
             </span>
             <h2 
               style={{ fontFamily: "'Clash Display', sans-serif" }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mt-3"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] mt-3"
             >
               How We Deliver Excellence
             </h2>
           </motion.div>
 
           {/* Vertical Timeline */}
-          <div className="relative border-l border-[#00D4FF]/25 pl-8 ml-4 sm:ml-6 flex flex-col gap-12">
+          <div className="relative border-l border-[#2563FF]/25 pl-8 ml-4 sm:ml-6 flex flex-col gap-12">
             {[
               { step: "01", title: "Discovery", desc: "We audit your existing tech stack, study operational bottlenecks, and finalize granular product requirements." },
               { step: "02", title: "Strategy", desc: "We model microservice architectures, finalize database indices, and design strict system security policies." },
@@ -444,11 +444,11 @@ export default function CompanyClient() {
                 className="relative group cursor-default"
               >
                 {/* Timeline node icon indicator */}
-                <div className="absolute -left-[45px] top-1.5 w-8 h-8 rounded-full bg-[#071426] border border-[#00D4FF]/35 flex items-center justify-center text-xs font-bold text-[#00D4FF] group-hover:bg-[#00D4FF] group-hover:text-[#071426] transition-colors duration-300 shadow-md shadow-[#00D4FF]/10">
+                <div className="absolute -left-[45px] top-1.5 w-8 h-8 rounded-full bg-[#071426] border border-[#2563FF]/35 flex items-center justify-center text-xs font-bold text-[#2563FF] group-hover:bg-[#2563FF] group-hover:text-[#071426] transition-colors duration-300 shadow-md shadow-[#2563FF]/10">
                   {step.step}
                 </div>
-                <div className="bg-[#071426]/50 border border-[#E5E2F0]/10 rounded-2xl p-6 hover:border-[#00D4FF]/30 hover:bg-[#071426]/85 transition-all duration-300 shadow-sm">
-                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#00D4FF] transition-colors duration-200">
+                <div className="bg-[#071426]/50 border border-[#E5E2F0]/10 rounded-2xl p-6 hover:border-[#2563FF]/30 hover:bg-[#071426]/85 transition-all duration-300 shadow-sm">
+                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-[#2563FF] transition-colors duration-200">
                     {step.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed font-normal">
@@ -472,12 +472,12 @@ export default function CompanyClient() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <span className="text-xs font-bold text-[#00D4FF] uppercase tracking-wider font-mono">
+            <span className="text-xs font-bold text-[#2563FF] uppercase tracking-wider font-mono">
               // VALUE PROPOSITION
             </span>
             <h2 
               style={{ fontFamily: "'Clash Display', sans-serif" }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mt-3"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] mt-3"
             >
               Why Partner With Us
             </h2>
@@ -505,12 +505,12 @@ export default function CompanyClient() {
                   variants={fadeInUpStagger}
                   whileHover={{ y: -6, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="bg-[#0B1A2E]/50 border border-[#E5E2F0]/10 rounded-2xl p-6 flex flex-col gap-3.5 hover:border-[#00D4FF]/30 hover:bg-[#0B1A2E]/85 hover:shadow-[0_15px_30px_rgba(0,212,255,0.15)] transition-all duration-300 cursor-default group"
+                  className="bg-[#0B1A2E]/50 border border-[#E5E2F0]/10 rounded-2xl p-6 flex flex-col gap-3.5 hover:border-[#2563FF]/30 hover:bg-[#0B1A2E]/85 hover:shadow-[0_15px_30px_rgba(0,212,255,0.15)] transition-all duration-300 cursor-default group"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#00D4FF]/10 flex items-center justify-center text-[#00D4FF] group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-[#2563FF]/10 flex items-center justify-center text-[#2563FF] group-hover:scale-110 transition-transform duration-300">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h4 className="text-base font-bold text-white group-hover:text-[#00D4FF] transition-colors duration-200">{item.title}</h4>
+                  <h4 className="text-base font-bold text-white group-hover:text-[#2563FF] transition-colors duration-200">{item.title}</h4>
                   <p className="text-xs text-slate-400 leading-relaxed font-normal">{item.desc}</p>
                 </motion.div>
               );
@@ -527,10 +527,10 @@ export default function CompanyClient() {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={imageReveal}
-            className="bg-[#071426]/50 border border-[#00D4FF]/25 rounded-[32px] p-10 md:p-14 backdrop-blur-md shadow-lg relative overflow-hidden"
+            className="bg-[#071426]/50 border border-[#2563FF]/25 rounded-[32px] p-10 md:p-14 backdrop-blur-md shadow-lg relative overflow-hidden"
           >
             {/* Soft decorative background circles */}
-            <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-[#00D4FF]/5 rounded-full blur-[60px]" />
+            <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-[#2563FF]/5 rounded-full blur-[60px]" />
             <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-[#7C3AED]/5 rounded-full blur-[60px]" />
 
             <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 text-center relative z-10">
@@ -544,7 +544,7 @@ export default function CompanyClient() {
                 <div key={idx} className="flex flex-col gap-2">
                   <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-white tracking-tight flex justify-center items-baseline gap-0.5">
                     <Counter value={stat.value} />
-                    <span className="text-[#00D4FF] font-semibold">{stat.suffix}</span>
+                    <span className="text-[#2563FF] font-semibold">{stat.suffix}</span>
                   </h3>
                   <span className="text-xs sm:text-sm text-slate-400 uppercase font-semibold tracking-wider">{stat.label}</span>
                 </div>
@@ -589,12 +589,12 @@ export default function CompanyClient() {
                 variants={slideInRight}
                 className="flex flex-col gap-4"
               >
-                <span className="text-xs font-bold text-[#00D4FF] uppercase tracking-wider font-mono">
+                <span className="text-xs font-bold text-[#2563FF] uppercase tracking-wider font-mono">
                   // TEAM CULTURE
                 </span>
                 <h2 
                   style={{ fontFamily: "'Clash Display', sans-serif" }}
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] leading-tight"
                 >
                   A Culture Built on Engineering Integrity
                 </h2>
@@ -624,7 +624,7 @@ export default function CompanyClient() {
                       <CheckCircle className="w-4 h-4" />
                     </div>
                     <div className="flex flex-col gap-1">
-                      <h4 className="text-sm font-bold text-white group-hover:text-[#00D4FF] transition-colors duration-200">{item.title}</h4>
+                      <h4 className="text-sm font-bold text-white group-hover:text-[#2563FF] transition-colors duration-200">{item.title}</h4>
                       <p className="text-xs text-slate-400 leading-relaxed font-normal">{item.desc}</p>
                     </div>
                   </motion.div>
@@ -647,12 +647,12 @@ export default function CompanyClient() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <span className="text-xs font-bold text-[#00D4FF] uppercase tracking-wider font-mono">
+            <span className="text-xs font-bold text-[#2563FF] uppercase tracking-wider font-mono">
               // MODERN TECH STACK
             </span>
             <h2 
               style={{ fontFamily: "'Clash Display', sans-serif" }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mt-3"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] mt-3"
             >
               Technologies We Utilize
             </h2>
@@ -660,7 +660,7 @@ export default function CompanyClient() {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {[
-              { name: "React", type: "Frontend Library", glow: "hover:border-[#00D4FF]/35 hover:shadow-[0_0_15px_rgba(0,212,255,0.15)]", color: "text-[#00D4FF]" },
+              { name: "React", type: "Frontend Library", glow: "hover:border-[#2563FF]/35 hover:shadow-[0_0_15px_rgba(0,212,255,0.15)]", color: "text-[#2563FF]" },
               { name: "Next.js", type: "React Framework", glow: "hover:border-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.08)]", color: "text-white" },
               { name: "TypeScript", type: "Typed JS Language", glow: "hover:border-blue-500/35 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)]", color: "text-blue-500" },
               { name: "Node.js", type: "JS Runtime Environment", glow: "hover:border-emerald-500/35 hover:shadow-[0_0_15px_rgba(16,185,129,0.15)]", color: "text-emerald-500" },
@@ -690,7 +690,7 @@ export default function CompanyClient() {
       {/* 9. CTA Section */}
       <section className="relative py-28 bg-[#0B1A2E] z-10 px-6 lg:px-8 border-t border-[#E5E2F0]/10 flex flex-col items-center overflow-hidden">
         {/* Soft floating glow circle */}
-        <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-[#00D4FF]/6 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-[#2563FF]/6 rounded-full blur-[80px] pointer-events-none" />
 
         <motion.div 
           initial="hidden"
@@ -699,14 +699,14 @@ export default function CompanyClient() {
           variants={imageReveal}
           whileHover={{ scale: 1.008 }}
           transition={{ duration: 0.3 }}
-          className="max-w-4xl mx-auto text-center border border-[#00D4FF]/15 bg-[#071426]/60 rounded-[32px] p-8 md:p-14 shadow-2xl relative z-10 flex flex-col items-center gap-6 hover:border-[#00D4FF]/30 transition-all duration-300"
+          className="max-w-4xl mx-auto text-center border border-[#2563FF]/15 bg-[#071426]/60 rounded-[32px] p-8 md:p-14 shadow-2xl relative z-10 flex flex-col items-center gap-6 hover:border-[#2563FF]/30 transition-all duration-300"
         >
-          <span className="text-xs font-bold text-[#00D4FF] uppercase tracking-wider font-mono">
+          <span className="text-xs font-bold text-[#2563FF] uppercase tracking-wider font-mono">
             // GET IN TOUCH
           </span>
           <h2 
             style={{ fontFamily: "'Clash Display', sans-serif" }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] leading-tight"
           >
             Ready to Build Something Extraordinary?
           </h2>
@@ -718,7 +718,7 @@ export default function CompanyClient() {
               href="/contact"
               variant="primary"
               icon={<ArrowRight className="w-4 h-4 text-white" />}
-              className="!py-3 !px-7 !text-sm !font-bold !rounded-xl hover:scale-[1.02] active:scale-[0.98]"
+              className="!bg-gradient-to-r !from-[#2563EB] !to-[#06B6D4] hover:!from-[#2563EB]/90 hover:!to-[#06B6D4]/90 !border-transparent !shadow-[0_4px_14px_rgba(37,99,235,0.3)] hover:!shadow-[0_6px_20px_rgba(6,182,212,0.35)] !py-3 !px-7 !text-sm !font-bold !rounded-xl hover:scale-[1.02] active:scale-[0.98]"
             >
               Contact Our Engineers
             </Button>

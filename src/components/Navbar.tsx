@@ -148,20 +148,21 @@ export default function Navbar() {
       >
         <div className="w-full px-6 sm:px-8 lg:px-10 flex items-center justify-between relative z-10 h-full">
 
-          {/* Logo - kept exactly as it was, with cyan drop shadow highlight */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <Image
-              src="/mt-logo.png"
-              alt="Modern Technology Logo"
-              width={138}
-              height={42}
-              className="h-auto w-[138px] filter drop-shadow-[0_0_10px_rgba(0,229,255,0.35)] brightness-105 transition-transform duration-300 group-hover:scale-[1.02] invert dark:invert-0"
-              priority
-            />
-          </Link>
+          <div className="flex items-center gap-[12px] h-full">
+            {/* Logo - kept exactly as it was, with cyan drop shadow highlight */}
+            <Link href="/" className="flex items-center group shrink-0">
+              <Image
+                src="/image_removebg-preview.png"
+                alt="Modern Technology Logo"
+                width={84}
+                height={56}
+                className="h-auto w-[84px] filter drop-shadow-[0_0_8px_rgba(0,229,255,0.2)] brightness-105"
+                priority
+              />
+            </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 justify-center h-full">
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center gap-3 xl:gap-5 justify-center h-full">
             {navLinks.map((link) => {
               const isActive =
                 pathname === link.href ||
@@ -211,7 +212,7 @@ export default function Navbar() {
                         }
                       }}
                       style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
-                      className={`font-semibold text-[15px] tracking-wide transition-all duration-300 flex items-center gap-1.5 cursor-pointer select-none px-2.5 py-1.5 relative group/item whitespace-nowrap ${isActive
+                      className={`font-semibold text-[13.5px] tracking-normal transition-all duration-300 flex items-center gap-1 cursor-pointer select-none px-1.5 py-1.5 relative group/item whitespace-nowrap ${isActive
                         ? "text-[#2563FF] font-bold"
                         : "text-slate-655 dark:text-[#E2E8F0] hover:text-[#2563FF] dark:hover:text-[#2563FF]"
                         }`}
@@ -362,9 +363,10 @@ export default function Navbar() {
               );
             })}
           </nav>
+          </div>
 
           {/* Theme Toggle & Contact Us Button Container */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
@@ -384,7 +386,7 @@ export default function Navbar() {
                 variant="primary"
                 icon={<Send className="w-3.5 h-3.5 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 rotate-[-15deg]" />}
                 style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
-                className="!bg-gradient-to-r !from-[#2563FF] !to-[#6C63FF] hover:!from-[#2563FF]/90 hover:!to-[#6C63FF]/90 !border-transparent !shadow-[0_4px_14px_rgba(37,99,255,0.25)] hover:!shadow-[0_6px_20px_rgba(108,99,255,0.35)] !py-2.5 !px-5 !text-[14px] !font-semibold !rounded-full hover:scale-[1.03] active:scale-[0.97] hover:-translate-y-0.5 group"
+                className="!bg-gradient-to-r !from-[#2563EB] !to-[#06B6D4] hover:!from-[#2563EB]/90 hover:!to-[#06B6D4]/90 !border-transparent !shadow-[0_4px_14px_rgba(37,99,235,0.3)] hover:!shadow-[0_6px_20px_rgba(6,182,212,0.35)] !py-2 !px-4 !text-[13px] !font-semibold !rounded-full hover:scale-[1.03] active:scale-[0.97] hover:-translate-y-0.5 group"
               >
                 Contact Us
               </Button>

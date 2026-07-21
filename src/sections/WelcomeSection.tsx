@@ -94,7 +94,7 @@ export default function WelcomeSection() {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="group relative bg-white text-slate-800 py-20 md:py-24 overflow-hidden border-t border-purple-50 font-sans"
+      className="group relative bg-white text-slate-800 py-12 md:py-16 overflow-hidden border-t border-blue-50 dark:border-white/5 font-sans"
     >
       {/* Cyber Grid Lines */}
       <div className="absolute inset-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.25]">
@@ -116,7 +116,7 @@ export default function WelcomeSection() {
       />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
           {/* Left Column: Editorial Copy (Span 7) */}
           <div className="lg:col-span-7 flex flex-col items-start text-left w-full order-2 lg:order-1">
@@ -126,26 +126,50 @@ export default function WelcomeSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/10 px-4.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#00D4FF] font-display shadow-sm"
+              className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/10 px-4.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#00D4FF] font-display shadow-sm"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#00D4FF]" />
               <span>WELCOME SERVICE HUB</span>
             </motion.div>
 
             {/* Heading */}
-            <motion.h2
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-[-0.04em] mb-8 font-display text-[#1E1A39]"
-            >
-              Best Web/App Designing <br />
-              Services
-            </motion.h2>
+            <div className="relative mb-6">
+              <motion.h2
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-[-0.04em] font-display text-black dark:text-white"
+              >
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] to-[#00D4FF]">Best Web/App</span> <br />
+                Designing Services
+              </motion.h2>
+              {/* Subtle animated blue underline */}
+              <div className="relative mt-4 w-32 h-[3.5px] rounded-full overflow-hidden bg-slate-200/20 dark:bg-slate-700/20">
+                <motion.div
+                  initial={{ width: 0, opacity: 0 }}
+                  whileInView={{ width: "100%", opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+                  className="h-full bg-gradient-to-r from-[#2563FF] to-[#00D4FF] relative"
+                >
+                  <motion.div
+                    animate={{
+                      x: ["-100%", "100%"],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                    className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                  />
+                </motion.div>
+              </div>
+            </div>
 
             {/* Paragraphs with customized dividers and high-readability text */}
-            <div className="flex flex-col gap-8 border-l-2 border-[#00D4FF]/20 pl-8 mb-12">
+            <div className="flex flex-col gap-5 border-l-2 border-[#2563FF]/20 pl-6 mb-8">
               <motion.p
                 initial={{ opacity: 0, x: -15 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -188,7 +212,7 @@ export default function WelcomeSection() {
 
           {/* Right Column: Parallax Glass Showcase Device (Span 5) */}
           <div className="lg:col-span-5 relative w-full flex justify-center lg:justify-end order-1 lg:order-2">
-            <div className="relative w-full aspect-[4/5] max-w-[430px] rounded-[3rem] bg-gradient-to-br from-white to-slate-50 border border-[#E5E2F0] p-6 overflow-hidden backdrop-blur-2xl shadow-[0_30px_60px_rgba(124,58,237,0.06)]">
+            <div className="relative w-full aspect-[4/5] max-w-[430px] rounded-[3rem] bg-gradient-to-br from-white to-slate-50 border border-[#E5E2F0] p-6 overflow-hidden backdrop-blur-2xl shadow-[0_30px_60px_rgba(37,99,255,0.06)] transition-all duration-350 ease-in-out hover:border-[#2563FF]/30 hover:shadow-[0_30px_60px_rgba(37,99,255,0.12)] hover:-translate-y-1.5 hover:bg-gradient-to-br hover:from-white hover:to-blue-50/10">
               
               {/* Inner ambient ring */}
               <div className="absolute inset-2 border border-slate-200/40 rounded-[2.5rem] pointer-events-none" />
@@ -224,7 +248,7 @@ export default function WelcomeSection() {
                 </AnimatePresence>
 
                 {/* Overlapping Info Overlay Card */}
-                <div className="absolute bottom-6 left-6 right-6 bg-[#0B1A2E]/90 border border-[rgba(0,212,255,0.15)] rounded-2xl p-6 backdrop-blur-lg text-white flex flex-col gap-2 shadow-[0_15px_40px_rgba(0,212,255,0.08)] z-20">
+                <div className="absolute bottom-6 left-6 right-6 bg-[#0B1A2E]/90 border border-[rgba(0,212,255,0.15)] rounded-2xl p-6 backdrop-blur-lg text-white flex flex-col gap-2 shadow-[0_15px_40px_rgba(0,212,255,0.08)] z-20 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-[#2563FF] hover:shadow-[0_15px_40px_rgba(37,99,255,0.2)]">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={index}

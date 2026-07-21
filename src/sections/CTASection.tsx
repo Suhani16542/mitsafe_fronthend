@@ -17,7 +17,7 @@ export default function CTASection() {
   ];
 
   return (
-    <section className="bg-white pb-20 relative overflow-hidden border-t border-[#E5E2F0] pt-12 flex flex-col gap-16">
+    <section className="bg-white pb-12 lg:pb-16 relative overflow-hidden border-t border-[#E5E2F0] pt-8 lg:pt-10 flex flex-col gap-10">
       
       {/* Horizonal Moving Ribbon Ticker */}
       <MovingStrip items={stripKeywords} direction="right" speed={32} />

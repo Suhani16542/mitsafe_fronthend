@@ -139,7 +139,7 @@ export default function MitsafeSection() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-white flex flex-col justify-center items-center py-8 sm:py-10 border-t border-purple-50"
+      className="relative w-full overflow-hidden bg-white flex flex-col justify-center items-center py-6 sm:py-8 border-t border-blue-50"
       style={{ fontFamily: "'Satoshi', sans-serif" }}
     >
       {/* Moving background gradient */}
@@ -161,9 +161,9 @@ export default function MitsafeSection() {
       </div>
 
       {/* Parallax background glows / soft shapes */}
-      {/* Outline Purple Ring */}
+      {/* Outline Blue Ring */}
       <motion.div
-        className="absolute rounded-full border-2 border-[#7C3AED]/8 pointer-events-none z-0"
+        className="absolute rounded-full border-2 border-[#2563FF]/8 pointer-events-none z-0"
         style={{ width: "240px", height: "240px", left: "6%", top: "12%" }}
         animate={{
           y: [0, -22, 0],
@@ -205,7 +205,7 @@ export default function MitsafeSection() {
       />
       {/* Small Solid Blue Sphere */}
       <motion.div
-        className="absolute rounded-full bg-[#7C3AED]/6 pointer-events-none z-0 shadow-sm"
+        className="absolute rounded-full bg-[#2563FF]/8 pointer-events-none z-0 shadow-sm"
         style={{ width: "22px", height: "22px", left: "16%", bottom: "20%" }}
         animate={{
           y: [0, 26, 0],
@@ -234,7 +234,7 @@ export default function MitsafeSection() {
 
       {/* Lagged Mouse Follower Glow */}
       <motion.div
-        className="absolute w-[450px] h-[450px] rounded-full bg-[#7C3AED]/4 blur-[135px] pointer-events-none"
+        className="absolute w-[450px] h-[450px] rounded-full bg-[#2563FF]/4 blur-[135px] pointer-events-none"
         animate={{
           x: mousePos.x * 55,
           y: mousePos.y * 55,
@@ -313,7 +313,7 @@ export default function MitsafeSection() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute w-[320px] sm:w-[520px] h-[120px] bg-gradient-to-r from-[#7C3AED]/15 via-[#00E5FF]/10 to-[#7C3AED]/15 rounded-full blur-3xl pointer-events-none -z-10"
+                className="absolute w-[320px] sm:w-[520px] h-[120px] bg-gradient-to-r from-[#2563FF]/15 via-[#00E5FF]/10 to-[#2563FF]/15 rounded-full blur-3xl pointer-events-none -z-10"
               />
 
               {/* Massive Bold Minimalist Clash Display text */}
@@ -330,7 +330,7 @@ export default function MitsafeSection() {
                   initial={{ width: 0, opacity: 0 }}
                   animate={{ width: "100%", opacity: 1 }}
                   transition={{ duration: 1.2, delay: 1.4, ease: "easeOut" }}
-                  className="h-full bg-gradient-to-r from-[#7C3AED] via-[#00E5FF] to-[#7C3AED] relative"
+                  className="h-full bg-gradient-to-r from-[#2563FF] via-[#00E5FF] to-[#2563FF] relative"
                 >
                   <motion.div
                     animate={{
@@ -347,7 +347,7 @@ export default function MitsafeSection() {
               </div>
 
               {/* Short tagline */}
-              <p className="mt-4 text-[10px] sm:text-xs font-bold tracking-[0.25em] text-[#7C3AED]/90 uppercase font-sans text-center z-10">
+              <p className="mt-4 text-[10px] sm:text-xs font-bold tracking-[0.25em] text-[#2563FF]/90 uppercase font-sans text-center z-10">
                 Enterprise AI & Digital Automation Systems
               </p>
             </motion.div>
@@ -409,7 +409,7 @@ export default function MitsafeSection() {
                     className={`flex items-center gap-1.2 px-2 py-0.5 text-[9px] sm:text-xs font-bold rounded-lg shadow-sm border transition-all duration-300 ${
                       avatar.isGreen
                         ? "bg-[#8BE83A] text-slate-900 border-[#7cd02d]/25 group-hover:bg-[#9cf050]"
-                        : "bg-[#7C3AED] text-white border-purple-500/25 group-hover:bg-[#8b4bf6]"
+                        : "bg-[#2563FF] text-white border-blue-500/25 group-hover:bg-[#3b72f6]"
                     }`}
                   >
                     <CursorIcon />

@@ -234,7 +234,7 @@ export default function PremiumServicesShowcase() {
   return (
     <section
       id="premium-showcase"
-      className="bg-[#F4F7FC] dark:bg-[#071426] py-20 md:py-24 relative overflow-hidden"
+      className="bg-[#F4F7FC] dark:bg-[#071426] py-12 md:py-16 relative overflow-hidden"
       style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
@@ -242,7 +242,7 @@ export default function PremiumServicesShowcase() {
         {/* Top Header Section */}
         <div
           ref={headerRef}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-12"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center mb-8"
         >
           {/* Left Title details */}
           <div className="lg:col-span-7 flex flex-col gap-4">
@@ -280,7 +280,7 @@ export default function PremiumServicesShowcase() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isHeaderInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
-            className="lg:col-span-5 relative flex items-center justify-center select-none overflow-visible w-full h-[250px] sm:h-[300px] lg:h-[350px] z-30"
+            className="lg:col-span-5 relative flex items-center justify-center select-none overflow-visible w-full h-[295px] sm:h-[355px] lg:h-[415px] z-30"
           >
             <motion.div
               className="relative w-full h-full flex items-center justify-center overflow-visible"

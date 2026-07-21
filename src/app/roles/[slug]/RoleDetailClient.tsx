@@ -125,6 +125,7 @@ export default function RoleDetailClient({ role }: RoleDetailClientProps) {
           src={assets.bgImage}
           alt={`${role.title} Background Theme`}
           fill
+          sizes="100vw"
           className="object-cover opacity-[0.035] mix-blend-overlay filter blur-[0.5px]"
           priority
         />
@@ -238,6 +239,7 @@ export default function RoleDetailClient({ role }: RoleDetailClientProps) {
                 src={assets.image} 
                 alt={`${role.title} Illustration`}
                 fill
+                sizes="(max-width: 500px) 100vw, 500px"
                 className="object-cover opacity-80 group-hover:scale-103 transition-transform duration-700 pointer-events-none rounded-[32px]"
                 priority
               />

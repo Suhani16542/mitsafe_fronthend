@@ -144,6 +144,7 @@ export default function PortfolioSection() {
                       src={caseStudies[0].img}
                       alt={caseStudies[0].title}
                       fill
+                      sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 50vw, 640px"
                       className="object-cover"
                       priority
                     />
@@ -159,6 +160,7 @@ export default function PortfolioSection() {
                       src={caseStudies[1].img}
                       alt={caseStudies[1].title}
                       fill
+                      sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 50vw, 640px"
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
@@ -173,6 +175,7 @@ export default function PortfolioSection() {
                       src={caseStudies[2].img}
                       alt={caseStudies[2].title}
                       fill
+                      sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 50vw, 640px"
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
@@ -301,7 +304,7 @@ export default function PortfolioSection() {
       </div>
 
       {/* MOBILE PREMIUM VERTICAL COLLAPSIBLE/SCROLLING VERSION (sm/md screens) */}
-      <div className="block lg:hidden py-20 px-6 relative overflow-hidden border-t border-[rgba(0,212,255,0.15)]">
+      <div className="block lg:hidden py-12 px-6 relative overflow-hidden border-t border-[rgba(0,212,255,0.15)]">
         
         {/* Glow details for Mobile */}
         <div className="absolute top-[20%] left-[-10%] w-[300px] h-[300px] rounded-full bg-[#00D4FF]/3 blur-[90px] pointer-events-none -z-10" />
@@ -310,7 +313,7 @@ export default function PortfolioSection() {
         <div className="max-w-xl mx-auto flex flex-col items-center">
           
           {/* Section Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#00D4FF] font-display shadow-sm">
               <Sparkles className="w-3.5 h-3.5" />
               <span>PORTFOLIO CASE STUDIES</span>
@@ -321,7 +324,7 @@ export default function PortfolioSection() {
           </div>
 
           {/* Case Studies Staggered Layout List */}
-          <div className="flex flex-col gap-16 w-full">
+          <div className="flex flex-col gap-10 w-full">
             {caseStudies.map((study, idx) => (
               <motion.div
                 key={study.slug}
@@ -337,6 +340,7 @@ export default function PortfolioSection() {
                     src={study.img}
                     alt={study.title}
                     fill
+                    sizes="(max-width: 576px) 100vw, 576px"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent pointer-events-none" />

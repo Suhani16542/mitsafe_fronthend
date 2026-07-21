@@ -169,6 +169,7 @@ export default function PortfolioClient() {
                     src={project.img}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 600px"
                     className="object-cover transition-transform duration-750 ease-out group-hover:scale-105"
                   />
                 ) : (
@@ -262,6 +263,7 @@ export default function PortfolioClient() {
                         src={project.img}
                         alt={project.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 420px"
                         className="object-cover transition-transform duration-750 ease-out group-hover:scale-105"
                       />
                     ) : (
@@ -368,6 +370,7 @@ export default function PortfolioClient() {
               src="/portfolio_cta.png"
               alt="Futuristic CTA background portal"
               fill
+              sizes="(max-width: 1280px) 100vw, 1280px"
               className="object-cover opacity-10 dark:opacity-20"
             />
             {/* Ambient gradients consistent with design tokens */}
