@@ -118,7 +118,7 @@ function TiltContainer({ children, className = "" }: { children: React.ReactNode
 export default function PortfolioDetailClient({ project }: { project: ProjectProps }) {
   return (
     <div className="bg-[#FFFFFF] min-h-screen pt-32 pb-24 relative overflow-hidden font-sans text-slate-800">
-      
+
       {/* 5 Vertical Background Lines matching main theme */}
       <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.3]">
         <div className="w-[1px] bg-slate-100 h-full" />
@@ -135,7 +135,7 @@ export default function PortfolioDetailClient({ project }: { project: ProjectPro
       </div>
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
-        
+
         {/* Navigation Breadcrumb back path */}
         <ScrollReveal direction="down">
           <Link
@@ -153,7 +153,7 @@ export default function PortfolioDetailClient({ project }: { project: ProjectPro
             <div className={`absolute inset-0 bg-gradient-to-tr ${project.imageColor} opacity-[0.12] group-hover:scale-105 transition-transform duration-700`} />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f0f7_1px,transparent_1px),linear-gradient(to_bottom,#f1f0f7_1px,transparent_1px)] bg-[size:20px_35px] opacity-40" />
             <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-90" />
-            
+
             <div className="absolute bottom-6 left-6 md:bottom-8 md:left-8 z-10">
               <span className="text-[10px] font-bold text-[#7C3AED] uppercase tracking-widest bg-white/90 border border-slate-100 rounded-full px-4.5 py-2 backdrop-blur-md shadow-sm">
                 {project.category}
@@ -164,10 +164,10 @@ export default function PortfolioDetailClient({ project }: { project: ProjectPro
 
         {/* Dynamic content grid layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start text-left">
-          
+
           {/* Left Main Content Block */}
           <div className="lg:col-span-8 flex flex-col gap-8">
-            
+
             <ScrollReveal direction="left" className="flex flex-col gap-4">
               <h1 className="font-display font-black text-3xl sm:text-5xl text-[#0B1530] tracking-tight leading-none font-sans uppercase">
                 {project.title}
@@ -200,7 +200,7 @@ export default function PortfolioDetailClient({ project }: { project: ProjectPro
               </h3>
               <ul className="flex flex-col gap-3.5 mt-1.5">
                 {project.features.map((feat, idx) => (
-                  <motion.li 
+                  <motion.li
                     key={idx}
                     initial={{ opacity: 0, x: -8 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -223,13 +223,13 @@ export default function PortfolioDetailClient({ project }: { project: ProjectPro
           <div className="lg:col-span-4 flex flex-col gap-6">
             <ScrollReveal direction="right">
               <TiltContainer className="bg-white/60 border border-slate-100 p-8 rounded-[32px] shadow-xl backdrop-blur-xl flex flex-col gap-6">
-                
+
                 <h3 className="font-display text-[10px] font-bold tracking-widest text-[#7C3AED] uppercase border-b border-slate-100 pb-3 font-mono">
                   Project Specs
                 </h3>
 
                 <div className="flex flex-col gap-5 text-xs sm:text-sm">
-                  
+
                   <div className="flex items-start gap-4">
                     <div className="w-9 h-9 rounded-xl bg-[#7C3AED]/5 border border-[#7C3AED]/10 flex items-center justify-center text-[#7C3AED] shrink-0">
                       <Briefcase className="w-4.5 h-4.5" />
@@ -269,8 +269,8 @@ export default function PortfolioDetailClient({ project }: { project: ProjectPro
                   </span>
                   <div className="flex flex-wrap gap-2">
                     {project.techStack.map((tech) => (
-                      <span 
-                        key={tech} 
+                      <span
+                        key={tech}
                         className="text-[10px] font-bold text-[#7C3AED] bg-[#7C3AED]/5 border border-[#7C3AED]/10 rounded-full px-3 py-1 font-sans transition-colors hover:bg-[#7C3AED]/10 hover:border-[#7C3AED]/20 cursor-default"
                       >
                         {tech}

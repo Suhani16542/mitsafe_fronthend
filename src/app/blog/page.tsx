@@ -27,8 +27,8 @@ export default function BlogPage() {
   });
 
   return (
-    <div className="bg-white min-h-screen pt-32 pb-20 cyber-grid relative">
-      <div className="absolute inset-0 bg-white/90 pointer-events-none" />
+    <div className="bg-[#FAFBFF] dark:bg-[#071426] min-h-screen pt-32 pb-20 cyber-grid relative text-[#0F172A] dark:text-white transition-colors duration-300">
+      <div className="absolute inset-0 bg-[#FAFBFF]/90 dark:bg-[#071426]/90 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
@@ -41,7 +41,7 @@ export default function BlogPage() {
         />
 
         {/* Search / Filters */}
-        <div className="mt-8 flex flex-col md:flex-row gap-4 items-center justify-between border-b border-[#E5E2F0] pb-8">
+        <div className="mt-8 flex flex-col md:flex-row gap-4 items-center justify-between border-b border-slate-200 dark:border-white/5 pb-8">
           
           <div className="flex flex-wrap gap-2.5 w-full md:w-auto">
             {categories.map((cat) => (
@@ -50,8 +50,8 @@ export default function BlogPage() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-full font-display font-medium text-xs md:text-sm border transition-all duration-300 cursor-pointer select-none ${
                   selectedCategory === cat
-                    ? "bg-[#7C3AED]/5 border-[#A78BFA] text-[#7C3AED]"
-                    : "bg-[#F3F0FA]/40 border-[#E5E2F0] text-slate-600 hover:text-white"
+                    ? "bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border-[#2563FF] dark:border-[#00D4FF] text-[#2563FF] dark:text-[#00D4FF]"
+                    : "bg-slate-50 dark:bg-white/5 border-slate-200 dark:border-white/5 text-slate-650 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 hover:text-[#2563FF] dark:hover:text-white"
                 }`}
               >
                 {cat}
@@ -68,7 +68,7 @@ export default function BlogPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search articles..."
-              className="w-full bg-[#F3F0FA]/60 text-sm text-white pl-9 pr-4 py-2.5 rounded-full border border-[#E5E2F0] focus:border-[#A78BFA] outline-none transition-colors"
+              className="w-full bg-slate-50 dark:bg-white/5 text-[#0F172A] dark:text-white pl-9 pr-4 py-2.5 rounded-full border border-slate-200 dark:border-white/5 focus:border-[#2563FF] dark:focus:border-[#00D4FF] outline-none transition-colors placeholder-slate-450"
             />
           </div>
 
@@ -78,39 +78,39 @@ export default function BlogPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {filteredPosts.length > 0 ? (
             filteredPosts.map((post) => (
-              <GlowCard key={post.slug} className="flex flex-col h-full justify-between gap-6 bg-[#F3F0FA]/60 group border-[#7C3AED]/20">
+              <GlowCard key={post.slug} className="flex flex-col h-full justify-between gap-6 bg-white/70 dark:bg-[#0B1A2E]/70 border-slate-200 dark:border-white/10 group">
                 <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between text-xs text-[#7C3AED] font-semibold">
-                    <span className="bg-[#7C3AED]/5 border border-[#7C3AED]/20 rounded px-2.5 py-1 uppercase tracking-wider font-display">
+                  <div className="flex items-center justify-between text-xs text-[#2563FF] dark:text-[#00D4FF] font-semibold font-mono">
+                    <span className="bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/15 dark:border-[#00D4FF]/25 rounded px-2.5 py-1 uppercase tracking-wider font-display">
                       {post.category}
                     </span>
                     <span>{post.readTime}</span>
                   </div>
 
-                  <h3 className="font-display text-lg md:text-xl font-bold text-slate-900 group-hover:text-[#7C3AED] transition-colors duration-250 mt-2">
+                  <h3 className="font-display text-lg md:text-xl font-bold text-[#0F172A] dark:text-white group-hover:text-[#2563FF] dark:group-hover:text-[#00D4FF] transition-colors duration-250 mt-2">
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </h3>
                   
-                  <p className="text-xs md:text-sm text-slate-600 leading-relaxed line-clamp-3">
+                  <p className="text-xs md:text-sm text-slate-600 dark:text-slate-350 leading-relaxed line-clamp-3">
                     {post.summary}
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-4 pt-4 border-t border-[#E5E2F0] mt-auto">
+                <div className="flex flex-col gap-4 pt-4 border-t border-slate-100 dark:border-white/5 mt-auto">
                   <div className="flex items-center gap-4 text-[10px] md:text-xs text-slate-500 font-medium">
                     <span className="flex items-center gap-1.5">
-                      <User className="w-3.5 h-3.5 text-[#7C3AED]" />
+                      <User className="w-3.5 h-3.5 text-[#2563FF] dark:text-[#00D4FF]" />
                       {post.author}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-[#7C3AED]" />
+                      <Calendar className="w-3.5 h-3.5 text-[#2563FF] dark:text-[#00D4FF]" />
                       {post.date}
                     </span>
                   </div>
 
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="inline-flex items-center gap-1 text-xs md:text-sm font-semibold text-[#7C3AED] hover:text-white transition-colors duration-200 group/link cursor-pointer w-fit"
+                    className="inline-flex items-center gap-1 text-xs md:text-sm font-semibold text-[#2563FF] dark:text-[#00D4FF] hover:text-[#2563FF]/80 dark:hover:text-white transition-colors duration-200 group/link cursor-pointer w-fit"
                   >
                     Read Full Article
                     <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
@@ -119,7 +119,7 @@ export default function BlogPage() {
               </GlowCard>
             ))
           ) : (
-            <div className="col-span-full text-center py-20 text-slate-600 text-sm">
+            <div className="col-span-full text-center py-20 text-slate-500 dark:text-slate-400 text-sm">
               No technical articles found matching the filters.
             </div>
           )}

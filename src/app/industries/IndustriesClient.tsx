@@ -96,24 +96,24 @@ export default function IndustriesClient() {
   ];
 
   return (
-    <div className="cosmic-industries-wrapper bg-[#071426] text-white min-h-screen relative font-sans overflow-x-hidden">
+    <div className="cosmic-industries-wrapper bg-[#FAFBFF] dark:bg-[#071426] text-[#0F172A] dark:text-white min-h-screen relative font-sans overflow-x-hidden">
       
       {/* Background ambient firefly graphics */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <motion.div 
           animate={{ y: [0, -35, 0], x: [0, 25, 0], opacity: [0.08, 0.20, 0.08] }}
           transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[10%] right-[5%] w-[400px] h-[400px] bg-[#00D4FF]/6 rounded-full blur-[90px]"
+          className="absolute top-[10%] right-[5%] w-[400px] h-[400px] bg-[#2563FF]/5 dark:bg-[#00D4FF]/5 rounded-full blur-[90px]"
         />
         <motion.div 
           animate={{ y: [0, 45, 0], x: [0, -20, 0], opacity: [0.05, 0.16, 0.05] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[45%] left-[5%] w-[450px] h-[450px] bg-[#7C3AED]/5 rounded-full blur-[100px]"
+          className="absolute top-[45%] left-[5%] w-[450px] h-[450px] bg-[#2563FF]/5 rounded-full blur-[100px]"
         />
       </div>
 
       {/* 1. Hero Section */}
-      <section className="relative pt-36 pb-32 flex flex-col items-center text-center px-6 lg:px-8 bg-gradient-to-b from-[#071426] via-[#091a33] to-[#0B1A2E] overflow-hidden z-10">
+      <section className="relative pt-36 pb-32 flex flex-col items-center text-center px-6 lg:px-8 bg-gradient-to-b from-[#FAFBFF] via-[#F4F7FC] to-[#F3F0FA] dark:from-[#071426] dark:via-[#091a33] dark:to-[#0B1A2E] overflow-hidden z-10">
         <div className="max-w-5xl mx-auto flex flex-col items-center relative z-10">
           
           {/* Dashboard Lottie Animation */}
@@ -134,7 +134,7 @@ export default function IndustriesClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[rgba(0,212,255,0.25)] bg-[#00D4FF]/10 px-4.5 py-1.5 text-xs font-semibold tracking-wider text-[#00D4FF] uppercase backdrop-blur-sm shadow-sm">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-[rgba(0,212,255,0.25)] bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 px-4.5 py-1.5 text-xs font-semibold tracking-wider text-[#2563FF] dark:text-[#00D4FF] uppercase backdrop-blur-sm shadow-sm">
               <Sparkles className="w-3.5 h-3.5" />
               Tailored Sector Engineering
             </span>
@@ -145,17 +145,17 @@ export default function IndustriesClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             style={{ fontFamily: "'Clash Display', sans-serif" }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-4xl"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-4xl text-[#0F172A] dark:text-white"
           >
             Industries We Revolutionize <br />
-            <span className="gradient-sweep-text">With Intelligent Code</span>
+            <span className="bg-gradient-to-r from-[#2563FF] to-[#00D4FF] dark:from-[#00BFFF] dark:to-[#6C63FF] bg-clip-text text-transparent">With Intelligent Code</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-6 text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl leading-relaxed font-normal"
+            className="mt-6 text-base sm:text-lg md:text-xl text-slate-655 dark:text-slate-300 max-w-3xl leading-relaxed font-normal"
           >
             We deploy specialized software frameworks and custom machine learning workflows tailored to match unique industrial demands.
           </motion.p>
@@ -166,14 +166,14 @@ export default function IndustriesClient() {
           <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="relative block w-full h-[40px] md:h-[70px]">
             <path 
               d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,80C1120,85,1280,75,1360,69.3L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" 
-              className="fill-[#0B1A2E]"
+              className="fill-white dark:fill-[#0B1A2E]"
             />
           </svg>
         </div>
       </section>
 
       {/* 2. Industries Showcase Section */}
-      <section className="relative py-24 bg-[#0B1A2E] z-10 px-6 lg:px-8 overflow-hidden">
+      <section className="relative py-24 bg-white dark:bg-[#0B1A2E] z-10 px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
@@ -186,39 +186,36 @@ export default function IndustriesClient() {
                 variants={slideInLeft}
                 className="flex flex-col gap-4"
               >
-                <span className="text-xs font-bold text-[#00D4FF] uppercase tracking-wider font-mono">
+                <span className="text-xs font-bold text-[#2563FF] dark:text-[#00D4FF] uppercase tracking-wider font-mono">
                   // VERTICAL INTEGRATION
                 </span>
                 <h2 
                   style={{ fontFamily: "'Clash Display', sans-serif" }}
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0F172A] dark:text-white leading-tight"
                 >
                   Architected to Solve Domain Challenges
                 </h2>
-                <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base text-slate-650 dark:text-slate-300 leading-relaxed font-normal">
                   Our development approach starts with domain specifics. We understand that a fintech dashboard requires double-entry accounting integrity, while a healthcare application prioritizes zero-latency emergency feeds and HIPAA security checks.
                 </p>
-                <p className="text-sm sm:text-base text-slate-350 leading-relaxed font-normal">
-                  By configuring customized data caches, API gateways, and specialized neural network libraries, we ensure that every solution we ship matches the exact speed, reliability, and security metrics expected in your industry.
-                </p>
-              </motion.div>
 
-              <div className="flex flex-wrap gap-3 mt-4">
-                {["HIPAA Secure", "PCI-DSS Compliant", "Auto-Scaling Core", "Real-Time Telemetry"].map((badge, idx) => (
-                  <motion.div
-                    key={idx}
-                    custom={idx}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    variants={fadeInUpStagger}
-                    className="flex items-center gap-1.5 px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-semibold text-slate-300"
-                  >
-                    <CheckCircle className="w-3.5 h-3.5 text-[#00D4FF]" />
-                    {badge}
-                  </motion.div>
-                ))}
-              </div>
+                <div className="flex flex-wrap gap-3 mt-4">
+                  {["HIPAA Secure", "PCI-DSS Compliant", "Auto-Scaling Core", "Real-Time Telemetry"].map((badge, idx) => (
+                    <motion.div
+                      key={idx}
+                      custom={idx}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, margin: "-100px" }}
+                      variants={fadeInUpStagger}
+                      className="flex items-center gap-1.5 px-3 py-1 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full text-xs font-semibold text-slate-600 dark:text-slate-300"
+                    >
+                      <CheckCircle className="w-3.5 h-3.5 text-[#2563FF] dark:text-[#00D4FF]" />
+                      {badge}
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             </div>
 
             {/* Right Showcase Image */}
@@ -229,8 +226,8 @@ export default function IndustriesClient() {
               variants={slideInRight}
               className="lg:col-span-5 relative flex justify-center items-center"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#00D4FF]/15 to-transparent rounded-[32px] blur-2xl pointer-events-none" />
-              <div className="relative border border-[#E5E2F0]/20 rounded-[32px] overflow-hidden shadow-lg aspect-[4/3] w-full group/img">
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#2563FF]/15 dark:from-[#00D4FF]/15 to-transparent rounded-[32px] blur-2xl pointer-events-none" />
+              <div className="relative border border-slate-200 dark:border-white/5 rounded-[32px] overflow-hidden shadow-lg aspect-[4/3] w-full group/img">
                 <Image 
                   src="/industries_showcase.png" 
                   alt="Futuristic industrial digital smart city illustration" 
@@ -246,7 +243,7 @@ export default function IndustriesClient() {
       </section>
 
       {/* 3. Industries Grid Section */}
-      <section className="relative py-24 bg-[#071426]/60 px-6 lg:px-8 border-t border-b border-[#E5E2F0]/10 z-10">
+      <section className="relative py-24 bg-[#F4F7FC] dark:bg-[#071426]/60 px-6 lg:px-8 border-t border-b border-slate-200 dark:border-white/10 z-10">
         <div className="max-w-7xl mx-auto">
           
           <motion.div 
@@ -256,12 +253,12 @@ export default function IndustriesClient() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <span className="text-xs font-bold text-[#00D4FF] uppercase tracking-wider font-mono">
+            <span className="text-xs font-bold text-[#2563FF] dark:text-[#00BFFF] uppercase tracking-wider font-mono">
               // EXPERTISE FIELDS
             </span>
             <h2 
               style={{ fontFamily: "'Clash Display', sans-serif" }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mt-3"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0F172A] dark:text-white mt-3"
             >
               Sectors We Help Grow
             </h2>
@@ -280,16 +277,16 @@ export default function IndustriesClient() {
                   variants={fadeInUpStagger}
                   whileHover={{ y: -8, scale: 1.015 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className={`bg-[#0B1A2E]/55 border ${ind.color} rounded-[24px] p-6 shadow-sm flex flex-col justify-between gap-5 relative overflow-hidden group hover:bg-[#0B1A2E]/80 transition-all duration-300 cursor-default`}
+                  className={`bg-white dark:bg-[#0B1A2E]/55 border border-slate-200 dark:border-white/5 rounded-[24px] p-6 shadow-sm flex flex-col justify-between gap-5 relative overflow-hidden group hover:bg-slate-50 dark:hover:bg-[#0B1A2E]/80 transition-all duration-300 cursor-default`}
                 >
                   <div className="flex flex-col gap-4">
-                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#00D4FF] group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                    <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <h3 className="font-display text-lg sm:text-xl font-bold text-white group-hover:text-[#00D4FF] transition-colors duration-250">
+                    <h3 className="font-display text-lg sm:text-xl font-bold text-[#0F172A] dark:text-white group-hover:text-[#2563FF] dark:group-hover:text-[#00D4FF] transition-colors duration-250">
                       {ind.name}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
                       {ind.desc}
                     </p>
                   </div>
@@ -301,8 +298,8 @@ export default function IndustriesClient() {
       </section>
 
       {/* 4. CTA Section */}
-      <section className="relative py-28 bg-[#0B1A2E] z-10 px-6 lg:px-8 border-t border-[#E5E2F0]/10 flex flex-col items-center overflow-hidden">
-        <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-[#00D4FF]/6 rounded-full blur-[80px] pointer-events-none" />
+      <section className="relative py-28 bg-white dark:bg-[#0B1A2E] z-10 px-6 lg:px-8 border-t border-slate-200 dark:border-[#E5E2F0]/10 flex flex-col items-center overflow-hidden">
+        <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-[#2563FF]/5 dark:bg-[#00D4FF]/6 rounded-full blur-[80px] pointer-events-none" />
 
         <motion.div 
           initial="hidden"
@@ -311,18 +308,18 @@ export default function IndustriesClient() {
           variants={imageReveal}
           whileHover={{ scale: 1.008 }}
           transition={{ duration: 0.3 }}
-          className="max-w-4xl mx-auto text-center border border-[#00D4FF]/15 bg-[#071426]/60 rounded-[32px] p-8 md:p-14 shadow-2xl relative z-10 flex flex-col items-center gap-6 hover:border-[#00D4FF]/30 transition-all duration-300"
+          className="max-w-4xl mx-auto text-center border border-slate-200 dark:border-[#00D4FF]/15 bg-slate-50/50 dark:bg-[#071426]/60 rounded-[32px] p-8 md:p-14 shadow-2xl relative z-10 flex flex-col items-center gap-6 hover:border-[#2563FF]/30 dark:hover:border-[#00D4FF]/30 transition-all duration-300"
         >
-          <span className="text-xs font-bold text-[#00D4FF] uppercase tracking-wider font-mono">
+          <span className="text-xs font-bold text-[#2563FF] dark:text-[#00D4FF] uppercase tracking-wider font-mono">
             // domain solutions
           </span>
           <h2 
             style={{ fontFamily: "'Clash Display', sans-serif" }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0F172A] dark:text-white leading-tight"
           >
             Need Specialized Sector Infrastructure?
           </h2>
-          <p className="text-sm sm:text-base text-slate-350 max-w-2xl leading-relaxed font-normal">
+          <p className="text-sm sm:text-base text-slate-650 dark:text-slate-300 max-w-2xl leading-relaxed font-normal">
             Discuss your technical goals with our engineering architects today. We configure dedicated teams and build secure custom software systems built around your operations.
           </p>
           <div className="mt-4">

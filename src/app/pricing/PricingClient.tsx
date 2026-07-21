@@ -21,7 +21,7 @@ interface LocalParticle {
   opacity: number;
 }
 
-const localColors = ["#1E1A39", "#5EC8FF", "#A855F7", "#FF4FA2", "#B8E6FF"];
+const localColors = ["#2563FF", "#5EC8FF", "#A855F7", "#FF4FA2", "#B8E6FF"];
 const localShapes = ["circle", "dot", "line", "star", "plus", "outline-circle", "diamond"];
 
 function LocalParticleShape({ shape, color }: { shape: string; color: string }) {
@@ -180,7 +180,7 @@ function HighlightBox({
 
   const backgroundGlow = useTransform(
     [springX, springY],
-    ([x, y]) => `radial-gradient(200px circle at ${x}px ${y}px, rgba(124, 58, 237, 0.16), transparent 85%)`
+    ([x, y]) => `radial-gradient(200px circle at ${x}px ${y}px, rgba(37, 99, 255, 0.16), transparent 85%)`
   );
 
   return (
@@ -194,7 +194,7 @@ function HighlightBox({
         scale: springScale,
         y: springYOffset,
       }}
-      className="relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] p-5 md:p-6 transition-[border-color,box-shadow,background-color] duration-300 hover:border-[#7C3AED]/40 hover:bg-white/[0.06] flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 shadow-md shadow-black/20 group will-change-transform w-full"
+      className="relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] p-5 md:p-6 transition-[border-color,box-shadow,background-color] duration-300 hover:border-[#2563FF]/40 dark:hover:border-[#00D4FF]/40 hover:bg-white/[0.06] flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 shadow-md shadow-black/20 group will-change-transform w-full"
     >
       <motion.div
         className="pointer-events-none absolute inset-0 transition-opacity duration-300"
@@ -205,13 +205,13 @@ function HighlightBox({
         }}
       />
       <div className="relative z-10 flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left font-sans">
-        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#A78BFA] group-hover:scale-105 group-hover:bg-[#7C3AED]/10 group-hover:border-[#7C3AED]/20 transition-all duration-300 shrink-0">
+        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:scale-105 group-hover:bg-[#2563FF]/10 group-hover:border-[#2563FF]/20 transition-all duration-300 shrink-0">
           <Icon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-6" />
         </div>
         
         <div className="flex flex-col gap-1.5 mt-1">
-          <h4 className="font-display font-black text-sm text-[#A78BFA] tracking-wider uppercase flex items-center justify-center sm:justify-start gap-2 font-sans">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#A78BFA] animate-pulse" />
+          <h4 className="font-display font-black text-sm text-[#2563FF] dark:text-[#00D4FF] tracking-wider uppercase flex items-center justify-center sm:justify-start gap-2 font-sans">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#2563FF] dark:bg-[#00D4FF] animate-pulse" />
             {title}
           </h4>
           <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
@@ -391,10 +391,10 @@ function InteractivePricingCard({
       } : {}}
       className={`relative overflow-hidden rounded-[32px] border p-8 flex flex-col justify-between backdrop-blur-xl transition-[border-color,box-shadow,background-color] duration-500 will-change-transform lg:origin-center ${
         plan.isRecommended
-          ? "bg-white/95 border-[#7C3AED]/45 shadow-xl hover:border-[#7C3AED] hover:shadow-[0_30px_70px_-15px_rgba(124,58,237,0.24)] z-30 lg:scale-[1.05]"
+          ? "bg-white/95 dark:bg-[#0B1A2E]/95 border-[#2563FF]/45 dark:border-[#00D4FF]/45 shadow-xl hover:border-[#2563FF] dark:hover:border-[#00D4FF] hover:shadow-[0_30px_70px_-15px_rgba(37,99,255,0.24)] z-30 lg:scale-[1.05]"
           : index === 0
-            ? "bg-white/70 border-[#E5E2F0] shadow-md hover:border-[#7C3AED]/25 hover:shadow-[0_25px_60px_-15px_rgba(124,58,237,0.12)] z-10 lg:-rotate-2 lg:translate-x-3"
-            : "bg-white/70 border-[#E5E2F0] shadow-md hover:border-[#7C3AED]/25 hover:shadow-[0_25px_60px_-15px_rgba(124,58,237,0.12)] z-10 lg:rotate-2 lg:-translate-x-3"
+            ? "bg-white/70 dark:bg-[#0B1A2E]/70 border-slate-200 dark:border-white/5 shadow-md hover:border-[#2563FF]/25 dark:hover:border-[#00D4FF]/25 hover:shadow-[0_25px_60px_-15px_rgba(37,99,255,0.12)] z-10 lg:-rotate-2 lg:translate-x-3"
+            : "bg-white/70 dark:bg-[#0B1A2E]/70 border-slate-200 dark:border-white/5 shadow-md hover:border-[#2563FF]/25 dark:hover:border-[#00D4FF]/25 hover:shadow-[0_25px_60px_-15px_rgba(37,99,255,0.12)] z-10 lg:rotate-2 lg:-translate-x-3"
       }`}
     >
       {/* Spotlight glow inside card */}
@@ -412,16 +412,16 @@ function InteractivePricingCard({
         <div className="flex justify-between items-start gap-4 font-sans">
           <div className="flex flex-col text-left">
             <span className={`text-[10px] font-bold tracking-widest uppercase font-mono mb-1.5 ${
-              plan.isRecommended ? "text-[#7C3AED]" : "text-slate-400"
+              plan.isRecommended ? "text-[#2563FF] dark:text-[#00D4FF]" : "text-slate-400"
             }`}>
               {plan.badge}
             </span>
-            <h3 className="font-display font-extrabold text-2xl text-[#0B1530] tracking-tight leading-none font-sans">
+            <h3 className="font-display font-extrabold text-2xl text-[#0F172A] dark:text-white tracking-tight leading-none font-sans">
               {plan.name}
             </h3>
           </div>
           {plan.isRecommended && (
-            <span className="bg-gradient-to-r from-[#7C3AED] to-[#A78BFA] text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm animate-pulse font-sans">
+            <span className="bg-gradient-to-r from-[#2563FF] to-[#00D4FF] text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm animate-pulse font-sans">
               RECOMMENDED
             </span>
           )}
@@ -429,7 +429,7 @@ function InteractivePricingCard({
 
         {/* Pricing Segment */}
         <div className="flex items-baseline text-left gap-2.5 py-5 border-y border-slate-100/80 font-sans">
-          <span className="text-3xl sm:text-4xl font-display font-black text-[#7C3AED] tracking-tight font-sans">
+          <span className="text-3xl sm:text-4xl font-display font-black text-[#2563FF] dark:text-[#00D4FF] tracking-tight font-sans">
             {plan.price}
           </span>
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
@@ -452,47 +452,44 @@ function InteractivePricingCard({
           >
             {plan.features.map((feat, idx) => (
               <motion.li 
-                key={idx} 
+                key={idx}
                 variants={checklistItemVariants}
-                className="flex items-start gap-3 font-sans"
+                className="flex items-start gap-3.5 text-xs sm:text-sm text-slate-600 dark:text-slate-350 font-normal leading-relaxed"
               >
-                <div className={`w-5 h-5 rounded-full shrink-0 flex items-center justify-center border mt-0.5 ${
+                <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 border ${
                   plan.isRecommended 
-                    ? "bg-[#7C3AED]/10 border-[#7C3AED]/25" 
-                    : "bg-slate-50 border-slate-200"
+                    ? "bg-[#2563FF]/10 border-[#2563FF]/25"
+                    : "bg-slate-50 dark:bg-white/5 border-slate-200 dark:border-white/10"
                 }`}>
                   <Check className={`w-3 h-3 ${
-                    plan.isRecommended ? "text-[#7C3AED]" : "text-slate-500"
+                    plan.isRecommended ? "text-[#2563FF] dark:text-[#00D4FF]" : "text-slate-500 dark:text-slate-400"
                   }`} />
                 </div>
-                <span className="text-xs sm:text-sm text-slate-600 font-medium leading-snug">
-                  {feat}
-                </span>
+                <span>{feat}</span>
               </motion.li>
             ))}
           </motion.ul>
         </div>
       </div>
 
-      {/* Button Deck with Micro-interactions */}
-      <div className="relative z-10 flex flex-col gap-3 mt-8 pt-6 border-t border-slate-100 font-sans">
+      <div className="relative z-10 pt-8 border-t border-slate-100/80 mt-6 flex gap-3 font-sans">
         <Button
           onClick={onCtaClick}
-          variant="primary"
-          className={`w-full justify-center group/btn relative overflow-hidden ${
+          variant={plan.isRecommended ? "primary" : "outline"}
+          className={`w-full !py-3.5 !text-xs !font-bold !rounded-2xl transition-all duration-300 ${
             plan.isRecommended
-              ? "bg-gradient-to-r from-[#7C3AED] to-[#A78BFA] text-white hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(124,58,237,0.3)]"
-              : "bg-slate-900 text-white hover:bg-slate-800"
+              ? "bg-gradient-to-r from-[#2563FF] to-[#00D4FF] text-white hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(37,99,255,0.3)]"
+              : "border-slate-200 dark:border-white/15 text-slate-700 dark:text-white hover:bg-slate-50 dark:hover:bg-white/5"
           }`}
-          icon={<ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />}
+          icon={<MessageSquare className={`w-4 h-4 ${plan.isRecommended ? "text-white" : "text-[#2563FF] dark:text-[#00D4FF]"} transition-transform duration-300 group-hover/btn:scale-110`} />}
         >
           REGISTER NOW
         </Button>
         <Button
           onClick={onCtaClick}
           variant="outline"
-          className="w-full justify-center group/btn border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300"
-          icon={<MessageSquare className="w-4 h-4 text-[#7C3AED] transition-transform duration-300 group-hover/btn:scale-110" />}
+          className="w-full justify-center group/btn border-slate-200 dark:border-white/15 text-slate-700 dark:text-white hover:bg-slate-50 dark:hover:bg-white/5 hover:border-slate-300 dark:hover:border-white/25"
+          icon={<MessageSquare className="w-4 h-4 text-[#2563FF] dark:text-[#00D4FF] transition-transform duration-300 group-hover/btn:scale-110" />}
         >
           CONTACT US
         </Button>
@@ -574,25 +571,25 @@ function BentoCard1({ data }: { data: { title: string; text: string; icon: any }
       variants={bentoCardEntryVariants}
       whileHover={premiumSpringHover}
       transition={hoverSpringConfig}
-      className="group relative overflow-hidden rounded-[32px] border border-slate-100 bg-white/60 p-8 flex flex-col md:flex-row justify-between gap-8 transition-all duration-500 h-full min-h-[320px] lg:col-span-8 will-change-transform cursor-pointer"
+      className="group relative overflow-hidden rounded-[32px] border border-slate-200 dark:border-white/5 bg-white/60 dark:bg-[#0B1A2E]/60 p-8 flex flex-col md:flex-row justify-between gap-8 transition-all duration-500 h-full min-h-[320px] lg:col-span-8 will-change-transform cursor-pointer"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#7C3AED]/3 via-transparent to-[#A78BFA]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#2563FF]/3 via-transparent to-[#00D4FF]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       
       <div className="flex flex-col gap-4 text-left justify-center md:w-3/5 relative z-10">
-        <div className="w-10 h-10 rounded-2xl bg-[#7C3AED]/5 border border-[#7C3AED]/10 flex items-center justify-center text-[#7C3AED] group-hover:scale-105 transition-transform duration-300 shrink-0">
+        <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:scale-105 transition-transform duration-300 shrink-0">
           <CardIcon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-6" />
         </div>
-        <h3 className="font-display font-bold text-xl text-[#0B1530] tracking-tight font-sans">
+        <h3 className="font-display font-bold text-xl text-[#0F172A] dark:text-white tracking-tight font-sans">
           {data.title}
         </h3>
-        <p className="text-xs sm:text-sm text-[#4A5568] leading-relaxed font-normal font-sans">
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-350 leading-relaxed font-normal font-sans">
           {data.text}
         </p>
       </div>
 
       {/* Right Column Abstract SVG */}
       <div className="md:w-2/5 flex items-center justify-center relative min-h-[160px] md:min-h-auto">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f0f7_1px,transparent_1px),linear-gradient(to_bottom,#f1f0f7_1px,transparent_1px)] bg-[size:14px_24px] opacity-60 rounded-2xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f0f7_1px,transparent_1px),linear-gradient(to_bottom,#f1f0f7_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:14px_24px] opacity-60 rounded-2xl" />
         <motion.div
           animate={{
             scale: [1, 1.08, 1],
@@ -603,15 +600,15 @@ function BentoCard1({ data }: { data: { title: string; text: string; icon: any }
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="w-24 h-24 rounded-full border border-[#7C3AED]/15 flex items-center justify-center relative bg-white/30 backdrop-blur-sm shadow-inner"
+          className="w-24 h-24 rounded-full border border-[#2563FF]/15 dark:border-white/5 flex items-center justify-center relative bg-white/30 dark:bg-slate-900/30 backdrop-blur-sm shadow-inner"
         >
-          <div className="w-16 h-16 rounded-full border border-dashed border-[#A78BFA]/20 flex items-center justify-center">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#7C3AED] to-[#A78BFA] opacity-25 blur-sm" />
+          <div className="w-16 h-16 rounded-full border border-dashed border-[#2563FF]/20 dark:border-white/10 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#2563FF] to-[#00D4FF] opacity-25 blur-sm" />
           </div>
           <motion.div 
             animate={{ rotate: 360 }}
             transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1 left-1 w-2.5 h-2.5 rounded-full bg-[#7C3AED]/80"
+            className="absolute top-1 left-1 w-2.5 h-2.5 rounded-full bg-[#2563FF]/80 dark:bg-[#00D4FF]/80"
           />
         </motion.div>
       </div>
@@ -626,28 +623,28 @@ function BentoCard2({ data }: { data: { title: string; text: string; icon: any }
       variants={bentoCardEntryVariants}
       whileHover={premiumSpringHover}
       transition={hoverSpringConfig}
-      className="group relative overflow-hidden rounded-[32px] border border-slate-100 bg-white/60 p-8 flex flex-col justify-between gap-6 transition-all duration-500 h-full min-h-[320px] lg:col-span-4 will-change-transform cursor-pointer"
+      className="group relative overflow-hidden rounded-[32px] border border-slate-200 dark:border-white/5 bg-white/60 dark:bg-[#0B1A2E]/60 p-8 flex flex-col justify-between gap-6 transition-all duration-500 h-full min-h-[320px] lg:col-span-4 will-change-transform cursor-pointer"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#7C3AED]/3 via-transparent to-[#A78BFA]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#2563FF]/3 via-transparent to-[#00D4FF]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       
       <div className="flex flex-col gap-4 text-left relative z-10">
-        <div className="w-10 h-10 rounded-2xl bg-[#7C3AED]/5 border border-[#7C3AED]/10 flex items-center justify-center text-[#7C3AED] group-hover:scale-105 transition-transform duration-300 shrink-0">
+        <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:scale-105 transition-transform duration-300 shrink-0">
           <CardIcon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-6" />
         </div>
-        <h3 className="font-display font-bold text-xl text-[#0B1530] tracking-tight font-sans">
+        <h3 className="font-display font-bold text-xl text-[#0F172A] dark:text-white tracking-tight font-sans">
           {data.title}
         </h3>
-        <p className="text-xs sm:text-sm text-[#4A5568] leading-relaxed font-normal font-sans">
+        <p className="text-xs sm:text-sm text-slate-605 dark:text-slate-350 leading-relaxed font-normal font-sans">
           {data.text}
         </p>
       </div>
 
       {/* Highlight Badge */}
-      <div className="relative z-10 bg-slate-50 border border-slate-150 px-5 py-3.5 rounded-2xl flex items-center justify-between shadow-inner font-sans transition-colors duration-300 group-hover:bg-slate-100/50">
+      <div className="relative z-10 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-white/5 px-5 py-3.5 rounded-2xl flex items-center justify-between shadow-inner font-sans transition-colors duration-300 group-hover:bg-slate-100/50 dark:group-hover:bg-slate-800/50">
         <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
           Basic Rate
         </span>
-        <span className="text-lg font-black text-[#7C3AED] transition-transform duration-300 group-hover:scale-105">
+        <span className="text-lg font-black text-[#2563FF] dark:text-[#00D4FF] transition-transform duration-300 group-hover:scale-105">
           ₹6,000
         </span>
       </div>
@@ -662,28 +659,28 @@ function BentoCard3({ data }: { data: { title: string; text: string; icon: any }
       variants={bentoCardEntryVariants}
       whileHover={premiumSpringHover}
       transition={hoverSpringConfig}
-      className="group relative overflow-hidden rounded-[32px] border border-slate-100 bg-white/60 p-8 flex flex-col justify-between gap-6 transition-all duration-500 h-full min-h-[320px] lg:col-span-4 will-change-transform cursor-pointer"
+      className="group relative overflow-hidden rounded-[32px] border border-slate-200 dark:border-white/5 bg-white/60 dark:bg-[#0B1A2E]/60 p-8 flex flex-col justify-between gap-6 transition-all duration-500 h-full min-h-[320px] lg:col-span-4 will-change-transform cursor-pointer"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#7C3AED]/3 via-transparent to-[#A78BFA]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#2563FF]/3 via-transparent to-[#00D4FF]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       
       <div className="flex flex-col gap-4 text-left relative z-10">
-        <div className="w-10 h-10 rounded-2xl bg-[#7C3AED]/5 border border-[#7C3AED]/10 flex items-center justify-center text-[#7C3AED] group-hover:scale-105 transition-transform duration-300 shrink-0">
+        <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:scale-105 transition-transform duration-300 shrink-0">
           <CardIcon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-6" />
         </div>
-        <h3 className="font-display font-bold text-xl text-[#0B1530] tracking-tight font-sans">
+        <h3 className="font-display font-bold text-xl text-[#0F172A] dark:text-white tracking-tight font-sans">
           {data.title}
         </h3>
-        <p className="text-xs sm:text-sm text-[#4A5568] leading-relaxed font-normal font-sans">
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-350 leading-relaxed font-normal font-sans">
           {data.text}
         </p>
       </div>
 
       {/* Enterprise Badges */}
       <div className="relative z-10 flex flex-wrap gap-2 font-sans">
-        <span className="text-[9px] font-bold text-[#7C3AED] border border-[#7C3AED]/15 bg-[#7C3AED]/5 px-3 py-1.5 rounded-full uppercase tracking-wider transition-colors duration-300 group-hover:bg-[#7C3AED]/10">
+        <span className="text-[9px] font-bold text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 px-3 py-1.5 rounded-full uppercase tracking-wider transition-colors duration-300 group-hover:bg-[#2563FF]/10 dark:group-hover:bg-[#00D4FF]/20">
           Marketplaces
         </span>
-        <span className="text-[9px] font-bold text-slate-500 border border-slate-200 bg-slate-50 px-3 py-1.5 rounded-full uppercase tracking-wider transition-colors duration-300 group-hover:bg-slate-100">
+        <span className="text-[9px] font-bold text-slate-500 border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 px-3 py-1.5 rounded-full uppercase tracking-wider transition-colors duration-300 group-hover:bg-slate-100 dark:group-hover:bg-white/10">
           Native Mobile
         </span>
       </div>
@@ -698,35 +695,35 @@ function BentoCard4({ data }: { data: { title: string; text: string; icon: any }
       variants={bentoCardEntryVariants}
       whileHover={premiumSpringHover}
       transition={hoverSpringConfig}
-      className="group relative overflow-hidden rounded-[32px] border border-slate-100 bg-white/60 p-8 flex flex-col md:flex-row justify-between gap-8 transition-all duration-500 h-full min-h-[320px] lg:col-span-8 will-change-transform cursor-pointer"
+      className="group relative overflow-hidden rounded-[32px] border border-slate-200 dark:border-white/5 bg-white/60 dark:bg-[#0B1A2E]/60 p-8 flex flex-col md:flex-row justify-between gap-8 transition-all duration-500 h-full min-h-[320px] lg:col-span-8 will-change-transform cursor-pointer"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#7C3AED]/3 via-transparent to-[#A78BFA]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#2563FF]/3 via-transparent to-[#00D4FF]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       
       <div className="flex flex-col gap-4 text-left justify-center md:w-3/5 relative z-10">
-        <div className="w-10 h-10 rounded-2xl bg-[#7C3AED]/5 border border-[#7C3AED]/10 flex items-center justify-center text-[#7C3AED] group-hover:scale-105 transition-transform duration-300 shrink-0">
+        <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:scale-105 transition-transform duration-300 shrink-0">
           <CardIcon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-6" />
         </div>
-        <h3 className="font-display font-bold text-xl text-[#0B1530] tracking-tight font-sans">
+        <h3 className="font-display font-bold text-xl text-[#0F172A] dark:text-white tracking-tight font-sans">
           {data.title}
         </h3>
-        <p className="text-xs sm:text-sm text-[#4A5568] leading-relaxed font-normal font-sans">
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-350 leading-relaxed font-normal font-sans">
           {data.text}
         </p>
       </div>
 
       {/* Right Column Consultation Widgets */}
-      <div className="md:w-2/5 flex flex-col justify-center gap-3 relative z-10 bg-slate-50/50 border border-slate-100 p-6 rounded-2xl shadow-inner font-sans min-h-[140px] md:min-h-auto transition-colors duration-300 group-hover:bg-slate-100/50">
+      <div className="md:w-2/5 flex flex-col justify-center gap-3 relative z-10 bg-slate-50/50 dark:bg-slate-900/50 border border-slate-200 dark:border-white/5 p-6 rounded-2xl shadow-inner font-sans min-h-[140px] md:min-h-auto transition-colors duration-300 group-hover:bg-slate-100/50 dark:group-hover:bg-slate-800/50">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-500 shadow-sm shrink-0 transition-transform duration-300 group-hover:scale-105">
+          <div className="w-8 h-8 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 flex items-center justify-center text-emerald-500 shadow-sm shrink-0 transition-transform duration-300 group-hover:scale-105">
             <Check className="w-4 h-4" />
           </div>
-          <span className="text-xs font-semibold text-slate-700">Dedicated Consultations</span>
+          <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">Dedicated Consultations</span>
         </div>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-500 shadow-sm shrink-0 transition-transform duration-300 group-hover:scale-105">
+          <div className="w-8 h-8 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 flex items-center justify-center text-emerald-500 shadow-sm shrink-0 transition-transform duration-300 group-hover:scale-105">
             <Check className="w-4 h-4" />
           </div>
-          <span className="text-xs font-semibold text-slate-700">Response &lt; 24 Hours</span>
+          <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">Response &lt; 24 Hours</span>
         </div>
       </div>
     </motion.div>
@@ -882,15 +879,15 @@ export default function PricingClient() {
   };
 
   return (
-    <div className="bg-[#FFFFFF] min-h-screen pt-24 pb-24 relative overflow-hidden pricing-page-container text-slate-800 font-sans">
+    <div className="bg-[#FAFBFF] dark:bg-[#071426] text-[#0F172A] dark:text-white min-h-screen pt-24 pb-24 relative overflow-hidden pricing-page-container font-sans">
       
       {/* 5 Vertical Background Grid Lines matching landing page */}
       <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.3]">
-        <div className="w-[1px] bg-slate-100 h-full" />
-        <div className="w-[1px] bg-slate-100 h-full hidden sm:block" />
-        <div className="w-[1px] bg-slate-100 h-full" />
-        <div className="w-[1px] bg-slate-100 h-full hidden sm:block" />
-        <div className="w-[1px] bg-slate-100 h-full" />
+        <div className="w-[1px] bg-slate-200 dark:bg-white/5 h-full" />
+        <div className="w-[1px] bg-slate-200 dark:bg-white/5 h-full hidden sm:block" />
+        <div className="w-[1px] bg-slate-200 dark:bg-white/5 h-full" />
+        <div className="w-[1px] bg-slate-200 dark:bg-white/5 h-full hidden sm:block" />
+        <div className="w-[1px] bg-slate-200 dark:bg-white/5 h-full" />
       </div>
 
       {/* Local Particles container overlay */}
@@ -936,7 +933,7 @@ export default function PricingClient() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full bg-[#7C3AED]/3 blur-[130px]"
+          className="absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full bg-[#2563FF]/3 dark:bg-[#00D4FF]/3 blur-[130px]"
         />
         <motion.div
           animate={{
@@ -949,7 +946,7 @@ export default function PricingClient() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute top-[40%] right-[3%] w-[500px] h-[500px] rounded-full bg-[#A78BFA]/3 blur-[140px]"
+          className="absolute top-[40%] right-[3%] w-[500px] h-[500px] rounded-full bg-[#00D4FF]/3 blur-[140px]"
         />
         <motion.div
           animate={{
@@ -968,7 +965,7 @@ export default function PricingClient() {
 
       {/* Slow Parallax Decorative Background Elements (Water Float Easing) */}
       <motion.div
-        className="absolute rounded-full border border-[#7C3AED]/8 pointer-events-none z-0"
+        className="absolute rounded-full border border-[#2563FF]/8 dark:border-white/5 pointer-events-none z-0"
         style={{ width: "260px", height: "260px", left: "4%", top: "18%" }}
         animate={{
           x: [0, 15, -15, 0],
@@ -988,7 +985,7 @@ export default function PricingClient() {
         transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
       />
       <motion.div
-        className="absolute rounded-full bg-[#7C3AED]/5 pointer-events-none z-0 shadow-sm"
+        className="absolute rounded-full bg-[#2563FF]/5 dark:bg-white/5 pointer-events-none z-0 shadow-sm"
         style={{ width: "16px", height: "16px", left: "14%", bottom: "35%" }}
         animate={{
           y: [0, 20, -20, 0],
@@ -999,7 +996,7 @@ export default function PricingClient() {
 
       {/* Hero Section */}
       <div className="relative w-full h-[360px] bg-gradient-to-br from-[#0B1530] via-[#0D183B] to-[#16295C] flex flex-col items-center justify-center text-center overflow-hidden z-10 px-6 curved-clip-hero shadow-inner">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.12)_0%,transparent_75%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,255,0.12)_0%,transparent_75%)] pointer-events-none" />
         <div className="absolute inset-0 cyber-grid opacity-[0.15] pointer-events-none" />
         
         <div className="relative z-10 flex flex-col items-center">
@@ -1028,7 +1025,7 @@ export default function PricingClient() {
             className="mt-4 text-xs md:text-sm text-sky-100/90 font-semibold tracking-widest uppercase flex items-center gap-2.5 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full backdrop-blur-md font-sans"
           >
             <span className="hover:text-white transition-colors cursor-pointer">Home</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#A78BFA] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#2563FF] dark:bg-[#00D4FF] animate-pulse" />
             <span className="text-white font-bold">Pricing</span>
           </motion.div>
         </div>
@@ -1041,42 +1038,42 @@ export default function PricingClient() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-20 font-sans">
           
           <ScrollReveal direction="up" delay={0}>
-            <div className="flex flex-col gap-4 text-left p-6 rounded-3xl border border-slate-100 bg-white/50 backdrop-blur-md shadow-sm h-full hover:border-[#7C3AED]/20 transition-all duration-300">
-              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#7C3AED] border border-[#7C3AED]/15 px-3 py-1 rounded-full bg-[#7C3AED]/5 font-sans">
+            <div className="flex flex-col gap-4 text-left p-6 rounded-3xl border border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#0B1A2E]/50 backdrop-blur-md shadow-sm h-full hover:border-[#2563FF]/20 dark:hover:border-[#00D4FF]/20 transition-all duration-300">
+              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 px-3 py-1 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 font-sans">
                 PRICING
               </div>
-              <h2 className="font-display text-2xl font-extrabold text-[#0B1530] tracking-tight font-sans">
+              <h2 className="font-display text-2xl font-extrabold text-[#0F172A] dark:text-white tracking-tight font-sans">
                 Choose Your Plan
               </h2>
-              <p className="text-xs sm:text-sm leading-relaxed text-[#4A5568] font-normal font-sans">
+              <p className="text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-350 font-normal font-sans">
                 We are here to support you with all your IT needs. Please register and choose the service you require, and our team will guide you with the best solutions and reliable services tailored to your needs.
               </p>
             </div>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.1}>
-            <div className="flex flex-col gap-4 text-left p-6 rounded-3xl border border-slate-100 bg-white/50 backdrop-blur-md shadow-sm h-full hover:border-[#7C3AED]/20 transition-all duration-300">
-              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#7C3AED] border border-[#7C3AED]/15 px-3 py-1 rounded-full bg-[#7C3AED]/5 font-sans">
+            <div className="flex flex-col gap-4 text-left p-6 rounded-3xl border border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#0B1A2E]/50 backdrop-blur-md shadow-sm h-full hover:border-[#2563FF]/20 dark:hover:border-[#00D4FF]/20 transition-all duration-300">
+              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 px-3 py-1 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 font-sans">
                 ABOUT
               </div>
-              <h2 className="font-display text-2xl font-extrabold text-[#0B1530] tracking-tight font-sans">
+              <h2 className="font-display text-2xl font-extrabold text-[#0F172A] dark:text-white tracking-tight font-sans">
                 Competitive Rates
               </h2>
-              <p className="text-xs sm:text-sm leading-relaxed text-[#4A5568] font-normal font-sans">
+              <p className="text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-350 font-normal font-sans">
                 We offer competitive rates and amazing pricing plans to help you find one that fits your needs and budget. If you are unsure which pricing plan to choose, don't worry, you can always get a refund from us.
               </p>
             </div>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.2}>
-            <div className="flex flex-col gap-4 text-left p-6 rounded-3xl border border-slate-100 bg-white/50 backdrop-blur-md shadow-sm h-full hover:border-[#7C3AED]/20 transition-all duration-300">
-              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#7C3AED] border border-[#7C3AED]/15 px-3 py-1 rounded-full bg-[#7C3AED]/5 font-sans">
+            <div className="flex flex-col gap-4 text-left p-6 rounded-3xl border border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#0B1A2E]/50 backdrop-blur-md shadow-sm h-full hover:border-[#2563FF]/20 dark:hover:border-[#00D4FF]/20 transition-all duration-300">
+              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 px-3 py-1 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 font-sans">
                 FEATURES
               </div>
-              <h2 className="font-display text-2xl font-extrabold text-[#0B1530] tracking-tight font-sans font-sans">
+              <h2 className="font-display text-2xl font-extrabold text-[#0F172A] dark:text-white tracking-tight font-sans">
                 Full Transparency
               </h2>
-              <p className="text-xs sm:text-sm leading-relaxed text-[#4A5568] font-normal font-sans">
+              <p className="text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-350 font-normal font-sans">
                 Explore structured IT capabilities, comprehensive development timelines, flexible rates, and dedicated support configurations tailored directly to your scale.
               </p>
             </div>
@@ -1085,7 +1082,7 @@ export default function PricingClient() {
         </div>
 
         {/* Ambient Backlighting Behind Cards */}
-        <div className="absolute left-1/2 top-[550px] -translate-x-1/2 -translate-y-1/2 w-[75%] h-[320px] bg-gradient-to-r from-[#7C3AED]/5 via-[#A78BFA]/10 to-[#7C3AED]/5 blur-[120px] rounded-full pointer-events-none z-0" />
+        <div className="absolute left-1/2 top-[550px] -translate-x-1/2 -translate-y-1/2 w-[75%] h-[320px] bg-gradient-to-r from-[#2563FF]/5 via-[#00D4FF]/10 to-[#2563FF]/5 blur-[120px] rounded-full pointer-events-none z-0" />
 
         {/* Premium Pricing Cards Interactive 3D Overlapping Stagger Grid */}
         <motion.div 
@@ -1111,7 +1108,7 @@ export default function PricingClient() {
           whileInView="visible"
           viewport={{ once: true, margin: "-85px" }}
           variants={sectionContainerVariants}
-          className="border-t border-[#E5E2F0] pt-24 mb-28 z-10 relative overflow-hidden"
+          className="border-t border-slate-200 dark:border-white/5 pt-24 mb-28 z-10 relative overflow-hidden"
         >
           {/* Subtle breathing backlight behind the Bento Grid */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
@@ -1125,16 +1122,16 @@ export default function PricingClient() {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[360px] bg-gradient-to-r from-[#7C3AED]/4 via-[#A78BFA]/6 to-[#7C3AED]/4 blur-[110px] rounded-full"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[360px] bg-gradient-to-r from-[#2563FF]/4 via-[#00D4FF]/6 to-[#2563FF]/4 blur-[110px] rounded-full"
             />
           </div>
 
           {/* Centered Heading focal point with Blur + Scale entry reveal */}
           <motion.div variants={bentoHeadingVariants} className="text-center mb-16 flex flex-col items-center relative z-10">
-            <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#7C3AED] border border-[#7C3AED]/15 px-3 py-1.5 rounded-full bg-[#7C3AED]/5 font-sans mb-4">
+            <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 px-3 py-1.5 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 font-sans mb-4">
               CAPABILITIES & TERMS
             </div>
-            <h2 className="font-display text-3xl sm:text-5xl font-black text-[#0B1530] tracking-tight leading-tight font-sans select-none">
+            <h2 className="font-display text-3xl sm:text-5xl font-black text-[#0F172A] dark:text-white tracking-tight leading-tight font-sans select-none">
               IT Solutions & Pricing Guide
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 max-w-xl mt-4 font-sans leading-relaxed">
@@ -1355,40 +1352,40 @@ export default function PricingClient() {
           {/* Left Column Information */}
           <div className="lg:col-span-5 flex flex-col gap-6 justify-start font-sans">
             <ScrollReveal direction="up" delay={0}>
-              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#7C3AED] border border-[#7C3AED]/15 px-3.5 py-1.5 rounded-full bg-[#7C3AED]/5 font-sans">
+              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 px-3.5 py-1.5 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 font-sans">
                 GET IN TOUCH
               </div>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.1}>
-              <h2 className="font-display text-4xl sm:text-5xl font-black text-[#0B1530] tracking-tight leading-none font-sans">
+              <h2 className="font-display text-4xl sm:text-5xl font-black text-[#0F172A] dark:text-white tracking-tight leading-none font-sans">
                 Contact Us
               </h2>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.2}>
-              <p className="text-sm md:text-base leading-relaxed text-[#4A5568] font-normal font-sans">
+              <p className="text-sm md:text-base leading-relaxed text-slate-600 dark:text-slate-350 font-normal font-sans">
                 I have worls-class, flexible support via live chat, email and hone. I guarantee that you'll be able to have any issue resolved within 24 hours.
               </p>
             </ScrollReveal>
             
             {/* Quick Contacts Visual Widget */}
             <ScrollReveal direction="up" delay={0.3} className="mt-4">
-              <div className="p-6 rounded-3xl border border-slate-100 bg-white/70 backdrop-blur-md shadow-lg shadow-slate-100 flex flex-col gap-4 font-sans">
+              <div className="p-6 rounded-3xl border border-slate-200 dark:border-white/5 bg-white/70 dark:bg-[#0B1A2E]/70 backdrop-blur-md shadow-lg shadow-slate-200/50 flex flex-col gap-4 font-sans">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-[#7C3AED]/5 border border-[#7C3AED]/10 flex items-center justify-center">
-                    <HeartHandshake className="w-4.5 h-4.5 text-[#7C3AED]" />
+                  <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center">
+                    <HeartHandshake className="w-4.5 h-4.5 text-[#2563FF] dark:text-[#00D4FF]" />
                   </div>
                   <div className="flex flex-col text-left font-sans">
                     <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-mono">Support Policy</span>
-                    <span className="text-xs sm:text-sm font-semibold text-slate-700">Dedicated Project Consultations</span>
+                    <span className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300">Dedicated Project Consultations</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-[#7C3AED]/5 border border-[#7C3AED]/10 flex items-center justify-center">
-                    <PhoneCall className="w-4.5 h-4.5 text-[#7C3AED]" />
+                  <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center">
+                    <PhoneCall className="w-4.5 h-4.5 text-[#2563FF] dark:text-[#00D4FF]" />
                   </div>
                   <div className="flex flex-col text-left font-sans">
                     <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-mono">Response Speed</span>
-                    <span className="text-xs sm:text-sm font-semibold text-slate-700">Guaranteed within 24 Hours</span>
+                    <span className="text-xs sm:text-sm font-semibold text-slate-750 dark:text-slate-300">Guaranteed within 24 Hours</span>
                   </div>
                 </div>
               </div>
@@ -1398,24 +1395,24 @@ export default function PricingClient() {
           {/* Right Column Contact Form */}
           <div className="lg:col-span-7 flex flex-col gap-6 font-sans">
             <ScrollReveal direction="up" delay={0}>
-              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#7C3AED] border border-[#7C3AED]/15 px-3.5 py-1.5 rounded-full bg-[#7C3AED]/5 font-sans">
+              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 px-3.5 py-1.5 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 font-sans">
                 CONTACT US
               </div>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.1}>
-              <h2 className="font-display text-3xl font-extrabold text-[#0B1530] tracking-tight leading-none font-sans">
+              <h2 className="font-display text-3xl font-extrabold text-[#0F172A] dark:text-white tracking-tight leading-none font-sans">
                 Drop Us a Line
               </h2>
             </ScrollReveal>
             <ScrollReveal direction="up" delay={0.15}>
-              <p className="text-xs sm:text-sm text-[#4A5568] font-normal leading-relaxed -mt-3 font-sans">
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-normal leading-relaxed -mt-3 font-sans">
                 Programs provi patient peace mind when option.
               </p>
             </ScrollReveal>
 
             {/* Inputs Form */}
             <ScrollReveal direction="up" delay={0.2}>
-              <div className="p-8 rounded-[32px] border border-slate-100/90 bg-white/80 backdrop-blur-xl shadow-2xl shadow-slate-100/50">
+              <div className="p-8 rounded-[32px] border border-slate-200 dark:border-white/5 bg-white/80 dark:bg-[#0B1A2E]/80 backdrop-blur-xl shadow-2xl shadow-slate-200/50">
                 {isSubmitted ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -1425,10 +1422,10 @@ export default function PricingClient() {
                     <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-500 shadow-md">
                       <Check className="w-8 h-8" />
                     </div>
-                    <h3 className="font-display font-bold text-2xl text-slate-800 font-sans">
+                    <h3 className="font-display font-bold text-2xl text-slate-800 dark:text-white font-sans">
                       Message Sent Successfully!
                     </h3>
-                    <p className="text-sm text-slate-500 max-w-sm font-sans">
+                    <p className="text-sm text-slate-500 dark:text-slate-455 max-w-sm font-sans">
                       Thank you for contacting us. Our technical team will reach out to you within the next 24 hours.
                     </p>
                   </motion.div>
@@ -1442,7 +1439,7 @@ export default function PricingClient() {
                           value={formData.name}
                           onChange={handleInputChange}
                           placeholder="Your Name*"
-                          className="w-full px-5 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm placeholder-slate-400 focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/10 outline-none transition-all shadow-sm font-sans"
+                          className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm font-sans"
                           required
                         />
                       </div>
@@ -1453,7 +1450,7 @@ export default function PricingClient() {
                           value={formData.email}
                           onChange={handleInputChange}
                           placeholder="Email*"
-                          className="w-full px-5 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm placeholder-slate-400 focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/10 outline-none transition-all shadow-sm font-sans"
+                          className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm font-sans"
                           required
                         />
                       </div>
@@ -1467,7 +1464,7 @@ export default function PricingClient() {
                           value={formData.phone}
                           onChange={handleInputChange}
                           placeholder="Phone"
-                          className="w-full px-5 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm placeholder-slate-400 focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/10 outline-none transition-all shadow-sm font-sans"
+                          className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm font-sans"
                         />
                       </div>
                       <div className="flex flex-col gap-1.5 font-sans">
@@ -1477,7 +1474,7 @@ export default function PricingClient() {
                           value={formData.website}
                           onChange={handleInputChange}
                           placeholder="Website*"
-                          className="w-full px-5 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm placeholder-slate-400 focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/10 outline-none transition-all shadow-sm font-sans"
+                          className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm font-sans"
                           required
                         />
                       </div>
@@ -1490,7 +1487,7 @@ export default function PricingClient() {
                         onChange={handleInputChange}
                         placeholder="Message"
                         rows={5}
-                        className="w-full px-5 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 text-sm placeholder-slate-400 focus:border-[#7C3AED] focus:ring-2 focus:ring-[#7C3AED]/10 outline-none transition-all shadow-sm resize-none font-sans"
+                        className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm resize-none font-sans"
                         required
                       />
                     </div>
@@ -1499,7 +1496,7 @@ export default function PricingClient() {
                       <Button
                         type="submit"
                         variant="primary"
-                        className="bg-gradient-to-r from-[#7C3AED] to-[#A78BFA] text-white hover:scale-[1.03] active:scale-[0.98] transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.3)] shadow-md group/btn relative overflow-hidden font-sans"
+                        className="bg-[#2563FF] hover:bg-[#2563FF]/90 text-white hover:scale-[1.03] active:scale-[0.98] transition-all hover:shadow-[0_0_20px_rgba(37,99,255,0.3)] shadow-md group/btn relative overflow-hidden font-sans"
                         icon={<ArrowRight className="w-4.5 h-4.5 transition-transform duration-300 group-hover/btn:translate-x-1" />}
                       >
                         SEND MESSAGE

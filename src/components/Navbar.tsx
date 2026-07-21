@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 import {
   Menu,
   X,
   ChevronDown,
+  ChevronRight,
   ArrowRight,
   Send,
   Code,
@@ -21,7 +23,9 @@ import {
   BookOpen,
   Briefcase,
   Sun,
-  Moon
+  Moon,
+  ShieldCheck,
+  Zap
 } from "lucide-react";
 import Button from "./Button";
 import { servicesData } from "@/data/services";
@@ -95,6 +99,18 @@ const columnVariants = {
 
 
 
+const getServiceSlug = (name: string): string => {
+  if (name === "PWA (Progressive Web Apps)") {
+    return "progressive-web-apps";
+  }
+  return name
+    .toLowerCase()
+    .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+};
+
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
@@ -104,6 +120,35 @@ export default function Navbar() {
   const [activeCategorySlug, setActiveCategorySlug] = useState<string>("web-development");
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const pathname = usePathname();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Block scroll events propagation and toggle body overflow behavior
+  useEffect(() => {
+    const element = dropdownRef.current;
+    if (servicesDropdownOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    if (!element) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      // Native propagation stop prevents smooth scroll libraries (like Lenis) from scrolling the page
+      e.stopPropagation();
+    };
+
+    element.addEventListener("wheel", handleWheel, { passive: true });
+    return () => {
+      element.removeEventListener("wheel", handleWheel);
+      document.body.style.overflow = "";
+    };
+  }, [servicesDropdownOpen]);
 
   const activeService = useMemo(() => {
     return servicesData.find(s => s.slug === activeCategorySlug) || servicesData[0];
@@ -233,131 +278,165 @@ export default function Navbar() {
                   </motion.div>
 
                   {/* Services Mega Menu */}
-                  {link.name === "Services" && (
-                    <AnimatePresence>
-                      {servicesDropdownOpen && (
-                        <motion.div
-                          variants={dropdownVariants}
-                          initial="hidden"
-                          animate="visible"
-                          exit="exit"
-                          className="fixed left-[52.5%] -translate-x-1/2 top-full mt-3 w-[92vw] lg:w-[940px] xl:w-[1020px] bg-white/95 dark:bg-[#071426]/95 border border-slate-200/80 dark:border-white/10 rounded-3xl p-6 shadow-[0_30px_70px_rgba(0,0,0,0.08)] dark:shadow-[0_40px_90px_rgba(0,0,0,0.5)] backdrop-blur-3xl z-50 grid grid-cols-12 gap-6 origin-top will-change-transform font-sans text-slate-800 dark:text-white"
-                          onMouseEnter={() => setServicesDropdownOpen(true)}
-                          onMouseLeave={() => setServicesDropdownOpen(false)}
-                        >
-                          {/* 1. Left Side: Service Categories */}
+                  {link.name === "Services" && mounted && typeof document !== "undefined" && createPortal(
+                    <div
+                      className="fixed left-1/2 -translate-x-1/2 w-[calc(100vw-48px)] max-w-[1180px] z-[9999] pointer-events-none"
+                      style={{ top: scrolled ? "104px" : "116px" }}
+                    >
+                      <AnimatePresence>
+                        {servicesDropdownOpen && (
                           <motion.div
-                            variants={columnVariants}
-                            className="col-span-12 lg:col-span-4 border-r border-slate-100 dark:border-white/5 pr-4 flex flex-col gap-1.5 max-h-[440px] overflow-y-auto"
+                            ref={dropdownRef}
+                            variants={dropdownVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            className="w-full max-h-[calc(100vh-140px)] bg-white border border-slate-200 rounded-[32px] p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.08)] dark:bg-[#071426]/95 dark:border-white/10 dark:shadow-[0_40px_90px_rgba(0,0,0,0.5)] dark:backdrop-blur-3xl grid grid-cols-12 gap-8 origin-top will-change-transform font-sans text-slate-800 dark:text-white overflow-hidden overscroll-contain pointer-events-auto"
+                            onMouseEnter={() => setServicesDropdownOpen(true)}
+                            onMouseLeave={() => setServicesDropdownOpen(false)}
                           >
-                            <span className="text-[10px] font-bold tracking-widest text-[#00D4FF] uppercase font-mono mb-2.5 px-3">
-                              Categories
-                            </span>
-                            {servicesData.map((srv) => {
-                              const IconComponent = iconMap[srv.iconName] || Code;
-                              const isCatActive = activeCategorySlug === srv.slug;
-                              return (
-                                <button
-                                  key={srv.slug}
-                                  onMouseEnter={() => setActiveCategorySlug(srv.slug)}
-                                  className={`group/btn flex items-center gap-3.5 p-2.5 rounded-xl text-left transition-all duration-200 w-full cursor-pointer border ${isCatActive
-                                    ? "bg-gradient-to-r from-[#00D4FF]/10 to-[#008FED]/5 dark:from-[#00D4FF]/15 dark:to-[#008FED]/5 border-[#008FED]/30 dark:border-[#00D4FF]/30 text-[#008FED] dark:text-[#00D4FF] shadow-[0_4px_20px_rgba(0,212,255,0.05)]"
-                                    : "bg-transparent border-transparent text-slate-500 dark:text-slate-400 hover:bg-slate-50/50 dark:hover:bg-white/5 hover:text-[#008FED] dark:hover:text-[#00D4FF] hover:translate-x-1"
+                            <style dangerouslySetInnerHTML={{__html: `
+                              .hide-scrollbar::-webkit-scrollbar {
+                                display: none !important;
+                              }
+                              .hide-scrollbar {
+                                -ms-overflow-style: none !important;
+                                scrollbar-width: none !important;
+                              }
+                            `}} />
+
+                            {/* 1. Left Side: Service Categories */}
+                            <motion.div
+                              variants={columnVariants}
+                              className="col-span-12 lg:col-span-3 border-r border-slate-200/50 dark:border-white/5 pr-4 flex flex-col gap-2 max-h-[calc(100vh-220px)] overflow-y-auto overscroll-contain hide-scrollbar"
+                            >
+                              <span className="text-[11px] font-bold tracking-wider text-[#1D74F5] dark:text-[#00D4FF] uppercase font-mono mb-2 px-3">
+                                Categories
+                              </span>
+                              {servicesData.map((srv) => {
+                                const IconComponent = iconMap[srv.iconName] || Code;
+                                const isCatActive = activeCategorySlug === srv.slug;
+                                return (
+                                  <button
+                                    key={srv.slug}
+                                    onMouseEnter={() => setActiveCategorySlug(srv.slug)}
+                                    className={`group/btn flex items-center justify-between p-3.5 rounded-r-2xl text-left transition-all duration-200 w-full cursor-pointer border-l-4 ${
+                                      isCatActive
+                                        ? "bg-[#1D74F5]/8 border-[#1D74F5] text-[#1D74F5] dark:bg-[#00D4FF]/10 dark:border-[#00D4FF] dark:text-[#00D4FF]"
+                                        : "bg-transparent border-transparent text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-[#1D74F5] dark:hover:text-[#00D4FF] hover:translate-x-1.5"
                                     }`}
-                                >
-                                  <div
-                                    className={`w-7 h-7 rounded-lg flex items-center justify-center border transition-all duration-200 ${isCatActive
-                                      ? "bg-gradient-to-tr from-[#00D4FF] to-[#008FED] text-white dark:text-[#071426] border-transparent shadow-[0_0_12px_rgba(0,212,255,0.3)]"
-                                      : "bg-[#008FED]/5 dark:bg-[#008FED]/15 border-[#008FED]/10 dark:border-[#00D4FF]/20 text-[#008FED] dark:text-[#00D4FF] group-hover/btn:scale-105"
-                                      }`}
                                   >
-                                    <IconComponent className="w-3.5 h-3.5" />
-                                  </div>
-                                  <span className="text-xs font-bold font-sans">
-                                    {srv.title}
-                                  </span>
-                                </button>
-                              );
-                            })}
-                          </motion.div>
+                                    <div className="flex items-center gap-3.5">
+                                      <div
+                                        className={`w-7.5 h-7.5 rounded-lg flex items-center justify-center border transition-all duration-200 ${
+                                          isCatActive
+                                            ? "bg-gradient-to-tr from-[#00D4FF] to-[#008FED] text-white dark:text-[#071426] border-transparent shadow-[0_0_12px_rgba(0,212,255,0.3)]"
+                                            : "bg-[#008FED]/5 dark:bg-[#008FED]/15 border-[#008FED]/10 dark:border-[#00D4FF]/20 text-[#008FED] dark:text-[#00D4FF] group-hover/btn:scale-105"
+                                        }`}
+                                      >
+                                        <IconComponent className="w-3.5 h-3.5" />
+                                      </div>
+                                      <span className="text-[13.5px] font-bold font-sans tracking-wide">
+                                        {srv.title}
+                                      </span>
+                                    </div>
+                                    <ChevronRight className={`w-4 h-4 transition-transform duration-200 ${
+                                      isCatActive 
+                                        ? "text-[#1D74F5] dark:text-[#00D4FF] translate-x-0.5" 
+                                        : "text-slate-300 dark:text-slate-600 group-hover/btn:translate-x-0.5"
+                                    }`} />
+                                  </button>
+                                );
+                              })}
+                            </motion.div>
 
-                          {/* 2. Center: Selected Service Preview */}
-                          <motion.div
-                            variants={columnVariants}
-                            className="col-span-12 lg:col-span-4 bg-slate-50/80 dark:bg-[#0B1A2E]/50 border border-slate-100 dark:border-white/5 rounded-2xl p-5 flex flex-col justify-between gap-5 relative overflow-hidden group/preview"
-                          >
-                            <div className="absolute inset-0 bg-gradient-to-tr from-[#008FED]/5 dark:from-[#00D4FF]/8 to-transparent opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-                            {/* Top */}
-                            <div className="flex flex-col gap-3 relative z-10 text-left">
-                              <span className="text-[9px] font-bold tracking-widest text-[#00D4FF] uppercase font-mono">
-                                Overview
-                              </span>
-                              <h3 className="text-base font-bold text-[#1E1A39] dark:text-white group-hover/preview:text-[#008FED] dark:group-hover/preview:text-[#00D4FF] transition-colors duration-300">
-                                {activeService.title}
-                              </h3>
-                              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
-                                {activeService.longDescription.slice(0, 160)}...
-                              </p>
-                            </div>
-
-                            {/* Action Button */}
-                            <div className="relative z-10 text-left">
-                              <Link
-                                href={`/services/${activeService.slug}`}
-                                onClick={() => setServicesDropdownOpen(false)}
-                                className="inline-flex items-center gap-2 px-4.5 py-2 bg-gradient-to-r from-[#00D4FF] to-[#008FED] text-[#071426] font-bold rounded-full text-xs hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all duration-300 group/btn cursor-pointer"
-                              >
-                                <span>Explore Service</span>
-                                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                              </Link>
-                            </div>
-                          </motion.div>
-
-                          {/* 3. Right Side: Sub-Services & Features */}
-                          <motion.div
-                            variants={columnVariants}
-                            className="col-span-12 lg:col-span-4 flex flex-col gap-5 max-h-[440px] overflow-y-auto pr-2"
-                          >
-                            <div className="flex flex-col gap-4 text-left">
-                              {activeService.subServiceGroups.slice(0, 2).map((group, groupIdx) => (
-                                <div key={groupIdx} className="flex flex-col gap-2">
-                                  <span className="text-[9px] font-bold tracking-widest text-[#008FED]/85 dark:text-[#00D4FF]/85 uppercase font-mono">
-                                    {group.name}
-                                  </span>
-                                  <ul className="flex flex-col gap-2">
-                                    {group.items.slice(0, 4).map((item, itemIdx) => (
-                                      <li key={itemIdx} className="text-[11px] text-slate-500 dark:text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-all duration-200 cursor-pointer font-normal flex items-center gap-2 group/item">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-[#008FED]/40 dark:bg-[#00D4FF]/40 group-hover/item:bg-[#00D4FF] transition-colors" />
-                                        {item}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              ))}
-                            </div>
-
-                            {/* Tech Stack Pills */}
-                            <div className="border-t border-slate-100 dark:border-white/5 pt-3 flex flex-col gap-2 text-left">
-                              <span className="text-[9px] font-bold tracking-widest text-slate-500 dark:text-slate-400 uppercase font-mono">
-                                Technologies We Use
-                              </span>
-                              <div className="flex flex-wrap gap-1.5">
-                                {activeService.technologies.slice(0, 5).map((tech, techIdx) => (
-                                  <span
-                                    key={techIdx}
-                                    className="text-[9px] font-bold px-2.5 py-0.5 rounded-full border border-slate-200/50 dark:border-white/10 bg-slate-50 dark:bg-white/5 hover:bg-[#00D4FF]/10 hover:border-[#00D4FF]/30 hover:text-[#00D4FF] hover:scale-105 transition-all duration-300 tracking-wide cursor-default select-none shadow-sm"
-                                  >
-                                    {tech}
-                                  </span>
-                                ))}
+                            {/* 2. Center: Selected Service Preview */}
+                            <motion.div
+                              variants={columnVariants}
+                              className="col-span-12 lg:col-span-4 flex flex-col justify-start gap-5 text-left max-h-[calc(100vh-220px)] overflow-y-auto overscroll-contain hide-scrollbar"
+                            >
+                              <div className="flex flex-col gap-4">
+                                <span className="text-[11px] font-bold tracking-wider text-[#1D74F5] dark:text-[#00D4FF] uppercase font-mono">
+                                  Overview
+                                </span>
+                                <h2 className="text-3xl font-extrabold text-[#0F172A] dark:text-white tracking-tight font-display mb-1">
+                                  {activeService.title}
+                                </h2>
+                                <div className="w-12 h-[3.5px] bg-[#1D74F5] dark:bg-[#00D4FF] rounded-full mb-2" />
+                                <p className="text-[13px] text-slate-600 dark:text-slate-455 leading-relaxed font-normal font-sans">
+                                  {activeService.longDescription}
+                                </p>
                               </div>
-                            </div>
-                          </motion.div>
 
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                              {/* Action Button */}
+                              <div className="text-left mt-1">
+                                <Link
+                                  href={`/services/${activeService.slug}`}
+                                  onClick={() => setServicesDropdownOpen(false)}
+                                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1D74F5] text-white hover:bg-[#1D74F5]/90 font-bold rounded-xl text-xs shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group/btn cursor-pointer font-sans dark:bg-gradient-to-r dark:from-[#00D4FF] dark:to-[#008FED] dark:text-[#071426] dark:hover:shadow-[0_0_15px_rgba(0,212,255,0.4)]"
+                                >
+                                  <span>Explore {activeService.title}</span>
+                                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                                </Link>
+                              </div>
+                            </motion.div>
+
+                            {/* 3. Right Side: Sub-Services & Technologies */}
+                            <motion.div
+                              variants={columnVariants}
+                              className="col-span-12 lg:col-span-5 flex flex-col justify-between gap-6 border-l border-slate-200/50 dark:border-white/5 pl-6 text-left max-h-[calc(100vh-220px)] overflow-y-auto overscroll-contain hide-scrollbar"
+                            >
+                              <div className="flex flex-col gap-3">
+                                <span className="text-[11px] font-bold tracking-wider text-[#1D74F5] dark:text-[#00D4FF] uppercase font-mono">
+                                  Services under {activeService.title}
+                                </span>
+                                
+                                <div className="flex flex-col gap-0 border-t border-slate-100 dark:border-white/5">
+                                  {activeService.subServiceGroups.slice(0, 2).flatMap(g => g.items).slice(0, 8).map((item, itemIdx) => {
+                                    const slug = getServiceSlug(item);
+                                    return (
+                                      <Link
+                                        key={itemIdx}
+                                        href={`/services/${activeService.slug}`}
+                                        onClick={() => setServicesDropdownOpen(false)}
+                                        className="group/item flex items-center justify-between py-3 px-2 border-b border-slate-100 dark:border-white/5 hover:bg-slate-50/50 dark:hover:bg-white/5 transition-all duration-150 cursor-pointer font-sans"
+                                      >
+                                        <div className="flex items-center gap-3">
+                                          <div className="w-1.5 h-1.5 rounded-full bg-[#1D74F5] dark:bg-[#00D4FF] group-hover/item:scale-125 transition-transform shrink-0" />
+                                          <span className="text-[13.5px] font-semibold text-slate-800 dark:text-slate-200 group-hover/item:text-[#1D74F5] dark:group-hover/item:text-[#00D4FF] transition-colors">
+                                            {item}
+                                          </span>
+                                        </div>
+                                        <ChevronRight className="w-4 h-4 text-slate-400 opacity-60 group-hover/item:translate-x-0.5 group-hover/item:opacity-100 transition-all shrink-0" />
+                                      </Link>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+
+                              {/* Tech Stack section at bottom */}
+                              <div className="border-t border-slate-200/60 dark:border-white/5 pt-4 mt-2 flex flex-col gap-2.5">
+                                <span className="text-[11px] font-bold tracking-wider text-slate-400 dark:text-slate-500 uppercase font-mono">
+                                  Technologies We Leverage
+                                </span>
+                                <div className="flex flex-wrap gap-2">
+                                  {activeService.technologies.slice(0, 5).map((tech, techIdx) => (
+                                    <span
+                                      key={techIdx}
+                                      className="text-[11px] font-semibold px-3 py-1.5 rounded-xl border border-slate-200/60 dark:border-white/10 bg-slate-50 dark:bg-white/5 hover:bg-[#1D74F5]/10 hover:border-[#1D74F5]/30 hover:text-[#1D74F5] dark:hover:bg-[#00D4FF]/10 dark:hover:border-[#00D4FF]/30 dark:hover:text-[#00D4FF] hover:scale-105 transition-all duration-300 tracking-wide cursor-default select-none shadow-sm font-sans text-slate-700 dark:text-slate-300"
+                                    >
+                                      {tech}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            </motion.div>
+
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>,
+                    document.body
                   )}
                 </div>
               );

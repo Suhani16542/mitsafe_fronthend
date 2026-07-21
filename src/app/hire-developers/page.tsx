@@ -140,21 +140,21 @@ export default function HireDevelopersPage() {
     <div className="cosmic-hire-wrapper min-h-screen relative overflow-hidden bg-[#FAFBFF] dark:bg-[#071426] transition-colors duration-300">
       
       {/* Decorative background grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#008FED/5_1px,transparent_1px),linear-gradient(to_bottom,#008FED/5_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#2563FF/5_1px,transparent_1px),linear-gradient(to_bottom,#2563FF/5_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 max-w-7xl mx-auto px-6 lg:px-8 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <div className="lg:col-span-6 flex flex-col gap-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#008FED]/5 dark:bg-[#00D4FF]/10 border border-[#008FED]/15 dark:border-[#00D4FF]/25 text-[10px] font-bold text-[#008FED] dark:text-[#00D4FF] uppercase tracking-widest font-mono w-fit">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/15 dark:border-[#00D4FF]/25 text-[10px] font-bold text-[#2563FF] dark:text-[#00D4FF] uppercase tracking-widest font-mono w-fit">
               <UserCheck className="w-3.5 h-3.5" />
               <span>Scale Your Engineering Capacity</span>
             </div>
             
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#1E1A39] dark:text-white tracking-tight leading-tight">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#0F172A] dark:text-white tracking-tight leading-tight">
               Hire Elite <br />
-              <span className="bg-gradient-to-r from-[#008FED] to-[#00D4FF] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#2563FF] to-[#00D4FF] bg-clip-text text-transparent">
                 Software Engineers
               </span>
             </h1>
@@ -174,7 +174,7 @@ export default function HireDevelopersPage() {
           </div>
 
           <div className="lg:col-span-6 flex justify-center items-center h-[280px] sm:h-[350px] lg:h-[450px]">
-            <div className="w-full h-full max-w-[550px] bg-white/40 dark:bg-white/5 rounded-3xl border border-[#008FED]/10 dark:border-white/10 p-4 shadow-lg backdrop-blur-sm relative overflow-hidden">
+            <div className="w-full h-full max-w-[550px] bg-white/40 dark:bg-white/5 rounded-3xl border border-slate-200 dark:border-white/10 p-4 shadow-lg backdrop-blur-sm relative overflow-hidden">
               <LottieAnimation 
                 src="/animations/development.json" 
                 className="w-full h-full object-contain"
@@ -186,25 +186,25 @@ export default function HireDevelopersPage() {
       </section>
 
       {/* Why Choose Our Developers */}
-      <section className="py-20 bg-slate-50/50 dark:bg-[#0B1A2E]/25 border-y border-[#008FED]/10 dark:border-white/10 relative z-10">
+      <section className="py-20 bg-slate-50/50 dark:bg-[#0B1A2E]/25 border-y border-slate-200 dark:border-white/10 relative z-10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           
           <div className="text-center mb-16 flex flex-col gap-3">
-            <span className="text-[10px] font-bold tracking-widest text-[#008FED] dark:text-[#00D4FF] uppercase font-mono">
+            <span className="text-[10px] font-bold tracking-widest text-[#2563FF] dark:text-[#00D4FF] uppercase font-mono">
               ENGINEERING STANDARDS
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E1A39] dark:text-white">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0F172A] dark:text-white">
               Why Teams Trust Our Developers
             </h2>
-            <div className="w-12 h-1 bg-[#008FED] mx-auto rounded-full mt-2" />
+            <div className="w-12 h-1 bg-[#2563FF] mx-auto rounded-full mt-2" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-[#008FED]/15 dark:border-white/10 rounded-3xl p-8 flex flex-col gap-4 text-left shadow-sm backdrop-blur-sm">
-              <div className="w-10 h-10 rounded-2xl bg-[#008FED]/10 dark:bg-[#00D4FF]/20 flex items-center justify-center text-[#008FED] dark:text-[#00D4FF]">
+            <div className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-3xl p-8 flex flex-col gap-4 text-left shadow-sm backdrop-blur-sm">
+              <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/10 dark:bg-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF]">
                 <Clock className="w-5 h-5" />
               </div>
-              <h3 className="font-display text-lg font-bold text-[#1E1A39] dark:text-white">
+              <h3 className="font-display text-lg font-bold text-[#0F172A] dark:text-white">
                 Zero-Time Lag Integration
               </h3>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
@@ -212,11 +212,11 @@ export default function HireDevelopersPage() {
               </p>
             </div>
 
-            <div className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-[#008FED]/15 dark:border-white/10 rounded-3xl p-8 flex flex-col gap-4 text-left shadow-sm backdrop-blur-sm">
-              <div className="w-10 h-10 rounded-2xl bg-[#008FED]/10 dark:bg-[#00D4FF]/20 flex items-center justify-center text-[#008FED] dark:text-[#00D4FF]">
+            <div className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-3xl p-8 flex flex-col gap-4 text-left shadow-sm backdrop-blur-sm">
+              <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/10 dark:bg-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF]">
                 <ShieldCheck className="w-5 h-5" />
               </div>
-              <h3 className="font-display text-lg font-bold text-[#1E1A39] dark:text-white">
+              <h3 className="font-display text-lg font-bold text-[#0F172A] dark:text-white">
                 100% IP & Source Control
               </h3>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
@@ -224,11 +224,11 @@ export default function HireDevelopersPage() {
               </p>
             </div>
 
-            <div className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-[#008FED]/15 dark:border-white/10 rounded-3xl p-8 flex flex-col gap-4 text-left shadow-sm backdrop-blur-sm">
-              <div className="w-10 h-10 rounded-2xl bg-[#008FED]/10 dark:bg-[#00D4FF]/20 flex items-center justify-center text-[#008FED] dark:text-[#00D4FF]">
+            <div className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-3xl p-8 flex flex-col gap-4 text-left shadow-sm backdrop-blur-sm">
+              <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/10 dark:bg-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF]">
                 <Calendar className="w-5 h-5" />
               </div>
-              <h3 className="font-display text-lg font-bold text-[#1E1A39] dark:text-white">
+              <h3 className="font-display text-lg font-bold text-[#0F172A] dark:text-white">
                 14-Day Zero-Risk Trial
               </h3>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
@@ -244,13 +244,13 @@ export default function HireDevelopersPage() {
       <section id="categories" className="py-20 max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
         <div className="text-center mb-16 flex flex-col gap-3">
-          <span className="text-[10px] font-bold tracking-widest text-[#008FED] dark:text-[#00D4FF] uppercase font-mono">
+          <span className="text-[10px] font-bold tracking-widest text-[#2563FF] dark:text-[#00D4FF] uppercase font-mono">
             TALENT SPECTRUM
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E1A39] dark:text-white">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0F172A] dark:text-white">
             Hire by Technical Role
           </h2>
-          <div className="w-12 h-1 bg-[#008FED] mx-auto rounded-full mt-2" />
+          <div className="w-12 h-1 bg-[#2563FF] mx-auto rounded-full mt-2" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -259,13 +259,13 @@ export default function HireDevelopersPage() {
             return (
               <div
                 key={idx}
-                className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-[#008FED]/15 dark:border-white/10 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1.5 backdrop-blur-md flex flex-col justify-between text-left group"
+                className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1.5 backdrop-blur-md flex flex-col justify-between text-left group"
               >
                 <div className="flex flex-col gap-4">
-                  <div className="w-10 h-10 rounded-2xl bg-[#008FED]/10 dark:bg-[#00D4FF]/20 flex items-center justify-center text-[#008FED] dark:text-[#00D4FF] group-hover:bg-[#008FED] group-hover:text-white transition-colors duration-300">
+                  <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/10 dark:bg-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:bg-[#2563FF] group-hover:text-white transition-colors duration-300">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="font-display text-lg font-bold text-[#1E1A39] dark:text-white">
+                  <h3 className="font-display text-lg font-bold text-[#0F172A] dark:text-white">
                     {dev.role}
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
@@ -277,7 +277,7 @@ export default function HireDevelopersPage() {
                   {dev.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="text-[9px] font-bold px-2 py-0.5 rounded border border-[#008FED]/15 dark:border-white/10 bg-[#008FED]/5 dark:bg-white/5 text-slate-650 dark:text-slate-350"
+                      className="text-[9px] font-bold px-2 py-0.5 rounded border border-[#2563FF]/15 dark:border-white/10 bg-[#2563FF]/5 dark:bg-white/5 text-slate-650 dark:text-slate-350"
                     >
                       {skill}
                     </span>
@@ -290,26 +290,26 @@ export default function HireDevelopersPage() {
       </section>
 
       {/* Hiring Process Steps (Timeline) */}
-      <section className="py-20 bg-slate-50/50 dark:bg-[#0B1A2E]/25 border-y border-[#008FED]/10 dark:border-white/10 relative z-10">
+      <section className="py-20 bg-slate-50/50 dark:bg-[#0B1A2E]/25 border-y border-slate-200 dark:border-white/10 relative z-10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           
           <div className="text-center mb-16 flex flex-col gap-3">
-            <span className="text-[10px] font-bold tracking-widest text-[#008FED] dark:text-[#00D4FF] uppercase font-mono">
+            <span className="text-[10px] font-bold tracking-widest text-[#2563FF] dark:text-[#00D4FF] uppercase font-mono">
               WORKFLOW TIMELINE
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E1A39] dark:text-white">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0F172A] dark:text-white">
               Hiring Process in 4 Steps
             </h2>
-            <div className="w-12 h-1 bg-[#008FED] mx-auto rounded-full mt-2" />
+            <div className="w-12 h-1 bg-[#2563FF] mx-auto rounded-full mt-2" />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
             {hiringSteps.map((step, idx) => (
-              <div key={idx} className="flex flex-col gap-4 text-left bg-white/70 dark:bg-[#0B1A2E]/70 border border-[#008FED]/15 dark:border-white/10 rounded-3xl p-6 relative z-10 backdrop-blur-md">
-                <span className="font-mono text-3xl font-black text-[#008FED]/25 dark:text-[#00D4FF]/25">
+              <div key={idx} className="flex flex-col gap-4 text-left bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-3xl p-6 relative z-10 backdrop-blur-md">
+                <span className="font-mono text-3xl font-black text-[#2563FF]/25 dark:text-[#00D4FF]/25">
                   {step.step}
                 </span>
-                <h3 className="font-display text-base font-bold text-[#1E1A39] dark:text-white mt-1">
+                <h3 className="font-display text-base font-bold text-[#0F172A] dark:text-white mt-1">
                   {step.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
@@ -326,29 +326,29 @@ export default function HireDevelopersPage() {
       <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
         <div className="text-center mb-16 flex flex-col gap-3">
-          <span className="text-[10px] font-bold tracking-widest text-[#008FED] dark:text-[#00D4FF] uppercase font-mono">
+          <span className="text-[10px] font-bold tracking-widest text-[#2563FF] dark:text-[#00D4FF] uppercase font-mono">
             ENGAGEMENT MODELS
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E1A39] dark:text-white">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0F172A] dark:text-white">
             Flexible Hiring Models
           </h2>
-          <div className="w-12 h-1 bg-[#008FED] mx-auto rounded-full mt-2" />
+          <div className="w-12 h-1 bg-[#2563FF] mx-auto rounded-full mt-2" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {engagementModels.map((model, idx) => (
             <div
               key={idx}
-              className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-[#008FED]/15 dark:border-white/10 rounded-[32px] p-8 shadow-sm backdrop-blur-md flex flex-col justify-between text-left relative overflow-hidden"
+              className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-[32px] p-8 shadow-sm backdrop-blur-md flex flex-col justify-between text-left relative overflow-hidden"
             >
               <div className="absolute top-4 right-4">
-                <span className="text-[8px] font-bold font-mono tracking-widest uppercase bg-[#008FED]/10 dark:bg-[#00D4FF]/20 border border-[#008FED]/20 text-[#008FED] dark:text-[#00D4FF] px-2.5 py-1 rounded">
+                <span className="text-[8px] font-bold font-mono tracking-widest uppercase bg-[#2563FF]/10 dark:bg-[#00D4FF]/20 border border-[#2563FF]/20 text-[#2563FF] dark:text-[#00D4FF] px-2.5 py-1 rounded">
                   {model.badge}
                 </span>
               </div>
 
               <div className="flex flex-col gap-5">
-                <h3 className="font-display text-xl font-bold text-[#1E1A39] dark:text-white pr-10">
+                <h3 className="font-display text-xl font-bold text-[#0F172A] dark:text-white pr-10">
                   {model.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
@@ -358,7 +358,7 @@ export default function HireDevelopersPage() {
                 <ul className="flex flex-col gap-2.5 mt-2">
                   {model.benefits.map((benefit, bIdx) => (
                     <li key={bIdx} className="text-xs text-slate-650 dark:text-slate-350 flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#008FED] dark:text-[#00D4FF] shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-[#2563FF] dark:text-[#00D4FF] shrink-0" />
                       <span>{benefit}</span>
                     </li>
                   ))}
@@ -376,17 +376,17 @@ export default function HireDevelopersPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-slate-50/50 dark:bg-[#0B1A2E]/25 border-y border-[#008FED]/10 dark:border-white/10 relative z-10">
+      <section className="py-20 bg-slate-50/50 dark:bg-[#0B1A2E]/25 border-y border-slate-200 dark:border-white/10 relative z-10">
         <div className="max-w-4xl mx-auto px-6">
           
           <div className="text-center mb-16 flex flex-col gap-3">
-            <span className="text-[10px] font-bold tracking-widest text-[#008FED] dark:text-[#00D4FF] uppercase font-mono">
+            <span className="text-[10px] font-bold tracking-widest text-[#2563FF] dark:text-[#00D4FF] uppercase font-mono">
               COMMON QUESTIONS
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#1E1A39] dark:text-white">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0F172A] dark:text-white">
               Frequently Asked Questions
             </h2>
-            <div className="w-12 h-1 bg-[#008FED] mx-auto rounded-full mt-2" />
+            <div className="w-12 h-1 bg-[#2563FF] mx-auto rounded-full mt-2" />
           </div>
 
           <div className="flex flex-col gap-4">
@@ -395,11 +395,11 @@ export default function HireDevelopersPage() {
               return (
                 <div
                   key={idx}
-                  className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-[#008FED]/15 dark:border-white/10 rounded-2xl overflow-hidden transition-all duration-300"
+                  className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-2xl overflow-hidden transition-all duration-300"
                 >
                   <button
                     onClick={() => setOpenFaq(isOpen ? null : idx)}
-                    className="w-full px-6 py-4.5 flex items-center justify-between text-left font-display font-bold text-sm sm:text-base text-[#1E1A39] dark:text-white cursor-pointer select-none"
+                    className="w-full px-6 py-4.5 flex items-center justify-between text-left font-display font-bold text-sm sm:text-base text-[#0F172A] dark:text-white cursor-pointer select-none"
                   >
                     <span>{faq.q}</span>
                     <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
@@ -430,13 +430,13 @@ export default function HireDevelopersPage() {
 
       {/* Form & CTA section */}
       <section id="hire-form" className="py-20 max-w-5xl mx-auto px-6 relative z-10">
-        <div className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-[#008FED]/15 dark:border-white/10 rounded-[32px] p-8 sm:p-12 shadow-lg backdrop-blur-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center text-left">
+        <div className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-[32px] p-8 sm:p-12 shadow-lg backdrop-blur-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center text-left">
           
           <div className="md:col-span-5 flex flex-col gap-4">
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#008FED] dark:text-[#00D4FF] uppercase">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#2563FF] dark:text-[#00D4FF] uppercase">
               WORK WITH US
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#1E1A39] dark:text-white leading-tight">
+            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0F172A] dark:text-white leading-tight">
               Request Your Sprints Team
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
@@ -444,11 +444,11 @@ export default function HireDevelopersPage() {
             </p>
             <div className="flex flex-col gap-2.5 mt-2">
               <div className="flex items-center gap-2.5 text-xs text-slate-650 dark:text-slate-350">
-                <CheckCircle className="w-4 h-4 text-[#008FED]" />
+                <CheckCircle className="w-4 h-4 text-[#2563FF]" />
                 <span>NDA Protected Setup</span>
               </div>
               <div className="flex items-center gap-2.5 text-xs text-slate-650 dark:text-slate-350">
-                <CheckCircle className="w-4 h-4 text-[#008FED]" />
+                <CheckCircle className="w-4 h-4 text-[#2563FF]" />
                 <span>Vetted Tech Talents</span>
               </div>
             </div>
@@ -461,20 +461,20 @@ export default function HireDevelopersPage() {
                   type="text"
                   placeholder="Your Name"
                   required
-                  className="bg-[#008FED]/5 dark:bg-white/5 border border-[#008FED]/15 dark:border-white/10 focus:border-[#008FED] outline-none text-xs sm:text-sm text-slate-800 dark:text-white rounded-xl px-4 py-3 w-full transition-colors"
+                  className="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none text-xs sm:text-sm text-slate-800 dark:text-white rounded-xl px-4 py-3 w-full transition-colors"
                 />
                 <input
                   type="email"
                   placeholder="Your Email"
                   required
-                  className="bg-[#008FED]/5 dark:bg-white/5 border border-[#008FED]/15 dark:border-white/10 focus:border-[#008FED] outline-none text-xs sm:text-sm text-slate-800 dark:text-white rounded-xl px-4 py-3 w-full transition-colors"
+                  className="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none text-xs sm:text-sm text-slate-800 dark:text-white rounded-xl px-4 py-3 w-full transition-colors"
                 />
               </div>
               
               <select
                 required
                 defaultValue=""
-                className="bg-[#008FED]/5 dark:bg-white/5 border border-[#008FED]/15 dark:border-white/10 focus:border-[#008FED] outline-none text-xs sm:text-sm text-slate-600 dark:text-slate-300 rounded-xl px-4 py-3 w-full transition-colors"
+                className="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none text-xs sm:text-sm text-slate-600 dark:text-slate-305 rounded-xl px-4 py-3 w-full transition-colors"
               >
                 <option value="" disabled>Role Needed</option>
                 <option value="frontend">Frontend Developer</option>
@@ -489,7 +489,7 @@ export default function HireDevelopersPage() {
                 placeholder="Briefly describe your product stack or developer requirements..."
                 rows={4}
                 required
-                className="bg-[#008FED]/5 dark:bg-white/5 border border-[#008FED]/15 dark:border-white/10 focus:border-[#008FED] outline-none text-xs sm:text-sm text-slate-800 dark:text-white rounded-xl px-4 py-3 w-full transition-colors resize-none"
+                className="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none text-xs sm:text-sm text-slate-800 dark:text-white rounded-xl px-4 py-3 w-full transition-colors resize-none"
               />
 
               <Button type="submit" variant="primary" className="w-full text-center">

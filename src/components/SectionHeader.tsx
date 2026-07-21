@@ -32,9 +32,9 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-4 inline-flex items-center gap-2 rounded-full border border-[rgba(0,212,255,0.2)] bg-[#00D4FF]/10 px-4 py-1.5 text-xs md:text-sm font-semibold tracking-wider text-[#00D4FF] uppercase"
+          className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-[rgba(0,212,255,0.2)] bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 px-4 py-1.5 text-xs md:text-sm font-semibold tracking-wider text-[#2563FF] dark:text-[#00D4FF] uppercase"
         >
-          <span className="h-2 w-2 rounded-full bg-[#00D4FF] animate-pulse" />
+          <span className="h-2 w-2 rounded-full bg-[#2563FF] dark:bg-[#00D4FF] animate-pulse" />
           {badge}
         </motion.div>
       )}
@@ -44,17 +44,17 @@ export default function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
+        className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#0F172A] dark:text-white leading-tight"
       >
         {title.includes(" ") ? (
           <>
             {title.substring(0, title.lastIndexOf(" "))}{" "}
-            <span className="text-gradient-cyan-blue">
+            <span className="bg-gradient-to-r from-[#2563FF] to-[#00D4FF] dark:from-[#00BFFF] dark:to-[#6C63FF] bg-clip-text text-transparent">
               {title.substring(title.lastIndexOf(" ") + 1)}
             </span>
           </>
         ) : (
-          <span className="text-gradient-cyan-blue">{title}</span>
+          <span className="bg-gradient-to-r from-[#2563FF] to-[#00D4FF] dark:from-[#00BFFF] dark:to-[#6C63FF] bg-clip-text text-transparent">{title}</span>
         )}
       </motion.h2>
 
@@ -64,7 +64,7 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-4 text-base md:text-lg text-slate-600 max-w-2xl leading-relaxed"
+          className="mt-4 text-base md:text-lg text-slate-600 dark:text-slate-350 max-w-2xl leading-relaxed"
         >
           {subtitle}
         </motion.p>
