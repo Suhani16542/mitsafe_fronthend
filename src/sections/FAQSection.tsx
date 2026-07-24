@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { HelpCircle, ChevronRight, HelpCircle as HelpIcon, Sparkles } from "lucide-react";
+import { ChevronRight, HelpCircle as HelpIcon, Sparkles } from "lucide-react";
 
 const faqData = [
   {
@@ -76,24 +76,12 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="bg-[#F3F0FA] text-slate-800 py-12 md:py-16 relative overflow-hidden border-t border-purple-50 font-sans">
-      
-      {/* Background Cyber Grid Lines */}
-      <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.25]">
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className="w-[1px] h-full bg-slate-200" />
-        ))}
-      </div>
-
-      {/* Modern gradient glows */}
-      <div className="absolute top-[25%] left-[5%] w-[450px] h-[450px] rounded-full bg-gradient-to-tr from-[#00D4FF]/3 to-transparent blur-[130px] pointer-events-none z-0" />
-      <div className="absolute bottom-[20%] right-[5%] w-[500px] h-[500px] rounded-full bg-gradient-to-bl from-[#008FED]/2.5 to-transparent blur-[140px] pointer-events-none z-0" />
-
+    <section id="faq" className="bg-white text-slate-800 py-16 md:py-20 relative overflow-hidden border-t border-slate-100 font-sans">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column (Sticky info - Span 5) */}
-          <div className="lg:col-span-5 lg:sticky lg:top-32 flex flex-col items-start">
+          <div className="lg:col-span-5 lg:sticky lg:top-6 flex flex-col items-start">
             
             {/* Badge */}
             <motion.div
@@ -101,9 +89,9 @@ export default function FAQSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/10 px-5 py-2 text-xs font-bold uppercase tracking-widest text-[#00D4FF] font-display shadow-sm"
+              className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-600 font-display shadow-sm"
             >
-              <Sparkles className="w-3.5 h-3.5" />
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
               <span>FAQ DOCUMENTATION</span>
             </motion.div>
 
@@ -114,10 +102,10 @@ export default function FAQSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               style={{ fontFamily: "'Clash Display', sans-serif" }}
-              className="text-4xl sm:text-5xl font-bold leading-tight tracking-[-0.03em] mb-6 text-[#1E1A39]"
+              className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-[-0.03em] mb-6 text-black"
             >
               Got Questions? <br />
-              We&apos;ve Got Answers.
+              We&apos;ve Got <span className="text-[#2563FF] inline-block" style={{ color: "#2563FF", WebkitTextFillColor: "#2563FF", background: "none" }}>Answers.</span>
             </motion.h2>
 
             {/* Paragraph description */}
@@ -126,43 +114,42 @@ export default function FAQSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-slate-500 font-normal text-base md:text-lg max-w-lg mb-12 leading-relaxed"
+              className="text-slate-500 font-normal text-base md:text-lg max-w-lg mb-8 leading-relaxed"
             >
               Find answers to commonly asked questions about our process, design systems, support, and technical services.
             </motion.p>
 
-            {/* Dynamic visual box inside sidepanel */}
-            <div className="w-full max-w-[340px] rounded-3xl bg-[#0B1A2E]/70 border border-[rgba(0,212,255,0.15)] p-6 flex items-center gap-4.5 backdrop-blur-xl relative overflow-hidden group shadow-sm">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#00D4FF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#00D4FF] to-[#008FED] flex items-center justify-center shadow-lg shadow-[#00D4FF]/20">
-                <HelpIcon className="w-6 h-6 text-[#071426] stroke-[2px]" />
+            {/* Visual box inside sidepanel */}
+            <div className="w-full max-w-[340px] rounded-3xl bg-white border border-slate-200 p-6 flex items-center gap-4.5 relative overflow-hidden group shadow-sm hover:border-[#2563FF] transition-colors duration-300">
+              <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center shadow-sm">
+                <HelpIcon className="w-6 h-6 text-[#2563FF] stroke-[2px]" />
               </div>
               <div className="flex flex-col gap-0.5 z-10">
-                <span className="text-sm font-bold text-white font-display">Need Custom Support?</span>
-                <a href="/contact" className="text-xs text-[#00D4FF] font-semibold hover:text-[#00D4FF] hover:underline">Reach out to our engineers &rarr;</a>
+                <span className="text-sm font-bold text-slate-900 font-display">Need Custom Support?</span>
+                <a href="/contact" className="text-xs text-[#2563FF] font-semibold hover:underline">Reach out to our engineers &rarr;</a>
               </div>
             </div>
           </div>
 
-          {/* Right Column (Borderless interactive Accordion Cards - Span 7) */}
-          <div className="lg:col-span-7 flex flex-col w-full gap-6">
+          {/* Right Column (Accordion Cards - Span 7) */}
+          <div className="lg:col-span-7 flex flex-col w-full gap-5">
             {faqData.map((item, idx) => {
               const isOpen = openIndex === idx;
               return (
                 <div
                   key={idx}
                   onClick={() => toggleFAQ(idx)}
-                  className={`group/card border cursor-pointer rounded-3xl p-6 sm:p-8 backdrop-blur-xl transition-all duration-400 ease-out ${
+                  className={`group/card border cursor-pointer rounded-3xl p-6 sm:p-8 transition-all duration-300 ease-out ${
                     isOpen 
-                      ? "bg-[#0B1A2E] border-[#00D4FF]/30 shadow-[0_15px_40px_rgba(0,212,255,0.08)]" 
-                      : "bg-[#0B1A2E]/60 border-[rgba(0,212,255,0.08)] hover:border-[#00D4FF]/25 hover:bg-[#0B1A2E]/80 shadow-sm"
+                      ? "bg-[#F0F8FF] border-[#2563FF] shadow-md" 
+                      : "bg-white border-slate-200 hover:border-[#2563FF] hover:bg-[#F0F8FF] shadow-sm"
                   }`}
                 >
                   {/* Header Row */}
                   <div className="flex items-center justify-between gap-6 select-none">
                     <h3
                       className={`font-display text-lg sm:text-xl font-bold transition-colors duration-300 ${
-                        isOpen ? "text-[#00D4FF]" : "text-white group-hover/card:text-[#00D4FF]"
+                        isOpen ? "text-[#2563FF]" : "text-slate-900 group-hover/card:text-[#2563FF]"
                       }`}
                     >
                       {item.question}
@@ -172,8 +159,8 @@ export default function FAQSection() {
                         aria-label="Toggle FAQ"
                         className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
                           isOpen
-                            ? "bg-[#00D4FF] border-[#00D4FF] text-[#071426] rotate-90"
-                            : "bg-[#071426] border-[rgba(0,212,255,0.15)] text-slate-450 group-hover/card:bg-[#0B1A2E] group-hover/card:border-[#00D4FF]/25 group-hover/card:text-white"
+                            ? "bg-[#2563FF] border-[#2563FF] text-white rotate-90"
+                            : "bg-slate-50 border-slate-200 text-slate-500 group-hover/card:bg-[#2563FF] group-hover/card:border-[#2563FF] group-hover/card:text-white"
                         }`}
                       >
                         <ChevronRight className="w-5 h-5" />
@@ -213,7 +200,7 @@ export default function FAQSection() {
                           animate={{ filter: "blur(0px)", y: 0 }}
                           exit={{ filter: "blur(6px)", y: 10 }}
                           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                          className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal mt-5 pr-4 border-l border-sky-500/20 pl-4"
+                          className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal mt-5 pr-4 border-l-2 border-blue-500/30 pl-4"
                         >
                           {item.answer}
                         </motion.p>

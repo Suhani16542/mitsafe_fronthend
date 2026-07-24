@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowUpRight, ChevronRight } from "lucide-react";
 import { servicesData } from "@/data/services";
+import { motion } from "framer-motion";
 
-// Social SVG Icons matching the original style
-const TwitterIcon = () => (
+// Working Social Media SVG Icons
+const XTwitterIcon = () => (
   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
@@ -20,330 +20,296 @@ const LinkedinIcon = () => (
   </svg>
 );
 
-const PinterestIcon = () => (
+const InstagramIcon = () => (
   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.396-5.91 1.396-5.91s-.356-.71-.356-1.759c0-1.648.952-2.878 2.134-2.878 1.005 0 1.491.755 1.491 1.66 0 1.009-.644 2.516-.975 3.913-.277 1.173.585 2.13 1.74 2.13 2.088 0 3.693-2.202 3.693-5.382 0-2.813-2.022-4.781-4.908-4.781-3.344 0-5.309 2.508-5.309 5.101 0 1.009.389 2.091.874 2.68.096.117.11.219.081.339-.09.373-.288 1.172-.328 1.332-.053.21-.174.254-.401.149-1.497-.696-2.433-2.883-2.433-4.636 0-3.774 2.743-7.239 7.906-7.239 4.15 0 7.375 2.957 7.375 6.909 0 4.124-2.599 7.44-6.208 7.44-1.212 0-2.35-.63-2.739-1.374l-.747 2.846c-.27 1.026-1.002 2.315-1.492 3.111 1.13.349 2.327.538 3.567.538 6.62 0 12-5.378 12-11.992C24.017 5.367 18.638 0 12.017 0z" />
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
   </svg>
 );
 
-const GooglePlusIcon = () => (
+const FacebookIcon = () => (
   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12.24 10.285V14.4h6.887c-.648 2.42-2.72 4.114-6.887 4.114-4.507 0-8.163-3.664-8.163-8.17 0-4.507 3.656-8.17 8.163-8.17 2.122 0 4.024.784 5.488 2.248l3.12-3.12C17.976.84 15.297 0 12.24 0 5.48 0 0 5.48 0 12.24s5.48 12.24 12.24 12.24c7.04 0 12.24-4.945 12.24-12.24 0-.825-.075-1.62-.218-2.395H12.24z" />
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
   </svg>
 );
 
-function Magnetic({ children }: { children: React.ReactElement }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return;
-    const { clientX, clientY } = e;
-    const { left, top, width, height } = ref.current.getBoundingClientRect();
-    const x = clientX - (left + width / 2);
-    const y = clientY - (top + height / 2);
-    
-    const maxDisplacement = 6;
-    const distance = Math.sqrt(x * x + y * y);
-    if (distance < 40) {
-      setPosition({
-        x: (x / 40) * maxDisplacement,
-        y: (y / 40) * maxDisplacement,
-      });
-    } else {
-      setPosition({ x: 0, y: 0 });
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setPosition({ x: 0, y: 0 });
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-      className="inline-block"
-    >
-      {children}
-    </motion.div>
-  );
-}
+const YoutubeIcon = () => (
+  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.388.555A3.003 3.003 0 0 0 .502 6.163C0 8.07 0 12 0 12s0 3.93.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.47 20.5 12 20.5 12 20.5s7.53 0 9.388-.555a3.003 3.003 0 0 0 2.11-2.108C24 15.93 24 12 24 12s0-3.93-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+  </svg>
+);
 
 export default function Footer() {
+  // Social media links in requested order: LinkedIn, Facebook, Instagram, X (Twitter), YouTube
+  const socialLinks = [
+    { name: "LinkedIn", icon: LinkedinIcon, url: "https://linkedin.com" },
+    { name: "Facebook", icon: FacebookIcon, url: "https://facebook.com" },
+    { name: "Instagram", icon: InstagramIcon, url: "https://instagram.com" },
+    { name: "X (Twitter)", icon: XTwitterIcon, url: "https://x.com" },
+    { name: "YouTube", icon: YoutubeIcon, url: "https://youtube.com" },
+  ];
+
   return (
-    <footer className="relative bg-[#071426] overflow-hidden pt-12 pb-8 font-sans">
-      {/* Premium glowing divider line above footer */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00D4FF]/30 to-transparent z-10" />
+    <footer 
+      className="relative bg-white text-slate-900 border-t border-slate-200 overflow-hidden pt-16 pb-0 w-full"
+      style={{ fontFamily: "'Sora', 'Manrope', sans-serif" }}
+    >
+      {/* Wave Accent Background Graphic */}
+      <div className="absolute top-1/2 left-0 right-0 h-40 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-50/40 via-transparent to-transparent -translate-y-12 pointer-events-none -z-10" />
 
-      {/* Background Grid Lines */}
-      <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.25]">
-        <div className="w-[1px] bg-slate-800 h-full" />
-        <div className="w-[1px] bg-slate-800 h-full hidden sm:block" />
-        <div className="w-[1px] bg-slate-800 h-full" />
-        <div className="w-[1px] bg-slate-800 h-full hidden sm:block" />
-        <div className="w-[1px] bg-slate-800 h-full" />
-      </div>
-
-      {/* Background Glows */}
-      <div className="absolute top-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[#00D4FF]/3 blur-[120px] pointer-events-none z-0" />
-      <div className="absolute bottom-0 left-1/4 w-[450px] h-[450px] rounded-full bg-[#008FED]/2 blur-[130px] pointer-events-none z-0" />
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
         
-        {/* Main Grid: 7 columns on xl, 4 columns on lg, 3 on md, 2 on sm, 1 on mobile */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-8 pb-12 border-b border-[rgba(0,212,255,0.12)]">
+        {/* Main Grid Layout - fully responsive */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-slate-200 w-full">
           
-          {/* Brand Col */}
-          <div className="flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-3 group w-fit">
+          {/* Brand & Description Column (3 cols on XL) */}
+          <div className="xl:col-span-3 flex flex-col gap-5 pr-2 w-full">
+            <Link href="/" className="flex items-center gap-3 w-fit">
               <Image
-                src="/mt-logo.png"
-                alt="Modern Technology Logo"
-                width={150}
-                height={45}
-                className="h-auto w-[130px] filter drop-shadow-[0_0_8px_rgba(0,212,255,0.15)] brightness-100"
+                src="/image_removebg-preview.png"
+                alt="Mitsafe Logo"
+                width={120}
+                height={40}
+                className="h-auto w-[120px] sm:w-[130px] filter drop-shadow-[0_0_8px_rgba(0,229,255,0.1)]"
               />
             </Link>
-            <p className="text-slate-400 text-[13px] leading-relaxed mt-3 font-normal">
-              We focus on the needs of small to middle market businesses to improve and grow their return.
+            <p className="text-slate-600 text-[13px] leading-relaxed font-semibold mt-1">
+              Mitsafe delivers future-ready digital solutions & IT services that help businesses innovate, scale and succeed in the digital era.
             </p>
-            <div className="flex items-center gap-3 mt-4">
-              <Magnetic>
-                <motion.a 
-                  whileHover={{ scale: 1.1, rotate: 6 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="#" 
-                  aria-label="Twitter" 
-                  className="w-9 h-9 rounded-full bg-[#0B1A2E]/70 border border-[rgba(0,212,255,0.15)] hover:bg-[#00D4FF] hover:text-[#071426] hover:border-[#00D4FF] text-slate-400 hover:shadow-[0_0_15px_rgba(0,212,255,0.3)] flex items-center justify-center transition-all duration-300 cursor-pointer"
-                >
-                  <TwitterIcon />
-                </motion.a>
-              </Magnetic>
-              <Magnetic>
-                <motion.a 
-                  whileHover={{ scale: 1.1, rotate: -6 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="#" 
-                  aria-label="Google Plus" 
-                  className="w-9 h-9 rounded-full bg-[#0B1A2E]/70 border border-[rgba(0,212,255,0.15)] hover:bg-[#00D4FF] hover:text-[#071426] hover:border-[#00D4FF] text-slate-400 hover:shadow-[0_0_15px_rgba(0,212,255,0.3)] flex items-center justify-center transition-all duration-300 cursor-pointer"
-                >
-                  <GooglePlusIcon />
-                </motion.a>
-              </Magnetic>
-              <Magnetic>
-                <motion.a 
-                  whileHover={{ scale: 1.1, rotate: 6 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="#" 
-                  aria-label="Pinterest" 
-                  className="w-9 h-9 rounded-full bg-[#0B1A2E]/70 border border-[rgba(0,212,255,0.15)] hover:bg-[#00D4FF] hover:text-[#071426] hover:border-[#00D4FF] text-slate-400 hover:shadow-[0_0_15px_rgba(0,212,255,0.3)] flex items-center justify-center transition-all duration-300 cursor-pointer"
-                >
-                  <PinterestIcon />
-                </motion.a>
-              </Magnetic>
-              <Magnetic>
-                <motion.a 
-                  whileHover={{ scale: 1.1, rotate: -6 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="#" 
-                  aria-label="Linkedin" 
-                  className="w-9 h-9 rounded-full bg-[#0B1A2E]/70 border border-[rgba(0,212,255,0.15)] hover:bg-[#00D4FF] hover:text-[#071426] hover:border-[#00D4FF] text-slate-400 hover:shadow-[0_0_15px_rgba(0,212,255,0.3)] flex items-center justify-center transition-all duration-300 cursor-pointer"
-                >
-                  <LinkedinIcon />
-                </motion.a>
-              </Magnetic>
-            </div>
+
+            {/* Social Media Links (Staggered Entrance bubble pop effect on hover) */}
+            <motion.div 
+              className="flex items-center gap-2.5 mt-2"
+              initial="rest"
+              whileHover="hover"
+              animate="rest"
+            >
+              {socialLinks.map((item, idx) => {
+                const IconComponent = item.icon;
+                return (
+                  <motion.a 
+                    key={idx}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={item.name} 
+                    variants={{
+                      rest: { scale: 1, y: 0, opacity: 0.95 },
+                      hover: {
+                        scale: 1.15,
+                        y: -4,
+                        opacity: 1,
+                        transition: {
+                          delay: idx * 0.07,
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 12
+                        }
+                      }
+                    }}
+                    className="w-8 h-8 rounded-full bg-[#0052cc] text-white flex items-center justify-center hover:bg-blue-700 transition-colors duration-300 cursor-pointer shadow-sm"
+                  >
+                    <IconComponent />
+                  </motion.a>
+                );
+              })}
+            </motion.div>
           </div>
 
-          {/* Column 2: Services */}
-          <div className="flex flex-col gap-4 text-left">
-            <h3 className="font-display text-[11px] font-extrabold tracking-widest text-[#00D4FF] uppercase">
+          {/* Services Links (2 cols on XL) */}
+          <div className="xl:col-span-2 flex flex-col gap-4 text-left w-full">
+            <h3 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 uppercase font-display relative pb-2 w-fit">
               Services
+              <span className="absolute bottom-0 left-0 w-8 h-[3px] bg-[#0052cc] rounded-full" />
             </h3>
-            <ul className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-2.5 mt-2 w-full">
               {servicesData.slice(0, 6).map((srv) => (
                 <li key={srv.slug}>
-                  <Link href={`/services/${srv.slug}`} className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">
-                    {srv.title}
+                  <Link 
+                    href={`/services/${srv.slug}`} 
+                    className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-blue-600 transition-all duration-200 flex items-center gap-1.5 group"
+                  >
+                    <ChevronRight className="w-3 h-3 text-[#0052cc] shrink-0 transition-transform group-hover:translate-x-0.5" />
+                    <span>{srv.title}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3: Community */}
-          <div className="flex flex-col gap-4 text-left">
-            <h3 className="font-display text-[11px] font-extrabold tracking-widest text-[#00D4FF] uppercase">
-              Community
-            </h3>
-            <ul className="flex flex-col gap-2.5">
-              <li>
-                <Link href="/about" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">About Us</Link>
-              </li>
-              <li>
-                <Link href="/portfolio" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">Our Portfolio</Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">Contact Us</Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Quick Links */}
-          <div className="flex flex-col gap-4 text-left">
-            <h3 className="font-display text-[11px] font-extrabold tracking-widest text-[#00D4FF] uppercase">
+          {/* Quick & Community Links (2 cols on XL) */}
+          <div className="xl:col-span-2 flex flex-col gap-4 text-left w-full">
+            <h3 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 uppercase font-display relative pb-2 w-fit">
               Quick Links
+              <span className="absolute bottom-0 left-0 w-8 h-[3px] bg-[#0052cc] rounded-full" />
             </h3>
-            <ul className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-2.5 mt-2 w-full">
               <li>
-                <Link href="/about" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">About Us</Link>
+                <Link href="/about" className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-blue-600 transition-all duration-200 flex items-center gap-1.5 group">
+                  <ChevronRight className="w-3 h-3 text-[#0052cc] shrink-0 transition-transform group-hover:translate-x-0.5" />
+                  <span>About Us</span>
+                </Link>
               </li>
               <li>
-                <Link href="#" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">Refund and Returns Policy</Link>
+                <Link href="/portfolio" className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-blue-600 transition-all duration-200 flex items-center gap-1.5 group">
+                  <ChevronRight className="w-3 h-3 text-[#0052cc] shrink-0 transition-transform group-hover:translate-x-0.5" />
+                  <span>Our Portfolio</span>
+                </Link>
               </li>
               <li>
-                <Link href="#" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">Terms &amp; Conditions</Link>
+                <Link href="/contact" className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-blue-600 transition-all duration-200 flex items-center gap-1.5 group">
+                  <ChevronRight className="w-3 h-3 text-[#0052cc] shrink-0 transition-transform group-hover:translate-x-0.5" />
+                  <span>Contact Us</span>
+                </Link>
               </li>
               <li>
-                <Link href="#" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">Privacy Policy</Link>
+                <Link href="/terms" className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-blue-600 transition-all duration-200 flex items-center gap-1.5 group">
+                  <ChevronRight className="w-3 h-3 text-[#0052cc] shrink-0 transition-transform group-hover:translate-x-0.5" />
+                  <span>Terms &amp; Conditions</span>
+                </Link>
               </li>
               <li>
-                <Link href="#" className="text-xs font-semibold text-slate-400 hover:text-[#00D4FF] hover:translate-x-1 transition-transform duration-300 block">Legal Policy</Link>
+                <Link href="#" className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-blue-600 transition-all duration-200 flex items-center gap-1.5 group">
+                  <ChevronRight className="w-3 h-3 text-[#0052cc] shrink-0 transition-transform group-hover:translate-x-0.5" />
+                  <span>Privacy Policy</span>
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 5: India Office */}
-          <a
-            href="https://www.google.com/maps/search/Sector+62,+Noida,+UP+201301"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col gap-4 text-left cursor-pointer rounded-lg p-2.5 -m-2.5 transition-all duration-300 group/office"
-          >
-            <h3 className="font-display text-[11px] font-extrabold tracking-[0.15em] text-[#00D4FF] uppercase flex items-center gap-1.5 select-none">
-              <span>🇮🇳</span> India
+          {/* Global Offices (5 cols on XL) - Font increased to text-sm sm:text-base */}
+          <div className="xl:col-span-5 flex flex-col gap-4 w-full">
+            <h3 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 uppercase font-display relative pb-2 w-fit">
+              Global Offices
+              <span className="absolute bottom-0 left-0 w-8 h-[3px] bg-[#0052cc] rounded-full" />
             </h3>
-            <ul className="flex flex-col gap-3">
-              <li className="flex items-start gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 mt-0.5 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
-                  <MapPin className="w-3 h-3" />
-                </div>
-                <span className="text-xs text-slate-400 leading-normal group-hover/office:text-slate-300 transition-colors">
-                  Sector 62, Noida, UP 201301
-                </span>
-              </li>
-              <li className="flex items-center gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
-                  <Phone className="w-3 h-3" />
-                </div>
-                <span className="text-xs text-slate-400 group-hover/office:text-slate-300 transition-colors">
-                  +91 98765 43210
-                </span>
-              </li>
-              <li className="flex items-center gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
-                  <Mail className="w-3 h-3" />
-                </div>
-                <span className="text-xs text-slate-400 group-hover/office:text-slate-300 transition-colors break-all">
-                  india@mitsafe.com
-                </span>
-              </li>
-            </ul>
-          </a>
 
-          {/* Column 6: Dubai Office */}
-          <a
-            href="https://www.google.com/maps/search/Business+Bay,+Dubai,+UAE"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col gap-4 text-left cursor-pointer rounded-lg p-2.5 -m-2.5 transition-all duration-300 group/office"
-          >
-            <h3 className="font-display text-[11px] font-extrabold tracking-[0.15em] text-[#00D4FF] uppercase flex items-center gap-1.5 select-none">
-              <span>🇦🇪</span> Dubai
-            </h3>
-            <ul className="flex flex-col gap-3">
-              <li className="flex items-start gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 mt-0.5 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
-                  <MapPin className="w-3 h-3" />
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-2 w-full">
+              
+              {/* India Office */}
+              <a
+                href="https://www.google.com/maps/search/Sector+62,+Noida,+UP+201301"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 flex flex-col gap-2 hover:border-slate-300 hover:bg-slate-100/50 transition-all duration-300 group/card shadow-xs w-full"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-sm sm:text-base font-black tracking-wider text-slate-900 uppercase flex items-center gap-1.5">
+                    <span>🇮🇳</span> India
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 text-slate-700 opacity-0 group-hover/card:opacity-100 transition-opacity" />
                 </div>
-                <span className="text-xs text-slate-400 leading-normal group-hover/office:text-slate-300 transition-colors">
-                  Business Bay, Dubai, UAE
-                </span>
-              </li>
-              <li className="flex items-center gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
-                  <Phone className="w-3 h-3" />
+                <div className="flex items-start gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold mt-0.5">
+                  <MapPin className="w-3.5 h-3.5 text-[#0052cc] shrink-0 mt-0.5" />
+                  <span className="leading-snug">Sector 62, Noida, UP 201301</span>
                 </div>
-                <span className="text-xs text-slate-400 group-hover/office:text-slate-300 transition-colors">
-                  +971 4 123 4567
-                </span>
-              </li>
-              <li className="flex items-center gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
-                  <Mail className="w-3 h-3" />
+                <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold">
+                  <Phone className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
+                  <span>+91 98765 43210</span>
                 </div>
-                <span className="text-xs text-slate-400 group-hover/office:text-slate-300 transition-colors break-all">
-                  dubai@mitsafe.com
-                </span>
-              </li>
-            </ul>
-          </a>
+                <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold truncate">
+                  <Mail className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
+                  <span className="truncate">india@mitsafe.com</span>
+                </div>
+              </a>
 
-          {/* Column 7: USA Office */}
-          <a
-            href="https://www.google.com/maps/search/100+Pine+St,+San+Francisco,+CA+94111"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col gap-4 text-left cursor-pointer rounded-lg p-2.5 -m-2.5 transition-all duration-300 group/office"
-          >
-            <h3 className="font-display text-[11px] font-extrabold tracking-[0.15em] text-[#00D4FF] uppercase flex items-center gap-1.5 select-none">
-              <span>🇺🇸</span> USA
-            </h3>
-            <ul className="flex flex-col gap-3">
-              <li className="flex items-start gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 mt-0.5 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
-                  <MapPin className="w-3 h-3" />
+              {/* Dubai Office */}
+              <a
+                href="https://www.google.com/maps/search/Business+Bay,+Dubai,+UAE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 flex flex-col gap-2 hover:border-slate-300 hover:bg-slate-100/50 transition-all duration-300 group/card shadow-xs w-full"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-sm sm:text-base font-black tracking-wider text-slate-900 uppercase flex items-center gap-1.5">
+                    <span>🇦🇪</span> Dubai
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 text-slate-700 opacity-0 group-hover/card:opacity-100 transition-opacity" />
                 </div>
-                <span className="text-xs text-slate-400 leading-normal group-hover/office:text-slate-300 transition-colors">
-                  100 Pine St, SF, CA 94111
-                </span>
-              </li>
-              <li className="flex items-center gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
-                  <Phone className="w-3 h-3" />
+                <div className="flex items-start gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold mt-0.5">
+                  <MapPin className="w-3.5 h-3.5 text-[#0052cc] shrink-0 mt-0.5" />
+                  <span className="leading-snug">Business Bay, Dubai, UAE</span>
                 </div>
-                <span className="text-xs text-slate-400 group-hover/office:text-slate-300 transition-colors">
-                  +1 (555) 019-2834
-                </span>
-              </li>
-              <li className="flex items-center gap-2 group/info select-none">
-                <div className="w-5 h-5 rounded bg-white/5 flex items-center justify-center text-[#00D4FF] shrink-0 group-hover/office:border-[#00D4FF]/20 border border-transparent transition-colors">
-                  <Mail className="w-3 h-3" />
+                <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold">
+                  <Phone className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
+                  <span>+971 4 123 4567</span>
                 </div>
-                <span className="text-xs text-slate-400 group-hover/office:text-slate-300 transition-colors break-all">
-                  usa@mitsafe.com
-                </span>
-              </li>
-            </ul>
-          </a>
+                <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold truncate">
+                  <Mail className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
+                  <span className="truncate">dubai@mitsafe.com</span>
+                </div>
+              </a>
+
+              {/* USA Office */}
+              <a
+                href="https://www.google.com/maps/search/100+Pine+St,+San+Francisco,+CA+94111"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 flex flex-col gap-2 hover:border-slate-300 hover:bg-slate-100/50 transition-all duration-300 group/card shadow-xs w-full"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-sm sm:text-base font-black tracking-wider text-slate-900 uppercase flex items-center gap-1.5">
+                    <span>🇺🇸</span> USA
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 text-slate-700 opacity-0 group-hover/card:opacity-100 transition-opacity" />
+                </div>
+                <div className="flex items-start gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold mt-0.5">
+                  <MapPin className="w-3.5 h-3.5 text-[#0052cc] shrink-0 mt-0.5" />
+                  <span className="leading-snug">100 Pine St, SF, CA 94111</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold">
+                  <Phone className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
+                  <span>+1 (555) 019-2834</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold truncate">
+                  <Mail className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
+                  <span className="truncate">usa@mitsafe.com</span>
+                </div>
+              </a>
+
+            </div>
+          </div>
 
         </div>
 
-        {/* Footer Bottom */}
-        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <span className="text-xs font-semibold text-slate-400">
-            © {new Date().getFullYear()} Modern Technology. All rights reserved.
+        {/* Integrated Plain CTA (Directly in the space between content and bottom blue bar, no cards or borders) */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 py-6 mt-2 w-full">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-blue-50 text-[#0052cc] flex items-center justify-center shrink-0">
+              <Mail className="w-6 h-6 text-[#0052cc]" />
+            </div>
+            <div className="flex flex-col text-left">
+              <h4 className="text-[15px] sm:text-base font-extrabold text-slate-900 tracking-tight leading-snug">
+                Let's Build Something Amazing Together
+              </h4>
+              <p className="text-slate-600 text-xs sm:text-sm font-semibold mt-0.5">
+                Have a project in mind? Let's turn your ideas into reality.
+              </p>
+            </div>
+          </div>
+          <Link href="/contact">
+            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0052cc] to-[#1d4ed8] hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl transition-all shadow-[0_4px_14px_rgba(0,82,204,0.25)] hover:shadow-[0_6px_20px_rgba(0,82,204,0.35)] cursor-pointer hover:scale-[1.02] active:scale-95 group shrink-0">
+              Get A Free Quote
+              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </span>
+          </Link>
+        </div>
+
+      </div>
+
+      {/* Footer Bottom Bar (Slimmer Dark Blue) */}
+      <div className="w-full bg-[#0052cc] text-white py-3 mt-4">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
+          <span className="text-xs sm:text-[13px] font-semibold tracking-wide opacity-90">
+            © {new Date().getFullYear()} Mitsafe Technologies. All Rights Reserved.
           </span>
-          <div className="flex items-center gap-6 text-xs font-semibold text-slate-400">
-            <Link href="#" className="hover:text-[#00D4FF] transition-colors">Privacy Policy</Link>
-            <Link href="#" className="hover:text-[#00D4FF] transition-colors">Terms of Service</Link>
+          <div className="flex items-center gap-4 text-xs sm:text-[13px] font-bold tracking-wide">
+            <Link href="#" className="hover:text-blue-200 transition-colors">Privacy Policy</Link>
+            <span className="opacity-40">|</span>
+            <Link href="/terms" className="hover:text-blue-200 transition-colors">Terms &amp; Conditions</Link>
+            <span className="opacity-40">|</span>
+            <Link href="#" className="hover:text-blue-200 transition-colors">Sitemap</Link>
           </div>
         </div>
-
       </div>
     </footer>
   );

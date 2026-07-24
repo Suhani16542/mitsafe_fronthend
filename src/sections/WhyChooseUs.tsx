@@ -55,7 +55,7 @@ export default function WhyChooseUs() {
   const isRightColInView = useInView(rightColRef, { once: false, amount: 0.2 });
 
   return (
-    <section id="about" className="bg-[#F3F0FA] dark:bg-[#071426] pt-12 md:pt-16 pb-12 md:pb-16 relative overflow-hidden border-t border-purple-50 dark:border-white/5">
+    <section id="about" className="bg-white dark:bg-[#071426] pt-12 md:pt-16 pb-12 md:pb-16 relative overflow-hidden border-t border-slate-200 dark:border-white/5">
       {/* 5 Vertical Background Grid Lines */}
       <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.3] dark:opacity-[0.15]">
         <div className="w-[1px] bg-slate-200 dark:bg-white/10 h-full" />

@@ -72,7 +72,6 @@ function Magnetic({ children }: { children: React.ReactElement }) {
 export default function WelcomeSection() {
   const [index, setIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -81,40 +80,11 @@ export default function WelcomeSection() {
     return () => clearInterval(timer);
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
   return (
     <section
       ref={containerRef}
-      onMouseMove={handleMouseMove}
-      className="group relative bg-white text-slate-800 py-12 md:py-16 overflow-hidden border-t border-blue-50 dark:border-white/5 font-sans"
+      className="group relative bg-white text-slate-800 py-12 md:py-16 overflow-hidden border-t border-slate-100 font-sans"
     >
-      {/* Cyber Grid Lines */}
-      <div className="absolute inset-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.25]">
-        {[...Array(6)].map((_, i) => (
-          <div key={i} className="w-[1px] h-full bg-slate-200" />
-        ))}
-      </div>
-
-      {/* Ambient Gradient Lights */}
-      <div className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-[#00D4FF]/3 to-transparent blur-[160px] pointer-events-none z-0" />
-      <div className="absolute bottom-[-10%] right-[-5%] w-[650px] h-[650px] rounded-full bg-gradient-to-bl from-[#008FED]/2.5 to-transparent blur-[180px] pointer-events-none z-0" />
-
-      {/* Interactive mouse spotlight tracking */}
-      <div
-        className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0"
-        style={{
-          background: `radial-gradient(800px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0, 212, 255, 0.04), transparent 80%)`,
-        }}
-      />
-
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
@@ -212,7 +182,7 @@ export default function WelcomeSection() {
 
           {/* Right Column: Parallax Glass Showcase Device (Span 5) */}
           <div className="lg:col-span-5 relative w-full flex justify-center lg:justify-end order-1 lg:order-2">
-            <div className="relative w-full aspect-[4/5] max-w-[430px] rounded-[3rem] bg-gradient-to-br from-white to-slate-50 border border-[#E5E2F0] p-6 overflow-hidden backdrop-blur-2xl shadow-[0_30px_60px_rgba(37,99,255,0.06)] transition-all duration-350 ease-in-out hover:border-[#2563FF]/30 hover:shadow-[0_30px_60px_rgba(37,99,255,0.12)] hover:-translate-y-1.5 hover:bg-gradient-to-br hover:from-white hover:to-blue-50/10">
+            <div className="relative w-full aspect-[4/5] max-w-[430px] rounded-[3rem] bg-white border border-slate-200 p-6 overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.06)] transition-all duration-350 ease-in-out hover:border-[#2563FF]/30 hover:shadow-[0_30px_60px_rgba(37,99,255,0.12)]">
               
               {/* Inner ambient ring */}
               <div className="absolute inset-2 border border-slate-200/40 rounded-[2.5rem] pointer-events-none" />
@@ -268,9 +238,6 @@ export default function WelcomeSection() {
                 </div>
               </div>
             </div>
-
-            {/* Back Parallax Shape */}
-            <div className="absolute -bottom-10 -left-10 w-44 h-44 bg-gradient-to-br from-[#00D4FF]/15 to-[#008FED]/15 blur-2xl rounded-full -z-10 animate-pulse" />
           </div>
 
         </div>

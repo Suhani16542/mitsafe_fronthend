@@ -30,7 +30,7 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.75, ease: "easeOut" }}
-          className="relative overflow-hidden rounded-3xl border border-[#E5E2F0] bg-[#F3F0FA]/95 p-8 md:p-16 text-center shadow-md backdrop-blur-2xl"
+          className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 md:p-16 text-center shadow-md"
         >
           {/* Cyber grid overlays */}
           <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />

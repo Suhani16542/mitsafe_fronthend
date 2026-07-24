@@ -55,15 +55,14 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
-        {/* Inline script to prevent theme flash before hydration */}
+        {/* Inline script to enforce light theme site-wide */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
-                  var saved = localStorage.getItem('theme');
-                  var theme = saved || 'dark';
-                  document.documentElement.className = theme === 'light' ? 'light scroll-smooth' : 'dark scroll-smooth';
+                  localStorage.setItem('theme', 'light');
+                  document.documentElement.className = 'light scroll-smooth';
                 } catch (e) {}
               })();
             `,

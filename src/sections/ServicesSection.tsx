@@ -23,9 +23,9 @@ const homeServices = [
     color: "from-[#2563FF] to-[#00BFFF]",
     tags: ["Custom Layouts", "Responsive Design", "WordPress & CMS", "E-commerce Platforms"],
     showcase: [
-      "/web-app-design-woman.png",
-      "/metro-fintech-mockup.png",
-      "/farming-sustainability-mockup.png",
+      "/showcase/web_1.png",
+      "/showcase/web_2.png",
+      "/showcase/web_3.png",
     ],
     slug: "/services/web-development",
   },
@@ -36,9 +36,9 @@ const homeServices = [
     color: "from-[#2563FF] to-[#00BFFF]",
     tags: ["Android & iOS Apps", "Custom API Integrations", "Cross-Platform", "Mobile UX/UI"],
     showcase: [
-      "/anyuni-mockup.png",
-      "/zupee-mockup.png",
-      "/pricing-devices-mockup.png",
+      "/showcase/app_1.png",
+      "/showcase/app_2.png",
+      "/showcase/app_3.png",
     ],
     slug: "/services/mobile-app-development",
   },
@@ -49,9 +49,9 @@ const homeServices = [
     color: "from-[#2563FF] to-[#00BFFF]",
     tags: ["On-Page/Off-Page", "Keyword Optimization", "Traffic Analysis", "SEO Audit"],
     showcase: [
-      "/seo-keyboard-mockup.png",
-      "/tradingview-mockup.png",
-      "/raichand-mockup.png",
+      "/showcase/seo_1.png",
+      "/showcase/seo_2.png",
+      "/showcase/seo_3.png",
     ],
     slug: "/services/digital-marketing",
   },
@@ -62,9 +62,9 @@ const homeServices = [
     color: "from-[#2563FF] to-[#00BFFF]",
     tags: ["Secure Cloud Server", "99.9% Uptime", "SSD Data Storage", "24/7 Active Monitoring"],
     showcase: [
-      "/farming-sustainability-mockup.png",
-      "/hero-bg.png",
-      "/contact-team-illustration.png",
+      "/showcase/hosting_1.png",
+      "/showcase/hosting_2.png",
+      "/showcase/hosting_3.png",
     ],
     slug: "/services/cloud-devops",
   },
@@ -75,9 +75,9 @@ const homeServices = [
     color: "from-[#2563FF] to-[#00BFFF]",
     tags: ["Brand Campaigns", "Lead Generation", "Engagement Growth", "Social Media Strategy"],
     showcase: [
-      "/tradingview-mockup.png",
+      "/showcase/social_1.png",
+      "/hero-digital-marketing.png",
       "/video-editing-mockup.png",
-      "/anyuni-mockup.png",
     ],
     slug: "/services/digital-marketing",
   },
@@ -88,9 +88,9 @@ const homeServices = [
     color: "from-[#2563FF] to-[#00BFFF]",
     tags: ["Infrastructure Audit", "Technology Roadmaps", "System Architecture", "Solutions Blueprint"],
     showcase: [
-      "/contact-team-illustration.png",
-      "/wedding-matrimony-mockup.png",
-      "/metro-fintech-mockup.png",
+      "/hero-software-dev.png",
+      "/solutions_engineering.png",
+      "/about_company.png",
     ],
     slug: "/services/software-development",
   },
@@ -101,9 +101,9 @@ const homeServices = [
     color: "from-[#2563FF] to-[#00BFFF]",
     tags: ["Data Encryption", "Threat Prevention", "Firewall Setup", "Vulnerability Assessment"],
     showcase: [
-      "/zupee-mockup.png",
-      "/pricing-devices-mockup.png",
-      "/seo-keyboard-mockup.png",
+      "/portfolio_apex_crypto.png",
+      "/portfolio_core_erp.png",
+      "/hero-api.png",
     ],
     slug: "/services/cloud-devops",
   },
@@ -143,63 +143,24 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="bg-[#F7FAFF] dark:bg-[#071426] py-12 md:py-16 relative overflow-hidden border-t border-slate-200/50 dark:border-white/5"
-      style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
+      className="bg-white py-12 md:py-16 relative overflow-hidden border-t border-slate-100 font-sans"
     >
-      {/* 5 Vertical Background Grid Lines */}
-      <div className="absolute inset-y-0 inset-x-0 flex justify-between pointer-events-none z-0 px-6 lg:px-8 max-w-7xl mx-auto opacity-[0.15] dark:opacity-[0.06]">
-        <div className="w-[1px] bg-slate-300 dark:bg-slate-700 h-full" />
-        <div className="w-[1px] bg-slate-300 dark:bg-slate-700 h-full hidden sm:block" />
-        <div className="w-[1px] bg-slate-300 dark:bg-slate-700 h-full" />
-        <div className="w-[1px] bg-slate-300 dark:bg-slate-700 h-full hidden sm:block" />
-        <div className="w-[1px] bg-slate-300 dark:bg-slate-700 h-full" />
-      </div>
-
-      {/* Decorative Aura Glows from Hero Section */}
-      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#2563FF]/8 to-[#00BFFF]/8 blur-[100px] pointer-events-none -z-10" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[450px] h-[450px] rounded-full bg-gradient-to-tr from-[#2563FF]/6 to-[#00BFFF]/6 blur-[90px] pointer-events-none -z-10 animate-pulse" />
-
-      {/* Decorative Floating shapes */}
-      <motion.div
-        className="absolute rounded-full border border-[#2563FF]/8 pointer-events-none z-0"
-        style={{ width: "260px", height: "260px", left: "2%", top: "15%" }}
-        animate={{
-          y: [0, -20, 0],
-          rotate: [0, 360],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
-      <motion.div
-        className="absolute rounded-full bg-[#00BFFF]/2.5 pointer-events-none z-0 blur-2xl"
-        style={{ width: "220px", height: "220px", right: "5%", bottom: "10%" }}
-        animate={{
-          y: [0, 25, 0],
-          x: [0, -15, 0],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-left mb-16">
           {/* Badge */}
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200/40 bg-[#2563FF]/5 dark:bg-[#2563FF]/15 px-4.5 py-1 text-xs font-bold uppercase tracking-wider text-[#2563FF] dark:text-[#00BFFF] font-display shadow-sm">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200/40 bg-[#2563FF]/5 px-4.5 py-1 text-xs font-bold uppercase tracking-wider text-[#2563FF] font-display shadow-sm">
             OUR SERVICES
           </div>
           {/* Title */}
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0F172A] dark:text-white tracking-tight leading-tight font-display"
+            className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight font-display"
           >
-            End-to-End Digital Solutions <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] to-[#00BFFF]">
+            <span className="text-black">End-to-End Digital Solutions</span> <br />
+            <span
+              className="text-[#2563FF] inline-block"
+              style={{ color: "#2563FF", WebkitTextFillColor: "#2563FF", background: "none" }}
+            >
               Built Around Your Business
             </span>
           </h2>
@@ -220,7 +181,7 @@ export default function ServicesSection() {
                 className={`group relative w-full border rounded-[2rem] p-8 md:p-10 overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-sm select-none ${
                   isHovered
                     ? `bg-gradient-to-r ${service.color} border-transparent shadow-[0_20px_50px_rgba(37,99,255,0.15)] scale-[1.01]`
-                    : "bg-white/50 dark:bg-slate-900/40 border-slate-200/40 dark:border-white/5 hover:border-slate-350 dark:hover:border-white/10"
+                    : "bg-white border-slate-200 hover:border-slate-300"
                 }`}
                 layout="position"
               >
@@ -233,14 +194,14 @@ export default function ServicesSection() {
                         className={`p-3 rounded-2xl border transition-all duration-300 shadow-sm shrink-0 ${
                           isHovered
                             ? "bg-white/15 border-white/10 text-white"
-                            : "bg-[#2563FF]/10 border-[#2563FF]/20 text-[#2563FF] dark:text-[#00BFFF]"
+                            : "bg-[#2563FF]/10 border-[#2563FF]/20 text-[#2563FF]"
                         }`}
                       >
                         <Icon className="w-5.5 h-5.5" />
                       </div>
                       <h3
                         className={`font-display text-xl sm:text-2xl lg:text-3xl font-bold leading-tight tracking-tight transition-colors duration-300 ${
-                          isHovered ? "text-white" : "text-[#0F172A] dark:text-white"
+                          isHovered ? "text-white" : "text-[#0F172A]"
                         }`}
                       >
                         {service.title}
@@ -250,13 +211,13 @@ export default function ServicesSection() {
                     <Link
                       href={service.slug}
                       className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 group/link ${
-                        isHovered ? "text-white" : "text-[#2563FF] dark:text-[#00BFFF]"
+                        isHovered ? "text-white" : "text-[#2563FF]"
                       }`}
                     >
                       <span>Explore Service</span>
                       <ArrowUpRight
                         className={`w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 ${
-                          isHovered ? "text-white" : "text-[#2563FF] dark:text-[#00BFFF]"
+                          isHovered ? "text-white" : "text-[#2563FF]"
                         }`}
                       />
                     </Link>
@@ -266,7 +227,7 @@ export default function ServicesSection() {
                   <div className="col-span-12 md:col-span-4 lg:col-span-5">
                     <p
                       className={`text-sm sm:text-base leading-relaxed font-medium transition-colors duration-300 ${
-                        isHovered ? "text-slate-100" : "text-slate-500 dark:text-slate-350"
+                        isHovered ? "text-slate-100" : "text-slate-500"
                       }`}
                     >
                       {service.desc}
@@ -281,7 +242,7 @@ export default function ServicesSection() {
                         className={`text-[10px] sm:text-xs font-semibold py-1.5 px-3.5 rounded-full border transition-all duration-300 tracking-wide uppercase ${
                           isHovered
                             ? "bg-white/10 border-white/15 text-white/90"
-                            : "bg-[#F7FAFF] dark:bg-slate-800 border-slate-200/40 dark:border-white/5 text-slate-650 dark:text-slate-300"
+                            : "bg-[#F7FAFF] border-slate-200 text-slate-650"
                         }`}
                       >
                         {tag}

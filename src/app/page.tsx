@@ -1,6 +1,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import Hero from "@/sections/Hero";
+// import Hero from "@/sections/HeroOld";
+import { Hero } from "@/components/hero/Hero";
 
 // Dynamically load below-the-fold components to reduce First Load JS bundle size
 const PremiumServicesShowcase = dynamic(() => import("@/sections/PremiumServicesShowcase"));

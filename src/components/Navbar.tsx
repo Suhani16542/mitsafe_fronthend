@@ -444,19 +444,8 @@ export default function Navbar() {
           </nav>
           </div>
 
-          {/* Theme Toggle & Contact Us Button Container */}
+          {/* Contact Us Button Container */}
           <div className="flex items-center gap-4">
-            {/* Theme Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="p-1 rounded-full border border-slate-200 dark:border-[rgba(0,212,255,0.15)] bg-slate-150 dark:bg-[#0B1A2E]/60 hover:bg-slate-200 dark:hover:bg-[#071426]/80 text-[#008FED] dark:text-[#00D4FF] hover:text-[#0077D4] dark:hover:text-[#00E5FF] transition-all duration-300 shadow-md hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center relative overflow-hidden group"
-              aria-label="Toggle Theme"
-            >
-              {/* Sun icon for Dark mode (toggles to Light) */}
-              <Sun className="w-4 h-4 transition-all duration-300 dark:block hidden rotate-0 group-hover:rotate-45" />
-              {/* Moon icon for Light mode (toggles to Dark) */}
-              <Moon className="w-4 h-4 transition-all duration-300 dark:hidden block rotate-0 group-hover:-rotate-12" />
-            </button>
 
             {/* Contact Us Button */}
             <div className="hidden lg:block">
@@ -475,7 +464,7 @@ export default function Navbar() {
           {/* Mobile Hamburg Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-1 text-slate-655 dark:text-slate-355 hover:text-[#2563FF] dark:hover:text-white transition-colors cursor-pointer"
+            className="lg:hidden p-1 text-slate-655 dark:text-slate-355 hover:text-[#2563FF]  transition-colors cursor-pointer"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -518,7 +507,7 @@ export default function Navbar() {
                   </div>
                   <button
                     onClick={() => setMobileMenuOpen(false)}
-                    className="p-2 text-slate-500 dark:text-slate-450 hover:text-[#008FED] dark:hover:text-white cursor-pointer"
+                    className="p-2 text-slate-500 dark:text-slate-450 hover:text-[#008FED]  cursor-pointer"
                   >
                     <X className="w-6 h-6" />
                   </button>
@@ -536,7 +525,7 @@ export default function Navbar() {
                           <div className="flex flex-col gap-1.5">
                             <button
                               onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                              className={`font-display text-[14px] font-semibold w-full text-left block py-2 px-3.5 rounded-lg transition-colors cursor-pointer ${isActive ? "bg-[#008FED]/10 dark:bg-[#00D4FF]/15 text-[#008FED] dark:text-[#00E5FF]" : "text-slate-650 dark:text-slate-300 hover:bg-[#008FED]/5 dark:hover:bg-white/5 hover:text-[#008FED] dark:hover:text-white"
+                              className={`font-display text-[14px] font-semibold w-full text-left block py-2 px-3.5 rounded-lg transition-colors cursor-pointer ${isActive ? "bg-[#008FED]/10 dark:bg-[#00D4FF]/15 text-[#008FED] dark:text-[#00E5FF]" : "text-slate-650 dark:text-slate-300 hover:bg-[#008FED]/5 dark:hover:bg-white/5 hover:text-[#008FED] "
                                 }`}
                             >
                               <div className="flex items-center justify-between">
@@ -577,7 +566,7 @@ export default function Navbar() {
                             onClick={() => setMobileMenuOpen(false)}
                             className={`font-display text-[14px] font-semibold block py-2 px-3.5 rounded-lg transition-colors ${isActive
                               ? "bg-[#008FED]/10 dark:bg-[#00D4FF]/15 text-[#008FED] dark:text-[#00E5FF]"
-                              : "text-slate-650 dark:text-slate-300 hover:bg-[#008FED]/5 dark:hover:bg-white/5 hover:text-[#008FED] dark:hover:text-white"
+                              : "text-slate-650 dark:text-slate-300 hover:bg-[#008FED]/5 dark:hover:bg-white/5 hover:text-[#008FED] "
                               }`}
                           >
                             <div className="flex items-center justify-between">

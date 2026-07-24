@@ -16,7 +16,7 @@ const companies = [
 
 export default function TrustedCompanies() {
   return (
-    <section className="bg-[#F3F0FA] py-12 border-b border-[#E5E2F0] overflow-hidden relative">
+    <section className="bg-white py-12 border-b border-slate-200 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-6">
         <p className="text-center text-xs font-semibold tracking-widest text-[#7C3AED] uppercase">
           Empowering Next-Gen Technical Operations

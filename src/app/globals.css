@@ -18,37 +18,37 @@
 }
 
 :root {
-  --brand-cyan: #008FED; /* Primary accent: bright blue/cyan in light mode */
+  --brand-cyan: #008FED;
   --brand-blue: #0077D4;
-  --brand-dark: #FAFBFF; /* Soft White */
-  --brand-card: rgba(250, 251, 255, 0.85); /* Soft White Glass */
-  --brand-card-hover: rgba(255, 255, 255, 0.95);
-  --brand-border: rgba(0, 143, 237, 0.12); /* Soft Blue border */
-  --brand-border-glow: rgba(0, 143, 237, 0.35);
+  --brand-dark: #FFFFFF;
+  --brand-card: #FFFFFF;
+  --brand-card-hover: #F8FAFC;
+  --brand-border: rgba(0, 143, 237, 0.15);
+  --brand-border-glow: rgba(0, 143, 237, 0.3);
   
-  --background: #FAFBFF; /* Soft White */
-  --foreground: #0F172A; /* slate-900 */
+  --background: #FFFFFF;
+  --foreground: #0F172A;
   
   --card-glow-color: rgba(0, 143, 237, 0.12);
 }
 
 .dark {
-  --brand-cyan: #00D4FF;
-  --brand-blue: #008FED;
-  --brand-dark: #071426;
-  --brand-card: rgba(11, 26, 46, 0.7);
-  --brand-card-hover: rgba(15, 34, 61, 0.85);
-  --brand-border: rgba(0, 212, 255, 0.15);
-  --brand-border-glow: rgba(0, 212, 255, 0.4);
+  --brand-cyan: #008FED;
+  --brand-blue: #0077D4;
+  --brand-dark: #FFFFFF;
+  --brand-card: #FFFFFF;
+  --brand-card-hover: #F8FAFC;
+  --brand-border: rgba(0, 143, 237, 0.15);
+  --brand-border-glow: rgba(0, 143, 237, 0.3);
   
-  --background: #071426;
-  --foreground: #FFFFFF;
+  --background: #FFFFFF;
+  --foreground: #0F172A;
   
-  --card-glow-color: rgba(0, 212, 255, 0.22);
+  --card-glow-color: rgba(0, 143, 237, 0.12);
 }
 
-body {
-  background-color: var(--background) !important;
+html, body, main {
+  background-color: #FFFFFF !important;
   color: var(--foreground) !important;
   font-family: 'Manrope', sans-serif !important;
   overflow-x: hidden;
@@ -583,13 +583,8 @@ header nav > div:nth-child(6) { animation-delay: 0.35s; }
 
 /* Light mode specific wrapper setup: Soft White with radial blue/cyan/purple gradients (Premium SaaS look) */
 :root:not(.dark) .cosmic-home-wrapper {
-  background-color: #FAFBFF !important;
-  background-image: 
-    radial-gradient(circle at 10% 20%, rgba(0, 143, 237, 0.05) 0%, transparent 45%),
-    radial-gradient(circle at 90% 40%, rgba(0, 212, 255, 0.04) 0%, transparent 40%),
-    radial-gradient(circle at 50% 80%, rgba(124, 58, 237, 0.03) 0%, transparent 50%) !important;
-  background-attachment: fixed !important;
-  background-size: cover !important;
+  background-color: #FFFFFF !important;
+  background-image: none !important;
 }
 
 /* Light Mode Hero & breathing glow tweaks */
@@ -667,7 +662,7 @@ header nav > div:nth-child(6) { animation-delay: 0.35s; }
 :root:not(.dark) section:nth-of-type(even), 
 :root:not(.dark) .bg-\[\#F3F0FA\],
 :root:not(.dark) .bg-gradient-to-br.from-white.to-slate-50 {
-  background-color: #F5F9FF !important; /* Very Light Blue */
+  background-color: #FFFFFF !important;
   background-image: none !important;
 }
 
@@ -679,7 +674,7 @@ header nav > div:nth-child(6) { animation-delay: 0.35s; }
 :root:not(.dark) .bg-\[\#F8F7FC\]\/80,
 :root:not(.dark) .bg-\#F8F7FC,
 :root:not(.dark) .bg-purple-50 {
-  background-color: #FAFBFF !important; /* Soft White */
+  background-color: #FFFFFF !important;
 }
 
 /* Glass card default styles in light mode */
@@ -770,12 +765,6 @@ header nav > div:nth-child(6) { animation-delay: 0.35s; }
   background-color: rgba(0, 143, 237, 0.08) !important;
 }
 
-:root:not(.dark) footer a:hover:not(.group\/office) {
-  background-color: #008FED !important;
-  color: #FFFFFF !important;
-  border-color: #008FED !important;
-  box-shadow: 0 10px 20px rgba(0, 143, 237, 0.25) !important;
-}
 
 :root:not(.dark) footer .text-slate-400 {
   color: #475569 !important;

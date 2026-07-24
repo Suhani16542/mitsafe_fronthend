@@ -23,28 +23,23 @@ export default function MovingCrossStripSection() {
   const { theme } = useTheme();
 
   // Back ribbon colors based on theme:
-  // - Light theme: Black -> Dark Blue -> Medium Blue gradient
-  // - Dark theme: White -> Light Blue gradient
+  // Solid Primary Blue
   const backBgColor = theme === "dark" 
-    ? "bg-gradient-to-r from-white/95 via-[#DBEAFE]/90 to-[#93C5FD]/85 backdrop-blur-md" 
-    : "bg-gradient-to-r from-[#0B0F19]/95 via-[#14213D]/95 to-[#1D4ED8]/95 backdrop-blur-md";
+    ? "bg-[#008FED]" 
+    : "bg-[#008FED]"; // Blue
 
-  const backTextColor = theme === "dark"
-    ? "text-[#0B0F19]"
-    : "text-white";
+  const backTextColor = "text-black";
 
   const backShadowClass = theme === "dark"
-    ? "shadow-[0_8px_30px_rgba(255,255,255,0.05)] border-y border-white/20"
-    : "shadow-[0_8px_30px_rgba(0,0,0,0.15)] border-y border-white/5";
+    ? "shadow-[0_8px_30px_rgba(255,255,255,0.05)] border-y border-white/10"
+    : "shadow-[0_8px_30px_rgba(0,0,0,0.05)] border-y border-slate-200";
 
-  const backAccentColor = theme === "dark"
-    ? "text-[#1D4ED8]"
-    : "text-[#90CDF4]";
+  const backAccentColor = "text-black";
 
   return (
-    <section className="relative overflow-hidden w-full bg-transparent py-4 sm:py-6 md:py-8 z-10 flex flex-col justify-center min-h-[120px] sm:min-h-[140px] md:min-h-[160px]">
+    <section className="relative overflow-hidden w-full bg-transparent py-4 sm:py-6 md:py-8 z-10 flex flex-col justify-center min-h-[120px] sm:min-h-[140px] md:min-h-[160px] -mt-4 lg:-mt-[5vh]">
       <div className="relative w-full h-[100px] sm:h-[125px] flex items-center justify-center">
-        {/* Lower Strip: Adaptive back ribbon depending on theme */}
+        {/* Lower Strip: Light Grey */}
         <MarqueeStrip
           items={marqueeItems}
           direction="right"
@@ -57,17 +52,17 @@ export default function MovingCrossStripSection() {
           accentColor={backAccentColor}
         />
 
-        {/* Upper Strip: Premium Gradient with Glass Effect & Soft Blue Glow */}
+        {/* Upper Strip: Pure White */}
         <MarqueeStrip
           items={marqueeItems}
           direction="left"
           speed={360} // Speed remains identical as requested
-          bgColor="bg-gradient-to-r from-[#1A365D]/90 via-[#2B6CB0]/85 to-[#1A365D]/90 backdrop-blur-md"
-          textColor="text-white"
+          bgColor="bg-white"
+          textColor="text-slate-900"
           rotateStyle={{ transform: "translateY(-50%) rotate(-2.5deg)" }}
           zIndexClass="z-10"
-          shadowClass="shadow-[0_10px_35px_rgba(37,99,255,0.18)] border-y border-white/20"
-          accentColor="text-[#90CDF4]"
+          shadowClass="shadow-[0_10px_35px_rgba(0,0,0,0.08)] border-y border-slate-200"
+          accentColor="text-[#008FED]"
         />
       </div>
     </section>

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import ParticleBackground from "@/components/ParticleBackground";
+import LottieAnimation from "@/components/LottieAnimation";
 
 function TeamAvatar({ index }: { index: number }) {
   const gradients = [
@@ -146,9 +146,6 @@ export default function MitsafeSection() {
       {/* Moving background gradient */}
       <div className="absolute inset-0 moving-gradient-bg opacity-20 pointer-events-none" />
 
-      {/* Floating particles */}
-      <ParticleBackground />
-
       {/* Cyber Grid */}
       <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
@@ -161,21 +158,6 @@ export default function MitsafeSection() {
         <div className="w-[1px] bg-slate-100/70 h-full" />
       </div>
 
-      {/* Parallax background glows / soft shapes */}
-      {/* Outline Blue Ring */}
-      <motion.div
-        className="absolute rounded-full border-2 border-[#2563FF]/8 pointer-events-none z-0"
-        style={{ width: "240px", height: "240px", left: "6%", top: "12%" }}
-        animate={{
-          y: [0, -22, 0],
-          rotate: [0, 360],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
       {/* Soft Blurry Orange Glow Orb */}
       <motion.div
         className="absolute rounded-full bg-[#F5A623]/3 pointer-events-none z-0 blur-2xl"
@@ -204,34 +186,6 @@ export default function MitsafeSection() {
           ease: "linear",
         }}
       />
-      {/* Small Solid Blue Sphere */}
-      <motion.div
-        className="absolute rounded-full bg-[#2563FF]/8 pointer-events-none z-0 shadow-sm"
-        style={{ width: "22px", height: "22px", left: "16%", bottom: "20%" }}
-        animate={{
-          y: [0, 26, 0],
-          x: [0, 14, 0],
-        }}
-        transition={{
-          duration: 11,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      {/* Small Solid Orange Sphere */}
-      <motion.div
-        className="absolute rounded-full bg-[#F5A623]/8 pointer-events-none z-0 shadow-sm"
-        style={{ width: "16px", height: "16px", right: "35%", top: "12%" }}
-        animate={{
-          y: [0, -22, 0],
-          x: [0, -16, 0],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
 
       {/* Lagged Mouse Follower Glow */}
       <motion.div
@@ -251,43 +205,41 @@ export default function MitsafeSection() {
         transition={{ type: "spring", stiffness: 45, damping: 18 }}
       />
 
+      {/* Left Side: Artificial Intelligence Lottie Animation Inside Circle */}
+      <div className="absolute left-2 sm:left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 w-28 h-28 sm:w-40 sm:h-40 md:w-52 md:h-52 lg:w-60 lg:h-60 pointer-events-none z-10 hidden sm:flex items-center justify-center">
+        <div className="w-full h-full rounded-full border-2 border-[#2563FF]/20 bg-blue-50/40 p-3 sm:p-5 md:p-6 flex items-center justify-center overflow-hidden shadow-sm backdrop-blur-sm">
+          <LottieAnimation
+            src="/animations/Artificial intelligence digital technology.json"
+            autoplay={true}
+            loop={true}
+          />
+        </div>
+      </div>
+
+      {/* Right Side: Robot Lottie Animation */}
+      <div className="absolute right-2 sm:right-4 md:right-8 lg:right-12 top-1/2 -translate-y-1/2 w-28 h-28 sm:w-40 sm:h-40 md:w-52 md:h-52 lg:w-60 lg:h-60 pointer-events-none z-10 hidden sm:block opacity-90">
+        <LottieAnimation
+          src="/animations/Robot Futuristic Ai animated.json"
+          autoplay={true}
+          loop={true}
+        />
+      </div>
+
       {/* Section Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full flex flex-col items-center justify-center">
         <div className="relative w-full flex flex-col items-center justify-center min-h-[280px] sm:min-h-[320px] md:min-h-[360px] overflow-visible border-none bg-transparent">
-          {/* Subtle glowing fireflies / jugnu lights around the text and anim */}
-          <div className="absolute inset-0 pointer-events-none overflow-visible z-0 flex items-center justify-center">
-            {[
-              { id: 1, left: "15%", top: "25%", size: 3.5, dur: 5.5, delay: 0 },
-              { id: 2, left: "85%", top: "20%", size: 4, dur: 6.2, delay: 1 },
-              { id: 3, left: "25%", top: "70%", size: 3, dur: 5.8, delay: 2 },
-              { id: 4, left: "75%", top: "75%", size: 4.5, dur: 7, delay: 0.5 },
-              { id: 5, left: "40%", top: "15%", size: 1.8, dur: 4.0, delay: 1.2 },
-              { id: 6, left: "60%", top: "80%", size: 2.2, dur: 4.8, delay: 0.8 },
-              { id: 7, left: "50%", top: "30%", size: 2.0, dur: 5.0, delay: 2.5 },
-            ].map((pt) => (
-              <motion.div
-                key={pt.id}
-                animate={{
-                  opacity: [0.08, 0.8, 0.08],
-                  scale: [0.8, 1.2, 0.8],
-                  x: [0, 10, -6, 0],
-                  y: [0, -14, 8, 0],
-                }}
-                transition={{
-                  duration: pt.dur,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: pt.delay,
-                }}
-                className="absolute rounded-full bg-[#00E5FF] shadow-[0_0_8px_#00E5FF,0_0_15px_rgba(0,229,255,0.3)]"
-                style={{
-                  left: pt.left,
-                  top: pt.top,
-                  width: `${pt.size}px`,
-                  height: `${pt.size}px`,
-                }}
-              />
-            ))}
+          {/* Subtle AI/Futuristic Animation on Left and Right sides */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 flex items-center justify-between px-10 sm:px-20">
+            <motion.div
+              animate={{ opacity: [0.2, 0.6, 0.2], height: ["60px", "120px", "60px"] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1 bg-gradient-to-b from-transparent via-[#00D4FF] to-transparent rounded-full blur-[1px]"
+            />
+            <motion.div
+              animate={{ opacity: [0.2, 0.6, 0.2], height: ["120px", "60px", "120px"] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="w-1 bg-gradient-to-b from-transparent via-[#008FED] to-transparent rounded-full blur-[1px]"
+            />
           </div>
 
           {/* Entrance animated wrapper for the brand header */}
