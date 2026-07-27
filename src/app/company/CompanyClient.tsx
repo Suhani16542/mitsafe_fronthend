@@ -136,7 +136,7 @@ const slideInRight = {
 
 export default function CompanyClient() {
   return (
-    <div className="cosmic-company-wrapper bg-[#FAFBFF] dark:bg-[#071426] text-[#0F172A] dark:text-white min-h-screen relative font-sans overflow-x-hidden">
+    <div className="cosmic-company-wrapper bg-white text-[#0F172A] min-h-screen relative font-sans overflow-x-hidden">
       
       {/* Dynamic Background Fireflies & Floating Light Circles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
@@ -191,7 +191,7 @@ export default function CompanyClient() {
       </div>
 
       {/* 1. Hero Section */}
-      <section className="relative pt-36 pb-32 flex flex-col items-center text-center px-6 lg:px-8 bg-gradient-to-b from-[#FAFBFF] via-[#F4F7FC] to-[#F3F0FA] dark:from-[#071426] dark:via-[#091a33] dark:to-[#0B1A2E] overflow-hidden z-10">
+      <section className="relative pt-36 pb-32 flex flex-col items-center text-center px-6 lg:px-8 bg-white overflow-hidden z-10">
         
         <div className="max-w-5xl mx-auto flex flex-col items-center relative z-10">
           
@@ -226,10 +226,10 @@ export default function CompanyClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             style={{ fontFamily: "'Clash Display', sans-serif" }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-4xl text-[#2563FF] dark:text-white"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-4xl text-slate-900"
           >
             Engineering the Future of <br />
-            <span className="text-[#2563FF]">Modern Technology</span>
+            <span className="font-extrabold inline-block" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Modern Technology</span>
           </motion.h1>
 
           {/* Paragraph */}
@@ -237,7 +237,7 @@ export default function CompanyClient() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-6 text-base sm:text-lg md:text-xl text-slate-650 dark:text-slate-300 max-w-3xl leading-relaxed font-normal"
+            className="mt-6 text-base sm:text-lg md:text-xl text-slate-650 max-w-3xl leading-relaxed font-normal"
           >
             We build next-generation web platforms, secure database clusters, and specialized artificial intelligence models designed to take your enterprise further.
           </motion.p>
@@ -248,14 +248,14 @@ export default function CompanyClient() {
           <svg viewBox="0 0 1440 120" preserveAspectRatio="none" className="relative block w-full h-[40px] md:h-[70px]">
             <path 
               d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,80C1120,85,1280,75,1360,69.3L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" 
-              className="fill-white dark:fill-[#0B1A2E]"
+              className="fill-white"
             />
           </svg>
         </div>
       </section>
 
       {/* 2. About the Company Section */}
-      <section className="relative py-24 bg-white dark:bg-[#0B1A2E] z-10 px-6 lg:px-8 overflow-hidden">
+      <section className="relative py-24 bg-white z-10 px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
@@ -274,14 +274,14 @@ export default function CompanyClient() {
                 </span>
                 <h2 
                   style={{ fontFamily: "'Clash Display', sans-serif" }}
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] dark:text-white leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
                 >
-                  Pioneering <span className="text-[#2563FF]">Next-Gen Software</span> & Intelligent Systems
+                  Pioneering <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Next-Gen Software</span> & Intelligent Systems
                 </h2>
-                <p className="text-sm sm:text-base text-slate-650 dark:text-slate-300 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base text-slate-650 leading-relaxed font-normal">
                   Modern Technology is a premier software engineering firm built around solving complex system problems. We write premium TypeScript systems, orchestrate secure distributed cloud infrastructure, and develop tailored machine learning tools.
                 </p>
-                <p className="text-sm sm:text-base text-slate-650 dark:text-slate-300 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base text-slate-650 leading-relaxed font-normal">
                   We exist to bridge the gap between high-level business goals and high-performance technical execution. By aligning system architectures with operational requirements, we build tools that scale automatically and keep corporate workflows completely secure.
                 </p>
               </motion.div>
@@ -289,9 +289,9 @@ export default function CompanyClient() {
               {/* Vision, Mission, and Philosophy Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-6">
                 {[
-                  { title: "Our Vision", desc: "To lead global digital innovation with systems that scale automatically and operate safely.", border: "border-[#2563FF]/20 hover:border-[#2563FF]/45 hover:shadow-[0_12px_24px_rgba(0,212,255,0.12)]", glow: "text-[#2563FF] dark:text-[#2563FF]" },
-                  { title: "Our Mission", desc: "To build zero-compromise digital products focused on code speed, modularity, and high security.", border: "border-[#7C3AED]/20 hover:border-[#7C3AED]/45 hover:shadow-[0_12px_24px_rgba(124,58,237,0.12)]", glow: "text-[#2563FF] dark:text-[#7C3AED]" },
-                  { title: "Philosophy", desc: "Innovation without stability is a liability. We prioritize customer metrics and systems uptime above all.", border: "border-emerald-500/20 hover:border-emerald-500/45 hover:shadow-[0_12px_24px_rgba(16,185,129,0.12)]", glow: "text-[#2563FF] dark:text-emerald-450" }
+                  { title: "Our Vision", desc: "To lead global digital innovation with systems that scale automatically and operate safely.", border: "border-[#2563FF]/20 hover:border-[#2563FF]/45 hover:shadow-[0_12px_24px_rgba(0,212,255,0.12)]", glow: "text-[#1D4ED8]" },
+                  { title: "Our Mission", desc: "To build zero-compromise digital products focused on code speed, modularity, and high security.", border: "border-[#7C3AED]/20 hover:border-[#7C3AED]/45 hover:shadow-[0_12px_24px_rgba(124,58,237,0.12)]", glow: "text-[#1D4ED8]" },
+                  { title: "Philosophy", desc: "Innovation without stability is a liability. We prioritize customer metrics and systems uptime above all.", border: "border-emerald-500/20 hover:border-emerald-500/45 hover:shadow-[0_12px_24px_rgba(16,185,129,0.12)]", glow: "text-[#1D4ED8]" }
                 ].map((item, idx) => (
                   <motion.div
                     key={idx}
@@ -302,10 +302,10 @@ export default function CompanyClient() {
                     variants={fadeInUpStagger}
                     whileHover={{ y: -6, scale: 1.015 }}
                     transition={{ duration: 0.28, ease: "easeOut" }}
-                    className={`bg-slate-50/60 dark:bg-[#071426]/50 border border-slate-200 dark:border-white/5 rounded-2xl p-5 backdrop-blur-sm cursor-default transition-all duration-300 ${item.border}`}
+                    className={`bg-slate-50/60 border border-slate-200 rounded-2xl p-5 backdrop-blur-sm cursor-default transition-all duration-300 ${item.border}`}
                   >
                     <h4 className={`text-sm font-bold mb-2 ${item.glow}`}>{item.title}</h4>
-                    <p className="text-xs text-slate-650 dark:text-slate-400 leading-relaxed font-normal">{item.desc}</p>
+                    <p className="text-xs text-slate-650 leading-relaxed font-normal">{item.desc}</p>
                   </motion.div>
                 ))}
               </div>
@@ -320,7 +320,7 @@ export default function CompanyClient() {
               className="lg:col-span-5 relative flex justify-center items-center"
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-[#2563FF]/15 to-transparent rounded-[32px] blur-2xl pointer-events-none" />
-              <div className="relative border border-slate-200 dark:border-white/10 rounded-[32px] overflow-hidden shadow-lg aspect-[4/3] w-full group/img">
+              <div className="relative border border-slate-200 rounded-[32px] overflow-hidden shadow-lg aspect-[4/3] w-full group/img">
                 <Image 
                   src="/about_company.png" 
                   alt="Futuristic software architecture illustration" 
@@ -336,7 +336,7 @@ export default function CompanyClient() {
       </section>
 
       {/* 3. What We Do Section (Animated Cards) */}
-      <section className="relative py-24 bg-[#F4F7FC] dark:bg-[#071426]/60 px-6 lg:px-8 border-t border-b border-slate-200 dark:border-[#E5E2F0]/10 z-10">
+      <section className="relative py-24 bg-white px-6 lg:px-8 border-t border-b border-slate-200 z-10">
         <div className="max-w-7xl mx-auto">
           
           <motion.div 
@@ -351,9 +351,9 @@ export default function CompanyClient() {
             </span>
             <h2 
               style={{ fontFamily: "'Clash Display', sans-serif" }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] dark:text-white mt-3"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mt-3"
             >
-              Enterprise-Grade <span className="text-[#2563FF]">Tech Services</span>
+              Enterprise-Grade <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Tech Services</span>
             </h2>
           </motion.div>
 
@@ -380,16 +380,16 @@ export default function CompanyClient() {
                   variants={fadeInUpStagger}
                   whileHover={{ y: -8, scale: 1.015 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className={`bg-white dark:bg-[#0B1A2E]/55 border ${srv.color} rounded-[24px] p-6 shadow-sm flex flex-col justify-between gap-5 relative overflow-hidden group hover:bg-white/90 dark:hover:bg-[#0B1A2E]/80 transition-all duration-300 cursor-default`}
+                  className={`bg-white border ${srv.color} rounded-[24px] p-6 shadow-sm flex flex-col justify-between gap-5 relative overflow-hidden group hover:bg-slate-50 transition-all duration-300 cursor-default`}
                 >
                   <div className="flex flex-col gap-4">
-                    <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-[#2563FF] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                    <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center text-[#2563FF] group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                       <IconComponent className="w-6 h-6" />
                     </div>
-                    <h3 className="font-display text-lg sm:text-xl font-bold text-[#2563FF] dark:text-white group-hover:text-[#2563FF] transition-colors duration-250">
+                    <h3 className="font-display text-lg sm:text-xl font-bold text-slate-900 group-hover:text-[#1D4ED8] transition-colors duration-250">
                       {srv.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                       {srv.desc}
                     </p>
                   </div>
@@ -401,7 +401,7 @@ export default function CompanyClient() {
       </section>
 
       {/* 4. How We Work Section (Timeline) */}
-      <section className="relative py-24 bg-white dark:bg-[#0B1A2E] px-6 lg:px-8 overflow-hidden z-10">
+      <section className="relative py-24 bg-white px-6 lg:px-8 overflow-hidden z-10">
         
         <div className="max-w-4xl mx-auto">
           
@@ -417,9 +417,9 @@ export default function CompanyClient() {
             </span>
             <h2 
               style={{ fontFamily: "'Clash Display', sans-serif" }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] dark:text-white mt-3"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mt-3"
             >
-              How We Deliver <span className="text-[#2563FF]">Excellence</span>
+              How We Deliver <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Excellence</span>
             </h2>
           </motion.div>
 
@@ -444,14 +444,14 @@ export default function CompanyClient() {
                 className="relative group cursor-default"
               >
                 {/* Timeline node icon indicator */}
-                <div className="absolute -left-[45px] top-1.5 w-8 h-8 rounded-full bg-white dark:bg-[#071426] border border-[#2563FF]/35 flex items-center justify-center text-xs font-bold text-[#2563FF] group-hover:bg-[#2563FF] group-hover:text-white dark:group-hover:text-[#071426] transition-colors duration-300 shadow-md shadow-[#2563FF]/10">
+                <div className="absolute -left-[45px] top-1.5 w-8 h-8 rounded-full bg-white border border-[#2563FF]/35 flex items-center justify-center text-xs font-bold text-[#2563FF] group-hover:bg-[#2563FF] group-hover:text-white transition-colors duration-300 shadow-md shadow-[#2563FF]/10">
                   {step.step}
                 </div>
-                <div className="bg-slate-50/50 dark:bg-[#071426]/50 border border-slate-200 dark:border-[#E5E2F0]/10 rounded-2xl p-6 hover:border-[#2563FF]/30 hover:bg-slate-50/80 dark:hover:bg-[#071426]/85 transition-all duration-300 shadow-sm">
-                  <h3 className="text-base sm:text-lg font-bold text-[#2563FF] dark:text-white group-hover:text-[#2563FF] transition-colors duration-200">
+                <div className="bg-slate-50/50 border border-slate-200 rounded-2xl p-6 hover:border-[#2563FF]/30 hover:bg-slate-50/80 transition-all duration-300 shadow-sm">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#1D4ED8] transition-colors duration-200">
                     {step.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed font-normal">
                     {step.desc}
                   </p>
                 </div>
@@ -462,7 +462,7 @@ export default function CompanyClient() {
       </section>
 
       {/* 5. Why Choose Us Section */}
-      <section className="relative py-24 bg-[#F4F7FC] dark:bg-[#071426]/80 px-6 lg:px-8 border-t border-b border-slate-200 dark:border-[#E5E2F0]/10 z-10">
+      <section className="relative py-24 bg-white px-6 lg:px-8 border-t border-b border-slate-200 z-10">
         <div className="max-w-7xl mx-auto">
           
           <motion.div 
@@ -477,9 +477,9 @@ export default function CompanyClient() {
             </span>
             <h2 
               style={{ fontFamily: "'Clash Display', sans-serif" }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] dark:text-white mt-3"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mt-3"
             >
-              Why Partner <span className="text-[#2563FF]">With Us</span>
+              Why Partner <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>With Us</span>
             </h2>
           </motion.div>
 
@@ -505,13 +505,13 @@ export default function CompanyClient() {
                   variants={fadeInUpStagger}
                   whileHover={{ y: -6, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="bg-white dark:bg-[#0B1A2E]/50 border border-slate-200 dark:border-[#E5E2F0]/10 rounded-2xl p-6 flex flex-col gap-3.5 hover:border-[#2563FF]/30 hover:bg-white/80 dark:hover:bg-[#0B1A2E]/85 hover:shadow-[0_15px_30px_rgba(0,212,255,0.15)] transition-all duration-300 cursor-default group"
+                  className="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col gap-3.5 hover:border-[#2563FF]/30 hover:bg-white/80 hover:shadow-[0_15px_30px_rgba(0,212,255,0.15)] transition-all duration-300 cursor-default group"
                 >
                   <div className="w-10 h-10 rounded-xl bg-[#2563FF]/10 flex items-center justify-center text-[#2563FF] group-hover:scale-110 transition-transform duration-300">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h4 className="text-base font-bold text-[#2563FF] dark:text-white group-hover:text-[#2563FF] transition-colors duration-200">{item.title}</h4>
-                  <p className="text-xs text-slate-650 dark:text-slate-400 leading-relaxed font-normal">{item.desc}</p>
+                  <h4 className="text-base font-bold text-slate-900 group-hover:text-[#1D4ED8] transition-colors duration-200">{item.title}</h4>
+                  <p className="text-xs text-slate-650 leading-relaxed font-normal">{item.desc}</p>
                 </motion.div>
               );
             })}
@@ -520,14 +520,14 @@ export default function CompanyClient() {
       </section>
 
       {/* 6. Company Statistics Section (Animated Counters) */}
-      <section className="relative py-20 bg-gradient-to-b from-white to-[#F4F7FC] dark:from-[#0B1A2E] dark:to-[#071426] px-6 lg:px-8 z-10">
+      <section className="relative py-20 bg-white px-6 lg:px-8 z-10">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             variants={imageReveal}
-            className="bg-slate-50/50 dark:bg-[#071426]/50 border border-slate-200 dark:border-[#2563FF]/25 rounded-[32px] p-10 md:p-14 backdrop-blur-md shadow-lg relative overflow-hidden"
+            className="bg-slate-50/50 border border-slate-200 rounded-[32px] p-10 md:p-14 backdrop-blur-md shadow-lg relative overflow-hidden"
           >
             {/* Soft decorative background circles */}
             <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-[#2563FF]/5 rounded-full blur-[60px]" />
@@ -542,11 +542,11 @@ export default function CompanyClient() {
                 { value: 10, label: "Years of Experience", suffix: "+" }
               ].map((stat, idx) => (
                 <div key={idx} className="flex flex-col gap-2">
-                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-[#2563FF] dark:text-white tracking-tight flex justify-center items-baseline gap-0.5">
+                  <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display text-slate-900 tracking-tight flex justify-center items-baseline gap-0.5">
                     <Counter value={stat.value} />
-                    <span className="text-[#2563FF] font-semibold">{stat.suffix}</span>
+                    <span className="text-[#1D4ED8] font-semibold">{stat.suffix}</span>
                   </h3>
-                  <span className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 uppercase font-semibold tracking-wider">{stat.label}</span>
+                  <span className="text-xs sm:text-sm text-slate-600 uppercase font-semibold tracking-wider">{stat.label}</span>
                 </div>
               ))}
             </div>
@@ -555,7 +555,7 @@ export default function CompanyClient() {
       </section>
 
       {/* 7. Team Culture Section */}
-      <section className="relative py-24 bg-white dark:bg-[#0B1A2E] px-6 lg:px-8 border-b border-slate-200 dark:border-[#E5E2F0]/10 z-10 overflow-hidden">
+      <section className="relative py-24 bg-white px-6 lg:px-8 border-b border-slate-200 z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
@@ -568,7 +568,7 @@ export default function CompanyClient() {
               className="lg:col-span-5 order-2 lg:order-1 relative flex justify-center items-center"
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-[#7C3AED]/15 to-transparent rounded-[32px] blur-2xl pointer-events-none" />
-              <div className="relative border border-slate-200 dark:border-white/10 rounded-[32px] overflow-hidden shadow-lg aspect-[4/3] w-full group/img">
+              <div className="relative border border-slate-200 rounded-[32px] overflow-hidden shadow-lg aspect-[4/3] w-full group/img">
                 <Image 
                   src="/team_culture.png" 
                   alt="Modern Technology team culture illustration" 
@@ -594,11 +594,11 @@ export default function CompanyClient() {
                 </span>
                 <h2 
                   style={{ fontFamily: "'Clash Display', sans-serif" }}
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] dark:text-white leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
                 >
-                  A Culture Built on <span className="text-[#2563FF]">Engineering Integrity</span>
+                  A Culture Built on <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Engineering Integrity</span>
                 </h2>
-                <p className="text-sm sm:text-base text-slate-650 dark:text-slate-300 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base text-slate-650 leading-relaxed font-normal">
                   We believe that great software is created in environments that nurture intellectual curiosity and technical rigor. Our culture is formed around collaboration, where every designer and developer critiques, improves, and refines system metrics constantly.
                 </p>
               </motion.div>
@@ -624,8 +624,8 @@ export default function CompanyClient() {
                       <CheckCircle className="w-4 h-4" />
                     </div>
                     <div className="flex flex-col gap-1">
-                      <h4 className="text-sm font-bold text-[#2563FF] dark:text-white group-hover:text-[#2563FF] transition-colors duration-200">{item.title}</h4>
-                      <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal">{item.desc}</p>
+                      <h4 className="text-sm font-bold text-slate-900 group-hover:text-[#1D4ED8] transition-colors duration-200">{item.title}</h4>
+                      <p className="text-xs text-slate-600 leading-relaxed font-normal">{item.desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -637,7 +637,7 @@ export default function CompanyClient() {
       </section>
 
       {/* 8. Technology Stack Section */}
-      <section className="relative py-24 bg-[#F4F7FC] dark:bg-[#071426] px-6 lg:px-8 z-10 overflow-hidden">
+      <section className="relative py-24 bg-white px-6 lg:px-8 z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           
           <motion.div 
@@ -652,22 +652,22 @@ export default function CompanyClient() {
             </span>
             <h2 
               style={{ fontFamily: "'Clash Display', sans-serif" }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] dark:text-white mt-3"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 mt-3"
             >
-              Technologies We <span className="text-[#2563FF]">Utilize</span>
+              Technologies We <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Utilize</span>
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {[
-              { name: "React", type: "Frontend Library", glow: "hover:border-[#2563FF]/35 hover:shadow-[0_0_15px_rgba(0,212,255,0.15)]", color: "text-[#2563FF] dark:text-[#2563FF]" },
-              { name: "Next.js", type: "React Framework", glow: "hover:border-slate-300 dark:hover:border-white/20 hover:shadow-[0_0_15px_rgba(15,23,42,0.08)] dark:hover:shadow-[0_0_15px_rgba(255,255,255,0.08)]", color: "text-[#2563FF] dark:text-white" },
-              { name: "TypeScript", type: "Typed JS Language", glow: "hover:border-blue-500/35 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)]", color: "text-[#2563FF] dark:text-blue-500" },
-              { name: "Node.js", type: "JS Runtime Environment", glow: "hover:border-emerald-500/35 hover:shadow-[0_0_15px_rgba(16,185,129,0.15)]", color: "text-[#2563FF] dark:text-emerald-500" },
-              { name: "Python", type: "AI & Data Science", glow: "hover:border-yellow-500/35 hover:shadow-[0_0_15px_rgba(234,179,8,0.15)]", color: "text-[#2563FF] dark:text-[#EAB308]" },
-              { name: "AI / LLMs", type: "Machine Learning models", glow: "hover:border-purple-500/35 hover:shadow-[0_0_15px_rgba(168,85,247,0.15)]", color: "text-[#2563FF] dark:text-purple-500" },
-              { name: "Cloud Integration", type: "Autoscaling Cloud Systems", glow: "hover:border-sky-500/35 hover:shadow-[0_0_15px_rgba(14,165,233,0.15)]", color: "text-[#2563FF] dark:text-sky-400" },
-              { name: "Databases (SQL/NoSQL)", type: "Secure Data Warehouses", glow: "hover:border-indigo-500/35 hover:shadow-[0_0_15px_rgba(99,102,241,0.15)]", color: "text-[#2563FF] dark:text-indigo-400" }
+              { name: "React", type: "Frontend Library", glow: "hover:border-[#2563FF]/35 hover:shadow-[0_0_15px_rgba(0,212,255,0.15)]", color: "text-[#1D4ED8]" },
+              { name: "Next.js", type: "React Framework", glow: "hover:border-slate-300 hover:shadow-[0_0_15px_rgba(15,23,42,0.08)]", color: "text-slate-900" },
+              { name: "TypeScript", type: "Typed JS Language", glow: "hover:border-blue-500/35 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)]", color: "text-[#1D4ED8]" },
+              { name: "Node.js", type: "JS Runtime Environment", glow: "hover:border-emerald-500/35 hover:shadow-[0_0_15px_rgba(16,185,129,0.15)]", color: "text-[#1D4ED8]" },
+              { name: "Python", type: "AI & Data Science", glow: "hover:border-yellow-500/35 hover:shadow-[0_0_15px_rgba(234,179,8,0.15)]", color: "text-[#1D4ED8]" },
+              { name: "AI / LLMs", type: "Machine Learning models", glow: "hover:border-purple-500/35 hover:shadow-[0_0_15px_rgba(168,85,247,0.15)]", color: "text-[#1D4ED8]" },
+              { name: "Cloud Integration", type: "Autoscaling Cloud Systems", glow: "hover:border-sky-500/35 hover:shadow-[0_0_15px_rgba(14,165,233,0.15)]", color: "text-[#1D4ED8]" },
+              { name: "Databases (SQL/NoSQL)", type: "Secure Data Warehouses", glow: "hover:border-indigo-500/35 hover:shadow-[0_0_15px_rgba(99,102,241,0.15)]", color: "text-[#1D4ED8]" }
             ].map((tech, idx) => (
               <motion.div 
                 key={idx}
@@ -677,10 +677,10 @@ export default function CompanyClient() {
                 viewport={{ once: true, margin: "-60px" }}
                 variants={fadeInUpStagger}
                 whileHover={{ y: -5, scale: 1.025 }}
-                className={`bg-white dark:bg-[#0B1A2E]/50 border border-slate-200 dark:border-[#E5E2F0]/10 rounded-2xl p-6 flex flex-col items-center text-center gap-2 transition-all duration-305 cursor-default ${tech.glow}`}
+                className={`bg-white border border-slate-200 rounded-2xl p-6 flex flex-col items-center text-center gap-2 transition-all duration-305 cursor-default ${tech.glow}`}
               >
                 <div className={`text-2xl font-bold font-display ${tech.color}`}>{tech.name}</div>
-                <div className="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider mt-1">{tech.type}</div>
+                <div className="text-[10px] sm:text-xs text-slate-500 font-medium uppercase tracking-wider mt-1">{tech.type}</div>
               </motion.div>
             ))}
           </div>
@@ -688,7 +688,7 @@ export default function CompanyClient() {
       </section>
 
       {/* 9. CTA Section */}
-      <section className="relative py-28 bg-white dark:bg-[#0B1A2E] z-10 px-6 lg:px-8 border-t border-slate-200 dark:border-[#E5E2F0]/10 flex flex-col items-center overflow-hidden">
+      <section className="relative py-28 bg-white z-10 px-6 lg:px-8 border-t border-slate-200 flex flex-col items-center overflow-hidden">
         {/* Soft floating glow circle */}
         <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-[#2563FF]/6 rounded-full blur-[80px] pointer-events-none" />
 
@@ -699,29 +699,46 @@ export default function CompanyClient() {
           variants={imageReveal}
           whileHover={{ scale: 1.008 }}
           transition={{ duration: 0.3 }}
-          className="max-w-4xl mx-auto text-center border border-slate-200 dark:border-[#2563FF]/15 bg-slate-50/50 dark:bg-[#071426]/60 rounded-[32px] p-8 md:p-14 shadow-2xl relative z-10 flex flex-col items-center gap-6 hover:border-[#2563FF]/30 transition-all duration-300"
+          className="max-w-4xl mx-auto text-center border border-slate-200 bg-slate-50/50 rounded-[32px] p-8 md:p-14 shadow-2xl relative z-10 flex flex-col items-center gap-6 hover:border-[#2563FF]/30 transition-all duration-300"
         >
           <span className="text-xs font-bold text-[#2563FF] uppercase tracking-wider font-mono">
             // GET IN TOUCH
           </span>
           <h2 
             style={{ fontFamily: "'Clash Display', sans-serif" }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#2563FF] dark:text-white leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
           >
-            Ready to Build Something <span className="text-[#2563FF]">Extraordinary?</span>
+            Ready to Build Something <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Extraordinary?</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-650 dark:text-slate-300 max-w-2xl leading-relaxed font-normal">
+          <p className="text-sm sm:text-base text-slate-650 max-w-2xl leading-relaxed font-normal">
             Whether you want to develop an autoscaling SaaS web platform, integrate customized AI chatbots, or modernise old systems, we have the engineering expertise to deploy solutions that convert metrics.
           </p>
-          <div className="mt-4">
-            <Button
-              href="/contact"
-              variant="primary"
-              icon={<ArrowRight className="w-4 h-4 text-white" />}
-              className="!bg-gradient-to-r !from-[#2563EB] !to-[#06B6D4] hover:!from-[#2563EB]/90 hover:!to-[#06B6D4]/90 !border-transparent !shadow-[0_4px_14px_rgba(37,99,255,0.3)] hover:!shadow-[0_6px_20px_rgba(6,182,212,0.35)] !py-3 !px-7 !text-sm !font-bold !rounded-xl hover:scale-[1.02] active:scale-[0.98]"
-            >
-              Contact Our Engineers
-            </Button>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
+            {/* Get a Quote button matching exact capsule gradient badge design */}
+            <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.4)]">
+              <Link
+                href="/get-a-quote"
+                className="group relative inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10"
+              >
+                <span className="tracking-wide relative z-20 text-white font-black">Get a Quote</span>
+                <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
+                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </Link>
+            </div>
+
+            {/* Contact Our Engineers button matching exact capsule gradient badge design */}
+            <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.4)]">
+              <Link
+                href="/contact"
+                className="group relative inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10"
+              >
+                <span className="tracking-wide relative z-20 text-white font-black">Contact Our Engineers</span>
+                <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
+                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </Link>
+            </div>
           </div>
         </motion.div>
       </section>

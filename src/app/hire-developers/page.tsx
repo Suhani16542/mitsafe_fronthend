@@ -133,189 +133,263 @@ const faqs = [
   }
 ];
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30, filter: "blur(3px)" },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } 
+  }
+};
+
+const fadeInUpStagger = {
+  hidden: { opacity: 0, y: 30, scale: 0.96 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }
+  })
+};
+
 export default function HireDevelopersPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className="cosmic-hire-wrapper min-h-screen relative overflow-hidden bg-[#FAFBFF] dark:bg-[#071426] transition-colors duration-300">
+    <div className="cosmic-hire-wrapper min-h-screen relative overflow-hidden bg-white text-[#0F172A] transition-colors duration-300">
       
       {/* Decorative background grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#2563FF/5_1px,transparent_1px),linear-gradient(to_bottom,#2563FF/5_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 max-w-7xl mx-auto px-6 lg:px-8 z-10">
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 max-w-7xl mx-auto px-6 lg:px-8 z-10 bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          <div className="lg:col-span-6 flex flex-col gap-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/15 dark:border-[#00D4FF]/25 text-[10px] font-bold text-[#2563FF] dark:text-[#00D4FF] uppercase tracking-widest font-mono w-fit">
+          <motion.div 
+            initial={{ opacity: 0, x: -35 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 flex flex-col gap-6 text-left"
+          >
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2563FF]/5 border border-[#2563FF]/15 text-[10px] font-bold text-[#2563FF] uppercase tracking-widest font-mono w-fit">
               <UserCheck className="w-3.5 h-3.5" />
               <span>Scale Your Engineering Capacity</span>
             </div>
             
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#0F172A] dark:text-white tracking-tight leading-tight">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
               Hire Elite <br />
-              <span className="bg-gradient-to-r from-[#2563FF] to-[#00D4FF] bg-clip-text text-transparent">
+              <span className="font-black inline-block" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>
                 Software Engineers
               </span>
             </h1>
             
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-350 leading-relaxed font-normal max-w-xl">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal max-w-xl">
               Add experienced, vetted technical talent directly to your sprint teams. We provide full-time frontend, backend, full-stack, and AI automation specialists matching your scheduling needs.
             </p>
 
             <div className="flex flex-wrap gap-4 mt-2">
-              <Button href="#hire-form" variant="primary" className="shadow-md">
-                Find Developers Now
-              </Button>
-              <Button href="#categories" variant="secondary" className="shadow-sm">
-                Explore Tech Specialities
-              </Button>
-            </div>
-          </div>
+              <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.4)]">
+                <Link
+                  href="#hire-form"
+                  className="group relative inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10"
+                >
+                  <span className="tracking-wide relative z-20 text-white font-black">Find Developers Now</span>
+                  <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
+                    <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                </Link>
+              </div>
 
-          <div className="lg:col-span-6 flex justify-center items-center h-[280px] sm:h-[350px] lg:h-[450px]">
-            <div className="w-full h-full max-w-[550px] bg-white/40 dark:bg-white/5 rounded-3xl border border-slate-200 dark:border-white/10 p-4 shadow-lg backdrop-blur-sm relative overflow-hidden">
+              <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.4)]">
+                <Link
+                  href="#categories"
+                  className="group relative inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10"
+                >
+                  <span className="tracking-wide relative z-20 text-white font-black">Explore Tech Specialities</span>
+                  <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
+                    <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 35, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-6 flex justify-center items-center h-[280px] sm:h-[350px] lg:h-[450px]"
+          >
+            <div className="w-full h-full max-w-[550px] bg-white rounded-3xl border border-slate-200 p-4 shadow-lg backdrop-blur-sm relative overflow-hidden">
               <LottieAnimation 
                 src="/animations/development.json" 
                 className="w-full h-full object-contain"
               />
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </section>
 
       {/* Why Choose Our Developers */}
-      <section className="py-20 bg-slate-50/50 dark:bg-[#0B1A2E]/25 border-y border-slate-200 dark:border-white/10 relative z-10">
+      <section className="py-20 bg-white border-y border-slate-200 relative z-10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           
-          <div className="text-center mb-16 flex flex-col gap-3">
-            <span className="text-[10px] font-bold tracking-widest text-[#2563FF] dark:text-[#00D4FF] uppercase font-mono">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeInUp}
+            className="text-center mb-16 flex flex-col gap-3"
+          >
+            <span className="text-[10px] font-bold tracking-widest text-[#2563FF] uppercase font-mono">
               ENGINEERING STANDARDS
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0F172A] dark:text-white">
-              Why Teams Trust Our Developers
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">
+              Why Teams <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Trust Our Developers</span>
             </h2>
-            <div className="w-12 h-1 bg-[#2563FF] mx-auto rounded-full mt-2" />
-          </div>
+            <div className="w-12 h-1 bg-[#1D4ED8] mx-auto rounded-full mt-2" />
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-3xl p-8 flex flex-col gap-4 text-left shadow-sm backdrop-blur-sm">
-              <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/10 dark:bg-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF]">
-                <Clock className="w-5 h-5" />
-              </div>
-              <h3 className="font-display text-lg font-bold text-[#0F172A] dark:text-white">
-                Zero-Time Lag Integration
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
-                Our developers sync to your local schedules and communicate via Slack/Discord, ensuring smooth day-to-day coordination.
-              </p>
-            </div>
-
-            <div className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-3xl p-8 flex flex-col gap-4 text-left shadow-sm backdrop-blur-sm">
-              <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/10 dark:bg-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF]">
-                <ShieldCheck className="w-5 h-5" />
-              </div>
-              <h3 className="font-display text-lg font-bold text-[#0F172A] dark:text-white">
-                100% IP & Source Control
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
-                All source code is committed directly to your private GitHub/GitLab repositories. NDA protections are fully guaranteed.
-              </p>
-            </div>
-
-            <div className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-3xl p-8 flex flex-col gap-4 text-left shadow-sm backdrop-blur-sm">
-              <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/10 dark:bg-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF]">
-                <Calendar className="w-5 h-5" />
-              </div>
-              <h3 className="font-display text-lg font-bold text-[#0F172A] dark:text-white">
-                14-Day Zero-Risk Trial
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
-                Verify performance for two full weeks. If the matched engineer is not a perfect fit, we will make a replacement with zero fee.
-              </p>
-            </div>
+            {[
+              { icon: Clock, title: "Zero-Time Lag Integration", desc: "Our developers sync to your local schedules and communicate via Slack/Discord, ensuring smooth day-to-day coordination." },
+              { icon: ShieldCheck, title: "100% IP & Source Control", desc: "All source code is committed directly to your private GitHub/GitLab repositories. NDA protections are fully guaranteed." },
+              { icon: Calendar, title: "14-Day Zero-Risk Trial", desc: "Verify performance for two full weeks. If the matched engineer is not a perfect fit, we will make a replacement with zero fee." }
+            ].map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <motion.div 
+                  key={idx}
+                  custom={idx}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-60px" }}
+                  variants={fadeInUpStagger}
+                  whileHover={{ y: -6, scale: 1.015 }}
+                  className="bg-white border border-slate-200 rounded-3xl p-8 flex flex-col gap-4 text-left shadow-sm backdrop-blur-sm transition-all duration-300"
+                >
+                  <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/10 flex items-center justify-center text-[#1D4ED8]">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-display text-lg font-bold text-slate-900">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-normal">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
 
         </div>
       </section>
 
       {/* Developer Categories */}
-      <section id="categories" className="py-20 max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <section id="categories" className="py-20 max-w-7xl mx-auto px-6 lg:px-8 relative z-10 bg-white">
         
-        <div className="text-center mb-16 flex flex-col gap-3">
-          <span className="text-[10px] font-bold tracking-widest text-[#2563FF] dark:text-[#00D4FF] uppercase font-mono">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeInUp}
+          className="text-center mb-16 flex flex-col gap-3"
+        >
+          <span className="text-[10px] font-bold tracking-widest text-[#2563FF] uppercase font-mono">
             TALENT SPECTRUM
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0F172A] dark:text-white">
-            Hire by Technical Role
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">
+            Hire by <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Technical Role</span>
           </h2>
-          <div className="w-12 h-1 bg-[#2563FF] mx-auto rounded-full mt-2" />
-        </div>
+          <div className="w-12 h-1 bg-[#1D4ED8] mx-auto rounded-full mt-2" />
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {developerCategories.map((dev, idx) => {
             const Icon = dev.icon;
             return (
-              <div
+              <motion.div
                 key={idx}
-                className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1.5 backdrop-blur-md flex flex-col justify-between text-left group"
+                custom={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                variants={fadeInUpStagger}
+                whileHover={{ y: -8, scale: 1.015 }}
+                className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all duration-300 backdrop-blur-md flex flex-col justify-between text-left group"
               >
                 <div className="flex flex-col gap-4">
-                  <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/10 dark:bg-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:bg-[#2563FF] group-hover:text-white transition-colors duration-300">
+                  <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/10 flex items-center justify-center text-[#1D4ED8] group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors duration-300">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="font-display text-lg font-bold text-[#0F172A] dark:text-white">
+                  <h3 className="font-display text-lg font-bold text-slate-900 group-hover:text-[#1D4ED8] transition-colors">
                     {dev.role}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-normal">
                     {dev.desc}
                   </p>
                 </div>
 
-                <div className="border-t border-slate-100 dark:border-white/10 pt-4 mt-6 flex flex-wrap gap-1">
+                <div className="border-t border-slate-100 pt-4 mt-6 flex flex-wrap gap-1">
                   {dev.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="text-[9px] font-bold px-2 py-0.5 rounded border border-[#2563FF]/15 dark:border-white/10 bg-[#2563FF]/5 dark:bg-white/5 text-slate-650 dark:text-slate-350"
+                      className="text-[9px] font-bold px-2 py-0.5 rounded border border-[#2563FF]/15 bg-[#2563FF]/5 text-slate-650"
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
       </section>
 
       {/* Hiring Process Steps (Timeline) */}
-      <section className="py-20 bg-slate-50/50 dark:bg-[#0B1A2E]/25 border-y border-slate-200 dark:border-white/10 relative z-10">
+      <section className="py-20 bg-white border-y border-slate-200 relative z-10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           
-          <div className="text-center mb-16 flex flex-col gap-3">
-            <span className="text-[10px] font-bold tracking-widest text-[#2563FF] dark:text-[#00D4FF] uppercase font-mono">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeInUp}
+            className="text-center mb-16 flex flex-col gap-3"
+          >
+            <span className="text-[10px] font-bold tracking-widest text-[#2563FF] uppercase font-mono">
               WORKFLOW TIMELINE
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0F172A] dark:text-white">
-              Hiring Process in 4 Steps
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">
+              Hiring Process in <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>4 Steps</span>
             </h2>
-            <div className="w-12 h-1 bg-[#2563FF] mx-auto rounded-full mt-2" />
-          </div>
+            <div className="w-12 h-1 bg-[#1D4ED8] mx-auto rounded-full mt-2" />
+          </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
             {hiringSteps.map((step, idx) => (
-              <div key={idx} className="flex flex-col gap-4 text-left bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-3xl p-6 relative z-10 backdrop-blur-md">
-                <span className="font-mono text-3xl font-black text-[#2563FF]/25 dark:text-[#00D4FF]/25">
+              <motion.div 
+                key={idx} 
+                custom={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                variants={fadeInUpStagger}
+                whileHover={{ y: -6 }}
+                className="flex flex-col gap-4 text-left bg-white border border-slate-200 rounded-3xl p-6 relative z-10 backdrop-blur-md transition-all duration-300"
+              >
+                <span className="font-mono text-3xl font-black text-[#1D4ED8]">
                   {step.step}
                 </span>
-                <h3 className="font-display text-base font-bold text-[#0F172A] dark:text-white mt-1">
+                <h3 className="font-display text-base font-bold text-slate-900 mt-1">
                   {step.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-normal">
                   {step.desc}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
 
@@ -323,83 +397,114 @@ export default function HireDevelopersPage() {
       </section>
 
       {/* Engagement Models */}
-      <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8 relative z-10 bg-white">
         
-        <div className="text-center mb-16 flex flex-col gap-3">
-          <span className="text-[10px] font-bold tracking-widest text-[#2563FF] dark:text-[#00D4FF] uppercase font-mono">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeInUp}
+          className="text-center mb-16 flex flex-col gap-3"
+        >
+          <span className="text-[10px] font-bold tracking-widest text-[#2563FF] uppercase font-mono">
             ENGAGEMENT MODELS
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0F172A] dark:text-white">
-            Flexible Hiring Models
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">
+            Flexible <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Hiring Models</span>
           </h2>
-          <div className="w-12 h-1 bg-[#2563FF] mx-auto rounded-full mt-2" />
-        </div>
+          <div className="w-12 h-1 bg-[#1D4ED8] mx-auto rounded-full mt-2" />
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {engagementModels.map((model, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-[32px] p-8 shadow-sm backdrop-blur-md flex flex-col justify-between text-left relative overflow-hidden"
+              custom={idx}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={fadeInUpStagger}
+              whileHover={{ y: -8, scale: 1.015 }}
+              className="bg-white border border-slate-200 rounded-[32px] p-8 shadow-sm backdrop-blur-md flex flex-col justify-between text-left relative overflow-hidden transition-all duration-300"
             >
               <div className="absolute top-4 right-4">
-                <span className="text-[8px] font-bold font-mono tracking-widest uppercase bg-[#2563FF]/10 dark:bg-[#00D4FF]/20 border border-[#2563FF]/20 text-[#2563FF] dark:text-[#00D4FF] px-2.5 py-1 rounded">
+                <span className="text-[8px] font-bold font-mono tracking-widest uppercase bg-[#2563FF]/10 border border-[#2563FF]/20 text-[#1D4ED8] px-2.5 py-1 rounded">
                   {model.badge}
                 </span>
               </div>
 
               <div className="flex flex-col gap-5">
-                <h3 className="font-display text-xl font-bold text-[#0F172A] dark:text-white pr-10">
+                <h3 className="font-display text-xl font-bold text-slate-900 pr-10">
                   {model.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-normal">
                   {model.desc}
                 </p>
                 
                 <ul className="flex flex-col gap-2.5 mt-2">
                   {model.benefits.map((benefit, bIdx) => (
-                    <li key={bIdx} className="text-xs text-slate-650 dark:text-slate-350 flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-[#2563FF] dark:text-[#00D4FF] shrink-0" />
+                    <li key={bIdx} className="text-xs text-slate-650 flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-[#1D4ED8] shrink-0" />
                       <span>{benefit}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="pt-6 mt-8 border-t border-slate-100 dark:border-white/10">
-                <Button href="#hire-form" variant="primary" className="w-full text-center">
-                  Select This Model
-                </Button>
+              <div className="pt-6 mt-8 border-t border-slate-100">
+                <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.3)]">
+                  <Link
+                    href="#hire-form"
+                    className="group relative inline-flex items-center justify-between w-full pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-xs rounded-[14px] transition-all duration-300 overflow-hidden z-10"
+                  >
+                    <span className="tracking-wide relative z-20 text-white font-black uppercase">Select This Model</span>
+                    <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
+                      <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
+                    </span>
+                  </Link>
+                </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-slate-50/50 dark:bg-[#0B1A2E]/25 border-y border-slate-200 dark:border-white/10 relative z-10">
+      <section className="py-20 bg-white border-y border-slate-200 relative z-10">
         <div className="max-w-4xl mx-auto px-6">
           
-          <div className="text-center mb-16 flex flex-col gap-3">
-            <span className="text-[10px] font-bold tracking-widest text-[#2563FF] dark:text-[#00D4FF] uppercase font-mono">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeInUp}
+            className="text-center mb-16 flex flex-col gap-3"
+          >
+            <span className="text-[10px] font-bold tracking-widest text-[#2563FF] uppercase font-mono">
               COMMON QUESTIONS
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0F172A] dark:text-white">
-              Frequently Asked Questions
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">
+              Frequently Asked <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Questions</span>
             </h2>
-            <div className="w-12 h-1 bg-[#2563FF] mx-auto rounded-full mt-2" />
-          </div>
+            <div className="w-12 h-1 bg-[#1D4ED8] mx-auto rounded-full mt-2" />
+          </motion.div>
 
           <div className="flex flex-col gap-4">
             {faqs.map((faq, idx) => {
               const isOpen = openFaq === idx;
               return (
-                <div
+                <motion.div
                   key={idx}
-                  className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-2xl overflow-hidden transition-all duration-300"
+                  custom={idx}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-50px" }}
+                  variants={fadeInUpStagger}
+                  className="bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300"
                 >
                   <button
                     onClick={() => setOpenFaq(isOpen ? null : idx)}
-                    className="w-full px-6 py-4.5 flex items-center justify-between text-left font-display font-bold text-sm sm:text-base text-[#0F172A] dark:text-white cursor-pointer select-none"
+                    className="w-full px-6 py-4.5 flex items-center justify-between text-left font-display font-bold text-sm sm:text-base text-slate-900 cursor-pointer select-none"
                   >
                     <span>{faq.q}</span>
                     <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
@@ -414,13 +519,13 @@ export default function HireDevelopersPage() {
                         transition={{ duration: 0.25, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
-                        <div className="px-6 pb-6 text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal pt-2 border-t border-slate-100 dark:border-white/5">
+                        <div className="px-6 pb-6 text-xs sm:text-sm text-slate-500 leading-relaxed font-normal pt-2 border-t border-slate-100">
                           {faq.a}
                         </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -429,26 +534,32 @@ export default function HireDevelopersPage() {
       </section>
 
       {/* Form & CTA section */}
-      <section id="hire-form" className="py-20 max-w-5xl mx-auto px-6 relative z-10">
-        <div className="bg-white/70 dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-white/10 rounded-[32px] p-8 sm:p-12 shadow-lg backdrop-blur-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center text-left">
+      <section id="hire-form" className="py-20 max-w-5xl mx-auto px-6 relative z-10 bg-white">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.96, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="bg-white border border-slate-200 rounded-[32px] p-8 sm:p-12 shadow-lg backdrop-blur-md grid grid-cols-1 md:grid-cols-12 gap-8 items-center text-left"
+        >
           
           <div className="md:col-span-5 flex flex-col gap-4">
-            <span className="text-[9px] font-mono font-bold tracking-widest text-[#2563FF] dark:text-[#00D4FF] uppercase">
+            <span className="text-[9px] font-mono font-bold tracking-widest text-[#2563FF] uppercase">
               WORK WITH US
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#0F172A] dark:text-white leading-tight">
-              Request Your Sprints Team
+            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+              Request Your <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Sprints Team</span>
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-normal">
               Tell us your developer requirements. We will analyze your specifications and map out developer availability within 24 hours.
             </p>
             <div className="flex flex-col gap-2.5 mt-2">
-              <div className="flex items-center gap-2.5 text-xs text-slate-650 dark:text-slate-350">
-                <CheckCircle className="w-4 h-4 text-[#2563FF]" />
+              <div className="flex items-center gap-2.5 text-xs text-slate-650">
+                <CheckCircle className="w-4 h-4 text-[#1D4ED8]" />
                 <span>NDA Protected Setup</span>
               </div>
-              <div className="flex items-center gap-2.5 text-xs text-slate-650 dark:text-slate-350">
-                <CheckCircle className="w-4 h-4 text-[#2563FF]" />
+              <div className="flex items-center gap-2.5 text-xs text-slate-650">
+                <CheckCircle className="w-4 h-4 text-[#1D4ED8]" />
                 <span>Vetted Tech Talents</span>
               </div>
             </div>
@@ -461,20 +572,20 @@ export default function HireDevelopersPage() {
                   type="text"
                   placeholder="Your Name"
                   required
-                  className="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none text-xs sm:text-sm text-slate-800 dark:text-white rounded-xl px-4 py-3 w-full transition-colors"
+                  className="bg-slate-50 border border-slate-200 focus:border-[#1D4ED8] outline-none text-xs sm:text-sm text-slate-800 rounded-xl px-4 py-3 w-full transition-colors"
                 />
                 <input
                   type="email"
                   placeholder="Your Email"
                   required
-                  className="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none text-xs sm:text-sm text-slate-800 dark:text-white rounded-xl px-4 py-3 w-full transition-colors"
+                  className="bg-slate-50 border border-slate-200 focus:border-[#1D4ED8] outline-none text-xs sm:text-sm text-slate-800 rounded-xl px-4 py-3 w-full transition-colors"
                 />
               </div>
               
               <select
                 required
                 defaultValue=""
-                className="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none text-xs sm:text-sm text-slate-600 dark:text-slate-305 rounded-xl px-4 py-3 w-full transition-colors"
+                className="bg-slate-50 border border-slate-200 focus:border-[#1D4ED8] outline-none text-xs sm:text-sm text-slate-600 rounded-xl px-4 py-3 w-full transition-colors"
               >
                 <option value="" disabled>Role Needed</option>
                 <option value="frontend">Frontend Developer</option>
@@ -489,16 +600,24 @@ export default function HireDevelopersPage() {
                 placeholder="Briefly describe your product stack or developer requirements..."
                 rows={4}
                 required
-                className="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none text-xs sm:text-sm text-slate-800 dark:text-white rounded-xl px-4 py-3 w-full transition-colors resize-none"
+                className="bg-slate-50 border border-slate-200 focus:border-[#1D4ED8] outline-none text-xs sm:text-sm text-slate-800 rounded-xl px-4 py-3 w-full transition-colors resize-none"
               />
 
-              <Button type="submit" variant="primary" className="w-full text-center">
-                Send Hiring Request
-              </Button>
+              <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.3)] mt-2">
+                <button
+                  type="submit"
+                  className="group relative inline-flex items-center justify-center gap-3 w-full py-3.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10 cursor-pointer"
+                >
+                  <span className="tracking-wide relative z-20 text-white font-black uppercase">Send Hiring Request</span>
+                  <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
+                    <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                </button>
+              </div>
             </form>
           </div>
 
-        </div>
+        </motion.div>
       </section>
 
     </div>

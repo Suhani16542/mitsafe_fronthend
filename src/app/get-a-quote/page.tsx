@@ -111,7 +111,7 @@ export default function GetAQuotePage() {
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
-            Tell Us About Your <span className="text-[#2563FF]">Project</span>
+            Tell Us About <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Your Project</span>
           </h1>
 
           <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
@@ -233,12 +233,24 @@ export default function GetAQuotePage() {
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-[#2563FF] focus:border-transparent transition-all shadow-xs pr-10 cursor-pointer"
                       >
-                        <option value="Web Design & Development">Web Design & Development</option>
+                        <option value="Website Design & Development">Website Design & Development</option>
                         <option value="Android & iOS App Development">Android & iOS App Development</option>
-                        <option value="SEO & Digital Marketing">SEO & Digital Marketing</option>
-                        <option value="Web Hosting & Cloud Services">Web Hosting & Cloud Services</option>
+                        <option value="Games Development">Games Development</option>
+                        <option value="Readymade POS & Billing Systems">Readymade POS & Billing Systems</option>
+                        <option value="Graphic, Logo & UX/UI Design">Graphic, Logo & UX/UI Design</option>
+                        <option value="School ERP & School HRM">School ERP & School HRM</option>
+                        <option value="CRM & ERP Solutions">CRM & ERP Solutions</option>
+                        <option value="E-Commerce Development">E-Commerce Development</option>
+                        <option value="Digital Marketing & SEO">Digital Marketing & SEO</option>
+                        <option value="Custom Software Engineering">Custom Software Engineering</option>
+                        <option value="AI & Automation">AI & Automation</option>
+                        <option value="Cloud & DevOps Infrastructure">Cloud & DevOps Infrastructure</option>
+                        <option value="API Integration & Microservices">API Integration & Microservices</option>
+                        <option value="Search Engine Optimization">Search Engine Optimization</option>
+                        <option value="Web Hosting Service">Web Hosting Service</option>
+                        <option value="Social Media Marketing">Social Media Marketing</option>
+                        <option value="IT Consultations">IT Consultations</option>
                         <option value="Cyber Security Solutions">Cyber Security Solutions</option>
-                        <option value="IT Consultations & Software">IT Consultations & Custom AI</option>
                       </select>
                       <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                     </div>
