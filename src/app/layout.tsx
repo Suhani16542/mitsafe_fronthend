@@ -43,6 +43,7 @@ export default function RootLayout({
     <html
       lang="en"
       className="scroll-smooth"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       style={{
         ["--font-manrope" as any]: "'Manrope', sans-serif",

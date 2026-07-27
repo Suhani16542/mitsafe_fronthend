@@ -105,7 +105,7 @@ function SectionParticles({ target }: { target: Element }) {
     htmlTarget.style.isolation = "isolate";
 
     // Generate particles (small glowing fireflies)
-    const count = 35;
+    const count = 10;
     const newParticles: ParticleData[] = [];
 
     for (let i = 0; i < count; i++) {
@@ -120,12 +120,12 @@ function SectionParticles({ target }: { target: Element }) {
         size,
         left: Math.random() * 100,
         top: Math.random() * 100,
-        xEnd: (Math.random() - 0.5) * 80, // gentle drifting
-        yEnd: (Math.random() - 0.5) * 80, // gentle drifting
-        rotEnd: (Math.random() - 0.5) * 360,
+        xEnd: (Math.random() - 0.5) * 60, // gentle drifting
+        yEnd: (Math.random() - 0.5) * 60, // gentle drifting
+        rotEnd: (Math.random() - 0.5) * 180,
         duration: 20 + Math.random() * 25, // slow floating duration
         delay: -Math.random() * 45, // start immediately at random offsets
-        opacity: 0.15 + Math.random() * 0.45, // 0.15 to 0.6 visibility
+        opacity: 0.15 + Math.random() * 0.4, // 0.15 to 0.55 visibility
       });
     }
 
@@ -139,7 +139,7 @@ function SectionParticles({ target }: { target: Element }) {
   }, [target]);
 
   return (
-    <div className="global-particle-container absolute inset-0 pointer-events-none overflow-hidden z-[-1]">
+    <div className="global-particle-container absolute inset-0 pointer-events-none overflow-hidden z-[-1] will-change-transform">
       {particles.map((p) => (
         <motion.div
           key={p.id}
