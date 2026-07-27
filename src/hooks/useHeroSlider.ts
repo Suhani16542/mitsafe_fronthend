@@ -9,7 +9,7 @@ interface UseHeroSliderOptions {
 
 export type SlideDirection = 1 | -1;
 
-export function useHeroSlider({ length, autoPlayMs = 6000 }: UseHeroSliderOptions) {
+export function useHeroSlider({ length, autoPlayMs = 300000 }: UseHeroSliderOptions) {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState<SlideDirection>(1);
   const [isPaused, setIsPaused] = useState(false);

@@ -1,178 +1,223 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
-import { Sparkles, Heart } from "lucide-react";
+import React from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { Sparkles, Play, Star, Quote } from "lucide-react";
 
-const partnerLogos = [
-  { name: "SPMA" },
-  { name: "BYTES29" },
-  { name: "T-MOBILE" },
-  { name: "RED LABEL" },
-  { name: "MITSAFE" },
-  { name: "MICROSOFT" }
+interface TestimonialCard {
+  id: string;
+  type: "video" | "text";
+  name: string;
+  role: string;
+  company: string;
+  quote?: string;
+  rating?: number;
+  image: string;
+}
+
+const testimonials: TestimonialCard[] = [
+  {
+    id: "1",
+    type: "video",
+    name: "Michelle Anne",
+    role: "Founder",
+    company: "Crazy Delivery",
+    image: "/showcase/app_1.png",
+  },
+  {
+    id: "2",
+    type: "text",
+    name: "Neil Patwardhan",
+    role: "Founder",
+    company: "Skoop",
+    rating: 5,
+    quote:
+      "I think MITSAFE is passionate enough about what we're doing and really wants to help grow and support that. Our relationship has lasted as long as it has and continues to do so with top craftsmanship.",
+    image: "/showcase/web_1.png",
+  },
+  {
+    id: "3",
+    type: "video",
+    name: "Gerardin",
+    role: "Founder",
+    company: "Island Boyz",
+    image: "/showcase/app_2.png",
+  },
+  {
+    id: "4",
+    type: "text",
+    name: "ElsaMarie D'Silva",
+    role: "Founder",
+    company: "Red Dot Foundation",
+    rating: 5,
+    quote:
+      "MITSAFE was an excellent partner to work with on the Safecity Mobile app which crowdsources safety data. The team was very attuned to our needs, worked in tandem with our team, and did a quality job.",
+    image: "/showcase/seo_1.png",
+  },
+  {
+    id: "5",
+    type: "text",
+    name: "Tej Pandey",
+    role: "CEO",
+    company: "Tez 888",
+    rating: 5,
+    quote:
+      "I recently had the pleasure of working with Modern Technology for my website design needs. I am beyond impressed with their attention to detail, speed, and overall digital engineering excellence.",
+    image: "/showcase/hosting_1.png",
+  },
+  {
+    id: "6",
+    type: "text",
+    name: "Marcus Vance",
+    role: "Director",
+    company: "Auro Terra",
+    rating: 5,
+    quote:
+      "Fast response times, clean modular architecture, 99.9% uptime, and 24/7 dedicated cloud engineering support throughout our platform launch and traffic spikes.",
+    image: "/showcase/web_2.png",
+  },
 ];
 
 export default function TestimonialsSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  
-  const springX = useSpring(mouseX, { stiffness: 60, damping: 15 });
-  const springY = useSpring(mouseY, { stiffness: 60, damping: 15 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) / 30;
-    const y = (e.clientY - rect.top - rect.height / 2) / 30;
-    mouseX.set(x);
-    mouseY.set(y);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
-  // Duplicate items to ensure seamless wrapping inside the infinite marquee loop
-  const marqueeLogos = [...partnerLogos, ...partnerLogos, ...partnerLogos];
+  const infiniteLoop = [...testimonials, ...testimonials, ...testimonials];
 
   return (
-    <div className="w-full px-6 lg:px-8">
-      <section
-        ref={containerRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        className="bg-white py-12 md:py-16 relative overflow-hidden border border-slate-100 rounded-[2.5rem] max-w-6xl mx-auto font-sans shadow-sm"
-      >
-        <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10 flex flex-col items-center">
-          
-          {/* Section Header */}
-          <div className="text-center mb-10 flex flex-col items-center">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-600 font-display shadow-sm"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-              <span>CLIENT REVIEWS</span>
-            </motion.div>
-            
-            {/* Title */}
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-              style={{ fontFamily: "'Clash Display', sans-serif" }}
-              className="text-4xl sm:text-5xl font-extrabold text-black tracking-[-0.03em] leading-tight"
-            >
-              When Our <span className="text-[#2563FF] inline-block" style={{ color: "#2563FF", WebkitTextFillColor: "#2563FF", background: "none" }}>Clients Say</span>
-            </motion.h2>
-          </div>
+    <section className="relative w-full overflow-hidden bg-[#070D1C] py-10 md:py-12 font-sans border-t border-slate-800">
+      {/* Royal Blue Ambient Glows */}
+      <div className="pointer-events-none absolute top-1/2 left-1/4 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#0052FF]/20 blur-[180px] z-0" />
+      <div className="pointer-events-none absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-full bg-[#00D4FF]/15 blur-[180px] z-0" />
 
-          {/* Cinematic Testimonial Panel */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-3xl text-center flex flex-col items-center bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-12 shadow-md group overflow-hidden"
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 mb-6 text-center flex flex-col items-center">
+        {/* Header Badge */}
+        <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/15 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-widest text-[#38BDF8] mb-2.5 backdrop-blur-sm shadow-sm">
+          <Sparkles className="w-3 h-3 text-[#38BDF8]" />
+          <span>CLIENT REVIEWS & CASE TESTIMONIALS</span>
+        </div>
+
+        {/* Heading */}
+        <h2
+          style={{ fontFamily: "'Clash Display', sans-serif" }}
+          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight"
+        >
+          To Deliver{" "}
+          <span
+            style={{ color: "#2563FF", WebkitTextFillColor: "#2563FF", background: "none" }}
+            className="text-[#2563FF] inline-block font-extrabold"
           >
-            {/* Top blue accent line */}
-            <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#2563FF]" />
+            Transformative Excellence
+          </span>
+        </h2>
+      </div>
 
-            {/* Background quotes */}
-            <div className="absolute -top-6 left-6 w-24 h-24 text-slate-100 select-none pointer-events-none font-serif text-[14rem] leading-none">
-              &ldquo;
-            </div>
+      {/* Gradient edge masks for infinite loop */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-24 bg-gradient-to-r from-[#070D1C] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-24 bg-gradient-to-l from-[#070D1C] to-transparent" />
 
-            {/* Centered Heart Graphic Icon */}
-            <div className="w-14 h-14 relative flex items-center justify-center bg-blue-50 border border-blue-100 rounded-2xl shadow-sm hover:scale-105 transition-transform duration-500 mb-6 z-10">
-              <Heart className="w-7 h-7 text-[#2563FF] fill-current animate-pulse" />
-            </div>
+      {/* Infinite Horizontal Continuous Slider */}
+      <div className="flex w-full overflow-hidden relative z-10">
+        <motion.div
+          className="flex shrink-0 gap-5 py-1"
+          animate={{ x: ["0%", "-33.333%"] }}
+          transition={{
+            duration: 35,
+            ease: "linear",
+            repeat: Infinity,
+          }}
+        >
+          {infiniteLoop.map((item, idx) => (
+            <div
+              key={`${item.id}-${idx}`}
+              className="w-[280px] sm:w-[320px] shrink-0 h-[360px] rounded-2xl border border-slate-700/80 bg-[#111827] p-5 shadow-lg flex flex-col justify-between overflow-hidden group"
+            >
+              {/* VIDEO TYPE CARD */}
+              {item.type === "video" ? (
+                <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden flex flex-col justify-between p-5 border border-slate-700">
+                  {/* Background Mockup Image */}
+                  <Image src={item.image} alt={item.name} fill sizes="340px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10" />
 
-            {/* Immersive text quote */}
-            <p className="text-base sm:text-xl leading-relaxed text-slate-800 italic font-normal z-10 max-w-2xl font-display">
-              &ldquo;The range of services offered by Modern Technology is diverse, catering to various design needs. Whether it&apos;s graphic design, web design, or branding, their team exhibits versatility and a knack for understanding the unique requirements of each project.&rdquo;
-            </p>
+                  {/* Top Video Review Pill */}
+                  <div className="relative z-20 flex justify-end">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#38BDF8] bg-blue-950/90 border border-blue-400/40 px-3 py-1 rounded-full backdrop-blur-sm">
+                      VIDEO REVIEW
+                    </span>
+                  </div>
 
-            {/* Author info */}
-            <div className="flex flex-col items-center gap-2 mt-6 z-10">
-              <h4 className="font-display text-lg font-bold text-slate-900 tracking-wide">
-                T-zer Cabz
-              </h4>
-              <span className="text-[10px] text-[#2563FF] font-extrabold uppercase tracking-widest font-mono bg-blue-50 border border-blue-100 px-3.5 py-1 rounded-full">
-                Customer
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Separator line */}
-          <span className="w-full h-px bg-slate-100 mt-10 mb-8" />
-
-          {/* Infinite Horizontal Client Logos Marquee */}
-          <div className="w-full overflow-hidden py-4 select-none relative z-10 max-w-4xl mx-auto">
-            <div className="flex w-max">
-              <motion.div
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{
-                  ease: "linear",
-                  duration: 20,
-                  repeat: Infinity,
-                }}
-                className="flex whitespace-nowrap gap-6 pr-6"
-              >
-                {marqueeLogos.map((logo, idx) => (
-                  <div key={idx} className="inline-block">
-                    <div
-                      className="min-w-[160px] max-w-[200px] py-4 px-6 bg-white hover:bg-[#F0F8FF] rounded-2xl border border-slate-200 shadow-sm hover:border-[#2563FF] hover:shadow-md transition-all duration-300 cursor-default flex items-center justify-center"
-                    >
-                      {logo.name === "SPMA" && (
-                        <span className="font-display text-base font-black tracking-widest text-[#2563FF] flex items-center gap-1.5 hover:animate-pulse">
-                          <span className="w-2.5 h-2.5 rounded-full bg-[#2563FF] animate-ping" />
-                          SPMA
-                        </span>
-                      )}
-                      {logo.name === "BYTES29" && (
-                        <span className="font-display text-base font-black tracking-widest text-slate-800 flex items-center gap-1">
-                          BYTES<span className="text-[#2563FF] font-black">29</span>
-                        </span>
-                      )}
-                      {logo.name === "T-MOBILE" && (
-                        <span className="font-display text-base font-black tracking-wider text-slate-800 flex items-center gap-0.5">
-                          <span className="text-[#2563FF] font-black">T</span>-MOBILE
-                        </span>
-                      )}
-                      {logo.name === "RED LABEL" && (
-                        <span className="font-display text-base font-black tracking-widest text-slate-800 border-b-2 border-blue-600/30 pb-0.5">
-                          RED LABEL
-                        </span>
-                      )}
-                      {logo.name === "MITSAFE" && (
-                        <span className="font-display text-base font-black tracking-widest text-[#2563FF] flex items-center gap-1">
-                          MIT<span className="text-slate-800">SAFE</span>
-                        </span>
-                      )}
-                      {logo.name === "MICROSOFT" && (
-                        <span className="font-display text-base font-black tracking-wider text-slate-800">
-                          MICROSOFT
-                        </span>
-                      )}
+                  {/* Center Play Button Icon */}
+                  <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                    <div className="relative flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-full bg-[#0052FF]/40 animate-ping absolute" />
+                      <div className="w-14 h-14 rounded-full bg-[#2563FF] text-white flex items-center justify-center shadow-[0_0_20px_rgba(0,82,255,0.8)] group-hover:scale-110 transition-transform">
+                        <Play className="w-6 h-6 fill-current ml-0.5" />
+                      </div>
                     </div>
                   </div>
-                ))}
-              </motion.div>
-            </div>
-          </div>
 
-        </div>
-      </section>
-    </div>
+                  {/* Bottom Author Pill */}
+                  <div className="relative z-20 flex items-center gap-3 bg-black/90 border border-white/20 backdrop-blur-md p-3.5 rounded-2xl">
+                    <div className="w-9 h-9 rounded-xl bg-[#8BE83A] text-slate-950 flex items-center justify-center font-bold text-sm shrink-0 shadow-md">
+                      <Play className="w-4 h-4 fill-current ml-0.5" />
+                    </div>
+                    <div>
+                      <h4 style={{ color: "#FFFFFF" }} className="text-sm font-extrabold leading-tight">
+                        {item.name}
+                      </h4>
+                      <p style={{ color: "#E2E8F0" }} className="text-[11px] font-semibold">
+                        {item.role}, {item.company}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                /* TEXT TYPE CARD WITH PURE #FFFFFF WHITE TEXT INLINE */
+                <div className="flex flex-col justify-between h-full relative p-1">
+                  <div>
+                    {/* Top Star Rating & Blue Quote Icon */}
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex items-center gap-1.5 text-amber-400">
+                        {[...Array(item.rating || 5)].map((_, i) => (
+                          <Star key={i} className="w-4.5 h-4.5 fill-amber-400 text-amber-400" />
+                        ))}
+                      </div>
+                      <Quote className="w-7 h-7 text-[#38BDF8]" />
+                    </div>
+
+                    {/* Review Quote Text in Pure #FFFFFF White */}
+                    <p
+                      style={{ color: "#FFFFFF" }}
+                      className="text-base leading-relaxed font-bold tracking-wide"
+                    >
+                      &ldquo;{item.quote}&rdquo;
+                    </p>
+                  </div>
+
+                  {/* Bottom Author Badge with Image Avatar */}
+                  <div className="pt-4 border-t border-slate-800 flex items-center gap-3.5 mt-4">
+                    <div className="relative w-11 h-11 rounded-xl overflow-hidden border-2 border-[#38BDF8] shrink-0 shadow-lg">
+                      <Image src={item.image} alt={item.name} fill sizes="44px" className="object-cover" />
+                    </div>
+                    <div>
+                      <h4
+                        style={{ color: "#FFFFFF" }}
+                        className="text-sm font-extrabold tracking-wide leading-tight"
+                      >
+                        {item.name}
+                      </h4>
+                      <p
+                        style={{ color: "#38BDF8" }}
+                        className="text-xs font-bold mt-0.5"
+                      >
+                        {item.role}, {item.company}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
   );
 }

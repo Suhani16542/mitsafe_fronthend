@@ -96,9 +96,9 @@ export default function WelcomeSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/10 px-4.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#00D4FF] font-display shadow-sm"
+              className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#1D4ED8]/20 bg-[#1D4ED8]/10 px-4.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#1D4ED8] font-display shadow-sm"
             >
-              <Sparkles className="w-3.5 h-3.5 text-[#00D4FF]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#1D4ED8]" />
               <span>WELCOME SERVICE HUB</span>
             </motion.div>
 
@@ -109,10 +109,12 @@ export default function WelcomeSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-[-0.04em] font-display text-black dark:text-white"
+                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-[-0.04em] font-display text-slate-900 dark:text-white"
               >
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] to-[#00D4FF]">Best Web/App</span> <br />
-                Designing Services
+                Best Web/App <br />
+                <span className="font-black inline-block" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>
+                  Designing Services
+                </span>
               </motion.h2>
               {/* Subtle animated blue underline */}
               <div className="relative mt-4 w-32 h-[3.5px] rounded-full overflow-hidden bg-slate-200/20 dark:bg-slate-700/20">
@@ -121,7 +123,7 @@ export default function WelcomeSection() {
                   whileInView={{ width: "100%", opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-                  className="h-full bg-gradient-to-r from-[#2563FF] to-[#00D4FF] relative"
+                  className="h-full bg-[#2563FF] relative"
                 >
                   <motion.div
                     animate={{
@@ -171,9 +173,9 @@ export default function WelcomeSection() {
               <Magnetic>
                 <a
                   href="/contact"
-                  className="relative inline-flex items-center gap-3.5 px-9 py-4.5 rounded-full bg-gradient-to-r from-[#00D4FF] to-[#008FED] text-[#071426] font-bold text-sm hover:from-[#00E5FF] hover:to-[#008FED]/85 transition-all duration-300 shadow-[0_8px_30px_rgba(0, 212, 255, 0.25)] hover:shadow-[0_15px_45px_rgba(0, 212, 255, 0.4)] group"
+                  className="relative inline-flex items-center gap-3.5 px-9 py-4 rounded-full bg-[#2563FF] hover:bg-[#1D4ED8] text-white font-extrabold text-sm transition-all duration-300 shadow-[0_8px_24px_rgba(37,99,255,0.35)] hover:shadow-[0_12px_32px_rgba(37,99,255,0.5)] group"
                 >
-                  <span className="tracking-wide">Discover more</span>
+                  <span className="tracking-wide">Discover More</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" />
                 </a>
               </Magnetic>

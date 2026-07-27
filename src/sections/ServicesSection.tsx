@@ -76,7 +76,7 @@ const homeServices = [
     tags: ["Brand Campaigns", "Lead Generation", "Engagement Growth", "Social Media Strategy"],
     showcase: [
       "/showcase/social_1.png",
-      "/hero-digital-marketing.png",
+      "/showcase/social_media_middle.png",
       "/video-editing-mockup.png",
     ],
     slug: "/services/digital-marketing",
@@ -143,31 +143,28 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="bg-white py-12 md:py-16 relative overflow-hidden border-t border-slate-100 font-sans"
+      className="bg-white py-6 md:py-8 relative overflow-hidden border-t border-slate-100 font-sans"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-left mb-16">
+        <div className="text-left mb-6">
           {/* Badge */}
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200/40 bg-[#2563FF]/5 px-4.5 py-1 text-xs font-bold uppercase tracking-wider text-[#2563FF] font-display shadow-sm">
+          <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-blue-200/40 bg-[#2563FF]/5 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-[#2563FF] font-display shadow-xs">
             OUR SERVICES
           </div>
           {/* Title */}
           <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight font-display"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display"
           >
-            <span className="text-black">End-to-End Digital Solutions</span> <br />
-            <span
-              className="text-[#2563FF] inline-block"
-              style={{ color: "#2563FF", WebkitTextFillColor: "#2563FF", background: "none" }}
-            >
+            <span className="text-[#0F172A]">End-to-End Digital Solutions</span> <br />
+            <span className="font-black inline-block" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>
               Built Around Your Business
             </span>
           </h2>
         </div>
 
         {/* Services Rows Container */}
-        <div className="flex flex-col gap-6 w-full">
+        <div className="flex flex-col gap-3.5 w-full">
           {homeServices.map((service, idx) => {
             const isHovered = hoveredIdx === idx;
             const Icon = service.icon;
@@ -178,11 +175,10 @@ export default function ServicesSection() {
                 onMouseEnter={() => handleMouseEnter(idx)}
                 onMouseLeave={handleMouseLeave}
                 onClick={(e) => handleCardClick(e, idx)}
-                className={`group relative w-full border rounded-[2rem] p-8 md:p-10 overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-sm select-none ${
-                  isHovered
-                    ? `bg-gradient-to-r ${service.color} border-transparent shadow-[0_20px_50px_rgba(37,99,255,0.15)] scale-[1.01]`
+                className={`group relative w-full border rounded-[1.25rem] p-4 sm:p-5 overflow-hidden cursor-pointer transition-all duration-500 ease-out shadow-xs select-none ${isHovered
+                    ? `bg-gradient-to-r ${service.color} border-transparent shadow-[0_12px_30px_rgba(37,99,255,0.15)] scale-[1.005]`
                     : "bg-white border-slate-200 hover:border-slate-300"
-                }`}
+                  }`}
                 layout="position"
               >
                 {/* Horizontal row contents */}
@@ -191,18 +187,16 @@ export default function ServicesSection() {
                   <div className="col-span-12 md:col-span-5 lg:col-span-4 flex flex-col items-start gap-4">
                     <div className="flex items-center gap-3.5">
                       <div
-                        className={`p-3 rounded-2xl border transition-all duration-300 shadow-sm shrink-0 ${
-                          isHovered
+                        className={`p-3 rounded-2xl border transition-all duration-300 shadow-sm shrink-0 ${isHovered
                             ? "bg-white/15 border-white/10 text-white"
                             : "bg-[#2563FF]/10 border-[#2563FF]/20 text-[#2563FF]"
-                        }`}
+                          }`}
                       >
                         <Icon className="w-5.5 h-5.5" />
                       </div>
                       <h3
-                        className={`font-display text-xl sm:text-2xl lg:text-3xl font-bold leading-tight tracking-tight transition-colors duration-300 ${
-                          isHovered ? "text-white" : "text-[#0F172A]"
-                        }`}
+                        className={`font-display text-xl sm:text-2xl lg:text-3xl font-bold leading-tight tracking-tight transition-colors duration-300 ${isHovered ? "text-white" : "text-[#0F172A]"
+                          }`}
                       >
                         {service.title}
                       </h3>
@@ -210,15 +204,13 @@ export default function ServicesSection() {
 
                     <Link
                       href={service.slug}
-                      className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 group/link ${
-                        isHovered ? "text-white" : "text-[#2563FF]"
-                      }`}
+                      className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 group/link ${isHovered ? "text-white" : "text-[#2563FF]"
+                        }`}
                     >
                       <span>Explore Service</span>
                       <ArrowUpRight
-                        className={`w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 ${
-                          isHovered ? "text-white" : "text-[#2563FF]"
-                        }`}
+                        className={`w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 ${isHovered ? "text-white" : "text-[#2563FF]"
+                          }`}
                       />
                     </Link>
                   </div>
@@ -226,9 +218,8 @@ export default function ServicesSection() {
                   {/* Middle Column: Service Description */}
                   <div className="col-span-12 md:col-span-4 lg:col-span-5">
                     <p
-                      className={`text-sm sm:text-base leading-relaxed font-medium transition-colors duration-300 ${
-                        isHovered ? "text-slate-100" : "text-slate-500"
-                      }`}
+                      className={`text-sm sm:text-base leading-relaxed font-medium transition-colors duration-300 ${isHovered ? "text-slate-100" : "text-slate-500"
+                        }`}
                     >
                       {service.desc}
                     </p>
@@ -239,11 +230,10 @@ export default function ServicesSection() {
                     {service.tags.map((tag, tIdx) => (
                       <span
                         key={tIdx}
-                        className={`text-[10px] sm:text-xs font-semibold py-1.5 px-3.5 rounded-full border transition-all duration-300 tracking-wide uppercase ${
-                          isHovered
+                        className={`text-[10px] sm:text-xs font-semibold py-1.5 px-3.5 rounded-full border transition-all duration-300 tracking-wide uppercase ${isHovered
                             ? "bg-white/10 border-white/15 text-white/90"
                             : "bg-[#F7FAFF] border-slate-200 text-slate-650"
-                        }`}
+                          }`}
                       >
                         {tag}
                       </span>
@@ -269,9 +259,8 @@ export default function ServicesSection() {
                 >
                   {/* Thin horizontal line separator inside card when active */}
                   <div
-                    className={`w-full h-[1px] transition-colors duration-300 mb-6 ${
-                      isHovered ? "bg-white/15" : "bg-transparent"
-                    }`}
+                    className={`w-full h-[1px] transition-colors duration-300 mb-6 ${isHovered ? "bg-white/15" : "bg-transparent"
+                      }`}
                   />
 
                   {/* Showcase Images Grid */}

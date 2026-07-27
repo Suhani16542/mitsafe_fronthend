@@ -10,7 +10,10 @@ export type IllustrationType =
   | "ecommerce"
   | "marketing"
   | "uiux"
-  | "service10";
+  | "service10"
+  | "game"
+  | "pos"
+  | "school";
 
 export interface HeroStat {
   label: string;
@@ -34,6 +37,7 @@ export interface HeroService {
   highlight: string;
   description: string;
   illustration: IllustrationType;
+  image?: string;
   category: ServiceCategory;
   primaryCta: HeroCta;
   secondaryCta: HeroCta;

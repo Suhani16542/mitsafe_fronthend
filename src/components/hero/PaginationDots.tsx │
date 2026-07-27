@@ -1,0 +1,48 @@
+"use client";
+
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
+
+interface Props {
+  onPrev: () => void;
+  onNext: () => void;
+}
+
+export default function NavigationArrows({
+  onPrev,
+  onNext,
+}: Props) {
+  return (
+    <>
+      {/* Left */}
+
+      <motion.button
+        whileHover={{
+          scale: 1.08,
+        }}
+        whileTap={{
+          scale: 0.95,
+        }}
+        onClick={onPrev}
+        className="absolute left-6 top-1/2 -translate-y-1/2 z-50 w-14 h-14 rounded-full bg-white/90 backdrop-blur-xl border border-blue-100 shadow-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </motion.button>
+
+      {/* Right */}
+
+      <motion.button
+        whileHover={{
+          scale: 1.08,
+        }}
+        whileTap={{
+          scale: 0.95,
+        }}
+        onClick={onNext}
+        className="absolute right-6 top-1/2 -translate-y-1/2 z-50 w-14 h-14 rounded-full bg-white/90 backdrop-blur-xl border border-blue-100 shadow-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </motion.button>
+    </>
+  );
+}

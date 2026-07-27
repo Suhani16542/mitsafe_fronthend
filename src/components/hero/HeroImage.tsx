@@ -2,122 +2,159 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Cloud,
-  Terminal,
-  Code2,
   Globe,
   Smartphone,
+  Cloud,
+  Brain,
+  TrendingUp,
+  Code2,
+  Terminal,
+  Sparkles,
+  Zap,
+  ShieldCheck,
+  Gamepad2,
+  Layers,
   Users,
+  Cpu,
+  CreditCard,
+  ShoppingBag,
+  WifiOff,
+  PenTool,
+  GraduationCap,
+  BookOpen,
+  BarChart3,
   ShoppingCart,
   Megaphone,
-  PenTool,
-  Sparkles,
-  LucideIcon,
 } from "lucide-react";
 import { HeroService } from "@/types/hero";
 
-const ICON_MAP: Record<HeroService["illustration"], LucideIcon> = {
-  cloud: Cloud,
-  devtools: Terminal,
-  software: Code2,
-  web: Globe,
-  mobile: Smartphone,
-  crm: Users,
-  ecommerce: ShoppingCart,
-  marketing: Megaphone,
-  uiux: PenTool,
-  service10: Sparkles,
+const cardVariants = {
+  enter: { opacity: 0, scale: 0.96 },
+  center: { opacity: 1, scale: 1 },
+  exit: { opacity: 0, scale: 0.96 },
 };
 
-// Fixed mini-expertise row shown inside the mock panel — stays constant
-// across slides (like the reference's "Our Expertise" grid) while the
-// active service is highlighted.
-const EXPERTISE_ROW: { key: HeroService["illustration"]; label: string }[] = [
-  { key: "web", label: "Web" },
-  { key: "mobile", label: "Mobile" },
-  { key: "cloud", label: "Cloud" },
-  { key: "marketing", label: "Growth" },
-];
-
-const cardVariants = {
-  enter: { opacity: 0, scale: 0.92, y: 14 },
-  center: { opacity: 1, scale: 1, y: 0 },
-  exit: { opacity: 0, scale: 0.92, y: -14 },
+const floatingBadgesByService: Record<string, Array<{ label: string; icon: any; position: string }>> = {
+  "web-development": [
+    { label: "Next.js 16", icon: Code2, position: "left-[-8%] top-[6%]" },
+    { label: "React 19", icon: Globe, position: "left-[-12%] top-[36%]" },
+    { label: "TypeScript", icon: Terminal, position: "left-[-6%] top-[66%]" },
+    { label: "Tailwind CSS", icon: Sparkles, position: "right-[-4%] top-[4%]" },
+    { label: "SEO Optimized", icon: TrendingUp, position: "right-[-6%] top-[34%]" },
+  ],
+  "mobile-app-development": [
+    { label: "iOS & Swift", icon: Smartphone, position: "left-[-8%] top-[6%]" },
+    { label: "Android Kotlin", icon: Smartphone, position: "left-[-12%] top-[36%]" },
+    { label: "Flutter 3.0", icon: Zap, position: "left-[-6%] top-[66%]" },
+    { label: "App Store Ready", icon: ShieldCheck, position: "right-[-4%] top-[4%]" },
+    { label: "60 FPS UI", icon: Sparkles, position: "right-[-6%] top-[34%]" },
+  ],
+  "games-development": [
+    { label: "Unity 3D Engine", icon: Gamepad2, position: "left-[-8%] top-[6%]" },
+    { label: "Unreal Engine 5", icon: Layers, position: "left-[-12%] top-[36%]" },
+    { label: "Multiplayer Engine", icon: Users, position: "left-[-6%] top-[66%]" },
+    { label: "3D Physics Engine", icon: Cpu, position: "right-[-4%] top-[4%]" },
+    { label: "Cross-Platform", icon: ShieldCheck, position: "right-[-6%] top-[34%]" },
+  ],
+  "readymade-pos": [
+    { label: "Instant Billing", icon: CreditCard, position: "left-[-8%] top-[6%]" },
+    { label: "Stock Inventory", icon: ShoppingBag, position: "left-[-12%] top-[36%]" },
+    { label: "Thermal Printing", icon: Terminal, position: "left-[-6%] top-[66%]" },
+    { label: "Offline Mode", icon: WifiOff, position: "right-[-4%] top-[4%]" },
+    { label: "Barcode Scanner", icon: ShieldCheck, position: "right-[-6%] top-[34%]" },
+  ],
+  "ui-ux-design": [
+    { label: "Figma Prototypes", icon: PenTool, position: "left-[-8%] top-[6%]" },
+    { label: "Brand Identity", icon: Sparkles, position: "left-[-12%] top-[36%]" },
+    { label: "Design Systems", icon: Layers, position: "left-[-6%] top-[66%]" },
+    { label: "User Research", icon: Brain, position: "right-[-4%] top-[4%]" },
+    { label: "UI Motion Design", icon: TrendingUp, position: "right-[-6%] top-[34%]" },
+  ],
+  "school-erp-hrm": [
+    { label: "Student Portal", icon: GraduationCap, position: "left-[-8%] top-[6%]" },
+    { label: "Automated Fees", icon: CreditCard, position: "left-[-12%] top-[36%]" },
+    { label: "Staff HRM & Payroll", icon: Users, position: "left-[-6%] top-[66%]" },
+    { label: "Exams & Reports", icon: BookOpen, position: "right-[-4%] top-[4%]" },
+    { label: "Parent Mobile App", icon: Smartphone, position: "right-[-6%] top-[34%]" },
+  ],
+  "crm-erp-solutions": [
+    { label: "Sales Pipelines", icon: BarChart3, position: "left-[-8%] top-[6%]" },
+    { label: "Lead Scoring", icon: Users, position: "left-[-12%] top-[36%]" },
+    { label: "Workflow Automation", icon: Zap, position: "left-[-6%] top-[66%]" },
+    { label: "Cloud ERP Sync", icon: Cloud, position: "right-[-4%] top-[4%]" },
+    { label: "Role-Based Auth", icon: ShieldCheck, position: "right-[-6%] top-[34%]" },
+  ],
+  "ecommerce-development": [
+    { label: "Stripe & Checkout", icon: ShoppingCart, position: "left-[-8%] top-[6%]" },
+    { label: "Headless Storefront", icon: Globe, position: "left-[-12%] top-[36%]" },
+    { label: "Real-time Stock", icon: Layers, position: "left-[-6%] top-[66%]" },
+    { label: "Fast Payment Gateway", icon: CreditCard, position: "right-[-4%] top-[4%]" },
+    { label: "Conversion Lift", icon: TrendingUp, position: "right-[-6%] top-[34%]" },
+  ],
+  "digital-marketing": [
+    { label: "Technical SEO 100", icon: TrendingUp, position: "left-[-8%] top-[6%]" },
+    { label: "High ROI Ads", icon: Megaphone, position: "left-[-12%] top-[36%]" },
+    { label: "Social Media Growth", icon: Users, position: "left-[-6%] top-[66%]" },
+    { label: "Content Campaigns", icon: Sparkles, position: "right-[-4%] top-[4%]" },
+    { label: "Lead Generation", icon: BarChart3, position: "right-[-6%] top-[34%]" },
+  ],
+  "software-development": [
+    { label: "Custom Architecture", icon: Code2, position: "left-[-8%] top-[6%]" },
+    { label: "Microservices", icon: Cpu, position: "left-[-12%] top-[36%]" },
+    { label: "Cloud APIs", icon: Cloud, position: "left-[-6%] top-[66%]" },
+    { label: "Enterprise SLA", icon: ShieldCheck, position: "right-[-4%] top-[4%]" },
+    { label: "High Scalability", icon: TrendingUp, position: "right-[-6%] top-[34%]" },
+  ],
 };
 
 export function HeroImage({ service }: { service: HeroService }) {
-  const Icon = ICON_MAP[service.illustration];
-  const [leftTag1, leftTag2, leftTag3] = service.orbitIcons;
-  const leftTags = [
-    { icon: leftTag1, label: service.features[0]?.label ?? service.badge },
-    { icon: leftTag2, label: service.features[1]?.label ?? service.badge },
-    { icon: leftTag3, label: service.features[2]?.label ?? service.badge },
-  ];
+  const floatingBadges = floatingBadgesByService[service.id] || floatingBadgesByService["web-development"];
 
   return (
-    <div className="relative mx-auto w-full max-w-lg py-6">
-      {/* faint dotted network lines connecting floating cards to the panel */}
+    <div className="relative mx-auto w-full max-w-xl py-2 flex items-center justify-center">
+      {/* Background network dotted lines */}
       <svg
-        className="pointer-events-none absolute inset-0 h-full w-full text-blue-200"
-        viewBox="0 0 460 400"
+        className="pointer-events-none absolute inset-0 h-full w-full text-blue-200/80"
+        viewBox="0 0 520 440"
         fill="none"
       >
-        <path d="M20,70 C90,70 110,110 165,130" stroke="currentColor" strokeDasharray="4 5" />
-        <path d="M10,200 C80,200 110,190 165,190" stroke="currentColor" strokeDasharray="4 5" />
-        <path d="M20,330 C90,330 110,280 175,255" stroke="currentColor" strokeDasharray="4 5" />
-        <path d="M440,80 C370,80 340,110 300,135" stroke="currentColor" strokeDasharray="4 5" />
-        <circle cx="20" cy="70" r="3" fill="#93C5FD" />
-        <circle cx="10" cy="200" r="3" fill="#93C5FD" />
-        <circle cx="20" cy="330" r="3" fill="#93C5FD" />
-        <circle cx="440" cy="80" r="3" fill="#93C5FD" />
+        <path d="M40,50 C130,50 150,110 210,140" stroke="currentColor" strokeDasharray="4 4" strokeWidth="1.5" />
+        <path d="M20,170 C120,170 150,190 210,200" stroke="currentColor" strokeDasharray="4 4" strokeWidth="1.5" />
+        <path d="M40,310 C130,310 150,270 210,250" stroke="currentColor" strokeDasharray="4 4" strokeWidth="1.5" />
+        <path d="M470,40 C390,40 350,100 290,140" stroke="currentColor" strokeDasharray="4 4" strokeWidth="1.5" />
+        <path d="M480,150 C390,150 350,180 290,200" stroke="currentColor" strokeDasharray="4 4" strokeWidth="1.5" />
+        <circle cx="40" cy="50" r="4" fill="#0052FF" />
+        <circle cx="20" cy="170" r="4" fill="#0052FF" />
+        <circle cx="40" cy="310" r="4" fill="#0052FF" />
+        <circle cx="470" cy="40" r="4" fill="#0052FF" />
+        <circle cx="480" cy="150" r="4" fill="#0052FF" />
       </svg>
 
-      {/* left-stacked floating labeled cards */}
-      <div className="absolute left-[-6%] top-[10%] z-10 hidden flex-col gap-8 sm:flex" style={{ width: 150 }}>
-        {leftTags.map((tag, i) => {
-          const TagIcon = ICON_MAP[(tag.icon as HeroService["illustration"]) ?? "cloud"] ?? Sparkles;
-          return (
-            <motion.div
-              key={service.id + tag.label + i}
-              initial={{ opacity: 0, x: -14 }}
-              animate={{ opacity: 1, x: 0, y: [0, -6, 0] }}
-              transition={{
-                opacity: { duration: 0.4, delay: 0.15 + i * 0.1 },
-                x: { duration: 0.4, delay: 0.15 + i * 0.1 },
-                y: { duration: 3.4 + i * 0.4, repeat: Infinity, ease: "easeInOut" },
-              }}
-              className="flex items-center gap-2.5 rounded-xl border border-blue-50 bg-white/95 px-3 py-2.5 shadow-lg shadow-blue-900/5 backdrop-blur"
-            >
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                <TagIcon className="h-4 w-4" />
-              </span>
-              <span className="text-xs font-medium leading-tight text-slate-700">
-                {tag.label}
-              </span>
-            </motion.div>
-          );
-        })}
-      </div>
+      {/* Dynamic Floating Badges per Service */}
+      {floatingBadges.map((badge, idx) => {
+        const BadgeIcon = badge.icon;
+        return (
+          <motion.div
+            key={badge.label}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
+            transition={{
+              opacity: { duration: 0.4, delay: 0.1 + idx * 0.08 },
+              y: { duration: 3.4 + idx * 0.4, repeat: Infinity, ease: "easeInOut" },
+            }}
+            className={`absolute ${badge.position} z-20 hidden sm:flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 bg-white text-slate-800 border border-slate-100/90 shadow-[0_12px_35px_rgba(0,82,255,0.09)] transition-all cursor-pointer hover:scale-105 hover:border-blue-200`}
+          >
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl font-bold bg-[#EBF2FF] text-[#0052FF]">
+              <BadgeIcon className="h-4 w-4" />
+            </span>
+            <span className="text-xs font-extrabold tracking-wide whitespace-nowrap">
+              {badge.label}
+            </span>
+          </motion.div>
+        );
+      })}
 
-      {/* top-right floating badge card */}
-      <motion.div
-        initial={{ opacity: 0, x: 14 }}
-        animate={{ opacity: 1, x: 0, y: [0, -6, 0] }}
-        transition={{
-          opacity: { duration: 0.4, delay: 0.2 },
-          y: { duration: 3.8, repeat: Infinity, ease: "easeInOut" },
-        }}
-        className="absolute right-[-4%] top-[6%] z-10 hidden items-center gap-2.5 rounded-xl border border-blue-50 bg-white/95 px-3 py-2.5 shadow-lg shadow-blue-900/5 backdrop-blur sm:flex"
-      >
-        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-          <Icon className="h-4 w-4" />
-        </span>
-        <span className="text-xs font-medium leading-tight text-slate-700">
-          {service.badge}
-        </span>
-      </motion.div>
-
-      {/* central mock panel */}
+      {/* 3D Mockup Image placed directly on background without container box */}
       <AnimatePresence mode="wait">
         <motion.div
           key={service.id}
@@ -125,75 +162,27 @@ export function HeroImage({ service }: { service: HeroService }) {
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-0 mx-auto w-full max-w-md overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-2xl shadow-blue-900/10"
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-10 w-full max-w-lg"
         >
-          {/* window chrome */}
-          <div className="flex items-center gap-1.5 border-b border-slate-100 px-5 py-3.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-red-300" />
-            <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-300" />
-          </div>
+          <img
+            src={service.image || "/hero-transparent.png"}
+            alt={service.badge}
+            className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-500 max-h-[340px] sm:max-h-[380px] drop-shadow-[0_12px_24px_rgba(0,0,0,0.06)]"
+          />
 
-          <div className="p-6">
-            <p className="text-xs font-medium text-slate-400">Welcome to</p>
-            <h3 className="mt-0.5 text-lg font-bold text-slate-900">
-              Modern <span className="text-blue-600">Technology</span>
-            </h3>
-
-            <div className="mt-4 flex items-center gap-4">
-              <motion.span
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-sky-500 text-white shadow-lg shadow-blue-600/30"
-              >
-                <Icon className="h-7 w-7" />
-              </motion.span>
-              <p className="text-xs leading-relaxed text-slate-500">
-                {service.description.split(".")[0]}.
-              </p>
-            </div>
-
-            {/* mini stat row */}
-            <div className="mt-5 grid grid-cols-3 gap-2">
-              {service.stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-xl border border-slate-100 bg-slate-50 px-2.5 py-2.5"
-                >
-                  <p className="text-sm font-bold text-slate-900">{stat.value}</p>
-                  <p className="mt-0.5 text-[10px] leading-tight text-slate-500">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* fixed expertise mini row */}
-            <div className="mt-4 border-t border-slate-100 pt-4">
-              <p className="text-[10px] font-medium uppercase tracking-wide text-slate-400">
-                Our Expertise
-              </p>
-              <div className="mt-2 grid grid-cols-4 gap-2">
-                {EXPERTISE_ROW.map((item) => {
-                  const ItemIcon = ICON_MAP[item.key];
-                  const active = item.key === service.illustration;
-                  return (
-                    <div
-                      key={item.key}
-                      className={`flex flex-col items-center gap-1 rounded-lg border px-1.5 py-2 transition-colors ${
-                        active
-                          ? "border-blue-200 bg-blue-50 text-blue-600"
-                          : "border-slate-100 text-slate-400"
-                      }`}
-                    >
-                      <ItemIcon className="h-3.5 w-3.5" />
-                      <span className="text-[9px]">{item.label}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+          {/* Sub-Image Highlights */}
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-2 z-20">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50/90 px-3 py-1 text-[11px] font-extrabold text-[#0052FF] border border-blue-200/80 shadow-xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#0052FF] animate-pulse" />
+              ⚡ High-Speed Delivery
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-50/90 px-3 py-1 text-[11px] font-extrabold text-slate-700 border border-slate-200/80 shadow-xs">
+              🛡️ Enterprise Grade SLA
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-50/90 px-3 py-1 text-[11px] font-extrabold text-slate-700 border border-slate-200/80 shadow-xs">
+              ⭐ 100% Custom Solutions
+            </span>
           </div>
         </motion.div>
       </AnimatePresence>

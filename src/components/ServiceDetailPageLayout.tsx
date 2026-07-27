@@ -142,7 +142,7 @@ export default function ServiceDetailPageLayout({ service }: ServiceDetailPageLa
             <p className="text-xs text-slate-500 leading-relaxed text-center max-w-xs mb-6">
               {service.heroCardDescription || "Fully optimized for low latency, secure database mapping, and fluid web platform responsiveness."}
             </p>
-            <Button href="#contact" variant="primary" className="shadow-md">
+            <Button href="/get-a-quote" variant="primary" className="shadow-md">
               Request Project Quote
             </Button>
           </motion.div>
@@ -372,7 +372,7 @@ export default function ServiceDetailPageLayout({ service }: ServiceDetailPageLa
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4 relative z-10">
-              <Button href="/contact" variant="secondary" className="shadow-md">
+              <Button href="/get-a-quote" variant="secondary" className="shadow-md">
                 Get a Free Quote
               </Button>
               <Link

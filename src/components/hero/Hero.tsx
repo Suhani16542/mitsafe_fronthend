@@ -9,11 +9,12 @@ import { StatsBar } from "./StatsBar";
 import { FeatureBar } from "./FeatureBar";
 import { PaginationDots } from "./PaginationDots";
 import { NavigationArrows } from "./NavigationArrows";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export function Hero() {
   const { index, next, prev, goToIndex, pause, resume } = useHeroSlider({
     length: heroServices.length,
-    autoPlayMs: 6000,
+    autoPlayMs: 5000, // Automatic slide transition every 5 seconds
   });
 
   const service = heroServices[index];
@@ -26,28 +27,44 @@ export function Hero() {
     >
       <HeroBackground category={service.category} />
 
-      <div className="relative mx-auto max-w-7xl px-6 pb-16 pt-24 lg:px-8 lg:pt-28">
-        {/* top: content left, image right — matches reference two-column layout */}
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+      {/* Floating Side Navigation Arrows (Left & Right Edge) */}
+      <button
+        onClick={prev}
+        aria-label="Previous Service"
+        className="absolute left-2 sm:left-5 top-[38%] sm:top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-slate-200/90 bg-white/95 text-slate-700 shadow-lg backdrop-blur-md transition-all hover:bg-[#0052FF] hover:text-white hover:border-[#0052FF] hover:scale-110 active:scale-95 cursor-pointer"
+      >
+        <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+      </button>
+
+      <button
+        onClick={next}
+        aria-label="Next Service"
+        className="absolute right-2 sm:right-5 top-[38%] sm:top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-slate-200/90 bg-white/95 text-slate-700 shadow-lg backdrop-blur-md transition-all hover:bg-[#0052FF] hover:text-white hover:border-[#0052FF] hover:scale-110 active:scale-95 cursor-pointer"
+      >
+        <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
+      </button>
+
+      <div className="relative mx-auto max-w-7xl px-6 pb-12 pt-32 sm:pt-36 lg:px-8">
+        {/* Two-column layout */}
+        <div className="grid items-center gap-10 lg:gap-14 lg:grid-cols-2">
           <div>
             <HeroContent service={service} index={index} total={heroServices.length} />
-
-            <div className="relative z-10 mt-8 flex items-center gap-4">
-              <NavigationArrows onPrev={prev} onNext={next} />
-              <PaginationDots
-                total={heroServices.length}
-                activeIndex={index}
-                onSelect={goToIndex}
-              />
-            </div>
           </div>
 
-          <HeroImage service={service} />
+          <div>
+            <HeroImage service={service} />
+          </div>
         </div>
 
-        {/* bottom: full-width icon strip, then full-width stat strip — matches reference */}
-        <FeatureBar services={heroServices} activeIndex={index} onSelect={goToIndex} />
-        <StatsBar stats={service.stats} id={service.id} />
+        {/* Service FeatureBar icon strip */}
+        <div className="w-full max-w-6xl mx-auto mt-8 sm:mt-10">
+          <FeatureBar services={heroServices} activeIndex={index} onSelect={goToIndex} />
+        </div>
+
+        {/* Full-width statistics strip */}
+        <div className="mt-8">
+          <StatsBar stats={service.stats} id={service.id} />
+        </div>
       </div>
     </section>
   );

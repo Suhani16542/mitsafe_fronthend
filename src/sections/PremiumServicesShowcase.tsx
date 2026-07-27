@@ -272,7 +272,9 @@ export default function PremiumServicesShowcase() {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#0F172A] dark:text-white tracking-[-0.03em] leading-tight"
             >
               End-to-End Digital Solutions <br />
-              Built Around <span className="text-blue-600">Your Business</span>
+              <span className="font-black inline-block" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>
+                Built Around Your Business
+              </span>
             </motion.h2>
 
             <motion.p

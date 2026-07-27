@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Phone, Mail, ArrowUpRight, ChevronRight } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowUpRight, ChevronRight, ArrowRight } from "lucide-react";
 import { servicesData } from "@/data/services";
 import { motion } from "framer-motion";
 
@@ -28,13 +28,13 @@ const InstagramIcon = () => (
 
 const FacebookIcon = () => (
   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
   </svg>
 );
 
 const YoutubeIcon = () => (
   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.388.555A3.003 3.003 0 0 0 .502 6.163C0 8.07 0 12 0 12s0 3.93.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.47 20.5 12 20.5 12 20.5s7.53 0 9.388-.555a3.003 3.003 0 0 0 2.11-2.108C24 15.93 24 12 24 12s0-3.93-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+    <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.388.555A3.003 3.003 0 0 0 .502 6.163C0 8.07 0 12 0 12s0 3.93.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.47 20.5 12 20.5 12 20.5s7.53 0 9.388-.555a3.003 3.003 0 0 0 2.11-2.108C24 15.93 24 12 24 12s0-3.93-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
   </svg>
 );
 
@@ -49,20 +49,20 @@ export default function Footer() {
   ];
 
   return (
-    <footer 
-      className="relative bg-white text-slate-900 border-t border-slate-200 overflow-hidden pt-16 pb-0 w-full"
+    <footer
+      className="relative bg-white text-slate-900 border-t border-slate-200 overflow-hidden pt-8 pb-0 w-full"
       style={{ fontFamily: "'Sora', 'Manrope', sans-serif" }}
     >
       {/* Wave Accent Background Graphic */}
-      <div className="absolute top-1/2 left-0 right-0 h-40 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-50/40 via-transparent to-transparent -translate-y-12 pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-0 right-0 h-32 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-50/40 via-transparent to-transparent -translate-y-12 pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
-        
+
         {/* Main Grid Layout - fully responsive */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-12 gap-10 lg:gap-12 pb-12 border-b border-slate-200 w-full">
-          
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-12 gap-8 lg:gap-10 pb-6 border-b border-slate-200 w-full">
+
           {/* Brand & Description Column (3 cols on XL) */}
-          <div className="xl:col-span-3 flex flex-col gap-5 pr-2 w-full">
+          <div className="xl:col-span-3 flex flex-col gap-4 pr-2 w-full">
             <Link href="/" className="flex items-center gap-3 w-fit">
               <Image
                 src="/image_removebg-preview.png"
@@ -76,9 +76,9 @@ export default function Footer() {
               Mitsafe delivers future-ready digital solutions & IT services that help businesses innovate, scale and succeed in the digital era.
             </p>
 
-            {/* Social Media Links (Staggered Entrance bubble pop effect on hover) */}
-            <motion.div 
-              className="flex items-center gap-2.5 mt-2"
+            {/* Social Media Links */}
+            <motion.div
+              className="flex items-center gap-2.5 mt-1"
               initial="rest"
               whileHover="hover"
               animate="rest"
@@ -86,12 +86,12 @@ export default function Footer() {
               {socialLinks.map((item, idx) => {
                 const IconComponent = item.icon;
                 return (
-                  <motion.a 
+                  <motion.a
                     key={idx}
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={item.name} 
+                    aria-label={item.name}
                     variants={{
                       rest: { scale: 1, y: 0, opacity: 0.95 },
                       hover: {
@@ -116,162 +116,153 @@ export default function Footer() {
           </div>
 
           {/* Services Links (2 cols on XL) */}
-          <div className="xl:col-span-2 flex flex-col gap-4 text-left w-full">
-            <h3 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 uppercase font-display relative pb-2 w-fit">
+          <div className="xl:col-span-2 flex flex-col gap-3 text-left w-full">
+            <h3 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 uppercase font-display relative pb-1.5 w-fit">
               Services
               <span className="absolute bottom-0 left-0 w-8 h-[3px] bg-[#0052cc] rounded-full" />
             </h3>
-            <ul className="flex flex-col gap-2.5 mt-2 w-full">
+            <ul className="flex flex-col gap-2 mt-1 w-full">
               {servicesData.slice(0, 6).map((srv) => (
                 <li key={srv.slug}>
                   <Link 
                     href={`/services/${srv.slug}`} 
-                    className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-blue-600 transition-all duration-200 flex items-center gap-1.5 group"
+                    className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-[#0052cc] transition-colors duration-200 flex items-center gap-1.5 group w-fit py-0.5"
                   >
-                    <ChevronRight className="w-3 h-3 text-[#0052cc] shrink-0 transition-transform group-hover:translate-x-0.5" />
-                    <span>{srv.title}</span>
+                    <ChevronRight className="w-3.5 h-3.5 text-[#0052cc] shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:scale-110" />
+                    <span className="inline-block transition-all duration-300 group-hover:translate-x-1.5 group-hover:font-extrabold group-hover:text-[#0052cc]">
+                      {srv.title}
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Quick & Community Links (2 cols on XL) */}
-          <div className="xl:col-span-2 flex flex-col gap-4 text-left w-full">
-            <h3 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 uppercase font-display relative pb-2 w-fit">
+          <div className="xl:col-span-2 flex flex-col gap-3 text-left w-full">
+            <h3 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 uppercase font-display relative pb-1.5 w-fit">
               Quick Links
               <span className="absolute bottom-0 left-0 w-8 h-[3px] bg-[#0052cc] rounded-full" />
             </h3>
-            <ul className="flex flex-col gap-2.5 mt-2 w-full">
-              <li>
-                <Link href="/about" className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-blue-600 transition-all duration-200 flex items-center gap-1.5 group">
-                  <ChevronRight className="w-3 h-3 text-[#0052cc] shrink-0 transition-transform group-hover:translate-x-0.5" />
-                  <span>About Us</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/portfolio" className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-blue-600 transition-all duration-200 flex items-center gap-1.5 group">
-                  <ChevronRight className="w-3 h-3 text-[#0052cc] shrink-0 transition-transform group-hover:translate-x-0.5" />
-                  <span>Our Portfolio</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-blue-600 transition-all duration-200 flex items-center gap-1.5 group">
-                  <ChevronRight className="w-3 h-3 text-[#0052cc] shrink-0 transition-transform group-hover:translate-x-0.5" />
-                  <span>Contact Us</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-blue-600 transition-all duration-200 flex items-center gap-1.5 group">
-                  <ChevronRight className="w-3 h-3 text-[#0052cc] shrink-0 transition-transform group-hover:translate-x-0.5" />
-                  <span>Terms &amp; Conditions</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-blue-600 transition-all duration-200 flex items-center gap-1.5 group">
-                  <ChevronRight className="w-3 h-3 text-[#0052cc] shrink-0 transition-transform group-hover:translate-x-0.5" />
-                  <span>Privacy Policy</span>
-                </Link>
-              </li>
+            <ul className="flex flex-col gap-2 mt-1 w-full">
+              {[
+                { name: "About Us", href: "/about" },
+                { name: "Our Portfolio", href: "/portfolio" },
+                { name: "Contact Us", href: "/contact" },
+                { name: "Terms & Conditions", href: "/terms" },
+                { name: "Privacy Policy", href: "#" },
+              ].map((item, idx) => (
+                <li key={idx}>
+                  <Link href={item.href} className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-[#0052cc] transition-colors duration-200 flex items-center gap-1.5 group w-fit py-0.5">
+                    <ChevronRight className="w-3.5 h-3.5 text-[#0052cc] shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:scale-110" />
+                    <span className="inline-block transition-all duration-300 group-hover:translate-x-1.5 group-hover:font-extrabold group-hover:text-[#0052cc]">
+                      {item.name}
+                    </span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Global Offices (5 cols on XL) - Font increased to text-sm sm:text-base */}
           <div className="xl:col-span-5 flex flex-col gap-4 w-full">
             <h3 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 uppercase font-display relative pb-2 w-fit">
               Global Offices
               <span className="absolute bottom-0 left-0 w-8 h-[3px] bg-[#0052cc] rounded-full" />
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-2 w-full">
-              
-              {/* India Office */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-2 w-full items-stretch">
               <a
                 href="https://www.google.com/maps/search/Sector+62,+Noida,+UP+201301"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 flex flex-col gap-2 hover:border-slate-300 hover:bg-slate-100/50 transition-all duration-300 group/card shadow-xs w-full"
+                className="bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 flex flex-col justify-between h-full gap-2 hover:border-[#0052cc] hover:bg-blue-50/50 hover:scale-[1.02] transition-all duration-300 group/card shadow-xs w-full"
               >
-                <div className="flex items-center justify-between">
-                  <span className="text-sm sm:text-base font-black tracking-wider text-slate-900 uppercase flex items-center gap-1.5">
-                    <span>🇮🇳</span> India
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 text-slate-700 opacity-0 group-hover/card:opacity-100 transition-opacity" />
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm sm:text-base font-black tracking-wider text-slate-900 uppercase flex items-center gap-1.5">
+                      <span>🇮🇳</span> India
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 text-[#0052cc] opacity-0 group-hover/card:opacity-100 transition-all duration-200 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5" />
+                  </div>
+                  <div className="flex items-start gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold mt-0.5">
+                    <MapPin className="w-3.5 h-3.5 text-[#0052cc] shrink-0 mt-0.5" />
+                    <span className="leading-snug">Sector 62, Noida, UP 201301</span>
+                  </div>
                 </div>
-                <div className="flex items-start gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold mt-0.5">
-                  <MapPin className="w-3.5 h-3.5 text-[#0052cc] shrink-0 mt-0.5" />
-                  <span className="leading-snug">Sector 62, Noida, UP 201301</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold">
-                  <Phone className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
-                  <span>+91 98765 43210</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold truncate">
-                  <Mail className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
-                  <span className="truncate">india@mitsafe.com</span>
+                <div className="flex flex-col gap-1 pt-2 border-t border-slate-200/60">
+                  <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold">
+                    <Phone className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
+                    <span>+91 6265944392</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold truncate">
+                    <Mail className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
+                    <span className="truncate">india@mitsafe.com</span>
+                  </div>
                 </div>
               </a>
 
-              {/* Dubai Office */}
               <a
                 href="https://www.google.com/maps/search/Business+Bay,+Dubai,+UAE"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 flex flex-col gap-2 hover:border-slate-300 hover:bg-slate-100/50 transition-all duration-300 group/card shadow-xs w-full"
+                className="bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 flex flex-col justify-between h-full gap-2 hover:border-[#0052cc] hover:bg-blue-50/50 hover:scale-[1.02] transition-all duration-300 group/card shadow-xs w-full"
               >
-                <div className="flex items-center justify-between">
-                  <span className="text-sm sm:text-base font-black tracking-wider text-slate-900 uppercase flex items-center gap-1.5">
-                    <span>🇦🇪</span> Dubai
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 text-slate-700 opacity-0 group-hover/card:opacity-100 transition-opacity" />
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm sm:text-base font-black tracking-wider text-slate-900 uppercase flex items-center gap-1.5">
+                      <span>🇦🇪</span> Dubai
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 text-[#0052cc] opacity-0 group-hover/card:opacity-100 transition-all duration-200 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5" />
+                  </div>
+                  <div className="flex items-start gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold mt-0.5">
+                    <MapPin className="w-3.5 h-3.5 text-[#0052cc] shrink-0 mt-0.5" />
+                    <span className="leading-snug">Business Bay, Dubai, UAE</span>
+                  </div>
                 </div>
-                <div className="flex items-start gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold mt-0.5">
-                  <MapPin className="w-3.5 h-3.5 text-[#0052cc] shrink-0 mt-0.5" />
-                  <span className="leading-snug">Business Bay, Dubai, UAE</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold">
-                  <Phone className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
-                  <span>+971 4 123 4567</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold truncate">
-                  <Mail className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
-                  <span className="truncate">dubai@mitsafe.com</span>
+                <div className="flex flex-col gap-1 pt-2 border-t border-slate-200/60">
+                  <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold">
+                    <Phone className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
+                    <span>+971 4 123 4567</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold truncate">
+                    <Mail className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
+                    <span className="truncate">dubai@mitsafe.com</span>
+                  </div>
                 </div>
               </a>
 
-              {/* USA Office */}
               <a
                 href="https://www.google.com/maps/search/100+Pine+St,+San+Francisco,+CA+94111"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 flex flex-col gap-2 hover:border-slate-300 hover:bg-slate-100/50 transition-all duration-300 group/card shadow-xs w-full"
+                className="bg-slate-50 border border-slate-200/90 rounded-2xl p-3.5 flex flex-col justify-between h-full gap-2 hover:border-[#0052cc] hover:bg-blue-50/50 hover:scale-[1.02] transition-all duration-300 group/card shadow-xs w-full"
               >
-                <div className="flex items-center justify-between">
-                  <span className="text-sm sm:text-base font-black tracking-wider text-slate-900 uppercase flex items-center gap-1.5">
-                    <span>🇺🇸</span> USA
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 text-slate-700 opacity-0 group-hover/card:opacity-100 transition-opacity" />
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm sm:text-base font-black tracking-wider text-slate-900 uppercase flex items-center gap-1.5">
+                      <span>🇺🇸</span> USA
+                    </span>
+                    <ArrowUpRight className="w-4 h-4 text-[#0052cc] opacity-0 group-hover/card:opacity-100 transition-all duration-200 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5" />
+                  </div>
+                  <div className="flex items-start gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold mt-0.5">
+                    <MapPin className="w-3.5 h-3.5 text-[#0052cc] shrink-0 mt-0.5" />
+                    <span className="leading-snug">100 Pine St, SF, CA 94111</span>
+                  </div>
                 </div>
-                <div className="flex items-start gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold mt-0.5">
-                  <MapPin className="w-3.5 h-3.5 text-[#0052cc] shrink-0 mt-0.5" />
-                  <span className="leading-snug">100 Pine St, SF, CA 94111</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold">
-                  <Phone className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
-                  <span>+1 (555) 019-2834</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold truncate">
-                  <Mail className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
-                  <span className="truncate">usa@mitsafe.com</span>
+                <div className="flex flex-col gap-1 pt-2 border-t border-slate-200/60">
+                  <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold">
+                    <Phone className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
+                    <span>+1 (415) 555-0199</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-slate-600 font-semibold truncate">
+                    <Mail className="w-3.5 h-3.5 text-[#0052cc] shrink-0" />
+                    <span className="truncate">usa@mitsafe.com</span>
+                  </div>
                 </div>
               </a>
-
             </div>
           </div>
-
         </div>
 
-        {/* Integrated Plain CTA (Directly in the space between content and bottom blue bar, no cards or borders) */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 py-6 mt-2 w-full">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-blue-50 text-[#0052cc] flex items-center justify-center shrink-0">
@@ -286,28 +277,31 @@ export default function Footer() {
               </p>
             </div>
           </div>
-          <Link href="/contact">
-            <span className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0052cc] to-[#1d4ed8] hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl transition-all shadow-[0_4px_14px_rgba(0,82,204,0.25)] hover:shadow-[0_6px_20px_rgba(0,82,204,0.35)] cursor-pointer hover:scale-[1.02] active:scale-95 group shrink-0">
-              Get A Free Quote
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <Link href="/get-a-quote">
+            <span
+              className="group relative inline-flex items-center gap-3.5 pl-7 pr-3 py-3 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-[0_6px_20px_rgba(15,23,42,0.25)] hover:shadow-[0_8px_25px_rgba(37,99,255,0.3)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 border border-slate-700/50 cursor-pointer shrink-0"
+              style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
+            >
+              <span className="tracking-wide">Get A Free Quote</span>
+              <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white group-hover:scale-105 transition-transform shadow-sm shrink-0">
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform text-white" />
+              </span>
             </span>
           </Link>
         </div>
-
       </div>
 
-      {/* Footer Bottom Bar (Slimmer Dark Blue) */}
       <div className="w-full bg-[#0052cc] text-white py-3 mt-4">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
           <span className="text-xs sm:text-[13px] font-semibold tracking-wide opacity-90">
             © {new Date().getFullYear()} Mitsafe Technologies. All Rights Reserved.
           </span>
           <div className="flex items-center gap-4 text-xs sm:text-[13px] font-bold tracking-wide">
-            <Link href="#" className="hover:text-blue-200 transition-colors">Privacy Policy</Link>
+            <Link href="#" className="hover:text-cyan-300 inline-block transition-transform duration-200 hover:scale-105">Privacy Policy</Link>
             <span className="opacity-40">|</span>
-            <Link href="/terms" className="hover:text-blue-200 transition-colors">Terms &amp; Conditions</Link>
+            <Link href="/terms" className="hover:text-cyan-300 inline-block transition-transform duration-200 hover:scale-105">Terms &amp; Conditions</Link>
             <span className="opacity-40">|</span>
-            <Link href="#" className="hover:text-blue-200 transition-colors">Sitemap</Link>
+            <Link href="#" className="hover:text-cyan-300 inline-block transition-transform duration-200 hover:scale-105">Sitemap</Link>
           </div>
         </div>
       </div>

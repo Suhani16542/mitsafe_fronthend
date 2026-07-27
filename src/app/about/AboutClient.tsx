@@ -1,19 +1,19 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { 
-  Laptop, 
-  Server, 
-  Code, 
-  Smartphone, 
-  Gamepad, 
-  Palette, 
-  BookOpen, 
-  Briefcase, 
-  Play, 
-  Check, 
-  ChevronLeft, 
-  ChevronRight, 
+import {
+  Laptop,
+  Server,
+  Code,
+  Smartphone,
+  Gamepad,
+  Palette,
+  BookOpen,
+  Briefcase,
+  Play,
+  Check,
+  ChevronLeft,
+  ChevronRight,
   ArrowRight,
   Sparkles,
   Award
@@ -150,13 +150,13 @@ function GlowCardLight({
   const mouseY = useMotionValue(0);
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
-  
+
   const springConfig = { damping: 25, stiffness: 220, mass: 0.5 };
   const springX = useSpring(mouseX, springConfig);
   const springY = useSpring(mouseY, springConfig);
   const springRotateX = useSpring(rotateX, springConfig);
   const springRotateY = useSpring(rotateY, springConfig);
-  
+
   const springScale = useSpring(1, springConfig);
   const springYOffset = useSpring(0, springConfig);
   const [isFocused, setIsFocused] = useState(false);
@@ -167,15 +167,15 @@ function GlowCardLight({
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     mouseX.set(x);
     mouseY.set(y);
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rx = ((y - centerY) / centerY) * -5; 
+    const rx = ((y - centerY) / centerY) * -5;
     const ry = ((x - centerX) / centerX) * 5;
-    
+
     rotateX.set(rx);
     rotateY.set(ry);
   };
@@ -265,14 +265,14 @@ function Counter({ value, duration = 2.5 }: { value: number; duration?: number }
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+
   useEffect(() => {
     if (!isInView) return;
     let start = 0;
     const end = value;
     const totalMiliseconds = duration * 1000;
     const incrementTime = Math.max(Math.floor(totalMiliseconds / end), 15);
-    
+
     const timer = setInterval(() => {
       start += Math.ceil(end / (totalMiliseconds / incrementTime));
       if (start >= end) {
@@ -282,7 +282,7 @@ function Counter({ value, duration = 2.5 }: { value: number; duration?: number }
         setCount(start);
       }
     }, incrementTime);
-    
+
     return () => clearInterval(timer);
   }, [isInView, value, duration]);
 
@@ -413,7 +413,7 @@ function FloatingIllustration({
 export default function AboutClient() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [activeTimelineIdx, setActiveTimelineIdx] = useState(0);
-  
+
   const timelineContainerRef = useRef<HTMLDivElement>(null);
   const corePillContainerRef = useRef<HTMLDivElement>(null);
 
@@ -432,7 +432,7 @@ export default function AboutClient() {
 
       {/* Decorative Ambient Blur Lights (Lavender & Soft Purple) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <motion.div 
+        <motion.div
           animate={{
             scale: [1, 1.05, 1],
             rotate: [0, 8, 0],
@@ -442,9 +442,9 @@ export default function AboutClient() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute top-[6%] left-[-15%] w-[650px] h-[650px] rounded-full bg-[#E2DBF7]/20 blur-[140px]" 
+          className="absolute top-[6%] left-[-15%] w-[650px] h-[650px] rounded-full bg-[#E2DBF7]/20 blur-[140px]"
         />
-        <motion.div 
+        <motion.div
           animate={{
             scale: [1, 1.08, 1],
             rotate: [0, -8, 0],
@@ -454,7 +454,7 @@ export default function AboutClient() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute top-[42%] right-[-12%] w-[700px] h-[700px] rounded-full bg-[#F3F0FA]/40 blur-[150px]" 
+          className="absolute top-[42%] right-[-12%] w-[700px] h-[700px] rounded-full bg-[#F3F0FA]/40 blur-[150px]"
         />
         <div className="absolute bottom-[8%] left-[-5%] w-[650px] h-[650px] rounded-full bg-[#E2DBF7]/15 blur-[140px]" />
       </div>
@@ -465,15 +465,15 @@ export default function AboutClient() {
 
       {/* Floating Particles in Hero */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden max-w-7xl mx-auto px-6">
-        <motion.div 
+        <motion.div
           animate={{ y: [0, -25, 0], x: [0, 10, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[15%] left-[10%] w-2 h-2 rounded-full bg-[#2563FF]/30 blur-[1px]" 
+          className="absolute top-[15%] left-[10%] w-2 h-2 rounded-full bg-[#2563FF]/30 blur-[1px]"
         />
-        <motion.div 
+        <motion.div
           animate={{ y: [0, -35, 0], x: [0, -15, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute top-[35%] right-[15%] w-3 h-3 rounded-full bg-[#2563FF]/20 blur-[1px]" 
+          className="absolute top-[35%] right-[15%] w-3 h-3 rounded-full bg-[#2563FF]/20 blur-[1px]"
         />
       </div>
 
@@ -482,7 +482,7 @@ export default function AboutClient() {
          ========================================================================== */}
       <section className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-24 md:py-36 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          
+
           {/* Left: Asymmetric Hero Heading with Line Reveal */}
           <div className="lg:col-span-7 text-left flex flex-col items-start gap-8">
             <motion.div
@@ -527,7 +527,7 @@ export default function AboutClient() {
               MitSafe represents a fusion of technical standards and design aesthetics, crafting applications that perform at scale and wow at first glance.
             </motion.p>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
@@ -595,7 +595,7 @@ export default function AboutClient() {
          ========================================================================== */}
       <section ref={corePillContainerRef} className="relative max-w-7xl mx-auto px-6 lg:px-8 py-28 border-t border-[#E5E2F0]/40 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          
+
           {/* Sticky Left Column with dynamic scroll indicator */}
           <div className="lg:col-span-4 lg:sticky lg:top-36 text-left flex flex-col gap-6">
             <span className="text-[10px] font-extrabold text-[#2563FF] dark:text-[#00BFFF] uppercase tracking-widest font-mono bg-[#2563FF]/5 dark:bg-[#2563FF]/15 border border-slate-200 dark:border-white/5 px-3.5 py-1.5 rounded-full w-fit">
@@ -607,11 +607,11 @@ export default function AboutClient() {
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-350 leading-relaxed">
               We bridge high-end engineering standards with functional design, driving immediate market value for startups and corporate frameworks alike.
             </p>
-            
+
             {/* Visual Progress bar container representing reading journey */}
             <div className="w-full h-1 bg-[#F3F0FA] dark:bg-white/5 rounded-full overflow-hidden mt-4 relative">
-              <motion.div 
-                className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#2563FF] to-[#00D4FF] dark:from-[#00BFFF] dark:to-[#6C63FF] rounded-full" 
+              <motion.div
+                className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#2563FF] to-[#00D4FF] dark:from-[#00BFFF] dark:to-[#6C63FF] rounded-full"
                 animate={{ width: ["0%", "100%", "50%"] }}
                 transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
               />
@@ -660,9 +660,9 @@ export default function AboutClient() {
          ========================================================================== */}
       <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20 border-t border-[#E5E2F0]/40 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
+
           {/* Bento Block 1 (Large 7 Cols): Company Details in Indigo (With Counter Stats Row) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95, filter: "blur(6px)" }}
             whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-100px" }}
@@ -717,7 +717,7 @@ export default function AboutClient() {
           </motion.div>
 
           {/* Bento Block 2 (5 Cols): Video Dashboard Player with scale-up blur reveal */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.92, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-100px" }}
@@ -748,7 +748,7 @@ export default function AboutClient() {
               </div>
 
               {/* Pulsing play overlay */}
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.15 }}
                 className="w-16 h-16 rounded-full bg-white text-[#2563FF] dark:text-[#071426] flex items-center justify-center cursor-pointer shadow-lg z-10"
               >
@@ -793,7 +793,7 @@ export default function AboutClient() {
 
         {/* Asymmetric Bento Card Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-          
+
           {/* Card 1: Wide layout (Span 2 cols on md) */}
           <ScrollReveal direction="zoom" className="md:col-span-2 h-full">
             <GlowCardLight className="w-full h-full flex flex-col justify-between text-left border border-slate-200 dark:border-white/5 bg-white dark:bg-[#0B1A2E]/55 !shadow-none">
@@ -940,7 +940,7 @@ export default function AboutClient() {
          ========================================================================== */}
       <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-24 border-t border-[#E5E2F0]/40 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          
+
           {/* Sticky Left: Dynamic Year Display */}
           <div className="lg:col-span-5 lg:sticky lg:top-36 text-left flex flex-col gap-6">
             <span className="text-[10px] font-extrabold text-[#2563FF] dark:text-[#00D4FF] bg-[#2563FF]/5 dark:bg-[#2563FF]/15 border border-slate-200 dark:border-white/5 px-4 py-1.5 rounded-full w-fit">
@@ -966,7 +966,7 @@ export default function AboutClient() {
           {/* Right: Chronological Milestone cards listing with viewport listeners */}
           <div className="lg:col-span-7 flex flex-col gap-12 pt-8 lg:pt-0">
             {timelineMilestones.map((m, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -997,11 +997,11 @@ export default function AboutClient() {
          ========================================================================== */}
       <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-24 border-t border-[#E5E2F0]/40 z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          
+
           {/* Left: Overlapping Graphic layout with scale-up blur-reveal */}
           <div className="lg:col-span-6 relative flex justify-center items-center h-[350px] sm:h-[450px]">
             {/* Base Background Visual Mock Card */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -1020,7 +1020,7 @@ export default function AboutClient() {
             </motion.div>
 
             {/* Overlapping Glass Analytics Mockup Card */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 40, scale: 0.92, filter: "blur(8px)" }}
               whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-100px" }}
@@ -1035,7 +1035,7 @@ export default function AboutClient() {
                 <div className="h-4 w-3/4 rounded-lg bg-[#2563FF]/10 animate-pulse" />
                 <div className="h-3 w-1/2 rounded bg-slate-100 dark:bg-white/5" />
               </div>
-              
+
               {/* Circular Progress Wheel */}
               <div className="w-24 h-24 rounded-full border-8 border-[#F3F0FA] dark:border-white/5 border-t-[#2563FF] border-r-[#2563FF]/80 flex items-center justify-center self-center my-2 rotate-45">
                 <span className="text-xs font-black font-display text-[#0F172A] dark:text-white -rotate-45">92%</span>
@@ -1127,15 +1127,15 @@ export default function AboutClient() {
           <span className="absolute bottom-6 right-10 md:right-14 font-display font-black text-8xl text-[#2563FF]/10 dark:text-[#00D4FF]/10 pointer-events-none select-none">”</span>
 
           {/* Navigation */}
-          <button 
+          <button
             onClick={() => setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
             className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#2563FF] dark:hover:text-[#00D4FF] hover:border-[#2563FF]/35 dark:hover:border-[#00D4FF]/35 hover:shadow-md hover:scale-[1.05] transition-all duration-300 cursor-pointer z-10"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
-          
-          <button 
+
+          <button
             onClick={() => setActiveTestimonial((prev) => (prev + 1) % testimonials.length)}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#2563FF] dark:hover:text-[#00D4FF] hover:border-[#2563FF]/35 dark:hover:border-[#00D4FF]/35 hover:shadow-md hover:scale-[1.05] transition-all duration-300 cursor-pointer z-10"
             aria-label="Next testimonial"
@@ -1144,7 +1144,7 @@ export default function AboutClient() {
           </button>
 
           <AnimatePresence mode="wait">
-            <motion.div 
+            <motion.div
               key={activeTestimonial}
               initial={{ opacity: 0, scale: 0.96, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -1178,7 +1178,7 @@ export default function AboutClient() {
 
         {/* Partner Logos Strip */}
         <div className="border-t border-[#E5E2F0]/60 pt-16 mt-20 max-w-5xl mx-auto">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -1189,7 +1189,7 @@ export default function AboutClient() {
             className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-center"
           >
             {clientLogos.map((logo, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 variants={{
                   hidden: { opacity: 0, y: 20 },

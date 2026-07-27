@@ -408,7 +408,7 @@ export default function PortfolioClient() {
 
           <div className="mt-4 flex gap-4">
             <Link 
-              href="/contact" 
+              href="/get-a-quote" 
               className="inline-flex items-center justify-center font-display font-bold text-xs uppercase tracking-wider px-8 py-4 bg-[#2563FF] hover:bg-[#2563FF]/90 text-white hover:scale-[1.03] active:scale-[0.98] transition-all hover:shadow-[0_0_20px_rgba(37,99,255,0.3)] shadow-[0_4px_10px_rgba(37,99,255,0.15)] rounded-full cursor-pointer"
             >
               Request Project Quote

@@ -7,11 +7,11 @@ import LottieAnimation from "@/components/LottieAnimation";
 
 function TeamAvatar({ index }: { index: number }) {
   const gradients = [
-    { start: "#00D4FF", end: "#008FED" },
-    { start: "#00E5FF", end: "#071426" },
-    { start: "#008FED", end: "#0B1A2E" },
-    { start: "#E0F7FF", end: "#00D4FF" },
-    { start: "#00D4FF", end: "#0B1A2E" },
+    { start: "#2563FF", end: "#00D4FF" },
+    { start: "#00E5FF", end: "#0284C7" },
+    { start: "#6366F1", end: "#3B82F6" },
+    { start: "#10B981", end: "#059669" },
+    { start: "#8B5CF6", end: "#6D28D9" },
   ];
   const grad = gradients[index % gradients.length];
 
@@ -25,42 +25,55 @@ function TeamAvatar({ index }: { index: number }) {
       </defs>
       <circle cx="50" cy="50" r="48" fill={`url(#section-avatar-grad-${index})`} stroke="#FFFFFF" strokeWidth="3" />
 
+      {/* DevOps Specialist */}
       {index === 0 && (
         <>
-          <circle cx="50" cy="40" r="15" fill="#FFFFFF" opacity="0.95" />
-          <path d="M24,78 C24,62 36,56 50,56 C64,56 76,62 76,78 Z" fill="#FFFFFF" opacity="0.95" />
-          <rect x="42" y="36" width="16" height="4" rx="2" fill="#00D4FF" />
+          <circle cx="50" cy="38" r="14" fill="#FFFFFF" />
+          <path d="M24,76 C24,60 36,54 50,54 C64,54 76,60 76,76 Z" fill="#FFFFFF" />
+          <rect x="42" y="34" width="16" height="5" rx="2.5" fill="#2563FF" />
         </>
       )}
+
+      {/* Web Developer */}
       {index === 1 && (
         <>
-          <circle cx="50" cy="40" r="16" fill="#FFFFFF" opacity="0.95" />
-          <path d="M22,78 C22,62 34,56 50,56 C66,56 78,62 78,78 Z" fill="#FFFFFF" opacity="0.95" />
-          <path d="M34,40 C34,25 66,25 66,40" stroke="#008FED" strokeWidth="3" fill="none" />
+          <circle cx="50" cy="38" r="14" fill="#FFFFFF" />
+          <path d="M24,76 C24,60 36,54 50,54 C64,54 76,60 76,76 Z" fill="#FFFFFF" />
+          <path d="M36,38 C36,26 64,26 64,38" stroke="#0284C7" strokeWidth="3.5" fill="none" />
         </>
       )}
+
+      {/* AI Assistant Avatar - Glowing Robot Visor */}
       {index === 2 && (
         <>
-          <circle cx="50" cy="38" r="14" fill="#FFFFFF" opacity="0.95" />
-          <path d="M26,76 C26,62 38,54 50,54 C62,54 74,62 74,76 Z" fill="#FFFFFF" opacity="0.95" />
-          <circle cx="45" cy="38" r="2" fill="#00D4FF" />
-          <circle cx="55" cy="38" r="2" fill="#00D4FF" />
+          <rect x="28" y="28" width="44" height="32" rx="10" fill="#FFFFFF" />
+          <rect x="34" y="34" width="32" height="14" rx="7" fill="#0F172A" />
+          <circle cx="42" cy="41" r="3" fill="#00E5FF" />
+          <circle cx="58" cy="41" r="3" fill="#00E5FF" />
+          <path d="M28,78 C28,64 38,58 50,58 C62,58 72,64 72,78 Z" fill="#FFFFFF" />
+          <circle cx="50" cy="22" r="3" fill="#00E5FF" />
+          <line x1="50" y1="22" x2="50" y2="28" stroke="#FFFFFF" strokeWidth="2" />
         </>
       )}
+
+      {/* UI/UX Designer */}
       {index === 3 && (
         <>
-          <circle cx="50" cy="40" r="15" fill="#FFFFFF" opacity="0.95" />
-          <path d="M24,78 C24,62 36,56 50,56 C64,56 76,62 76,78 Z" fill="#FFFFFF" opacity="0.95" />
-          <polygon points="50,30 45,42 55,42" fill="#10B981" />
+          <circle cx="50" cy="38" r="14" fill="#FFFFFF" />
+          <path d="M24,76 C24,60 36,54 50,54 C64,54 76,60 76,76 Z" fill="#FFFFFF" />
+          <circle cx="44" cy="38" r="2.5" fill="#10B981" />
+          <circle cx="56" cy="38" r="2.5" fill="#10B981" />
         </>
       )}
+
+      {/* Mobile Expert */}
       {index === 4 && (
         <>
-          <circle cx="50" cy="40" r="15" fill="#FFFFFF" opacity="0.95" />
-          <path d="M24,78 C24,62 36,56 50,56 C64,56 76,62 76,78 Z" fill="#FFFFFF" opacity="0.95" />
-          <circle cx="45" cy="36" r="3" fill="none" stroke="#3B82F6" strokeWidth="2" />
-          <circle cx="55" cy="36" r="3" fill="none" stroke="#3B82F6" strokeWidth="2" />
-          <line x1="48" y1="36" x2="52" y2="36" stroke="#3B82F6" strokeWidth="2" />
+          <circle cx="50" cy="38" r="14" fill="#FFFFFF" />
+          <path d="M24,76 C24,60 36,54 50,54 C64,54 76,60 76,76 Z" fill="#FFFFFF" />
+          <circle cx="43" cy="36" r="3" fill="none" stroke="#6D28D9" strokeWidth="2" />
+          <circle cx="57" cy="36" r="3" fill="none" stroke="#6D28D9" strokeWidth="2" />
+          <line x1="46" y1="36" x2="54" y2="36" stroke="#6D28D9" strokeWidth="2" />
         </>
       )}
     </svg>
@@ -205,25 +218,7 @@ export default function MitsafeSection() {
         transition={{ type: "spring", stiffness: 45, damping: 18 }}
       />
 
-      {/* Left Side: Artificial Intelligence Lottie Animation Inside Circle */}
-      <div className="absolute left-2 sm:left-4 md:left-8 lg:left-12 top-1/2 -translate-y-1/2 w-28 h-28 sm:w-40 sm:h-40 md:w-52 md:h-52 lg:w-60 lg:h-60 pointer-events-none z-10 hidden sm:flex items-center justify-center">
-        <div className="w-full h-full rounded-full border-2 border-[#2563FF]/20 bg-blue-50/40 p-3 sm:p-5 md:p-6 flex items-center justify-center overflow-hidden shadow-sm backdrop-blur-sm">
-          <LottieAnimation
-            src="/animations/Artificial intelligence digital technology.json"
-            autoplay={true}
-            loop={true}
-          />
-        </div>
-      </div>
 
-      {/* Right Side: Robot Lottie Animation */}
-      <div className="absolute right-2 sm:right-4 md:right-8 lg:right-12 top-1/2 -translate-y-1/2 w-28 h-28 sm:w-40 sm:h-40 md:w-52 md:h-52 lg:w-60 lg:h-60 pointer-events-none z-10 hidden sm:block opacity-90">
-        <LottieAnimation
-          src="/animations/Robot Futuristic Ai animated.json"
-          autoplay={true}
-          loop={true}
-        />
-      </div>
 
       {/* Section Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full flex flex-col items-center justify-center">
@@ -306,23 +301,10 @@ export default function MitsafeSection() {
             </motion.div>
           </motion.div>
 
-          {/* Floating circular avatars and cursor pills — radial arrangement around MITSAFE */}
+          {/* Floating circular avatars and cursor pills — static radial arrangement around MITSAFE */}
           {avatarsData.map((avatar, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, scale: 0.7, y: 15 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                y: 0,
-                x: mousePos.x * avatar.xOffset * 0.4,
-              }}
-              transition={{
-                opacity: { duration: 0.5, delay: 0.2 + idx * 0.08 },
-                scale: { type: "spring", stiffness: 100, damping: 15, delay: 0.2 + idx * 0.08 },
-                y: { type: "spring", stiffness: 80, damping: 12, delay: 0.2 + idx * 0.08 },
-                x: { type: "spring", stiffness: 60, damping: 15 },
-              }}
               className="hidden sm:block"
               style={{
                 position: "absolute",
@@ -335,85 +317,36 @@ export default function MitsafeSection() {
               }}
             >
               <Link href={`/roles/${avatar.slug}`} className="pointer-events-auto block">
-                <motion.div
-                  animate={{
-                    y: [0, idx % 2 === 0 ? -6 : 6, 0],
-                    x: [0, idx % 2 === 0 ? 4 : -4, 0],
-                  }}
-                  whileHover={{ scale: 1.06, y: idx % 2 === 0 ? -10 : 2 }}
-                  transition={{
-                    y: {
-                      duration: 4.5 + idx * 0.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    },
-                    x: {
-                      duration: 4.5 + idx * 0.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    },
-                    scale: { duration: 0.25, ease: "easeOut" }
-                  }}
-                  className="flex items-center gap-2 group cursor-pointer"
-                >
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full overflow-hidden shadow-md border-2 border-white hover:scale-105 transition-transform duration-300">
+                <div className="flex items-center gap-2.5 group cursor-pointer">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full overflow-hidden shadow-md border-2 border-white hover:scale-105 transition-transform duration-300">
                     <TeamAvatar index={idx} />
                   </div>
 
-                  <div
-                    className={`flex items-center gap-1 px-2 py-0.5 text-[9px] sm:text-[10px] md:text-xs font-bold rounded-lg shadow-sm border transition-all duration-300 whitespace-nowrap ${
-                      avatar.isGreen
-                        ? "bg-[#8BE83A] text-slate-900 border-[#7cd02d]/25 group-hover:bg-[#9cf050]"
-                        : "bg-[#2563FF] text-white border-blue-500/25 group-hover:bg-[#3b72f6]"
-                    }`}
-                  >
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-bold rounded-xl shadow-md border border-slate-200/80 bg-white text-slate-900 transition-all duration-300 whitespace-nowrap hover:bg-slate-50 hover:border-slate-300">
                     <CursorIcon />
                     <span>{avatar.role}</span>
                   </div>
-                </motion.div>
+                </div>
               </Link>
-            </motion.div>
+            </div>
           ))}
 
-          {/* Mobile-only: badges in a horizontal scrollable row below the heading */}
-          <div className="flex sm:hidden flex-wrap justify-center items-center gap-2.5 mt-6 px-2 z-20">
+          {/* Mobile-only: badges in a horizontal row below the heading */}
+          <div className="flex sm:hidden flex-wrap justify-center items-center gap-3 mt-6 px-2 z-20">
             {avatarsData.map((avatar, idx) => (
-              <motion.div
-                key={`mobile-${idx}`}
-                initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{
-                  opacity: { duration: 0.4, delay: 0.15 + idx * 0.06 },
-                  scale: { type: "spring", stiffness: 100, damping: 15, delay: 0.15 + idx * 0.06 },
-                  y: { type: "spring", stiffness: 80, damping: 12, delay: 0.15 + idx * 0.06 },
-                }}
-              >
+              <div key={`mobile-${idx}`}>
                 <Link href={`/roles/${avatar.slug}`} className="pointer-events-auto block">
-                  <motion.div
-                    animate={{
-                      y: [0, idx % 2 === 0 ? -4 : 4, 0],
-                    }}
-                    transition={{
-                      y: { duration: 4 + idx * 0.3, repeat: Infinity, ease: "easeInOut" },
-                    }}
-                    className="flex items-center gap-1.5 group cursor-pointer"
-                  >
-                    <div className="w-8 h-8 rounded-full overflow-hidden shadow-sm border-2 border-white shrink-0">
+                  <div className="flex items-center gap-2 group cursor-pointer">
+                    <div className="w-9 h-9 rounded-full overflow-hidden shadow-sm border-2 border-white shrink-0">
                       <TeamAvatar index={idx} />
                     </div>
-                    <div
-                      className={`flex items-center gap-1 px-1.5 py-0.5 text-[8px] font-bold rounded-md shadow-sm border transition-all duration-300 whitespace-nowrap ${
-                        avatar.isGreen
-                          ? "bg-[#8BE83A] text-slate-900 border-[#7cd02d]/25"
-                          : "bg-[#2563FF] text-white border-blue-500/25"
-                      }`}
-                    >
+                    <div className="flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded-lg shadow-sm border border-slate-200 bg-white text-slate-900 whitespace-nowrap">
                       <CursorIcon />
                       <span>{avatar.role}</span>
                     </div>
-                  </motion.div>
+                  </div>
                 </Link>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

@@ -11,11 +11,14 @@ import {
   Megaphone,
   PenTool,
   Sparkles,
+  Gamepad2,
+  CreditCard,
+  BookOpen,
 } from "lucide-react";
 import { HeroService } from "@/types/hero";
 import clsx from "clsx";
 
-const ICON_MAP: Record<HeroService["illustration"], React.ComponentType<{ className?: string }>> = {
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   cloud: Cloud,
   devtools: Terminal,
   software: Code2,
@@ -26,6 +29,9 @@ const ICON_MAP: Record<HeroService["illustration"], React.ComponentType<{ classN
   marketing: Megaphone,
   uiux: PenTool,
   service10: Sparkles,
+  game: Gamepad2,
+  pos: CreditCard,
+  school: BookOpen,
 };
 
 // Full-width 8(+)-icon strip in a single bordered card, like the reference's
@@ -40,34 +46,39 @@ export function FeatureBar({
   onSelect: (i: number) => void;
 }) {
   return (
-    <div className="relative z-10 mt-16 rounded-2xl border border-slate-100 bg-white px-4 py-6 shadow-sm">
-      <div className="grid grid-cols-3 gap-y-6 sm:grid-cols-5 lg:grid-cols-10 lg:gap-y-0">
+    <div className="relative z-10 mt-10 sm:mt-12 rounded-2xl border border-slate-100 bg-white/90 backdrop-blur-md p-3 sm:p-4 shadow-[0_4px_20px_rgba(0,82,255,0.04)]">
+      <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar scroll-smooth pb-1 pt-1 justify-start lg:justify-between px-1">
         {services.map((service, i) => {
-          const Icon = ICON_MAP[service.illustration];
+          const Icon = ICON_MAP[service.illustration] || Sparkles;
           const active = i === activeIndex;
           return (
             <button
               key={service.id}
               onClick={() => onSelect(i)}
-              className="flex flex-col items-center gap-2.5 px-1 text-center"
+              className={clsx(
+                "flex shrink-0 items-center gap-2 px-3 py-2 rounded-xl transition-all duration-300 text-left cursor-pointer border",
+                active
+                  ? "border-blue-200 bg-blue-50/90 text-[#0052FF] shadow-xs scale-102"
+                  : "border-transparent text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+              )}
             >
               <span
                 className={clsx(
-                  "flex h-12 w-12 items-center justify-center rounded-xl border transition-colors",
+                  "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors",
                   active
-                    ? "border-blue-200 bg-blue-50 text-blue-600"
-                    : "border-slate-100 text-slate-400 hover:border-blue-100 hover:text-blue-500"
+                    ? "bg-[#0052FF] text-white"
+                    : "bg-slate-100 text-slate-500 group-hover:text-[#0052FF]"
                 )}
               >
-                <Icon className="h-5 w-5" />
+                <Icon className="h-4 w-4" />
               </span>
               <span
                 className={clsx(
-                  "text-[11px] font-semibold leading-tight",
-                  active ? "text-blue-700" : "text-slate-600"
+                  "text-xs font-bold whitespace-nowrap leading-tight tracking-wide",
+                  active ? "text-[#0052FF]" : "text-slate-700"
                 )}
               >
-                {service.badge.split(" ").slice(0, 2).join(" ")}
+                {service.badge}
               </span>
             </button>
           );
