@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import LottieAnimation from "@/components/LottieAnimation";
 import Button from "@/components/Button";
+import GradientButton from "@/components/GradientButton";
 
 // High-fidelity animation variants
 const fadeInUp = {
@@ -323,31 +324,13 @@ export default function IndustriesClient() {
             Discuss your technical goals with our engineering architects today. We configure dedicated teams and build secure custom software systems built around your operations.
           </p>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
-            {/* Get a Quote button matching exact capsule gradient badge design */}
-            <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.4)]">
-              <Link
-                href="/get-a-quote"
-                className="group relative inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10"
-              >
-                <span className="tracking-wide relative z-20 text-white font-black">Get a Quote</span>
-                <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
-                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
-                </span>
-              </Link>
-            </div>
+            <GradientButton href="/get-a-quote">
+              Get a Quote
+            </GradientButton>
 
-            {/* Speak with an Architect button matching exact capsule gradient badge design */}
-            <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.4)]">
-              <Link
-                href="/contact"
-                className="group relative inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10"
-              >
-                <span className="tracking-wide relative z-20 text-white font-black">Speak with an Architect</span>
-                <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
-                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
-                </span>
-              </Link>
-            </div>
+            <GradientButton href="/contact">
+              Speak with an Architect
+            </GradientButton>
           </div>
         </motion.div>
       </section>

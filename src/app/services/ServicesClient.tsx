@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Link from "next/link"; // Wait, Next.js Link is imported from "next/link", NOT "next/next/link"! Let's fix that.
+import Link from "next/link";
 import { 
   ArrowRight, 
   Code, 
@@ -20,7 +20,7 @@ import {
 import { motion, useInView } from "framer-motion";
 import SectionHeader from "@/components/SectionHeader";
 import GlowCard from "@/components/GlowCard";
-import Button from "@/components/Button";
+import GradientButton from "@/components/GradientButton";
 import { servicesData } from "@/data/services";
 import LottieAnimation from "@/components/LottieAnimation";
 
@@ -63,16 +63,10 @@ export default function ServicesClient() {
   useEffect(() => {
     if (!dotLottie) return;
 
-    // Set initial frame to 43 (where nodes are contracted at the center)
     dotLottie.setFrame(43);
     dotLottie.play();
 
     const onFrameChange = ({ currentFrame }: { currentFrame: number }) => {
-      // Circles/nodes are contracted between frame 43 and 68.
-      // Circles/nodes are expanded between frame 78 and 135, and 20 to 34.
-      // Transition outwards happens between 68 and 78.
-      // Transition inwards happens between 34 and 43.
-      // We trigger expansion active state when currentFrame >= 74 || currentFrame <= 35.
       const nextExpanded = currentFrame >= 74 || currentFrame <= 35;
       setIsExpanded((prev) => {
         if (prev !== nextExpanded) {
@@ -90,22 +84,25 @@ export default function ServicesClient() {
   }, [dotLottie]);
 
   return (
-    <div className="bg-[#FAFBFF] dark:bg-[#071426] min-h-screen pt-32 pb-20 cyber-grid relative cosmic-services-wrapper text-[#0F172A] dark:text-white">
-      <div className="absolute inset-0 bg-[#FAFBFF]/90 dark:bg-[#071426]/90 pointer-events-none" />
-
+    <div className="bg-white min-h-screen pt-32 pb-20 relative cosmic-services-wrapper text-[#0F172A]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <SectionHeader
-          badge="Core Capabilities"
-          title="What We Engineer"
-          subtitle="We specialize in writing premium TypeScript platforms, building custom LLM agents, and managing server clusters."
-          align="center"
-        />
+        <div className="text-center mb-10 flex flex-col items-center gap-3">
+          <span className="text-[10px] font-bold tracking-widest text-[#2563FF] uppercase font-mono bg-[#2563FF]/5 border border-[#2563FF]/15 px-3 py-1 rounded-full">
+            Core Capabilities
+          </span>
+          <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+            What We <span className="font-black" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Engineer</span>
+          </h1>
+          <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed font-normal">
+            We specialize in writing premium TypeScript platforms, building custom LLM agents, and managing server clusters.
+          </p>
+        </div>
 
         {/* Centered Network Icon Animation */}
         <div className="flex justify-center items-center w-full mt-8 mb-6">
-          <div className="w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] flex items-center justify-center relative bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 rounded-full shadow-sm border border-[#2563FF]/15 dark:border-[#00D4FF]/25 backdrop-blur-sm p-4">
+          <div className="w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] flex items-center justify-center relative bg-[#2563FF]/5 rounded-full shadow-sm border border-[#2563FF]/15 backdrop-blur-sm p-4">
             <LottieAnimation
               src="/animations/Network icon.json"
               className="w-full h-full"
@@ -133,27 +130,27 @@ export default function ServicesClient() {
                 custom={idx}
                 variants={cardVariants}
               >
-                <GlowCard className="flex flex-col gap-6 justify-between bg-white/70 dark:bg-[#0B1A2E]/70 border-slate-200 dark:border-white/10 h-full">
+                <div className="flex flex-col gap-6 justify-between bg-white border border-slate-200 rounded-3xl p-8 shadow-sm h-full hover:shadow-md transition-shadow">
                   <div className="flex flex-col gap-4">
                     
                     {/* Top */}
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#2563FF] to-[#00D4FF] shadow-[0_0_15px_rgba(37,99,255,0.4)] flex items-center justify-center text-white shrink-0">
+                      <div className="w-12 h-12 rounded-2xl bg-[#2563FF]/10 flex items-center justify-center text-[#1D4ED8] shrink-0">
                         <IconComp className="w-6 h-6" />
                       </div>
-                      <h3 className="font-display text-xl md:text-2xl font-bold text-[#0F172A] dark:text-white">
+                      <h3 className="font-display text-xl md:text-2xl font-bold text-[#0F172A]">
                         {srv.title}
                       </h3>
                     </div>
 
-                    <p className="text-sm md:text-base text-slate-600 dark:text-slate-350 leading-relaxed mt-2">
+                    <p className="text-sm md:text-base text-slate-600 leading-relaxed mt-2 font-normal">
                       {srv.shortDescription}
                     </p>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 border-t border-slate-100 dark:border-white/5 pt-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 border-t border-slate-100 pt-4">
                       {srv.features.map((feat, idx) => (
-                        <div key={idx} className="flex items-start gap-2 text-xs md:text-sm text-slate-600 dark:text-slate-350">
-                          <CheckCircle className="w-4 h-4 text-[#2563FF] dark:text-[#00D4FF] shrink-0 mt-0.5" />
+                        <div key={idx} className="flex items-start gap-2 text-xs md:text-sm text-slate-600">
+                          <CheckCircle className="w-4 h-4 text-[#1D4ED8] shrink-0 mt-0.5" />
                           <span>{feat}</span>
                         </div>
                       ))}
@@ -161,33 +158,33 @@ export default function ServicesClient() {
 
                   </div>
 
-                  <div className="pt-4 border-t border-slate-100 dark:border-white/5 flex items-center justify-between">
-                    <span className="text-xs text-slate-500 font-semibold uppercase tracking-wider">
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between mt-4">
+                    <span className="text-xs text-slate-500 font-semibold uppercase tracking-wider font-mono">
                       Process: {srv.process.length} steps
                     </span>
                     
                     <Link
                       href={`/services/${srv.slug}`}
-                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#2563FF] dark:text-[#00D4FF] hover:text-[#2563FF]/80 dark:hover:text-white transition-colors duration-200 group/link cursor-pointer"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1D4ED8] hover:text-[#1D4ED8]/80 transition-colors duration-200 group/link cursor-pointer"
                     >
                       View Process & Stats
                       <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                     </Link>
                   </div>
-                </GlowCard>
+                </div>
               </motion.div>
             );
           })}
         </motion.div>
 
         {/* CTA */}
-        <div className="mt-20 text-center flex flex-col items-center gap-6">
-          <h3 className="font-display text-xl font-bold text-[#0F172A] dark:text-white">
-            Need a bespoke custom solution designed? Let's discuss.
+        <div className="mt-20 text-center flex flex-col items-center gap-6 bg-white border border-slate-200 p-10 rounded-[32px] shadow-sm">
+          <h3 className="font-display text-xl sm:text-2xl font-bold text-[#0F172A]">
+            Need a bespoke <span style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>custom solution</span> designed? Let's discuss.
           </h3>
-          <Button href="/contact" variant="primary">
+          <GradientButton href="/contact">
             Speak with an Architect
-          </Button>
+          </GradientButton>
         </div>
 
       </div>

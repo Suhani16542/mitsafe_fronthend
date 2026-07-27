@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ArrowRight, Sparkles, Code, CheckCircle } from "lucide-react";
 import Button from "@/components/Button";
 import LottieAnimation from "@/components/LottieAnimation";
+import GradientButton from "@/components/GradientButton";
 import { portfolioData } from "@/data/portfolio";
 import { testimonialsData } from "@/data/testimonials";
 
@@ -419,30 +420,13 @@ export default function PortfolioClient() {
             Whether you want to build a custom SaaS platform, mobile application, or enterprise dashboard, our engineering team is ready to deliver.
           </p>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
-            <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.4)]">
-              <Link
-                href="/get-a-quote"
-                className="group relative inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10"
-              >
-                <span className="tracking-wide relative z-20 text-white font-black">Get a Quote</span>
-                <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
-                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
-                </span>
-              </Link>
-            </div>
+            <GradientButton href="/get-a-quote">
+              Get a Quote
+            </GradientButton>
 
-            {/* Contact Us button matching exact capsule gradient badge design */}
-            <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.4)]">
-              <Link
-                href="/contact"
-                className="group relative inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10"
-              >
-                <span className="tracking-wide relative z-20 text-white font-black">Contact Us</span>
-                <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
-                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
-                </span>
-              </Link>
-            </div>
+            <GradientButton href="/contact">
+              Contact Us
+            </GradientButton>
           </div>
         </motion.div>
       </section>

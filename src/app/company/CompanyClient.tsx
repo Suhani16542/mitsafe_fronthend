@@ -29,6 +29,7 @@ import {
 } from "lucide-react";
 import LottieAnimation from "@/components/LottieAnimation";
 import Button from "@/components/Button";
+import GradientButton from "@/components/GradientButton";
 
 // Custom Counter component to animate numbers when they scroll into view
 const Counter = ({ value, duration = 1.5 }: { value: number; duration?: number }) => {
@@ -714,31 +715,13 @@ export default function CompanyClient() {
             Whether you want to develop an autoscaling SaaS web platform, integrate customized AI chatbots, or modernise old systems, we have the engineering expertise to deploy solutions that convert metrics.
           </p>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
-            {/* Get a Quote button matching exact capsule gradient badge design */}
-            <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.4)]">
-              <Link
-                href="/get-a-quote"
-                className="group relative inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10"
-              >
-                <span className="tracking-wide relative z-20 text-white font-black">Get a Quote</span>
-                <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
-                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
-                </span>
-              </Link>
-            </div>
+            <GradientButton href="/get-a-quote">
+              Get a Quote
+            </GradientButton>
 
-            {/* Contact Our Engineers button matching exact capsule gradient badge design */}
-            <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.4)]">
-              <Link
-                href="/contact"
-                className="group relative inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10"
-              >
-                <span className="tracking-wide relative z-20 text-white font-black">Contact Our Engineers</span>
-                <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
-                  <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
-                </span>
-              </Link>
-            </div>
+            <GradientButton href="/contact">
+              Contact Our Engineers
+            </GradientButton>
           </div>
         </motion.div>
       </section>

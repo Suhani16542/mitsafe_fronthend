@@ -17,13 +17,13 @@ import {
   UserCheck, 
   Calendar, 
   Clock, 
-  ShieldCheck, 
-  ArrowRight,
+  ShieldCheck,
   ChevronDown
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "@/components/Button";
 import LottieAnimation from "@/components/LottieAnimation";
+import GradientButton from "@/components/GradientButton";
 
 const developerCategories = [
   {
@@ -189,29 +189,13 @@ export default function HireDevelopersPage() {
             </p>
 
             <div className="flex flex-wrap gap-4 mt-2">
-              <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.4)]">
-                <Link
-                  href="#hire-form"
-                  className="group relative inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10"
-                >
-                  <span className="tracking-wide relative z-20 text-white font-black">Find Developers Now</span>
-                  <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
-                    <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-                </Link>
-              </div>
+              <GradientButton href="#hire-form">
+                Find Developers Now
+              </GradientButton>
 
-              <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.4)]">
-                <Link
-                  href="#categories"
-                  className="group relative inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10"
-                >
-                  <span className="tracking-wide relative z-20 text-white font-black">Explore Tech Specialities</span>
-                  <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
-                    <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-                </Link>
-              </div>
+              <GradientButton href="#categories">
+                Explore Tech Specialities
+              </GradientButton>
             </div>
           </motion.div>
 
@@ -452,17 +436,9 @@ export default function HireDevelopersPage() {
               </div>
 
               <div className="pt-6 mt-8 border-t border-slate-100">
-                <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.3)]">
-                  <Link
-                    href="#hire-form"
-                    className="group relative inline-flex items-center justify-between w-full pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-xs rounded-[14px] transition-all duration-300 overflow-hidden z-10"
-                  >
-                    <span className="tracking-wide relative z-20 text-white font-black uppercase">Select This Model</span>
-                    <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
-                      <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
-                    </span>
-                  </Link>
-                </div>
+                <GradientButton href="#hire-form" fullWidth>
+                  SELECT THIS MODEL
+                </GradientButton>
               </div>
             </motion.div>
           ))}
@@ -603,16 +579,10 @@ export default function HireDevelopersPage() {
                 className="bg-slate-50 border border-slate-200 focus:border-[#1D4ED8] outline-none text-xs sm:text-sm text-slate-800 rounded-xl px-4 py-3 w-full transition-colors resize-none"
               />
 
-              <div className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] shadow-[0_0_20px_rgba(37,99,255,0.3)] mt-2">
-                <button
-                  type="submit"
-                  className="group relative inline-flex items-center justify-center gap-3 w-full py-3.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-sm rounded-[14px] transition-all duration-300 overflow-hidden z-10 cursor-pointer"
-                >
-                  <span className="tracking-wide relative z-20 text-white font-black uppercase">Send Hiring Request</span>
-                  <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform">
-                    <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-                </button>
+              <div className="mt-2">
+                <GradientButton type="submit" fullWidth>
+                  SEND HIRING REQUEST
+                </GradientButton>
               </div>
             </form>
           </div>
