@@ -198,8 +198,11 @@ export default function ParticleBackground() {
   }, []);
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
     const scanTargets = () => {
-      const selectors = "section, .about-client-container, .portfolio-page-container, .contact-page-container, footer";
+      // Limit particle portals to major hero & top sections to save browser memory
+      const selectors = "section:first-of-type, .hero-section, footer";
       const elements = Array.from(document.querySelectorAll(selectors));
       
       const newTargets = elements.filter((el) => !elementsWithParticles.has(el));
@@ -210,12 +213,22 @@ export default function ParticleBackground() {
       }
     };
 
-    scanTargets();
+    if ("requestIdleCallback" in window) {
+      (window as any).requestIdleCallback(scanTargets);
+    } else {
+      setTimeout(scanTargets, 100);
+    }
 
-    const observer = new MutationObserver(scanTargets);
+    const observer = new MutationObserver(() => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(scanTargets, 300);
+    });
     observer.observe(document.body, { childList: true, subtree: true });
 
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
   }, []);
 
   return (

@@ -88,7 +88,7 @@ export default function PortfolioClient() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="font-display text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-[#0F172A] leading-tight"
           >
-            Our Exclusive <br />
+            <span className="text-[#0F172A]">Our Exclusive</span> <br />
             <span className="font-black inline-block" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>
               Portfolio
             </span>
@@ -407,16 +407,16 @@ export default function PortfolioClient() {
             READY TO BUILD YOUR SYSTEM?
           </span>
 
-          <span className="text-xs font-bold text-[#2563FF] uppercase tracking-wider font-mono">
+          <span className="text-xs font-bold text-[#1D4ED8] uppercase tracking-wider font-mono relative z-10">
             // START YOUR PROJECT
           </span>
           <h2 
             style={{ fontFamily: "'Clash Display', sans-serif" }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight relative z-10"
           >
             Have a Vision for a <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>New Product?</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-650 max-w-2xl leading-relaxed font-normal">
+          <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed font-normal relative z-10">
             Whether you want to build a custom SaaS platform, mobile application, or enterprise dashboard, our engineering team is ready to deliver.
           </p>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-4">

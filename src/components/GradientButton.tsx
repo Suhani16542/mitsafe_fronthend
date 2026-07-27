@@ -27,28 +27,28 @@ export default function GradientButton({
   const buttonContent = (
     <motion.div
       animate={{
-        scale: [1, 1.03, 1],
+        scale: [1, 1.025, 1],
         boxShadow: [
-          "0 0 15px rgba(37,99,255,0.4), 0 0 30px rgba(0,212,255,0.2)",
-          "0 0 25px rgba(37,99,255,0.8), 0 0 45px rgba(0,212,255,0.5)",
-          "0 0 15px rgba(37,99,255,0.4), 0 0 30px rgba(0,212,255,0.2)"
+          "0 0 15px rgba(37,99,255,0.4)",
+          "0 0 25px rgba(37,99,255,0.7)",
+          "0 0 15px rgba(37,99,255,0.4)"
         ]
       }}
       transition={{
-        duration: 2.5,
+        duration: 3,
         repeat: Infinity,
         ease: "easeInOut"
       }}
-      className={`rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] ${fullWidth ? "w-full" : "inline-block"} ${className}`}
+      className={`rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] transform-gpu ${fullWidth ? "w-full" : "inline-block"} ${className}`}
     >
       {/* Animated Rotating Gradient Border Overlay */}
       <motion.div
-        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] opacity-90 pointer-events-none"
+        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] opacity-90 pointer-events-none transform-gpu"
         animate={{
           backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
         }}
         transition={{
-          duration: 3,
+          duration: 3.5,
           repeat: Infinity,
           ease: "linear"
         }}
