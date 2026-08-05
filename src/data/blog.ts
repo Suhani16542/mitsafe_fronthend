@@ -48,7 +48,7 @@ export const blogData: BlogPost[] = [
       <p>Large Language Models are powerful but have static knowledge. RAG builds a bridge between models and your internal database. When a query arrives, the system searches vector storage for relevant details and appends them to the prompt, ensuring the AI responses are accurate, current, and secure.</p>
     `,
     category: "AI & Technology",
-    imageColor: "from-purple-650 to-blue-550",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     tags: ["AI Agents", "LLM", "RAG", "Pinecone"],
     featured: true
   },
@@ -63,7 +63,7 @@ export const blogData: BlogPost[] = [
       <p>Scaling application clusters during peak traffic periods can lead to massive server bills if not designed properly. Kubernetes provides the ideal platform for managing containers, dynamically scaling nodes, and optimizing server costs.</p>
     `,
     category: "Cloud",
-    imageColor: "from-cyan-600 to-blue-600",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     tags: ["Kubernetes", "Docker", "DevOps", "AWS"],
     featured: false
   },
@@ -78,7 +78,7 @@ export const blogData: BlogPost[] = [
       <p>In modern microservice environments, perimeter-based security is no longer sufficient. Enforcing mutual TLS (mTLS) and token authentication checks at every service endpoint prevents lateral movement and database access leaks.</p>
     `,
     category: "Cybersecurity",
-    imageColor: "from-red-500 to-rose-600",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     tags: ["Security", "Zero Trust", "mTLS", "Docker"],
     featured: false
   },
@@ -93,7 +93,7 @@ export const blogData: BlogPost[] = [
       <p>Bespoke software scaling requires clean abstractions. We walk through dependency injection structures in Go and modular class separation to ensure backend codebases stay testable and maintainable.</p>
     `,
     category: "Software Engineering",
-    imageColor: "from-indigo-600 to-violet-500",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     tags: ["SOLID", "Design Patterns", "Clean Code"],
     featured: false
   },
@@ -108,7 +108,7 @@ export const blogData: BlogPost[] = [
       <p>Optimizing page hydration speeds and minimizing critical-path database lookups can drive dynamic loading delays down to under 50ms. Here is our checklist for extreme Next.js performance tuning.</p>
     `,
     category: "Web Development",
-    imageColor: "from-emerald-550 to-teal-650",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     tags: ["Next.js", "Hydration", "Static Site"],
     featured: false
   }

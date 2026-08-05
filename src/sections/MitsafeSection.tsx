@@ -171,9 +171,9 @@ export default function MitsafeSection() {
         <div className="w-[1px] bg-slate-100/70 h-full" />
       </div>
 
-      {/* Soft Blurry Orange Glow Orb */}
+      {/* Soft Blurry Blue Glow Orb */}
       <motion.div
-        className="absolute rounded-full bg-[#F5A623]/3 pointer-events-none z-0 blur-2xl"
+        className="absolute rounded-full bg-[#008FED]/5 pointer-events-none z-0 blur-2xl"
         style={{ width: "180px", height: "180px", right: "10%", top: "18%" }}
         animate={{
           y: [0, 24, 0],
@@ -185,9 +185,9 @@ export default function MitsafeSection() {
           ease: "easeInOut",
         }}
       />
-      {/* Medium Outline Orange Ring */}
+      {/* Medium Outline Blue Ring */}
       <motion.div
-        className="absolute rounded-full border border-[#F5A623]/10 pointer-events-none z-0"
+        className="absolute rounded-full border border-[#008FED]/15 pointer-events-none z-0"
         style={{ width: "190px", height: "190px", right: "18%", bottom: "16%" }}
         animate={{
           y: [0, -16, 0],

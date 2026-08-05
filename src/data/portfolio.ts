@@ -71,7 +71,7 @@ export const portfolioData: Project[] = [
       "Apple & Google store validation"
     ],
     techStack: ["Flutter", "Dart", "Firebase", "Node.js"],
-    imageColor: "from-rose-500 to-orange-600",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     img: "/portfolio_fitquest.png",
     featured: true
   },
@@ -91,7 +91,7 @@ export const portfolioData: Project[] = [
       "Figma system style guide handover"
     ],
     techStack: ["Figma", "Adobe Illustrator", "Prototyping", "Design System"],
-    imageColor: "from-purple-600 to-blue-500",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     img: "/portfolio_apex_crypto.png",
     featured: true
   },
@@ -111,7 +111,7 @@ export const portfolioData: Project[] = [
       "Responsive dashboard UI"
     ],
     techStack: ["PHP", "JavaScript", "CSS3", "MySQL"],
-    imageColor: "from-purple-600 to-blue-500",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     img: "/portfolio_more_matrimony.png"
   },
   {
@@ -130,7 +130,7 @@ export const portfolioData: Project[] = [
       "SEO friendly metadata setup"
     ],
     techStack: ["WordPress", "Elementor Pro", "JS", "CSS"],
-    imageColor: "from-indigo-600 to-purple-500",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     img: "/portfolio_anyuni.png"
   },
   {
@@ -149,7 +149,7 @@ export const portfolioData: Project[] = [
       "Audit logs & operator review interface"
     ],
     techStack: ["Node.js", "Express", "OpenAI API", "MongoDB"],
-    imageColor: "from-cyan-500 to-blue-600",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     img: "/portfolio_smart_agent.png"
   },
   {
@@ -168,7 +168,7 @@ export const portfolioData: Project[] = [
       "Redis"
     ],
     techStack: ["React Native", "TypeScript", "Google Maps API", "Redis"],
-    imageColor: "from-orange-500 to-red-600",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     img: "/portfolio_cargo_track.png"
   },
   {
@@ -187,7 +187,7 @@ export const portfolioData: Project[] = [
       "Advanced server analytics panels"
     ],
     techStack: ["Go", "gRPC", "PostgreSQL", "React", "Docker"],
-    imageColor: "from-slate-700 to-slate-900",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     img: "/portfolio_core_erp.png"
   },
   {
@@ -206,7 +206,7 @@ export const portfolioData: Project[] = [
       "Interactive graphical components"
     ],
     techStack: ["HTML5", "Canvas API", "Socket.io", "Node.js"],
-    imageColor: "from-orange-500 to-red-600",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     img: "/portfolio_zupee.png"
   },
   {
@@ -225,7 +225,7 @@ export const portfolioData: Project[] = [
       "Financial news feed integration"
     ],
     techStack: ["PHP", "JavaScript", "Chart.js", "Bootstrap"],
-    imageColor: "from-rose-500 to-orange-600",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     img: "/portfolio_mobile_apps.png"
   },
   {
@@ -244,7 +244,7 @@ export const portfolioData: Project[] = [
       "Analytics tracking integration"
     ],
     techStack: ["Google Analytics", "Ahrefs", "Semrush", "Search Console"],
-    imageColor: "from-blue-600 to-indigo-500",
+    imageColor: "from-[#008FED] to-[#0077D4]",
     img: "/portfolio_cta.png"
   },
   {
