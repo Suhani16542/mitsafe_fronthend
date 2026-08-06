@@ -1476,4 +1476,26 @@ header nav > div:nth-child(6) { animation-delay: 0.35s; }
   animation-play-state: paused;
 }
 
+/* Top Bar Announcement Marquee */
+@keyframes topbar-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-topbar-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: topbar-marquee 35s linear infinite;
+}
+
+.animate-topbar-marquee:hover {
+  animation-play-state: paused;
+}
+
+
 

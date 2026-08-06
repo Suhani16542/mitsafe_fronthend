@@ -95,16 +95,17 @@ export default function WhyChooseUs() {
               whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#00D4FF]/20 bg-[#00D4FF]/5 dark:bg-[#00D4FF]/10 px-4 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#00D4FF] font-display shadow-sm"
+              className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#2A67FF]/20 bg-[#2A67FF]/10 px-4 py-1.5 text-[10.5px] font-bold uppercase tracking-[0.08em] text-[#2A67FF] font-display shadow-sm"
             >
               <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00D4FF] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#00D4FF]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2A67FF] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#2A67FF]"></span>
               </span>
               ABOUT US
             </motion.div>
 
             {/* Title with Horizontal Slide + Fade In */}
+            {/* Title with Blue highlighted words */}
             <motion.h2
               initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -113,15 +114,9 @@ export default function WhyChooseUs() {
               style={{ fontFamily: "'Clash Display', sans-serif" }}
               className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-black dark:text-white leading-tight tracking-[-0.03em] mb-6"
             >
-              <span className="relative inline-block pb-1">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] to-[#00D4FF]">MT Games</span>
-                <span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-[#2563FF] to-[#00D4FF] rounded-full animate-pulse" />
-              </span>{" "}
-              with{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] to-[#00D4FF]">latest technology</span>{" "}
+              <span className="text-[#2A67FF]" style={{ color: "#2A67FF", WebkitTextFillColor: "#2A67FF" }}>MT Games</span> with latest technology{" "}
               <br className="hidden md:inline" />
-              and{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] to-[#00D4FF]">high end support</span>
+              <span className="text-[#2A67FF]" style={{ color: "#2A67FF", WebkitTextFillColor: "#2A67FF" }}>and high end support</span>
             </motion.h2>
 
             {/* Description with Horizontal Slide + Fade In */}
@@ -167,7 +162,7 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center font-display font-bold text-sm bg-gradient-to-r from-[#00D4FF] to-[#008FED] hover:from-[#00E5FF] hover:to-[#008FED]/90 text-white px-7 py-3.5 rounded-full shadow-[0_4px_14px_rgba(0,212,255,0.25)] hover:shadow-[0_8px_24px_rgba(0,212,255,0.45)] transition-all duration-300 border border-transparent cursor-pointer"
+              className="inline-flex items-center justify-center font-display font-bold text-sm bg-[#2A67FF] hover:bg-[#1A57EF] text-white px-7 py-3.5 rounded-full shadow-[0_4px_14px_rgba(42,103,255,0.35)] hover:shadow-[0_8px_24px_rgba(42,103,255,0.55)] transition-all duration-300 border border-transparent cursor-pointer"
             >
               Talk to expert
             </motion.a>
@@ -183,16 +178,16 @@ export default function WhyChooseUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="col-span-1 bg-white/40 dark:bg-slate-900/30 backdrop-blur-md border border-slate-200/50 dark:border-white/10 p-6 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-all duration-500 hover:border-[#00D4FF]/40 group flex flex-col justify-between h-[200px]"
+                className="col-span-1 bg-white/40 dark:bg-slate-900/30 backdrop-blur-md border border-slate-200/50 dark:border-white/10 p-6 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.03)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.3)] transition-all duration-500 hover:border-[#2A67FF]/40 group flex flex-col justify-between h-[200px]"
               >
                 <motion.div
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                   className="w-full h-full flex flex-col justify-between"
                 >
-                  {/* Visual SVG Gamepad Controller */}
-                  <div className="w-12 h-12 rounded-2xl bg-[#00D4FF]/10 flex items-center justify-center text-[#00D4FF] border border-[#00D4FF]/25 shadow-[0_4px_12px_rgba(0,212,255,0.15)] group-hover:scale-110 transition-transform duration-300">
-                    <svg className="w-6 h-6 text-[#00D4FF] drop-shadow-[0_0_8px_rgba(0,212,255,0.4)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  {/* Visual SVG Gamepad Controller Box */}
+                  <div className="w-12 h-12 rounded-2xl bg-[#2A67FF]/10 flex items-center justify-center text-[#2A67FF] border border-[#2A67FF]/25 shadow-[0_4px_12px_rgba(42,103,255,0.15)] group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-6 h-6 text-[#2A67FF] drop-shadow-[0_0_8px_rgba(42,103,255,0.4)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <rect x="2" y="6" width="20" height="12" rx="4" />
                       <circle cx="7" cy="12" r="1.5" fill="currentColor" />
                       <path d="M6 12h2 M7 11v2" strokeWidth="2" strokeLinecap="round" />
@@ -205,7 +200,7 @@ export default function WhyChooseUs() {
                   <div className="flex flex-col gap-1 text-left">
                     <span className="font-display text-4xl font-extrabold text-[#1E1A39] dark:text-white tracking-tight">
                       <Counter value={statMetrics[0].val} trigger={isRightColInView} />
-                      <span className="text-[#008FED] dark:text-[#00D4FF]">{statMetrics[0].suffix}</span>
+                      <span className="text-[#2A67FF]">{statMetrics[0].suffix}</span>
                     </span>
                     <p className="text-xs sm:text-[13px] font-bold text-slate-500 dark:text-slate-400 leading-snug">
                       {statMetrics[0].label}
@@ -229,15 +224,15 @@ export default function WhyChooseUs() {
                 >
                   {/* Visual SVG Line Graph Trend */}
                   <div className="w-full flex justify-start items-center">
-                    <svg className="w-28 h-12 text-[#008FED] dark:text-[#00D4FF] overflow-visible" viewBox="0 0 100 40" fill="none">
+                    <svg className="w-28 h-12 text-[#2A67FF] overflow-visible" viewBox="0 0 100 40" fill="none">
                       <defs>
                         <linearGradient id="chart-glow" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#00D4FF" stopOpacity="0.3" />
-                          <stop offset="100%" stopColor="#00D4FF" stopOpacity="0" />
+                          <stop offset="0%" stopColor="#2A67FF" stopOpacity="0.3" />
+                          <stop offset="100%" stopColor="#2A67FF" stopOpacity="0" />
                         </linearGradient>
                         <linearGradient id="chart-line" x1="0" y1="0" x2="1" y2="0">
-                          <stop offset="0%" stopColor="#008FED" />
-                          <stop offset="100%" stopColor="#00D4FF" />
+                          <stop offset="0%" stopColor="#2A67FF" />
+                          <stop offset="100%" stopColor="#2A67FF" />
                         </linearGradient>
                       </defs>
                       <path d="M 0 35 Q 20 28 40 22 T 80 8 L 100 5 L 100 40 L 0 40 Z" fill="url(#chart-glow)" />
@@ -250,15 +245,15 @@ export default function WhyChooseUs() {
                         animate={isRightColInView ? { pathLength: 1 } : { pathLength: 0 }}
                         transition={{ duration: 1.8, ease: "easeOut" }}
                       />
-                      <circle cx="100" cy="5" r="2.5" fill="#00D4FF" />
-                      <circle cx="100" cy="5" r="6" stroke="#00D4FF" strokeWidth="1" fill="none" className="animate-ping" style={{ transformOrigin: "100px 5px" }} />
+                      <circle cx="100" cy="5" r="2.5" fill="#2A67FF" />
+                      <circle cx="100" cy="5" r="6" stroke="#2A67FF" strokeWidth="1" fill="none" className="animate-ping" style={{ transformOrigin: "100px 5px" }} />
                     </svg>
                   </div>
                   
                   <div className="flex flex-col gap-1 text-left">
-                    <span className="font-display text-4xl font-extrabold text-[#1E1A39] dark:text-white tracking-tight">
+                    <span className="font-display text-4xl font-extrabold text-[#2A67FF] tracking-tight">
                       <Counter value={statMetrics[1].val} trigger={isRightColInView} />
-                      <span className="text-[#008FED] dark:text-[#00D4FF]">{statMetrics[1].suffix}</span>
+                      <span className="text-[#2A67FF]">{statMetrics[1].suffix}</span>
                     </span>
                     <p className="text-xs sm:text-[13px] font-bold text-slate-500 dark:text-slate-400 leading-snug">
                       {statMetrics[1].label}
@@ -283,7 +278,7 @@ export default function WhyChooseUs() {
                   <div className="flex flex-col gap-1 text-left">
                     <span className="font-display text-4xl font-extrabold text-[#1E1A39] dark:text-white tracking-tight">
                       <Counter value={statMetrics[2].val} trigger={isRightColInView} />
-                      <span className="text-[#008FED] dark:text-[#00D4FF]">{statMetrics[2].suffix}</span>
+                      <span className="text-[#2A67FF]">{statMetrics[2].suffix}</span>
                     </span>
                     <p className="text-xs sm:text-[13px] font-bold text-slate-500 dark:text-slate-400 leading-snug max-w-xs">
                       {statMetrics[2].label}
