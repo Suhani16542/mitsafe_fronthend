@@ -46,14 +46,15 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
       style={{
-        ["--font-manrope" as any]: "'Manrope', sans-serif",
-        ["--font-outfit" as any]: "'Sora', sans-serif",
-        ["--font-space-grotesk" as any]: "'Sora', sans-serif",
+        ["--font-inter" as any]: "'Inter', sans-serif",
+        ["--font-manrope" as any]: "'Inter', sans-serif",
+        ["--font-outfit" as any]: "'Inter', sans-serif",
+        ["--font-space-grotesk" as any]: "'Inter', sans-serif",
       }}
     >
       <head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
         {/* Inline script to enforce light theme site-wide */}

@@ -143,7 +143,7 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="bg-white py-6 md:py-8 relative overflow-hidden border-t border-slate-100 font-sans"
+      className="bg-gradient-to-b from-[#EAF4FF] via-[#F0F7FF] to-[#F8FBFF] py-10 md:py-16 relative overflow-hidden border-t border-[#D6E9FF] font-sans"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}

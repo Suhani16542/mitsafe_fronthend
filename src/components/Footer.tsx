@@ -9,31 +9,31 @@ import { motion } from "framer-motion";
 
 // Working Social Media SVG Icons
 const XTwitterIcon = () => (
-  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 );
 
 const LinkedinIcon = () => (
-  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
   </svg>
 );
 
 const InstagramIcon = () => (
-  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
   </svg>
 );
 
 const FacebookIcon = () => (
-  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
   </svg>
 );
 
 const YoutubeIcon = () => (
-  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.388.555A3.003 3.003 0 0 0 .502 6.163C0 8.07 0 12 0 12s0 3.93.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.47 20.5 12 20.5 12 20.5s7.53 0 9.388-.555a3.003 3.003 0 0 0 2.11-2.108C24 15.93 24 12 24 12s0-3.93-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
   </svg>
 );
@@ -106,9 +106,11 @@ export default function Footer() {
                         }
                       }
                     }}
-                    className="w-8 h-8 rounded-full bg-[#0052cc] text-white flex items-center justify-center hover:bg-blue-700 transition-colors duration-300 cursor-pointer shadow-sm"
+                    className="w-7.5 h-7.5 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:shadow-[0_0_12px_rgba(37,99,235,0.45)] transition-all duration-300 hover:scale-110 hover:-translate-y-0.5 flex items-center justify-center shadow-xs text-white cursor-pointer shrink-0"
                   >
-                    <IconComponent />
+                    <span className="text-white flex items-center justify-center">
+                      <IconComponent />
+                    </span>
                   </motion.a>
                 );
               })}
@@ -124,8 +126,8 @@ export default function Footer() {
             <ul className="flex flex-col gap-2 mt-1 w-full">
               {servicesData.slice(0, 6).map((srv) => (
                 <li key={srv.slug}>
-                  <Link 
-                    href={`/services/${srv.slug}`} 
+                  <Link
+                    href={`/services/${srv.slug}`}
                     className="text-xs sm:text-[13px] font-bold text-slate-600 hover:text-[#0052cc] transition-colors duration-200 flex items-center gap-1.5 group w-fit py-0.5"
                   >
                     <ChevronRight className="w-3.5 h-3.5 text-[#0052cc] shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:scale-110" />
@@ -278,30 +280,64 @@ export default function Footer() {
             </div>
           </div>
           <Link href="/get-a-quote">
-            <span
-              className="group relative inline-flex items-center gap-3.5 pl-7 pr-3 py-3 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-[0_6px_20px_rgba(15,23,42,0.25)] hover:shadow-[0_8px_25px_rgba(37,99,255,0.3)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 border border-slate-700/50 cursor-pointer shrink-0"
-              style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
+            <motion.div
+              animate={{
+                scale: [1, 1.04, 1],
+                boxShadow: [
+                  "0 0 15px rgba(37,99,255,0.4), 0 0 30px rgba(0,212,255,0.2)",
+                  "0 0 25px rgba(37,99,255,0.8), 0 0 45px rgba(0,212,255,0.5)",
+                  "0 0 15px rgba(37,99,255,0.4), 0 0 30px rgba(0,212,255,0.2)"
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto]"
             >
-              <span className="tracking-wide">Get A Free Quote</span>
-              <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white group-hover:scale-105 transition-transform shadow-sm shrink-0">
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform text-white" />
+              <motion.div
+                className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] opacity-90 pointer-events-none"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              />
+              <span
+                className="group relative inline-flex items-center gap-3 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] !text-white font-extrabold text-[13.5px] rounded-[14px] transition-all duration-300 overflow-hidden z-10 cursor-pointer shrink-0"
+                style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
+              >
+                <motion.div
+                  className="absolute top-0 bottom-0 w-16 bg-gradient-to-r from-transparent via-[#00D4FF]/40 to-transparent skew-x-[-20deg] pointer-events-none z-20"
+                  animate={{ x: ["-180%", "400%"] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 0.8, ease: "easeInOut" }}
+                />
+                <span className="tracking-wide relative z-20 text-white font-black !text-white">Get A Free Quote</span>
+                <motion.span
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20"
+                >
+                  <motion.div
+                    animate={{ x: [0, 4, 0] }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <ArrowRight className="w-4 h-4 text-white" />
+                  </motion.div>
+                </motion.span>
               </span>
-            </span>
+            </motion.div>
           </Link>
         </div>
       </div>
 
-      <div className="w-full bg-[#0052cc] text-white py-3 mt-4">
+      <div className="w-full bg-[#EAF4FF] text-slate-900 py-3 mt-4">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
-          <span className="text-xs sm:text-[13px] font-semibold tracking-wide opacity-90">
+          <span className="text-xs sm:text-[13px] font-semibold tracking-wide text-slate-900 opacity-90">
             © {new Date().getFullYear()} Mitsafe Technologies. All Rights Reserved.
           </span>
-          <div className="flex items-center gap-4 text-xs sm:text-[13px] font-bold tracking-wide">
-            <Link href="#" className="hover:text-cyan-300 inline-block transition-transform duration-200 hover:scale-105">Privacy Policy</Link>
-            <span className="opacity-40">|</span>
-            <Link href="/terms" className="hover:text-cyan-300 inline-block transition-transform duration-200 hover:scale-105">Terms &amp; Conditions</Link>
-            <span className="opacity-40">|</span>
-            <Link href="#" className="hover:text-cyan-300 inline-block transition-transform duration-200 hover:scale-105">Sitemap</Link>
+          <div className="flex items-center gap-4 text-xs sm:text-[13px] font-bold tracking-wide text-slate-900">
+            <Link href="#" className="hover:text-[#2563FF] inline-block transition-transform duration-200 hover:scale-105">Privacy Policy</Link>
+            <span className="opacity-40 text-slate-900">|</span>
+            <Link href="/terms" className="hover:text-[#2563FF] inline-block transition-transform duration-200 hover:scale-105">Terms &amp; Conditions</Link>
+            <span className="opacity-40 text-slate-900">|</span>
+            <Link href="#" className="hover:text-[#2563FF] inline-block transition-transform duration-200 hover:scale-105">Sitemap</Link>
           </div>
         </div>
       </div>

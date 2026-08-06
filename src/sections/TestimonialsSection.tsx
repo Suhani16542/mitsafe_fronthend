@@ -83,7 +83,7 @@ export default function TestimonialsSection() {
   const infiniteLoop = [...testimonials, ...testimonials, ...testimonials];
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#070D1C] py-10 md:py-12 font-sans border-t border-slate-800">
+    <section className="relative w-full overflow-hidden bg-slate-50 py-10 md:py-12 font-sans border-t border-slate-200">
       {/* Royal Blue Ambient Glows */}
       <div className="pointer-events-none absolute top-1/2 left-1/4 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#0052FF]/20 blur-[180px] z-0" />
       <div className="pointer-events-none absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-full bg-[#00D4FF]/15 blur-[180px] z-0" />
@@ -98,7 +98,7 @@ export default function TestimonialsSection() {
         {/* Heading */}
         <h2
           style={{ fontFamily: "'Clash Display', sans-serif" }}
-          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight"
+          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight"
         >
           To Deliver{" "}
           <span
@@ -111,8 +111,8 @@ export default function TestimonialsSection() {
       </div>
 
       {/* Gradient edge masks for infinite loop */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-24 bg-gradient-to-r from-[#070D1C] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-24 bg-gradient-to-l from-[#070D1C] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-24 bg-gradient-to-r from-slate-50 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-24 bg-gradient-to-l from-slate-50 to-transparent" />
 
       {/* Infinite Horizontal Continuous Slider */}
       <div className="flex w-full overflow-hidden relative z-10">
@@ -128,18 +128,18 @@ export default function TestimonialsSection() {
           {infiniteLoop.map((item, idx) => (
             <div
               key={`${item.id}-${idx}`}
-              className="w-[280px] sm:w-[320px] shrink-0 h-[360px] rounded-2xl border border-slate-700/80 bg-[#111827] p-5 shadow-lg flex flex-col justify-between overflow-hidden group"
+              className="w-[280px] sm:w-[320px] shrink-0 h-[360px] rounded-2xl border border-slate-200 bg-white p-5 shadow-lg flex flex-col justify-between overflow-hidden group text-slate-900"
             >
               {/* VIDEO TYPE CARD */}
               {item.type === "video" ? (
-                <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden flex flex-col justify-between p-5 border border-slate-700">
+                <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden flex flex-col justify-between p-5 border border-slate-200 bg-white text-slate-900">
                   {/* Background Mockup Image */}
                   <Image src={item.image} alt={item.name} fill sizes="340px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/60 to-transparent z-10" />
 
                   {/* Top Video Review Pill */}
                   <div className="relative z-20 flex justify-end">
-                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#38BDF8] bg-blue-950/90 border border-blue-400/40 px-3 py-1 rounded-full backdrop-blur-sm">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-100 px-3 py-1 rounded-full backdrop-blur-sm">
                       VIDEO REVIEW
                     </span>
                   </div>
@@ -155,15 +155,15 @@ export default function TestimonialsSection() {
                   </div>
 
                   {/* Bottom Author Pill */}
-                  <div className="relative z-20 flex items-center gap-3 bg-black/90 border border-white/20 backdrop-blur-md p-3.5 rounded-2xl">
+                  <div className="relative z-20 flex items-center gap-3 bg-slate-50 border border-slate-200 backdrop-blur-md p-3.5 rounded-2xl text-slate-900">
                     <div className="w-9 h-9 rounded-xl bg-[#8BE83A] text-slate-950 flex items-center justify-center font-bold text-sm shrink-0 shadow-md">
                       <Play className="w-4 h-4 fill-current ml-0.5" />
                     </div>
                     <div>
-                      <h4 style={{ color: "#FFFFFF" }} className="text-sm font-extrabold leading-tight">
+                      <h4 className="text-sm font-extrabold leading-tight text-slate-900">
                         {item.name}
                       </h4>
-                      <p style={{ color: "#E2E8F0" }} className="text-[11px] font-semibold">
+                      <p className="text-[11px] font-semibold text-slate-600">
                         {item.role}, {item.company}
                       </p>
                     </div>
@@ -171,7 +171,7 @@ export default function TestimonialsSection() {
                 </div>
               ) : (
                 /* TEXT TYPE CARD WITH PURE #FFFFFF WHITE TEXT INLINE */
-                <div className="flex flex-col justify-between h-full relative p-1">
+                <div className="flex flex-col justify-between h-full relative p-1 text-slate-900">
                   <div>
                     {/* Top Star Rating & Blue Quote Icon */}
                     <div className="flex items-center justify-between mb-5">
@@ -185,29 +185,22 @@ export default function TestimonialsSection() {
 
                     {/* Review Quote Text in Pure #FFFFFF White */}
                     <p
-                      style={{ color: "#FFFFFF" }}
-                      className="text-base leading-relaxed font-bold tracking-wide"
+                      className="relative z-20 text-base leading-relaxed font-bold tracking-wide text-slate-900"
                     >
                       &ldquo;{item.quote}&rdquo;
                     </p>
                   </div>
 
                   {/* Bottom Author Badge with Image Avatar */}
-                  <div className="pt-4 border-t border-slate-800 flex items-center gap-3.5 mt-4">
+                  <div className="pt-4 border-t border-slate-200 flex items-center gap-3.5 mt-4 text-slate-900">
                     <div className="relative w-11 h-11 rounded-xl overflow-hidden border-2 border-[#38BDF8] shrink-0 shadow-lg">
                       <Image src={item.image} alt={item.name} fill sizes="44px" className="object-cover" />
                     </div>
                     <div>
-                      <h4
-                        style={{ color: "#FFFFFF" }}
-                        className="text-sm font-extrabold tracking-wide leading-tight"
-                      >
+                      <h4 className="relative z-20 text-sm font-extrabold tracking-wide leading-tight text-slate-900">
                         {item.name}
                       </h4>
-                      <p
-                        style={{ color: "#38BDF8" }}
-                        className="text-xs font-bold mt-0.5"
-                      >
+                      <p className="relative z-20 text-xs font-bold mt-0.5 text-slate-600">
                         {item.role}, {item.company}
                       </p>
                     </div>

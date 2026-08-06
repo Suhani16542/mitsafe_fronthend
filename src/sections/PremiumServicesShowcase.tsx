@@ -244,7 +244,7 @@ export default function PremiumServicesShowcase() {
   return (
     <section
       id="premium-showcase"
-      className="bg-white py-14 md:py-20 relative overflow-hidden"
+      className="bg-gradient-to-b from-[#F8FBFF] via-[#F0F7FF] to-[#EAF4FF] py-14 md:py-20 relative overflow-hidden border-t border-[#D6E9FF]"
       style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
