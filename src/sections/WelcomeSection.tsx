@@ -83,9 +83,9 @@ export default function WelcomeSection() {
   return (
     <section
       ref={containerRef}
-      className="group relative bg-white text-slate-800 py-12 md:py-16 overflow-hidden border-t border-slate-100 font-sans"
+      className="group relative bg-white text-slate-800 py-12 md:py-16 overflow-hidden border-t border-slate-100 px-4 sm:px-6 lg:px-8 font-sans"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
           {/* Left Column: Editorial Copy (Span 7) */}
@@ -109,7 +109,7 @@ export default function WelcomeSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-[-0.04em] font-display text-slate-900 dark:text-white"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display text-slate-900 dark:text-white"
               >
                 Best Web/App <br />
                 <span className="font-black inline-block" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>
@@ -141,13 +141,13 @@ export default function WelcomeSection() {
             </div>
 
             {/* Paragraphs with customized dividers and high-readability text */}
-            <div className="flex flex-col gap-5 border-l-2 border-[#2563FF]/20 pl-6 mb-8">
+            <div className="flex flex-col gap-5 border-l-2 border-[#2563FF]/20 pl-6 mb-8 font-sans">
               <motion.p
                 initial={{ opacity: 0, x: -15 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="text-lg text-slate-700 leading-relaxed font-normal"
+                className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium"
               >
                 A responsive website is a site that has been designed and developed to provide an optimal viewing and interactive experience across a wide range of devices and screen sizes, from desktop computers to mobile phones.
               </motion.p>
@@ -157,7 +157,7 @@ export default function WelcomeSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="text-base text-slate-500 leading-relaxed font-normal"
+                className="text-sm sm:text-base text-slate-500 leading-relaxed font-medium"
               >
                 At Mitsafe, we have a professional team of website developers who can turn your dream website into a real one. They use their innovation and experience to provide the best outcome so that you can enjoy maximum benefits. The website designed by our team is capable of converting users into buyers. We are known for the best Website designing services in Indore and we provide our Website development services to USA clients and many others from around the globe.
               </motion.p>
@@ -173,10 +173,10 @@ export default function WelcomeSection() {
               <Magnetic>
                 <a
                   href="/contact"
-                  className="relative inline-flex items-center gap-3.5 px-9 py-4 rounded-full bg-[#2563FF] hover:bg-[#1D4ED8] text-white font-extrabold text-sm transition-all duration-300 shadow-[0_8px_24px_rgba(37,99,255,0.35)] hover:shadow-[0_12px_32px_rgba(37,99,255,0.5)] group"
+                  className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 bg-[#0052FF] hover:bg-[#0042D9] text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 shadow-sm font-display"
                 >
-                  <span className="tracking-wide">Discover More</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" />
+                  <span>Discover More</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </Magnetic>
             </motion.div>

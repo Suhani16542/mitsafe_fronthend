@@ -76,8 +76,8 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="bg-white text-slate-800 py-16 md:py-20 relative overflow-hidden border-t border-slate-100 font-sans">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+    <section id="faq" className="bg-white text-slate-800 py-16 md:py-20 relative overflow-hidden border-t border-slate-100 px-4 sm:px-6 lg:px-8 font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Left Column (Sticky info - Span 5) */}
@@ -120,7 +120,7 @@ export default function FAQSection() {
             </motion.p>
 
             {/* Visual box inside sidepanel */}
-            <div className="w-full max-w-[340px] rounded-3xl bg-white border border-slate-200 p-6 flex items-center gap-4.5 relative overflow-hidden group shadow-sm hover:border-[#2563FF] transition-colors duration-300">
+            <div className="w-full max-w-[340px] rounded-3xl bg-white border border-slate-200 p-6 flex items-center gap-4.5 relative overflow-hidden group shadow-sm hover:border-slate-400 transition-colors duration-300">
               <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center shadow-sm">
                 <HelpIcon className="w-6 h-6 text-[#2563FF] stroke-[2px]" />
               </div>
@@ -136,20 +136,20 @@ export default function FAQSection() {
             {faqData.map((item, idx) => {
               const isOpen = openIndex === idx;
               return (
-                <div
+                 <div
                   key={idx}
                   onClick={() => toggleFAQ(idx)}
                   className={`group/card border cursor-pointer rounded-3xl p-6 sm:p-8 transition-all duration-300 ease-out ${
                     isOpen 
-                      ? "bg-[#F0F8FF] border-[#2563FF] shadow-md" 
-                      : "bg-white border-slate-200 hover:border-[#2563FF] hover:bg-[#F0F8FF] shadow-sm"
+                      ? "bg-slate-50/70 border-slate-300 shadow-md" 
+                      : "bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50/30 shadow-sm"
                   }`}
                 >
                   {/* Header Row */}
                   <div className="flex items-center justify-between gap-6 select-none">
                     <h3
                       className={`font-display text-lg sm:text-xl font-bold transition-colors duration-300 ${
-                        isOpen ? "text-[#2563FF]" : "text-slate-900 group-hover/card:text-[#2563FF]"
+                        isOpen ? "text-[#0F172A]" : "text-slate-900 group-hover/card:text-slate-950"
                       }`}
                     >
                       {item.question}
@@ -159,8 +159,8 @@ export default function FAQSection() {
                         aria-label="Toggle FAQ"
                         className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
                           isOpen
-                            ? "bg-[#2563FF] border-[#2563FF] text-white rotate-90"
-                            : "bg-slate-50 border-slate-200 text-slate-500 group-hover/card:bg-[#2563FF] group-hover/card:border-[#2563FF] group-hover/card:text-white"
+                            ? "bg-slate-800 border-slate-800 text-white rotate-90"
+                            : "bg-slate-50 border-slate-200 text-slate-500 group-hover/card:bg-slate-800 group-hover/card:border-slate-800 group-hover/card:text-white"
                         }`}
                       >
                         <ChevronRight className="w-5 h-5" />
@@ -200,7 +200,7 @@ export default function FAQSection() {
                           animate={{ filter: "blur(0px)", y: 0 }}
                           exit={{ filter: "blur(6px)", y: 10 }}
                           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                          className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal mt-5 pr-4 border-l-2 border-blue-500/30 pl-4"
+                          className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal mt-5 pr-4 border-l-2 border-slate-300 pl-4"
                         >
                           {item.answer}
                         </motion.p>

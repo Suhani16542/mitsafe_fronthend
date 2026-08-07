@@ -5,11 +5,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 interface UseHeroSliderOptions {
   length: number;
   autoPlayMs?: number;
+  initialIndex?: number;
 }
 
 export type SlideDirection = 1 | -1;
 
-export function useHeroSlider({ length, autoPlayMs = 300000 }: UseHeroSliderOptions) {
+export function useHeroSlider({ length, autoPlayMs = 300000, initialIndex = 0 }: UseHeroSliderOptions) {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState<SlideDirection>(1);
   const [isPaused, setIsPaused] = useState(false);

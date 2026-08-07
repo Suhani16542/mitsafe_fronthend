@@ -94,44 +94,44 @@ const techIconsByService: Record<string, { name: string; icon: string }[]> = {
 
 const slideImagesBySlug: Record<string, { light: string; dark: string }> = {
     "web-development": {
-        light: "/images/hero/light/hero-web-light-png.png",
-        dark: "/images/hero/light/hero-web-light-png.png",
+        light: "/images/hero/clean/hero-web-clean.png",
+        dark: "/images/hero/clean/hero-web-clean.png",
     },
     "mobile-app-development": {
-        light: "/images/hero/light/hero-mobile-light.png",
-        dark: "/images/hero/light/hero-mobile-light.png",
+        light: "/images/hero/clean/hero-mobile-clean.png",
+        dark: "/images/hero/clean/hero-mobile-clean.png",
     },
     "software-development": {
-        light: "/images/hero/light/hero-software-light.png",
-        dark: "/images/hero/light/hero-software-light.png",
+        light: "/images/hero/clean/hero-software-clean.png",
+        dark: "/images/hero/clean/hero-software-clean.png",
     },
     "ai-automation": {
-        light: "/images/hero/light/hero-ai-light-png.png",
-        dark: "/images/hero/light/hero-ai-light-png.png",
+        light: "/images/hero/clean/hero-ai-clean.png",
+        dark: "/images/hero/clean/hero-ai-clean.png",
     },
     "ui-ux-design": {
-        light: "/images/hero/light/hero-uiux-light-removebg-preview.png",
-        dark: "/images/hero/light/hero-uiux-light-removebg-preview.png",
+        light: "/images/hero/clean/hero-uiux-clean.png",
+        dark: "/images/hero/clean/hero-uiux-clean.png",
     },
     "ecommerce-solutions": {
-        light: "/images/hero/light/hero-ecomerce-light-png.png",
-        dark: "/images/hero/light/hero-ecomerce-light-png.png",
+        light: "/images/hero/clean/hero-ecommerce-clean.png",
+        dark: "/images/hero/clean/hero-ecommerce-clean.png",
     },
     "crm-erp": {
-        light: "/images/hero/light/hero-crm-light.png",
-        dark: "/images/hero/light/hero-crm-light.png",
+        light: "/images/hero/clean/hero-crm-clean.png",
+        dark: "/images/hero/clean/hero-crm-clean.png",
     },
     "api-integration": {
-        light: "/images/hero/light/hero-api-light-png.png",
-        dark: "/images/hero/light/hero-api-light-png.png",
+        light: "/images/hero/clean/hero-api-clean.png",
+        dark: "/images/hero/clean/hero-api-clean.png",
     },
     "cloud-devops": {
-        light: "/images/hero/light/hero-cloud-light.png",
-        dark: "/images/hero/light/hero-cloud-light.png",
+        light: "/images/hero/clean/hero-cloud-clean.png",
+        dark: "/images/hero/clean/hero-cloud-clean.png",
     },
     "digital-marketing": {
-        light: "/images/hero/light/hero-digital-light-png.png",
-        dark: "/images/hero/light/hero-digital-light-png.png",
+        light: "/images/hero/clean/hero-digital-clean.png",
+        dark: "/images/hero/clean/hero-digital-clean.png",
     },
 };
 
@@ -223,16 +223,30 @@ const typingPhrases = [
 
 
 
-const heroDescriptions: Record<string, string> = {
-    "web-development": "We engineer high-speed headless storefronts, pixel-perfect corporate portals, and custom SaaS platforms. Our responsive layouts are optimized for Core Web Vitals, maximum SEO visibility, and secure content delivery systems that establish immediate user trust.",
-    "mobile-app-development": "Launch cross-platform iOS and Android apps powered by Flutter or React Native alongside native Swift and Kotlin layers. We design background sync managers, local data caches, and push notification flows optimized for App Store validation.",
-    "software-development": "Accelerate operations with bespoke desktop software and scalable API microservices built on C# .NET, Java, and Python. We refactor complex legacy databases, automate internal workflows, and index schemas for heavy multi-threaded runs.",
-    "ai-automation": "Unleash cognitive agent automation integrated with Pinecone vector databases, RAG prompt guardrails, and autonomous self-triggering email and Slack pipelines. Eliminate manual operations and scale internal workflow velocity instantly.",
-    "ui-ux-design": "Develop premium corporate identity packages, interactive high-fidelity Figma prototypes, and modular design systems. We optimize user journey navigation paths, task success rates, and interface layouts for maximum visual conversion rates.",
-    "ecommerce-solutions": "Scale online sales pipelines with headless commerce frontends, custom Stripe payment integrations, and automated inventory sync loops. Our setups are built to load instantly, streamline product indexing, and decrease cart abandonment rates.",
-    "crm-erp": "Unify your databases into a custom student ledger, enterprise CRM dashboard, or pipeline tracker with role-based permissions. Avoid admin fee leaks, eliminate tracking delays, and generate real-time profit and operational reports.",
-    "api-integration": "Link your software systems via secure OAuth2 credentials, custom webhook processors, and bulletproof background data synchronization middleware. We build GraphQL and REST endpoints designed for low latency and automated error recovery.",
-    "cloud-devops": "Deploy private virtual server networks, Kubernetes container clusters, and automated CI/CD pipelines managed via Terraform IaC. Secure continuous integration checks, zero-downtime hot releases, and Prometheus log telemetry alerts."
+const heroHeadings2Lines: Record<string, { line1: string; line2: string }> = {
+    "web-development": { line1: "Web Development", line2: "High-Performance Platforms" },
+    "mobile-app-development": { line1: "Mobile App Development", line2: "Native iOS & Android Apps" },
+    "software-development": { line1: "Software Engineering", line2: "Custom Enterprise Systems" },
+    "ai-automation": { line1: "AI & Automation", line2: "Intelligent Workflows" },
+    "ui-ux-design": { line1: "UI/UX Product Design", line2: "Conversion-Focused Interfaces" },
+    "ecommerce-solutions": { line1: "E-Commerce Solutions", line2: "Scalable Storefronts" },
+    "crm-erp": { line1: "Enterprise CRM & ERP", line2: "Automated Pipelines" },
+    "api-integration": { line1: "API & Microservices", line2: "Secure Integration" },
+    "cloud-devops": { line1: "Cloud & DevOps", line2: "Reliable Infrastructure" },
+    "digital-marketing": { line1: "Digital Marketing", line2: "Data-Driven Brand Growth" },
+};
+
+const conciseDescriptions: Record<string, string> = {
+    "web-development": "Engineered for high speed, Core Web Vitals optimization, and enterprise scalability.",
+    "mobile-app-development": "Cross-platform Flutter & React Native solutions with native performance and instant sync.",
+    "software-development": "Custom desktop software, automated internal workflows, and high-throughput microservices.",
+    "ai-automation": "Autonomous AI agents, vector database integration, and intelligent automation pipelines.",
+    "ui-ux-design": "Interactive Figma prototypes, design systems, and conversion-focused user journeys.",
+    "ecommerce-solutions": "Headless storefronts, custom payment APIs, and real-time inventory management.",
+    "crm-erp": "Unified enterprise dashboards, student ledgers, and automated reporting systems.",
+    "api-integration": "Secure OAuth2 API endpoints, custom webhooks, and low-latency data sync middleware.",
+    "cloud-devops": "Kubernetes clusters, automated CI/CD pipelines, and zero-downtime server deployments.",
+    "digital-marketing": "Precision SEO auditing, targeted ad campaigns, and real-time growth analytics."
 };
 
 export default function Hero() {
@@ -414,19 +428,15 @@ export default function Hero() {
         { name: "24/7 Support", icon: "📞" },
     ];
 
-
     return (
         <div
-            className="relative w-full overflow-hidden bg-white min-h-[105vh] lg:min-h-[110vh] flex flex-col justify-start pt-28 sm:pt-32 lg:pt-36 pb-20"
+            className="relative w-full overflow-hidden bg-white min-h-[100vh] flex flex-col justify-start pt-36 sm:pt-40 lg:pt-44 pb-20"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             style={{ fontFamily: "'Satoshi', sans-serif" }}
         >
-            {/* Background Color #FEFEFE */}
-            <div className="absolute inset-0 bg-[#FEFEFE] pointer-events-none" />
-
-            {/* Floating particles */}
-            <ParticleBackground />
+            {/* Pure White Background #FFFFFF */}
+            <div className="absolute inset-0 bg-white pointer-events-none" />
 
             {/* Slide Wipe Container */}
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full flex-grow flex flex-col justify-center">
@@ -442,108 +452,105 @@ export default function Hero() {
                         {/* ── Two-Column Grid ── */}
                         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full">
 
-                            {/* ── LEFT COLUMN ── */}
-                            <div className="lg:col-span-6 flex flex-col items-start text-left w-full lg:pl-4 xl:pl-6">
+                            {/* ── LEFT COLUMN (Perfect Straight Left-Grid Alignment) ── */}
+                            <div className="lg:col-span-6 flex flex-col items-start text-left w-full pl-0">
 
-                                {/* Subtag line */}
+                                {/* Subtag Badge */}
                                 <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
+                                    initial={{ opacity: 0, y: -8 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.45, delay: 0.1 }}
-                                    className="inline-flex items-center gap-2.5 rounded-full border border-blue-200/80 bg-blue-50/80 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#2563EB] shadow-xs font-sans"
+                                    transition={{ duration: 0.4, delay: 0.1 }}
+                                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#2563EB] font-semibold text-[11.5px] tracking-wide font-sans mb-3 ml-0"
                                 >
                                     <span className="relative flex h-2 w-2">
                                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2563EB] opacity-75"></span>
                                         <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563EB]"></span>
                                     </span>
-                                    🚀 WE BUILD {currentService.title}
+                                    <span>ENTERPRISE IT & SAAS SOLUTIONS</span>
                                 </motion.div>
 
-                                {/* Heading */}
+                                {/* Main Heading (Shorter, Punchier 2-Line Title) */}
                                 <motion.h2
-                                    variants={headingContainerVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    className="mt-4 text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-black text-slate-900 leading-[1.1] tracking-tight max-w-xl text-left"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.45, delay: 0.2 }}
+                                    className="text-2xl sm:text-3xl lg:text-[2.25rem] font-extrabold leading-[1.25] tracking-tight max-w-md text-left ml-0"
                                     style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
                                 >
-                                    {titleWords.map((word, i) => {
-                                        const isLast = i === titleWords.length - 1;
-                                        return (
-                                            <span key={i} className="overflow-hidden inline-flex py-1 -my-1 mr-3">
-                                                <motion.span
-                                                    variants={headingWordVariants}
-                                                    className={`inline-block ${isLast ? "text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#3B82F6]" : ""}`}
-                                                >
-                                                    {word}
-                                                </motion.span>
-                                            </span>
-                                        );
-                                    })}
+                                    <span className="block text-slate-900">
+                                        {(heroHeadings2Lines[currentService.slug] || { line1: currentService.title, line2: "For Scalable Business" }).line1}
+                                    </span>
+                                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#2563EB] mt-0.5">
+                                        {(heroHeadings2Lines[currentService.slug] || { line1: currentService.title, line2: "For Scalable Business" }).line2}
+                                    </span>
                                 </motion.h2>
 
                                 {/* Description */}
                                 <motion.p
-                                    initial={{ opacity: 0, y: 12 }}
+                                    initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: 0.3 }}
-                                    className="mt-5 text-base sm:text-[15.5px] text-slate-600 leading-relaxed max-w-[500px] font-normal tracking-normal text-left"
+                                    transition={{ duration: 0.45, delay: 0.3 }}
+                                    className="mt-3 text-[14px] text-slate-600 leading-relaxed max-w-[440px] font-normal tracking-normal text-left ml-0"
                                 >
-                                    {heroDescriptions[currentService.slug] || currentService.longDescription}
+                                    {conciseDescriptions[currentService.slug] || currentService.longDescription}
                                 </motion.p>
 
-                                {/* Tech stack cards */}
+                                {/* Tech Stack Pill Badges */}
                                 <motion.div
                                     initial={{ opacity: 0, y: 8 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.4, delay: 0.4 }}
-                                    className="mt-6 flex flex-wrap gap-2.5 w-full justify-start items-center"
+                                    className="mt-4 flex flex-wrap gap-2 w-full justify-start items-center ml-0"
                                 >
                                     {(techIconsByService[currentService.slug] || []).map((tech, idx) => (
                                         <div
                                             key={idx}
-                                            className="flex flex-col items-center justify-center bg-white border border-slate-200/90 w-[64px] h-[64px] rounded-2xl shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-md hover:border-[#2563EB]/40 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer shrink-0"
+                                            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200/90 rounded-lg hover:border-[#2563EB]/40 hover:bg-blue-50/40 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer shrink-0"
                                         >
-                                            <span className="text-xl mb-0.5">{tech.icon}</span>
-                                            <span className="text-[9px] font-bold text-slate-600 text-center px-0.5 truncate w-full font-sans leading-tight">
+                                            <span className="text-sm">{tech.icon}</span>
+                                            <span className="text-[12px] font-medium text-slate-700 font-sans">
                                                 {tech.name}
                                             </span>
                                         </div>
                                     ))}
-                                    {/* Decorative + card */}
-                                    <div className="flex items-center justify-center bg-blue-50/60 border border-dashed border-blue-300 w-[64px] h-[64px] rounded-2xl cursor-default text-[#2563EB] hover:bg-blue-100/50 transition-colors shrink-0">
-                                        <span className="text-xl font-bold">+</span>
-                                    </div>
                                 </motion.div>
 
-                                {/* CTA Buttons */}
+                                {/* CTA Buttons (Equal Dimensions w-[175px] h-11) & Trust Proof */}
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0.96 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     transition={{ duration: 0.4, delay: 0.5 }}
-                                    className="mt-8 flex flex-wrap items-center gap-4 w-full justify-start"
+                                    className="mt-6 flex flex-col gap-3.5 w-full ml-0"
                                 >
-                                    {/* Primary CTA */}
-                                    <motion.a
-                                        href="#services"
-                                        whileHover={{ scale: 1.02, y: -1 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className="inline-flex items-center justify-center gap-2.5 h-12 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-sm px-8 rounded-full shadow-[0_6px_20px_rgba(37,99,255,0.3)] hover:shadow-[0_8px_28px_rgba(37,99,255,0.45)] transition-all duration-300 cursor-pointer group"
-                                    >
-                                        <span>Explore Services</span>
-                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                    </motion.a>
+                                    <div className="flex flex-wrap items-center gap-3 w-full justify-start">
+                                        {/* Primary CTA (Exact equal width & height) */}
+                                        <motion.a
+                                            href="#services"
+                                            whileHover={{ scale: 1.02, y: -1 }}
+                                            whileTap={{ scale: 0.98 }}
+                                            className="w-[175px] h-11 inline-flex items-center justify-center gap-2 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-medium text-[13.5px] rounded-full shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer group"
+                                        >
+                                            <span>Explore Solutions</span>
+                                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                        </motion.a>
 
-                                    {/* Secondary CTA */}
-                                    <motion.a
-                                        href="/contact"
-                                        whileHover={{ scale: 1.02, y: -1 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className="inline-flex items-center justify-center gap-2.5 h-12 bg-white text-slate-900 font-bold text-sm px-8 rounded-full border border-slate-200/90 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 cursor-pointer"
-                                    >
-                                        <span>View Portfolio</span>
-                                        <span className="text-[#2563EB] text-[10px]">▶</span>
-                                    </motion.a>
+                                        {/* Secondary CTA (Exact equal width & height) */}
+                                        <motion.a
+                                            href="/contact"
+                                            whileHover={{ scale: 1.02, y: -1 }}
+                                            whileTap={{ scale: 0.98 }}
+                                            className="w-[175px] h-11 inline-flex items-center justify-center gap-2 bg-white text-slate-800 font-medium text-[13.5px] rounded-full border border-slate-200 hover:border-blue-600 transition-all duration-200 cursor-pointer"
+                                        >
+                                            <span>View Case Studies</span>
+                                            <span className="text-[#2563EB] text-[10px]">▶</span>
+                                        </motion.a>
+                                    </div>
+
+                                    {/* Trust Proof Banner */}
+                                    <div className="flex items-center gap-2 pt-0.5 text-xs text-slate-500 font-sans ml-0">
+                                        <span className="text-amber-500 font-semibold">★★★★★</span>
+                                        <span className="font-medium text-slate-600">Trusted by 500+ global enterprises & startups</span>
+                                    </div>
                                 </motion.div>
 
                             </div>
@@ -552,7 +559,7 @@ export default function Hero() {
                             <div className="lg:col-span-6 relative flex justify-center items-center lg:-ml-2 mt-8 lg:mt-0 z-30 w-full select-none">
 
                                 {/* Main Illustration container - Pure White Seamless Blend */}
-                                <div className="relative w-full max-w-[680px] h-[500px] flex items-center justify-center overflow-visible">
+                                <div className="relative w-full max-w-[680px] h-[480px] flex items-center justify-center overflow-visible">
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={currentSlide}
@@ -567,12 +574,12 @@ export default function Hero() {
                                                     (theme === "light"
                                                         ? slideImagesBySlug[currentService.slug]?.light
                                                         : slideImagesBySlug[currentService.slug]?.dark) ||
-                                                    "/images/hero/light/hero-web-light-png.png"
+                                                    "/images/hero/clean/hero-web-clean.png"
                                                 }
                                                 alt={currentService.title}
                                                 width={750}
                                                 height={550}
-                                                className={`max-w-full max-h-full w-auto h-auto object-contain select-none z-10 mix-blend-multiply drop-shadow-[0_12px_24px_rgba(0,0,0,0.04)] transition-all duration-300 ${currentService.slug === "ui-ux-design"
+                                                className={`max-w-full max-h-full w-auto h-auto object-contain select-none z-10 transition-all duration-300 ${currentService.slug === "ui-ux-design"
                                                     ? "scale-135 sm:scale-145 md:scale-150 lg:scale-160 origin-center"
                                                     : "scale-100"
                                                     }`}
@@ -588,10 +595,10 @@ export default function Hero() {
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
                                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                                            className="absolute -left-8 top-12 bg-white/95 backdrop-blur-md border border-slate-200/90 px-4 py-2 rounded-full shadow-[0_6px_20px_rgba(15,23,42,0.06)] flex items-center gap-2 z-20"
+                                            className="absolute -left-8 top-12 bg-white border border-slate-200 px-3.5 py-1.5 rounded-full flex items-center gap-2 z-20"
                                         >
-                                            <span className="text-base">{currentBadges[0].icon}</span>
-                                            <span className="text-xs font-bold text-slate-800 font-sans">{currentBadges[0].label}</span>
+                                            <span className="text-sm">{currentBadges[0].icon}</span>
+                                            <span className="text-xs font-medium text-slate-800 font-sans">{currentBadges[0].label}</span>
                                         </motion.div>
                                     )}
 
@@ -602,10 +609,10 @@ export default function Hero() {
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1, y: [0, -10, 0] }}
                                             transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-                                            className="absolute right-2 top-2 bg-white/95 backdrop-blur-md border border-slate-200/90 px-4 py-2 rounded-full shadow-[0_6px_20px_rgba(15,23,42,0.06)] flex items-center gap-2 z-20"
+                                            className="absolute right-2 top-2 bg-white border border-slate-200 px-3.5 py-1.5 rounded-full flex items-center gap-2 z-20"
                                         >
-                                            <span className="text-base">{currentBadges[1].icon}</span>
-                                            <span className="text-xs font-bold text-slate-800 font-sans">{currentBadges[1].label}</span>
+                                            <span className="text-sm">{currentBadges[1].icon}</span>
+                                            <span className="text-xs font-medium text-slate-800 font-sans">{currentBadges[1].label}</span>
                                         </motion.div>
                                     )}
 
@@ -616,10 +623,10 @@ export default function Hero() {
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1, y: [0, 8, 0] }}
                                             transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
-                                            className="absolute -right-6 top-[38%] bg-white/95 backdrop-blur-md border border-slate-200/90 px-4 py-2 rounded-full shadow-[0_6px_20px_rgba(15,23,42,0.06)] flex items-center gap-2 z-20"
+                                            className="absolute -right-6 top-[38%] bg-white border border-slate-200 px-3.5 py-1.5 rounded-full flex items-center gap-2 z-20"
                                         >
-                                            <span className="text-base">{currentBadges[2].icon}</span>
-                                            <span className="text-xs font-bold text-slate-800 font-sans">{currentBadges[2].label}</span>
+                                            <span className="text-sm">{currentBadges[2].icon}</span>
+                                            <span className="text-xs font-medium text-slate-800 font-sans">{currentBadges[2].label}</span>
                                         </motion.div>
                                     )}
 
@@ -630,10 +637,10 @@ export default function Hero() {
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
                                             transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                                            className="absolute -right-8 bottom-24 bg-white/95 backdrop-blur-md border border-slate-200/90 px-4 py-2 rounded-full shadow-[0_6px_20px_rgba(15,23,42,0.06)] flex items-center gap-2 z-20"
+                                            className="absolute -right-8 bottom-24 bg-white border border-slate-200 px-3.5 py-1.5 rounded-full flex items-center gap-2 z-20"
                                         >
-                                            <span className="text-base">{currentBadges[3].icon}</span>
-                                            <span className="text-xs font-bold text-slate-800 font-sans">{currentBadges[3].label}</span>
+                                            <span className="text-sm">{currentBadges[3].icon}</span>
+                                            <span className="text-xs font-medium text-slate-800 font-sans">{currentBadges[3].label}</span>
                                         </motion.div>
                                     )}
 
@@ -644,10 +651,10 @@ export default function Hero() {
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
                                             transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                                            className="absolute right-4 -bottom-4 bg-white/95 backdrop-blur-md border border-slate-200/90 px-4 py-2 rounded-full shadow-[0_6px_20px_rgba(15,23,42,0.06)] flex items-center gap-2 z-20"
+                                            className="absolute right-4 -bottom-4 bg-white border border-slate-200 px-3.5 py-1.5 rounded-full flex items-center gap-2 z-20"
                                         >
-                                            <span className="text-base">{currentBadges[4].icon}</span>
-                                            <span className="text-xs font-bold text-slate-800 font-sans">{currentBadges[4].label}</span>
+                                            <span className="text-sm">{currentBadges[4].icon}</span>
+                                            <span className="text-xs font-medium text-slate-800 font-sans">{currentBadges[4].label}</span>
                                         </motion.div>
                                     )}
 
@@ -659,30 +666,28 @@ export default function Hero() {
                 </AnimatePresence>
 
                 {/* Global feature cards */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 w-full mt-14 max-w-7xl mx-auto z-20">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 w-full mt-12 max-w-7xl mx-auto z-20">
                     {featureCards.map((feat, idx) => (
                         <div
                             key={idx}
-                            className="bg-white border border-slate-200/80 rounded-2xl p-4 flex items-center gap-3 shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-md hover:border-[#2563EB]/40 hover:-translate-y-0.5 transition-all duration-300 cursor-default group"
+                            className="bg-white border border-slate-200/90 rounded-xl p-3.5 flex items-center gap-2.5 hover:border-[#2563EB]/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default group"
                         >
-                            <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-lg text-[#2563EB] shrink-0 group-hover:scale-110 transition-transform">
+                            <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center text-base text-[#2563EB] shrink-0 group-hover:scale-105 transition-transform">
                                 {feat.icon}
                             </div>
-                            <span className="text-[13px] font-bold text-slate-800 font-sans tracking-wide">
+                            <span className="text-[13px] font-medium text-slate-800 font-sans tracking-tight">
                                 {feat.name}
                             </span>
                         </div>
                     ))}
                 </div>
 
-
-
             </div>
 
-            {/* Navigation Arrows */}
+            {/* Navigation Arrows - Clean no shadow */}
             <button
                 onClick={handlePrev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200/90 shadow-md flex items-center justify-center text-slate-700 hover:text-[#2563EB] hover:border-[#2563EB]/40 hover:scale-105 active:scale-95 transition-all duration-300 hidden md:flex cursor-pointer"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-700 hover:text-[#2563EB] hover:border-[#2563EB]/40 hover:scale-105 active:scale-95 transition-all duration-300 hidden md:flex cursor-pointer"
                 aria-label="Previous service"
             >
                 <ChevronLeft className="w-5 h-5 stroke-[2.5px]" />
@@ -690,7 +695,7 @@ export default function Hero() {
 
             <button
                 onClick={handleNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200/90 shadow-md flex items-center justify-center text-slate-700 hover:text-[#2563EB] hover:border-[#2563EB]/40 hover:scale-105 active:scale-95 transition-all duration-300 hidden md:flex cursor-pointer"
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-700 hover:text-[#2563EB] hover:border-[#2563EB]/40 hover:scale-105 active:scale-95 transition-all duration-300 hidden md:flex cursor-pointer"
                 aria-label="Next service"
             >
                 <ChevronRight className="w-5 h-5 stroke-[2.5px]" />

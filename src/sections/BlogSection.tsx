@@ -24,9 +24,9 @@ function BlogCard({ post, idx }: { post: any; idx: number }) {
       whileHover={{ y: -5 }}
       className="flex flex-col h-full group"
     >
-      <div className="flex flex-col justify-between h-full bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 transition-all duration-300 group-hover:border-[#2563FF] group-hover:shadow-lg relative overflow-hidden">
-        {/* Sliding top-to-bottom light-blue background effect */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F0F8FF] to-white origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-in-out z-0 pointer-events-none" />
+      <div className="flex flex-col justify-between h-full bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 transition-all duration-300 group-hover:border-slate-300 group-hover:shadow-lg relative overflow-hidden">
+        {/* Sliding top-to-bottom neutral background effect */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 to-white origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-in-out z-0 pointer-events-none" />
 
         {/* Card Content Top */}
         <div className="flex flex-col gap-3 relative z-10 text-left">
@@ -43,7 +43,7 @@ function BlogCard({ post, idx }: { post: any; idx: number }) {
           </div>
 
           {/* Title */}
-          <h3 className="font-display text-lg sm:text-xl font-extrabold text-slate-900 group-hover:text-[#2563FF] transition-colors duration-300 leading-snug">
+          <h3 className="font-display text-lg sm:text-xl font-extrabold text-slate-900 group-hover:text-slate-900 transition-colors duration-300 leading-snug">
             <Link href={`/blog/${post.slug}`}>{post.title}</Link>
           </h3>
 
@@ -60,13 +60,13 @@ function BlogCard({ post, idx }: { post: any; idx: number }) {
         </div>
 
         {/* Card Footer / Read Article Link */}
-        <div className="pt-4 border-t border-slate-100 group-hover:border-blue-200/60 mt-4 relative z-10 transition-colors">
+        <div className="pt-4 border-t border-slate-100 group-hover:border-slate-200 mt-4 relative z-10 transition-colors">
           <Link
             href={`/blog/${post.slug}`}
-            className="inline-flex items-center justify-between w-full font-extrabold text-xs sm:text-sm text-[#2563FF] group-hover:text-blue-700 transition-colors"
+            className="inline-flex items-center justify-between w-full font-extrabold text-xs sm:text-sm text-[#2563FF] hover:text-blue-700 transition-colors"
           >
             <span>Read Full Article</span>
-            <div className="w-7 h-7 rounded-lg bg-blue-50 group-hover:bg-[#2563FF] group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm">
+            <div className="w-7 h-7 rounded-lg bg-blue-50 text-[#2563FF] flex items-center justify-center transition-all duration-300 shadow-sm">
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
             </div>
           </Link>
@@ -83,18 +83,18 @@ export default function BlogSection() {
   return (
     <section
       ref={containerRef}
-      className="bg-white py-6 md:py-8 relative overflow-hidden border-t border-slate-100 font-sans"
+      className="bg-white py-16 md:py-24 relative overflow-hidden border-t border-slate-100 px-4 sm:px-6 lg:px-8 font-sans"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-5 max-w-3xl mx-auto">
+        <div className="text-center mb-12 max-w-3xl mx-auto">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-blue-100 bg-blue-50 px-3.5 py-1 text-[11px] font-bold uppercase tracking-widest text-blue-600 font-display shadow-sm"
+            className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-blue-100 bg-blue-50 px-3.5 py-1 text-[11px] font-bold uppercase tracking-widest text-blue-600 font-display shadow-sm"
           >
             <Sparkles className="w-3 h-3 text-blue-600" />
             <span>ARTICLE JOURNAL</span>
@@ -124,7 +124,7 @@ export default function BlogSection() {
             whileInView={{ opacity: 1, scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.15 }}
-            className="w-16 h-1 bg-[#2563FF] mx-auto mt-2.5 rounded-full origin-center"
+            className="w-16 h-1 bg-[#2563FF] mx-auto mt-4 rounded-full origin-center"
           />
 
           {/* Subtitle */}
@@ -133,14 +133,14 @@ export default function BlogSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-2.5 text-xs sm:text-sm text-slate-500 max-w-xl mx-auto font-normal leading-relaxed"
+            className="mt-4 text-sm sm:text-base text-slate-500 max-w-xl mx-auto font-normal leading-relaxed"
           >
             Latest blogs, technology insights, industry trends, and company updates.
           </motion.p>
         </div>
 
         {/* 3-Column Image-Free Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4.5 w-full max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl mx-auto">
           {displayPosts.map((post, idx) => (
             <BlogCard key={post.slug || idx} post={post} idx={idx} />
           ))}
@@ -152,30 +152,24 @@ export default function BlogSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.25 }}
-          className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3.5"
+          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           {/* Get a Quote Button */}
           <Link
             href="/get-a-quote"
-            className="group relative inline-flex items-center justify-between gap-3.5 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 border border-slate-700/50 w-full sm:w-auto"
-            style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
+            className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 bg-[#0052FF] hover:bg-[#0042D9] text-white font-extrabold text-xs sm:text-sm rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto"
           >
-            <span className="tracking-wide">Get a Quote</span>
-            <span className="w-8 h-8 rounded-lg bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white group-hover:scale-105 transition-transform shadow-sm shrink-0">
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </span>
+            <span>Get a Quote</span>
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
 
           {/* Explore All Articles Button */}
           <Link
             href="/blog"
-            className="group relative inline-flex items-center justify-between gap-3.5 pl-6 pr-2.5 py-2.5 bg-[#0F172A] hover:bg-[#1E293B] text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 border border-slate-700/50 w-full sm:w-auto"
-            style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
+            className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 border-2 border-[#0052FF] bg-white text-[#0052FF] hover:bg-blue-50/50 font-extrabold text-xs sm:text-sm rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto"
           >
-            <span className="tracking-wide">Explore All Articles</span>
-            <span className="w-8 h-8 rounded-lg bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white group-hover:scale-105 transition-transform shadow-sm shrink-0">
-              <BookOpen className="w-4 h-4 group-hover:scale-105 transition-transform" />
-            </span>
+            <span>Explore All Articles</span>
+            <BookOpen className="w-4 h-4" />
           </Link>
         </motion.div>
       </div>

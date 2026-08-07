@@ -143,9 +143,9 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="bg-gradient-to-b from-[#EAF4FF] via-[#F0F7FF] to-[#F8FBFF] py-10 md:py-16 relative overflow-hidden border-t border-[#D6E9FF] font-sans"
+      className="bg-white py-10 md:py-16 relative overflow-hidden border-t border-slate-100 px-4 sm:px-6 lg:px-8 font-sans"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-left mb-6">
           {/* Badge */}

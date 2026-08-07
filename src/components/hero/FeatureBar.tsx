@@ -46,7 +46,7 @@ export function FeatureBar({
   onSelect: (i: number) => void;
 }) {
   return (
-    <div className="relative z-10 mt-10 sm:mt-12 rounded-2xl border border-slate-100 bg-white/90 backdrop-blur-md p-3 sm:p-4 shadow-[0_4px_20px_rgba(0,82,255,0.04)]">
+    <div className="relative z-10 mt-10 sm:mt-12 rounded-2xl border border-slate-100 bg-white p-3 sm:p-4 shadow-sm">
       <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar scroll-smooth pb-1 pt-1 justify-start lg:justify-between px-1">
         {services.map((service, i) => {
           const Icon = ICON_MAP[service.illustration] || Sparkles;
@@ -56,18 +56,18 @@ export function FeatureBar({
               key={service.id}
               onClick={() => onSelect(i)}
               className={clsx(
-                "flex shrink-0 items-center gap-2 px-3 py-2 rounded-xl transition-all duration-300 text-left cursor-pointer border",
+                "flex shrink-0 items-center gap-2 px-3 py-2 rounded-xl transition-all duration-300 text-left cursor-pointer border group",
                 active
-                  ? "border-blue-200 bg-blue-50/90 text-[#0052FF] shadow-xs scale-102"
-                  : "border-transparent text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                  ? "border-slate-300 bg-slate-100/90 text-slate-900 shadow-xs scale-102"
+                  : "border-transparent text-slate-600 hover:bg-slate-50 hover:text-slate-850"
               )}
             >
               <span
                 className={clsx(
                   "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors",
                   active
-                    ? "bg-[#0052FF] text-white"
-                    : "bg-slate-100 text-slate-500 group-hover:text-[#0052FF]"
+                    ? "bg-slate-200 text-slate-900"
+                    : "bg-slate-100 text-slate-500 group-hover:text-slate-700"
                 )}
               >
                 <Icon className="h-4 w-4" />
@@ -75,7 +75,7 @@ export function FeatureBar({
               <span
                 className={clsx(
                   "text-xs font-bold whitespace-nowrap leading-tight tracking-wide",
-                  active ? "text-[#0052FF]" : "text-slate-700"
+                  active ? "text-slate-900" : "text-slate-700"
                 )}
               >
                 {service.badge}

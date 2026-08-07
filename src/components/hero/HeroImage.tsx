@@ -111,24 +111,8 @@ export function HeroImage({ service }: { service: HeroService }) {
   const floatingBadges = floatingBadgesByService[service.id] || floatingBadgesByService["web-development"];
 
   return (
-    <div className="relative mx-auto w-full max-w-xl py-2 flex items-center justify-center">
-      {/* Background network dotted lines */}
-      <svg
-        className="pointer-events-none absolute inset-0 h-full w-full text-blue-200/80"
-        viewBox="0 0 520 440"
-        fill="none"
-      >
-        <path d="M40,50 C130,50 150,110 210,140" stroke="currentColor" strokeDasharray="4 4" strokeWidth="1.5" />
-        <path d="M20,170 C120,170 150,190 210,200" stroke="currentColor" strokeDasharray="4 4" strokeWidth="1.5" />
-        <path d="M40,310 C130,310 150,270 210,250" stroke="currentColor" strokeDasharray="4 4" strokeWidth="1.5" />
-        <path d="M470,40 C390,40 350,100 290,140" stroke="currentColor" strokeDasharray="4 4" strokeWidth="1.5" />
-        <path d="M480,150 C390,150 350,180 290,200" stroke="currentColor" strokeDasharray="4 4" strokeWidth="1.5" />
-        <circle cx="40" cy="50" r="4" fill="#0052FF" />
-        <circle cx="20" cy="170" r="4" fill="#0052FF" />
-        <circle cx="40" cy="310" r="4" fill="#0052FF" />
-        <circle cx="470" cy="40" r="4" fill="#0052FF" />
-        <circle cx="480" cy="150" r="4" fill="#0052FF" />
-      </svg>
+    <div className="relative z-20 mx-auto w-full max-w-xl lg:max-w-[560px] xl:max-w-[600px] mt-2 sm:mt-3 pt-1.5 flex items-center justify-center">
+      {/* Pure White Background #FFFFFF - Network lines removed */}
 
       {/* Dynamic Floating Badges per Service */}
       {floatingBadges.map((badge, idx) => {
@@ -142,7 +126,7 @@ export function HeroImage({ service }: { service: HeroService }) {
               opacity: { duration: 0.4, delay: 0.1 + idx * 0.08 },
               y: { duration: 3.4 + idx * 0.4, repeat: Infinity, ease: "easeInOut" },
             }}
-            className={`absolute ${badge.position} z-20 hidden sm:flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 bg-white text-slate-800 border border-slate-100/90 shadow-[0_12px_35px_rgba(0,82,255,0.09)] transition-all cursor-pointer hover:scale-105 hover:border-blue-200`}
+            className={`absolute ${badge.position} z-30 hidden sm:flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 bg-white text-slate-800 border border-slate-100/90 shadow-md transition-all cursor-pointer hover:scale-105 hover:border-blue-200`}
           >
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl font-bold bg-[#EBF2FF] text-[#0052FF]">
               <BadgeIcon className="h-4 w-4" />
@@ -163,12 +147,12 @@ export function HeroImage({ service }: { service: HeroService }) {
           animate="center"
           exit="exit"
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 w-full max-w-lg"
+          className="relative z-20 w-full max-w-lg"
         >
           <img
             src={service.image || "/hero-transparent.png"}
             alt={service.badge}
-            className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-500 max-h-[340px] sm:max-h-[380px] drop-shadow-[0_12px_24px_rgba(0,0,0,0.06)]"
+            className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-500 max-h-[360px] sm:max-h-[400px] lg:max-h-[420px] drop-shadow-[0_12px_24px_rgba(0,0,0,0.06)]"
           />
 
           {/* Sub-Image Highlights */}

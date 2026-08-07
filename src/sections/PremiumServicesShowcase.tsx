@@ -98,27 +98,19 @@ function BentoCard({
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 280, damping: 24 }}
       style={{ willChange: "transform, opacity" }}
-      className={`group relative overflow-hidden rounded-[24px] border transition-all duration-400 ease-out p-8 flex flex-col justify-between ${
-        isHovered
-          ? "bg-gradient-to-br from-blue-50/80 via-blue-50/40 to-white border-blue-300 dark:border-blue-800 shadow-[0_16px_35px_rgba(37,99,255,0.12)]"
+      className={`group relative overflow-hidden rounded-[24px] border transition-all duration-400 ease-out p-8 flex flex-col justify-between ${isHovered
+          ? "bg-white border-slate-300 shadow-[0_16px_35px_rgba(0,0,0,0.05)]"
           : "bg-white dark:bg-slate-900 border-slate-200/90 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.02)]"
-      } ${className} h-full`}
+        } ${className} h-full`}
     >
       {/* Dynamic Cursor Spotlight Radial Glow on Hover */}
       <div
         className="pointer-events-none absolute inset-0 transition-opacity duration-300"
         style={{
           opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(350px circle at ${coords.x}px ${coords.y}px, rgba(37, 99, 255, 0.08), transparent 80%)`,
+          background: `radial-gradient(350px circle at ${coords.x}px ${coords.y}px, rgba(0, 0, 0, 0.02), transparent 80%)`,
           zIndex: 0,
         }}
-      />
-
-      {/* Top Accent Gradient Line on Hover */}
-      <div
-        className={`absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-blue-600 via-sky-400 to-blue-600 transition-opacity duration-300 ${
-          isHovered ? "opacity-100" : "opacity-0"
-        }`}
       />
 
       <div className="relative z-10 w-full flex flex-col h-full justify-between gap-6">
@@ -126,11 +118,7 @@ function BentoCard({
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-2">
             <span
-              className={`text-xs font-bold px-2.5 py-1 rounded-md font-mono transition-colors duration-300 ${
-                isHovered
-                  ? "bg-blue-600 text-white"
-                  : "bg-blue-50 text-blue-600 dark:bg-blue-950/50"
-              }`}
+              className="text-xs font-bold px-2.5 py-1 rounded-md font-mono bg-white text-slate-900 border border-slate-200 shadow-2xs"
             >
               {badgeNum}
             </span>
@@ -140,11 +128,7 @@ function BentoCard({
           </div>
 
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-              isHovered
-                ? "bg-blue-600 text-white rotate-45 scale-110"
-                : "bg-slate-100 dark:bg-slate-800 text-slate-400"
-            }`}
+            className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-400 transition-all duration-300 group-hover:rotate-45 group-hover:scale-105"
           >
             <ArrowUpRight className="w-4 h-4" />
           </div>
@@ -152,10 +136,10 @@ function BentoCard({
 
         {/* Content Section */}
         <div className="flex flex-col items-start text-left gap-3 my-1 flex-grow">
-          <h3 className="text-2xl sm:text-[1.65rem] font-black text-slate-900 dark:text-white leading-tight tracking-tight font-display">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight font-display">
             {subtitle}
           </h3>
-          <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed font-normal">
+          <p className="text-sm leading-relaxed font-medium text-slate-600 dark:text-slate-350 font-sans">
             {description}
           </p>
         </div>
@@ -170,11 +154,10 @@ function BentoCard({
                 return (
                   <span
                     key={idx}
-                    className={`text-[10.5px] font-bold px-3 py-1.5 rounded-xl border transition-all duration-300 uppercase tracking-wide flex items-center gap-1.5 ${
-                      isHovered
+                    className={`text-[10px] sm:text-xs font-semibold px-3.5 py-1.5 rounded-full border transition-all duration-300 tracking-wide uppercase flex items-center gap-1.5 font-sans ${isHovered
                         ? "bg-white/90 border-blue-200 text-blue-700 shadow-xs"
                         : "bg-slate-50 dark:bg-slate-800 border-slate-200/80 dark:border-white/5 text-slate-700 dark:text-slate-300"
-                    }`}
+                      }`}
                   >
                     <TagIcon className="w-3.5 h-3.5 text-blue-600" />
                     {t}
@@ -187,7 +170,7 @@ function BentoCard({
           {/* Action Link */}
           <Link
             href={exploreUrl}
-            className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-blue-600 group/link mt-1 hover:text-blue-700 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 text-blue-600 hover:text-blue-700 font-display mt-1"
           >
             <span>Explore Service</span>
             <ArrowRight className="w-4 h-4 text-blue-600 group-hover/link:translate-x-1.5 transition-transform duration-300" />
@@ -244,11 +227,11 @@ export default function PremiumServicesShowcase() {
   return (
     <section
       id="premium-showcase"
-      className="bg-gradient-to-b from-[#F8FBFF] via-[#F0F7FF] to-[#EAF4FF] py-14 md:py-20 relative overflow-hidden border-t border-[#D6E9FF]"
+      className="bg-white py-14 md:py-20 relative overflow-hidden border-t border-slate-100 px-4 sm:px-6 lg:px-8"
       style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', sans-serif" }}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
         {/* Top Header Section */}
         <div
           ref={headerRef}
@@ -260,7 +243,7 @@ export default function PremiumServicesShowcase() {
               initial={{ opacity: 0, y: 10 }}
               animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1 text-xs font-bold uppercase tracking-wider text-blue-600 shadow-xs w-fit"
+              className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-blue-600 font-display shadow-xs w-fit"
             >
               OUR SERVICES
             </motion.div>
@@ -269,7 +252,7 @@ export default function PremiumServicesShowcase() {
               initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
               animate={isHeaderInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#0F172A] dark:text-white tracking-[-0.03em] leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display text-[#0F172A] dark:text-white"
             >
               End-to-End Digital Solutions <br />
               <span className="font-black inline-block" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>
@@ -281,7 +264,7 @@ export default function PremiumServicesShowcase() {
               initial={{ opacity: 0, y: 15 }}
               animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.25 }}
-              className="text-sm sm:text-base text-slate-500 leading-relaxed font-normal max-w-xl"
+              className="text-sm sm:text-base leading-relaxed font-medium max-w-xl text-slate-500 font-sans"
             >
               From strategy to execution, we deliver powerful digital solutions that help you innovate, streamline and scale with confidence.
             </motion.p>
@@ -317,7 +300,7 @@ export default function PremiumServicesShowcase() {
             animate={isGridInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.05 }}
             whileHover={{ y: -2 }}
-            className="col-span-12 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/5 rounded-[22px] py-5 px-8 shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:border-blue-300 hover:bg-blue-50/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative overflow-hidden group transition-all duration-300"
+            className="col-span-12 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/5 rounded-[22px] py-5 px-8 shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:border-slate-350 hover:bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative overflow-hidden group transition-all duration-300"
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shrink-0 shadow-md">

@@ -83,12 +83,8 @@ export default function TestimonialsSection() {
   const infiniteLoop = [...testimonials, ...testimonials, ...testimonials];
 
   return (
-    <section className="relative w-full overflow-hidden bg-slate-50 py-10 md:py-12 font-sans border-t border-slate-200">
-      {/* Royal Blue Ambient Glows */}
-      <div className="pointer-events-none absolute top-1/2 left-1/4 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#0052FF]/20 blur-[180px] z-0" />
-      <div className="pointer-events-none absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-full bg-[#00D4FF]/15 blur-[180px] z-0" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 mb-6 text-center flex flex-col items-center">
+    <section className="relative w-full overflow-hidden bg-white py-10 md:py-12 font-sans border-t border-slate-100 px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 text-center flex flex-col items-center">
         {/* Header Badge */}
         <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/15 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-widest text-[#38BDF8] mb-2.5 backdrop-blur-sm shadow-sm">
           <Sparkles className="w-3 h-3 text-[#38BDF8]" />

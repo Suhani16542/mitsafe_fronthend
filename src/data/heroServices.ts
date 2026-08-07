@@ -4,10 +4,10 @@ export const heroServices: HeroService[] = [
   {
     id: "web-development",
     badge: "Website Designing & Development",
-    heading: "Website Designing &\nDevelopment Services",
-    highlight: "For Business Growth",
+    heading: "Website Designing &",
+    highlight: "Development Services",
     description:
-      "Build fast, scalable, modern websites and web applications tailored to business requirements with optimal search performance and seamless CMS integration. Designed to convert visitors into loyal customers.",
+      "Build fast, scalable, modern websites and web applications tailored to your business requirements with optimal search performance, seamless CMS integration, and responsive cross-device layouts for higher conversions.",
     illustration: "web",
     image: "/images/hero/light/hero-web-light-png-removebg-preview (1).png",
     category: "build",
@@ -29,14 +29,14 @@ export const heroServices: HeroService[] = [
   {
     id: "mobile-app-development",
     badge: "Android & iOS App Development",
-    heading: "Android & iOS App\nDevelopment Solutions",
-    highlight: "For Mobile Growth",
+    heading: "Android & iOS App",
+    highlight: "Development Solutions",
     description:
-      "Create high-performance Android and iOS applications with intuitive user experiences, smooth 60fps animations, and secure cloud sync. Built with native performance for maximum user retention.",
+      "Create high-performance Android and iOS mobile applications with intuitive user experiences, smooth animations, and native cloud sync built for maximum user retention and engagement.",
     illustration: "mobile",
     image: "/images/hero/light/hero-mobile-light-removebg-preview.png",
     category: "build",
-    primaryCta: { label: "Start Your Mobile App", href: "/get-a-quote" },
+    primaryCta: { label: "Start Mobile App", href: "/get-a-quote" },
     secondaryCta: { label: "View App Portfolio", href: "/portfolio" },
     features: [
       { label: "Flutter & React Native" },
@@ -54,12 +54,12 @@ export const heroServices: HeroService[] = [
   {
     id: "games-development",
     badge: "Games Development",
-    heading: "Interactive 2D & 3D\nGames Development",
-    highlight: "For Maximum Engagement",
+    heading: "Interactive 2D & 3D",
+    highlight: "Games Development",
     description:
-      "Design and develop immersive 2D/3D games across mobile, web, and desktop platforms with high-performance graphics and physics engines. Engineered to captivate players and boost monetisation.",
+      "Design and develop immersive 2D and 3D games across mobile, web, and desktop platforms with high-performance graphics, physics engines, and cross-platform multiplayer support for players worldwide.",
     illustration: "game",
-    image: "/game-dev-showcase.png",
+    image: "/images/hero/light/hero-ai-light-png-removebg-preview.png",
     category: "build",
     primaryCta: { label: "Build Your Game", href: "/get-a-quote" },
     secondaryCta: { label: "View Games Demo", href: "/portfolio" },
@@ -79,14 +79,14 @@ export const heroServices: HeroService[] = [
   {
     id: "readymade-pos",
     badge: "Readymade POS",
-    heading: "Smart Readymade\nPOS & Billing Systems",
-    highlight: "For Retail & Sales",
+    heading: "Smart Readymade POS",
+    highlight: "Billing Systems",
     description:
-      "Ready-to-deploy Point of Sale (POS) solutions for retail, restaurants, and chains featuring fast billing, inventory tracking, and sales analytics. Streamline daily operations with zero downtime.",
+      "Ready-to-deploy Point of Sale (POS) solutions for retail, restaurants, and chains featuring ultra-fast billing, real-time inventory tracking, and automated multi-store cloud sync to streamline daily operations.",
     illustration: "pos",
-    image: "/metro-fintech-mockup.png",
+    image: "/images/hero/light/hero-ecomerce-light-png-removebg-preview.png",
     category: "growth",
-    primaryCta: { label: "Get Free POS Demo", href: "/get-a-quote" },
+    primaryCta: { label: "Get POS Demo", href: "/get-a-quote" },
     secondaryCta: { label: "Explore POS Features", href: "/services" },
     features: [
       { label: "Instant Billing & Invoicing" },
@@ -104,10 +104,10 @@ export const heroServices: HeroService[] = [
   {
     id: "ui-ux-design",
     badge: "Graphic, Logo & UX/UI",
-    heading: "Creative Graphic, Logo\n& UX/UI Design",
-    highlight: "To Engage Users",
+    heading: "Creative UX/UI &",
+    highlight: "Graphic Design",
     description:
-      "Design clean, modern, user-focused interfaces, stunning brand logos, and digital creatives for websites, applications, and marketing. Craft visual experiences that elevate brand authority.",
+      "Design clean, modern, user-focused web interfaces, stunning brand logos, and digital marketing creatives. Craft visual experiences that elevate overall brand authority and drive customer engagement.",
     illustration: "uiux",
     image: "/images/hero/light/hero-uiux-light-removebg-preview.png",
     category: "build",
@@ -129,14 +129,14 @@ export const heroServices: HeroService[] = [
   {
     id: "school-erp-hrm",
     badge: "School ERP & School HRM",
-    heading: "All-in-One School ERP\n& HRM Platform",
-    highlight: "For Campus Operations",
+    heading: "All-in-One School ERP",
+    highlight: "& HRM Platform",
     description:
-      "Complete educational management platform for schools and colleges, handling student admissions, fees, HR/payroll, exams, and parent portals. Automate administrative tasks effortlessly.",
+      "Complete educational management platform for schools and colleges, handling student admissions, fees, HR/payroll, automated exams, and parent mobile app portals for effortless administration.",
     illustration: "school",
-    image: "/anyuni-mockup.png",
+    image: "/images/hero/light/hero-api-light-png-removebg-preview.png",
     category: "infra",
-    primaryCta: { label: "Request School ERP Demo", href: "/get-a-quote" },
+    primaryCta: { label: "Request ERP Demo", href: "/get-a-quote" },
     secondaryCta: { label: "View ERP Modules", href: "/services" },
     features: [
       { label: "Fee Collection & Invoicing" },
@@ -154,14 +154,14 @@ export const heroServices: HeroService[] = [
   {
     id: "crm-erp-solutions",
     badge: "CRM & ERP Solutions",
-    heading: "Custom Enterprise CRM\n& ERP Solutions",
-    highlight: "For Workflow Automation",
+    heading: "Enterprise CRM & ERP",
+    highlight: "Software Solutions",
     description:
-      "Build customized CRM and enterprise ERP systems to manage customers, sales, supply chain, automation, and business intelligence efficiently. Drive productivity across all business departments.",
+      "Build customized CRM and enterprise ERP systems to manage customer relationships, sales pipelines, supply chain, automated workflows, and real-time business telemetry for sustainable business growth.",
     illustration: "crm",
-    image: "/hero-crm-3d-v2.png",
+    image: "/images/hero/light/hero-software-light-removebg-preview (1).png",
     category: "growth",
-    primaryCta: { label: "Request CRM/ERP Demo", href: "/get-a-quote" },
+    primaryCta: { label: "Request CRM Demo", href: "/get-a-quote" },
     secondaryCta: { label: "Explore Features", href: "/services" },
     features: [
       { label: "Lead & Pipeline Tracking" },
@@ -179,10 +179,10 @@ export const heroServices: HeroService[] = [
   {
     id: "ecommerce-development",
     badge: "E-Commerce Development",
-    heading: "High-Converting\nE-Commerce Platforms",
-    highlight: "To Maximize Revenue",
+    heading: "High-Converting",
+    highlight: "E-Commerce Stores",
     description:
-      "Develop secure, scalable e-commerce platforms with smooth shopping experiences, instant checkouts, and powerful inventory management features. Optimized for high conversion rates and seamless payments.",
+      "Develop secure, scalable e-commerce storefronts with smooth shopping cart checkouts, custom payment gateways, and real-time automated inventory management optimized for maximum revenue.",
     illustration: "ecommerce",
     image: "/images/hero/light/hero-ecomerce-light-png-removebg-preview.png",
     category: "growth",
@@ -204,10 +204,10 @@ export const heroServices: HeroService[] = [
   {
     id: "digital-marketing",
     badge: "Digital Marketing",
-    heading: "Result-Driven Digital\nMarketing & SEO",
-    highlight: "To Drive Visibility",
+    heading: "Digital Marketing &",
+    highlight: "SEO Solutions",
     description:
-      "Grow online visibility through SEO, social media, paid campaigns, content marketing, and conversion-focused digital strategies. Scale lead generation with data-proven growth techniques.",
+      "Grow online search visibility through technical SEO audits, targeted social media ad campaigns, content marketing, and proven conversion-focused growth strategies to expand your customer reach.",
     illustration: "marketing",
     image: "/images/hero/light/hero-digital-light-png-removebg-preview.png",
     category: "growth",
@@ -229,10 +229,10 @@ export const heroServices: HeroService[] = [
   {
     id: "software-development",
     badge: "Software Development",
-    heading: "Tailored Custom\nSoftware Engineering",
-    highlight: "Built To Scale",
+    heading: "Custom Enterprise",
+    highlight: "Software Engineering",
     description:
-      "Develop complete custom software, SaaS platforms, and enterprise solutions that solve real business problems and scale with growth. Built on modern cloud architecture with 99.99% reliability.",
+      "Develop custom software, multi-tenant SaaS platforms, and enterprise systems that solve complex business operations and scale seamlessly on modern cloud infrastructure with zero downtime.",
     illustration: "software",
     image: "/images/hero/light/hero-software-light-removebg-preview (1).png",
     category: "build",

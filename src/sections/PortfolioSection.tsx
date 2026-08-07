@@ -59,9 +59,9 @@ export default function PortfolioSection() {
   const row2Items = [...caseStudiesRow2, ...caseStudiesRow2, ...caseStudiesRow2];
 
   return (
-    <section id="portfolio" className="relative bg-white py-16 font-sans border-t border-slate-200 overflow-hidden">
+    <section id="portfolio" className="relative bg-white py-16 font-sans border-t border-slate-200 overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-12 text-center flex flex-col items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center flex flex-col items-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-blue-200/40 bg-[#2563FF]/5 px-4.5 py-1 text-xs font-bold uppercase tracking-wider text-[#2563FF] font-display shadow-sm mb-3">
           <Sparkles className="w-3.5 h-3.5" />
           FEATURED PORTFOLIO & CASE STUDIES

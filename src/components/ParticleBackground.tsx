@@ -201,8 +201,8 @@ export default function ParticleBackground() {
     let timeoutId: NodeJS.Timeout;
 
     const scanTargets = () => {
-      // Limit particle portals to major hero & top sections to save browser memory
-      const selectors = "section:first-of-type, .hero-section, footer";
+      // Limit particle portals to footer section
+      const selectors = "footer";
       const elements = Array.from(document.querySelectorAll(selectors));
       
       const newTargets = elements.filter((el) => !elementsWithParticles.has(el));
