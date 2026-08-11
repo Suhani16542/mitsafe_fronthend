@@ -1,8 +1,11 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
+import Link from "next/link";
 import { HeroService } from "@/types/hero";
+
+import { useModal } from "@/context/ModalContext";
 
 const containerVariants = {
   enter: { opacity: 0, x: 24 },
@@ -12,11 +15,17 @@ const containerVariants = {
 
 export function HeroContent({
   service,
+  index,
+  total,
+  onOpenModal,
 }: {
   service: HeroService;
   index: number;
   total: number;
+  onOpenModal?: (service: HeroService) => void;
 }) {
+  const { openModal } = useModal();
+
   return (
     <div className="relative z-10 max-w-xl w-full pb-2">
       {/* Dynamic Pill Badge */}
@@ -51,20 +60,25 @@ export function HeroContent({
 
           {/* Dynamic CTA Buttons */}
           <div className="mt-4 flex items-center gap-3.5">
-            <a
-              href={service.primaryCta.href}
-              className="group inline-flex items-center justify-center gap-2.5 h-10 sm:h-11 rounded-xl bg-[#0052FF] hover:bg-[#0042D9] px-5 sm:px-6 text-xs sm:text-sm font-extrabold text-white shadow-[0_6px_22px_rgba(0,82,255,0.25)] transition-all hover:scale-[1.02] active:scale-[0.98] shrink-0"
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                openModal("quote", service.heading);
+                if (onOpenModal) onOpenModal(service);
+              }}
+              data-modal="quote"
+              className="group inline-flex items-center justify-center gap-2.5 h-10 sm:h-11 rounded-xl bg-[#0052FF] hover:bg-[#0042D9] px-5 sm:px-6 text-xs sm:text-sm font-extrabold text-white shadow-[0_6px_22px_rgba(0,82,255,0.25)] transition-all hover:scale-[1.02] active:scale-[0.98] shrink-0 cursor-pointer"
             >
               <span>{service.primaryCta.label}</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
-              href={service.secondaryCta.href}
-              className="group inline-flex items-center justify-center gap-2.5 h-10 sm:h-11 rounded-xl border-2 border-[#0052FF] bg-white px-5 sm:px-6 text-xs sm:text-sm font-extrabold text-[#0052FF] hover:bg-blue-50/70 transition-all hover:scale-[1.02] active:scale-[0.98] shrink-0"
+            </button>
+            <Link
+              href="/portfolio"
+              className="group inline-flex items-center justify-center gap-2 h-10 sm:h-11 rounded-xl border-2 border-[#0052FF] bg-white px-4 sm:px-4 text-xs sm:text-[13px] font-extrabold text-[#0052FF] hover:bg-blue-50/70 transition-all hover:scale-[1.02] active:scale-[0.98] shrink-0 cursor-pointer"
             >
-              <span>{service.secondaryCta.label}</span>
+              <span>View Design Portfolio</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
+            </Link>
           </div>
 
           {/* Dynamic Features Checklist: 2+2 Layout Grid (2 on top, 2 on bottom) */}
@@ -74,8 +88,8 @@ export function HeroContent({
                 key={f.label}
                 className="flex items-center gap-2 text-xs sm:text-[13.5px] font-semibold text-slate-800"
               >
-                <span className="flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-[#0052FF] text-white text-[10px] font-bold shadow-xs">
-                  ✓
+                <span className="flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-900 border border-slate-300 shadow-2xs">
+                  <Check className="w-3 h-3 text-black stroke-[3.5px]" />
                 </span>
                 <span className="truncate">{f.label}</span>
               </li>

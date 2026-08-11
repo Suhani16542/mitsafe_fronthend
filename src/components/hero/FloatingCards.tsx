@@ -48,9 +48,9 @@ export function FloatingCards({ id, iconKeys }: { id: string; iconKeys: string[]
                   scale: { duration: 0.4, delay: 0.15 + i * 0.08 },
                   y: { duration: 3.5 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 },
                 }}
-                className={`absolute ${POSITIONS[i]} flex items-center gap-2 rounded-xl border border-blue-50 bg-white/90 px-3 py-2 shadow-lg shadow-blue-900/5 backdrop-blur`}
+                className={`absolute ${POSITIONS[i]} flex items-center gap-2 rounded-xl border border-[#305EFF] bg-white/90 px-3 py-2 shadow-lg shadow-[#305EFF]/5 backdrop-blur`}
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-100 text-black">
                   <Icon className="h-3.5 w-3.5" />
                 </span>
               </motion.div>

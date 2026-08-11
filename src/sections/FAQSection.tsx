@@ -89,9 +89,9 @@ export default function FAQSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-5 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-600 font-display shadow-sm"
+              className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#305EFF] font-display shadow-sm"
             >
-              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              <Sparkles className="w-3.5 h-3.5 text-black" />
               <span>FAQ DOCUMENTATION</span>
             </motion.div>
 
@@ -105,7 +105,7 @@ export default function FAQSection() {
               className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-[-0.03em] mb-6 text-black"
             >
               Got Questions? <br />
-              We&apos;ve Got <span className="text-[#2563FF] inline-block" style={{ color: "#2563FF", WebkitTextFillColor: "#2563FF", background: "none" }}>Answers.</span>
+              We&apos;ve Got <span className="text-[#305EFF] inline-block" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF", background: "none" }}>Answers.</span>
             </motion.h2>
 
             {/* Paragraph description */}
@@ -121,12 +121,12 @@ export default function FAQSection() {
 
             {/* Visual box inside sidepanel */}
             <div className="w-full max-w-[340px] rounded-3xl bg-white border border-slate-200 p-6 flex items-center gap-4.5 relative overflow-hidden group shadow-sm hover:border-slate-400 transition-colors duration-300">
-              <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center shadow-sm">
-                <HelpIcon className="w-6 h-6 text-[#2563FF] stroke-[2px]" />
+              <div className="w-12 h-12 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center shadow-xs">
+                <HelpIcon className="w-6 h-6 text-black stroke-[2px]" />
               </div>
               <div className="flex flex-col gap-0.5 z-10">
                 <span className="text-sm font-bold text-slate-900 font-display">Need Custom Support?</span>
-                <a href="/contact" className="text-xs text-[#2563FF] font-semibold hover:underline">Reach out to our engineers &rarr;</a>
+                <a href="/contact" className="text-xs text-[#305EFF] font-semibold hover:underline">Reach out to our engineers &rarr;</a>
               </div>
             </div>
           </div>
@@ -160,7 +160,7 @@ export default function FAQSection() {
                         className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
                           isOpen
                             ? "bg-slate-800 border-slate-800 text-white rotate-90"
-                            : "bg-slate-50 border-slate-200 text-slate-500 group-hover/card:bg-slate-800 group-hover/card:border-slate-800 group-hover/card:text-white"
+                            : "bg-slate-50 border-slate-200 text-slate-500 group-hover/card:bg-slate-100 group-hover/card:text-slate-700"
                         }`}
                       >
                         <ChevronRight className="w-5 h-5" />

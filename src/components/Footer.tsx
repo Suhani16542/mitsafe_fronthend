@@ -257,7 +257,7 @@ export default function Footer() {
           </div>
           <Link href="/get-a-quote">
             <span
-              className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 bg-[#0052FF] hover:bg-[#0042D9] rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto cursor-pointer"
+              className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 bg-[#305EFF] hover:bg-[#305EFF] rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto cursor-pointer"
             >
               <span className="font-bold text-xs sm:text-sm" style={{ color: "#FFFFFF", WebkitTextFillColor: "#FFFFFF" }}>Get A Free Quote</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" style={{ color: "#FFFFFF", stroke: "#FFFFFF" }} />
@@ -276,7 +276,7 @@ export default function Footer() {
             <span className="opacity-40 text-slate-900">|</span>
             <Link href="/terms" className="hover:text-black inline-block transition-transform duration-200 hover:scale-105">Terms &amp; Conditions</Link>
             <span className="opacity-40 text-slate-900">|</span>
-            <Link href="#" className="hover:text-[#2563FF] inline-block transition-transform duration-200 hover:scale-105">Sitemap</Link>
+            <Link href="#" className="hover:text-[#305EFF] inline-block transition-transform duration-200 hover:scale-105">Sitemap</Link>
           </div>
         </div>
       </div>

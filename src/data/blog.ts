@@ -30,7 +30,7 @@ export const blogData: BlogPost[] = [
       <p>Server components are the default in Next.js 16. Fetching data directly inside components using standard async-await syntax cuts down boilerplate code. Client-side code is reserved only for interactive UI widgets (like sliders, panels, or custom hover buttons). This hybrid approach maximizes speeds and maintains excellent crawlability for search engines.</p>
     `,
     category: "Web Development",
-    imageColor: "from-blue-650 to-cyan-550",
+    imageColor: "from-[#305EFF] to-cyan-550",
     tags: ["React 19", "Next.js 16", "Performance"],
     featured: true
   },

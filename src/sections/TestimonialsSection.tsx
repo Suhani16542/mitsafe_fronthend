@@ -86,8 +86,8 @@ export default function TestimonialsSection() {
     <section className="relative w-full overflow-hidden bg-white py-10 md:py-12 font-sans border-t border-slate-100 px-4 sm:px-6 lg:px-8">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 text-center flex flex-col items-center">
         {/* Header Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/15 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-widest text-[#38BDF8] mb-2.5 backdrop-blur-sm shadow-sm">
-          <Sparkles className="w-3 h-3 text-[#38BDF8]" />
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#305EFF]/30 bg-[#305EFF]/15 px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-widest text-[#305EFF] mb-2.5 backdrop-blur-sm shadow-sm">
+          <Sparkles className="w-3 h-3 text-black" />
           <span>CLIENT REVIEWS & CASE TESTIMONIALS</span>
         </div>
 
@@ -98,8 +98,8 @@ export default function TestimonialsSection() {
         >
           To Deliver{" "}
           <span
-            style={{ color: "#2563FF", WebkitTextFillColor: "#2563FF", background: "none" }}
-            className="text-[#2563FF] inline-block font-extrabold"
+            style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF", background: "none" }}
+            className="text-[#305EFF] inline-block font-extrabold"
           >
             Transformative Excellence
           </span>
@@ -135,7 +135,7 @@ export default function TestimonialsSection() {
 
                   {/* Top Video Review Pill */}
                   <div className="relative z-20 flex justify-end">
-                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-100 px-3 py-1 rounded-full backdrop-blur-sm">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#305EFF] bg-[#305EFF]/10 border border-[#305EFF]/20 px-3 py-1 rounded-full backdrop-blur-sm">
                       VIDEO REVIEW
                     </span>
                   </div>
@@ -143,9 +143,9 @@ export default function TestimonialsSection() {
                   {/* Center Play Button Icon */}
                   <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
                     <div className="relative flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full bg-[#0052FF]/40 animate-ping absolute" />
-                      <div className="w-14 h-14 rounded-full bg-[#2563FF] text-white flex items-center justify-center shadow-[0_0_20px_rgba(0,82,255,0.8)] group-hover:scale-110 transition-transform">
-                        <Play className="w-6 h-6 fill-current ml-0.5" />
+                      <div className="w-16 h-16 rounded-full bg-black/10 animate-ping absolute" />
+                      <div className="w-14 h-14 rounded-full bg-white border border-slate-200 text-black flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                        <Play className="w-6 h-6 fill-current text-black ml-0.5" />
                       </div>
                     </div>
                   </div>
@@ -176,7 +176,7 @@ export default function TestimonialsSection() {
                           <Star key={i} className="w-4.5 h-4.5 fill-amber-400 text-amber-400" />
                         ))}
                       </div>
-                      <Quote className="w-7 h-7 text-[#38BDF8]" />
+                      <Quote className="w-7 h-7 text-black" />
                     </div>
 
                     {/* Review Quote Text in Pure #FFFFFF White */}
@@ -189,7 +189,7 @@ export default function TestimonialsSection() {
 
                   {/* Bottom Author Badge with Image Avatar */}
                   <div className="pt-4 border-t border-slate-200 flex items-center gap-3.5 mt-4 text-slate-900">
-                    <div className="relative w-11 h-11 rounded-xl overflow-hidden border-2 border-[#38BDF8] shrink-0 shadow-lg">
+                    <div className="relative w-11 h-11 rounded-xl overflow-hidden border-2 border-[#305EFF] shrink-0 shadow-lg">
                       <Image src={item.image} alt={item.name} fill sizes="44px" className="object-cover" />
                     </div>
                     <div>

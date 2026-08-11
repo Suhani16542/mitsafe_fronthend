@@ -31,10 +31,36 @@ import {
   Bot,
   MapPin,
   Sparkles,
+  HeartPulse,
+  Landmark,
+  GraduationCap,
+  ShoppingBag,
+  Building2,
+  Compass,
+  Truck,
+  Factory,
+  Tv,
+  Car,
 } from "lucide-react";
 import Button from "./Button";
 import { servicesData } from "@/data/services";
+import { navbarIndustriesData } from "@/data/industriesDataNavbar";
 import { useTheme } from "./ThemeProvider";
+
+const industryIconMap: Record<string, React.ComponentType<any>> = {
+  HeartPulse,
+  Landmark,
+  GraduationCap,
+  ShoppingBag,
+  Building2,
+  Compass,
+  Truck,
+  Factory,
+  Tv,
+  Cloud,
+  Car,
+  Briefcase,
+};
 
 const iconMap: Record<string, React.ComponentType<any>> = {
   Code: Code,
@@ -136,37 +162,45 @@ const countryItems = [
   { code: "de", flag: "🇩🇪", flagUrl: "https://flagcdn.com/w40/de.png", name: "Germany" },
 ];
 
-const messageWords = [
-  "Helping",
-  "businesses",
-  "connect",
-  "globally",
-  "with",
-  "secure,",
-  "seamless",
-  "digital",
-  "solutions.",
-];
+const messageWords = ["Building", "Digital", "Solutions", "Worldwide"];
+
+import { useModal } from "@/context/ModalContext";
 
 export default function Navbar() {
+  const { openModal } = useModal();
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [industriesDropdownOpen, setIndustriesDropdownOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [activeCategorySlug, setActiveCategorySlug] = useState<string>("web-development");
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const industriesDropdownRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const [announcementIndex, setAnnouncementIndex] = useState(0);
   const [topBarHovered, setTopBarHovered] = useState(false);
   const [countryIndex, setCountryIndex] = useState(0);
-  const [visibleWordCount, setVisibleWordCount] = useState(1);
+  const [wordCount, setWordCount] = useState(1);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Continuous Word-by-Word Message Animation Timer Loop (450ms per word + 2.2s pause at complete sentence)
+  useEffect(() => {
+    const isComplete = wordCount >= messageWords.length;
+    const delay = isComplete ? 2200 : 450;
+
+    const timer = setTimeout(() => {
+      setWordCount((prev) => (prev >= messageWords.length ? 1 : prev + 1));
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [wordCount]);
 
   // Vertical Country Slider Timer Effect
   useEffect(() => {
@@ -175,18 +209,6 @@ export default function Navbar() {
     }, 2400);
     return () => clearInterval(countryTimer);
   }, []);
-
-  // Word-by-Word Message Animation Timer Effect (650ms per word + 2.2s pause at complete sentence)
-  useEffect(() => {
-    const isLastWord = visibleWordCount >= messageWords.length;
-    const delay = isLastWord ? 2200 : 650;
-
-    const timer = setTimeout(() => {
-      setVisibleWordCount((prev) => (prev >= messageWords.length ? 1 : prev + 1));
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, [visibleWordCount]);
 
   useEffect(() => {
     if (topBarHovered) return;
@@ -198,7 +220,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const element = dropdownRef.current;
-    if (servicesDropdownOpen) {
+    if (servicesDropdownOpen || industriesDropdownOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -215,7 +237,21 @@ export default function Navbar() {
       element.removeEventListener("wheel", handleWheel);
       document.body.style.overflow = "";
     };
-  }, [servicesDropdownOpen]);
+  }, [servicesDropdownOpen, industriesDropdownOpen]);
+
+  useEffect(() => {
+    const element = industriesDropdownRef.current;
+    if (!element) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.stopPropagation();
+    };
+
+    element.addEventListener("wheel", handleWheel, { passive: true });
+    return () => {
+      element.removeEventListener("wheel", handleWheel);
+    };
+  }, [industriesDropdownOpen]);
 
   const activeService = useMemo(() => {
     return servicesData.find(s => s.slug === activeCategorySlug) || servicesData[0];
@@ -238,13 +274,15 @@ export default function Navbar() {
     setMobileMenuOpen(false);
     setServicesDropdownOpen(false);
     setMobileServicesOpen(false);
+    setIndustriesDropdownOpen(false);
+    setMobileIndustriesOpen(false);
   }, [pathname]);
 
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Company", href: "/company" },
     { name: "Services", href: "/#premium-showcase", hasDropdown: true },
-    { name: "Industries", href: "/industries" },
+    { name: "Industries", href: "#", hasDropdown: true },
     { name: "Portfolio", href: "/portfolio" },
     { name: "Hire Developers", href: "/hire-developers" },
   ];
@@ -256,9 +294,9 @@ export default function Navbar() {
 
         {/* 1. Pure White Rectangular Topbar — NO Border Radius on Topbar */}
         <div className="w-full h-[44px] sm:h-[46px] bg-white border-b border-slate-200/90 px-4 sm:px-8 lg:px-12 flex items-center justify-between pointer-events-auto relative z-20 font-sans text-black">
-          
-          {/* Main Structure: [Phone Icon + Phone Number] [Country Flag + Country Name — vertical slider] [Animated professional message] */}
-          <div className="flex items-center gap-3 sm:gap-4 lg:gap-5 overflow-hidden">
+
+          {/* Main Structure: [Email] | [Phone] | [Continuous Word-by-Word Message] [Country Flag + Name Slider] */}
+          <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-4 overflow-hidden">
             {/* Email Icon + Email (Optional inline display) */}
             <a
               href="mailto:moderntechnologies12@gmail.com"
@@ -283,8 +321,31 @@ export default function Navbar() {
               </span>
             </a>
 
-            {/* Country Flag Icon + Country Name — Vertical Slider (Razorpay Style) */}
-            <div className="relative h-7 px-3 rounded-full bg-slate-100/90 border border-slate-200/80 flex items-center justify-center overflow-hidden shrink-0 shadow-2xs">
+            <div className="hidden sm:block h-3.5 w-[1px] bg-slate-300 shrink-0" />
+
+            {/* 1. Continuous Word-by-Word Animated Message — Fixed container layout space so Country position remains static */}
+            <div className="hidden md:inline-flex items-center gap-1.5 text-[13px] sm:text-[13.5px] lg:text-[14px] font-medium text-slate-800 tracking-tight whitespace-nowrap shrink-0">
+              {messageWords.map((word, idx) => {
+                const isVisible = idx < wordCount;
+                return (
+                  <motion.span
+                    key={idx}
+                    initial={{ opacity: 0, y: 3 }}
+                    animate={{
+                      opacity: isVisible ? 1 : 0,
+                      y: isVisible ? 0 : 3,
+                    }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    className="inline-block"
+                  >
+                    {word}
+                  </motion.span>
+                );
+              })}
+            </div>
+
+            {/* 2. Country Flag Icon + Country Name — Fixed position after message space */}
+            <div className="relative h-7 w-[145px] sm:w-[165px] px-3.5 rounded-full bg-slate-100/90 border border-slate-200/80 flex items-center justify-center overflow-hidden shrink-0 shadow-2xs ml-1.5 sm:ml-2.5">
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.div
                   key={countryIndex}
@@ -292,33 +353,18 @@ export default function Navbar() {
                   animate={{ y: "0%", opacity: 1 }}
                   exit={{ y: "-100%", opacity: 0 }}
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center gap-2 whitespace-nowrap text-xs sm:text-[13px] font-normal text-black"
+                  className="flex items-center gap-2 whitespace-nowrap text-[13px] sm:text-[13.5px] font-medium text-black"
                 >
                   <img
                     src={countryItems[countryIndex].flagUrl}
                     alt={countryItems[countryIndex].name}
                     className="w-4 h-4 rounded-full object-cover shrink-0 shadow-2xs border border-slate-200"
                   />
-                  <span className="font-normal text-black select-none">
+                  <span className="font-medium text-black select-none">
                     {countryItems[countryIndex].name}
                   </span>
                 </motion.div>
               </AnimatePresence>
-            </div>
-
-            {/* Word-by-Word Animated Professional Message */}
-            <div className="hidden md:flex items-center gap-1.5 text-[13.5px] sm:text-[14px] font-normal text-black truncate ml-1">
-              {messageWords.slice(0, visibleWordCount).map((word, idx) => (
-                <motion.span
-                  key={idx}
-                  initial={{ opacity: 0, y: 3 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="inline-block text-black font-normal"
-                >
-                  {word}
-                </motion.span>
-              ))}
             </div>
           </div>
 
@@ -389,25 +435,34 @@ export default function Navbar() {
                 {/* Desktop Nav Links (font-medium instead of bold) */}
                 <nav className="hidden lg:flex items-center gap-4 xl:gap-7 justify-center h-full ml-4 font-sans">
                   {navLinks.map((link) => {
-                    const isServicesOrDropdown = link.name === "Services" || link.name === "Country" || link.hasDropdown;
+                    const isServices = link.name === "Services";
+                    const isIndustries = link.name === "Industries";
+                    const isServicesOrDropdown = isServices || link.name === "Country";
                     const isActive =
                       pathname === link.href ||
                       (link.name === "Home" && pathname === "/") ||
-                      (isServicesOrDropdown && pathname.startsWith("/services"));
+                      (isServices && pathname.startsWith("/services")) ||
+                      (isIndustries && pathname.startsWith("/industries"));
                     return (
                       <div
                         key={link.name}
                         className="relative group flex items-center py-2 px-1.5 rounded-full h-full"
                         onMouseEnter={() => {
                           setHoveredLink(link.name);
-                          if (isServicesOrDropdown) {
+                          if (isServices) {
                             setServicesDropdownOpen(true);
+                            setIndustriesDropdownOpen(false);
+                          } else if (isIndustries) {
+                            setIndustriesDropdownOpen(true);
+                            setServicesDropdownOpen(false);
                           }
                         }}
                         onMouseLeave={() => {
                           setHoveredLink(null);
-                          if (isServicesOrDropdown) {
+                          if (isServices) {
                             setServicesDropdownOpen(false);
+                          } else if (isIndustries) {
+                            setIndustriesDropdownOpen(false);
                           }
                         }}
                       >
@@ -415,42 +470,59 @@ export default function Navbar() {
                         {isActive && (
                           <motion.span
                             layoutId="activeNavPill"
-                            className="absolute bottom-2 left-1/2 -translate-x-1/2 w-7 h-[3px] bg-[#2563FF] rounded-full shadow-xs"
+                            className="absolute bottom-2 left-1/2 -translate-x-1/2 w-7 h-[3px] bg-[#305EFF] rounded-full shadow-xs"
                             transition={{ type: "spring", stiffness: 380, damping: 30 }}
                           />
                         )}
 
                         {/* Link Text (font-medium weight) */}
                         <div className="relative z-10 flex items-center h-full">
-                          <Link
-                            href={link.href}
-                            onClick={(e) => {
-                              if (isServicesOrDropdown && pathname === "/") {
+                          {link.hasDropdown ? (
+                            <button
+                              type="button"
+                              onClick={(e) => {
                                 e.preventDefault();
-                                const element = document.getElementById("premium-showcase");
-                                if (element) {
-                                  element.scrollIntoView({ behavior: "smooth" });
+                                e.stopPropagation();
+                                if (isIndustries) {
+                                  setIndustriesDropdownOpen((prev) => !prev);
+                                } else if (isServices) {
+                                  setServicesDropdownOpen((prev) => !prev);
                                 }
-                              }
-                            }}
-                            className={`font-medium text-[14.5px] tracking-normal transition-all duration-200 flex items-center gap-1 cursor-pointer select-none px-2 py-1.5 relative group/item whitespace-nowrap ${isActive
-                              ? "text-[#2563FF]"
-                              : "text-slate-800 hover:text-[#2563FF]"
-                              }`}
-                          >
-                            <span>{link.name}</span>
-                            {link.hasDropdown && (
+                              }}
+                              className={`font-medium text-[14.5px] tracking-normal transition-all duration-200 flex items-center gap-1 cursor-pointer select-none px-2 py-1.5 relative group/item whitespace-nowrap ${isActive
+                                ? "text-[#305EFF]"
+                                : "text-slate-800 hover:text-[#305EFF]"
+                                }`}
+                            >
+                              <span>{link.name}</span>
                               <ChevronDown
-                                className={`w-3.5 h-3.5 transition-transform duration-200 ${isServicesOrDropdown && servicesDropdownOpen ? "rotate-180 text-[#2563FF]" : "text-slate-400 group-hover:text-[#2563FF]"
-                                  }`}
+                                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                                  (isServices && servicesDropdownOpen) || (isIndustries && industriesDropdownOpen)
+                                    ? "rotate-180 text-[#305EFF]"
+                                    : "text-slate-400 group-hover:text-[#305EFF]"
+                                }`}
                               />
-                            )}
 
-                            {/* Hover Underline effect */}
-                            {!isActive && (
-                              <span className="absolute bottom-1.5 left-2 right-2 h-[2px] bg-[#2563FF] scale-x-0 group-hover/item:scale-x-100 transition-transform duration-200 origin-center" />
-                            )}
-                          </Link>
+                              {/* Hover Underline effect */}
+                              {!isActive && (
+                                <span className="absolute bottom-1.5 left-2 right-2 h-[2px] bg-[#305EFF] scale-x-0 group-hover/item:scale-x-100 transition-transform duration-200 origin-center" />
+                              )}
+                            </button>
+                          ) : (
+                            <Link
+                              href={link.href}
+                              className={`font-medium text-[14.5px] tracking-normal transition-all duration-200 flex items-center gap-1 cursor-pointer select-none px-2 py-1.5 relative group/item whitespace-nowrap ${isActive
+                                ? "text-[#305EFF]"
+                                : "text-slate-800 hover:text-[#305EFF]"
+                                }`}
+                            >
+                              <span>{link.name}</span>
+                              {/* Hover Underline effect */}
+                              {!isActive && (
+                                <span className="absolute bottom-1.5 left-2 right-2 h-[2px] bg-[#305EFF] scale-x-0 group-hover/item:scale-x-100 transition-transform duration-200 origin-center" />
+                              )}
+                            </Link>
+                          )}
                         </div>
 
                         {/* Services Mega Menu */}
@@ -487,7 +559,7 @@ export default function Navbar() {
                                     variants={columnVariants}
                                     className="col-span-12 lg:col-span-3 border-r border-slate-200/50 pr-4 flex flex-col gap-2 max-h-[calc(100vh-220px)] overflow-y-auto overscroll-contain hide-scrollbar"
                                   >
-                                    <span className="text-[11px] font-bold tracking-wider text-[#1D74F5] uppercase font-mono mb-2 px-3">
+                                    <span className="text-[11px] font-bold tracking-wider text-[#305EFF] uppercase font-mono mb-2 px-3">
                                       Categories
                                     </span>
                                     {servicesData.map((srv) => {
@@ -498,15 +570,15 @@ export default function Navbar() {
                                           key={srv.slug}
                                           onMouseEnter={() => setActiveCategorySlug(srv.slug)}
                                           className={`group/btn flex items-center justify-between p-3.5 rounded-r-2xl text-left transition-all duration-200 w-full cursor-pointer border-l-4 ${isCatActive
-                                            ? "bg-[#1D74F5]/8 border-[#1D74F5] text-[#1D74F5]"
-                                            : "bg-transparent border-transparent text-slate-600 hover:bg-slate-50 hover:text-[#1D74F5] hover:translate-x-1.5"
+                                            ? "bg-[#305EFF]/8 border-[#305EFF] text-[#305EFF]"
+                                            : "bg-transparent border-transparent text-slate-600 hover:bg-slate-50 hover:text-[#305EFF] hover:translate-x-1.5"
                                             }`}
                                         >
                                           <div className="flex items-center gap-3.5">
                                             <div
                                               className={`w-7.5 h-7.5 rounded-lg flex items-center justify-center border transition-all duration-200 ${isCatActive
-                                                ? "bg-gradient-to-tr from-[#00D4FF] to-[#008FED] text-white border-transparent shadow-[0_0_12px_rgba(0,212,255,0.3)]"
-                                                : "bg-[#008FED]/5 border-[#008FED]/10 text-[#008FED] group-hover/btn:scale-105"
+                                                ? "bg-[#305EFF] text-white border-transparent shadow-[0_0_12px_rgba(48,94,255,0.3)]"
+                                                : "bg-[#305EFF]/5 border-[#305EFF]/10 text-[#305EFF] group-hover/btn:scale-105"
                                                 }`}
                                             >
                                               <IconComponent className="w-3.5 h-3.5" />
@@ -516,7 +588,7 @@ export default function Navbar() {
                                             </span>
                                           </div>
                                           <ChevronRight className={`w-4 h-4 transition-transform duration-200 ${isCatActive
-                                            ? "text-[#1D74F5] translate-x-0.5"
+                                            ? "text-[#305EFF] translate-x-0.5"
                                             : "text-slate-300 group-hover/btn:translate-x-0.5"
                                             }`} />
                                         </button>
@@ -527,27 +599,27 @@ export default function Navbar() {
                                   {/* 2. Center: Selected Service Preview */}
                                   <motion.div
                                     variants={columnVariants}
-                                    className="col-span-12 lg:col-span-4 flex flex-col justify-start gap-5 text-left max-h-[calc(100vh-220px)] overflow-y-auto overscroll-contain hide-scrollbar"
+                                    className="col-span-12 lg:col-span-4 flex flex-col justify-between text-left py-1"
                                   >
-                                    <div className="flex flex-col gap-4">
-                                      <span className="text-[11px] font-bold tracking-wider text-[#1D74F5] uppercase font-mono">
+                                    <div className="flex flex-col gap-3">
+                                      <span className="text-[11px] font-bold tracking-wider text-[#305EFF] uppercase font-mono">
                                         Overview
                                       </span>
-                                      <h2 className="text-3xl font-bold text-[#0F172A] tracking-tight font-display mb-1">
+                                      <h2 className="text-2xl lg:text-3xl font-bold text-[#0F172A] tracking-tight font-display">
                                         {activeService.title}
                                       </h2>
-                                      <div className="w-12 h-[3.5px] bg-[#1D74F5] rounded-full mb-2" />
-                                      <p className="text-[13px] text-slate-600 leading-relaxed font-normal font-sans">
+                                      <div className="w-12 h-[3px] bg-[#305EFF] rounded-full my-0.5" />
+                                      <p className="text-[13px] text-slate-600 leading-relaxed font-normal font-sans line-clamp-4">
                                         {activeService.longDescription}
                                       </p>
                                     </div>
 
                                     {/* Action Button */}
-                                    <div className="text-left mt-1">
+                                    <div className="text-left mt-4">
                                       <Link
                                         href={`/services/${activeService.slug}`}
                                         onClick={() => setServicesDropdownOpen(false)}
-                                        className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1D74F5] text-white hover:bg-[#1D74F5]/90 font-medium rounded-xl text-xs shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group/btn cursor-pointer font-sans"
+                                        className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#305EFF] text-white hover:bg-[#305EFF]/90 font-medium rounded-xl text-xs shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group/btn cursor-pointer font-sans"
                                       >
                                         <span>Explore {activeService.title}</span>
                                         <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
@@ -561,7 +633,7 @@ export default function Navbar() {
                                     className="col-span-12 lg:col-span-5 flex flex-col justify-between gap-6 border-l border-slate-200/50 pl-6 text-left max-h-[calc(100vh-220px)] overflow-y-auto overscroll-contain hide-scrollbar"
                                   >
                                     <div className="flex flex-col gap-3">
-                                      <span className="text-[11px] font-bold tracking-wider text-[#1D74F5] uppercase font-mono">
+                                      <span className="text-[11px] font-bold tracking-wider text-[#305EFF] uppercase font-mono">
                                         Services under {activeService.title}
                                       </span>
 
@@ -575,8 +647,8 @@ export default function Navbar() {
                                               className="group/item flex items-center justify-between py-3 px-2 border-b border-slate-100 hover:bg-slate-50/50 transition-all duration-150 cursor-pointer font-sans"
                                             >
                                               <div className="flex items-center gap-3">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-[#1D74F5] group-hover/item:scale-125 transition-transform shrink-0" />
-                                                <span className="text-[13.5px] font-medium text-slate-800 group-hover/item:text-[#1D74F5] transition-colors">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-[#305EFF] group-hover/item:scale-125 transition-transform shrink-0" />
+                                                <span className="text-[13.5px] font-medium text-slate-800 group-hover/item:text-[#305EFF] transition-colors">
                                                   {item}
                                                 </span>
                                               </div>
@@ -596,13 +668,149 @@ export default function Navbar() {
                                         {activeService.technologies.slice(0, 5).map((tech, techIdx) => (
                                           <span
                                             key={techIdx}
-                                            className="text-[11px] font-medium px-3 py-1.5 rounded-xl border border-slate-200/60 bg-slate-50 hover:bg-[#1D74F5]/10 hover:border-[#1D74F5]/30 hover:text-[#1D74F5] hover:scale-105 transition-all duration-300 tracking-wide cursor-default select-none shadow-xs font-sans text-slate-700"
+                                            className="text-[11px] font-medium px-3 py-1.5 rounded-xl border border-slate-200/60 bg-slate-50 hover:bg-[#305EFF]/10 hover:border-[#305EFF]/30 hover:text-[#305EFF] hover:scale-105 transition-all duration-300 tracking-wide cursor-default select-none shadow-xs font-sans text-slate-700"
                                           >
                                             {tech}
                                           </span>
                                         ))}
                                       </div>
                                     </div>
+                                  </motion.div>
+
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>,
+                          document.body
+                        )}
+
+                        {/* Industries Mega Menu */}
+                        {isIndustries && mounted && typeof document !== "undefined" && createPortal(
+                          <div
+                            className="fixed left-1/2 -translate-x-1/2 w-[calc(100vw-48px)] max-w-[1180px] z-[9999] pointer-events-none"
+                            style={{ top: "122px" }}
+                          >
+                            <AnimatePresence>
+                              {industriesDropdownOpen && (
+                                <motion.div
+                                  ref={industriesDropdownRef}
+                                  variants={dropdownVariants}
+                                  initial="hidden"
+                                  animate="visible"
+                                  exit="exit"
+                                  className="w-full max-h-[calc(100vh-140px)] bg-white border border-slate-200 rounded-[32px] p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.12)] grid grid-cols-12 gap-8 origin-top font-sans text-slate-800 overflow-hidden overscroll-contain pointer-events-auto"
+                                  onMouseEnter={() => setIndustriesDropdownOpen(true)}
+                                  onMouseLeave={() => setIndustriesDropdownOpen(false)}
+                                >
+                                  <style dangerouslySetInnerHTML={{
+                                    __html: `
+                                    .hide-scrollbar::-webkit-scrollbar {
+                                      display: none !important;
+                                    }
+                                    .hide-scrollbar {
+                                      -ms-overflow-style: none !important;
+                                      scrollbar-width: none !important;
+                                    }
+                                  `}} />
+
+                                  {/* 1. LEFT SIDE — INDUSTRIES INTRO */}
+                                  <motion.div
+                                    variants={columnVariants}
+                                    className="col-span-12 lg:col-span-4 border-r border-slate-200/50 pr-6 flex flex-col justify-between text-left py-0.5"
+                                  >
+                                    <div className="flex flex-col gap-3">
+                                      <span className="text-[11px] font-bold tracking-wider text-[#305EFF] uppercase font-mono">
+                                        Industry Solutions
+                                      </span>
+                                      
+                                      <h2 className="force-black-text text-2xl lg:text-3xl font-bold tracking-tight font-display select-none" style={{ color: "#000000", WebkitTextFillColor: "#000000" }}>
+                                        <span className="force-black-text" style={{ color: "#000000", WebkitTextFillColor: "#000000" }}>Industry-Tailored </span>
+                                        <span className="force-black-text" style={{ color: "#000000", WebkitTextFillColor: "#000000" }}>Tech </span>
+                                        <span className="force-black-text" style={{ color: "#000000", WebkitTextFillColor: "#000000" }}>Solutions</span>
+                                      </h2>
+                                      <div className="w-12 h-[3px] bg-[#305EFF] rounded-full my-0.5" />
+                                      
+                                      <p className="text-[13px] text-slate-600 leading-relaxed font-normal font-sans line-clamp-3">
+                                        We architect domain-specific software systems, AI automation engines, and secure digital infrastructure designed for your sector&apos;s exact compliance &amp; performance demands.
+                                      </p>
+
+                                      {/* Feature visual card */}
+                                      <div className="mt-1.5 p-3 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col gap-2 shadow-2xs font-sans">
+                                        <div className="flex items-center gap-2 text-xs font-semibold text-slate-800">
+                                          <ShieldCheck className="w-4 h-4 text-[#305EFF] shrink-0" />
+                                          <span>Enterprise Security &amp; Compliance</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-[12px] font-medium text-slate-600">
+                                          <span className="w-1.5 h-1.5 rounded-full bg-[#305EFF] shrink-0" />
+                                          <span>HIPAA, SOC2, PCI-DSS &amp; ISO Compliant</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-[12px] font-medium text-slate-600">
+                                          <span className="w-1.5 h-1.5 rounded-full bg-[#305EFF] shrink-0" />
+                                          <span>12+ Specialized Vertical Architectures</span>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    {/* CTA Link */}
+                                    <div className="text-left mt-3">
+                                      <button
+                                        onClick={() => {
+                                          setIndustriesDropdownOpen(false);
+                                          openModal("quote");
+                                        }}
+                                        className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#305EFF] text-white hover:bg-[#305EFF]/90 font-medium rounded-xl text-xs shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group/btn cursor-pointer font-sans"
+                                      >
+                                        <span>Get Custom Solution</span>
+                                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                                      </button>
+                                    </div>
+                                  </motion.div>
+
+                                  {/* 2. MAIN AREA — INDUSTRY CATEGORIES */}
+                                  <motion.div
+                                    variants={columnVariants}
+                                    className="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-3.5 max-h-[calc(100vh-220px)] overflow-y-auto overscroll-contain hide-scrollbar text-left pr-1"
+                                  >
+                                    {navbarIndustriesData.map((ind) => {
+                                      const IndIcon = industryIconMap[ind.iconName] || Building2;
+                                      return (
+                                        <Link
+                                          key={ind.id}
+                                          href={`/industries/${ind.slug}`}
+                                          onClick={() => setIndustriesDropdownOpen(false)}
+                                          className="group/ind flex flex-col justify-between p-3.5 rounded-2xl bg-white border border-slate-200/80 hover:border-[#305EFF]/40 hover:bg-[#305EFF]/[0.02] hover:shadow-md transition-all duration-200 cursor-pointer"
+                                        >
+                                          <div>
+                                            <div className="flex items-center justify-between mb-2">
+                                              <div className="w-8 h-8 rounded-xl bg-[#305EFF]/10 border border-[#305EFF]/20 text-[#305EFF] flex items-center justify-center transition-transform duration-200 group-hover/ind:scale-105">
+                                                <IndIcon className="w-4 h-4" />
+                                              </div>
+                                              <ChevronRight className="w-4 h-4 text-slate-300 group-hover/ind:text-[#305EFF] group-hover/ind:translate-x-0.5 transition-all" />
+                                            </div>
+
+                                            <h4 className="text-[13.5px] font-medium font-sans text-black group-hover/ind:text-[#305EFF] transition-colors mb-1 tracking-wide">
+                                              {ind.title}
+                                            </h4>
+
+                                            <p className="text-[12px] text-slate-500 line-clamp-1 mb-2 font-normal font-sans leading-snug">
+                                              {ind.description}
+                                            </p>
+                                          </div>
+
+                                          {/* Sub-solutions tags */}
+                                          <div className="flex flex-wrap gap-1 pt-2 border-t border-slate-100">
+                                            {ind.solutions.slice(0, 2).map((sol, idx) => (
+                                              <span
+                                                key={idx}
+                                                className="text-[10px] font-medium text-slate-600 bg-slate-50 px-2 py-0.5 rounded-md border border-slate-200/50 group-hover/ind:bg-[#305EFF]/10 group-hover/ind:border-[#305EFF]/20 group-hover/ind:text-[#305EFF] transition-colors"
+                                              >
+                                                {sol}
+                                              </span>
+                                            ))}
+                                          </div>
+                                        </Link>
+                                      );
+                                    })}
                                   </motion.div>
 
                                 </motion.div>
@@ -620,20 +828,20 @@ export default function Navbar() {
               {/* Action Button - font-medium text with smooth lift/scale, right arrow movement and subtle gradient transition */}
               <div className="flex items-center gap-4">
                 <div className="hidden lg:block">
-                  <Link
-                    href="/get-a-quote"
-                    className="group inline-flex items-center gap-2.5 px-6 py-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 bg-[length:200%_auto] text-white font-medium text-[14px] rounded-full shadow-xs hover:shadow-md hover:bg-[position:100%_0] transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5"
+                  <button
+                    onClick={() => openModal("quote")}
+                    className="group inline-flex items-center gap-2.5 px-6 py-2.5 bg-gradient-to-r from-[#305EFF] via-indigo-600 to-[#305EFF] bg-[length:200%_auto] text-white font-medium text-[14px] rounded-full shadow-xs hover:shadow-md hover:bg-[position:100%_0] transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 cursor-pointer"
                   >
                     <span>Get a Quote</span>
                     <ArrowRight className="w-4 h-4 text-white transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
-                  </Link>
+                  </button>
                 </div>
               </div>
 
               {/* Mobile Hamburg Toggle */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-1.5 text-slate-900 dark:text-white hover:text-[#2563FF] transition-colors cursor-pointer"
+                className="lg:hidden p-1.5 text-slate-900 dark:text-white hover:text-[#305EFF] transition-colors cursor-pointer"
                 aria-label="Toggle menu"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -690,7 +898,8 @@ export default function Navbar() {
                     const isActive =
                       pathname === link.href ||
                       (link.name === "Home" && pathname === "/") ||
-                      (link.name === "Services" && pathname.startsWith("/services"));
+                      (link.name === "Services" && pathname.startsWith("/services")) ||
+                      (link.name === "Industries" && pathname.startsWith("/industries"));
                     return (
                       <div key={link.name}>
                         {link.name === "Services" ? (
@@ -728,6 +937,58 @@ export default function Navbar() {
                                       </Link>
                                     );
                                   })}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        ) : link.name === "Industries" ? (
+                          <div className="flex flex-col gap-1.5">
+                            <button
+                              onClick={() => setMobileIndustriesOpen(!mobileIndustriesOpen)}
+                              className={`font-display text-[14px] font-semibold w-full text-left block py-2 px-3.5 rounded-lg transition-colors cursor-pointer ${isActive ? "bg-[#305EFF]/10 text-[#305EFF]" : "text-slate-650 dark:text-slate-300 hover:bg-[#305EFF]/5 hover:text-[#305EFF]"
+                                }`}
+                            >
+                              <div className="flex items-center justify-between">
+                                <span>{link.name}</span>
+                                <ChevronDown className={`w-4 h-4 opacity-50 transition-transform duration-300 ${mobileIndustriesOpen ? "rotate-180" : ""}`} />
+                              </div>
+                            </button>
+                            <AnimatePresence initial={false}>
+                              {mobileIndustriesOpen && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{ duration: 0.2, ease: "easeInOut" }}
+                                  className="pl-4 flex flex-col gap-2.5 mt-2 border-l border-[#305EFF]/20 font-sans overflow-hidden"
+                                >
+                                  {navbarIndustriesData.map((ind) => {
+                                    const IndIcon = industryIconMap[ind.iconName] || Building2;
+                                    return (
+                                      <Link
+                                        key={ind.id}
+                                        href={`/industries/${ind.slug}`}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="text-xs text-slate-600 dark:text-slate-300 hover:text-[#305EFF] flex items-center justify-between py-1 transition-colors duration-200"
+                                      >
+                                        <div className="flex items-center gap-2.5">
+                                          <IndIcon className="w-3.5 h-3.5 text-[#305EFF]" />
+                                          <span>{ind.title}</span>
+                                        </div>
+                                        <ChevronRight className="w-3 h-3 text-slate-400" />
+                                      </Link>
+                                    );
+                                  })}
+                                  <button
+                                    onClick={() => {
+                                      setMobileMenuOpen(false);
+                                      openModal("quote");
+                                    }}
+                                    className="text-xs font-semibold text-[#305EFF] flex items-center gap-1.5 pt-1.5 hover:underline text-left cursor-pointer"
+                                  >
+                                    <span>Get Custom Industry Solution</span>
+                                    <ArrowRight className="w-3.5 h-3.5" />
+                                  </button>
                                 </motion.div>
                               )}
                             </AnimatePresence>

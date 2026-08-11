@@ -21,7 +21,7 @@ interface LocalParticle {
   opacity: number;
 }
 
-const localColors = ["#2563FF", "#5EC8FF", "#A855F7", "#FF4FA2", "#B8E6FF"];
+const localColors = ["#305EFF", "#5EC8FF", "#A855F7", "#FF4FA2", "#B8E6FF"];
 const localShapes = ["circle", "dot", "line", "star", "plus", "outline-circle", "diamond"];
 
 function LocalParticleShape({ shape, color }: { shape: string; color: string }) {
@@ -194,7 +194,7 @@ function HighlightBox({
         scale: springScale,
         y: springYOffset,
       }}
-      className="relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] p-5 md:p-6 transition-[border-color,box-shadow,background-color] duration-300 hover:border-[#2563FF]/40 dark:hover:border-[#00D4FF]/40 hover:bg-white/[0.06] flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 shadow-md shadow-black/20 group will-change-transform w-full"
+      className="relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] p-5 md:p-6 transition-[border-color,box-shadow,background-color] duration-300 hover:border-[#305EFF]/40 dark:hover:border-[#00D4FF]/40 hover:bg-white/[0.06] flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 shadow-md shadow-black/20 group will-change-transform w-full"
     >
       <motion.div
         className="pointer-events-none absolute inset-0 transition-opacity duration-300"
@@ -205,13 +205,13 @@ function HighlightBox({
         }}
       />
       <div className="relative z-10 flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left font-sans">
-        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:scale-105 group-hover:bg-[#2563FF]/10 group-hover:border-[#2563FF]/20 transition-all duration-300 shrink-0">
+        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-[#305EFF] dark:text-[#00D4FF] group-hover:scale-105 group-hover:bg-[#305EFF]/10 group-hover:border-[#305EFF]/20 transition-all duration-300 shrink-0">
           <Icon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-6" />
         </div>
         
         <div className="flex flex-col gap-1.5 mt-1">
-          <h4 className="font-display font-black text-sm text-[#2563FF] dark:text-[#00D4FF] tracking-wider uppercase flex items-center justify-center sm:justify-start gap-2 font-sans">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#2563FF] dark:bg-[#00D4FF] animate-pulse" />
+          <h4 className="font-display font-black text-sm text-[#305EFF] dark:text-[#00D4FF] tracking-wider uppercase flex items-center justify-center sm:justify-start gap-2 font-sans">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#305EFF] dark:bg-[#00D4FF] animate-pulse" />
             {title}
           </h4>
           <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
@@ -391,10 +391,10 @@ function InteractivePricingCard({
       } : {}}
       className={`relative overflow-hidden rounded-[32px] border p-8 flex flex-col justify-between backdrop-blur-xl transition-[border-color,box-shadow,background-color] duration-500 will-change-transform lg:origin-center ${
         plan.isRecommended
-          ? "bg-white/95 dark:bg-[#0B1A2E]/95 border-[#2563FF]/45 dark:border-[#00D4FF]/45 shadow-xl hover:border-[#2563FF] dark:hover:border-[#00D4FF] hover:shadow-[0_30px_70px_-15px_rgba(37,99,255,0.24)] z-30 lg:scale-[1.05]"
+          ? "bg-white/95 dark:bg-[#0B1A2E]/95 border-[#305EFF]/45 dark:border-[#00D4FF]/45 shadow-xl hover:border-[#305EFF] dark:hover:border-[#00D4FF] hover:shadow-[0_30px_70px_-15px_rgba(37,99,255,0.24)] z-30 lg:scale-[1.05]"
           : index === 0
-            ? "bg-white/70 dark:bg-[#0B1A2E]/70 border-slate-200 dark:border-white/5 shadow-md hover:border-[#2563FF]/25 dark:hover:border-[#00D4FF]/25 hover:shadow-[0_25px_60px_-15px_rgba(37,99,255,0.12)] z-10 lg:-rotate-2 lg:translate-x-3"
-            : "bg-white/70 dark:bg-[#0B1A2E]/70 border-slate-200 dark:border-white/5 shadow-md hover:border-[#2563FF]/25 dark:hover:border-[#00D4FF]/25 hover:shadow-[0_25px_60px_-15px_rgba(37,99,255,0.12)] z-10 lg:rotate-2 lg:-translate-x-3"
+            ? "bg-white/70 dark:bg-[#0B1A2E]/70 border-slate-200 dark:border-white/5 shadow-md hover:border-[#305EFF]/25 dark:hover:border-[#00D4FF]/25 hover:shadow-[0_25px_60px_-15px_rgba(37,99,255,0.12)] z-10 lg:-rotate-2 lg:translate-x-3"
+            : "bg-white/70 dark:bg-[#0B1A2E]/70 border-slate-200 dark:border-white/5 shadow-md hover:border-[#305EFF]/25 dark:hover:border-[#00D4FF]/25 hover:shadow-[0_25px_60px_-15px_rgba(37,99,255,0.12)] z-10 lg:rotate-2 lg:-translate-x-3"
       }`}
     >
       {/* Spotlight glow inside card */}
@@ -412,7 +412,7 @@ function InteractivePricingCard({
         <div className="flex justify-between items-start gap-4 font-sans">
           <div className="flex flex-col text-left">
             <span className={`text-[10px] font-bold tracking-widest uppercase font-mono mb-1.5 ${
-              plan.isRecommended ? "text-[#2563FF] dark:text-[#00D4FF]" : "text-slate-400"
+              plan.isRecommended ? "text-[#305EFF] dark:text-[#00D4FF]" : "text-slate-400"
             }`}>
               {plan.badge}
             </span>
@@ -421,7 +421,7 @@ function InteractivePricingCard({
             </h3>
           </div>
           {plan.isRecommended && (
-            <span className="bg-gradient-to-r from-[#2563FF] to-[#00D4FF] text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm animate-pulse font-sans">
+            <span className="bg-gradient-to-r from-[#305EFF] to-[#00D4FF] text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm animate-pulse font-sans">
               RECOMMENDED
             </span>
           )}
@@ -429,7 +429,7 @@ function InteractivePricingCard({
 
         {/* Pricing Segment */}
         <div className="flex items-baseline text-left gap-2.5 py-5 border-y border-slate-100/80 font-sans">
-          <span className="text-3xl sm:text-4xl font-display font-black text-[#2563FF] dark:text-[#00D4FF] tracking-tight font-sans">
+          <span className="text-3xl sm:text-4xl font-display font-black text-[#305EFF] dark:text-[#00D4FF] tracking-tight font-sans">
             {plan.price}
           </span>
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
@@ -458,11 +458,11 @@ function InteractivePricingCard({
               >
                 <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 border ${
                   plan.isRecommended 
-                    ? "bg-[#2563FF]/10 border-[#2563FF]/25"
+                    ? "bg-[#305EFF]/10 border-[#305EFF]/25"
                     : "bg-slate-50 dark:bg-white/5 border-slate-200 dark:border-white/10"
                 }`}>
                   <Check className={`w-3 h-3 ${
-                    plan.isRecommended ? "text-[#2563FF] dark:text-[#00D4FF]" : "text-slate-500 dark:text-slate-400"
+                    plan.isRecommended ? "text-[#305EFF] dark:text-[#00D4FF]" : "text-slate-500 dark:text-slate-400"
                   }`} />
                 </div>
                 <span>{feat}</span>
@@ -478,10 +478,10 @@ function InteractivePricingCard({
           variant={plan.isRecommended ? "primary" : "outline"}
           className={`w-full !py-3.5 !text-xs !font-bold !rounded-2xl transition-all duration-300 ${
             plan.isRecommended
-              ? "bg-gradient-to-r from-[#2563FF] to-[#00D4FF] text-white hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(37,99,255,0.3)]"
+              ? "bg-gradient-to-r from-[#305EFF] to-[#00D4FF] text-white hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(37,99,255,0.3)]"
               : "border-slate-200 dark:border-white/15 text-slate-700 dark:text-white hover:bg-slate-50 dark:hover:bg-white/5"
           }`}
-          icon={<MessageSquare className={`w-4 h-4 ${plan.isRecommended ? "text-white" : "text-[#2563FF] dark:text-[#00D4FF]"} transition-transform duration-300 group-hover/btn:scale-110`} />}
+          icon={<MessageSquare className={`w-4 h-4 ${plan.isRecommended ? "text-white" : "text-[#305EFF] dark:text-[#00D4FF]"} transition-transform duration-300 group-hover/btn:scale-110`} />}
         >
           REGISTER NOW
         </Button>
@@ -489,7 +489,7 @@ function InteractivePricingCard({
           onClick={onCtaClick}
           variant="outline"
           className="w-full justify-center group/btn border-slate-200 dark:border-white/15 text-slate-700 dark:text-white hover:bg-slate-50 dark:hover:bg-white/5 hover:border-slate-300 dark:hover:border-white/25"
-          icon={<MessageSquare className="w-4 h-4 text-[#2563FF] dark:text-[#00D4FF] transition-transform duration-300 group-hover/btn:scale-110" />}
+          icon={<MessageSquare className="w-4 h-4 text-[#305EFF] dark:text-[#00D4FF] transition-transform duration-300 group-hover/btn:scale-110" />}
         >
           CONTACT US
         </Button>
@@ -573,10 +573,10 @@ function BentoCard1({ data }: { data: { title: string; text: string; icon: any }
       transition={hoverSpringConfig}
       className="group relative overflow-hidden rounded-[32px] border border-slate-200 dark:border-white/5 bg-white/60 dark:bg-[#0B1A2E]/60 p-8 flex flex-col md:flex-row justify-between gap-8 transition-all duration-500 h-full min-h-[320px] lg:col-span-8 will-change-transform cursor-pointer"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#2563FF]/3 via-transparent to-[#00D4FF]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#305EFF]/3 via-transparent to-[#00D4FF]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       
       <div className="flex flex-col gap-4 text-left justify-center md:w-3/5 relative z-10">
-        <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:scale-105 transition-transform duration-300 shrink-0">
+        <div className="w-10 h-10 rounded-2xl bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 border border-[#305EFF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center text-[#305EFF] dark:text-[#00D4FF] group-hover:scale-105 transition-transform duration-300 shrink-0">
           <CardIcon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-6" />
         </div>
         <h3 className="font-display font-bold text-xl text-[#0F172A] dark:text-white tracking-tight font-sans">
@@ -600,15 +600,15 @@ function BentoCard1({ data }: { data: { title: string; text: string; icon: any }
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="w-24 h-24 rounded-full border border-[#2563FF]/15 dark:border-white/5 flex items-center justify-center relative bg-white/30 dark:bg-slate-900/30 backdrop-blur-sm shadow-inner"
+          className="w-24 h-24 rounded-full border border-[#305EFF]/15 dark:border-white/5 flex items-center justify-center relative bg-white/30 dark:bg-slate-900/30 backdrop-blur-sm shadow-inner"
         >
-          <div className="w-16 h-16 rounded-full border border-dashed border-[#2563FF]/20 dark:border-white/10 flex items-center justify-center">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#2563FF] to-[#00D4FF] opacity-25 blur-sm" />
+          <div className="w-16 h-16 rounded-full border border-dashed border-[#305EFF]/20 dark:border-white/10 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#305EFF] to-[#00D4FF] opacity-25 blur-sm" />
           </div>
           <motion.div 
             animate={{ rotate: 360 }}
             transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1 left-1 w-2.5 h-2.5 rounded-full bg-[#2563FF]/80 dark:bg-[#00D4FF]/80"
+            className="absolute top-1 left-1 w-2.5 h-2.5 rounded-full bg-[#305EFF]/80 dark:bg-[#00D4FF]/80"
           />
         </motion.div>
       </div>
@@ -625,10 +625,10 @@ function BentoCard2({ data }: { data: { title: string; text: string; icon: any }
       transition={hoverSpringConfig}
       className="group relative overflow-hidden rounded-[32px] border border-slate-200 dark:border-white/5 bg-white/60 dark:bg-[#0B1A2E]/60 p-8 flex flex-col justify-between gap-6 transition-all duration-500 h-full min-h-[320px] lg:col-span-4 will-change-transform cursor-pointer"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#2563FF]/3 via-transparent to-[#00D4FF]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#305EFF]/3 via-transparent to-[#00D4FF]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       
       <div className="flex flex-col gap-4 text-left relative z-10">
-        <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:scale-105 transition-transform duration-300 shrink-0">
+        <div className="w-10 h-10 rounded-2xl bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 border border-[#305EFF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center text-[#305EFF] dark:text-[#00D4FF] group-hover:scale-105 transition-transform duration-300 shrink-0">
           <CardIcon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-6" />
         </div>
         <h3 className="font-display font-bold text-xl text-[#0F172A] dark:text-white tracking-tight font-sans">
@@ -644,7 +644,7 @@ function BentoCard2({ data }: { data: { title: string; text: string; icon: any }
         <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">
           Basic Rate
         </span>
-        <span className="text-lg font-black text-[#2563FF] dark:text-[#00D4FF] transition-transform duration-300 group-hover:scale-105">
+        <span className="text-lg font-black text-[#305EFF] dark:text-[#00D4FF] transition-transform duration-300 group-hover:scale-105">
           ₹6,000
         </span>
       </div>
@@ -661,10 +661,10 @@ function BentoCard3({ data }: { data: { title: string; text: string; icon: any }
       transition={hoverSpringConfig}
       className="group relative overflow-hidden rounded-[32px] border border-slate-200 dark:border-white/5 bg-white/60 dark:bg-[#0B1A2E]/60 p-8 flex flex-col justify-between gap-6 transition-all duration-500 h-full min-h-[320px] lg:col-span-4 will-change-transform cursor-pointer"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#2563FF]/3 via-transparent to-[#00D4FF]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#305EFF]/3 via-transparent to-[#00D4FF]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       
       <div className="flex flex-col gap-4 text-left relative z-10">
-        <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:scale-105 transition-transform duration-300 shrink-0">
+        <div className="w-10 h-10 rounded-2xl bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 border border-[#305EFF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center text-[#305EFF] dark:text-[#00D4FF] group-hover:scale-105 transition-transform duration-300 shrink-0">
           <CardIcon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-6" />
         </div>
         <h3 className="font-display font-bold text-xl text-[#0F172A] dark:text-white tracking-tight font-sans">
@@ -677,7 +677,7 @@ function BentoCard3({ data }: { data: { title: string; text: string; icon: any }
 
       {/* Enterprise Badges */}
       <div className="relative z-10 flex flex-wrap gap-2 font-sans">
-        <span className="text-[9px] font-bold text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 px-3 py-1.5 rounded-full uppercase tracking-wider transition-colors duration-300 group-hover:bg-[#2563FF]/10 dark:group-hover:bg-[#00D4FF]/20">
+        <span className="text-[9px] font-bold text-[#305EFF] dark:text-[#00D4FF] border border-[#305EFF]/15 dark:border-[#00D4FF]/25 bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 px-3 py-1.5 rounded-full uppercase tracking-wider transition-colors duration-300 group-hover:bg-[#305EFF]/10 dark:group-hover:bg-[#00D4FF]/20">
           Marketplaces
         </span>
         <span className="text-[9px] font-bold text-slate-500 border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 px-3 py-1.5 rounded-full uppercase tracking-wider transition-colors duration-300 group-hover:bg-slate-100 dark:group-hover:bg-white/10">
@@ -697,10 +697,10 @@ function BentoCard4({ data }: { data: { title: string; text: string; icon: any }
       transition={hoverSpringConfig}
       className="group relative overflow-hidden rounded-[32px] border border-slate-200 dark:border-white/5 bg-white/60 dark:bg-[#0B1A2E]/60 p-8 flex flex-col md:flex-row justify-between gap-8 transition-all duration-500 h-full min-h-[320px] lg:col-span-8 will-change-transform cursor-pointer"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#2563FF]/3 via-transparent to-[#00D4FF]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#305EFF]/3 via-transparent to-[#00D4FF]/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       
       <div className="flex flex-col gap-4 text-left justify-center md:w-3/5 relative z-10">
-        <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:scale-105 transition-transform duration-300 shrink-0">
+        <div className="w-10 h-10 rounded-2xl bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 border border-[#305EFF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center text-[#305EFF] dark:text-[#00D4FF] group-hover:scale-105 transition-transform duration-300 shrink-0">
           <CardIcon className="w-5 h-5 transition-transform duration-300 group-hover:rotate-6" />
         </div>
         <h3 className="font-display font-bold text-xl text-[#0F172A] dark:text-white tracking-tight font-sans">
@@ -933,7 +933,7 @@ export default function PricingClient() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full bg-[#2563FF]/3 dark:bg-[#00D4FF]/3 blur-[130px]"
+          className="absolute top-[10%] left-[5%] w-[450px] h-[450px] rounded-full bg-[#305EFF]/3 dark:bg-[#00D4FF]/3 blur-[130px]"
         />
         <motion.div
           animate={{
@@ -965,7 +965,7 @@ export default function PricingClient() {
 
       {/* Slow Parallax Decorative Background Elements (Water Float Easing) */}
       <motion.div
-        className="absolute rounded-full border border-[#2563FF]/8 dark:border-white/5 pointer-events-none z-0"
+        className="absolute rounded-full border border-[#305EFF]/8 dark:border-white/5 pointer-events-none z-0"
         style={{ width: "260px", height: "260px", left: "4%", top: "18%" }}
         animate={{
           x: [0, 15, -15, 0],
@@ -985,7 +985,7 @@ export default function PricingClient() {
         transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
       />
       <motion.div
-        className="absolute rounded-full bg-[#2563FF]/5 dark:bg-white/5 pointer-events-none z-0 shadow-sm"
+        className="absolute rounded-full bg-[#305EFF]/5 dark:bg-white/5 pointer-events-none z-0 shadow-sm"
         style={{ width: "16px", height: "16px", left: "14%", bottom: "35%" }}
         animate={{
           y: [0, 20, -20, 0],
@@ -1025,7 +1025,7 @@ export default function PricingClient() {
             className="mt-4 text-xs md:text-sm text-sky-100/90 font-semibold tracking-widest uppercase flex items-center gap-2.5 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full backdrop-blur-md font-sans"
           >
             <span className="hover:text-white transition-colors cursor-pointer">Home</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#2563FF] dark:bg-[#00D4FF] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#305EFF] dark:bg-[#00D4FF] animate-pulse" />
             <span className="text-white font-bold">Pricing</span>
           </motion.div>
         </div>
@@ -1038,8 +1038,8 @@ export default function PricingClient() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-20 font-sans">
           
           <ScrollReveal direction="up" delay={0}>
-            <div className="flex flex-col gap-4 text-left p-6 rounded-3xl border border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#0B1A2E]/50 backdrop-blur-md shadow-sm h-full hover:border-[#2563FF]/20 dark:hover:border-[#00D4FF]/20 transition-all duration-300">
-              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 px-3 py-1 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 font-sans">
+            <div className="flex flex-col gap-4 text-left p-6 rounded-3xl border border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#0B1A2E]/50 backdrop-blur-md shadow-sm h-full hover:border-[#305EFF]/20 dark:hover:border-[#00D4FF]/20 transition-all duration-300">
+              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#305EFF] dark:text-[#00D4FF] border border-[#305EFF]/15 dark:border-[#00D4FF]/25 px-3 py-1 rounded-full bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 font-sans">
                 PRICING
               </div>
               <h2 className="font-display text-2xl font-extrabold text-[#0F172A] dark:text-white tracking-tight font-sans">
@@ -1052,8 +1052,8 @@ export default function PricingClient() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.1}>
-            <div className="flex flex-col gap-4 text-left p-6 rounded-3xl border border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#0B1A2E]/50 backdrop-blur-md shadow-sm h-full hover:border-[#2563FF]/20 dark:hover:border-[#00D4FF]/20 transition-all duration-300">
-              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 px-3 py-1 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 font-sans">
+            <div className="flex flex-col gap-4 text-left p-6 rounded-3xl border border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#0B1A2E]/50 backdrop-blur-md shadow-sm h-full hover:border-[#305EFF]/20 dark:hover:border-[#00D4FF]/20 transition-all duration-300">
+              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#305EFF] dark:text-[#00D4FF] border border-[#305EFF]/15 dark:border-[#00D4FF]/25 px-3 py-1 rounded-full bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 font-sans">
                 ABOUT
               </div>
               <h2 className="font-display text-2xl font-extrabold text-[#0F172A] dark:text-white tracking-tight font-sans">
@@ -1066,8 +1066,8 @@ export default function PricingClient() {
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={0.2}>
-            <div className="flex flex-col gap-4 text-left p-6 rounded-3xl border border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#0B1A2E]/50 backdrop-blur-md shadow-sm h-full hover:border-[#2563FF]/20 dark:hover:border-[#00D4FF]/20 transition-all duration-300">
-              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 px-3 py-1 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 font-sans">
+            <div className="flex flex-col gap-4 text-left p-6 rounded-3xl border border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#0B1A2E]/50 backdrop-blur-md shadow-sm h-full hover:border-[#305EFF]/20 dark:hover:border-[#00D4FF]/20 transition-all duration-300">
+              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#305EFF] dark:text-[#00D4FF] border border-[#305EFF]/15 dark:border-[#00D4FF]/25 px-3 py-1 rounded-full bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 font-sans">
                 FEATURES
               </div>
               <h2 className="font-display text-2xl font-extrabold text-[#0F172A] dark:text-white tracking-tight font-sans">
@@ -1082,7 +1082,7 @@ export default function PricingClient() {
         </div>
 
         {/* Ambient Backlighting Behind Cards */}
-        <div className="absolute left-1/2 top-[550px] -translate-x-1/2 -translate-y-1/2 w-[75%] h-[320px] bg-gradient-to-r from-[#2563FF]/5 via-[#00D4FF]/10 to-[#2563FF]/5 blur-[120px] rounded-full pointer-events-none z-0" />
+        <div className="absolute left-1/2 top-[550px] -translate-x-1/2 -translate-y-1/2 w-[75%] h-[320px] bg-gradient-to-r from-[#305EFF]/5 via-[#00D4FF]/10 to-[#305EFF]/5 blur-[120px] rounded-full pointer-events-none z-0" />
 
         {/* Premium Pricing Cards Interactive 3D Overlapping Stagger Grid */}
         <motion.div 
@@ -1122,13 +1122,13 @@ export default function PricingClient() {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[360px] bg-gradient-to-r from-[#2563FF]/4 via-[#00D4FF]/6 to-[#2563FF]/4 blur-[110px] rounded-full"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[360px] bg-gradient-to-r from-[#305EFF]/4 via-[#00D4FF]/6 to-[#305EFF]/4 blur-[110px] rounded-full"
             />
           </div>
 
           {/* Centered Heading focal point with Blur + Scale entry reveal */}
           <motion.div variants={bentoHeadingVariants} className="text-center mb-16 flex flex-col items-center relative z-10">
-            <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 px-3 py-1.5 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 font-sans mb-4">
+            <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#305EFF] dark:text-[#00D4FF] border border-[#305EFF]/15 dark:border-[#00D4FF]/25 px-3 py-1.5 rounded-full bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 font-sans mb-4">
               CAPABILITIES & TERMS
             </div>
             <h2 className="font-display text-3xl sm:text-5xl font-black text-[#0F172A] dark:text-white tracking-tight leading-tight font-sans select-none">
@@ -1352,7 +1352,7 @@ export default function PricingClient() {
           {/* Left Column Information */}
           <div className="lg:col-span-5 flex flex-col gap-6 justify-start font-sans">
             <ScrollReveal direction="up" delay={0}>
-              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 px-3.5 py-1.5 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 font-sans">
+              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#305EFF] dark:text-[#00D4FF] border border-[#305EFF]/15 dark:border-[#00D4FF]/25 px-3.5 py-1.5 rounded-full bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 font-sans">
                 GET IN TOUCH
               </div>
             </ScrollReveal>
@@ -1371,8 +1371,8 @@ export default function PricingClient() {
             <ScrollReveal direction="up" delay={0.3} className="mt-4">
               <div className="p-6 rounded-3xl border border-slate-200 dark:border-white/5 bg-white/70 dark:bg-[#0B1A2E]/70 backdrop-blur-md shadow-lg shadow-slate-200/50 flex flex-col gap-4 font-sans">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center">
-                    <HeartHandshake className="w-4.5 h-4.5 text-[#2563FF] dark:text-[#00D4FF]" />
+                  <div className="w-10 h-10 rounded-2xl bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 border border-[#305EFF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center">
+                    <HeartHandshake className="w-4.5 h-4.5 text-[#305EFF] dark:text-[#00D4FF]" />
                   </div>
                   <div className="flex flex-col text-left font-sans">
                     <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-mono">Support Policy</span>
@@ -1380,8 +1380,8 @@ export default function PricingClient() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center">
-                    <PhoneCall className="w-4.5 h-4.5 text-[#2563FF] dark:text-[#00D4FF]" />
+                  <div className="w-10 h-10 rounded-2xl bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 border border-[#305EFF]/10 dark:border-[#00D4FF]/20 flex items-center justify-center">
+                    <PhoneCall className="w-4.5 h-4.5 text-[#305EFF] dark:text-[#00D4FF]" />
                   </div>
                   <div className="flex flex-col text-left font-sans">
                     <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase font-mono">Response Speed</span>
@@ -1395,7 +1395,7 @@ export default function PricingClient() {
           {/* Right Column Contact Form */}
           <div className="lg:col-span-7 flex flex-col gap-6 font-sans">
             <ScrollReveal direction="up" delay={0}>
-              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 px-3.5 py-1.5 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 font-sans">
+              <div className="w-fit inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#305EFF] dark:text-[#00D4FF] border border-[#305EFF]/15 dark:border-[#00D4FF]/25 px-3.5 py-1.5 rounded-full bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 font-sans">
                 CONTACT US
               </div>
             </ScrollReveal>
@@ -1439,7 +1439,7 @@ export default function PricingClient() {
                           value={formData.name}
                           onChange={handleInputChange}
                           placeholder="Your Name*"
-                          className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm font-sans"
+                          className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#305EFF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#305EFF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm font-sans"
                           required
                         />
                       </div>
@@ -1450,7 +1450,7 @@ export default function PricingClient() {
                           value={formData.email}
                           onChange={handleInputChange}
                           placeholder="Email*"
-                          className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm font-sans"
+                          className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#305EFF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#305EFF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm font-sans"
                           required
                         />
                       </div>
@@ -1464,7 +1464,7 @@ export default function PricingClient() {
                           value={formData.phone}
                           onChange={handleInputChange}
                           placeholder="Phone"
-                          className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm font-sans"
+                          className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#305EFF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#305EFF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm font-sans"
                         />
                       </div>
                       <div className="flex flex-col gap-1.5 font-sans">
@@ -1474,7 +1474,7 @@ export default function PricingClient() {
                           value={formData.website}
                           onChange={handleInputChange}
                           placeholder="Website*"
-                          className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm font-sans"
+                          className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#305EFF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#305EFF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm font-sans"
                           required
                         />
                       </div>
@@ -1487,7 +1487,7 @@ export default function PricingClient() {
                         onChange={handleInputChange}
                         placeholder="Message"
                         rows={5}
-                        className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#2563FF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#2563FF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm resize-none font-sans"
+                        className="w-full px-5 py-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-[#071426] text-slate-800 dark:text-white text-sm placeholder-slate-400 focus:border-[#305EFF] dark:focus:border-[#00D4FF] focus:ring-2 focus:ring-[#305EFF]/10 dark:focus:ring-[#00D4FF]/10 outline-none transition-all shadow-sm resize-none font-sans"
                         required
                       />
                     </div>
@@ -1496,7 +1496,7 @@ export default function PricingClient() {
                       <Button
                         type="submit"
                         variant="primary"
-                        className="bg-[#2563FF] hover:bg-[#2563FF]/90 text-white hover:scale-[1.03] active:scale-[0.98] transition-all hover:shadow-[0_0_20px_rgba(37,99,255,0.3)] shadow-md group/btn relative overflow-hidden font-sans"
+                        className="bg-[#305EFF] hover:bg-[#305EFF]/90 text-white hover:scale-[1.03] active:scale-[0.98] transition-all hover:shadow-[0_0_20px_rgba(37,99,255,0.3)] shadow-md group/btn relative overflow-hidden font-sans"
                         icon={<ArrowRight className="w-4.5 h-4.5 transition-transform duration-300 group-hover/btn:translate-x-1" />}
                       >
                         SEND MESSAGE

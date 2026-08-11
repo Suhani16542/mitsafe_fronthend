@@ -32,9 +32,9 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-[rgba(0,212,255,0.2)] bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 px-4 py-1.5 text-xs md:text-sm font-semibold tracking-wider text-[#2563FF] dark:text-[#00D4FF] uppercase"
+          className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-[rgba(0,212,255,0.2)] bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 px-4 py-1.5 text-xs md:text-sm font-semibold tracking-wider text-[#305EFF] dark:text-[#00D4FF] uppercase"
         >
-          <span className="h-2 w-2 rounded-full bg-[#2563FF] dark:bg-[#00D4FF] animate-pulse" />
+          <span className="h-2 w-2 rounded-full bg-[#305EFF] dark:bg-[#00D4FF] animate-pulse" />
           {badge}
         </motion.div>
       )}
@@ -49,12 +49,12 @@ export default function SectionHeader({
         {title.includes(" ") ? (
           <>
             {title.substring(0, title.lastIndexOf(" "))}{" "}
-            <span className="bg-gradient-to-r from-[#2563FF] to-[#00D4FF] dark:from-[#00BFFF] dark:to-[#6C63FF] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#305EFF] to-[#00D4FF] dark:from-[#305EFF] dark:to-[#6C63FF] bg-clip-text text-transparent">
               {title.substring(title.lastIndexOf(" ") + 1)}
             </span>
           </>
         ) : (
-          <span className="bg-gradient-to-r from-[#2563FF] to-[#00D4FF] dark:from-[#00BFFF] dark:to-[#6C63FF] bg-clip-text text-transparent">{title}</span>
+          <span className="bg-gradient-to-r from-[#305EFF] to-[#00D4FF] dark:from-[#305EFF] dark:to-[#6C63FF] bg-clip-text text-transparent">{title}</span>
         )}
       </motion.h2>
 

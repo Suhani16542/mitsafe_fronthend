@@ -35,7 +35,7 @@ export default function WhyChooseUs() {
           className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display mb-4"
         >
           <span style={{ color: "#000000", WebkitTextFillColor: "#000000" }}>MT Games with latest technology</span> <br className="hidden md:inline" />
-          <span className="text-[#2A67FF]" style={{ color: "#2A67FF", WebkitTextFillColor: "#2A67FF" }}>and high end support</span>
+          <span className="text-[#305EFF]" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF" }}>and high end support</span>
         </motion.h2>
 
         {/* Paragraph */}
@@ -62,8 +62,8 @@ export default function WhyChooseUs() {
               key={idx}
               className="bg-slate-50/80 border border-slate-200/80 rounded-full py-2 px-5 flex items-center gap-2"
             >
-              <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center text-[#0052FF] shrink-0 shadow-xs">
-                <Check className="w-3 h-3 stroke-[3px]" />
+              <div className="w-5 h-5 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-900 shrink-0 shadow-xs">
+                <Check className="w-3 h-3 text-black stroke-[3.5px]" />
               </div>
               <span className="text-[10px] sm:text-xs font-semibold tracking-wide uppercase text-slate-800 font-display">
                 {pt}
@@ -79,7 +79,7 @@ export default function WhyChooseUs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="group inline-flex items-center justify-center gap-2 h-11 px-6 bg-[#0052FF] hover:bg-[#0042D9] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto font-display"
+          className="group inline-flex items-center justify-center gap-2 h-11 px-6 bg-[#305EFF] hover:bg-[#305EFF] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto font-display"
         >
           Talk with an Expert
         </motion.a>

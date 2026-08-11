@@ -39,11 +39,11 @@ export default function GradientButton({
         repeat: Infinity,
         ease: "easeInOut"
       }}
-      className={`rounded-2xl relative p-[2px] bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] bg-[length:200%_auto] transform-gpu ${fullWidth ? "w-full" : "inline-block"} ${className}`}
+      className={`rounded-2xl relative p-[2px] bg-gradient-to-r from-[#305EFF] via-[#00D4FF] to-[#305EFF] bg-[length:200%_auto] transform-gpu ${fullWidth ? "w-full" : "inline-block"} ${className}`}
     >
       {/* Animated Rotating Gradient Border Overlay */}
       <motion.div
-        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#2563FF] via-[#00D4FF] to-[#2563FF] opacity-90 pointer-events-none transform-gpu"
+        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#305EFF] via-[#00D4FF] to-[#305EFF] opacity-90 pointer-events-none transform-gpu"
         animate={{
           backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
         }}
@@ -73,7 +73,7 @@ export default function GradientButton({
 
         <span className="tracking-wide relative z-20 text-white font-black">{children}</span>
         
-        <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#2563FF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform shrink-0">
+        <span className="w-8 h-8 rounded-xl bg-gradient-to-r from-[#305EFF] to-[#00D4FF] flex items-center justify-center text-white shadow-md relative z-20 group-hover:scale-105 transition-transform shrink-0">
           {icon || <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />}
         </span>
       </div>

@@ -122,7 +122,7 @@ function BentoCard({
             >
               {badgeNum}
             </span>
-            <span className="text-[11px] font-extrabold text-blue-600 uppercase tracking-widest font-sans">
+            <span className="text-[11px] font-extrabold text-[#305EFF] uppercase tracking-widest font-sans">
               • {title}
             </span>
           </div>
@@ -155,11 +155,11 @@ function BentoCard({
                   <span
                     key={idx}
                     className={`text-[10px] sm:text-xs font-semibold px-3.5 py-1.5 rounded-full border transition-all duration-300 tracking-wide uppercase flex items-center gap-1.5 font-sans ${isHovered
-                        ? "bg-white/90 border-blue-200 text-blue-700 shadow-xs"
+                        ? "bg-white/90 border-[#305EFF] text-[#305EFF] shadow-xs"
                         : "bg-slate-50 dark:bg-slate-800 border-slate-200/80 dark:border-white/5 text-slate-700 dark:text-slate-300"
                       }`}
                   >
-                    <TagIcon className="w-3.5 h-3.5 text-blue-600" />
+                    <TagIcon className="w-3.5 h-3.5 text-black" />
                     {t}
                   </span>
                 );
@@ -170,10 +170,10 @@ function BentoCard({
           {/* Action Link */}
           <Link
             href={exploreUrl}
-            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 text-blue-600 hover:text-blue-700 font-display mt-1"
+            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 text-[#305EFF] hover:text-[#305EFF] font-display mt-1"
           >
             <span>Explore Service</span>
-            <ArrowRight className="w-4 h-4 text-blue-600 group-hover/link:translate-x-1.5 transition-transform duration-300" />
+            <ArrowRight className="w-4 h-4 text-black group-hover/link:translate-x-1.5 transition-transform duration-300" />
           </Link>
         </div>
       </div>
@@ -243,7 +243,7 @@ export default function PremiumServicesShowcase() {
               initial={{ opacity: 0, y: 10 }}
               animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-blue-600 font-display shadow-xs w-fit"
+              className="inline-flex items-center gap-2 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-[#305EFF] font-display shadow-xs w-fit"
             >
               OUR SERVICES
             </motion.div>
@@ -255,7 +255,7 @@ export default function PremiumServicesShowcase() {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display text-[#0F172A] dark:text-white"
             >
               End-to-End Digital Solutions <br />
-              <span className="font-black inline-block" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>
+              <span className="font-black inline-block" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF" }}>
                 Built Around Your Business
               </span>
             </motion.h2>
@@ -303,8 +303,8 @@ export default function PremiumServicesShowcase() {
             className="col-span-12 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/5 rounded-[22px] py-5 px-8 shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:border-slate-350 hover:bg-slate-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative overflow-hidden group transition-all duration-300"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shrink-0 shadow-md">
-                <Sparkles className="w-5 h-5 text-white" />
+              <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-black shrink-0 shadow-xs">
+                <Sparkles className="w-5 h-5 text-black" />
               </div>
               <h3 className="text-lg font-black text-slate-900 dark:text-white">
                 One Partner. Many Solutions.
@@ -314,8 +314,8 @@ export default function PremiumServicesShowcase() {
               All the technology and expertise you need to build, grow and stay ahead.
             </p>
             <Link
-              href="/services"
-              className="text-xs sm:text-sm font-black text-blue-600 hover:underline flex items-center gap-1.5 group/link shrink-0"
+              href="/services/web-development"
+              className="text-xs sm:text-sm font-black text-[#305EFF] hover:underline flex items-center gap-1.5 group/link shrink-0"
             >
               <span>View All Services</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
@@ -433,7 +433,7 @@ export default function PremiumServicesShowcase() {
                 }}
                 className="flex items-start gap-4 p-2"
               >
-                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center text-blue-600 shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-black shrink-0">
                   <IconComponent className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col gap-1">

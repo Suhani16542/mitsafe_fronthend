@@ -104,12 +104,12 @@ export default function SolutionsClient() {
         <motion.div 
           animate={{ y: [0, -40, 0], x: [0, 15, 0], opacity: [0.07, 0.18, 0.07] }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[15%] left-[5%] w-[380px] h-[380px] bg-[#2563FF]/5 dark:bg-[#00D4FF]/5 rounded-full blur-[80px]"
+          className="absolute top-[15%] left-[5%] w-[380px] h-[380px] bg-[#305EFF]/5 dark:bg-[#00D4FF]/5 rounded-full blur-[80px]"
         />
         <motion.div 
           animate={{ y: [0, 35, 0], x: [0, -30, 0], opacity: [0.06, 0.15, 0.06] }}
           transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[40%] right-[5%] w-[420px] h-[420px] bg-[#2563FF]/4 dark:bg-[#00D4FF]/4 rounded-full blur-[95px]"
+          className="absolute top-[40%] right-[5%] w-[420px] h-[420px] bg-[#305EFF]/4 dark:bg-[#00D4FF]/4 rounded-full blur-[95px]"
         />
       </div>
 
@@ -135,7 +135,7 @@ export default function SolutionsClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#2563FF]/15 dark:border-[rgba(0,212,255,0.25)] bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 px-4.5 py-1.5 text-xs font-semibold tracking-wider text-[#2563FF] dark:text-[#00D4FF] uppercase backdrop-blur-sm shadow-sm">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#305EFF]/15 dark:border-[rgba(0,212,255,0.25)] bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 px-4.5 py-1.5 text-xs font-semibold tracking-wider text-[#305EFF] dark:text-[#00D4FF] uppercase backdrop-blur-sm shadow-sm">
               <Sparkles className="w-3.5 h-3.5" />
               High-Performance Engineering
             </span>
@@ -149,7 +149,7 @@ export default function SolutionsClient() {
             className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight max-w-4xl"
           >
             Technical Solutions Built <br />
-            <span className="text-[#2563FF] dark:text-[#00D4FF]">To Scale Your Business</span>
+            <span className="text-[#305EFF] dark:text-[#00D4FF]">To Scale Your Business</span>
           </motion.h1>
 
           <motion.p
@@ -187,7 +187,7 @@ export default function SolutionsClient() {
                 variants={slideInLeft}
                 className="flex flex-col gap-4"
               >
-                <span className="text-xs font-bold text-[#2563FF] dark:text-[#00D4FF] uppercase tracking-wider font-mono">
+                <span className="text-xs font-bold text-[#305EFF] dark:text-[#00D4FF] uppercase tracking-wider font-mono">
                   // ENGINEERING PRINCIPLES
                 </span>
                 <h2 
@@ -215,7 +215,7 @@ export default function SolutionsClient() {
                     variants={fadeInUpStagger}
                     className="flex items-center gap-1.5 px-3 py-1 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full text-xs font-semibold text-slate-600 dark:text-slate-300"
                   >
-                    <CheckCircle className="w-3.5 h-3.5 text-[#2563FF] dark:text-[#00D4FF]" />
+                    <CheckCircle className="w-3.5 h-3.5 text-[#305EFF] dark:text-[#00D4FF]" />
                     {badge}
                   </motion.div>
                 ))}
@@ -230,7 +230,7 @@ export default function SolutionsClient() {
               variants={slideInRight}
               className="lg:col-span-5 relative flex justify-center items-center"
             >
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#2563FF]/15 to-transparent rounded-[32px] blur-2xl pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#305EFF]/15 to-transparent rounded-[32px] blur-2xl pointer-events-none" />
               <div className="relative border border-slate-200 dark:border-white/5 rounded-[32px] overflow-hidden shadow-lg aspect-[4/3] w-full group/img">
                 <Image 
                   src="/solutions_engineering.png" 
@@ -257,7 +257,7 @@ export default function SolutionsClient() {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <span className="text-xs font-bold text-[#2563FF] dark:text-[#00D4FF] uppercase tracking-wider font-mono">
+            <span className="text-xs font-bold text-[#305EFF] dark:text-[#00D4FF] uppercase tracking-wider font-mono">
               // SOLUTION MATRIX
             </span>
             <h2 
@@ -281,13 +281,13 @@ export default function SolutionsClient() {
                   variants={fadeInUpStagger}
                   whileHover={{ y: -8, scale: 1.015 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="bg-white/70 dark:bg-[#0B1A2E]/55 border border-slate-200 dark:border-white/10 hover:border-[#2563FF]/40 dark:hover:border-[#00D4FF]/40 rounded-[24px] p-6 shadow-sm hover:shadow-[0_15px_30px_rgba(37,99,255,0.08)] dark:hover:shadow-[0_15px_30px_rgba(0,212,255,0.08)] flex flex-col justify-between gap-5 relative overflow-hidden group hover:bg-white dark:hover:bg-[#0B1A2E]/80 transition-all duration-300 cursor-default"
+                  className="bg-white/70 dark:bg-[#0B1A2E]/55 border border-slate-200 dark:border-white/10 hover:border-[#305EFF]/40 dark:hover:border-[#00D4FF]/40 rounded-[24px] p-6 shadow-sm hover:shadow-[0_15px_30px_rgba(37,99,255,0.08)] dark:hover:shadow-[0_15px_30px_rgba(0,212,255,0.08)] flex flex-col justify-between gap-5 relative overflow-hidden group hover:bg-white dark:hover:bg-[#0B1A2E]/80 transition-all duration-300 cursor-default"
                 >
                   <div className="flex flex-col gap-4">
-                    <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                    <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-[#305EFF] dark:text-[#00D4FF] group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <h3 className="font-display text-lg sm:text-xl font-bold text-[#0F172A] dark:text-white group-hover:text-[#2563FF] dark:group-hover:text-[#00D4FF] transition-colors duration-250">
+                    <h3 className="font-display text-lg sm:text-xl font-bold text-[#0F172A] dark:text-white group-hover:text-[#305EFF] dark:group-hover:text-[#00D4FF] transition-colors duration-250">
                       {sol.title}
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-650 dark:text-slate-400 leading-relaxed font-normal">
@@ -303,7 +303,7 @@ export default function SolutionsClient() {
 
       {/* 4. CTA Section */}
       <section className="relative py-28 bg-white dark:bg-[#0B1A2E] z-10 px-6 lg:px-8 border-t border-slate-200 dark:border-white/5 flex flex-col items-center overflow-hidden">
-        <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-[#2563FF]/6 dark:bg-[#00D4FF]/6 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-[#305EFF]/6 dark:bg-[#00D4FF]/6 rounded-full blur-[80px] pointer-events-none" />
 
         <motion.div 
           initial="hidden"
@@ -312,9 +312,9 @@ export default function SolutionsClient() {
           variants={imageReveal}
           whileHover={{ scale: 1.008 }}
           transition={{ duration: 0.3 }}
-          className="max-w-4xl mx-auto text-center border border-[#2563FF]/15 dark:border-[#00D4FF]/15 bg-[#FAFBFF]/80 dark:bg-[#071426]/60 rounded-[32px] p-8 md:p-14 shadow-2xl relative z-10 flex flex-col items-center gap-6 hover:border-[#2563FF]/30 dark:hover:border-[#00D4FF]/30 transition-all duration-300"
+          className="max-w-4xl mx-auto text-center border border-[#305EFF]/15 dark:border-[#00D4FF]/15 bg-[#FAFBFF]/80 dark:bg-[#071426]/60 rounded-[32px] p-8 md:p-14 shadow-2xl relative z-10 flex flex-col items-center gap-6 hover:border-[#305EFF]/30 dark:hover:border-[#00D4FF]/30 transition-all duration-300"
         >
-          <span className="text-xs font-bold text-[#2563FF] dark:text-[#00D4FF] uppercase tracking-wider font-mono">
+          <span className="text-xs font-bold text-[#305EFF] dark:text-[#00D4FF] uppercase tracking-wider font-mono">
             // architecture request
           </span>
           <h2 

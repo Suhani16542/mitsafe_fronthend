@@ -20,7 +20,7 @@ const homeServices = [
     title: "Website Design & Development",
     desc: "Website design services refer to creating and designing a website, including tasks such as layout, color palette, and typography.",
     icon: Code,
-    color: "from-[#2563FF] to-[#00BFFF]",
+    color: "from-[#305EFF] to-[#305EFF]",
     tags: ["Custom Layouts", "Responsive Design", "WordPress & CMS", "E-commerce Platforms"],
     showcase: [
       "/showcase/web_1.png",
@@ -33,7 +33,7 @@ const homeServices = [
     title: "Android & iOS App Development",
     desc: "Modern Technology offer the various types of application development services Android & iOS including custom API integrations.",
     icon: Smartphone,
-    color: "from-[#2563FF] to-[#00BFFF]",
+    color: "from-[#305EFF] to-[#305EFF]",
     tags: ["Android & iOS Apps", "Custom API Integrations", "Cross-Platform", "Mobile UX/UI"],
     showcase: [
       "/showcase/app_1.png",
@@ -46,7 +46,7 @@ const homeServices = [
     title: "Search Engine Optimization",
     desc: "Search engine optimization (SEO) is the process of improving the quality and volume of web traffic to a website or web page.",
     icon: Search,
-    color: "from-[#2563FF] to-[#00BFFF]",
+    color: "from-[#305EFF] to-[#305EFF]",
     tags: ["On-Page/Off-Page", "Keyword Optimization", "Traffic Analysis", "SEO Audit"],
     showcase: [
       "/showcase/seo_1.png",
@@ -59,7 +59,7 @@ const homeServices = [
     title: "Web Hosting Service",
     desc: "Web hosting service is a type of Internet hosting service that hosts websites for clients, providing secure data storages.",
     icon: Globe,
-    color: "from-[#2563FF] to-[#00BFFF]",
+    color: "from-[#305EFF] to-[#305EFF]",
     tags: ["Secure Cloud Server", "99.9% Uptime", "SSD Data Storage", "24/7 Active Monitoring"],
     showcase: [
       "/showcase/hosting_1.png",
@@ -72,7 +72,7 @@ const homeServices = [
     title: "Social Media Marketing",
     desc: "Social media marketing is the use of social media platforms and websites to promote a product or service, boosting brand values.",
     icon: Share2,
-    color: "from-[#2563FF] to-[#00BFFF]",
+    color: "from-[#305EFF] to-[#305EFF]",
     tags: ["Brand Campaigns", "Lead Generation", "Engagement Growth", "Social Media Strategy"],
     showcase: [
       "/showcase/social_1.png",
@@ -85,7 +85,7 @@ const homeServices = [
     title: "IT Consultations",
     desc: "IT consulting services help clients plan, design, and implement their information technology systems to align with goals.",
     icon: HelpCircle,
-    color: "from-[#2563FF] to-[#00BFFF]",
+    color: "from-[#305EFF] to-[#305EFF]",
     tags: ["Infrastructure Audit", "Technology Roadmaps", "System Architecture", "Solutions Blueprint"],
     showcase: [
       "/hero-software-dev.png",
@@ -98,7 +98,7 @@ const homeServices = [
     title: "Cyber Security Solutions",
     desc: "Cybersecurity solutions help clients protect their systems, networks, programs, and data from cyber attacks and threats.",
     icon: ShieldAlert,
-    color: "from-[#2563FF] to-[#00BFFF]",
+    color: "from-[#305EFF] to-[#305EFF]",
     tags: ["Data Encryption", "Threat Prevention", "Firewall Setup", "Vulnerability Assessment"],
     showcase: [
       "/portfolio_apex_crypto.png",
@@ -149,7 +149,7 @@ export default function ServicesSection() {
         {/* Section Header */}
         <div className="text-left mb-6">
           {/* Badge */}
-          <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-blue-200/40 bg-[#2563FF]/5 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-[#2563FF] font-display shadow-xs">
+          <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-[#305EFF]/40 bg-[#305EFF]/5 px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider text-[#305EFF] font-display shadow-xs">
             OUR SERVICES
           </div>
           {/* Title */}
@@ -157,7 +157,7 @@ export default function ServicesSection() {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display"
           >
             <span className="text-[#0F172A]">End-to-End Digital Solutions</span> <br />
-            <span className="font-black inline-block" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>
+            <span className="font-black inline-block" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF" }}>
               Built Around Your Business
             </span>
           </h2>
@@ -189,7 +189,7 @@ export default function ServicesSection() {
                       <div
                         className={`p-3 rounded-2xl border transition-all duration-300 shadow-sm shrink-0 ${isHovered
                             ? "bg-white/15 border-white/10 text-white"
-                            : "bg-[#2563FF]/10 border-[#2563FF]/20 text-[#2563FF]"
+                            : "bg-slate-100 border-slate-200 text-black"
                           }`}
                       >
                         <Icon className="w-5.5 h-5.5" />
@@ -204,12 +204,12 @@ export default function ServicesSection() {
 
                     <Link
                       href={service.slug}
-                      className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 group/link ${isHovered ? "text-white" : "text-[#2563FF]"
+                      className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-300 group/link ${isHovered ? "text-white" : "text-[#305EFF]"
                         }`}
                     >
                       <span>Explore Service</span>
                       <ArrowUpRight
-                        className={`w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 ${isHovered ? "text-white" : "text-[#2563FF]"
+                        className={`w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 ${isHovered ? "text-white" : "text-black"
                           }`}
                       />
                     </Link>

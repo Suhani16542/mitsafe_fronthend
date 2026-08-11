@@ -126,9 +126,9 @@ export function HeroImage({ service }: { service: HeroService }) {
               opacity: { duration: 0.4, delay: 0.1 + idx * 0.08 },
               y: { duration: 3.4 + idx * 0.4, repeat: Infinity, ease: "easeInOut" },
             }}
-            className={`absolute ${badge.position} z-30 hidden sm:flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 bg-white text-slate-800 border border-slate-100/90 shadow-md transition-all cursor-pointer hover:scale-105 hover:border-blue-200`}
+            className={`absolute ${badge.position} z-30 hidden sm:flex items-center gap-2.5 rounded-2xl px-3.5 py-2.5 bg-white text-slate-800 border border-slate-100/90 transition-all`}
           >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl font-bold bg-[#EBF2FF] text-[#0052FF]">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl font-bold bg-[#EBF2FF] text-black">
               <BadgeIcon className="h-4 w-4" />
             </span>
             <span className="text-xs font-extrabold tracking-wide whitespace-nowrap">
@@ -157,8 +157,8 @@ export function HeroImage({ service }: { service: HeroService }) {
 
           {/* Sub-Image Highlights */}
           <div className="mt-3 flex flex-wrap items-center justify-center gap-2 z-20">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50/90 px-3 py-1 text-[11px] font-extrabold text-[#0052FF] border border-blue-200/80 shadow-xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#0052FF] animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1 text-[11px] font-extrabold text-black border border-[#305EFF]/20 shadow-xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#305EFF] animate-pulse" />
               ⚡ High-Speed Delivery
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-50/90 px-3 py-1 text-[11px] font-extrabold text-slate-700 border border-slate-200/80 shadow-xs">

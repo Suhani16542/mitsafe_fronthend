@@ -20,9 +20,9 @@ export function ServiceBadge({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-1.5 text-sm font-medium text-blue-700"
+          className="inline-flex items-center gap-2 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-4 py-1.5 text-sm font-medium text-[#305EFF]"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+          <span className="h-1.5 w-1.5 rounded-full bg-[#305EFF]" />
           {label}
         </motion.span>
       </AnimatePresence>

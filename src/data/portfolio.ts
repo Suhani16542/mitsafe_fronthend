@@ -31,7 +31,7 @@ export const portfolioData: Project[] = [
       "High speed hosting configurations"
     ],
     techStack: ["WordPress", "HTML5", "CSS3", "JavaScript"],
-    imageColor: "from-blue-600 to-cyan-500",
+    imageColor: "from-[#305EFF] to-cyan-500",
     img: "/portfolio_auro_terra.png",
     featured: true
   },
@@ -51,7 +51,7 @@ export const portfolioData: Project[] = [
       "Real-time usage tracking boards"
     ],
     techStack: ["React", "Python", "FastAPI", "Pinecone", "LangChain"],
-    imageColor: "from-blue-600 to-indigo-500",
+    imageColor: "from-[#305EFF] to-indigo-500",
     img: "/portfolio_alpha_retrieval.png",
     featured: true
   },
@@ -282,7 +282,7 @@ export const portfolioData: Project[] = [
       "Speed optimization specs"
     ],
     techStack: ["HTML5", "CSS3", "JavaScript", "ChartJS"],
-    imageColor: "from-blue-500 to-slate-800",
+    imageColor: "from-[#305EFF] to-slate-800",
     img: "/portfolio_ui_ux.png"
   },
   {
@@ -301,7 +301,7 @@ export const portfolioData: Project[] = [
       "Interactive overlay elements"
     ],
     techStack: ["HTML5", "CSS3", "JavaScript", "Plyr API"],
-    imageColor: "from-cyan-600 to-blue-500",
+    imageColor: "from-cyan-600 to-[#305EFF]",
     img: "/portfolio_web_dev.png"
   }
 ];

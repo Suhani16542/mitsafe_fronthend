@@ -460,20 +460,20 @@ export default function AboutClient() {
       </div>
 
       {/* Floating Blueprint Coordinates Accent Nodes */}
-      <div className="absolute top-[18%] left-[14.5%] -translate-x-1.5 z-10 w-3 h-3 rounded-full bg-[#2563FF]/20 border border-[#2563FF]/40 pointer-events-none hidden lg:block" />
-      <div className="absolute top-[49.5%] right-[14.8%] -translate-x-1.5 z-10 w-3 h-3 rounded-full bg-[#2563FF]/20 border border-[#2563FF]/40 pointer-events-none hidden lg:block" />
+      <div className="absolute top-[18%] left-[14.5%] -translate-x-1.5 z-10 w-3 h-3 rounded-full bg-[#305EFF]/20 border border-[#305EFF]/40 pointer-events-none hidden lg:block" />
+      <div className="absolute top-[49.5%] right-[14.8%] -translate-x-1.5 z-10 w-3 h-3 rounded-full bg-[#305EFF]/20 border border-[#305EFF]/40 pointer-events-none hidden lg:block" />
 
       {/* Floating Particles in Hero */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden max-w-7xl mx-auto px-6">
         <motion.div
           animate={{ y: [0, -25, 0], x: [0, 10, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[15%] left-[10%] w-2 h-2 rounded-full bg-[#2563FF]/30 blur-[1px]"
+          className="absolute top-[15%] left-[10%] w-2 h-2 rounded-full bg-[#305EFF]/30 blur-[1px]"
         />
         <motion.div
           animate={{ y: [0, -35, 0], x: [0, -15, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute top-[35%] right-[15%] w-3 h-3 rounded-full bg-[#2563FF]/20 blur-[1px]"
+          className="absolute top-[35%] right-[15%] w-3 h-3 rounded-full bg-[#305EFF]/20 blur-[1px]"
         />
       </div>
 
@@ -489,7 +489,7 @@ export default function AboutClient() {
               initial={{ opacity: 0, y: -20, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-slate-200 dark:border-white/5 bg-[#2563FF]/5 dark:bg-[#2563FF]/15 text-[#2563FF] dark:text-[#00BFFF] text-[10px] font-extrabold uppercase tracking-widest font-mono shadow-sm"
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-slate-200 dark:border-white/5 bg-[#305EFF]/5 dark:bg-[#305EFF]/15 text-[#305EFF] dark:text-[#305EFF] text-[10px] font-extrabold uppercase tracking-widest font-mono shadow-sm"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>We Are Mitsafe</span>
@@ -511,7 +511,7 @@ export default function AboutClient() {
                   initial={{ y: "100%", opacity: 0, filter: "blur(4px)" }}
                   animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
                   transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#2563FF] to-[#00D4FF] dark:from-[#00BFFF] dark:to-[#6C63FF]"
+                  className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#305EFF] to-[#00D4FF] dark:from-[#305EFF] dark:to-[#6C63FF]"
                 >
                   Digital Spaces
                 </motion.span>
@@ -534,8 +534,8 @@ export default function AboutClient() {
               className="flex items-center gap-2.5 mt-4 text-[10px] font-extrabold uppercase tracking-widest text-slate-400 font-mono"
             >
               <span>Home</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2563FF]/40 dark:bg-[#00BFFF]/40" />
-              <span className="text-[#2563FF] dark:text-[#00BFFF]">About Us</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#305EFF]/40 dark:bg-[#305EFF]/40" />
+              <span className="text-[#305EFF] dark:text-[#305EFF]">About Us</span>
             </motion.div>
           </div>
 
@@ -598,7 +598,7 @@ export default function AboutClient() {
 
           {/* Sticky Left Column with dynamic scroll indicator */}
           <div className="lg:col-span-4 lg:sticky lg:top-36 text-left flex flex-col gap-6">
-            <span className="text-[10px] font-extrabold text-[#2563FF] dark:text-[#00BFFF] uppercase tracking-widest font-mono bg-[#2563FF]/5 dark:bg-[#2563FF]/15 border border-slate-200 dark:border-white/5 px-3.5 py-1.5 rounded-full w-fit">
+            <span className="text-[10px] font-extrabold text-[#305EFF] dark:text-[#305EFF] uppercase tracking-widest font-mono bg-[#305EFF]/5 dark:bg-[#305EFF]/15 border border-slate-200 dark:border-white/5 px-3.5 py-1.5 rounded-full w-fit">
               Corporate Pillars
             </span>
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#0F172A] dark:text-white leading-tight">
@@ -611,7 +611,7 @@ export default function AboutClient() {
             {/* Visual Progress bar container representing reading journey */}
             <div className="w-full h-1 bg-[#F3F0FA] dark:bg-white/5 rounded-full overflow-hidden mt-4 relative">
               <motion.div
-                className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#2563FF] to-[#00D4FF] dark:from-[#00BFFF] dark:to-[#6C63FF] rounded-full"
+                className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#305EFF] to-[#00D4FF] dark:from-[#305EFF] dark:to-[#6C63FF] rounded-full"
                 animate={{ width: ["0%", "100%", "50%"] }}
                 transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
               />
@@ -623,11 +623,11 @@ export default function AboutClient() {
             {/* Block 1 */}
             <ScrollReveal direction="right">
               <GlowCardLight className="w-full relative">
-                <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-[#F3F0FA] dark:bg-white/5 border border-[#E5E2F0]/80 dark:border-white/10 flex items-center justify-center text-[#2563FF] dark:text-[#00BFFF] group-hover:bg-[#2563FF] dark:group-hover:bg-[#00D4FF] group-hover:text-white transition-all duration-300 shadow-md">
+                <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-[#F3F0FA] dark:bg-white/5 border border-[#E5E2F0]/80 dark:border-white/10 flex items-center justify-center text-[#305EFF] dark:text-[#305EFF] group-hover:bg-[#305EFF]/10 dark:group-hover:bg-[#00D4FF] group-hover:text-white transition-all duration-300 shadow-md">
                   <Laptop className="w-8 h-8" />
                 </div>
                 <div className="max-w-xl text-left">
-                  <span className="text-[9px] font-extrabold uppercase tracking-widest font-mono text-[#2563FF] dark:text-[#00BFFF]">Pillar 01</span>
+                  <span className="text-[9px] font-extrabold uppercase tracking-widest font-mono text-[#305EFF] dark:text-[#305EFF]">Pillar 01</span>
                   <h3 className="font-display text-2xl md:text-3xl font-black text-[#0F172A] dark:text-white mt-2 mb-4">WEB / APP Consultancy</h3>
                   <p className="text-sm sm:text-base text-slate-600 dark:text-slate-350 leading-relaxed font-normal">
                     Web app consultancy involves providing expert advice and recommendations to businesses or individuals looking to develop, launch, and maintain a web application.
@@ -639,11 +639,11 @@ export default function AboutClient() {
             {/* Block 2 */}
             <ScrollReveal direction="right" delay={0.15}>
               <GlowCardLight className="w-full relative">
-                <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-[#F3F0FA] dark:bg-white/5 border border-[#E5E2F0]/80 dark:border-white/10 flex items-center justify-center text-[#2563FF] dark:text-[#00BFFF] group-hover:bg-[#2563FF] dark:group-hover:bg-[#00D4FF] group-hover:text-white transition-all duration-300 shadow-md">
+                <div className="absolute top-8 right-8 w-16 h-16 rounded-full bg-[#F3F0FA] dark:bg-white/5 border border-[#E5E2F0]/80 dark:border-white/10 flex items-center justify-center text-[#305EFF] dark:text-[#305EFF] group-hover:bg-[#305EFF]/10 dark:group-hover:bg-[#00D4FF] group-hover:text-white transition-all duration-300 shadow-md">
                   <Server className="w-8 h-8" />
                 </div>
                 <div className="max-w-xl text-left">
-                  <span className="text-[9px] font-extrabold uppercase tracking-widest font-mono text-[#2563FF] dark:text-[#00BFFF]">Pillar 02</span>
+                  <span className="text-[9px] font-extrabold uppercase tracking-widest font-mono text-[#305EFF] dark:text-[#305EFF]">Pillar 02</span>
                   <h3 className="font-display text-2xl md:text-3xl font-black text-[#0F172A] dark:text-white mt-2 mb-4">Cloud computing</h3>
                   <p className="text-sm sm:text-base text-slate-600 dark:text-slate-350 leading-relaxed font-normal">
                     Along with the development we are here to guide you the proper cloud computing , cloud services and guidance to your business.
@@ -670,10 +670,10 @@ export default function AboutClient() {
             className="lg:col-span-7 bg-white dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-[rgba(0,212,255,0.15)] rounded-[3rem] p-10 md:p-14 text-[#0F172A] dark:text-white text-left flex flex-col justify-between relative overflow-hidden"
           >
             {/* Accent Glowing Top Sphere */}
-            <div className="absolute top-[-20%] right-[-10%] w-72 h-72 rounded-full bg-[#2563FF] opacity-35 blur-3xl pointer-events-none" />
+            <div className="absolute top-[-20%] right-[-10%] w-72 h-72 rounded-full bg-[#305EFF] opacity-35 blur-3xl pointer-events-none" />
 
             <div className="flex flex-col gap-6 relative z-10">
-              <div className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/20 dark:border-[#00D4FF]/20 bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 px-3 py-1 rounded-full w-fit">
+              <div className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-[#305EFF] dark:text-[#00D4FF] border border-[#305EFF]/20 dark:border-[#00D4FF]/20 bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 px-3 py-1 rounded-full w-fit">
                 <Award className="w-3.5 h-3.5" />
                 <span>ABOUT US</span>
               </div>
@@ -687,19 +687,19 @@ export default function AboutClient() {
               {/* Animated Counters stats row */}
               <div className="grid grid-cols-3 gap-6 border-t border-slate-200 dark:border-white/10 pt-8 mt-10">
                 <div>
-                  <h4 className="text-3xl sm:text-4xl font-display font-black text-[#2563FF] dark:text-white">
+                  <h4 className="text-3xl sm:text-4xl font-display font-black text-[#305EFF] dark:text-white">
                     <Counter value={7} />+
                   </h4>
                   <span className="text-[10px] uppercase font-mono tracking-widest text-slate-500 dark:text-[#00D4FF] font-bold">Years Exp</span>
                 </div>
                 <div>
-                  <h4 className="text-3xl sm:text-4xl font-display font-black text-[#2563FF] dark:text-white">
+                  <h4 className="text-3xl sm:text-4xl font-display font-black text-[#305EFF] dark:text-white">
                     <Counter value={500} />+
                   </h4>
                   <span className="text-[10px] uppercase font-mono tracking-widest text-slate-500 dark:text-[#00D4FF] font-bold">Projects</span>
                 </div>
                 <div>
-                  <h4 className="text-3xl sm:text-4xl font-display font-black text-[#2563FF] dark:text-white">
+                  <h4 className="text-3xl sm:text-4xl font-display font-black text-[#305EFF] dark:text-white">
                     <Counter value={920} />K
                   </h4>
                   <span className="text-[10px] uppercase font-mono tracking-widest text-slate-500 dark:text-[#00D4FF] font-bold">Clients</span>
@@ -709,7 +709,7 @@ export default function AboutClient() {
 
             <div className="mt-10 relative z-10">
               <Magnetic>
-                <Button href="/services" variant="outline" className="border-slate-300 dark:border-white text-[#2563FF] dark:text-white hover:bg-[#2563FF] hover:text-white dark:hover:bg-white dark:hover:text-[#1E1A39]">
+                <Button href="/services/web-development" variant="outline" className="border-slate-300 dark:border-white text-[#305EFF] dark:text-white hover:bg-[#305EFF]/10 hover:text-white dark:hover:bg-white dark:hover:text-[#1E1A39]">
                   OUR SERVICES
                 </Button>
               </Magnetic>
@@ -731,7 +731,7 @@ export default function AboutClient() {
                 <div className="w-3 h-3 rounded-full bg-yellow-400" />
                 <div className="w-3 h-3 rounded-full bg-green-400" />
               </div>
-              <span className="text-[9px] font-extrabold uppercase tracking-widest font-mono text-[#2563FF] dark:text-[#00D4FF]">Video Dashboard</span>
+              <span className="text-[9px] font-extrabold uppercase tracking-widest font-mono text-[#305EFF] dark:text-[#00D4FF]">Video Dashboard</span>
             </div>
 
             {/* Video Frame Mockup Center */}
@@ -750,23 +750,23 @@ export default function AboutClient() {
               {/* Pulsing play overlay */}
               <motion.div
                 whileHover={{ scale: 1.15 }}
-                className="w-16 h-16 rounded-full bg-white text-[#2563FF] dark:text-[#071426] flex items-center justify-center cursor-pointer shadow-lg z-10"
+                className="w-16 h-16 rounded-full bg-white text-[#305EFF] dark:text-[#071426] flex items-center justify-center cursor-pointer shadow-lg z-10"
               >
                 <div className="absolute inset-0 rounded-full bg-white/40 animate-ping pointer-events-none" />
-                <Play className="w-5 h-5 fill-[#2563FF] dark:fill-[#071426] translate-x-0.5 text-[#2563FF] dark:text-[#071426]" />
+                <Play className="w-5 h-5 fill-[#305EFF] dark:fill-[#071426] translate-x-0.5 text-[#305EFF] dark:text-[#071426]" />
               </motion.div>
 
               {/* Fake Audio soundwave lines at bottom */}
               <div className="absolute bottom-3 inset-x-6 flex items-center gap-1.5 justify-center opacity-30">
                 {[20, 60, 45, 90, 30, 80, 50, 75, 40].map((h, i) => (
-                  <div key={i} className="w-1 bg-[#2563FF] dark:bg-[#00D4FF] rounded-full" style={{ height: `${h}%` }} />
+                  <div key={i} className="w-1 bg-[#305EFF] dark:bg-[#00D4FF] rounded-full" style={{ height: `${h}%` }} />
                 ))}
               </div>
             </div>
 
             {/* Info details */}
             <div className="flex items-center gap-3 text-left">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#2563FF] dark:bg-[#00D4FF] animate-pulse" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#305EFF] dark:bg-[#00D4FF] animate-pulse" />
               <span className="text-[10px] font-extrabold uppercase tracking-widest font-mono text-slate-500 dark:text-slate-400">Corporate Reel Presentation</span>
             </div>
           </motion.div>
@@ -779,13 +779,13 @@ export default function AboutClient() {
          ========================================================================== */}
       <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20 border-t border-[#E5E2F0]/40 z-10">
         <div className="text-center mb-16 max-w-2xl mx-auto flex flex-col items-center">
-          <span className="text-[10px] font-extrabold text-[#2563FF] dark:text-[#00D4FF] bg-[#2563FF]/5 dark:bg-[#2563FF]/15 border border-slate-200 dark:border-white/5 px-4 py-1.5 rounded-full w-fit">
+          <span className="text-[10px] font-extrabold text-[#305EFF] dark:text-[#00D4FF] bg-[#305EFF]/5 dark:bg-[#305EFF]/15 border border-slate-200 dark:border-white/5 px-4 py-1.5 rounded-full w-fit">
             WHAT WE DO
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-[#0F172A] dark:text-white mt-6 tracking-tight">
             Fresh Ideas for Every Business
           </h2>
-          <span className="w-20 h-0.5 bg-[#2563FF] dark:bg-[#00D4FF] mt-4 block" />
+          <span className="w-20 h-0.5 bg-[#305EFF] dark:bg-[#00D4FF] mt-4 block" />
           <h3 className="font-display text-base font-bold text-slate-500 uppercase tracking-widest mt-6">
             Perfect IT solution For Your Business
           </h3>
@@ -798,7 +798,7 @@ export default function AboutClient() {
           <ScrollReveal direction="zoom" className="md:col-span-2 h-full">
             <GlowCardLight className="w-full h-full flex flex-col justify-between text-left border border-slate-200 dark:border-white/5 bg-white dark:bg-[#0B1A2E]/55 !shadow-none">
               <div className="flex flex-col gap-6">
-                <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:rotate-6 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-[#305EFF] dark:text-[#00D4FF] group-hover:rotate-6 transition-transform duration-300">
                   <Code className="w-6 h-6" />
                 </div>
                 <div className="max-w-md">
@@ -810,7 +810,7 @@ export default function AboutClient() {
                   </p>
                 </div>
               </div>
-              <div className="mt-8 text-[9px] font-extrabold uppercase tracking-widest font-mono text-[#2563FF] dark:text-[#00D4FF] flex items-center gap-1.5">
+              <div className="mt-8 text-[9px] font-extrabold uppercase tracking-widest font-mono text-[#305EFF] dark:text-[#00D4FF] flex items-center gap-1.5">
                 <span>Capability Profile</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </div>
@@ -844,7 +844,7 @@ export default function AboutClient() {
           <ScrollReveal direction="zoom" delay={0.15} className="h-full">
             <GlowCardLight className="w-full h-full flex flex-col justify-between text-left">
               <div className="flex flex-col gap-6">
-                <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:rotate-6 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-[#305EFF] dark:text-[#00D4FF] group-hover:rotate-6 transition-transform duration-300">
                   <Gamepad className="w-6 h-6" />
                 </div>
                 <div>
@@ -856,7 +856,7 @@ export default function AboutClient() {
                   </p>
                 </div>
               </div>
-              <div className="mt-8 text-[9px] font-extrabold uppercase tracking-widest font-mono text-slate-500 dark:text-slate-400 group-hover:text-[#2563FF] dark:group-hover:text-[#00D4FF] transition-colors duration-300 flex items-center gap-1.5">
+              <div className="mt-8 text-[9px] font-extrabold uppercase tracking-widest font-mono text-slate-500 dark:text-slate-400 group-hover:text-[#305EFF] dark:group-hover:text-[#00D4FF] transition-colors duration-300 flex items-center gap-1.5">
                 <span>Capability Profile</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </div>
@@ -867,7 +867,7 @@ export default function AboutClient() {
           <ScrollReveal direction="zoom" delay={0.2} className="h-full">
             <GlowCardLight className="w-full h-full flex flex-col justify-between text-left">
               <div className="flex flex-col gap-6">
-                <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:rotate-6 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-[#305EFF] dark:text-[#00D4FF] group-hover:rotate-6 transition-transform duration-300">
                   <Palette className="w-6 h-6" />
                 </div>
                 <div>
@@ -879,7 +879,7 @@ export default function AboutClient() {
                   </p>
                 </div>
               </div>
-              <div className="mt-8 text-[9px] font-extrabold uppercase tracking-widest font-mono text-slate-500 dark:text-slate-400 group-hover:text-[#2563FF] dark:group-hover:text-[#00D4FF] transition-colors duration-300 flex items-center gap-1.5">
+              <div className="mt-8 text-[9px] font-extrabold uppercase tracking-widest font-mono text-slate-500 dark:text-slate-400 group-hover:text-[#305EFF] dark:group-hover:text-[#00D4FF] transition-colors duration-300 flex items-center gap-1.5">
                 <span>Capability Profile</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </div>
@@ -890,7 +890,7 @@ export default function AboutClient() {
           <ScrollReveal direction="zoom" delay={0.25} className="md:col-span-2 h-full">
             <GlowCardLight className="w-full h-full flex flex-col justify-between text-left border border-slate-200 dark:border-white/5 bg-white dark:bg-[#0B1A2E]/55 !shadow-none">
               <div className="flex flex-col gap-6">
-                <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-[#2563FF] dark:text-[#00D4FF] group-hover:rotate-6 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-[#305EFF] dark:text-[#00D4FF] group-hover:rotate-6 transition-transform duration-300">
                   <BookOpen className="w-6 h-6" />
                 </div>
                 <div className="max-w-md">
@@ -902,7 +902,7 @@ export default function AboutClient() {
                   </p>
                 </div>
               </div>
-              <div className="mt-8 text-[9px] font-extrabold uppercase tracking-widest font-mono text-[#2563FF] dark:text-[#00D4FF] flex items-center gap-1.5">
+              <div className="mt-8 text-[9px] font-extrabold uppercase tracking-widest font-mono text-[#305EFF] dark:text-[#00D4FF] flex items-center gap-1.5">
                 <span>Capability Profile</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </div>
@@ -911,7 +911,7 @@ export default function AboutClient() {
 
           {/* Card 6: Purple Gradient Card */}
           <ScrollReveal direction="zoom" delay={0.3} className="h-full">
-            <GlowCardLight className="w-full h-full flex flex-col justify-between text-left !bg-gradient-to-tr !from-[#2563FF] !to-[#071426] !border-slate-200 dark:!border-white/10 !shadow-none">
+            <GlowCardLight className="w-full h-full flex flex-col justify-between text-left !bg-gradient-to-tr !from-[#305EFF] !to-[#071426] !border-slate-200 dark:!border-white/10 !shadow-none">
               <div className="flex flex-col gap-6">
                 <div className="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center text-white group-hover:rotate-6 transition-transform duration-300">
                   <Briefcase className="w-6 h-6" />
@@ -943,7 +943,7 @@ export default function AboutClient() {
 
           {/* Sticky Left: Dynamic Year Display */}
           <div className="lg:col-span-5 lg:sticky lg:top-36 text-left flex flex-col gap-6">
-            <span className="text-[10px] font-extrabold text-[#2563FF] dark:text-[#00D4FF] bg-[#2563FF]/5 dark:bg-[#2563FF]/15 border border-slate-200 dark:border-white/5 px-4 py-1.5 rounded-full w-fit">
+            <span className="text-[10px] font-extrabold text-[#305EFF] dark:text-[#00D4FF] bg-[#305EFF]/5 dark:bg-[#305EFF]/15 border border-slate-200 dark:border-white/5 px-4 py-1.5 rounded-full w-fit">
               OUR HISTORY
             </span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-[#0F172A] dark:text-white leading-tight tracking-tight">
@@ -953,9 +953,9 @@ export default function AboutClient() {
             {/* Dynamic visual indicator node */}
             <div className="flex items-center gap-6 mt-8 relative pl-12 h-20 overflow-hidden">
               <div className="absolute left-4 inset-y-0 w-0.5 bg-slate-200 dark:bg-white/5" />
-              <div className="absolute left-3 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#2563FF] dark:bg-[#00D4FF]" />
+              <div className="absolute left-3 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#305EFF] dark:bg-[#00D4FF]" />
               <div className="flex flex-col gap-0.5">
-                <span className="text-4xl md:text-5xl font-black font-display text-[#2563FF] dark:text-[#00D4FF]">
+                <span className="text-4xl md:text-5xl font-black font-display text-[#305EFF] dark:text-[#00D4FF]">
                   {timelineMilestones[activeTimelineIdx].year}
                 </span>
                 <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest font-mono">Current Milestone</span>
@@ -973,10 +973,10 @@ export default function AboutClient() {
                 viewport={{ once: true, margin: "-150px" }}
                 onViewportEnter={() => setActiveTimelineIdx(idx)}
                 transition={{ duration: 0.6 }}
-                className="group relative bg-slate-50/30 dark:bg-[#0B1A2E]/20 hover:bg-white dark:hover:bg-[#0B1A2E]/50 border border-slate-200 dark:border-white/10 hover:border-[#2563FF]/20 dark:hover:border-[#00D4FF]/20 rounded-[3rem] p-10 text-left transition-all duration-300 shadow-sm"
+                className="group relative bg-slate-50/30 dark:bg-[#0B1A2E]/20 hover:bg-white dark:hover:bg-[#0B1A2E]/50 border border-slate-200 dark:border-white/10 hover:border-[#305EFF]/20 dark:hover:border-[#00D4FF]/20 rounded-[3rem] p-10 text-left transition-all duration-300 shadow-sm"
               >
                 {/* Year Badge */}
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 text-[#2563FF] dark:text-[#00D4FF] text-[10px] font-mono font-extrabold uppercase tracking-wider mb-6">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 text-[#305EFF] dark:text-[#00D4FF] text-[10px] font-mono font-extrabold uppercase tracking-wider mb-6">
                   {m.year}
                 </span>
                 <h4 className="font-display text-2xl font-black text-[#0F172A] dark:text-white mb-4">
@@ -1006,7 +1006,7 @@ export default function AboutClient() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="absolute w-[80%] aspect-square rounded-[3rem] bg-gradient-to-tr from-[#2563FF]/5 to-[#F3F0FA] dark:from-[#00D4FF]/5 dark:to-[#071426] border border-slate-200 dark:border-white/5 p-8 flex flex-col justify-between"
+              className="absolute w-[80%] aspect-square rounded-[3rem] bg-gradient-to-tr from-[#305EFF]/5 to-[#F3F0FA] dark:from-[#00D4FF]/5 dark:to-[#071426] border border-slate-200 dark:border-white/5 p-8 flex flex-col justify-between"
             >
               <div className="flex gap-2">
                 <div className="w-2.5 h-2.5 rounded-full bg-[#E5E2F0] dark:bg-white/10" />
@@ -1028,16 +1028,16 @@ export default function AboutClient() {
               className="absolute w-[80%] aspect-square bg-white/70 dark:bg-[#0B1A2E]/70 backdrop-blur-xl border border-slate-200 dark:border-white/5 rounded-[3rem] p-8 flex flex-col justify-between shadow-[0_25px_60px_rgba(37,99,255,0.06)] hover:scale-102 transition-transform duration-300 translate-x-8 translate-y-8"
             >
               <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-4">
-                <span className="text-[10px] font-extrabold font-mono uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF]">MitSafe Analytics</span>
+                <span className="text-[10px] font-extrabold font-mono uppercase tracking-widest text-[#305EFF] dark:text-[#00D4FF]">MitSafe Analytics</span>
                 <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
               </div>
               <div className="flex flex-col gap-3 my-4">
-                <div className="h-4 w-3/4 rounded-lg bg-[#2563FF]/10 animate-pulse" />
+                <div className="h-4 w-3/4 rounded-lg bg-[#305EFF]/10 animate-pulse" />
                 <div className="h-3 w-1/2 rounded bg-slate-100 dark:bg-white/5" />
               </div>
 
               {/* Circular Progress Wheel */}
-              <div className="w-24 h-24 rounded-full border-8 border-[#F3F0FA] dark:border-white/5 border-t-[#2563FF] border-r-[#2563FF]/80 flex items-center justify-center self-center my-2 rotate-45">
+              <div className="w-24 h-24 rounded-full border-8 border-[#F3F0FA] dark:border-white/5 border-t-[#305EFF] border-r-[#305EFF]/80 flex items-center justify-center self-center my-2 rotate-45">
                 <span className="text-xs font-black font-display text-[#0F172A] dark:text-white -rotate-45">92%</span>
               </div>
             </motion.div>
@@ -1046,7 +1046,7 @@ export default function AboutClient() {
           {/* Right Column Checklist */}
           <div className="lg:col-span-6 text-left flex flex-col gap-6">
             <ScrollReveal direction="right">
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#2563FF] dark:text-[#00D4FF] border border-[#2563FF]/15 dark:border-[#00D4FF]/25 px-3 py-1 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 w-fit">
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#305EFF] dark:text-[#00D4FF] border border-[#305EFF]/15 dark:border-[#00D4FF]/25 px-3 py-1 rounded-full bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 w-fit">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>WHY CHOOSE US</span>
               </div>
@@ -1057,11 +1057,11 @@ export default function AboutClient() {
               <div className="flex flex-col gap-8 mt-8">
                 {/* Item 1 */}
                 <div className="flex gap-5 items-start group">
-                  <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 text-[#2563FF] dark:text-[#00D4FF] group-hover:bg-[#2563FF] dark:group-hover:bg-[#00D4FF] group-hover:text-white transition-all duration-300 shadow-sm">
+                  <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 text-[#305EFF] dark:text-[#00D4FF] group-hover:bg-[#305EFF]/10 dark:group-hover:bg-[#00D4FF] group-hover:text-white transition-all duration-300 shadow-sm">
                     <Check className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <h4 className="font-display text-lg font-bold text-[#0F172A] dark:text-white group-hover:text-[#2563FF] dark:group-hover:text-[#00D4FF] transition-colors duration-300">
+                    <h4 className="font-display text-lg font-bold text-[#0F172A] dark:text-white group-hover:text-[#305EFF] dark:group-hover:text-[#00D4FF] transition-colors duration-300">
                       First Working Process
                     </h4>
                     <p className="text-sm text-slate-650 dark:text-slate-350 leading-relaxed font-normal">
@@ -1072,11 +1072,11 @@ export default function AboutClient() {
 
                 {/* Item 2 */}
                 <div className="flex gap-5 items-start group">
-                  <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 text-[#2563FF] dark:text-[#00D4FF] group-hover:bg-[#2563FF] dark:group-hover:bg-[#00D4FF] group-hover:text-white transition-all duration-300 shadow-sm">
+                  <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 text-[#305EFF] dark:text-[#00D4FF] group-hover:bg-[#305EFF]/10 dark:group-hover:bg-[#00D4FF] group-hover:text-white transition-all duration-300 shadow-sm">
                     <Check className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <h4 className="font-display text-lg font-bold text-[#0F172A] dark:text-white group-hover:text-[#2563FF] dark:group-hover:text-[#00D4FF] transition-colors duration-300">
+                    <h4 className="font-display text-lg font-bold text-[#0F172A] dark:text-white group-hover:text-[#305EFF] dark:group-hover:text-[#00D4FF] transition-colors duration-300">
                       Dedicated Team Member
                     </h4>
                     <p className="text-sm text-slate-650 dark:text-slate-350 leading-relaxed font-normal">
@@ -1087,11 +1087,11 @@ export default function AboutClient() {
 
                 {/* Item 3 */}
                 <div className="flex gap-5 items-start group">
-                  <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 text-[#2563FF] dark:text-[#00D4FF] group-hover:bg-[#2563FF] dark:group-hover:bg-[#00D4FF] group-hover:text-white transition-all duration-300 shadow-sm">
+                  <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 text-[#305EFF] dark:text-[#00D4FF] group-hover:bg-[#305EFF]/10 dark:group-hover:bg-[#00D4FF] group-hover:text-white transition-all duration-300 shadow-sm">
                     <Check className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <h4 className="font-display text-lg font-bold text-[#0F172A] dark:text-white group-hover:text-[#2563FF] dark:group-hover:text-[#00D4FF] transition-colors duration-300">
+                    <h4 className="font-display text-lg font-bold text-[#0F172A] dark:text-white group-hover:text-[#305EFF] dark:group-hover:text-[#00D4FF] transition-colors duration-300">
                       24/7 Hours Support
                     </h4>
                     <p className="text-sm text-slate-650 dark:text-slate-350 leading-relaxed font-normal">
@@ -1112,7 +1112,7 @@ export default function AboutClient() {
       <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20 border-t border-[#E5E2F0]/40 z-10">
         <ScrollReveal direction="up">
           <div className="text-center mb-16 max-w-xl mx-auto">
-            <span className="text-[10px] font-extrabold text-[#2563FF] dark:text-[#00D4FF] bg-[#2563FF]/5 dark:bg-[#2563FF]/15 border border-slate-200 dark:border-white/5 px-4 py-1.5 rounded-full">
+            <span className="text-[10px] font-extrabold text-[#305EFF] dark:text-[#00D4FF] bg-[#305EFF]/5 dark:bg-[#305EFF]/15 border border-slate-200 dark:border-white/5 px-4 py-1.5 rounded-full">
               TESTIMONIALS
             </span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-[#0F172A] dark:text-white mt-6 tracking-tight">
@@ -1123,13 +1123,13 @@ export default function AboutClient() {
 
         <div className="max-w-5xl mx-auto relative px-10 md:px-24 py-16 rounded-[3.5rem] bg-gradient-to-br from-white to-slate-50 dark:from-[#0B1A2E] dark:to-[#071426] border border-slate-200 dark:border-white/5 shadow-[0_30px_60px_rgba(37,99,255,0.03)] backdrop-blur-xl">
           {/* Custom brackets */}
-          <span className="absolute top-12 left-10 md:left-14 font-display font-black text-8xl text-[#2563FF]/10 dark:text-[#00D4FF]/10 pointer-events-none select-none">“</span>
-          <span className="absolute bottom-6 right-10 md:right-14 font-display font-black text-8xl text-[#2563FF]/10 dark:text-[#00D4FF]/10 pointer-events-none select-none">”</span>
+          <span className="absolute top-12 left-10 md:left-14 font-display font-black text-8xl text-[#305EFF]/10 dark:text-[#00D4FF]/10 pointer-events-none select-none">“</span>
+          <span className="absolute bottom-6 right-10 md:right-14 font-display font-black text-8xl text-[#305EFF]/10 dark:text-[#00D4FF]/10 pointer-events-none select-none">”</span>
 
           {/* Navigation */}
           <button
             onClick={() => setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#2563FF] dark:hover:text-[#00D4FF] hover:border-[#2563FF]/35 dark:hover:border-[#00D4FF]/35 hover:shadow-md hover:scale-[1.05] transition-all duration-300 cursor-pointer z-10"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#305EFF] dark:hover:text-[#00D4FF] hover:border-[#305EFF]/35 dark:hover:border-[#00D4FF]/35 hover:shadow-md hover:scale-[1.05] transition-all duration-300 cursor-pointer z-10"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -1137,7 +1137,7 @@ export default function AboutClient() {
 
           <button
             onClick={() => setActiveTestimonial((prev) => (prev + 1) % testimonials.length)}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#2563FF] dark:hover:text-[#00D4FF] hover:border-[#2563FF]/35 dark:hover:border-[#00D4FF]/35 hover:shadow-md hover:scale-[1.05] transition-all duration-300 cursor-pointer z-10"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#305EFF] dark:hover:text-[#00D4FF] hover:border-[#305EFF]/35 dark:hover:border-[#00D4FF]/35 hover:shadow-md hover:scale-[1.05] transition-all duration-300 cursor-pointer z-10"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-6 h-6" />
@@ -1155,7 +1155,7 @@ export default function AboutClient() {
               {/* Center avatar shield card */}
               <div className="w-24 h-24 relative flex items-center justify-center bg-white dark:bg-[#071426] border border-slate-200 dark:border-white/5 rounded-[2rem] p-3 shadow-[0_10px_30px_rgba(30,26,57,0.04)] hover:scale-105 transition-transform duration-300">
                 <div className="w-full h-full rounded-2xl border border-slate-200 dark:border-white/10 flex flex-col items-center justify-center text-[10px] font-black uppercase text-[#0F172A] dark:text-white leading-tight">
-                  <span className="text-[#2563FF] dark:text-[#00D4FF] font-extrabold text-sm tracking-tighter">T-ZER</span>
+                  <span className="text-[#305EFF] dark:text-[#00D4FF] font-extrabold text-sm tracking-tighter">T-ZER</span>
                   <span className="text-[7px] text-slate-400 font-bold -mt-0.5 tracking-tighter">CABZ</span>
                 </div>
               </div>
@@ -1168,7 +1168,7 @@ export default function AboutClient() {
                 <h4 className="font-display text-lg font-bold text-[#0F172A] dark:text-white">
                   {testimonials[activeTestimonial].author}
                 </h4>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/15 dark:border-[#00D4FF]/25 text-[#2563FF] dark:text-[#00D4FF] text-[9px] font-extrabold uppercase tracking-wider font-mono">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 border border-[#305EFF]/15 dark:border-[#00D4FF]/25 text-[#305EFF] dark:text-[#00D4FF] text-[9px] font-extrabold uppercase tracking-wider font-mono">
                   {testimonials[activeTestimonial].role}
                 </span>
               </div>
@@ -1196,9 +1196,9 @@ export default function AboutClient() {
                   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
                 }}
                 whileHover={{ scale: 1.05, y: -4 }}
-                className="flex items-center justify-center p-5 bg-white/50 dark:bg-[#0B1A2E]/50 rounded-[1.5rem] border border-slate-200 dark:border-white/5 shadow-sm cursor-default hover:border-[#2563FF]/25 dark:hover:border-[#00D4FF]/25 hover:shadow-[0_12px_25px_rgba(37,99,255,0.04)] transition-all duration-300"
+                className="flex items-center justify-center p-5 bg-white/50 dark:bg-[#0B1A2E]/50 rounded-[1.5rem] border border-slate-200 dark:border-white/5 shadow-sm cursor-default hover:border-[#305EFF]/25 dark:hover:border-[#00D4FF]/25 hover:shadow-[0_12px_25px_rgba(37,99,255,0.04)] transition-all duration-300"
               >
-                <span className="font-display text-xs md:text-sm font-extrabold text-slate-400 dark:text-slate-500 hover:text-[#2563FF] dark:hover:text-[#00D4FF] transition-colors duration-300 tracking-wide uppercase font-mono">
+                <span className="font-display text-xs md:text-sm font-extrabold text-slate-400 dark:text-slate-500 hover:text-[#305EFF] dark:hover:text-[#00D4FF] transition-colors duration-300 tracking-wide uppercase font-mono">
                   {logo}
                 </span>
               </motion.div>

@@ -52,16 +52,16 @@ export function StatsBar({ stats, id }: { stats: HeroStat[]; id: string }) {
             return (
               <div
                 key={i}
-                className="flex shrink-0 items-center gap-3.5 rounded-xl border border-slate-100 bg-slate-50/60 px-4 py-2.5 transition-all hover:border-blue-200 hover:bg-blue-50/30"
+                className="flex shrink-0 items-center gap-3.5 rounded-xl border border-slate-100 bg-slate-50/60 px-4 py-2.5 transition-all hover:border-slate-200 hover:bg-slate-100/80"
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white shadow-sm">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600 shadow-sm">
                   <Icon className="h-5 w-5" />
                 </span>
                 <div>
                   <p className="flex items-center gap-1.5 text-base font-extrabold text-slate-900 tracking-tight">
                     {item.value}
                     {item.delta && (
-                      <span className="flex items-center gap-0.5 text-[10px] font-bold text-blue-700 bg-blue-100/70 px-1.5 py-0.5 rounded-md">
+                      <span className="flex items-center gap-0.5 text-[10px] font-bold text-slate-700 bg-slate-200/80 px-1.5 py-0.5 rounded-md">
                         {item.delta}
                       </span>
                     )}

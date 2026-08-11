@@ -1,95 +1,112 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, ArrowRight, Sparkles, Code, CheckCircle } from "lucide-react";
-import Button from "@/components/Button";
-import LottieAnimation from "@/components/LottieAnimation";
-import GradientButton from "@/components/GradientButton";
+import { motion } from "framer-motion";
+import { 
+  ArrowRight, 
+  Sparkles, 
+  Globe, 
+  AppWindow, 
+  Smartphone, 
+  ShoppingCart, 
+  Cloud, 
+  Cpu, 
+  Code2, 
+  Layout,
+  Building,
+  GraduationCap,
+  HeartPulse,
+  Briefcase
+} from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import { testimonialsData } from "@/data/testimonials";
 
-const categories = [
-  "All",
-  "Web Development",
-  "AI Solutions",
-  "Mobile Apps",
-  "UI/UX Design",
-  "Enterprise Software"
+// --- DATA MAPPING FOR NEW IMAGES ---
+const featuredCases = [
+  {
+    ...portfolioData.find(p => p.slug === "auro-terra-energy-website-design")!,
+    img: "/portfolio_web_new.png"
+  },
+  {
+    ...portfolioData.find(p => p.slug === "alpha-retrieval-ai-chatbots")!,
+    img: "/portfolio_ai_new.png"
+  },
+  {
+    ...portfolioData.find(p => p.slug === "fitquest-ios-android")!,
+    img: "/portfolio_mobile_new.png"
+  },
+  {
+    ...portfolioData.find(p => p.slug === "core-erp-database")!,
+    title: "Global eCommerce Platform",
+    category: "eCommerce Solutions",
+    summary: "High-performance enterprise eCommerce admin dashboard and storefront.",
+    description: "Designed a premium eCommerce platform capable of handling thousands of transactions with a custom admin dashboard.",
+    img: "/portfolio_ecommerce_new.png"
+  }
 ];
 
-const stats = [
-  { value: "50+", label: "Success Projects" },
-  { value: "99.8%", label: "Client Satisfaction" },
-  { value: "10+", label: "AI Models Deployed" },
-  { value: "24/7", label: "Dedicated Support" }
+const expertiseData = [
+  { icon: Globe, title: "Website Design", desc: "Corporate sites, landing pages & CMS platforms." },
+  { icon: AppWindow, title: "Web Applications", desc: "Complex portals, dashboards & custom web tools." },
+  { icon: Smartphone, title: "Mobile Applications", desc: "Native & cross-platform iOS/Android apps." },
+  { icon: ShoppingCart, title: "eCommerce Solutions", desc: "Scalable online stores & payment integrations." },
+  { icon: Cloud, title: "SaaS Platforms", desc: "Multi-tenant software & subscription systems." },
+  { icon: Cpu, title: "AI & Automation", desc: "LLMs, chatbots & intelligent workflow engines." },
+  { icon: Code2, title: "Custom Software", desc: "ERP, CRM & bespoke enterprise solutions." },
+  { icon: Layout, title: "UI/UX Design", desc: "Wireframes, prototyping & design systems." }
 ];
 
-const listContainerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
+const processData = [
+  { step: "01", title: "Discover", desc: "Understand business, goals, users, and core requirements." },
+  { step: "02", title: "Strategy", desc: "Plan product structure, tech stack, and user journey." },
+  { step: "03", title: "Design", desc: "Create high-fidelity UI/UX wireframes and visual direction." },
+  { step: "04", title: "Develop", desc: "Build the product using modern, scalable engineering." },
+  { step: "05", title: "Test", desc: "Rigorous testing for performance, security, and bugs." },
+  { step: "06", title: "Launch", desc: "Deploy to production and provide ongoing improvements." }
+];
 
-const cardItemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      type: "spring" as const,
-      stiffness: 85,
-      damping: 16
-    }
-  }
-};
+const capabilitiesData = [
+  "React", "Next.js", "Node.js", "Python", "Flutter", "React Native", 
+  "AWS", "GCP", "PostgreSQL", "MongoDB", "Figma", "OpenAI", 
+  "GraphQL", "Docker", "TailwindCSS", "Shopify"
+];
+
+const industriesData = [
+  { icon: HeartPulse, title: "Healthcare" },
+  { icon: Briefcase, title: "Finance & Tech" },
+  { icon: GraduationCap, title: "Education" },
+  { icon: ShoppingCart, title: "eCommerce" },
+  { icon: Building, title: "Real Estate" },
+  { icon: Cloud, title: "SaaS & Startups" },
+];
 
 export default function PortfolioClient() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-
-  const filteredProjects =
-    selectedCategory === "All"
-      ? portfolioData
-      : portfolioData.filter((p) => p.category === selectedCategory);
-
-  const featuredProjects = portfolioData.filter((p) => p.featured);
-
   return (
-    <div className="cosmic-portfolio-wrapper min-h-screen relative overflow-hidden bg-white text-[#0F172A] transition-colors duration-300">
+    <div className="portfolio-wrapper min-h-screen bg-white text-[#0F172A] overflow-hidden">
       
-      {/* Curved Hero Banner Section */}
-      <section className="relative pt-36 pb-28 md:pt-44 md:pb-40 bg-white overflow-hidden">
-        {/* Ambient glows */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[350px] h-[350px] rounded-full bg-[#2563FF]/5 blur-[120px]" />
-          <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-[#2563FF]/5 blur-[130px]" />
-        </div>
-
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10 flex flex-col items-center gap-6">
+      {/* 1. HERO SECTION */}
+      <section className="relative pt-36 pb-16 md:pt-44 md:pb-24 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 text-center relative z-10 flex flex-col items-center gap-6">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2563FF]/5 border border-[#2563FF]/15 text-[10px] font-bold text-[#2563FF] uppercase tracking-widest font-mono"
+            className="inline-flex items-center gap-2 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wide text-[#305EFF] shadow-xs w-fit"
           >
-            <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-            <span>Success Projects Archive</span>
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Success Stories & Case Studies</span>
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-5xl sm:text-6xl md:text-7xl font-black tracking-tight text-[#0F172A] leading-tight"
+            className="mt-2.5 text-2xl font-extrabold leading-[1.16] sm:leading-[1.14] tracking-tight text-[#0F172A] sm:text-3xl lg:text-[2.35rem] xl:text-[2.65rem] font-sans"
           >
-            <span className="text-[#0F172A]">Our Exclusive</span> <br />
-            <span className="font-black inline-block" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>
+            Our <span className="solid-black-text">Exclusive</span> <br className="hidden sm:block" />
+            <span className="font-black inline-block solid-blue-text">
               Portfolio
             </span>
           </motion.h1>
@@ -98,337 +115,312 @@ export default function PortfolioClient() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-normal max-w-2xl"
+            className="mt-3 max-w-[510px] text-xs sm:text-sm lg:text-[14.5px] leading-relaxed sm:leading-[1.6] text-slate-700 font-medium font-sans"
           >
-            Explore our curated database of custom web systems, AI chatbot solutions, mobile app architectures, and high-performance enterprise engines.
+            We design and develop custom websites, web applications, mobile platforms, eCommerce stores, and AI-powered solutions that drive business growth. 
           </motion.p>
-        </div>
-
-        {/* Curved Wave Bottom SVG */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
-          <svg
-            className="relative block w-full h-[60px] md:h-[100px] fill-white transition-colors duration-300"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,57.05,18.3,84.47,25.85,140.25,41.2,202.93,65.4,321.39,56.44Z" />
-          </svg>
         </div>
       </section>
 
-      {/* Stats section */}
-      <section className="py-10 bg-white relative z-10 border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((st, idx) => (
-              <motion.div 
-                key={idx} 
-                initial={{ opacity: 0, y: 15 }}
+      {/* 2. WHAT WE BUILD (Expertise) */}
+      <section className="bg-white py-16 md:py-24 lg:py-28 relative overflow-hidden border-t border-slate-100 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col items-center text-center gap-0 mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wide text-[#305EFF] shadow-xs w-fit mb-4">
+              OUR EXPERTISE
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display text-[#0F172A]">
+              What We <span className="font-extrabold inline-block" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF" }}>Build</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {expertiseData.map((item, idx) => {
+              const IconComponent = item.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  whileHover={{ y: -6 }}
+                  className="bg-white border border-slate-200/90 rounded-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:border-slate-300 hover:shadow-[0_16px_35px_rgba(0,0,0,0.05)] transition-all duration-400 ease-out p-8 sm:p-10 flex flex-col gap-4 group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-[#305EFF]/10 flex items-center justify-center text-[#305EFF] shrink-0 mb-2">
+                    <IconComponent className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 leading-tight tracking-tight font-display mb-3">{item.title}</h3>
+                    <p className="text-sm leading-relaxed font-medium text-slate-600 font-sans">{item.desc}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. HOW WE BUILD (Process) */}
+      <section className="bg-slate-50 py-16 md:py-24 lg:py-28 relative overflow-hidden border-t border-slate-100 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col items-center text-center gap-0 mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wide text-[#305EFF] shadow-xs w-fit mb-4">
+              OUR PROCESS
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display text-[#0F172A]">
+              How We <span className="font-extrabold inline-block" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF" }}>Deliver</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {processData.map((step, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="flex flex-col gap-2 items-center text-center"
+                className="bg-white border border-slate-200/90 rounded-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:border-slate-300 hover:shadow-[0_16px_35px_rgba(0,0,0,0.05)] transition-all duration-400 ease-out p-8 sm:p-10 flex flex-col gap-4 group"
               >
-                <span className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-[#1D4ED8]">
-                  {st.value}
+                <span className="text-[11px] sm:text-xs font-bold px-3 py-1 rounded-md font-mono bg-[#305EFF]/10 text-[#305EFF] w-fit mb-2">
+                  STEP {step.step}
                 </span>
-                <span className="text-xs sm:text-sm font-semibold text-slate-600">
-                  {st.label}
-                </span>
+                <h3 className="text-xl font-bold leading-tight tracking-tight text-[#0F172A] font-display mb-2">{step.title}</h3>
+                <p className="text-sm leading-relaxed font-medium text-slate-600 font-sans">
+                  {step.desc}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Projects section */}
-      <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8 relative z-10 bg-white">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16 flex flex-col gap-3"
-        >
-          <span className="text-[10px] font-bold tracking-widest text-[#2563FF] uppercase font-mono">
-            SELECTED HIGHLIGHTS
-          </span>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0F172A]">
-            Featured <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Case Studies</span>
-          </h2>
-          <div className="w-12 h-1 bg-[#1D4ED8] mx-auto rounded-full mt-2" />
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {featuredProjects.map((project, idx) => (
-            <motion.div
-              key={project.slug}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
-              whileHover={{ y: -6 }}
-              className="bg-white border border-slate-200 rounded-[28px] overflow-hidden shadow-md flex flex-col justify-between h-full group"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden bg-[#FBFDFE] border-b border-slate-100">
-                {project.img ? (
-                  <Image
-                    src={project.img}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 600px"
-                    className="object-cover transition-transform duration-750 ease-out group-hover:scale-105"
-                  />
-                ) : (
-                  <div className={`absolute inset-0 bg-gradient-to-tr ${project.imageColor} opacity-20`} />
-                )}
-                <div className="absolute top-4 left-4">
-                  <span className="text-[10px] font-mono font-bold bg-[#2563FF]/10 border border-[#2563FF]/20 text-[#1D4ED8] px-3 py-1 rounded-full uppercase">
-                    {project.category}
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex-grow p-8 flex flex-col justify-between text-left">
-              <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-4 text-xs font-semibold">
-                  <span className="bg-[#2563FF]/10 border border-[#2563FF]/15 text-[#1D4ED8] rounded-full px-3 py-1 uppercase tracking-wider font-display">
-                    {project.category}
-                  </span>
-                  <span className="text-slate-400 font-mono text-[10px]">
-                    Year: {project.year}
-                  </span>
-                </div>
-
-                <h3 className="font-display text-xl sm:text-2xl font-bold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors">
-                  {project.title}
-                </h3>
-                
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  {project.summary}
-                </p>
-              </div>
-
-              <div className="pt-6 border-t border-slate-200 flex items-center justify-between mt-8">
-                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest font-mono">
-                  Case Study
-                </span>
-                
-                <Link
-                  href={`/portfolio/${project.slug}`}
-                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#1D4ED8] hover:text-[#1D4ED8]/80 transition-colors duration-200 group/link cursor-pointer"
-                >
-                  Explore Details
-                  <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                </Link>
-              </div>
+      {/* 4. FEATURED CASE STUDIES */}
+      <section className="bg-white py-16 md:py-24 lg:py-28 relative overflow-hidden border-t border-slate-100 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col items-center text-center gap-0 mb-20">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wide text-[#305EFF] shadow-xs w-fit mb-4">
+              SELECTED WORK
             </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Main projects grid section with Category filter */}
-      <section id="projects" className="py-20 bg-white relative z-10 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-16 flex flex-col gap-3"
-          >
-            <span className="text-[10px] font-bold tracking-widest text-[#2563FF] uppercase font-mono">
-              ENGINEERING LOGS
-            </span>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0F172A]">
-              Full <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Project Directory</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display text-[#0F172A] mb-4">
+              Featured <span className="font-extrabold inline-block" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF" }}>Case Studies</span>
             </h2>
-            <div className="w-12 h-1 bg-[#1D4ED8] mx-auto rounded-full mt-2" />
-          </motion.div>
+            <p className="text-sm sm:text-base leading-relaxed font-medium max-w-2xl text-slate-600 font-sans mt-4">
+              A deep dive into some of our most impactful projects, showcasing the challenges we solved and the results we delivered.
+            </p>
+          </div>
 
-          {/* Categories select tabs Row */}
-          <div className="flex flex-wrap items-center justify-center gap-3.5 mb-14">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2.5 rounded-full font-display font-bold text-xs uppercase tracking-wider border transition-all duration-300 cursor-pointer select-none ${
-                  selectedCategory === cat
-                    ? "bg-[#2563FF] text-white border-transparent shadow-md shadow-[#2563FF]/15"
-                    : "bg-white border-slate-200 text-slate-600 hover:border-[#2563FF] hover:text-[#2563FF]"
-                }`}
+          <div className="flex flex-col gap-24 lg:gap-32">
+            {featuredCases.map((project, idx) => (
+              <motion.div
+                key={project.slug}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className={`flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-20 items-center`}
               >
-                {cat}
-              </button>
+                {/* Project Image */}
+                <div className="w-full lg:w-1/2">
+                  <div className="relative aspect-[4/3] rounded-[32px] overflow-hidden border border-slate-200/90 shadow-[0_16px_35px_rgba(0,0,0,0.05)] bg-slate-50 group">
+                    <Image
+                      src={project.img || ''}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  </div>
+                </div>
+
+                {/* Project Details */}
+                <div className="w-full lg:w-1/2 flex flex-col text-left">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wide text-[#305EFF] shadow-xs w-fit">
+                      {project.category}
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] mb-6 leading-tight font-display tracking-tight">
+                    {project.title}
+                  </h3>
+
+                  <div className="flex flex-col gap-6 mb-10">
+                    <div className="bg-slate-50 border border-slate-100 rounded-[24px] p-8">
+                      <h4 className="text-sm font-bold uppercase tracking-wider text-[#0F172A] font-display mb-3">
+                        The Challenge
+                      </h4>
+                      <p className="text-sm leading-relaxed font-medium text-slate-600 font-sans">
+                        {project.summary}
+                      </p>
+                    </div>
+                    <div className="bg-slate-50 border border-slate-100 rounded-[24px] p-8">
+                      <h4 className="text-sm font-bold uppercase tracking-wider text-[#0F172A] font-display mb-3">
+                        The Solution
+                      </h4>
+                      <p className="text-sm leading-relaxed font-medium text-slate-600 font-sans">
+                        {project.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <Link
+                      href={`/portfolio/${project.slug}`}
+                      className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 text-[#305EFF] hover:text-indigo-600 font-display group/link"
+                    >
+                      <span>Explore Case Study</span>
+                      <ArrowRight className="w-4 h-4 text-[#305EFF] group-hover/link:text-indigo-600 group-hover/link:translate-x-1.5 transition-transform duration-300" />
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
-
-          {/* Grid list */}
-          <motion.div 
-            variants={listContainerVariants}
-            initial="hidden"
-            animate="show"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project) => (
-                <motion.div
-                  layout
-                  variants={cardItemVariants}
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.3 }}
-                  key={project.slug}
-                  className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm backdrop-blur-md flex flex-col justify-between h-full group"
-                >
-                  <div className="relative aspect-[16/11] overflow-hidden bg-[#FBFDFE] border-b border-slate-100">
-                    {project.img ? (
-                      <Image
-                        src={project.img}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 420px"
-                        className="object-cover transition-transform duration-750 ease-out group-hover:scale-105"
-                      />
-                    ) : (
-                      <div className={`absolute inset-0 bg-gradient-to-tr ${project.imageColor} opacity-15`} />
-                    )}
-                    <div className="absolute top-4 left-4">
-                      <span className="text-[9px] font-mono font-bold bg-white border border-slate-200 text-slate-600 px-2.5 py-0.5 rounded">
-                        {project.year}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="p-6 flex flex-col gap-3 text-left">
-                    <span className="text-[9px] font-bold text-[#1D4ED8] font-mono tracking-wider uppercase">
-                      {project.category}
-                    </span>
-                    <h3 className="font-display text-lg font-bold text-[#0F172A] group-hover:text-[#1D4ED8] transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-[12px] text-slate-500 leading-relaxed font-normal line-clamp-3">
-                      {project.summary}
-                    </p>
-                    
-                    <div className="flex flex-wrap gap-1 mt-2">
-                      {project.techStack.slice(0, 3).map((tech) => (
-                        <span key={tech} className="text-[9px] font-semibold bg-slate-100 text-slate-500 px-2.5 py-0.5 rounded">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="pt-4 border-t border-slate-100 mt-3 flex items-center justify-between">
-                      <span className="text-[10px] text-slate-450">Client: {project.client}</span>
-                      <Link href={`/portfolio/${project.slug}`} className="inline-flex items-center gap-1 text-[11px] font-bold text-[#1D4ED8] group/link">
-                        <span>Case Study</span>
-                        <ArrowUpRight className="w-3 h-3 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-
         </div>
       </section>
 
-      {/* Success Stories (Testimonials) Section */}
-      <section className="py-20 max-w-7xl mx-auto px-6 lg:px-8 relative z-10 border-t border-slate-200 bg-white">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16 flex flex-col gap-3"
-        >
-          <span className="text-[10px] font-bold tracking-widest text-[#2563FF] uppercase font-mono">
-            SUCCESS STORIES
-          </span>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0F172A]">
-            What Clients <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>Say</span>
-          </h2>
-          <div className="w-12 h-1 bg-[#1D4ED8] mx-auto rounded-full mt-2" />
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonialsData.map((t, idx) => (
-            <motion.div
-              key={t.id}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.15 }}
-              className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm backdrop-blur-md flex flex-col justify-between text-left"
-            >
-              <p className="text-xs sm:text-sm text-slate-550 italic leading-relaxed">
-                "{t.quote}"
-              </p>
-              
-              <div className="pt-4 border-t border-slate-100 mt-6 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-[#2563FF]/10 flex items-center justify-center text-xs font-bold text-[#1D4ED8]">
-                  {t.name[0]}
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-[#0F172A]">
-                    {t.name}
-                  </h4>
-                  <span className="text-[10px] text-slate-450 font-medium">
-                    {t.role}, {t.company}
-                  </span>
-                </div>
+      {/* 5. TECHNOLOGIES */}
+      <section className="bg-slate-50 py-16 md:py-24 lg:py-28 relative overflow-hidden border-t border-slate-100 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-20 items-center justify-between">
+          <div className="w-full lg:w-1/3 flex flex-col gap-0 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wide text-[#305EFF] shadow-xs w-fit mx-auto lg:mx-0 mb-4">
+              CAPABILITIES
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display text-[#0F172A] mb-4">
+              <span className="solid-black-text">Technologies</span> <span className="font-extrabold inline-block solid-blue-text">We Use</span>
+            </h2>
+            <p className="text-sm sm:text-base leading-relaxed font-medium text-slate-600 font-sans mt-4">
+              We leverage modern, robust, and scalable technologies to build enterprise-grade digital solutions.
+            </p>
+          </div>
+          <div className="w-full lg:w-2/3 flex flex-wrap justify-center lg:justify-end gap-3">
+            {capabilitiesData.map((tech, idx) => (
+              <div 
+                key={idx}
+                className="px-6 py-3 rounded-full border border-slate-200/90 bg-white text-sm sm:text-base font-bold text-slate-700 shadow-[0_2px_10px_rgba(0,0,0,0.02)] hover:border-[#305EFF]/30 hover:text-[#305EFF] transition-colors"
+              >
+                {tech}
               </div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section id="contact" className="py-20 max-w-7xl mx-auto px-6 lg:px-8 relative z-10 bg-white">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative overflow-hidden rounded-[32px] p-8 sm:p-12 md:p-16 text-center flex flex-col items-center gap-6 shadow-2xl border border-slate-200 bg-white"
-        >
-          {/* Subtle background glow */}
-          <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-50/70 via-white to-blue-50/40 pointer-events-none" />
+      {/* 6. INDUSTRIES WE SERVE */}
+      <section className="bg-white py-16 md:py-24 lg:py-28 relative overflow-hidden border-t border-slate-100 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col items-center text-center gap-0 mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wide text-[#305EFF] shadow-xs w-fit mb-4">
+              INDUSTRIES
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display text-[#0F172A]">
+              Industries We <span className="font-extrabold inline-block" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF" }}>Serve</span>
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
+            {industriesData.map((ind, idx) => {
+              const IconComponent = ind.icon;
+              return (
+                <div 
+                  key={idx} 
+                  className="bg-white border border-slate-200/90 rounded-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:border-slate-300 hover:shadow-[0_16px_35px_rgba(0,0,0,0.05)] transition-all duration-400 ease-out p-8 flex flex-col items-center text-center gap-4"
+                >
+                  <div className="w-14 h-14 rounded-xl bg-[#305EFF]/5 flex items-center justify-center text-[#305EFF] mb-2">
+                    <IconComponent className="w-7 h-7" />
+                  </div>
+                  <h4 className="text-sm sm:text-base font-bold text-[#0F172A] font-display">{ind.title}</h4>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
 
-          {/* Lottie Animation icon for CTA */}
-          <div className="w-16 h-16 relative z-10">
-            <LottieAnimation src="/animations/Network icon.json" className="w-full h-full" />
+      {/* 7. CLIENT TESTIMONIALS */}
+      <section className="bg-slate-50 py-16 md:py-24 lg:py-28 relative overflow-hidden border-t border-slate-100 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col items-center text-center gap-0 mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wide text-[#305EFF] shadow-xs w-fit mb-4">
+              SUCCESS STORIES
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display text-[#0F172A]">
+              What Clients <span className="font-extrabold inline-block" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF" }}>Say</span>
+            </h2>
           </div>
 
-          <span className="text-[11px] font-extrabold tracking-widest uppercase bg-[#2563FF]/10 text-[#1D4ED8] px-4 py-1.5 rounded-full w-fit relative z-10 border border-[#2563FF]/20">
-            READY TO BUILD YOUR SYSTEM?
-          </span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {testimonialsData.map((t, idx) => (
+              <motion.div
+                key={t.id}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
+                className="bg-white border border-slate-200/90 rounded-[24px] shadow-[0_4px_20px_rgba(0,0,0,0.02)] p-8 sm:p-10 flex flex-col justify-between text-left relative overflow-hidden group hover:border-slate-300 hover:shadow-[0_16px_35px_rgba(0,0,0,0.05)] transition-all duration-400 ease-out"
+              >
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#305EFF] to-[#305EFF]/40" />
+                <p className="text-sm sm:text-base text-slate-500 italic leading-relaxed font-medium font-sans">
+                  "{t.quote}"
+                </p>
+                
+                <div className="pt-6 border-t border-slate-100 mt-8 flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-[#305EFF]/10 flex items-center justify-center text-base font-bold text-[#305EFF] font-display">
+                    {t.name[0]}
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-[#0F172A] font-display mb-1">
+                      {t.name}
+                    </h4>
+                    <span className="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider font-mono">
+                      {t.role}, {t.company}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <span className="text-xs font-bold text-[#1D4ED8] uppercase tracking-wider font-mono relative z-10">
-            // START YOUR PROJECT
-          </span>
-          <h2 
-            style={{ fontFamily: "'Clash Display', sans-serif" }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight relative z-10"
+      {/* 8. FINAL CTA */}
+      <section id="contact" className="bg-white py-16 md:py-24 lg:py-32 relative overflow-hidden border-t border-slate-100 px-5 sm:px-8 lg:px-12">
+        <div className="max-w-4xl mx-auto relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative overflow-hidden rounded-[32px] p-10 sm:p-14 md:p-16 text-center flex flex-col items-center gap-0 border border-slate-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.02)] bg-white"
           >
-            Have a Vision for a <span className="font-extrabold" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>New Product?</span>
-          </h2>
-          <p className="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed font-normal relative z-10">
-            Whether you want to build a custom SaaS platform, mobile application, or enterprise dashboard, our engineering team is ready to deliver.
-          </p>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
-            <GradientButton href="/get-a-quote">
-              Get a Quote
-            </GradientButton>
+            {/* Subtle background glow */}
+            <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#305EFF]/5 via-transparent to-[#305EFF]/5 pointer-events-none" />
 
-            <GradientButton href="/contact">
-              Contact Us
-            </GradientButton>
-          </div>
-        </motion.div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-3.5 py-1 text-xs font-extrabold uppercase tracking-wide text-[#305EFF] shadow-xs w-fit relative z-10 mb-6">
+              START YOUR PROJECT
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display text-[#0F172A] relative z-10 mb-4">
+              Have a Vision for a <span className="font-extrabold inline-block" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF" }}>New Product?</span>
+            </h2>
+            
+            <p className="text-sm sm:text-base leading-relaxed font-medium max-w-xl text-slate-600 font-sans relative z-10 mt-2 mb-8">
+              Turn your idea into a scalable digital reality. Our engineering and design team is ready to deliver a premium product tailored to your business goals.
+            </p>
+            
+            <div className="flex items-center justify-center relative z-10">
+              {/* Using EXACT same button style from Navbar */}
+              <Link
+                href="/get-a-quote"
+                className="group inline-flex items-center gap-2.5 px-6 py-3 bg-gradient-to-r from-[#305EFF] via-indigo-600 to-[#305EFF] bg-[length:200%_auto] text-white font-bold text-sm sm:text-[15px] rounded-full shadow-xs hover:shadow-md hover:bg-[position:100%_0] transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5"
+              >
+                <span>Get a Quote</span>
+                <ArrowRight className="w-4 h-4 text-white transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
     </div>

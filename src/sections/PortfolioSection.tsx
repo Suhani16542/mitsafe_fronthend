@@ -62,12 +62,12 @@ export default function PortfolioSection() {
     <section id="portfolio" className="relative bg-white py-16 font-sans border-t border-slate-200 overflow-hidden px-4 sm:px-6 lg:px-8">
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center flex flex-col items-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-blue-200/40 bg-[#2563FF]/5 px-4.5 py-1 text-xs font-bold uppercase tracking-wider text-[#2563FF] font-display shadow-sm mb-3">
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#305EFF]/40 bg-[#305EFF]/5 px-4.5 py-1 text-xs font-bold uppercase tracking-wider text-[#305EFF] font-display shadow-sm mb-3">
           <Sparkles className="w-3.5 h-3.5" />
           FEATURED PORTFOLIO & CASE STUDIES
         </div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight font-display text-slate-900">
-          Transforming Ideas Into <span className="text-[#0052FF] font-black inline-block" style={{ color: "#0052FF", WebkitTextFillColor: "#0052FF" }}>Digital Reality</span>
+          Transforming Ideas Into <span className="text-[#305EFF] font-black inline-block" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF" }}>Digital Reality</span>
         </h2>
       </div>
 
@@ -90,17 +90,17 @@ export default function PortfolioSection() {
             {row1Items.map((study, idx) => (
               <div
                 key={`row1-${idx}`}
-                className="w-[340px] sm:w-[420px] shrink-0 group rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-blue-200 flex flex-col"
+                className="w-[340px] sm:w-[420px] shrink-0 group rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-[#305EFF] flex flex-col"
               >
                 <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
                   <Image src={study.img} alt={study.title} fill sizes="420px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-5 flex flex-col items-start gap-3 flex-1 justify-between">
                   <div>
-                    <span className="text-[10px] font-bold text-[#2563FF] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full border border-blue-100 inline-block mb-2">
+                    <span className="text-[10px] font-bold text-[#305EFF] uppercase tracking-wider bg-[#305EFF]/10 px-3 py-1 rounded-full border border-[#305EFF]/20 inline-block mb-2">
                       {study.category}
                     </span>
-                    <h3 className="font-display text-2xl font-extrabold text-slate-900 group-hover:text-[#2563FF] transition-colors">
+                    <h3 className="font-display text-2xl font-extrabold text-slate-900 group-hover:text-[#305EFF] transition-colors">
                       {study.title}
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2 mt-1.5 font-medium">
@@ -109,10 +109,10 @@ export default function PortfolioSection() {
                   </div>
                   <Link
                     href={`/portfolio/${study.slug}`}
-                    className="inline-flex items-center gap-2 text-xs font-bold text-[#2563FF] hover:text-blue-700 uppercase tracking-wider mt-3"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-[#305EFF] hover:text-[#305EFF] uppercase tracking-wider mt-3"
                   >
                     <span>View Study</span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRight className="w-4 h-4 text-black transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </div>
               </div>
@@ -134,17 +134,17 @@ export default function PortfolioSection() {
             {row2Items.map((study, idx) => (
               <div
                 key={`row2-${idx}`}
-                className="w-[340px] sm:w-[420px] shrink-0 group rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-blue-200 flex flex-col"
+                className="w-[340px] sm:w-[420px] shrink-0 group rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-[#305EFF] flex flex-col"
               >
                 <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
                   <Image src={study.img} alt={study.title} fill sizes="420px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-5 flex flex-col items-start gap-3 flex-1 justify-between">
                   <div>
-                    <span className="text-[10px] font-bold text-[#2563FF] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full border border-blue-100 inline-block mb-2">
+                    <span className="text-[10px] font-bold text-[#305EFF] uppercase tracking-wider bg-[#305EFF]/10 px-3 py-1 rounded-full border border-[#305EFF]/20 inline-block mb-2">
                       {study.category}
                     </span>
-                    <h3 className="font-display text-2xl font-extrabold text-slate-900 group-hover:text-[#2563FF] transition-colors">
+                    <h3 className="font-display text-2xl font-extrabold text-slate-900 group-hover:text-[#305EFF] transition-colors">
                       {study.title}
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2 mt-1.5 font-medium">
@@ -153,10 +153,10 @@ export default function PortfolioSection() {
                   </div>
                   <Link
                     href={`/portfolio/${study.slug}`}
-                    className="inline-flex items-center gap-2 text-xs font-bold text-[#2563FF] hover:text-blue-700 uppercase tracking-wider mt-3"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-[#305EFF] hover:text-[#305EFF] uppercase tracking-wider mt-3"
                   >
                     <span>View Study</span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRight className="w-4 h-4 text-black transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </div>
               </div>

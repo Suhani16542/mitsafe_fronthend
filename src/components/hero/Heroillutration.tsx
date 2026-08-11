@@ -86,9 +86,9 @@ export function HeroIllustration({ service }: { service: HeroService }) {
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl bg-white shadow-xl ring-1 ring-blue-100"
+        className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl bg-white shadow-xl ring-1 ring-[#305EFF]"
       >
-        <Icon className="h-9 w-9 text-blue-600" />
+        <Icon className="h-9 w-9 text-[#305EFF]" />
       </motion.div>
     </div>
   );

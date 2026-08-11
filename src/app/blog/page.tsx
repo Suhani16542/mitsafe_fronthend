@@ -50,8 +50,8 @@ export default function BlogPage() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-full font-display font-medium text-xs md:text-sm border transition-all duration-300 cursor-pointer select-none ${
                   selectedCategory === cat
-                    ? "bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border-[#2563FF] dark:border-[#00D4FF] text-[#2563FF] dark:text-[#00D4FF]"
-                    : "bg-slate-50 dark:bg-white/5 border-slate-200 dark:border-white/5 text-slate-650 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 hover:text-[#2563FF] dark:hover:text-white"
+                    ? "bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 border-[#305EFF] dark:border-[#00D4FF] text-[#305EFF] dark:text-[#00D4FF]"
+                    : "bg-slate-50 dark:bg-white/5 border-slate-200 dark:border-white/5 text-slate-650 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 hover:text-[#305EFF] dark:hover:text-white"
                 }`}
               >
                 {cat}
@@ -68,7 +68,7 @@ export default function BlogPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search articles..."
-              className="w-full bg-slate-50 dark:bg-white/5 text-[#0F172A] dark:text-white pl-9 pr-4 py-2.5 rounded-full border border-slate-200 dark:border-white/5 focus:border-[#2563FF] dark:focus:border-[#00D4FF] outline-none transition-colors placeholder-slate-450"
+              className="w-full bg-slate-50 dark:bg-white/5 text-[#0F172A] dark:text-white pl-9 pr-4 py-2.5 rounded-full border border-slate-200 dark:border-white/5 focus:border-[#305EFF] dark:focus:border-[#00D4FF] outline-none transition-colors placeholder-slate-450"
             />
           </div>
 
@@ -80,14 +80,14 @@ export default function BlogPage() {
             filteredPosts.map((post) => (
               <GlowCard key={post.slug} className="flex flex-col h-full justify-between gap-6 bg-white/70 dark:bg-[#0B1A2E]/70 border-slate-200 dark:border-white/10 group">
                 <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between text-xs text-[#2563FF] dark:text-[#00D4FF] font-semibold font-mono">
-                    <span className="bg-[#2563FF]/5 dark:bg-[#00D4FF]/10 border border-[#2563FF]/15 dark:border-[#00D4FF]/25 rounded px-2.5 py-1 uppercase tracking-wider font-display">
+                  <div className="flex items-center justify-between text-xs text-[#305EFF] dark:text-[#00D4FF] font-semibold font-mono">
+                    <span className="bg-[#305EFF]/5 dark:bg-[#00D4FF]/10 border border-[#305EFF]/15 dark:border-[#00D4FF]/25 rounded px-2.5 py-1 uppercase tracking-wider font-display">
                       {post.category}
                     </span>
                     <span>{post.readTime}</span>
                   </div>
 
-                  <h3 className="font-display text-lg md:text-xl font-bold text-[#0F172A] dark:text-white group-hover:text-[#2563FF] dark:group-hover:text-[#00D4FF] transition-colors duration-250 mt-2">
+                  <h3 className="font-display text-lg md:text-xl font-bold text-[#0F172A] dark:text-white group-hover:text-[#305EFF] dark:group-hover:text-[#00D4FF] transition-colors duration-250 mt-2">
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </h3>
                   
@@ -99,18 +99,18 @@ export default function BlogPage() {
                 <div className="flex flex-col gap-4 pt-4 border-t border-slate-100 dark:border-white/5 mt-auto">
                   <div className="flex items-center gap-4 text-[10px] md:text-xs text-slate-500 font-medium">
                     <span className="flex items-center gap-1.5">
-                      <User className="w-3.5 h-3.5 text-[#2563FF] dark:text-[#00D4FF]" />
+                      <User className="w-3.5 h-3.5 text-[#305EFF] dark:text-[#00D4FF]" />
                       {post.author}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-[#2563FF] dark:text-[#00D4FF]" />
+                      <Calendar className="w-3.5 h-3.5 text-[#305EFF] dark:text-[#00D4FF]" />
                       {post.date}
                     </span>
                   </div>
 
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="inline-flex items-center gap-1 text-xs md:text-sm font-semibold text-[#2563FF] dark:text-[#00D4FF] hover:text-[#2563FF]/80 dark:hover:text-white transition-colors duration-200 group/link cursor-pointer w-fit"
+                    className="inline-flex items-center gap-1 text-xs md:text-sm font-semibold text-[#305EFF] dark:text-[#00D4FF] hover:text-[#305EFF]/80 dark:hover:text-white transition-colors duration-200 group/link cursor-pointer w-fit"
                   >
                     Read Full Article
                     <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />

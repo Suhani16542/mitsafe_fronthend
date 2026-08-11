@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { heroServices } from "@/data/heroServices";
 import { useHeroSlider } from "@/hooks/useHeroSlider";
 import { HeroBackground } from "./HeroBackground";
@@ -7,8 +8,6 @@ import { HeroContent } from "./HeroContent";
 import { HeroImage } from "./HeroImage";
 import { StatsBar } from "./StatsBar";
 import { FeatureBar } from "./FeatureBar";
-import { PaginationDots } from "./PaginationDots";
-import { NavigationArrows } from "./NavigationArrows";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export function Hero() {
@@ -48,7 +47,11 @@ export function Hero() {
         {/* Two-column responsive grid aligned with Navbar boundaries */}
         <div className="grid items-center gap-8 lg:gap-10 xl:gap-12 lg:grid-cols-12">
           <div className="lg:col-span-6">
-            <HeroContent service={service} index={index} total={heroServices.length} />
+            <HeroContent 
+              service={service} 
+              index={index} 
+              total={heroServices.length} 
+            />
           </div>
 
           <div className="lg:col-span-6 flex justify-center lg:justify-end">

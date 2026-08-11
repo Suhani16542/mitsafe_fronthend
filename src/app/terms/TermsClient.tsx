@@ -163,9 +163,9 @@ export default function TermsClient() {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen text-slate-800 selection:bg-[#2563EB]/10 selection:text-[#2563EB] pt-32 pb-24 relative overflow-hidden">
+    <div className="bg-slate-50 min-h-screen text-slate-800 selection:bg-[#305EFF]/10 selection:text-[#305EFF] pt-32 pb-24 relative overflow-hidden">
       {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-3xl -z-10 pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#305EFF]/40 rounded-full blur-3xl -z-10 pointer-events-none" />
       <div className="absolute bottom-10 right-1/4 w-[600px] h-[600px] bg-purple-100/30 rounded-full blur-3xl -z-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -176,7 +176,7 @@ export default function TermsClient() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200/50 text-blue-600 text-xs font-bold uppercase tracking-wider mb-5"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#305EFF]/10 border border-[#305EFF]/50 text-[#305EFF] text-xs font-bold uppercase tracking-wider mb-5"
           >
             <FileSignature className="w-3.5 h-3.5" />
             Legal Agreement
@@ -220,9 +220,9 @@ export default function TermsClient() {
                 <button
                   key={sec.id}
                   onClick={() => handleScrollTo(sec.id)}
-                  className="w-full text-left px-3.5 py-2.5 rounded-xl text-[13px] font-semibold text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-all flex items-center gap-3 border border-transparent hover:border-slate-100"
+                  className="w-full text-left px-3.5 py-2.5 rounded-xl text-[13px] font-semibold text-slate-600 hover:bg-slate-50 hover:text-[#305EFF] transition-all flex items-center gap-3 border border-transparent hover:border-slate-100"
                 >
-                  <sec.icon className="w-4 h-4 shrink-0 text-slate-400 group-hover:text-blue-600" />
+                  <sec.icon className="w-4 h-4 shrink-0 text-slate-400 group-hover:text-[#305EFF]" />
                   <span className="truncate">{sec.title}</span>
                 </button>
               ))}
@@ -255,7 +255,7 @@ export default function TermsClient() {
                   placeholder="Search legal terms or sections..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-sm font-semibold transition-all"
+                  className="w-full pl-12 pr-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#305EFF]/20 focus:border-[#305EFF] text-sm font-semibold transition-all"
                 />
               </div>
             </motion.div>
@@ -278,14 +278,14 @@ export default function TermsClient() {
                       {/* Top Action Panel */}
                       <div className="flex items-start justify-between gap-4 mb-4">
                         <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center shrink-0">
+                          <div className="w-12 h-12 rounded-2xl bg-[#305EFF]/10 text-[#305EFF] border border-[#305EFF]/20 flex items-center justify-center shrink-0">
                             <Icon className="w-6 h-6" />
                           </div>
                           <div>
                             <h2 className="text-xl font-extrabold text-slate-900 tracking-tight">
                               {sec.title}
                             </h2>
-                            <span className="text-[11px] font-bold text-blue-500 uppercase tracking-wider">
+                            <span className="text-[11px] font-bold text-[#305EFF] uppercase tracking-wider">
                               Section {idx + 1}
                             </span>
                           </div>

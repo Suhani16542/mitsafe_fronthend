@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, phone, company, service, budget, message } = body;
+    const { requestType, name, email, phone, company, service, budget, timeline, message } = body;
 
     // Validate required fields
     if (!name || !email || !message) {
@@ -24,19 +24,21 @@ export async function POST(request: Request) {
 
     // Lead payload details (Configured lead recipient: moderntechnologies12@gmail.com / info@mitsafe.com)
     const leadData = {
+      requestType: requestType || "quote",
       name,
       email,
       phone: phone || "Not specified",
       company: company || "Not specified",
       service: service || "General Inquiry",
-      budget: budget || "Not specified",
+      budget: budget || "Not Specified",
+      timeline: timeline || "Not Specified",
       message,
       submittedAt: new Date().toISOString(),
       recipientEmail: "moderntechnologies12@gmail.com",
     };
 
     // Log the lead data on the server side
-    console.log("New Quote Request Lead Received:", leadData);
+    console.log(`New ${leadData.requestType.toUpperCase()} Lead Received:`, leadData);
 
     // If an external SMTP or webhook URL is configured via environment variables, process it securely
     if (process.env.LEAD_EMAIL_WEBHOOK_URL) {
@@ -51,15 +53,17 @@ export async function POST(request: Request) {
       }
     }
 
+    const typeText = leadData.requestType === "consultation" ? "consultation request" : "quote request";
+
     return NextResponse.json(
       {
         success: true,
-        message: "Thank you! Your quote request has been submitted successfully. Our team will get back to you shortly.",
+        message: `Thank you! Your ${typeText} has been submitted successfully. Our team will get back to you shortly.`,
       },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error processing quote request:", error);
+    console.error("Error processing request:", error);
     return NextResponse.json(
       { error: "An unexpected error occurred while processing your request. Please try again." },
       { status: 500 }

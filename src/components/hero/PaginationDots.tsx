@@ -26,7 +26,7 @@ export function PaginationDots({
             <span
               className={clsx(
                 "absolute inset-0 rounded-full transition-colors",
-                active ? "bg-blue-600" : "bg-slate-200 group-hover:bg-blue-200"
+                active ? "bg-[#305EFF]" : "bg-slate-200 group-hover:bg-[#305EFF]"
               )}
             />
           </button>

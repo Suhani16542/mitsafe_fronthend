@@ -7,7 +7,7 @@ import LottieAnimation from "@/components/LottieAnimation";
 
 function TeamAvatar({ index }: { index: number }) {
   const gradients = [
-    { start: "#2563FF", end: "#00D4FF" },
+    { start: "#305EFF", end: "#00D4FF" },
     { start: "#00E5FF", end: "#0284C7" },
     { start: "#6366F1", end: "#3B82F6" },
     { start: "#10B981", end: "#059669" },
@@ -30,7 +30,7 @@ function TeamAvatar({ index }: { index: number }) {
         <>
           <circle cx="50" cy="38" r="14" fill="#FFFFFF" />
           <path d="M24,76 C24,60 36,54 50,54 C64,54 76,60 76,76 Z" fill="#FFFFFF" />
-          <rect x="42" y="34" width="16" height="5" rx="2.5" fill="#2563FF" />
+          <rect x="42" y="34" width="16" height="5" rx="2.5" fill="#305EFF" />
         </>
       )}
 
@@ -153,7 +153,7 @@ export default function MitsafeSection() {
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-white flex flex-col justify-center items-center py-6 sm:py-8 border-t border-blue-50"
+      className="relative w-full overflow-hidden bg-white flex flex-col justify-center items-center py-6 sm:py-8 border-t border-[#305EFF]"
       style={{ fontFamily: "'Satoshi', sans-serif" }}
     >
       {/* Moving background gradient */}
@@ -202,7 +202,7 @@ export default function MitsafeSection() {
 
       {/* Lagged Mouse Follower Glow */}
       <motion.div
-        className="absolute w-[450px] h-[450px] rounded-full bg-[#2563FF]/4 blur-[135px] pointer-events-none"
+        className="absolute w-[450px] h-[450px] rounded-full bg-[#305EFF]/4 blur-[135px] pointer-events-none"
         animate={{
           x: mousePos.x * 55,
           y: mousePos.y * 55,
@@ -261,7 +261,7 @@ export default function MitsafeSection() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute w-[320px] sm:w-[520px] h-[120px] bg-gradient-to-r from-[#2563FF]/15 via-[#00E5FF]/10 to-[#2563FF]/15 rounded-full blur-3xl pointer-events-none -z-10"
+                className="absolute w-[320px] sm:w-[520px] h-[120px] bg-gradient-to-r from-[#305EFF]/15 via-[#00E5FF]/10 to-[#305EFF]/15 rounded-full blur-3xl pointer-events-none -z-10"
               />
 
               {/* Massive Bold Minimalist Clash Display text */}
@@ -278,7 +278,7 @@ export default function MitsafeSection() {
                   initial={{ width: 0, opacity: 0 }}
                   animate={{ width: "100%", opacity: 1 }}
                   transition={{ duration: 1.2, delay: 1.4, ease: "easeOut" }}
-                  className="h-full bg-gradient-to-r from-[#2563FF] via-[#00E5FF] to-[#2563FF] relative"
+                  className="h-full bg-gradient-to-r from-[#305EFF] via-[#00E5FF] to-[#305EFF] relative"
                 >
                   <motion.div
                     animate={{
@@ -295,7 +295,7 @@ export default function MitsafeSection() {
               </div>
 
               {/* Short tagline */}
-              <p className="mt-4 text-[10px] sm:text-xs font-bold tracking-[0.25em] text-[#2563FF]/90 uppercase font-sans text-center z-10">
+              <p className="mt-4 text-[10px] sm:text-xs font-bold tracking-[0.25em] text-[#305EFF]/90 uppercase font-sans text-center z-10">
                 Enterprise AI & Digital Automation Systems
               </p>
             </motion.div>

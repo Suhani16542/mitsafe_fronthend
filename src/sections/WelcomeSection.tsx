@@ -96,9 +96,9 @@ export default function WelcomeSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#1D4ED8]/20 bg-[#1D4ED8]/10 px-4.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#1D4ED8] font-display shadow-sm"
+              className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-4.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#305EFF] font-display shadow-sm"
             >
-              <Sparkles className="w-3.5 h-3.5 text-[#1D4ED8]" />
+              <Sparkles className="w-3.5 h-3.5 text-black" />
               <span>WELCOME SERVICE HUB</span>
             </motion.div>
 
@@ -112,7 +112,7 @@ export default function WelcomeSection() {
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] font-black tracking-tight leading-[1.1] font-display text-slate-900 dark:text-white"
               >
                 Best Web/App <br />
-                <span className="font-black inline-block" style={{ color: "#1D4ED8", WebkitTextFillColor: "#1D4ED8" }}>
+                <span className="font-black inline-block" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF" }}>
                   Designing Services
                 </span>
               </motion.h2>
@@ -123,7 +123,7 @@ export default function WelcomeSection() {
                   whileInView={{ width: "100%", opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-                  className="h-full bg-[#2563FF] relative"
+                  className="h-full bg-[#305EFF] relative"
                 >
                   <motion.div
                     animate={{
@@ -141,7 +141,7 @@ export default function WelcomeSection() {
             </div>
 
             {/* Paragraphs with customized dividers and high-readability text */}
-            <div className="flex flex-col gap-5 border-l-2 border-[#2563FF]/20 pl-6 mb-8 font-sans">
+            <div className="flex flex-col gap-5 border-l-2 border-[#305EFF]/20 pl-6 mb-8 font-sans">
               <motion.p
                 initial={{ opacity: 0, x: -15 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -173,7 +173,7 @@ export default function WelcomeSection() {
               <Magnetic>
                 <a
                   href="/contact"
-                  className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 bg-[#0052FF] hover:bg-[#0042D9] text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 shadow-sm font-display"
+                  className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 bg-[#305EFF] hover:bg-[#305EFF] text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 shadow-sm font-display"
                 >
                   <span>Discover More</span>
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -184,7 +184,7 @@ export default function WelcomeSection() {
 
           {/* Right Column: Parallax Glass Showcase Device (Span 5) */}
           <div className="lg:col-span-5 relative w-full flex justify-center lg:justify-end order-1 lg:order-2">
-            <div className="relative w-full aspect-[4/5] max-w-[430px] rounded-[3rem] bg-white border border-slate-200 p-6 overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.06)] transition-all duration-350 ease-in-out hover:border-[#2563FF]/30 hover:shadow-[0_30px_60px_rgba(37,99,255,0.12)]">
+            <div className="relative w-full aspect-[4/5] max-w-[430px] rounded-[3rem] bg-white border border-slate-200 p-6 overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.06)] transition-all duration-350 ease-in-out hover:border-[#305EFF]/30 hover:shadow-[0_30px_60px_rgba(37,99,255,0.12)]">
               
               {/* Inner ambient ring */}
               <div className="absolute inset-2 border border-slate-200/40 rounded-[2.5rem] pointer-events-none" />
@@ -220,7 +220,7 @@ export default function WelcomeSection() {
                 </AnimatePresence>
 
                 {/* Overlapping Info Overlay Card */}
-                <div className="absolute bottom-6 left-6 right-6 bg-[#0B1A2E]/90 border border-[rgba(0,212,255,0.15)] rounded-2xl p-6 backdrop-blur-lg text-white flex flex-col gap-2 shadow-[0_15px_40px_rgba(0,212,255,0.08)] z-20 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-[#2563FF] hover:shadow-[0_15px_40px_rgba(37,99,255,0.2)]">
+                <div className="absolute bottom-6 left-6 right-6 bg-[#0B1A2E]/90 border border-[rgba(0,212,255,0.15)] rounded-2xl p-6 backdrop-blur-lg text-white flex flex-col gap-2 shadow-[0_15px_40px_rgba(0,212,255,0.08)] z-20 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-[#305EFF] hover:shadow-[0_15px_40px_rgba(37,99,255,0.2)]">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={index}

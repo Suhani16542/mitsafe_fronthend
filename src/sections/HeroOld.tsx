@@ -360,14 +360,14 @@ export default function Hero() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.45, delay: 0.1 }}
-                  className="inline-flex items-center gap-2.5 rounded-full border border-blue-200/80 bg-blue-50/80 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#2563EB] shadow-xs font-sans"
+                  className="inline-flex items-center gap-2.5 rounded-full border border-[#305EFF]/80 bg-[#305EFF]/80 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-[#305EFF] shadow-xs font-sans"
                 >
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2563EB] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563EB]"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#305EFF] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#305EFF]"></span>
                   </span>
                   <span>🚀 WE BUILD {currentService.title}</span>
-                  <span className="border-l border-blue-200 pl-2 text-blue-500 font-mono text-[11px]">
+                  <span className="border-l border-[#305EFF] pl-2 text-[#305EFF] font-mono text-[11px]">
                     {typedText}<span className="animate-pulse">|</span>
                   </span>
                 </motion.div>
@@ -385,7 +385,7 @@ export default function Hero() {
                       <span key={i} className="overflow-hidden inline-flex py-1 -my-1 mr-3">
                         <motion.span
                           variants={headingWordVariants}
-                          className={`inline-block ${isLast ? "text-transparent bg-clip-text bg-gradient-to-r from-[#2563EB] to-[#3B82F6]" : ""}`}
+                          className={`inline-block ${isLast ? "text-transparent bg-clip-text bg-gradient-to-r from-[#305EFF] to-[#3B82F6]" : ""}`}
                         >
                           {word}
                         </motion.span>
@@ -413,7 +413,7 @@ export default function Hero() {
                     <motion.div
                       key={idx}
                       whileHover={{ y: -3, scale: 1.05 }}
-                      className="flex flex-col items-center justify-center bg-white border border-slate-200/90 w-[60px] h-[60px] rounded-2xl shadow-xs hover:border-[#2563EB]/40 transition-all duration-300 cursor-pointer shrink-0"
+                      className="flex flex-col items-center justify-center bg-white border border-slate-200/90 w-[60px] h-[60px] rounded-2xl shadow-xs hover:border-[#305EFF]/40 transition-all duration-300 cursor-pointer shrink-0"
                     >
                       <span className="text-xl mb-0.5">{tech.icon}</span>
                       <span className="text-[9px] font-bold text-slate-600 text-center px-0.5 truncate w-full font-sans leading-tight">
@@ -421,7 +421,7 @@ export default function Hero() {
                       </span>
                     </motion.div>
                   ))}
-                  <div className="flex items-center justify-center bg-blue-50/60 border border-dashed border-blue-300 w-[60px] h-[60px] rounded-2xl cursor-default text-[#2563EB] hover:bg-blue-100/50 transition-colors shrink-0">
+                  <div className="flex items-center justify-center bg-[#305EFF]/60 border border-dashed border-[#305EFF] w-[60px] h-[60px] rounded-2xl cursor-default text-[#305EFF] hover:bg-[#305EFF]/50 transition-colors shrink-0">
                     <span className="text-xl font-bold">+</span>
                   </div>
                 </motion.div>
@@ -436,7 +436,7 @@ export default function Hero() {
                     href="#services"
                     whileHover={{ scale: 1.02, y: -1 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center gap-2.5 h-12 bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-sm px-8 rounded-full shadow-[0_6px_20px_rgba(37,99,255,0.3)] hover:shadow-[0_8px_28px_rgba(37,99,255,0.45)] transition-all duration-300 cursor-pointer group"
+                    className="inline-flex items-center justify-center gap-2.5 h-12 bg-[#305EFF] hover:bg-[#305EFF] text-white font-bold text-sm px-8 rounded-full shadow-[0_6px_20px_rgba(37,99,255,0.3)] hover:shadow-[0_8px_28px_rgba(37,99,255,0.45)] transition-all duration-300 cursor-pointer group"
                   >
                     <span>Explore Services</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -449,7 +449,7 @@ export default function Hero() {
                     className="inline-flex items-center justify-center gap-2.5 h-12 bg-white text-slate-900 font-bold text-sm px-8 rounded-full border border-slate-200/90 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 cursor-pointer"
                   >
                     <span>View Portfolio</span>
-                    <span className="text-[#2563EB] text-[10px]">▶</span>
+                    <span className="text-[#305EFF] text-[10px]">▶</span>
                   </motion.a>
                 </motion.div>
 
@@ -558,9 +558,9 @@ export default function Hero() {
           {featureCards.map((feat, idx) => (
             <div
               key={idx}
-              className="bg-white border border-slate-200/80 rounded-2xl p-4 flex items-center gap-3 shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-md hover:border-[#2563EB]/40 hover:-translate-y-0.5 transition-all duration-300 cursor-default group"
+              className="bg-white border border-slate-200/80 rounded-2xl p-4 flex items-center gap-3 shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-md hover:border-[#305EFF]/40 hover:-translate-y-0.5 transition-all duration-300 cursor-default group"
             >
-              <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-lg text-[#2563EB] shrink-0 group-hover:scale-110 transition-transform">
+              <div className="w-10 h-10 rounded-xl bg-[#305EFF]/10 flex items-center justify-center text-lg text-[#305EFF] shrink-0 group-hover:scale-110 transition-transform">
                 {feat.icon}
               </div>
               <span className="text-[13px] font-bold text-slate-800 font-sans tracking-wide">
@@ -575,7 +575,7 @@ export default function Hero() {
       {/* Navigation Arrows */}
       <button
         onClick={handlePrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200/90 shadow-md flex items-center justify-center text-slate-700 hover:text-[#2563EB] hover:border-[#2563EB]/40 hover:scale-105 active:scale-95 transition-all duration-300 hidden md:flex cursor-pointer"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200/90 shadow-md flex items-center justify-center text-slate-700 hover:text-[#305EFF] hover:border-[#305EFF]/40 hover:scale-105 active:scale-95 transition-all duration-300 hidden md:flex cursor-pointer"
         aria-label="Previous service"
       >
         <ChevronLeft className="w-5 h-5 stroke-[2.5px]" />
@@ -583,7 +583,7 @@ export default function Hero() {
 
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200/90 shadow-md flex items-center justify-center text-slate-700 hover:text-[#2563EB] hover:border-[#2563EB]/40 hover:scale-105 active:scale-95 transition-all duration-300 hidden md:flex cursor-pointer"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200/90 shadow-md flex items-center justify-center text-slate-700 hover:text-[#305EFF] hover:border-[#305EFF]/40 hover:scale-105 active:scale-95 transition-all duration-300 hidden md:flex cursor-pointer"
         aria-label="Next service"
       >
         <ChevronRight className="w-5 h-5 stroke-[2.5px]" />
@@ -596,7 +596,7 @@ export default function Hero() {
             key={idx}
             onClick={() => setCurrentSlide(idx)}
             className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-              currentSlide === idx ? "w-7 bg-[#2563EB]" : "w-2 bg-slate-300 hover:bg-slate-400"
+              currentSlide === idx ? "w-7 bg-[#305EFF]" : "w-2 bg-slate-300 hover:bg-slate-400"
             }`}
             aria-label={`Go to slide page ${idx + 1}`}
           />

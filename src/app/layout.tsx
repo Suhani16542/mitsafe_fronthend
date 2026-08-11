@@ -34,6 +34,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { ModalProvider } from "@/context/ModalContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -73,14 +75,16 @@ export default function RootLayout({
       </head>
       <body className="bg-background text-foreground font-sans antialiased selection:bg-[#00D4FF]/20 selection:text-white">
         <ThemeProvider>
-          <LenisProvider>
-            <div className="flex flex-col min-h-screen relative w-full">
-              <ParticleBackground />
-              <Navbar />
-              <main className="flex-grow">{children}</main>
-              <Footer />
-            </div>
-          </LenisProvider>
+          <ModalProvider>
+            <LenisProvider>
+              <div className="flex flex-col min-h-screen relative w-full">
+                <ParticleBackground />
+                <Navbar />
+                <main className="flex-grow">{children}</main>
+                <Footer />
+              </div>
+            </LenisProvider>
+          </ModalProvider>
         </ThemeProvider>
       </body>
     </html>

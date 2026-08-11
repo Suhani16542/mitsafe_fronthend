@@ -32,12 +32,12 @@ function BlogCard({ post, idx }: { post: any; idx: number }) {
         <div className="flex flex-col gap-3 relative z-10 text-left">
           {/* Header Row: Category Badge & Read Time */}
           <div className="flex items-center justify-between">
-            <span className="bg-blue-50 border border-blue-100 px-3 py-1 rounded-full text-[11px] font-extrabold text-[#2563FF] uppercase tracking-wide flex items-center gap-1.5">
-              <IconComponent className="w-3 h-3 text-[#2563FF]" />
+            <span className="bg-[#305EFF]/10 border border-[#305EFF]/20 px-3 py-1 rounded-full text-[11px] font-extrabold text-[#305EFF] uppercase tracking-wide flex items-center gap-1.5">
+              <IconComponent className="w-3 h-3 text-black" />
               {post.category}
             </span>
             <span className="text-[11px] font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full flex items-center gap-1">
-              <Clock className="w-3 h-3 text-[#2563FF]" />
+              <Clock className="w-3 h-3 text-black" />
               {post.readTime}
             </span>
           </div>
@@ -49,7 +49,7 @@ function BlogCard({ post, idx }: { post: any; idx: number }) {
 
           {/* Date */}
           <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-400">
-            <Calendar className="w-3 h-3 text-[#2563FF]" />
+            <Calendar className="w-3 h-3 text-black" />
             <span>{post.date}</span>
           </div>
 
@@ -63,10 +63,10 @@ function BlogCard({ post, idx }: { post: any; idx: number }) {
         <div className="pt-4 border-t border-slate-100 group-hover:border-slate-200 mt-4 relative z-10 transition-colors">
           <Link
             href={`/blog/${post.slug}`}
-            className="inline-flex items-center justify-between w-full font-extrabold text-xs sm:text-sm text-[#2563FF] hover:text-blue-700 transition-colors"
+            className="inline-flex items-center justify-between w-full font-extrabold text-xs sm:text-sm text-[#305EFF] hover:text-[#305EFF] transition-colors"
           >
             <span>Read Full Article</span>
-            <div className="w-7 h-7 rounded-lg bg-blue-50 text-[#2563FF] flex items-center justify-center transition-all duration-300 shadow-sm">
+            <div className="w-7 h-7 rounded-lg bg-[#305EFF]/10 text-black flex items-center justify-center transition-all duration-300 shadow-sm">
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
             </div>
           </Link>
@@ -94,9 +94,9 @@ export default function BlogSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-blue-100 bg-blue-50 px-3.5 py-1 text-[11px] font-bold uppercase tracking-widest text-blue-600 font-display shadow-sm"
+            className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-[#305EFF]/20 bg-[#305EFF]/10 px-3.5 py-1 text-[11px] font-bold uppercase tracking-widest text-[#305EFF] font-display shadow-sm"
           >
-            <Sparkles className="w-3 h-3 text-blue-600" />
+            <Sparkles className="w-3 h-3 text-black" />
             <span>ARTICLE JOURNAL</span>
           </motion.div>
 
@@ -111,8 +111,8 @@ export default function BlogSection() {
           >
             Read Our Latest{" "}
             <span
-              className="text-[#2563FF] inline-block"
-              style={{ color: "#2563FF", WebkitTextFillColor: "#2563FF", background: "none" }}
+              className="text-[#305EFF] inline-block"
+              style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF", background: "none" }}
             >
               News
             </span>
@@ -124,7 +124,7 @@ export default function BlogSection() {
             whileInView={{ opacity: 1, scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.15 }}
-            className="w-16 h-1 bg-[#2563FF] mx-auto mt-4 rounded-full origin-center"
+            className="w-16 h-1 bg-[#305EFF] mx-auto mt-4 rounded-full origin-center"
           />
 
           {/* Subtitle */}
@@ -157,7 +157,7 @@ export default function BlogSection() {
           {/* Get a Quote Button */}
           <Link
             href="/get-a-quote"
-            className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 bg-[#0052FF] hover:bg-[#0042D9] text-white font-extrabold text-xs sm:text-sm rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto"
+            className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 bg-[#305EFF] hover:bg-[#305EFF] text-white font-extrabold text-xs sm:text-sm rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto"
           >
             <span>Get a Quote</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -166,7 +166,7 @@ export default function BlogSection() {
           {/* Explore All Articles Button */}
           <Link
             href="/blog"
-            className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 border-2 border-[#0052FF] bg-white text-[#0052FF] hover:bg-blue-50/50 font-extrabold text-xs sm:text-sm rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto"
+            className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 border-2 border-[#305EFF] bg-white text-[#305EFF] hover:bg-[#305EFF]/50 font-extrabold text-xs sm:text-sm rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto"
           >
             <span>Explore All Articles</span>
             <BookOpen className="w-4 h-4" />
