@@ -31,7 +31,7 @@ export default function Button({
 
   const variants = {
     primary:
-      "bg-[#008FED] dark:bg-gradient-to-r dark:from-[#00D4FF] dark:to-[#008FED] text-white dark:text-[#071426] font-extrabold shadow-[0_4px_12px_rgba(0,143,237,0.2)] dark:shadow-[0_0_15px_rgba(0,212,255,0.4)] hover:shadow-[0_4px_22px_rgba(0,143,237,0.4)] dark:hover:shadow-[0_0_25px_rgba(0,212,255,0.6)] border border-transparent hover:bg-[#0077D4] dark:hover:from-[#00E5FF] dark:hover:to-[#008FED]/80 hover:text-white dark:hover:text-white",
+      "bg-[#305EFF] dark:bg-[#305EFF] text-white dark:text-white !text-white font-extrabold shadow-md hover:bg-[#2550E0] dark:hover:bg-[#2550E0] border border-transparent hover:text-white dark:hover:text-white btn-primary-blue",
     secondary:
       "bg-slate-900 dark:bg-[#0B1A2E] text-white dark:text-white border-2 border-slate-900 dark:border dark:border-[rgba(0,212,255,0.15)] hover:bg-slate-800 hover:text-white dark:hover:bg-[#071426] dark:hover:border-[#00D4FF]/30 backdrop-blur-md",
     outline:

@@ -9,6 +9,7 @@ interface SectionHeaderProps {
   subtitle?: string;
   align?: "left" | "center";
   className?: string;
+  highlightLastWord?: boolean;
 }
 
 export default function SectionHeader({
@@ -17,6 +18,7 @@ export default function SectionHeader({
   subtitle,
   align = "center",
   className = "",
+  highlightLastWord = true,
 }: SectionHeaderProps) {
   const isCenter = align === "center";
 
@@ -44,9 +46,13 @@ export default function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#0F172A] dark:text-white leading-tight"
+        className={`font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight ${
+          highlightLastWord
+            ? "text-[#0F172A] dark:text-white"
+            : "force-solid-black-title text-black dark:text-white"
+        } leading-tight`}
       >
-        {title.includes(" ") ? (
+        {highlightLastWord && title.includes(" ") ? (
           <>
             {title.substring(0, title.lastIndexOf(" "))}{" "}
             <span className="bg-gradient-to-r from-[#305EFF] to-[#00D4FF] dark:from-[#305EFF] dark:to-[#6C63FF] bg-clip-text text-transparent">
@@ -54,7 +60,7 @@ export default function SectionHeader({
             </span>
           </>
         ) : (
-          <span className="bg-gradient-to-r from-[#305EFF] to-[#00D4FF] dark:from-[#305EFF] dark:to-[#6C63FF] bg-clip-text text-transparent">{title}</span>
+          <span className="force-solid-black-title text-black dark:text-white">{title}</span>
         )}
       </motion.h2>
 

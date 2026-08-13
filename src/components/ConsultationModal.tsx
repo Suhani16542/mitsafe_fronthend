@@ -165,33 +165,77 @@ export default function ConsultationModal({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setErrorMsg("Please fill in Name, Email and Project Details.");
+    if (loading) return;
+
+    // Validate required fields
+    if (!formData.name.trim()) {
+      setErrorMsg("Please enter your Full Name.");
+      return;
+    }
+
+    if (!formData.email.trim()) {
+      setErrorMsg("Please enter your Work Email.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email.trim())) {
+      setErrorMsg("Please enter a valid email address.");
+      return;
+    }
+
+    if (!formData.message.trim()) {
+      setErrorMsg("Please enter your Project Details / Message.");
+      return;
+    }
+
+    if (formData.message.trim().length < 5) {
+      setErrorMsg("Project Details / Message must be at least 5 characters long.");
       return;
     }
 
     setLoading(true);
     setErrorMsg("");
 
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
+    const payload = {
+      fullName: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      companyName: formData.company.trim(),
+      service: formData.serviceCategory.trim(),
+      budget: formData.budget,
+      timeline: formData.timeline,
+      message: formData.message.trim(),
+      sourcePage: pathname || "/",
+      requestType: modalType || "quote",
+    };
+
     try {
-      const response = await fetch("/api/quote", {
+      const response = await fetch(`${baseUrl}/api/v1/quotes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          requestType: modalType,
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          service: formData.serviceCategory,
-          budget: formData.budget,
-          timeline: formData.timeline,
-          message: formData.message,
-        }),
+        body: JSON.stringify(payload),
       });
 
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Failed to submit request.");
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        if (response.status === 400 && Array.isArray(data.errors) && data.errors.length > 0) {
+          const combinedMsg = data.errors
+            .map((err: { message?: string; msg?: string }) => err.message || err.msg)
+            .filter(Boolean)
+            .join(". ");
+          throw new Error(combinedMsg || data.message || "Validation failed. Please check your inputs.");
+        } else if (response.status === 429) {
+          throw new Error(data.message || "Too many requests. Please try again later.");
+        } else if (response.status >= 500) {
+          throw new Error(data.message || "Server error. Please try again later.");
+        } else {
+          throw new Error(data.message || data.error || `Error (${response.status}): Failed to submit request.`);
+        }
+      }
 
       setSuccess(true);
       setFormData({
@@ -206,9 +250,13 @@ export default function ConsultationModal({
       });
     } catch (err: unknown) {
       if (err instanceof Error) {
-        setErrorMsg(err.message);
+        if (err.name === "TypeError" && err.message.includes("fetch")) {
+          setErrorMsg("Unable to connect to backend server. Please check your connection or backend status.");
+        } else {
+          setErrorMsg(err.message);
+        }
       } else {
-        setErrorMsg("An error occurred. Please try again.");
+        setErrorMsg("An error occurred while processing your request. Please try again.");
       }
     } finally {
       setLoading(false);

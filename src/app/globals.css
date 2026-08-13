@@ -44,9 +44,66 @@
 .top-bar-black-item,
 .top-bar-black-item *,
 .force-black-text,
-.force-black-text * {
+.force-black-text *,
+.force-solid-black-title,
+.force-solid-black-title *,
+.force-solid-black-title span {
   color: #000000 !important;
+  background: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
   -webkit-text-fill-color: #000000 !important;
+  opacity: 1 !important;
+}
+
+/* Global Blog Main Title Override - Always Solid Uniform Black in Light Mode, White in Dark Mode */
+@layer utilities {
+  .blog-main-title,
+  .blog-main-title *,
+  .blog-main-title span {
+    color: #0F172A !important;
+    background: none !important;
+    background-image: none !important;
+    background-clip: unset !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #0F172A !important;
+    opacity: 1 !important;
+  }
+}
+
+.blog-main-title,
+.blog-main-title *,
+.blog-main-title span,
+h1.blog-main-title,
+h1.blog-main-title *,
+h1.blog-main-title span,
+header h1,
+header h1 *,
+header h1 span {
+  color: #0F172A !important;
+  background: none !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: #0F172A !important;
+  opacity: 1 !important;
+}
+
+.dark .blog-main-title,
+.dark .blog-main-title *,
+.dark .blog-main-title span,
+.dark h1.blog-main-title,
+.dark h1.blog-main-title *,
+.dark h1.blog-main-title span,
+.dark header h1,
+.dark header h1 *,
+.dark header h1 span {
+  color: #FFFFFF !important;
+  background: none !important;
+  background-image: none !important;
+  background-clip: unset !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: #FFFFFF !important;
   opacity: 1 !important;
 }
 
@@ -65,6 +122,26 @@
   fill: #FFFFFF !important;
   stroke: none !important;
   opacity: 1 !important;
+}
+
+/* Force Solid Blue Button with Pure White Text & Icons */
+.btn-primary-blue {
+  background-color: #305EFF !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+}
+.btn-primary-blue *,
+.btn-primary-blue span {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+}
+.btn-primary-blue svg,
+.btn-primary-blue path {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+.btn-primary-blue:hover {
+  background-color: #2550E0 !important;
 }
 
 /* Top Bar Motion & Micro-Interactions */
@@ -635,16 +712,29 @@ footer p, footer span, footer a,
   background-image: linear-gradient(to right, rgba(0, 143, 237, 0.05), rgba(0, 229, 255, 0.08), rgba(0, 143, 237, 0.05)) !important;
 }
 
-/* Headings Gradient Style in Light Mode: Dark Gray (#0F172A) to Logo Blue (#008FED) */
+/* All Headings (h1, h2, h3) in Light Mode: Solid Dark Black (#0F172A) */
 :root:not(.dark) h1,
 :root:not(.dark) h2,
+:root:not(.dark) h3,
+:root:not(.dark) h1 *,
+:root:not(.dark) h2 *,
+:root:not(.dark) h3 * {
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #0F172A !important;
+  color: #0F172A !important;
+}
+
+/* Explicit Gradient Classes (ONLY when explicitly added to an element) */
 :root:not(.dark) .heading-gradient,
 :root:not(.dark) .text-gradient-cyan-blue,
 :root:not(.dark) .text-gradient {
   background: linear-gradient(135deg, #0F172A 20%, #1E293B 65%, #008FED 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  color: transparent !important; /* Ensure solid color overrides do not break the gradient */
+  color: transparent !important;
 }
 
 /* Paragraphs & Muted Descriptions in Light Mode: Dark Gray (#334155) */

@@ -178,6 +178,10 @@ export default function Navbar() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
   const pathname = usePathname();
+
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
   const dropdownRef = useRef<HTMLDivElement>(null);
   const industriesDropdownRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);

@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Calendar, Clock, BookOpen, Send, TrendingUp, Cpu, Layers } from "lucide-react";
-import { blogData } from "@/data/blog";
+import { ArrowRight, Sparkles, Calendar, Clock, BookOpen, Send, TrendingUp, Cpu, Layers, Loader2 } from "lucide-react";
+import { blogData as fallbackBlogData } from "@/data/blog";
+import { getBlogs } from "@/services/blog.service";
+import { BlogPost } from "@/types/adminBlog";
 
 const categoryIcons: Record<string, any> = {
   "Software Engineering": Cpu,
@@ -14,6 +16,13 @@ const categoryIcons: Record<string, any> = {
 
 function BlogCard({ post, idx }: { post: any; idx: number }) {
   const IconComponent = categoryIcons[post.category] || BookOpen;
+
+  const displayTitle = post.title;
+  const displaySlug = post.slug;
+  const displayCategory = post.category || "General";
+  const displayReadTime = post.readTime || "5 Min Read";
+  const displayDate = post.publishedAt || post.date || post.createdAt || "Recently Published";
+  const displaySummary = post.excerpt || post.summary || "";
 
   return (
     <motion.div
@@ -34,35 +43,35 @@ function BlogCard({ post, idx }: { post: any; idx: number }) {
           <div className="flex items-center justify-between">
             <span className="bg-[#305EFF]/10 border border-[#305EFF]/20 px-3 py-1 rounded-full text-[11px] font-extrabold text-[#305EFF] uppercase tracking-wide flex items-center gap-1.5">
               <IconComponent className="w-3 h-3 text-black" />
-              {post.category}
+              {displayCategory}
             </span>
             <span className="text-[11px] font-bold text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full flex items-center gap-1">
               <Clock className="w-3 h-3 text-black" />
-              {post.readTime}
+              {displayReadTime}
             </span>
           </div>
 
           {/* Title */}
           <h3 className="font-display text-lg sm:text-xl font-extrabold text-slate-900 group-hover:text-slate-900 transition-colors duration-300 leading-snug">
-            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+            <Link href={`/blog/${displaySlug}`}>{displayTitle}</Link>
           </h3>
 
           {/* Date */}
           <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-400">
             <Calendar className="w-3 h-3 text-black" />
-            <span>{post.date}</span>
+            <span>{displayDate}</span>
           </div>
 
           {/* Summary / Description */}
           <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-normal line-clamp-3">
-            {post.summary}
+            {displaySummary}
           </p>
         </div>
 
         {/* Card Footer / Read Article Link */}
         <div className="pt-4 border-t border-slate-100 group-hover:border-slate-200 mt-4 relative z-10 transition-colors">
           <Link
-            href={`/blog/${post.slug}`}
+            href={`/blog/${displaySlug}`}
             className="inline-flex items-center justify-between w-full font-extrabold text-xs sm:text-sm text-[#305EFF] hover:text-[#305EFF] transition-colors"
           >
             <span>Read Full Article</span>
@@ -78,7 +87,29 @@ function BlogCard({ post, idx }: { post: any; idx: number }) {
 
 export default function BlogSection() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const displayPosts = blogData.slice(0, 3);
+  const [posts, setPosts] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadHomeBlogs() {
+      try {
+        const res = await getBlogs({ status: "published", limit: 3, sort: "-publishedAt -createdAt" });
+        if (res.success && res.data.length > 0) {
+          setPosts(res.data);
+        } else {
+          setPosts(fallbackBlogData.slice(0, 3));
+        }
+      } catch (err) {
+        console.error("Failed to load published blogs for homepage:", err);
+        setPosts(fallbackBlogData.slice(0, 3));
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadHomeBlogs();
+  }, []);
+
+  const displayPosts = posts.slice(0, 3);
 
   return (
     <section
@@ -141,9 +172,16 @@ export default function BlogSection() {
 
         {/* 3-Column Image-Free Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl mx-auto">
-          {displayPosts.map((post, idx) => (
-            <BlogCard key={post.slug || idx} post={post} idx={idx} />
-          ))}
+          {isLoading ? (
+            <div className="col-span-full py-12 flex justify-center items-center text-slate-400 font-medium text-xs">
+              <Loader2 className="w-6 h-6 animate-spin text-[#305EFF] mr-2" />
+              <span>Loading latest news...</span>
+            </div>
+          ) : (
+            displayPosts.map((post, idx) => (
+              <BlogCard key={post.slug || idx} post={post} idx={idx} />
+            ))
+          )}
         </div>
 
         {/* Action Buttons Row */}
@@ -157,10 +195,10 @@ export default function BlogSection() {
           {/* Get a Quote Button */}
           <Link
             href="/get-a-quote"
-            className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 bg-[#305EFF] hover:bg-[#305EFF] text-white font-extrabold text-xs sm:text-sm rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto"
+            className="btn-primary-blue group inline-flex items-center justify-center gap-2.5 h-11 px-6 bg-[#305EFF] hover:bg-[#2550E0] !text-white font-extrabold text-xs sm:text-sm rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto"
           >
-            <span>Get a Quote</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <span className="!text-white">Get a Quote</span>
+            <ArrowRight className="w-4 h-4 !text-white transition-transform group-hover:translate-x-1" />
           </Link>
 
           {/* Explore All Articles Button */}

@@ -38,7 +38,14 @@ const YoutubeIcon = () => (
   </svg>
 );
 
+import { usePathname } from "next/navigation";
+
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
   // Social media links in requested order: LinkedIn, Facebook, Instagram, X (Twitter), YouTube
   const socialLinks = [
     { name: "LinkedIn", icon: LinkedinIcon, url: "https://linkedin.com" },
