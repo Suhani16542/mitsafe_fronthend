@@ -1,6 +1,34 @@
 import { BlogPost, BlogStatus } from "@/types/adminBlog";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+export function getApiBaseUrl(): string | null {
+  const envUrl = process.env.NEXT_PUBLIC_API_URL;
+  if (envUrl && envUrl.trim() !== "") {
+    const trimmed = envUrl.trim();
+    if (typeof window !== "undefined") {
+      const isLocalhostDomain =
+        window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1" ||
+        window.location.hostname === "[::1]";
+      if (!isLocalhostDomain && (trimmed.includes("localhost") || trimmed.includes("127.0.0.1"))) {
+        return null;
+      }
+    }
+    return trimmed;
+  }
+
+  if (typeof window !== "undefined") {
+    const isLocalhostDomain =
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1" ||
+      window.location.hostname === "[::1]";
+    if (isLocalhostDomain) {
+      return "http://localhost:5000";
+    }
+    return null;
+  }
+
+  return "http://localhost:5000";
+}
 
 function getAdminHeaders() {
   const adminKey =
@@ -63,6 +91,20 @@ export interface FetchBlogsParams {
  */
 export async function getBlogs(params: FetchBlogsParams = {}) {
   try {
+    const BASE_URL = getApiBaseUrl();
+    if (!BASE_URL) {
+      return {
+        success: false,
+        data: [],
+        pagination: {
+          page: params.page || 1,
+          limit: params.limit || 10,
+          total: 0,
+          totalPages: 1,
+        },
+      };
+    }
+
     const query = new URLSearchParams();
     if (params.page) query.append("page", params.page.toString());
     if (params.limit) query.append("limit", params.limit.toString());
@@ -79,7 +121,16 @@ export async function getBlogs(params: FetchBlogsParams = {}) {
     const json = await res.json();
 
     if (!res.ok || !json.success) {
-      throw new Error(json.message || "Failed to fetch blogs");
+      return {
+        success: false,
+        data: [],
+        pagination: {
+          page: params.page || 1,
+          limit: params.limit || 10,
+          total: 0,
+          totalPages: 1,
+        },
+      };
     }
 
     const formattedData = (json.data || []).map(formatBlogPost);
@@ -95,8 +146,16 @@ export async function getBlogs(params: FetchBlogsParams = {}) {
       },
     };
   } catch (err: any) {
-    console.error("getBlogs Error:", err);
-    throw err;
+    return {
+      success: false,
+      data: [],
+      pagination: {
+        page: params.page || 1,
+        limit: params.limit || 10,
+        total: 0,
+        totalPages: 1,
+      },
+    };
   }
 }
 
@@ -105,11 +164,16 @@ export async function getBlogs(params: FetchBlogsParams = {}) {
  */
 export async function getCategories() {
   try {
+    const BASE_URL = getApiBaseUrl();
+    if (!BASE_URL) {
+      return { success: false, data: [] };
+    }
+
     const res = await fetch(`${BASE_URL}/api/v1/blogs/categories`, { method: "GET", cache: "no-store" });
     const json = await res.json();
 
     if (!res.ok || !json.success) {
-      throw new Error(json.message || "Failed to fetch categories");
+      return { success: false, data: [] };
     }
 
     return {
@@ -117,8 +181,7 @@ export async function getCategories() {
       data: json.data || [],
     };
   } catch (err: any) {
-    console.error("getCategories Error:", err);
-    throw err;
+    return { success: false, data: [] };
   }
 }
 
@@ -127,6 +190,11 @@ export async function getCategories() {
  */
 export async function getBlogBySlug(slug: string) {
   try {
+    const BASE_URL = getApiBaseUrl();
+    if (!BASE_URL) {
+      return { success: false, data: null };
+    }
+
     const res = await fetch(`${BASE_URL}/api/v1/blogs/${encodeURIComponent(slug)}`, {
       method: "GET",
       cache: "no-store",
@@ -134,7 +202,7 @@ export async function getBlogBySlug(slug: string) {
     const json = await res.json();
 
     if (!res.ok || !json.success) {
-      throw new Error(json.message || "Blog article not found");
+      return { success: false, data: null };
     }
 
     return {
@@ -142,8 +210,7 @@ export async function getBlogBySlug(slug: string) {
       data: formatBlogPost(json.data),
     };
   } catch (err: any) {
-    console.error("getBlogBySlug Error:", err);
-    throw err;
+    return { success: false, data: null };
   }
 }
 
@@ -152,6 +219,11 @@ export async function getBlogBySlug(slug: string) {
  */
 export async function uploadBlogImage(file: File) {
   try {
+    const BASE_URL = getApiBaseUrl();
+    if (!BASE_URL) {
+      throw new Error("API URL unavailable on client-side remote domain");
+    }
+
     const formData = new FormData();
     formData.append("image", file);
 
@@ -199,6 +271,11 @@ export async function createBlog(payload: {
   slug?: string;
 }) {
   try {
+    const BASE_URL = getApiBaseUrl();
+    if (!BASE_URL) {
+      throw new Error("API URL unavailable on client-side remote domain");
+    }
+
     const res = await fetch(`${BASE_URL}/api/v1/blogs`, {
       method: "POST",
       headers: {
@@ -245,6 +322,11 @@ export async function updateBlog(
       bodyPayload.author = bodyPayload.author.name;
     }
 
+    const BASE_URL = getApiBaseUrl();
+    if (!BASE_URL) {
+      throw new Error("API URL unavailable on client-side remote domain");
+    }
+
     const res = await fetch(`${BASE_URL}/api/v1/blogs/${id}`, {
       method: "PUT",
       headers: {
@@ -276,6 +358,11 @@ export async function updateBlog(
  */
 export async function updateBlogStatus(id: string, status: BlogStatus) {
   try {
+    const BASE_URL = getApiBaseUrl();
+    if (!BASE_URL) {
+      throw new Error("API URL unavailable on client-side remote domain");
+    }
+
     const res = await fetch(`${BASE_URL}/api/v1/blogs/${id}/status`, {
       method: "PATCH",
       headers: {
@@ -307,6 +394,11 @@ export async function updateBlogStatus(id: string, status: BlogStatus) {
  */
 export async function deleteBlog(id: string) {
   try {
+    const BASE_URL = getApiBaseUrl();
+    if (!BASE_URL) {
+      throw new Error("API URL unavailable on client-side remote domain");
+    }
+
     const res = await fetch(`${BASE_URL}/api/v1/blogs/${id}`, {
       method: "DELETE",
       headers: {
