@@ -1,7 +1,14 @@
 import { BlogPost, BlogStatus } from "@/types/adminBlog";
 
+/**
+ * Resolves the Backend API Base URL for Client and Server environments.
+ * Priority:
+ * 1. process.env.NEXT_PUBLIC_API_URL (available client & server)
+ * 2. process.env.BACKEND_API_URL (server-side only fallback)
+ * 3. Localhost (when running locally) or Mitsafe Backend on Render (production fallback)
+ */
 export function getApiBaseUrl(): string {
-  // 1. Client-side and server-side: Read NEXT_PUBLIC_API_URL if configured
+  // 1. Client-side and server-side: Read NEXT_PUBLIC_API_URL environment variable
   const publicApiUrl = process.env.NEXT_PUBLIC_API_URL?.trim().replace(/\/+$/, "");
   if (publicApiUrl) {
     return publicApiUrl;
