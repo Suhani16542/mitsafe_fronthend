@@ -1,42 +1,34 @@
 import { BlogPost, BlogStatus } from "@/types/adminBlog";
 
 export function getApiBaseUrl(): string {
-  const envUrl = process.env.NEXT_PUBLIC_API_URL;
-  if (envUrl && envUrl.trim() !== "") {
-    const trimmed = envUrl.trim().replace(/\/+$/, "");
-    if (typeof window !== "undefined") {
-      const isLocalhostDomain =
-        window.location.hostname === "localhost" ||
-        window.location.hostname === "127.0.0.1" ||
-        window.location.hostname === "[::1]";
-      if (!isLocalhostDomain && (trimmed.includes("localhost") || trimmed.includes("127.0.0.1"))) {
-        return "https://mitsafe-backend.onrender.com";
-      }
-    }
-    return trimmed;
+  // 1. Client-side and server-side: Read NEXT_PUBLIC_API_URL if configured
+  const publicApiUrl = process.env.NEXT_PUBLIC_API_URL?.trim().replace(/\/+$/, "");
+  if (publicApiUrl) {
+    return publicApiUrl;
   }
 
-  // Server-side fallback using BACKEND_API_URL if present
+  // 2. Server-side only (Node.js runtime): Fall back to BACKEND_API_URL
   if (typeof window === "undefined") {
-    const backendUrl = process.env.BACKEND_API_URL;
-    if (backendUrl && backendUrl.trim() !== "") {
-      return backendUrl.trim().replace(/\/+$/, "");
+    const backendApiUrl = process.env.BACKEND_API_URL?.trim().replace(/\/+$/, "");
+    if (backendApiUrl) {
+      return backendApiUrl;
     }
   }
 
-  // Client-side domain check
+  // 3. Client-side (Browser runtime): Fall back based on hostname
   if (typeof window !== "undefined") {
-    const isLocalhostDomain =
+    const isLocalhost =
       window.location.hostname === "localhost" ||
       window.location.hostname === "127.0.0.1" ||
       window.location.hostname === "[::1]";
-    if (isLocalhostDomain) {
+    if (isLocalhost) {
       return "http://localhost:5000";
     }
+    // Remote production fallback if NEXT_PUBLIC_API_URL was unpopulated at build time
     return "https://mitsafe-backend.onrender.com";
   }
 
-  return process.env.BACKEND_API_URL || "https://mitsafe-backend.onrender.com";
+  return "http://localhost:5000";
 }
 
 function getAdminHeaders() {
@@ -229,9 +221,6 @@ export async function getBlogBySlug(slug: string) {
 export async function uploadBlogImage(file: File) {
   try {
     const BASE_URL = getApiBaseUrl();
-    if (!BASE_URL) {
-      throw new Error("API URL unavailable on client-side remote domain");
-    }
 
     const formData = new FormData();
     formData.append("image", file);
@@ -281,9 +270,6 @@ export async function createBlog(payload: {
 }) {
   try {
     const BASE_URL = getApiBaseUrl();
-    if (!BASE_URL) {
-      throw new Error("API URL unavailable on client-side remote domain");
-    }
 
     const res = await fetch(`${BASE_URL}/api/v1/blogs`, {
       method: "POST",
@@ -332,9 +318,6 @@ export async function updateBlog(
     }
 
     const BASE_URL = getApiBaseUrl();
-    if (!BASE_URL) {
-      throw new Error("API URL unavailable on client-side remote domain");
-    }
 
     const res = await fetch(`${BASE_URL}/api/v1/blogs/${id}`, {
       method: "PUT",
@@ -368,9 +351,6 @@ export async function updateBlog(
 export async function updateBlogStatus(id: string, status: BlogStatus) {
   try {
     const BASE_URL = getApiBaseUrl();
-    if (!BASE_URL) {
-      throw new Error("API URL unavailable on client-side remote domain");
-    }
 
     const res = await fetch(`${BASE_URL}/api/v1/blogs/${id}/status`, {
       method: "PATCH",
@@ -404,9 +384,6 @@ export async function updateBlogStatus(id: string, status: BlogStatus) {
 export async function deleteBlog(id: string) {
   try {
     const BASE_URL = getApiBaseUrl();
-    if (!BASE_URL) {
-      throw new Error("API URL unavailable on client-side remote domain");
-    }
 
     const res = await fetch(`${BASE_URL}/api/v1/blogs/${id}`, {
       method: "DELETE",
