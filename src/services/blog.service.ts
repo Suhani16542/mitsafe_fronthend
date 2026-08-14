@@ -1,21 +1,30 @@
 import { BlogPost, BlogStatus } from "@/types/adminBlog";
 
-export function getApiBaseUrl(): string | null {
+export function getApiBaseUrl(): string {
   const envUrl = process.env.NEXT_PUBLIC_API_URL;
   if (envUrl && envUrl.trim() !== "") {
-    const trimmed = envUrl.trim();
+    const trimmed = envUrl.trim().replace(/\/+$/, "");
     if (typeof window !== "undefined") {
       const isLocalhostDomain =
         window.location.hostname === "localhost" ||
         window.location.hostname === "127.0.0.1" ||
         window.location.hostname === "[::1]";
       if (!isLocalhostDomain && (trimmed.includes("localhost") || trimmed.includes("127.0.0.1"))) {
-        return null;
+        return "https://mitsafe-backend.onrender.com";
       }
     }
     return trimmed;
   }
 
+  // Server-side fallback using BACKEND_API_URL if present
+  if (typeof window === "undefined") {
+    const backendUrl = process.env.BACKEND_API_URL;
+    if (backendUrl && backendUrl.trim() !== "") {
+      return backendUrl.trim().replace(/\/+$/, "");
+    }
+  }
+
+  // Client-side domain check
   if (typeof window !== "undefined") {
     const isLocalhostDomain =
       window.location.hostname === "localhost" ||
@@ -24,10 +33,10 @@ export function getApiBaseUrl(): string | null {
     if (isLocalhostDomain) {
       return "http://localhost:5000";
     }
-    return null;
+    return "https://mitsafe-backend.onrender.com";
   }
 
-  return "http://localhost:5000";
+  return process.env.BACKEND_API_URL || "https://mitsafe-backend.onrender.com";
 }
 
 function getAdminHeaders() {

@@ -283,6 +283,25 @@ body, header, footer, section, .glow-card, h1, h2, h3, h4, p, span, a, button, b
   background: var(--brand-cyan);
 }
 
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #94A3B8 #F1F5F9;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #94A3B8;
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #305EFF;
+}
+
 /* Cyber grid background in space mode */
 .cyber-grid {
   background-image: 
