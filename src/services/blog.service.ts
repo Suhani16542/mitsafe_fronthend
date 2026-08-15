@@ -57,7 +57,7 @@ export function formatBlogPost(rawBlog: any): BlogPost {
       : {
           id: "auth-1",
           name: typeof rawBlog.author === "string" && rawBlog.author ? rawBlog.author : "Mitsafe Team",
-          avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+          avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80",
           role: "Mitsafe Team",
         };
 
@@ -234,6 +234,7 @@ export async function uploadBlogImage(file: File) {
 
     const res = await fetch(`${BASE_URL}/api/v1/blogs/upload-image`, {
       method: "POST",
+      credentials: "include",
       headers: {
         ...getAdminHeaders(),
       },
@@ -280,6 +281,7 @@ export async function createBlog(payload: {
 
     const res = await fetch(`${BASE_URL}/api/v1/blogs`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         ...getAdminHeaders(),
@@ -328,6 +330,7 @@ export async function updateBlog(
 
     const res = await fetch(`${BASE_URL}/api/v1/blogs/${id}`, {
       method: "PUT",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         ...getAdminHeaders(),
@@ -361,6 +364,7 @@ export async function updateBlogStatus(id: string, status: BlogStatus) {
 
     const res = await fetch(`${BASE_URL}/api/v1/blogs/${id}/status`, {
       method: "PATCH",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         ...getAdminHeaders(),
@@ -394,6 +398,7 @@ export async function deleteBlog(id: string) {
 
     const res = await fetch(`${BASE_URL}/api/v1/blogs/${id}`, {
       method: "DELETE",
+      credentials: "include",
       headers: {
         ...getAdminHeaders(),
       },

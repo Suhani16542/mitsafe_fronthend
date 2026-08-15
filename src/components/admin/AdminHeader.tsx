@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useAdminAuth } from "@/context/AdminAuthContext";
 import {
   Search,
   Bell,
@@ -54,6 +55,7 @@ export default function AdminHeader({
   onSearchChange,
 }: AdminHeaderProps) {
   const pathname = usePathname();
+  const { logout } = useAdminAuth();
   const { title, subtitle } = getHeaderTitleByPath(pathname);
 
   const [showNotifications, setShowNotifications] = useState(false);
@@ -153,48 +155,42 @@ export default function AdminHeader({
               setShowUserMenu(!showUserMenu);
               setShowNotifications(false);
             }}
-            className="flex items-center gap-2 p-1 rounded-xl hover:bg-slate-100 transition-colors"
+            className="flex items-center gap-2 p-1.5 rounded-xl hover:bg-slate-100 transition-colors border border-transparent hover:border-slate-200 cursor-pointer"
           >
-            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-slate-200 bg-slate-100 shrink-0">
-              <Image
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
-                alt="Admin Profile"
-                fill
-                className="object-cover"
-              />
+            <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200/80 text-slate-600 flex items-center justify-center shrink-0">
+              <User className="w-4 h-4 text-slate-600" />
             </div>
             <span className="text-xs font-bold text-slate-800 hidden sm:inline-block">
-              Alex M.
+              Admin Manager
             </span>
             <ChevronDown className="w-3.5 h-3.5 text-slate-400 hidden sm:inline-block" />
           </button>
 
           {showUserMenu && (
-            <div className="absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-2xl shadow-xl py-2 z-50 text-left font-sans animate-in fade-in zoom-in-95 duration-150">
-              <div className="px-4 py-2 border-b border-slate-100">
-                <p className="text-xs font-bold text-slate-900">Alex Morgan</p>
-                <p className="text-[10px] text-slate-500">Chief Content Editor</p>
+            <div className="absolute right-0 mt-2 w-60 bg-white border border-slate-200 rounded-2xl shadow-xl py-2 z-50 text-left font-sans animate-in fade-in zoom-in-95 duration-150">
+              <div className="px-4 py-2.5 border-b border-slate-100 flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200/80 text-slate-600 flex items-center justify-center shrink-0">
+                  <User className="w-4 h-4 text-slate-600" />
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <p className="text-xs font-bold text-slate-900 truncate">Admin Manager</p>
+                  <p className="text-[10px] text-slate-500 font-medium truncate" title="moderntechnologies12@gmail.com">
+                    moderntechnologies12@gmail.com
+                  </p>
+                </div>
               </div>
-              <div className="py-1 text-xs text-slate-700">
-                <button
-                  onClick={() => alert("Profile Settings")}
-                  className="w-full text-left px-4 py-2 hover:bg-slate-50 flex items-center gap-2"
+              <div className="py-1 text-xs">
+                <Link
+                  href="/admin/blogs"
+                  onClick={() => setShowUserMenu(false)}
+                  className="w-full text-left px-4 py-2 hover:bg-slate-50 flex items-center gap-2 text-slate-700 hover:text-slate-900 transition-colors"
                 >
                   <User className="w-4 h-4 text-slate-400" />
-                  <span>Edit Profile</span>
-                </button>
+                  <span>Dashboard Overview</span>
+                </Link>
                 <button
-                  onClick={() => alert("CMS Preferences")}
-                  className="w-full text-left px-4 py-2 hover:bg-slate-50 flex items-center gap-2"
-                >
-                  <Settings className="w-4 h-4 text-slate-400" />
-                  <span>Preferences</span>
-                </button>
-              </div>
-              <div className="border-t border-slate-100 pt-1 text-xs text-red-600">
-                <button
-                  onClick={() => alert("Logged out of Admin Session")}
-                  className="w-full text-left px-4 py-2 hover:bg-red-50 flex items-center gap-2"
+                  onClick={logout}
+                  className="w-full text-left px-4 py-2 hover:bg-red-50 flex items-center gap-2 text-red-600 font-semibold transition-colors cursor-pointer"
                 >
                   <LogOut className="w-4 h-4" />
                   <span>Sign Out</span>

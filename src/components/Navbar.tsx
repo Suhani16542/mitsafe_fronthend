@@ -291,6 +291,10 @@ export default function Navbar() {
     { name: "Hire Developers", href: "/hire-developers" },
   ];
 
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <>
       {/* Fixed Wrapper containing both Top Bar and Navbar to prevent any overlapping on scroll */}
