@@ -10,6 +10,7 @@ interface SectionHeaderProps {
   align?: "left" | "center";
   className?: string;
   highlightLastWord?: boolean;
+  as?: "h1" | "h2" | "h3";
 }
 
 export default function SectionHeader({
@@ -19,8 +20,10 @@ export default function SectionHeader({
   align = "center",
   className = "",
   highlightLastWord = true,
+  as = "h2",
 }: SectionHeaderProps) {
   const isCenter = align === "center";
+  const HeadingTag = as === "h1" ? motion.h1 : as === "h3" ? motion.h3 : motion.h2;
 
   return (
     <div
@@ -41,7 +44,7 @@ export default function SectionHeader({
         </motion.div>
       )}
 
-      <motion.h2
+      <HeadingTag
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -62,7 +65,7 @@ export default function SectionHeader({
         ) : (
           <span className="force-solid-black-title text-black dark:text-white">{title}</span>
         )}
-      </motion.h2>
+      </HeadingTag>
 
       {subtitle && (
         <motion.p

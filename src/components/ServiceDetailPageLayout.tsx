@@ -437,7 +437,7 @@ export default function ServiceDetailPageLayout({ service }: ServiceDetailPageLa
             </p>
           </div>
 
-          <div className="relative border-l-2 border-[#305EFF]/30 max-w-3xl pl-6 sm:pl-8 flex flex-col gap-5 mx-auto lg:mx-0">
+          <div className="relative border-l-2 border-[#305EFF]/30 max-w-3xl pl-6 sm:pl-8 ml-4 sm:ml-6 flex flex-col gap-5 mx-auto lg:mx-0">
             {service.process.map((step, idx) => (
               <motion.div
                 key={idx}

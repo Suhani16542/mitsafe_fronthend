@@ -2,9 +2,9 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { useModal } from "@/context/ModalContext";
 
 const caseStudiesRow1 = [
   {
@@ -55,6 +55,7 @@ const caseStudiesRow2 = [
 ];
 
 export default function PortfolioSection() {
+  const { openModal } = useModal();
   const row1Items = [...caseStudiesRow1, ...caseStudiesRow1, ...caseStudiesRow1];
   const row2Items = [...caseStudiesRow2, ...caseStudiesRow2, ...caseStudiesRow2];
 
@@ -90,7 +91,7 @@ export default function PortfolioSection() {
             {row1Items.map((study, idx) => (
               <div
                 key={`row1-${idx}`}
-                className="w-[340px] sm:w-[420px] shrink-0 group rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-[#305EFF] flex flex-col"
+                className="w-[280px] sm:w-[340px] md:w-[420px] shrink-0 group rounded-[2rem] border border-slate-200 bg-white p-3.5 sm:p-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-[#305EFF] flex flex-col"
               >
                 <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
                   <Image src={study.img} alt={study.title} fill sizes="420px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -107,13 +108,14 @@ export default function PortfolioSection() {
                       {study.summary}
                     </p>
                   </div>
-                  <Link
-                    href={`/portfolio/${study.slug}`}
-                    className="inline-flex items-center gap-2 text-xs font-bold text-[#305EFF] hover:text-[#305EFF] uppercase tracking-wider mt-3"
+                  <button
+                    type="button"
+                    onClick={() => openModal("quote", study.category)}
+                    className="inline-flex items-center gap-2 text-xs font-bold text-[#305EFF] hover:text-[#305EFF] uppercase tracking-wider mt-3 cursor-pointer"
                   >
                     <span>View Study</span>
                     <ArrowUpRight className="w-4 h-4 text-black transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
+                  </button>
                 </div>
               </div>
             ))}
@@ -134,7 +136,7 @@ export default function PortfolioSection() {
             {row2Items.map((study, idx) => (
               <div
                 key={`row2-${idx}`}
-                className="w-[340px] sm:w-[420px] shrink-0 group rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-[#305EFF] flex flex-col"
+                className="w-[280px] sm:w-[340px] md:w-[420px] shrink-0 group rounded-[2rem] border border-slate-200 bg-white p-3.5 sm:p-4 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-[#305EFF] flex flex-col"
               >
                 <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
                   <Image src={study.img} alt={study.title} fill sizes="420px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -151,13 +153,14 @@ export default function PortfolioSection() {
                       {study.summary}
                     </p>
                   </div>
-                  <Link
-                    href={`/portfolio/${study.slug}`}
-                    className="inline-flex items-center gap-2 text-xs font-bold text-[#305EFF] hover:text-[#305EFF] uppercase tracking-wider mt-3"
+                  <button
+                    type="button"
+                    onClick={() => openModal("quote", study.category)}
+                    className="inline-flex items-center gap-2 text-xs font-bold text-[#305EFF] hover:text-[#305EFF] uppercase tracking-wider mt-3 cursor-pointer"
                   >
                     <span>View Study</span>
                     <ArrowUpRight className="w-4 h-4 text-black transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
+                  </button>
                 </div>
               </div>
             ))}

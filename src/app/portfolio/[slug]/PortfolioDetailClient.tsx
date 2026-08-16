@@ -149,7 +149,7 @@ export default function PortfolioDetailClient({ project }: { project: ProjectPro
 
         {/* Cover Banner Card */}
         <ScrollReveal direction="up">
-          <div className="relative aspect-[21/9] w-full rounded-[32px] overflow-hidden border border-slate-100 shadow-2xl mb-12 group">
+          <div className="relative aspect-[16/9] sm:aspect-[21/9] min-h-[200px] w-full rounded-[24px] sm:rounded-[32px] overflow-hidden border border-slate-100 shadow-2xl mb-12 group">
             <div className={`absolute inset-0 bg-gradient-to-tr ${project.imageColor} opacity-[0.12] group-hover:scale-105 transition-transform duration-700`} />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f0f7_1px,transparent_1px),linear-gradient(to_bottom,#f1f0f7_1px,transparent_1px)] bg-[size:20px_35px] opacity-40" />
             <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-90" />
@@ -296,7 +296,7 @@ export default function PortfolioDetailClient({ project }: { project: ProjectPro
               Our engineers can model a similar high-performance workflow optimized for your specific parameters.
             </p>
             <div className="flex gap-4 mt-2">
-              <Button href="/contact" variant="primary" className="bg-[#7C3AED] hover:bg-[#7C3AED]/90 text-white shadow-md">
+              <Button href="#consultation" variant="primary" className="bg-[#7C3AED] hover:bg-[#7C3AED]/90 text-white shadow-md">
                 Request Architecture Session
               </Button>
             </div>

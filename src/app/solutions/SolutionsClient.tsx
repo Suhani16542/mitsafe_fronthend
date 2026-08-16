@@ -328,7 +328,7 @@ export default function SolutionsClient() {
           </p>
           <div className="mt-4">
             <Button
-              href="/contact"
+              href="#consultation"
               variant="primary"
               icon={<ArrowRight className="w-4 h-4 text-white" />}
               className="!py-3 !px-7 !text-sm !font-bold !rounded-xl hover:scale-[1.02] active:scale-[0.98]"

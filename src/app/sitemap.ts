@@ -3,49 +3,143 @@ import { servicesData } from "@/data/services";
 import { portfolioData } from "@/data/portfolio";
 import { blogData } from "@/data/blog";
 import { rolesData } from "@/data/roles";
+import { navbarIndustriesData } from "@/data/industriesDataNavbar";
+import { getBlogs } from "@/services/blog.service";
+
+import type { BlogPost } from "@/types/adminBlog";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://mitsafe.com";
+  const lastModified = new Date();
 
-  // Base index pages
-  const routes = ["", "/about", "/services", "/industries", "/portfolio", "/blog", "/contact"].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "weekly" as const,
-    priority: route === "" ? 1.0 : 0.8,
+  // 1. Core static indexable pages
+  const staticRoutes: MetadataRoute.Sitemap = [
+    {
+      url: baseUrl,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/company`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/hire-developers`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/insights`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified,
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/portfolio`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/pricing`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/solutions`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified,
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+  ];
+
+  // 2. Individual dedicated service pages (10 high-value services)
+  const serviceRoutes: MetadataRoute.Sitemap = servicesData.map((service) => ({
+    url: `${baseUrl}/services/${service.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.9,
   }));
 
-  // Dynamic services
-  const servicesRoutes = servicesData.map((srv) => ({
-    url: `${baseUrl}/services/${srv.slug}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
+  // 3. Industry vertical solution pages
+  const industryRoutes: MetadataRoute.Sitemap = navbarIndustriesData.map((ind) => ({
+    url: `${baseUrl}/industries/${ind.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.7,
   }));
 
-  // Dynamic case studies
-  const portfolioRoutes = portfolioData.map((proj) => ({
-    url: `${baseUrl}/portfolio/${proj.slug}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
+  // 4. Portfolio case study pages
+  const portfolioRoutes: MetadataRoute.Sitemap = portfolioData.map((project) => ({
+    url: `${baseUrl}/portfolio/${project.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.7,
   }));
 
-  // Dynamic blog articles
-  const blogRoutes = blogData.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "weekly" as const,
-    priority: 0.5,
-  }));
-
-  // Dynamic expert roles
-  const rolesRoutes = rolesData.map((role) => ({
+  // 5. Expert role engineering pages
+  const roleRoutes: MetadataRoute.Sitemap = rolesData.map((role) => ({
     url: `${baseUrl}/roles/${role.slug}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "monthly" as const,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  // 6. Dynamic blog articles (Fetch live published posts, fallback to local blog data)
+  let dynamicBlogSlugs: { slug: string; updatedAt?: string }[] = [];
+  try {
+    const liveBlogsRes = await getBlogs({ status: "published", limit: 100 });
+    if (liveBlogsRes.success && liveBlogsRes.data && liveBlogsRes.data.length > 0) {
+      dynamicBlogSlugs = liveBlogsRes.data.map((post: BlogPost) => ({
+        slug: post.slug,
+        updatedAt: post.publishedAt || post.createdAt,
+      }));
+    }
+  } catch (err) {
+    console.error("Error fetching live blogs for sitemap:", err);
+  }
+
+  // If live blog fetching returned none, fallback to bundled static blog data
+  if (dynamicBlogSlugs.length === 0) {
+    dynamicBlogSlugs = blogData.map((post) => ({ slug: post.slug }));
+  }
+
+  const blogRoutes: MetadataRoute.Sitemap = dynamicBlogSlugs.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: post.updatedAt ? new Date(post.updatedAt) : lastModified,
+    changeFrequency: "weekly",
     priority: 0.6,
   }));
 
-  return [...routes, ...servicesRoutes, ...portfolioRoutes, ...blogRoutes, ...rolesRoutes];
+  return [
+    ...staticRoutes,
+    ...serviceRoutes,
+    ...industryRoutes,
+    ...portfolioRoutes,
+    ...roleRoutes,
+    ...blogRoutes,
+  ];
 }

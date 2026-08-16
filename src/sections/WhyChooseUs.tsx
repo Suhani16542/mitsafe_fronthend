@@ -74,7 +74,7 @@ export default function WhyChooseUs() {
 
         {/* CTA Button */}
         <motion.a
-          href="/contact"
+          href="#consultation"
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

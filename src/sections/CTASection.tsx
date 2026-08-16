@@ -53,14 +53,14 @@ export default function CTASection() {
           {/* Actions */}
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Button
-              href="/contact"
+              href="#consultation"
               variant="primary"
               icon={<ArrowRight className="w-5 h-5" />}
             >
               Start Free Architecture Session
             </Button>
             <Button
-              href="/contact"
+              href="#quote"
               variant="secondary"
               icon={<MessageSquareIcon className="w-4 h-4 text-[#7C3AED]" />}
             >

@@ -1412,7 +1412,7 @@ export default function PricingClient() {
 
             {/* Inputs Form */}
             <ScrollReveal direction="up" delay={0.2}>
-              <div className="p-8 rounded-[32px] border border-slate-200 dark:border-white/5 bg-white/80 dark:bg-[#0B1A2E]/80 backdrop-blur-xl shadow-2xl shadow-slate-200/50">
+              <div className="p-5 sm:p-8 rounded-[24px] sm:rounded-[32px] border border-slate-200 dark:border-white/5 bg-white/80 dark:bg-[#0B1A2E]/80 backdrop-blur-xl shadow-2xl shadow-slate-200/50">
                 {isSubmitted ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}

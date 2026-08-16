@@ -443,7 +443,7 @@ export default function Hero() {
                   </motion.a>
 
                   <motion.a
-                    href="/contact"
+                    href="/portfolio"
                     whileHover={{ scale: 1.02, y: -1 }}
                     whileTap={{ scale: 0.98 }}
                     className="inline-flex items-center justify-center gap-2.5 h-12 bg-white text-slate-900 font-bold text-sm px-8 rounded-full border border-slate-200/90 shadow-xs hover:shadow-md hover:border-slate-300 transition-all duration-300 cursor-pointer"

@@ -267,7 +267,7 @@ export default function MitsafeSection() {
               {/* Massive Bold Minimalist Clash Display text */}
               <h2
                 style={{ fontFamily: "'Clash Display', sans-serif" }}
-                className="text-6xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-bold tracking-[-0.02em] leading-none text-center select-none relative z-10 flex justify-center items-center text-black dark:text-white drop-shadow-[0_2px_15px_rgba(0,0,0,0.08)]"
+                className="text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-bold tracking-[-0.02em] leading-none text-center select-none relative z-10 flex justify-center items-center text-black dark:text-white drop-shadow-[0_2px_15px_rgba(0,0,0,0.08)]"
               >
                 MITSAFE
               </h2>

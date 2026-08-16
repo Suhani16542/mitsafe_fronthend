@@ -65,10 +65,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
 
         {/* Main Grid Layout - fully responsive */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-12 gap-8 lg:gap-10 pb-6 border-b border-slate-200 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-10 pb-6 border-b border-slate-200 w-full">
 
           {/* Brand & Description Column (3 cols on XL) */}
-          <div className="xl:col-span-3 flex flex-col gap-4 pr-2 w-full">
+          <div className="lg:col-span-4 xl:col-span-3 flex flex-col gap-4 pr-2 w-full">
             <Link href="/" className="flex items-center gap-3 w-fit">
               <Image
                 src="/image.png"
@@ -103,7 +103,7 @@ export default function Footer() {
           </div>
 
           {/* Services Links (2 cols on XL) */}
-          <div className="xl:col-span-2 flex flex-col gap-3 text-left w-full">
+          <div className="lg:col-span-4 xl:col-span-2 flex flex-col gap-3 text-left w-full">
             <h3 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 uppercase font-display relative pb-1.5 w-fit">
               Services
               <span className="absolute bottom-0 left-0 w-8 h-[3px] bg-[#0052cc] rounded-full" />
@@ -125,7 +125,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="xl:col-span-2 flex flex-col gap-3 text-left w-full">
+          <div className="lg:col-span-4 xl:col-span-2 flex flex-col gap-3 text-left w-full">
             <h3 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 uppercase font-display relative pb-1.5 w-fit">
               Quick Links
               <span className="absolute bottom-0 left-0 w-8 h-[3px] bg-[#0052cc] rounded-full" />
@@ -134,7 +134,6 @@ export default function Footer() {
               {[
                 { name: "About Us", href: "/about" },
                 { name: "Our Portfolio", href: "/portfolio" },
-                { name: "Contact Us", href: "/contact" },
                 { name: "Terms & Conditions", href: "/terms" },
                 { name: "Privacy Policy", href: "#" },
               ].map((item, idx) => (
@@ -150,13 +149,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="xl:col-span-5 flex flex-col gap-4 w-full">
+          <div className="lg:col-span-12 xl:col-span-5 flex flex-col gap-4 w-full">
             <h3 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 uppercase font-display relative pb-2 w-fit">
               Global Offices
               <span className="absolute bottom-0 left-0 w-8 h-[3px] bg-[#0052cc] rounded-full" />
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mt-2 w-full items-stretch">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mt-2 w-full items-stretch">
               <a
                 href="https://www.google.com/maps/search/Sector+62,+Noida,+UP+201301"
                 target="_blank"

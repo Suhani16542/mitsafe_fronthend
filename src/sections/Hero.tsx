@@ -528,7 +528,7 @@ export default function Hero() {
                                             href="#services"
                                             whileHover={{ scale: 1.02, y: -1 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="w-[175px] h-11 inline-flex items-center justify-center gap-2 bg-[#305EFF] hover:bg-[#305EFF] text-white font-medium text-[13.5px] rounded-full shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer group"
+                                            className="w-full sm:w-[175px] h-11 inline-flex items-center justify-center gap-2 bg-[#305EFF] hover:bg-[#305EFF] text-white font-medium text-[13.5px] rounded-full shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer group"
                                         >
                                             <span>Explore Solutions</span>
                                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -536,10 +536,10 @@ export default function Hero() {
 
                                         {/* Secondary CTA (Exact equal width & height) */}
                                         <motion.a
-                                            href="/contact"
+                                            href="/portfolio"
                                             whileHover={{ scale: 1.02, y: -1 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="w-[175px] h-11 inline-flex items-center justify-center gap-2 bg-white text-slate-800 font-medium text-[13.5px] rounded-full border border-slate-200 hover:border-[#305EFF] transition-all duration-200 cursor-pointer"
+                                            className="w-full sm:w-[175px] h-11 inline-flex items-center justify-center gap-2 bg-white text-slate-800 font-medium text-[13.5px] rounded-full border border-slate-200 hover:border-[#305EFF] transition-all duration-200 cursor-pointer"
                                         >
                                             <span>View Case Studies</span>
                                             <span className="text-[#305EFF] text-[10px]">▶</span>
@@ -559,7 +559,7 @@ export default function Hero() {
                             <div className="lg:col-span-6 relative flex justify-center items-center lg:-ml-2 mt-8 lg:mt-0 z-30 w-full select-none">
 
                                 {/* Main Illustration container - Pure White Seamless Blend */}
-                                <div className="relative w-full max-w-[680px] h-[480px] flex items-center justify-center overflow-visible">
+                                <div className="relative w-full max-w-[680px] h-[260px] sm:h-[360px] lg:h-[480px] flex items-center justify-center overflow-visible">
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={currentSlide}
@@ -595,10 +595,10 @@ export default function Hero() {
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
                                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                                            className="absolute -left-8 top-12 bg-white border border-slate-200 px-3.5 py-1.5 rounded-full flex items-center gap-2 z-20"
+                                            className="absolute left-0 sm:-left-8 top-4 sm:top-12 bg-white border border-slate-200 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full flex items-center gap-1.5 sm:gap-2 z-20 shadow-xs"
                                         >
-                                            <span className="text-sm">{currentBadges[0].icon}</span>
-                                            <span className="text-xs font-medium text-slate-800 font-sans">{currentBadges[0].label}</span>
+                                            <span className="text-xs sm:text-sm">{currentBadges[0].icon}</span>
+                                            <span className="text-[10px] sm:text-xs font-medium text-slate-800 font-sans">{currentBadges[0].label}</span>
                                         </motion.div>
                                     )}
 
@@ -609,10 +609,10 @@ export default function Hero() {
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1, y: [0, -10, 0] }}
                                             transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-                                            className="absolute right-2 top-2 bg-white border border-slate-200 px-3.5 py-1.5 rounded-full flex items-center gap-2 z-20"
+                                            className="absolute right-0 sm:right-2 top-0 sm:top-2 bg-white border border-slate-200 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full flex items-center gap-1.5 sm:gap-2 z-20 shadow-xs"
                                         >
-                                            <span className="text-sm">{currentBadges[1].icon}</span>
-                                            <span className="text-xs font-medium text-slate-800 font-sans">{currentBadges[1].label}</span>
+                                            <span className="text-xs sm:text-sm">{currentBadges[1].icon}</span>
+                                            <span className="text-[10px] sm:text-xs font-medium text-slate-800 font-sans">{currentBadges[1].label}</span>
                                         </motion.div>
                                     )}
 
@@ -623,7 +623,7 @@ export default function Hero() {
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1, y: [0, 8, 0] }}
                                             transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
-                                            className="absolute -right-6 top-[38%] bg-white border border-slate-200 px-3.5 py-1.5 rounded-full flex items-center gap-2 z-20"
+                                            className="hidden sm:flex absolute -right-6 top-[38%] bg-white border border-slate-200 px-3.5 py-1.5 rounded-full items-center gap-2 z-20 shadow-xs"
                                         >
                                             <span className="text-sm">{currentBadges[2].icon}</span>
                                             <span className="text-xs font-medium text-slate-800 font-sans">{currentBadges[2].label}</span>
@@ -637,7 +637,7 @@ export default function Hero() {
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
                                             transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                                            className="absolute -right-8 bottom-24 bg-white border border-slate-200 px-3.5 py-1.5 rounded-full flex items-center gap-2 z-20"
+                                            className="hidden sm:flex absolute -right-8 bottom-24 bg-white border border-slate-200 px-3.5 py-1.5 rounded-full items-center gap-2 z-20 shadow-xs"
                                         >
                                             <span className="text-sm">{currentBadges[3].icon}</span>
                                             <span className="text-xs font-medium text-slate-800 font-sans">{currentBadges[3].label}</span>
@@ -651,10 +651,10 @@ export default function Hero() {
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }}
                                             transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                                            className="absolute right-4 -bottom-4 bg-white border border-slate-200 px-3.5 py-1.5 rounded-full flex items-center gap-2 z-20"
+                                            className="absolute right-2 sm:right-4 bottom-0 sm:-bottom-4 bg-white border border-slate-200 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full flex items-center gap-1.5 sm:gap-2 z-20 shadow-xs"
                                         >
-                                            <span className="text-sm">{currentBadges[4].icon}</span>
-                                            <span className="text-xs font-medium text-slate-800 font-sans">{currentBadges[4].label}</span>
+                                            <span className="text-xs sm:text-sm">{currentBadges[4].icon}</span>
+                                            <span className="text-[10px] sm:text-xs font-medium text-slate-800 font-sans">{currentBadges[4].label}</span>
                                         </motion.div>
                                     )}
 
@@ -666,16 +666,16 @@ export default function Hero() {
                 </AnimatePresence>
 
                 {/* Global feature cards */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 w-full mt-12 max-w-7xl mx-auto z-20">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3.5 w-full mt-8 sm:mt-12 max-w-7xl mx-auto z-20">
                     {featureCards.map((feat, idx) => (
                         <div
                             key={idx}
-                            className="bg-white border border-slate-200/90 rounded-xl p-3.5 flex items-center gap-2.5 hover:border-[#305EFF]/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default group"
+                            className="bg-white border border-slate-200/90 rounded-xl p-2.5 sm:p-3.5 flex items-center gap-2 sm:gap-2.5 hover:border-[#305EFF]/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default group"
                         >
-                            <div className="w-9 h-9 rounded-lg bg-[#305EFF]/10 flex items-center justify-center text-base text-[#305EFF] shrink-0 group-hover:scale-105 transition-transform">
+                            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#305EFF]/10 flex items-center justify-center text-sm sm:text-base text-[#305EFF] shrink-0 group-hover:scale-105 transition-transform">
                                 {feat.icon}
                             </div>
-                            <span className="text-[13px] font-medium text-slate-800 font-sans tracking-tight">
+                            <span className="text-[11.5px] sm:text-[13px] font-medium text-slate-800 font-sans tracking-tight">
                                 {feat.name}
                             </span>
                         </div>

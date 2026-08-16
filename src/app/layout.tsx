@@ -6,16 +6,26 @@ import Footer from "@/components/Footer";
 import ParticleBackground from "@/components/ParticleBackground";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
+import JsonLd from "@/components/JsonLd";
+import { generateOrganizationSchema, generateWebSiteSchema } from "@/lib/jsonld";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mitsafe.com"),
   title: {
     default: "Mitsafe | Premium Software Development & AI Automation Agency",
     template: "%s | Mitsafe",
   },
   description:
     "Mitsafe designs futuristic enterprise web platforms, custom AI automation agents, high-speed mobile apps, and robust cloud configurations.",
-  metadataBase: new URL("https://mitsafe.com"),
   alternates: {
-    canonical: "./",
+    canonical: "/",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [{ url: "/icon.png" }],
   },
   openGraph: {
     title: "Mitsafe | Enterprise Software & AI Automation",
@@ -25,12 +35,32 @@ export const metadata: Metadata = {
     siteName: "Mitsafe",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Mitsafe | Enterprise Software & AI Automation Agency",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Mitsafe | Enterprise Software & AI Automation",
     description:
       "Immersive futuristic web platforms and scalable AI integrations built for high-performance operations.",
+    images: ["/twitter-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -74,13 +104,14 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background text-foreground font-sans antialiased selection:bg-[#00D4FF]/20 selection:text-white">
+        <JsonLd data={[generateOrganizationSchema(), generateWebSiteSchema()]} />
         <ThemeProvider>
           <ModalProvider>
             <LenisProvider>
-              <div className="flex flex-col min-h-screen relative w-full">
+              <div className="flex flex-col min-h-screen relative w-full max-w-[100vw] overflow-x-clip">
                 <ParticleBackground />
                 <Navbar />
-                <main className="flex-grow">{children}</main>
+                <main className="flex-grow w-full max-w-full overflow-x-clip">{children}</main>
                 <Footer />
               </div>
             </LenisProvider>

@@ -145,20 +145,20 @@ export default function CompanyClient() {
       </section>
 
       {/* 2. STATS STRIP */}
-      <section className="bg-slate-50 py-16 border-t border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-slate-200/60">
+      <section className="bg-slate-50 py-12 sm:py-16 border-t border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {[
             { value: 450, label: "Projects Completed", suffix: "+" },
             { value: 120, label: "Happy Clients", suffix: "+" },
             { value: 45, label: "Team Members", suffix: "" },
             { value: 10, label: "Years Experience", suffix: "+" }
           ].map((stat, idx) => (
-            <div key={idx} className={`flex flex-col items-center justify-center text-center ${idx === 0 ? "pl-0" : ""}`}>
-              <h3 className="text-4xl md:text-5xl font-black font-display text-[#0F172A] tracking-tight flex justify-center items-baseline gap-0.5">
+            <div key={idx} className="flex flex-col items-center justify-center text-center p-3 rounded-2xl bg-white/60 sm:bg-transparent border sm:border-0 border-slate-200/60 shadow-2xs sm:shadow-none">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black font-display text-[#0F172A] tracking-tight flex justify-center items-baseline gap-0.5">
                 <Counter value={stat.value} />
                 <span className="text-[#305EFF]">{stat.suffix}</span>
               </h3>
-              <span className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mt-2">{stat.label}</span>
+              <span className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mt-1.5">{stat.label}</span>
             </div>
           ))}
         </div>

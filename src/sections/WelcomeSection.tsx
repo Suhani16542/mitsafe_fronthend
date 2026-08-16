@@ -172,7 +172,7 @@ export default function WelcomeSection() {
             >
               <Magnetic>
                 <a
-                  href="/contact"
+                  href="/company"
                   className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 bg-[#305EFF] hover:bg-[#305EFF] text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 shadow-sm font-display"
                 >
                   <span>Discover More</span>

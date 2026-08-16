@@ -151,7 +151,7 @@ export function HeroImage({ service }: { service: HeroService }) {
         >
           <img
             src={service.image || "/hero-transparent.png"}
-            alt={service.badge}
+            alt={`${service.heading} ${service.highlight} - Mitsafe`}
             className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-500 max-h-[360px] sm:max-h-[400px] lg:max-h-[420px] drop-shadow-[0_12px_24px_rgba(0,0,0,0.06)]"
           />
 

@@ -120,10 +120,10 @@ export default function RoleDetailClient({ role }: RoleDetailClientProps) {
     <div className="cosmic-servicedetail-wrapper min-h-screen pt-32 pb-20 relative overflow-hidden text-[#0F172A] dark:text-white transition-colors duration-300">
       
       {/* Custom Hero Texture Background Image - Unique for each page */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-30 dark:opacity-10">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-30 dark:opacity-10" aria-hidden="true">
         <Image
           src={assets.bgImage}
-          alt={`${role.title} Background Theme`}
+          alt=""
           fill
           sizes="100vw"
           className="object-cover opacity-[0.035] mix-blend-overlay filter blur-[0.5px]"
@@ -237,7 +237,7 @@ export default function RoleDetailClient({ role }: RoleDetailClientProps) {
             >
               <Image 
                 src={assets.image} 
-                alt={`${role.title} Illustration`}
+                alt={`${role.title} technical architecture illustration`}
                 fill
                 sizes="(max-width: 500px) 100vw, 500px"
                 className="object-cover opacity-80 group-hover:scale-103 transition-transform duration-700 pointer-events-none rounded-[32px]"
@@ -251,7 +251,7 @@ export default function RoleDetailClient({ role }: RoleDetailClientProps) {
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="absolute bottom-6 left-6 right-6 bg-slate-950/90 dark:bg-black/95 rounded-2xl p-4 border border-slate-800 dark:border-white/5 shadow-2xl font-mono text-[10px] sm:text-xs text-green-400 h-[150px] overflow-hidden text-left"
+                  className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 bg-slate-950/90 dark:bg-black/95 rounded-2xl p-3 sm:p-4 border border-slate-800 dark:border-white/5 shadow-2xl font-mono text-[10px] sm:text-xs text-green-400 h-[140px] sm:h-[150px] overflow-hidden text-left"
                 >
                   <div className="flex items-center gap-1.5 border-b border-slate-800 pb-2 mb-2 text-slate-500">
                     <Terminal className="w-3.5 h-3.5 text-purple-400" />
@@ -276,7 +276,7 @@ export default function RoleDetailClient({ role }: RoleDetailClientProps) {
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="absolute bottom-6 left-6 right-6 bg-slate-900/90 dark:bg-black/95 rounded-2xl p-4 border border-slate-850 dark:border-white/5 shadow-2xl font-mono text-[10px] sm:text-xs text-[#00E5FF] h-[150px] overflow-hidden text-left"
+                  className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 bg-slate-900/90 dark:bg-black/95 rounded-2xl p-3 sm:p-4 border border-slate-850 dark:border-white/5 shadow-2xl font-mono text-[10px] sm:text-xs text-[#00E5FF] h-[140px] sm:h-[150px] overflow-hidden text-left"
                 >
                   <div className="flex items-center justify-between border-b border-slate-850 pb-2 mb-2 text-slate-400">
                     <div className="flex items-center gap-1.5">
@@ -304,7 +304,7 @@ export default function RoleDetailClient({ role }: RoleDetailClientProps) {
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="absolute bottom-6 left-6 right-6 bg-white/95 dark:bg-[#071426]/95 rounded-2xl p-4 border border-slate-100 dark:border-white/5 shadow-2xl h-[160px] flex flex-col justify-between text-left"
+                  className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 bg-white/95 dark:bg-[#071426]/95 rounded-2xl p-3 sm:p-4 border border-slate-100 dark:border-white/5 shadow-2xl h-[150px] sm:h-[160px] flex flex-col justify-between text-left"
                 >
                   <div className="flex items-center gap-1.5 border-b border-slate-100 dark:border-white/5 pb-2 text-slate-800 dark:text-white font-bold text-xs">
                     <Sparkles className="w-3.5 h-3.5 text-[#008FED] dark:text-[#00D4FF] animate-spin" />
@@ -520,7 +520,7 @@ export default function RoleDetailClient({ role }: RoleDetailClientProps) {
           </p>
           
           <Link 
-            href="/contact"
+            href="#quote"
             className="inline-flex items-center gap-2.5 px-8 py-4 bg-[#305EFF] hover:bg-[#305EFF]/90 text-white font-bold rounded-full shadow-md hover:shadow-lg transition-all hover:scale-103 shadow-[#305EFF]/20"
           >
             <span>{role.ctaText}</span>

@@ -279,79 +279,79 @@ export default function ConsultationModal({
             className="fixed inset-0 bg-slate-900/60 backdrop-blur-md"
           />
 
-          {/* TWO-COLUMN SIDE-BY-SIDE POPUP MODAL */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 12 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: 12 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-[960px] max-h-[85vh] sm:max-h-[88vh] overflow-y-auto overscroll-contain custom-scrollbar bg-white text-slate-900 rounded-[28px] sm:rounded-[32px] shadow-2xl border border-slate-200/80 my-auto z-10"
-          >
-            {/* INNER PADDED CONTENT WRAPPER */}
-            <div className="p-5 sm:p-7 lg:p-9 relative w-full">
-              {/* Circular Close Button (Top Right) */}
-              <button
-                onClick={onClose}
-                className="absolute top-4 right-4 z-30 w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-black transition-all cursor-pointer shadow-xs shrink-0"
-                aria-label="Close modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
+            {/* TWO-COLUMN SIDE-BY-SIDE POPUP MODAL */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-[960px] max-h-[88vh] sm:max-h-[92vh] overflow-y-auto overscroll-contain custom-scrollbar bg-white text-slate-900 rounded-[24px] sm:rounded-[32px] shadow-2xl border border-slate-200/80 my-auto z-10"
+            >
+              {/* INNER PADDED CONTENT WRAPPER */}
+              <div className="p-4 sm:p-7 lg:p-9 relative w-full">
+                {/* Circular Close Button (Top Right) */}
+                <button
+                  onClick={onClose}
+                  className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-30 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-black transition-all cursor-pointer shadow-xs shrink-0"
+                  aria-label="Close modal"
+                >
+                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
 
-              {/* TWO-COLUMN SIDE-BY-SIDE GRID */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start text-left">
+                {/* TWO-COLUMN SIDE-BY-SIDE GRID */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 items-start text-left">
 
-                  {/* LEFT SIDE: SERVICE / TECHNOLOGY VISUAL CARD WITH SUBTLE CURVED TECH LINES BACKGROUND (lg:col-span-5) */}
-                  <div className="lg:col-span-5 flex flex-col justify-center items-center h-auto">
-                    <div className="w-full bg-slate-50 border border-slate-200/80 rounded-2xl p-4 sm:p-5 shadow-2xs flex flex-col items-center justify-center text-center gap-3.5 relative overflow-hidden group">
+                    {/* LEFT SIDE: SERVICE / TECHNOLOGY VISUAL CARD WITH SUBTLE CURVED TECH LINES BACKGROUND (lg:col-span-5) */}
+                    <div className="lg:col-span-5 flex flex-col justify-center items-center h-auto w-full">
+                      <div className="w-full bg-slate-50 border border-slate-200/80 rounded-2xl p-3.5 sm:p-5 shadow-2xs flex flex-col items-center justify-center text-center gap-3 relative overflow-hidden group">
 
-                      {/* Subtle Decorative Curved Technology Lines Background (Mitsafe Blue #305EFF & Dark Navy #0F172A) */}
-                      <svg
-                        className="absolute inset-0 w-full h-full pointer-events-none opacity-30 z-0"
-                        viewBox="0 0 400 400"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M -40 80 C 100 20, 220 200, 440 100 C 520 60, 580 180, 640 280"
-                          stroke="#305EFF"
-                          strokeWidth="1.5"
-                          strokeDasharray="4 4"
-                        />
-                        <path
-                          d="M -20 260 C 120 170, 230 330, 430 190 C 510 140, 580 260, 620 340"
-                          stroke="#0F172A"
-                          strokeWidth="1.2"
-                          strokeOpacity="0.5"
-                        />
-                        <path
-                          d="M 60 -30 C 190 70, 130 270, 390 370"
-                          stroke="#305EFF"
-                          strokeWidth="1.2"
-                          strokeOpacity="0.7"
-                        />
-                        <circle cx="140" cy="110" r="3.5" fill="#305EFF" />
-                        <circle cx="310" cy="210" r="3.5" fill="#0F172A" />
-                        <circle cx="210" cy="285" r="2.5" fill="#305EFF" />
-                      </svg>
+                        {/* Subtle Decorative Curved Technology Lines Background (Mitsafe Blue #305EFF & Dark Navy #0F172A) */}
+                        <svg
+                          className="absolute inset-0 w-full h-full pointer-events-none opacity-30 z-0"
+                          viewBox="0 0 400 400"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M -40 80 C 100 20, 220 200, 440 100 C 520 60, 580 180, 640 280"
+                            stroke="#305EFF"
+                            strokeWidth="1.5"
+                            strokeDasharray="4 4"
+                          />
+                          <path
+                            d="M -20 260 C 120 170, 230 330, 430 190 C 510 140, 580 260, 620 340"
+                            stroke="#0F172A"
+                            strokeWidth="1.2"
+                            strokeOpacity="0.5"
+                          />
+                          <path
+                            d="M 60 -30 C 190 70, 130 270, 390 370"
+                            stroke="#305EFF"
+                            strokeWidth="1.2"
+                            strokeOpacity="0.7"
+                          />
+                          <circle cx="140" cy="110" r="3.5" fill="#305EFF" />
+                          <circle cx="310" cy="210" r="3.5" fill="#0F172A" />
+                          <circle cx="210" cy="285" r="2.5" fill="#305EFF" />
+                        </svg>
 
-                      {/* Service Badge (Relative Z-10) */}
-                      <div className="relative z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#305EFF]/10 border border-[#305EFF]/20 font-mono text-[10.5px] font-bold uppercase tracking-wider text-brand-blue" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF" }}>
-                        <Sparkles className="w-3.5 h-3.5 text-brand-blue shrink-0" style={{ color: "#305EFF" }} />
-                        <span className="truncate max-w-[200px]">{promoBadgeText}</span>
-                      </div>
+                        {/* Service Badge (Relative Z-10) */}
+                        <div className="relative z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#305EFF]/10 border border-[#305EFF]/20 font-mono text-[10px] sm:text-[10.5px] font-bold uppercase tracking-wider text-brand-blue" style={{ color: "#305EFF", WebkitTextFillColor: "#305EFF" }}>
+                          <Sparkles className="w-3.5 h-3.5 text-brand-blue shrink-0" style={{ color: "#305EFF" }} />
+                          <span className="truncate max-w-[200px]">{promoBadgeText}</span>
+                        </div>
 
-                      {/* Dynamic Service Technology Image (Larger visual space, Z-10) */}
-                      <div className="relative z-10 w-full h-52 sm:h-60 lg:h-64 rounded-xl overflow-hidden bg-white border border-slate-200/70 shadow-xs flex items-center justify-center p-2">
-                        <Image
-                          src={promoImage}
-                          alt={formData.serviceCategory}
-                          fill
-                          className="object-contain p-1.5 hover:scale-105 transition-transform duration-300"
-                          sizes="(max-width: 1024px) 100vw, 38vw"
-                          priority
-                        />
-                      </div>
+                        {/* Dynamic Service Technology Image (Responsive visual space, Z-10) */}
+                        <div className="relative z-10 w-full h-36 sm:h-52 lg:h-64 rounded-xl overflow-hidden bg-white border border-slate-200/70 shadow-xs flex items-center justify-center p-2">
+                          <Image
+                            src={promoImage}
+                            alt={formData.serviceCategory}
+                            fill
+                            className="object-contain p-1.5 hover:scale-105 transition-transform duration-300"
+                            sizes="(max-width: 1024px) 100vw, 38vw"
+                            priority
+                          />
+                        </div>
 
                       {/* Key Trust Signals (Relative Z-10) */}
                       <div className="relative z-10 w-full pt-3 border-t border-slate-200/60 flex flex-col gap-2 text-left">

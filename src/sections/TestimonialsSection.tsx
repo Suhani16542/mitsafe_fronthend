@@ -124,7 +124,7 @@ export default function TestimonialsSection() {
           {infiniteLoop.map((item, idx) => (
             <div
               key={`${item.id}-${idx}`}
-              className="w-[280px] sm:w-[320px] shrink-0 h-[360px] rounded-2xl border border-slate-200 bg-white p-5 shadow-lg flex flex-col justify-between overflow-hidden group text-slate-900"
+              className="w-[260px] sm:w-[320px] shrink-0 h-[340px] sm:h-[360px] rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-lg flex flex-col justify-between overflow-hidden group text-slate-900"
             >
               {/* VIDEO TYPE CARD */}
               {item.type === "video" ? (

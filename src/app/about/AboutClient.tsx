@@ -667,7 +667,7 @@ export default function AboutClient() {
             whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-7 bg-white dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-[rgba(0,212,255,0.15)] rounded-[3rem] p-10 md:p-14 text-[#0F172A] dark:text-white text-left flex flex-col justify-between relative overflow-hidden"
+            className="lg:col-span-7 bg-white dark:bg-[#0B1A2E]/70 border border-slate-200 dark:border-[rgba(0,212,255,0.15)] rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-10 md:p-14 text-[#0F172A] dark:text-white text-left flex flex-col justify-between relative overflow-hidden"
           >
             {/* Accent Glowing Top Sphere */}
             <div className="absolute top-[-20%] right-[-10%] w-72 h-72 rounded-full bg-[#305EFF] opacity-35 blur-3xl pointer-events-none" />
@@ -685,7 +685,7 @@ export default function AboutClient() {
               </p>
 
               {/* Animated Counters stats row */}
-              <div className="grid grid-cols-3 gap-6 border-t border-slate-200 dark:border-white/10 pt-8 mt-10">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 border-t border-slate-200 dark:border-white/10 pt-6 sm:pt-8 mt-6 sm:mt-10">
                 <div>
                   <h4 className="text-3xl sm:text-4xl font-display font-black text-[#305EFF] dark:text-white">
                     <Counter value={7} />+
@@ -707,7 +707,7 @@ export default function AboutClient() {
               </div>
             </div>
 
-            <div className="mt-10 relative z-10">
+            <div className="mt-8 sm:mt-10 relative z-10">
               <Magnetic>
                 <Button href="/services/web-development" variant="outline" className="border-slate-300 dark:border-white text-[#305EFF] dark:text-white hover:bg-[#305EFF]/10 hover:text-white dark:hover:bg-white dark:hover:text-[#1E1A39]">
                   OUR SERVICES
@@ -722,7 +722,7 @@ export default function AboutClient() {
             whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.85, delay: 0.2 }}
-            className="lg:col-span-5 bg-gradient-to-br from-white to-slate-50 dark:from-[#0B1A2E] dark:to-[#071426] border border-slate-200 dark:border-white/5 rounded-[3rem] p-8 flex flex-col justify-between aspect-square lg:aspect-auto relative overflow-hidden shadow-sm"
+            className="lg:col-span-5 bg-gradient-to-br from-white to-slate-50 dark:from-[#0B1A2E] dark:to-[#071426] border border-slate-200 dark:border-white/5 rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-8 flex flex-col justify-between aspect-square lg:aspect-auto relative overflow-hidden shadow-sm"
           >
             {/* Top Bar Dashboard */}
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/5 pb-4">

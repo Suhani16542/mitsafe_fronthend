@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { navbarIndustriesData, getIndustryBySlug } from "@/data/industriesDataNavbar";
 import IndustryDetailPageClient from "./IndustryDetailPageClient";
+import JsonLd from "@/components/JsonLd";
+import { generateBreadcrumbSchema, generateServiceSchema } from "@/lib/jsonld";
 
 interface IndustryPageProps {
   params: Promise<{
@@ -27,8 +29,22 @@ export async function generateMetadata({ params }: IndustryPageProps): Promise<M
   }
 
   return {
-    title: `${industry.title} Tech Solutions | Mitsafe`,
+    title: `${industry.title} Tech Solutions`,
     description: industry.heroSubheadline,
+    alternates: {
+      canonical: `/industries/${slug}`,
+    },
+    openGraph: {
+      title: `${industry.title} Tech Solutions | Mitsafe`,
+      description: industry.heroSubheadline,
+      url: `https://mitsafe.com/industries/${slug}`,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${industry.title} Tech Solutions | Mitsafe`,
+      description: industry.heroSubheadline,
+    },
   };
 }
 
@@ -40,5 +56,23 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
     notFound();
   }
 
-  return <IndustryDetailPageClient industry={industry} />;
+  const breadcrumbs = [
+    { name: "Home", item: "/" },
+    { name: "Industries", item: `/industries/${slug}` },
+    { name: industry.title, item: `/industries/${slug}` },
+  ];
+
+  const serviceSchema = generateServiceSchema({
+    name: `${industry.title} Technology Solutions`,
+    description: industry.heroSubheadline,
+    url: `/industries/${slug}`,
+    serviceType: "Industry Vertical Technology Solutions",
+  });
+
+  return (
+    <>
+      <JsonLd data={[generateBreadcrumbSchema(breadcrumbs), serviceSchema]} />
+      <IndustryDetailPageClient industry={industry} />
+    </>
+  );
 }

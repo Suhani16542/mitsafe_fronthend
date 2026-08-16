@@ -126,7 +126,7 @@ export default function FAQSection() {
               </div>
               <div className="flex flex-col gap-0.5 z-10">
                 <span className="text-sm font-bold text-slate-900 font-display">Need Custom Support?</span>
-                <a href="/contact" className="text-xs text-[#305EFF] font-semibold hover:underline">Reach out to our engineers &rarr;</a>
+                <a href="#consultation" className="text-xs text-[#305EFF] font-semibold hover:underline">Reach out to our engineers &rarr;</a>
               </div>
             </div>
           </div>

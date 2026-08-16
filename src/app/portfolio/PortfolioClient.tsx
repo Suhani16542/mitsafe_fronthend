@@ -246,7 +246,7 @@ export default function PortfolioClient() {
                   </h3>
 
                   <div className="flex flex-col gap-6 mb-10">
-                    <div className="bg-slate-50 border border-slate-100 rounded-[24px] p-8">
+                    <div className="bg-slate-50 border border-slate-100 rounded-[24px] p-5 sm:p-8">
                       <h4 className="text-sm font-bold uppercase tracking-wider text-[#0F172A] font-display mb-3">
                         The Challenge
                       </h4>
@@ -254,7 +254,7 @@ export default function PortfolioClient() {
                         {project.summary}
                       </p>
                     </div>
-                    <div className="bg-slate-50 border border-slate-100 rounded-[24px] p-8">
+                    <div className="bg-slate-50 border border-slate-100 rounded-[24px] p-5 sm:p-8">
                       <h4 className="text-sm font-bold uppercase tracking-wider text-[#0F172A] font-display mb-3">
                         The Solution
                       </h4>

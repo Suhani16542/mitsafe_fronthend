@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Calendar, User, Clock, Bookmark, ArrowRight, Tag } from "lucide-react";
 import Button from "@/components/Button";
+import JsonLd from "@/components/JsonLd";
+import { generateArticleSchema, generateBreadcrumbSchema } from "@/lib/jsonld";
 import { getBlogBySlug, getBlogs } from "@/services/blog.service";
 
 export async function generateStaticParams() {
@@ -30,9 +32,39 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   try {
     const res = await getBlogBySlug(resolvedParams.slug);
     if (res.success && res.data) {
+      const post = res.data;
+      const authorName =
+        typeof post.author === "string" ? post.author : post.author?.name || "Mitsafe Team";
       return {
-        title: `${res.data.title} | Mitsafe Blog`,
-        description: res.data.excerpt,
+        title: `${post.title} | Mitsafe Blog`,
+        description: post.excerpt,
+        alternates: {
+          canonical: `/blog/${resolvedParams.slug}`,
+        },
+        openGraph: {
+          title: `${post.title} | Mitsafe Blog`,
+          description: post.excerpt,
+          url: `https://mitsafe.com/blog/${resolvedParams.slug}`,
+          type: "article",
+          publishedTime: post.publishedAt || post.createdAt,
+          authors: [authorName],
+          images: post.featuredImage
+            ? [
+                {
+                  url: post.featuredImage,
+                  width: 1200,
+                  height: 630,
+                  alt: post.title,
+                },
+              ]
+            : undefined,
+        },
+        twitter: {
+          card: "summary_large_image",
+          title: `${post.title} | Mitsafe Blog`,
+          description: post.excerpt,
+          images: post.featuredImage ? [post.featuredImage] : undefined,
+        },
       };
     }
   } catch (err) {
@@ -67,15 +99,33 @@ export default async function BlogDetailPage({ params }: PageProps) {
     .join("")
     .slice(0, 2);
 
+  const breadcrumbs = [
+    { name: "Home", item: "/" },
+    { name: "Blog", item: "/blog" },
+    { name: post.title, item: `/blog/${resolvedParams.slug}` },
+  ];
+
+  const articleSchema = generateArticleSchema({
+    title: post.title,
+    description: post.excerpt,
+    url: `/blog/${resolvedParams.slug}`,
+    imageUrl: post.featuredImage,
+    datePublished: post.publishedAt || post.createdAt,
+    dateModified: post.publishedAt || post.createdAt,
+    authorName,
+  });
+
   return (
     <div className="bg-[#FAFBFF] dark:bg-[#071426] min-h-screen pt-32 pb-24 relative text-[#0F172A] dark:text-white transition-colors duration-300 font-sans">
+      <JsonLd data={[generateBreadcrumbSchema(breadcrumbs), articleSchema]} />
+
       {/* Subtle Background Layer */}
       <div className="absolute inset-0 bg-[#FAFBFF]/90 dark:bg-[#071426]/90 pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Breadcrumbs Navigation */}
-        <nav className="flex items-center gap-2 text-xs md:text-sm font-semibold text-slate-500 dark:text-slate-400 mb-8">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs md:text-sm font-semibold text-slate-500 dark:text-slate-400 mb-8">
           <Link href="/" className="hover:text-[#305EFF] transition-colors">
             Home
           </Link>
