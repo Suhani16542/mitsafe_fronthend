@@ -6,21 +6,7 @@ import { generateArticleSchema, generateBreadcrumbSchema } from "@/lib/jsonld";
 import { getBlogBySlug, getBlogs } from "@/services/blog.service";
 import BlogDetailView from "@/components/blog/BlogDetailView";
 
-export const revalidate = 30;
-
-export async function generateStaticParams() {
-  try {
-    const res = await getBlogs({ status: "published", limit: 100 });
-    if (res.success && res.data) {
-      return res.data.map((post: any) => ({
-        slug: post.slug,
-      }));
-    }
-  } catch (err) {
-    console.error("generateStaticParams error:", err);
-  }
-  return [];
-}
+export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
