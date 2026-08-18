@@ -21,7 +21,11 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
         }
       } else {
         if (!isAuthenticated) {
-          router.replace("/admin/login");
+          const redirectUrl =
+            pathname && pathname !== "/admin" && pathname !== "/admin/"
+              ? `/admin/login?from=${encodeURIComponent(pathname)}`
+              : "/admin/login";
+          router.replace(redirectUrl);
         }
       }
     }

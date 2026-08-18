@@ -1,4 +1,5 @@
 import { BlogPost, BlogStatus } from "@/types/adminBlog";
+import { getStoredAdminToken } from "./admin.service";
 
 /**
  * Resolves the Backend API Base URL for Client and Server environments.
@@ -26,14 +27,22 @@ export function getApiBaseUrl(): string {
   return "https://mitsafe-backend.onrender.com";
 }
 
-function getAdminHeaders() {
+function getAdminHeaders(): Record<string, string> {
   const adminKey =
     process.env.NEXT_PUBLIC_BLOG_ADMIN_KEY ||
     process.env.NEXT_PUBLIC_BLOG_ADMIN_API_KEY ||
     "hyikhgt6drewa2drhjj555";
-  return {
+  
+  const headers: Record<string, string> = {
     "x-blog-admin-key": adminKey,
   };
+
+  const token = getStoredAdminToken();
+  if (token && token !== "mitsafe_admin_session_active") {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+
+  return headers;
 }
 
 export function formatBlogPost(rawBlog: any): BlogPost {

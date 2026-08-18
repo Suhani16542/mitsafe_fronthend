@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Mail,
   Lock,
@@ -14,8 +14,9 @@ import {
 } from "lucide-react";
 import { useAdminAuth } from "@/context/AdminAuthContext";
 
-export default function AdminLoginPage() {
+function AdminLoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { login } = useAdminAuth();
 
   const [email, setEmail] = useState("");
@@ -70,7 +71,12 @@ export default function AdminLoginPage() {
       const result = await login(email.trim().toLowerCase(), password);
 
       if (result.success) {
-        router.replace("/admin/blogs");
+        const fromParam = searchParams.get("from");
+        const destination =
+          fromParam && fromParam.startsWith("/admin") && fromParam !== "/admin/login"
+            ? fromParam
+            : "/admin/blogs";
+        router.replace(destination);
       } else {
         setGlobalError(result.message || "Invalid email or password.");
       }
@@ -256,5 +262,24 @@ export default function AdminLoginPage() {
         &copy; {new Date().getFullYear()} Mitsafe Admin Portal. All rights reserved.
       </div>
     </div>
+  );
+}
+
+export default function AdminLoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-slate-50 flex items-center justify-center font-sans">
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-8 h-8 border-3 border-[#305EFF] border-t-transparent rounded-full animate-spin" />
+            <p className="text-xs font-semibold text-slate-500 font-mono">
+              Loading Admin Portal...
+            </p>
+          </div>
+        </div>
+      }
+    >
+      <AdminLoginForm />
+    </Suspense>
   );
 }

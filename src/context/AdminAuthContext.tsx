@@ -6,6 +6,9 @@ import {
   adminLoginApi,
   adminCheckSessionApi,
   adminLogoutApi,
+  getStoredAdminToken,
+  getStoredAdminUser,
+  clearStoredAdminData,
   AdminUser,
 } from "@/services/admin.service";
 
@@ -28,18 +31,41 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   const checkSession = useCallback(async (): Promise<boolean> => {
+    // 1. First check if any token/cookie exists
+    const token = getStoredAdminToken();
+    if (!token) {
+      setIsAuthenticated(false);
+      setAdminUser(null);
+      setIsLoading(false);
+      return false;
+    }
+
+    // 2. Optimistically load stored admin profile to prevent flicker
+    const cachedUser = getStoredAdminUser();
+    if (cachedUser) {
+      setAdminUser(cachedUser);
+      setIsAuthenticated(true);
+    }
+
     try {
+      // 3. Verify session with backend API
       const result = await adminCheckSessionApi();
       setIsAuthenticated(result.authenticated);
       if (result.authenticated && result.admin) {
         setAdminUser(result.admin);
       } else if (!result.authenticated) {
         setAdminUser(null);
+        clearStoredAdminData();
       }
       return result.authenticated;
     } catch (err) {
+      if (cachedUser && token) {
+        setIsAuthenticated(true);
+        return true;
+      }
       setIsAuthenticated(false);
       setAdminUser(null);
+      clearStoredAdminData();
       return false;
     } finally {
       setIsLoading(false);
@@ -55,16 +81,24 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
     password: string
   ): Promise<{ success: boolean; message?: string }> => {
     try {
+      setIsLoading(true);
       const res = await adminLoginApi(email, password);
       if (res.success) {
         setIsAuthenticated(true);
         if (res.data?.admin) {
           setAdminUser(res.data.admin);
         }
+        setIsLoading(false);
         return { success: true, message: res.message };
       }
+      setIsAuthenticated(false);
+      setAdminUser(null);
+      setIsLoading(false);
       return { success: false, message: res.message || "Invalid email or password." };
     } catch (err: any) {
+      setIsAuthenticated(false);
+      setAdminUser(null);
+      setIsLoading(false);
       return {
         success: false,
         message: err.message || "An unexpected error occurred during login.",
@@ -77,11 +111,11 @@ export function AdminAuthProvider({ children }: { children: React.ReactNode }) {
     try {
       await adminLogoutApi();
     } finally {
+      clearStoredAdminData();
       setIsAuthenticated(false);
       setAdminUser(null);
       setIsLoading(false);
-      router.push("/admin/login");
-      router.refresh();
+      router.replace("/admin/login");
     }
   };
 
@@ -108,3 +142,4 @@ export function useAdminAuth() {
   }
   return context;
 }
+
