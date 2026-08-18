@@ -48,7 +48,10 @@ export function getAdminAuthCookie(): string | null {
     let c = ca[i];
     while (c.charAt(0) === " ") c = c.substring(1, c.length);
     if (c.indexOf(nameEQ) === 0) {
-      return decodeURIComponent(c.substring(nameEQ.length, c.length));
+      const val = decodeURIComponent(c.substring(nameEQ.length, c.length)).trim();
+      if (val && val !== "undefined" && val !== "null" && val !== "false") {
+        return val;
+      }
     }
   }
   return null;
@@ -74,7 +77,12 @@ export function getStoredAdminToken(): string | null {
 
   if (typeof window !== "undefined" && window.localStorage) {
     try {
-      return localStorage.getItem(ADMIN_TOKEN_STORAGE_KEY);
+      const storageToken = localStorage.getItem(ADMIN_TOKEN_STORAGE_KEY)?.trim();
+      if (storageToken && storageToken !== "undefined" && storageToken !== "null" && storageToken !== "false") {
+        // Sync to cookie so server middleware can detect session on hard navigation
+        setAdminAuthCookie(storageToken);
+        return storageToken;
+      }
     } catch {
       return null;
     }
@@ -159,8 +167,15 @@ export async function adminLoginApi(email: string, password: string): Promise<Ad
       json.data?.token ||
       json.token ||
       json.data?.accessToken ||
-      json.accessToken ||
-      "mitsafe_admin_session_active";
+      json.accessToken;
+
+    if (!token) {
+      clearStoredAdminData();
+      return {
+        success: false,
+        message: "No valid authentication token returned by server.",
+      };
+    }
 
     const adminUser: AdminUser =
       json.data?.admin ||
@@ -192,6 +207,7 @@ export async function adminLoginApi(email: string, password: string): Promise<Ad
       token: token,
     };
   } catch (err: any) {
+    clearStoredAdminData();
     return {
       success: false,
       message: "Unable to connect to authentication server. Please check your network.",
@@ -210,16 +226,15 @@ export async function adminCheckSessionApi(): Promise<{
   try {
     const token = getStoredAdminToken();
 
-    // If no token or cookie exists, user is definitely not logged in
+    // If no token exists, user is definitely not logged in
     if (!token) {
       clearStoredAdminData();
       return { authenticated: false };
     }
 
-    const headers: Record<string, string> = {};
-    if (token && token !== "mitsafe_admin_session_active") {
-      headers["Authorization"] = `Bearer ${token}`;
-    }
+    const headers: Record<string, string> = {
+      Authorization: `Bearer ${token}`,
+    };
 
     const res = await fetch(`${ADMIN_API_BASE_URL}/me`, {
       method: "GET",
@@ -228,21 +243,23 @@ export async function adminCheckSessionApi(): Promise<{
       cache: "no-store",
     });
 
-    if (res.status === 401 || res.status === 403) {
+    if (!res.ok || res.status === 401 || res.status === 403) {
       clearStoredAdminData();
       return { authenticated: false };
     }
 
     const json = await res.json().catch(() => ({}));
 
-    if (res.ok && (json.success || json.authenticated === true || json.admin || json.user)) {
+    if (
+      res.ok &&
+      (json.success === true || json.authenticated === true) &&
+      (json.admin || json.user || json.data?.admin || json.data?.user)
+    ) {
       const adminData =
         json.data?.admin ||
         json.admin ||
         json.data?.user ||
-        json.user ||
-        getStoredAdminUser() ||
-        undefined;
+        json.user;
 
       if (adminData) {
         saveStoredAdminUser(adminData);
@@ -254,19 +271,10 @@ export async function adminCheckSessionApi(): Promise<{
       };
     }
 
-    // If backend indicated false authentication
     clearStoredAdminData();
     return { authenticated: false };
-  } catch (err) {
-    // If network error occurred but we have a valid cookie/token, keep local session
-    const storedUser = getStoredAdminUser();
-    const token = getStoredAdminToken();
-    if (token && storedUser) {
-      return {
-        authenticated: true,
-        admin: storedUser,
-      };
-    }
+  } catch {
+    clearStoredAdminData();
     return { authenticated: false };
   }
 }
@@ -281,7 +289,7 @@ export async function adminLogoutApi(): Promise<boolean> {
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
     };
-    if (token && token !== "mitsafe_admin_session_active") {
+    if (token) {
       headers["Authorization"] = `Bearer ${token}`;
     }
 
@@ -290,11 +298,9 @@ export async function adminLogoutApi(): Promise<boolean> {
       credentials: "include",
       headers,
     }).catch(() => null);
-
+  } finally {
     clearStoredAdminData();
-    return true;
-  } catch (err) {
-    clearStoredAdminData();
-    return true;
   }
+  return true;
 }
+
