@@ -5,24 +5,45 @@ import JsonLd from "@/components/JsonLd";
 import { generateBreadcrumbSchema } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "Exclusive Portfolio & Case Studies",
+  title: "Web Development Projects & Mobile App Development Portfolio",
   description:
-    "View our verified software case studies, web applications, mobile platforms, eCommerce stores, and enterprise AI automation projects.",
+    "Explore our web development portfolio, mobile app development projects, enterprise web applications, and custom software development case studies.",
+  keywords: [
+    "mobile app development",
+    "mobile application development",
+    "mobile app developers",
+    "web development projects",
+    "website development projects",
+    "web application development",
+    "web and app development",
+    "custom app development projects",
+    "software development case studies",
+    "mobile app development portfolio",
+    "web development portfolio",
+    "full stack application development",
+    "enterprise web applications",
+    "ios and android app development",
+    "custom software development portfolio",
+  ],
   alternates: {
     canonical: "/portfolio",
   },
   openGraph: {
-    title: "Exclusive Portfolio & Case Studies | Mitsafe",
+    title: "Web Development Projects & Mobile App Development Portfolio | Mitsafe",
     description:
-      "View our verified software case studies, web applications, mobile platforms, eCommerce stores, and enterprise AI automation projects.",
+      "Explore our web development portfolio, mobile app development projects, enterprise web applications, and custom software development case studies.",
     url: "https://mitsafe.com/portfolio",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Exclusive Portfolio & Case Studies | Mitsafe",
+    title: "Web Development Projects & Mobile App Development Portfolio | Mitsafe",
     description:
-      "View our verified software case studies, web applications, mobile platforms, eCommerce stores, and enterprise AI automation projects.",
+      "Explore our web development portfolio, mobile app development projects, enterprise web applications, and custom software development case studies.",
+  },
+  other: {
+    keywords:
+      "mobile app development, mobile application development, mobile app developers, web development projects, website development projects, web application development, web and app development, custom app development projects, software development case studies, mobile app development portfolio, web development portfolio, full stack application development, enterprise web applications, ios and android app development, custom software development portfolio",
   },
 };
 

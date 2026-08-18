@@ -5,24 +5,45 @@ import JsonLd from "@/components/JsonLd";
 import { generateBreadcrumbSchema, generateServiceSchema } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "Hire Dedicated Software Developers",
+  title: "Hire Dedicated Developers | Expert Software & Web Developers",
   description:
-    "Hire pre-vetted senior software engineers, frontend, backend, mobile app developers, and DevOps specialists. Fast onboarding within 48 hours.",
+    "Hire dedicated developers and remote software engineers from Mitsafe. Scale your engineering team with pre-vetted full stack developers, React, Node.js, and mobile app developers.",
+  keywords: [
+    "hire dedicated developers",
+    "hire software developers",
+    "hire web developers",
+    "hire mobile app developers",
+    "hire full stack developers",
+    "hire react developers",
+    "hire nodejs developers",
+    "hire nextjs developers",
+    "hire dedicated development team",
+    "hire remote developers",
+    "hire frontend developers",
+    "hire backend developers",
+    "hire cloud engineers",
+    "offshore software developers",
+    "hire dedicated programmers",
+  ],
   alternates: {
     canonical: "/hire-developers",
   },
   openGraph: {
-    title: "Hire Dedicated Software Developers | Mitsafe",
+    title: "Hire Dedicated Developers | Expert Software & Web Developers | Mitsafe",
     description:
-      "Hire pre-vetted senior software engineers, frontend, backend, mobile app developers, and DevOps specialists. Fast onboarding within 48 hours.",
+      "Hire dedicated developers and remote software engineers from Mitsafe. Scale your engineering team with pre-vetted full stack developers, React, Node.js, and mobile app developers.",
     url: "https://mitsafe.com/hire-developers",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hire Dedicated Software Developers | Mitsafe",
+    title: "Hire Dedicated Developers | Expert Software & Web Developers | Mitsafe",
     description:
-      "Hire pre-vetted senior software engineers, frontend, backend, mobile app developers, and DevOps specialists. Fast onboarding within 48 hours.",
+      "Hire dedicated developers and remote software engineers from Mitsafe. Scale your engineering team with pre-vetted full stack developers, React, Node.js, and mobile app developers.",
+  },
+  other: {
+    keywords:
+      "hire dedicated developers, hire software developers, hire web developers, hire mobile app developers, hire full stack developers, hire react developers, hire nodejs developers, hire nextjs developers, hire dedicated development team, hire remote developers, hire frontend developers, hire backend developers, hire cloud engineers, offshore software developers, hire dedicated programmers",
   },
 };
 

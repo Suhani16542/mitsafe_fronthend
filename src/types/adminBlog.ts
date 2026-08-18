@@ -25,6 +25,7 @@ export interface BlogPost {
   content: string;
   category: string;
   tags: string[];
+  keywords?: string | string[];
   author: BlogAuthor;
   readTime: string;
   featuredImage: string;

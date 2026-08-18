@@ -28,9 +28,13 @@ export async function generateMetadata({ params }: IndustryPageProps): Promise<M
     };
   }
 
+  const keywordsList = industry.keywords || [];
+  const keywordsString = keywordsList.join(", ");
+
   return {
     title: `${industry.title} Tech Solutions`,
     description: industry.heroSubheadline,
+    keywords: keywordsList.length > 0 ? keywordsList : undefined,
     alternates: {
       canonical: `/industries/${slug}`,
     },
@@ -44,6 +48,9 @@ export async function generateMetadata({ params }: IndustryPageProps): Promise<M
       card: "summary_large_image",
       title: `${industry.title} Tech Solutions | Mitsafe`,
       description: industry.heroSubheadline,
+    },
+    other: {
+      ...(keywordsString ? { keywords: keywordsString } : {}),
     },
   };
 }

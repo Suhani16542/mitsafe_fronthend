@@ -39,6 +39,7 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
   // Form State
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
+  const [keywords, setKeywords] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("Technology");
@@ -89,6 +90,7 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
           if (target) {
             setTitle(target.title);
             setSlug(target.slug);
+            setKeywords(Array.isArray(target.keywords) ? target.keywords.join(", ") : target.keywords || "");
             setExcerpt(target.excerpt);
             setContent(target.content);
             setCategory(target.category);
@@ -155,6 +157,7 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
       id: blogId,
       title: title.trim() || "Untitled Blog Post",
       slug: slug.trim() || "untitled-blog-post",
+      keywords: keywords.trim(),
       excerpt: excerpt.trim(),
       content,
       category,
@@ -194,7 +197,8 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
 
       const payload = {
         title: title.trim(),
-        slug: slug.trim() || undefined,
+        slug: slug.trim(),
+        keywords: keywords.trim(),
         excerpt: excerpt.trim(),
         content,
         category,
@@ -355,6 +359,23 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
                   className="w-full px-3 py-2.5 bg-transparent text-slate-800 focus:outline-none font-mono"
                 />
               </div>
+            </div>
+
+            {/* Keywords */}
+            <div>
+              <label className="block text-xs font-bold text-slate-800 mb-1">
+                Keywords
+              </label>
+              <input
+                type="text"
+                value={keywords}
+                onChange={(e) => setKeywords(e.target.value)}
+                placeholder="e.g. AI, artificial intelligence, business automation, digital transformation"
+                className="w-full px-4 py-2.5 rounded-2xl border border-slate-200 text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#305EFF] bg-slate-50/50"
+              />
+              <p className="text-[11px] text-slate-400 font-medium mt-1">
+                Add relevant keywords separated by commas.
+              </p>
             </div>
 
             {/* Excerpt */}

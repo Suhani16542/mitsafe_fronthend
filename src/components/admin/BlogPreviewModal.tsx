@@ -80,23 +80,13 @@ export default function BlogPreviewModal({
 
             {/* Author & Publication Info */}
             <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-b border-slate-100 py-4">
-              <div className="flex items-center gap-3">
-                <div className="relative w-10 h-10 rounded-full overflow-hidden border border-slate-200 bg-slate-100 shrink-0">
-                  <Image
-                    src={blog.author?.avatar || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"}
-                    alt={blog.author?.name || "Author"}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-slate-900">
-                    {blog.author?.name || "Alex Morgan"}
-                  </span>
-                  <span className="text-[11px] text-slate-500 font-medium">
-                    {blog.author?.role || "Content Team"}
-                  </span>
-                </div>
+              <div className="flex flex-col">
+                <span className="text-xs font-bold text-slate-900">
+                  {typeof blog.author === "string" ? blog.author : blog.author?.name || "Mitsafe Team"}
+                </span>
+                <span className="text-[11px] text-slate-500 font-medium">
+                  {typeof blog.author === "object" ? blog.author?.role || "Content Team" : "Content Team"}
+                </span>
               </div>
 
               <div className="flex items-center gap-4 text-xs font-medium text-slate-500">

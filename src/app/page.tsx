@@ -4,26 +4,51 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/components/hero/Hero";
 import JsonLd from "@/components/JsonLd";
 import { generateFaqSchema } from "@/lib/jsonld";
+import { getBlogs } from "@/services/blog.service";
+import { BlogPost } from "@/types/adminBlog";
+
+export const revalidate = 30;
 
 export const metadata: Metadata = {
-  title: "Mitsafe | Premium Software Development & AI Automation Agency",
+  title: "Mitsafe | Software Development Company & Digital Marketing Agency",
   description:
-    "Mitsafe designs futuristic enterprise web platforms, custom AI automation agents, high-speed mobile apps, and robust cloud configurations.",
+    "Mitsafe is a leading software development company and digital marketing agency delivering custom software development, enterprise web application development, mobile apps, and IT services.",
+  keywords: [
+    "digital marketing",
+    "digital marketing agency",
+    "digital marketing company",
+    "digital marketing services",
+    "software development company",
+    "custom software development",
+    "web development company",
+    "web application development",
+    "mobile app development company",
+    "enterprise software development",
+    "it services company",
+    "ai automation solutions",
+    "cloud application development",
+    "full stack development company",
+    "digital transformation services",
+  ],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Mitsafe | Premium Software Development & AI Automation Agency",
+    title: "Mitsafe | Software Development Company & Digital Marketing Agency",
     description:
-      "Mitsafe designs futuristic enterprise web platforms, custom AI automation agents, high-speed mobile apps, and robust cloud configurations.",
+      "Mitsafe is a leading software development company and digital marketing agency delivering custom software development, enterprise web application development, mobile apps, and IT services.",
     url: "https://mitsafe.com",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mitsafe | Premium Software Development & AI Automation Agency",
+    title: "Mitsafe | Software Development Company & Digital Marketing Agency",
     description:
-      "Mitsafe designs futuristic enterprise web platforms, custom AI automation agents, high-speed mobile apps, and robust cloud configurations.",
+      "Mitsafe is a leading software development company and digital marketing agency delivering custom software development, enterprise web application development, mobile apps, and IT services.",
+  },
+  other: {
+    keywords:
+      "digital marketing, digital marketing agency, digital marketing company, digital marketing services, software development company, custom software development, web development company, web application development, mobile app development company, enterprise software development, it services company, ai automation solutions, cloud application development, full stack development company, digital transformation services",
   },
 };
 
@@ -67,7 +92,24 @@ const MovingCrossStripSection = dynamic(() => import("@/sections/MovingCrossStri
 const TestimonialsSection = dynamic(() => import("@/sections/TestimonialsSection"));
 const BlogSection = dynamic(() => import("@/sections/BlogSection"));
 
-export default function Home() {
+export default async function Home() {
+  let initialPublishedBlogs: BlogPost[] = [];
+
+  try {
+    const res = await getBlogs({ status: "published", limit: 6, sort: "-publishedAt -createdAt" });
+    if (res.success && Array.isArray(res.data)) {
+      initialPublishedBlogs = res.data
+        .filter((b: BlogPost) => b.status === "published")
+        .sort((a: BlogPost, b: BlogPost) => {
+          const timeA = new Date(a.publishedAt || a.createdAt || 0).getTime();
+          const timeB = new Date(b.publishedAt || b.createdAt || 0).getTime();
+          return timeB - timeA;
+        });
+    }
+  } catch (err) {
+    console.error("Failed to SSR fetch published blogs on Home Page:", err);
+  }
+
   return (
     <div className="cosmic-home-wrapper relative w-full">
       <JsonLd data={generateFaqSchema(homeFaqs)} />
@@ -81,7 +123,7 @@ export default function Home() {
       <PortfolioSection />
       <MovingCrossStripSection />
       <TestimonialsSection />
-      <BlogSection />
+      <BlogSection initialPosts={initialPublishedBlogs} />
     </div>
   );
 }

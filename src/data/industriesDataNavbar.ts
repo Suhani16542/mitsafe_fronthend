@@ -84,6 +84,7 @@ export interface IndustryDetail {
     question: string;
     answer: string;
   }[];
+  keywords?: string[];
 }
 
 export const navbarIndustriesData: IndustryDetail[] = [
@@ -99,6 +100,23 @@ export const navbarIndustriesData: IndustryDetail[] = [
     heroImage: "/industries_showcase.png",
     overviewImage: "/about_company.png",
     description: "HIPAA-compliant platforms & telehealth systems.",
+    keywords: [
+      "healthcare app development company",
+      "healthcare management system software",
+      "healthcare app development",
+      "healthcare software development",
+      "healthcare software development company",
+      "custom healthcare software solutions",
+      "telemedicine app development",
+      "ehr software development",
+      "hipaa compliant software development",
+      "patient portal software development",
+      "medical app development",
+      "clinical workflow automation software",
+      "healthcare web development",
+      "hospital management software",
+      "healthcare digital transformation",
+    ],
     overview: {
       whatIsIt: "Healthcare technology connects patients, doctors, and medical data through encrypted digital software portals, telemetry systems, and telehealth networks.",
       challenges: [
@@ -284,6 +302,23 @@ export const navbarIndustriesData: IndustryDetail[] = [
     heroImage: "/metro-fintech-mockup.png",
     overviewImage: "/tradingview-mockup.png",
     description: "Secure transaction managers & banking portals.",
+    keywords: [
+      "fintech solutions",
+      "fintech app development company",
+      "fintech software solutions",
+      "fintech software development",
+      "banking software development company",
+      "financial software development",
+      "custom fintech application development",
+      "digital banking software solutions",
+      "payment gateway integration services",
+      "wealthtech app development",
+      "secure banking app development",
+      "lending software development",
+      "financial technology consulting",
+      "blockchain fintech solutions",
+      "core banking system development",
+    ],
     overview: {
       whatIsIt: "FinTech software powers digital banking, instant wire transfers, wealth management, and automated payment gateways with ultra-low latency.",
       challenges: [
@@ -469,6 +504,23 @@ export const navbarIndustriesData: IndustryDetail[] = [
     heroImage: "/anyuni-mockup.png",
     overviewImage: "/web-app-design-woman.png",
     description: "Virtual classrooms & learning hubs.",
+    keywords: [
+      "education app development company",
+      "e learning app development company",
+      "education app development",
+      "e learning software development",
+      "lms software development",
+      "custom elearning portal development",
+      "online learning platform development",
+      "edtech software development company",
+      "educational web development",
+      "virtual classroom software development",
+      "e learning app developers",
+      "school management software development",
+      "interactive elearning solutions",
+      "edtech mobile app development",
+      "student portal development",
+    ],
     overview: {
       whatIsIt: "EdTech platforms deliver interactive digital learning, live video classrooms, automated grading, and student progress telemetry across web and mobile browsers.",
       challenges: [
@@ -654,6 +706,23 @@ export const navbarIndustriesData: IndustryDetail[] = [
     heroImage: "/hero-ecommerce.png",
     overviewImage: "/portfolio_ecommerce_new.png",
     description: "Headless shopping engines & catalog search.",
+    keywords: [
+      "ecommerce web development",
+      "ecommerce app development company",
+      "ecommerce development company",
+      "ecommerce website development company",
+      "custom ecommerce solutions",
+      "b2b ecommerce platform development",
+      "ecommerce mobile application development",
+      "retail software development",
+      "online store development services",
+      "ecommerce portal development",
+      "omnichannel retail solutions",
+      "headless ecommerce development",
+      "shopify web development company",
+      "multi vendor marketplace development",
+      "ecommerce checkout optimization",
+    ],
     overview: {
       whatIsIt: "Modern e-commerce technology decouples storefront user interfaces from backend shopping carts to deliver lightning-fast loading speeds and high conversion rates.",
       challenges: [
@@ -839,6 +908,23 @@ export const navbarIndustriesData: IndustryDetail[] = [
     heroImage: "/raichand-mockup.png",
     overviewImage: "/pricing-devices-mockup.png",
     description: "Property management & 3D listing platforms.",
+    keywords: [
+      "real estate app development company",
+      "real estate website development company",
+      "real estate software development company",
+      "real estate web development",
+      "custom real estate portal development",
+      "property management software development",
+      "real estate mobile app development",
+      "real estate crm software development",
+      "idx mls website development",
+      "proptech software solutions",
+      "commercial real estate software",
+      "real estate listing platform development",
+      "virtual tour real estate app",
+      "real estate lead generation website",
+      "real estate marketplace development",
+    ],
     overview: {
       whatIsIt: "PropTech software digitizes real estate transactions, property management, 3D walkthroughs, tenant rent processing, and automated MLS listing updates.",
       challenges: [
@@ -1024,6 +1110,23 @@ export const navbarIndustriesData: IndustryDetail[] = [
     heroImage: "/wedding-matrimony-mockup.png",
     overviewImage: "/hero-3d-mockup.png",
     description: "Guest booking engines & hotel platforms.",
+    keywords: [
+      "booking engine for hotels",
+      "internet booking engine for hotels",
+      "travel app development company",
+      "online hotel booking system",
+      "hotel reservation and booking system",
+      "travel portal development",
+      "hospitality software development company",
+      "travel booking website development",
+      "hotel management software development",
+      "flight booking engine development",
+      "custom travel software solutions",
+      "tourism mobile app development",
+      "hotel pms system development",
+      "travel agency software development",
+      "b2b travel portal development",
+    ],
     overview: {
       whatIsIt: "Travel technology powers online hotel room bookings, flight aggregators, contactless guest check-in apps, and real-time room availability sync.",
       challenges: [

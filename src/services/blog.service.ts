@@ -3,12 +3,12 @@ import { BlogPost, BlogStatus } from "@/types/adminBlog";
 /**
  * Resolves the Backend API Base URL for Client and Server environments.
  * Priority:
- * 1. process.env.NEXT_PUBLIC_API_URL (available client & server)
+ * 1. process.env.NEXT_PUBLIC_API_URL (configured production URL)
  * 2. process.env.BACKEND_API_URL (server-side only fallback)
- * 3. Localhost (when running locally) or Mitsafe Backend on Render (production fallback)
+ * 3. Fallback: https://mitsafe-backend.onrender.com
  */
 export function getApiBaseUrl(): string {
-  // 1. Client-side and server-side: Read NEXT_PUBLIC_API_URL environment variable
+  // 1. Read NEXT_PUBLIC_API_URL (injected at build time, accessible in browser and server)
   const publicApiUrl = process.env.NEXT_PUBLIC_API_URL?.trim().replace(/\/+$/, "");
   if (publicApiUrl) {
     return publicApiUrl;
@@ -22,20 +22,8 @@ export function getApiBaseUrl(): string {
     }
   }
 
-  // 3. Client-side (Browser runtime): Fall back based on hostname
-  if (typeof window !== "undefined") {
-    const isLocalhost =
-      window.location.hostname === "localhost" ||
-      window.location.hostname === "127.0.0.1" ||
-      window.location.hostname === "[::1]";
-    if (isLocalhost) {
-      return "http://localhost:5000";
-    }
-    // Remote production fallback if NEXT_PUBLIC_API_URL was unpopulated at build time
-    return "https://mitsafe-backend.onrender.com";
-  }
-
-  return "http://localhost:5000";
+  // 3. Client & Server fallback: Production Render backend
+  return "https://mitsafe-backend.onrender.com";
 }
 
 function getAdminHeaders() {
@@ -70,7 +58,16 @@ export function formatBlogPost(rawBlog: any): BlogPost {
     excerpt: rawBlog.excerpt || "",
     content: rawBlog.content || "",
     category: rawBlog.category || "General",
-    tags: Array.isArray(rawBlog.tags) ? rawBlog.tags : typeof rawBlog.tags === "string" ? rawBlog.tags.split(",").map((t: string) => t.trim()) : [],
+    tags: Array.isArray(rawBlog.tags)
+      ? rawBlog.tags
+      : typeof rawBlog.tags === "string"
+      ? rawBlog.tags.split(",").map((t: string) => t.trim())
+      : [],
+    keywords: Array.isArray(rawBlog.keywords)
+      ? rawBlog.keywords
+      : typeof rawBlog.keywords === "string" && rawBlog.keywords.trim()
+      ? rawBlog.keywords.split(",").map((k: string) => k.trim()).filter(Boolean)
+      : [],
     author: authorObj,
     readTime: rawBlog.readTime || "5 Min Read",
     featuredImage:
@@ -98,119 +95,88 @@ export interface FetchBlogsParams {
  * Fetch blogs list (supports page, limit, category, featured, search, sort, status)
  */
 export async function getBlogs(params: FetchBlogsParams = {}) {
+  const BASE_URL = getApiBaseUrl();
+  const query = new URLSearchParams();
+
+  if (params.page) query.set("page", String(params.page));
+  if (params.limit) query.set("limit", String(params.limit));
+  if (params.category && params.category !== "all") query.set("category", params.category);
+  if (params.featured !== undefined) query.set("featured", String(params.featured));
+  if (params.search) query.set("search", params.search);
+  if (params.sort) query.set("sort", params.sort);
+  if (params.status) query.set("status", params.status);
+
+  const endpoint = `${BASE_URL}/api/v1/blogs${query.toString() ? `?${query.toString()}` : ""}`;
+
   try {
-    const BASE_URL = getApiBaseUrl();
-    if (!BASE_URL) {
-      return {
-        success: false,
-        data: [],
-        pagination: {
-          page: params.page || 1,
-          limit: params.limit || 10,
-          total: 0,
-          totalPages: 1,
-        },
-      };
+    const res = await fetch(endpoint, {
+      method: "GET",
+      headers: {
+        ...getAdminHeaders(),
+      },
+      next: { revalidate: 30 },
+    });
+
+    const responseText = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(responseText);
+    } catch {
+      json = { message: responseText };
     }
-
-    const query = new URLSearchParams();
-    if (params.page) query.append("page", params.page.toString());
-    if (params.limit) query.append("limit", params.limit.toString());
-    if (params.category && params.category !== "all") query.append("category", params.category);
-    if (params.featured !== undefined) query.append("featured", params.featured.toString());
-    if (params.search) query.append("search", params.search);
-    if (params.sort) query.append("sort", params.sort);
-    if (params.status) query.append("status", params.status);
-
-    const queryString = query.toString();
-    const url = `${BASE_URL}/api/v1/blogs${queryString ? `?${queryString}` : ""}`;
-
-    const res = await fetch(url, { method: "GET", cache: "no-store" });
-    const json = await res.json();
 
     if (!res.ok || !json.success) {
-      return {
-        success: false,
-        data: [],
-        pagination: {
-          page: params.page || 1,
-          limit: params.limit || 10,
-          total: 0,
-          totalPages: 1,
-        },
-      };
+      console.error(`[BlogService Error] GET ${endpoint} returned ${res.status}:`, json);
+      throw new Error(json.message || `Failed to fetch blogs (HTTP ${res.status})`);
     }
 
-    const formattedData = (json.data || []).map(formatBlogPost);
+    const rawList = Array.isArray(json.data) ? json.data : [];
+    const formattedList = rawList.map(formatBlogPost);
 
     return {
       success: true,
-      data: formattedData,
-      pagination: json.pagination || {
-        page: params.page || 1,
-        limit: params.limit || 10,
-        total: formattedData.length,
-        totalPages: 1,
-      },
+      data: formattedList,
+      total: json.total || formattedList.length,
+      page: json.page || 1,
+      totalPages: json.totalPages || 1,
     };
   } catch (err: any) {
-    return {
-      success: false,
-      data: [],
-      pagination: {
-        page: params.page || 1,
-        limit: params.limit || 10,
-        total: 0,
-        totalPages: 1,
-      },
-    };
+    console.error(`[BlogService Error] GET ${endpoint} failed:`, {
+      url: endpoint,
+      errorName: err.name,
+      errorMessage: err.message,
+    });
+    throw err;
   }
 }
 
 /**
- * Fetch distinct blog categories
- */
-export async function getCategories() {
-  try {
-    const BASE_URL = getApiBaseUrl();
-    if (!BASE_URL) {
-      return { success: false, data: [] };
-    }
-
-    const res = await fetch(`${BASE_URL}/api/v1/blogs/categories`, { method: "GET", cache: "no-store" });
-    const json = await res.json();
-
-    if (!res.ok || !json.success) {
-      return { success: false, data: [] };
-    }
-
-    return {
-      success: true,
-      data: json.data || [],
-    };
-  } catch (err: any) {
-    return { success: false, data: [] };
-  }
-}
-
-/**
- * Fetch single blog by slug
+ * Fetch single Blog by URL Slug
  */
 export async function getBlogBySlug(slug: string) {
-  try {
-    const BASE_URL = getApiBaseUrl();
-    if (!BASE_URL) {
-      return { success: false, data: null };
-    }
+  const BASE_URL = getApiBaseUrl();
+  const endpoint = `${BASE_URL}/api/v1/blogs/${encodeURIComponent(slug)}`;
 
-    const res = await fetch(`${BASE_URL}/api/v1/blogs/${encodeURIComponent(slug)}`, {
+  try {
+    const res = await fetch(endpoint, {
       method: "GET",
+      headers: {
+        ...getAdminHeaders(),
+      },
       cache: "no-store",
     });
-    const json = await res.json();
+
+    const responseText = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(responseText);
+    } catch {
+      json = { message: responseText };
+    }
 
     if (!res.ok || !json.success) {
-      return { success: false, data: null };
+      console.error(`[BlogService Error] GET ${endpoint} returned ${res.status}:`, json);
+      throw new Error(json.message || `Failed to fetch blog post (HTTP ${res.status})`);
     }
 
     return {
@@ -218,32 +184,100 @@ export async function getBlogBySlug(slug: string) {
       data: formatBlogPost(json.data),
     };
   } catch (err: any) {
-    return { success: false, data: null };
+    console.error(`[BlogService Error] GET ${endpoint} failed:`, {
+      url: endpoint,
+      errorName: err.name,
+      errorMessage: err.message,
+    });
+    throw err;
   }
 }
 
 /**
- * Upload featured image for blog
+ * Fetch list of categories
+ */
+export async function getCategories() {
+  const BASE_URL = getApiBaseUrl();
+  const endpoint = `${BASE_URL}/api/v1/blogs/categories`;
+
+  try {
+    const res = await fetch(endpoint, {
+      method: "GET",
+      headers: {
+        ...getAdminHeaders(),
+      },
+      next: { revalidate: 60 },
+    });
+
+    const responseText = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(responseText);
+    } catch {
+      json = { message: responseText };
+    }
+
+    if (!res.ok || !json.success) {
+      console.error(`[BlogService Error] GET ${endpoint} returned ${res.status}:`, json);
+      throw new Error(json.message || "Failed to fetch categories");
+    }
+
+    return {
+      success: true,
+      data: json.data || [
+        "Technology",
+        "AI & Automation",
+        "Cloud & Security",
+        "Software Engineering",
+      ],
+    };
+  } catch (err: any) {
+    console.error(`[BlogService Error] GET ${endpoint} failed:`, {
+      url: endpoint,
+      errorName: err.name,
+      errorMessage: err.message,
+    });
+    return {
+      success: true,
+      data: [
+        "Technology",
+        "AI & Automation",
+        "Cloud & Security",
+        "Software Engineering",
+      ],
+    };
+  }
+}
+
+/**
+ * Upload an Image for a Blog post (Featured cover or inline article image)
  */
 export async function uploadBlogImage(file: File) {
-  try {
-    const BASE_URL = getApiBaseUrl();
+  const BASE_URL = getApiBaseUrl();
+  const endpoint = `${BASE_URL}/api/v1/blogs/upload-image`;
 
+  try {
     const formData = new FormData();
     formData.append("image", file);
 
-    const res = await fetch(`${BASE_URL}/api/v1/blogs/upload-image`, {
+    const res = await fetch(endpoint, {
       method: "POST",
-      credentials: "include",
       headers: {
         ...getAdminHeaders(),
       },
       body: formData,
     });
 
-    const json = await res.json();
+    const responseText = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(responseText);
+    } catch {
+      json = { message: responseText };
+    }
 
     if (!res.ok || !json.success) {
+      console.error(`[BlogService Error] POST ${endpoint} returned ${res.status}:`, json);
       throw new Error(json.message || "Image upload failed");
     }
 
@@ -254,7 +288,11 @@ export async function uploadBlogImage(file: File) {
       publicId: json.publicId,
     };
   } catch (err: any) {
-    console.error("uploadBlogImage Error:", err);
+    console.error(`[BlogService Error] POST ${endpoint} failed:`, {
+      url: endpoint,
+      errorName: err.name,
+      errorMessage: err.message,
+    });
     throw err;
   }
 }
@@ -262,36 +300,53 @@ export async function uploadBlogImage(file: File) {
 /**
  * Create a new Blog article
  */
-export async function createBlog(payload: {
-  title: string;
-  excerpt?: string;
-  content: string;
-  category: string;
-  tags?: string[] | string;
-  author?: string;
-  featuredImage?: string;
-  featuredImagePublicId?: string;
-  readTime?: string;
-  status?: BlogStatus;
-  featured?: boolean;
-  slug?: string;
-}) {
-  try {
-    const BASE_URL = getApiBaseUrl();
+export async function createBlog(
+  payload: Partial<Omit<BlogPost, "id" | "createdAt" | "views" | "author">> & {
+    title: string;
+    content: string;
+    author?: string | any;
+    featuredImagePublicId?: string;
+    featured?: boolean;
+    keywords?: string | string[];
+  }
+) {
+  const BASE_URL = getApiBaseUrl();
+  const endpoint = `${BASE_URL}/api/v1/blogs`;
 
-    const res = await fetch(`${BASE_URL}/api/v1/blogs`, {
+  try {
+    const bodyPayload: any = { ...payload };
+    if (bodyPayload.isFeatured !== undefined) {
+      bodyPayload.featured = bodyPayload.isFeatured;
+    }
+    if (typeof bodyPayload.author === "object" && bodyPayload.author !== null) {
+      bodyPayload.author = bodyPayload.author.name;
+    }
+    if (typeof bodyPayload.keywords === "string") {
+      bodyPayload.keywords = bodyPayload.keywords
+        .split(",")
+        .map((k: string) => k.trim())
+        .filter(Boolean);
+    }
+
+    const res = await fetch(endpoint, {
       method: "POST",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         ...getAdminHeaders(),
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(bodyPayload),
     });
 
-    const json = await res.json();
+    const responseText = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(responseText);
+    } catch {
+      json = { message: responseText };
+    }
 
     if (!res.ok || !json.success) {
+      console.error(`[BlogService Error] POST ${endpoint} returned ${res.status}:`, json);
       throw new Error(json.message || "Failed to create blog post");
     }
 
@@ -301,7 +356,11 @@ export async function createBlog(payload: {
       data: formatBlogPost(json.data),
     };
   } catch (err: any) {
-    console.error("createBlog Error:", err);
+    console.error(`[BlogService Error] POST ${endpoint} failed:`, {
+      url: endpoint,
+      errorName: err.name,
+      errorMessage: err.message,
+    });
     throw err;
   }
 }
@@ -315,8 +374,12 @@ export async function updateBlog(
     author?: string | any;
     featuredImagePublicId?: string;
     featured?: boolean;
+    keywords?: string | string[];
   }
 ) {
+  const BASE_URL = getApiBaseUrl();
+  const endpoint = `${BASE_URL}/api/v1/blogs/${id}`;
+
   try {
     const bodyPayload: any = { ...payload };
     if (bodyPayload.isFeatured !== undefined) {
@@ -325,12 +388,15 @@ export async function updateBlog(
     if (typeof bodyPayload.author === "object" && bodyPayload.author !== null) {
       bodyPayload.author = bodyPayload.author.name;
     }
+    if (typeof bodyPayload.keywords === "string") {
+      bodyPayload.keywords = bodyPayload.keywords
+        .split(",")
+        .map((k: string) => k.trim())
+        .filter(Boolean);
+    }
 
-    const BASE_URL = getApiBaseUrl();
-
-    const res = await fetch(`${BASE_URL}/api/v1/blogs/${id}`, {
+    const res = await fetch(endpoint, {
       method: "PUT",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         ...getAdminHeaders(),
@@ -338,9 +404,16 @@ export async function updateBlog(
       body: JSON.stringify(bodyPayload),
     });
 
-    const json = await res.json();
+    const responseText = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(responseText);
+    } catch {
+      json = { message: responseText };
+    }
 
     if (!res.ok || !json.success) {
+      console.error(`[BlogService Error] PUT ${endpoint} returned ${res.status}:`, json);
       throw new Error(json.message || "Failed to update blog post");
     }
 
@@ -350,32 +423,48 @@ export async function updateBlog(
       data: formatBlogPost(json.data),
     };
   } catch (err: any) {
-    console.error("updateBlog Error:", err);
+    console.error(`[BlogService Error] PUT ${endpoint} failed:`, {
+      url: endpoint,
+      errorName: err.name,
+      errorMessage: err.message,
+    });
     throw err;
   }
 }
 
 /**
  * Toggle Blog draft / published status
+ * Target endpoint: PATCH https://mitsafe-backend.onrender.com/api/v1/blogs/{id}/status
  */
 export async function updateBlogStatus(id: string, status: BlogStatus) {
-  try {
-    const BASE_URL = getApiBaseUrl();
+  const BASE_URL = getApiBaseUrl();
+  const endpoint = `${BASE_URL}/api/v1/blogs/${id}/status`;
+  const adminHeaders = getAdminHeaders();
 
-    const res = await fetch(`${BASE_URL}/api/v1/blogs/${id}/status`, {
+  console.log(`[BlogService] Updating status for blog '${id}' to '${status}' via PATCH ${endpoint}`);
+
+  try {
+    const res = await fetch(endpoint, {
       method: "PATCH",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        ...getAdminHeaders(),
+        ...adminHeaders,
       },
       body: JSON.stringify({ status }),
     });
 
-    const json = await res.json();
+    const responseText = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(responseText);
+    } catch {
+      json = { message: responseText };
+    }
 
     if (!res.ok || !json.success) {
-      throw new Error(json.message || "Failed to update blog status");
+      const errorMsg = json.message || `Status update failed with HTTP ${res.status}`;
+      console.error(`[BlogService Error] PATCH ${endpoint} returned HTTP ${res.status}:`, json);
+      throw new Error(errorMsg);
     }
 
     return {
@@ -384,7 +473,17 @@ export async function updateBlogStatus(id: string, status: BlogStatus) {
       data: formatBlogPost(json.data),
     };
   } catch (err: any) {
-    console.error("updateBlogStatus Error:", err);
+    const isNetworkOrCors =
+      err.name === "TypeError" && err.message.toLowerCase().includes("fetch");
+    console.error(`[BlogService Error] PATCH ${endpoint} failed:`, {
+      url: endpoint,
+      errorName: err.name,
+      errorMessage: err.message,
+      isNetworkOrCors,
+      hint: isNetworkOrCors
+        ? "Network/CORS/Connection error. Check that backend at https://mitsafe-backend.onrender.com is running and allows origin."
+        : undefined,
+    });
     throw err;
   }
 }
@@ -393,20 +492,27 @@ export async function updateBlogStatus(id: string, status: BlogStatus) {
  * Delete Blog article
  */
 export async function deleteBlog(id: string) {
-  try {
-    const BASE_URL = getApiBaseUrl();
+  const BASE_URL = getApiBaseUrl();
+  const endpoint = `${BASE_URL}/api/v1/blogs/${id}`;
 
-    const res = await fetch(`${BASE_URL}/api/v1/blogs/${id}`, {
+  try {
+    const res = await fetch(endpoint, {
       method: "DELETE",
-      credentials: "include",
       headers: {
         ...getAdminHeaders(),
       },
     });
 
-    const json = await res.json();
+    const responseText = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(responseText);
+    } catch {
+      json = { message: responseText };
+    }
 
     if (!res.ok || !json.success) {
+      console.error(`[BlogService Error] DELETE ${endpoint} returned ${res.status}:`, json);
       throw new Error(json.message || "Failed to delete blog post");
     }
 
@@ -416,7 +522,11 @@ export async function deleteBlog(id: string) {
       data: json.data,
     };
   } catch (err: any) {
-    console.error("deleteBlog Error:", err);
+    console.error(`[BlogService Error] DELETE ${endpoint} failed:`, {
+      url: endpoint,
+      errorName: err.name,
+      errorMessage: err.message,
+    });
     throw err;
   }
 }

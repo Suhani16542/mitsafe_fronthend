@@ -3,8 +3,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Calendar, Clock, BookOpen, Send, TrendingUp, Cpu, Layers, Loader2 } from "lucide-react";
-import { blogData as fallbackBlogData } from "@/data/blog";
+import { ArrowRight, Sparkles, Calendar, Clock, BookOpen, TrendingUp, Cpu, Layers, Loader2 } from "lucide-react";
 import { getBlogs } from "@/services/blog.service";
 import { BlogPost } from "@/types/adminBlog";
 
@@ -12,17 +11,31 @@ const categoryIcons: Record<string, any> = {
   "Software Engineering": Cpu,
   "Mobile App Development": Layers,
   "Cloud & Security": TrendingUp,
+  Technology: Cpu,
+  "AI & Automation": Sparkles,
 };
 
-function BlogCard({ post, idx }: { post: any; idx: number }) {
+function BlogCard({ post, idx }: { post: BlogPost; idx: number }) {
   const IconComponent = categoryIcons[post.category] || BookOpen;
 
   const displayTitle = post.title;
   const displaySlug = post.slug;
-  const displayCategory = post.category || "General";
+  const displayCategory = post.category || "Technology";
   const displayReadTime = post.readTime || "5 Min Read";
-  const displayDate = post.publishedAt || post.date || post.createdAt || "Recently Published";
-  const displaySummary = post.excerpt || post.summary || "";
+  const displayDate = post.publishedAt
+    ? new Date(post.publishedAt).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    : post.createdAt
+    ? new Date(post.createdAt).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })
+    : "Recently Published";
+  const displaySummary = post.excerpt || "";
 
   return (
     <motion.div
@@ -85,23 +98,31 @@ function BlogCard({ post, idx }: { post: any; idx: number }) {
   );
 }
 
-export default function BlogSection() {
+interface BlogSectionProps {
+  initialPosts?: BlogPost[];
+}
+
+export default function BlogSection({ initialPosts = [] }: BlogSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [posts, setPosts] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [posts, setPosts] = useState<BlogPost[]>(initialPosts);
+  const [isLoading, setIsLoading] = useState(initialPosts.length === 0);
 
   useEffect(() => {
     async function loadHomeBlogs() {
       try {
-        const res = await getBlogs({ status: "published", limit: 3, sort: "-publishedAt -createdAt" });
-        if (res.success && res.data.length > 0) {
-          setPosts(res.data);
-        } else {
-          setPosts(fallbackBlogData.slice(0, 3));
+        const res = await getBlogs({ status: "published", limit: 6, sort: "-publishedAt -createdAt" });
+        if (res.success && Array.isArray(res.data)) {
+          const publishedPosts = res.data
+            .filter((b: BlogPost) => b.status === "published")
+            .sort((a: BlogPost, b: BlogPost) => {
+              const timeA = new Date(a.publishedAt || a.createdAt || 0).getTime();
+              const timeB = new Date(b.publishedAt || b.createdAt || 0).getTime();
+              return timeB - timeA;
+            });
+          setPosts(publishedPosts);
         }
       } catch (err) {
         console.error("Failed to load published blogs for homepage:", err);
-        setPosts(fallbackBlogData.slice(0, 3));
       } finally {
         setIsLoading(false);
       }
@@ -170,17 +191,21 @@ export default function BlogSection() {
           </motion.p>
         </div>
 
-        {/* 3-Column Image-Free Cards Grid */}
+        {/* 3-Column Dynamic Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-7xl mx-auto">
-          {isLoading ? (
+          {isLoading && displayPosts.length === 0 ? (
             <div className="col-span-full py-12 flex justify-center items-center text-slate-400 font-medium text-xs">
               <Loader2 className="w-6 h-6 animate-spin text-[#305EFF] mr-2" />
-              <span>Loading latest news...</span>
+              <span>Loading latest published articles...</span>
             </div>
-          ) : (
+          ) : displayPosts.length > 0 ? (
             displayPosts.map((post, idx) => (
-              <BlogCard key={post.slug || idx} post={post} idx={idx} />
+              <BlogCard key={post.slug || post.id || idx} post={post} idx={idx} />
             ))
+          ) : (
+            <div className="col-span-full py-12 text-center text-slate-400 text-sm">
+              No published articles available yet.
+            </div>
           )}
         </div>
 

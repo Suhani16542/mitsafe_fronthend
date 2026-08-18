@@ -100,11 +100,11 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: items.map((crumb, index) => ({
+    itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      name: crumb.name,
-      item: crumb.item.startsWith("http") ? crumb.item : `https://mitsafe.com${crumb.item}`,
+      name: item.name,
+      item: item.item.startsWith("http") ? item.item : `https://mitsafe.com${item.item}`,
     })),
   };
 }
@@ -149,6 +149,7 @@ export interface ArticleSchemaProps {
   datePublished?: string;
   dateModified?: string;
   authorName?: string;
+  keywords?: string | string[];
   publisherName?: string;
   publisherLogo?: string;
 }
@@ -161,9 +162,16 @@ export function generateArticleSchema({
   datePublished,
   dateModified,
   authorName = "Mitsafe Team",
+  keywords,
   publisherName = "Mitsafe",
   publisherLogo = "https://mitsafe.com/image.png",
 }: ArticleSchemaProps) {
+  const keywordsString = Array.isArray(keywords)
+    ? keywords.join(", ")
+    : typeof keywords === "string"
+    ? keywords
+    : undefined;
+
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -173,6 +181,7 @@ export function generateArticleSchema({
     image: imageUrl ? [imageUrl] : ["https://mitsafe.com/opengraph-image.png"],
     datePublished: datePublished || new Date().toISOString(),
     dateModified: dateModified || datePublished || new Date().toISOString(),
+    keywords: keywordsString,
     author: {
       "@type": "Person",
       name: authorName,

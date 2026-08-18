@@ -1,7 +1,6 @@
 import { MetadataRoute } from "next";
 import { servicesData } from "@/data/services";
 import { portfolioData } from "@/data/portfolio";
-import { blogData } from "@/data/blog";
 import { rolesData } from "@/data/roles";
 import { navbarIndustriesData } from "@/data/industriesDataNavbar";
 import { getBlogs } from "@/services/blog.service";
@@ -108,7 +107,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  // 6. Dynamic blog articles (Fetch live published posts, fallback to local blog data)
+  // 6. Dynamic blog articles (Fetch live published posts from backend API)
   let dynamicBlogSlugs: { slug: string; updatedAt?: string }[] = [];
   try {
     const liveBlogsRes = await getBlogs({ status: "published", limit: 100 });
@@ -120,11 +119,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   } catch (err) {
     console.error("Error fetching live blogs for sitemap:", err);
-  }
-
-  // If live blog fetching returned none, fallback to bundled static blog data
-  if (dynamicBlogSlugs.length === 0) {
-    dynamicBlogSlugs = blogData.map((post) => ({ slug: post.slug }));
   }
 
   const blogRoutes: MetadataRoute.Sitemap = dynamicBlogSlugs.map((post) => ({
