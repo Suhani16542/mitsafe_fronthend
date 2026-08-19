@@ -136,6 +136,7 @@ export default function Footer() {
                 { name: "Our Portfolio", href: "/portfolio" },
                 { name: "Terms & Conditions", href: "/terms" },
                 { name: "Privacy Policy", href: "#" },
+                { name: "Refund Policy", href: "/refund-policy" },
               ].map((item, idx) => (
                 <li key={idx}>
                   <Link href={item.href} className="text-xs sm:text-[13px] font-bold text-black hover:opacity-80 transition-opacity flex items-center gap-1.5 group w-fit py-0.5">
@@ -281,6 +282,8 @@ export default function Footer() {
             <Link href="#" className="hover:text-black inline-block transition-transform duration-200 hover:scale-105">Privacy Policy</Link>
             <span className="opacity-40 text-slate-900">|</span>
             <Link href="/terms" className="hover:text-black inline-block transition-transform duration-200 hover:scale-105">Terms &amp; Conditions</Link>
+            <span className="opacity-40 text-slate-900">|</span>
+            <Link href="/refund-policy" className="hover:text-black inline-block transition-transform duration-200 hover:scale-105">Refund Policy</Link>
             <span className="opacity-40 text-slate-900">|</span>
             <Link href="#" className="hover:text-[#305EFF] inline-block transition-transform duration-200 hover:scale-105">Sitemap</Link>
           </div>
