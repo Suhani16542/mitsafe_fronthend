@@ -107,7 +107,7 @@ export default function ConsultationModal({
     phone: "",
     company: "",
     serviceCategory: defaultServiceOption,
-    budget: "Under ₹50K",
+    budget: "Under $1,000",
     timeline: "ASAP",
     message: "",
   });
@@ -520,11 +520,11 @@ export default function ConsultationModal({
                                 onChange={handleChange}
                                 className="w-full min-w-0 truncate pr-8 pl-3 py-2 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-white focus:bg-white text-slate-900 text-xs font-medium appearance-none focus:outline-none focus:border-[#305EFF] transition-all cursor-pointer"
                               >
-                                <option value="Under ₹50K">Under ₹50K</option>
-                                <option value="₹50K – ₹1 Lakh">₹50K – ₹1 Lakh</option>
-                                <option value="₹1 Lakh – ₹5 Lakh">₹1 Lakh – ₹5 Lakh</option>
-                                <option value="₹5 Lakh – ₹10 Lakh">₹5 Lakh – ₹10 Lakh</option>
-                                <option value="₹10 Lakh+">₹10 Lakh+</option>
+                                <option value="Under $1,000">Under $1,000</option>
+                                <option value="$1,000 – $5,000">$1,000 – $5,000</option>
+                                <option value="$5,000 – $10,000">$5,000 – $10,000</option>
+                                <option value="$10,000 – $25,000">$10,000 – $25,000</option>
+                                <option value="$25,000+">$25,000+</option>
                                 <option value="Not Sure Yet">Not Sure Yet</option>
                               </select>
                               <ChevronDown className="w-4 h-4 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none shrink-0" />
