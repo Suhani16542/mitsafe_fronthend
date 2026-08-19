@@ -94,6 +94,7 @@ export default function CreateBlogPage() {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    const previousImage = featuredImage;
     // Local instant preview while uploading
     const localUrl = URL.createObjectURL(file);
     setFeaturedImage(localUrl);
@@ -109,12 +110,21 @@ export default function CreateBlogPage() {
         setFeaturedImagePublicId(res.publicId || "");
         setSuccessToast("Featured image uploaded successfully!");
         setTimeout(() => setSuccessToast(""), 3000);
+      } else {
+        throw new Error(res.message || "Failed to retrieve permanent image URL.");
       }
     } catch (err: any) {
+      // Revert to previous valid image so temporary blob is never saved to database
+      setFeaturedImage(
+        previousImage.startsWith("blob:")
+          ? "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80"
+          : previousImage
+      );
       setErrorToast(err.message || "Failed to upload image to server.");
       setTimeout(() => setErrorToast(""), 4000);
     } finally {
       setIsUploadingImage(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
     }
   };
 
@@ -157,6 +167,16 @@ export default function CreateBlogPage() {
     }
     if (!content.trim()) {
       setErrorToast("Please enter Blog Body Content.");
+      setTimeout(() => setErrorToast(""), 4000);
+      return;
+    }
+    if (isUploadingImage) {
+      setErrorToast("Please wait for image upload to complete before saving.");
+      setTimeout(() => setErrorToast(""), 4000);
+      return;
+    }
+    if (featuredImage.startsWith("blob:") || featuredImage.startsWith("data:")) {
+      setErrorToast("Image is not uploaded yet. Please choose an image and wait for it to finish uploading.");
       setTimeout(() => setErrorToast(""), 4000);
       return;
     }

@@ -124,6 +124,7 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    const previousImage = featuredImage;
     const localUrl = URL.createObjectURL(file);
     setFeaturedImage(localUrl);
 
@@ -138,12 +139,20 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
         setFeaturedImagePublicId(res.publicId || "");
         setSuccessToast("Featured image updated successfully!");
         setTimeout(() => setSuccessToast(""), 3000);
+      } else {
+        throw new Error(res.message || "Failed to retrieve permanent image URL.");
       }
     } catch (err: any) {
+      setFeaturedImage(
+        previousImage.startsWith("blob:")
+          ? "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80"
+          : previousImage
+      );
       setErrorToast(err.message || "Failed to upload image to server.");
       setTimeout(() => setErrorToast(""), 4000);
     } finally {
       setIsUploadingImage(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
     }
   };
 
@@ -181,6 +190,16 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
   const handleUpdate = async (targetStatus: "published" | "draft") => {
     if (!title.trim()) {
       setErrorToast("Please enter a Blog Title.");
+      setTimeout(() => setErrorToast(""), 4000);
+      return;
+    }
+    if (isUploadingImage) {
+      setErrorToast("Please wait for image upload to complete before saving.");
+      setTimeout(() => setErrorToast(""), 4000);
+      return;
+    }
+    if (featuredImage.startsWith("blob:") || featuredImage.startsWith("data:")) {
+      setErrorToast("Image is not uploaded yet. Please wait for upload to complete or choose a valid image.");
       setTimeout(() => setErrorToast(""), 4000);
       return;
     }

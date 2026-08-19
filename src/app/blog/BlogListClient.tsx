@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Search, Calendar, User, Clock, ArrowRight, Loader2, BookOpen, Sparkles, Tag } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
-import { getBlogs, getCategories } from "@/services/blog.service";
+import { getBlogs, getCategories, DEFAULT_BLOG_FALLBACK_IMAGE } from "@/services/blog.service";
 import { BlogPost } from "@/types/adminBlog";
 
 export default function BlogListClient() {
@@ -132,17 +132,21 @@ export default function BlogListClient() {
                 >
                   <div className="flex flex-col gap-4">
                     {/* Featured Image */}
-                    {post.featuredImage && (
-                      <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-100 dark:border-white/5">
-                        <Image
-                          src={post.featuredImage}
-                          alt={post.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          unoptimized
-                        />
-                      </div>
-                    )}
+                    <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-100 dark:border-white/5">
+                      <Image
+                        src={post.featuredImage || DEFAULT_BLOG_FALLBACK_IMAGE}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        unoptimized
+                        onError={(e) => {
+                          const target = e.currentTarget as HTMLImageElement;
+                          if (target && target.src !== DEFAULT_BLOG_FALLBACK_IMAGE) {
+                            target.src = DEFAULT_BLOG_FALLBACK_IMAGE;
+                          }
+                        }}
+                      />
+                    </div>
 
                     {/* Category & Read Time Badges */}
                     <div className="flex items-center justify-between text-xs font-semibold">

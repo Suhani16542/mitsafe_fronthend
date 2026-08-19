@@ -45,6 +45,24 @@ function getAdminHeaders(): Record<string, string> {
   return headers;
 }
 
+export const DEFAULT_BLOG_FALLBACK_IMAGE =
+  "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80";
+
+export function getSafeBlogImageUrl(rawUrl?: string): string {
+  if (!rawUrl || typeof rawUrl !== "string") return DEFAULT_BLOG_FALLBACK_IMAGE;
+  const trimmed = rawUrl.trim();
+  if (
+    trimmed.startsWith("blob:") ||
+    trimmed === "" ||
+    trimmed === "undefined" ||
+    trimmed === "null" ||
+    trimmed === "false"
+  ) {
+    return DEFAULT_BLOG_FALLBACK_IMAGE;
+  }
+  return trimmed;
+}
+
 export function formatBlogPost(rawBlog: any): BlogPost {
   if (!rawBlog) return rawBlog;
 
@@ -79,9 +97,7 @@ export function formatBlogPost(rawBlog: any): BlogPost {
       : [],
     author: authorObj,
     readTime: rawBlog.readTime || "5 Min Read",
-    featuredImage:
-      rawBlog.featuredImage ||
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&auto=format&fit=crop&q=80",
+    featuredImage: getSafeBlogImageUrl(rawBlog.featuredImage),
     status: rawBlog.status || "draft",
     isFeatured: Boolean(rawBlog.featured || rawBlog.isFeatured),
     publishedAt: rawBlog.publishedAt ? new Date(rawBlog.publishedAt).toISOString().split("T")[0] : "",
@@ -268,6 +284,7 @@ export async function uploadBlogImage(file: File) {
   try {
     const formData = new FormData();
     formData.append("image", file);
+    formData.append("file", file);
 
     const res = await fetch(endpoint, {
       method: "POST",
@@ -285,16 +302,37 @@ export async function uploadBlogImage(file: File) {
       json = { message: responseText };
     }
 
-    if (!res.ok || !json.success) {
+    if (!res.ok || (json.success === false && !json.imageUrl && !json.data?.imageUrl && !json.data?.url && !json.url)) {
       console.error(`[BlogService Error] POST ${endpoint} returned ${res.status}:`, json);
-      throw new Error(json.message || "Image upload failed");
+      throw new Error(json.message || json.error || "Image upload failed on server.");
+    }
+
+    const permanentImageUrl =
+      json.imageUrl ||
+      json.data?.imageUrl ||
+      json.data?.url ||
+      json.url ||
+      json.data?.secure_url ||
+      json.secure_url ||
+      json.data?.fileUrl ||
+      json.fileUrl;
+
+    const publicId =
+      json.publicId ||
+      json.data?.publicId ||
+      json.data?.id ||
+      json.id ||
+      "";
+
+    if (!permanentImageUrl) {
+      throw new Error(json.message || "Server did not return a valid permanent image URL.");
     }
 
     return {
       success: true,
-      message: json.message,
-      imageUrl: json.imageUrl,
-      publicId: json.publicId,
+      message: json.message || "Image uploaded successfully",
+      imageUrl: permanentImageUrl,
+      publicId: publicId,
     };
   } catch (err: any) {
     console.error(`[BlogService Error] POST ${endpoint} failed:`, {
