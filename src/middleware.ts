@@ -27,7 +27,9 @@ export function middleware(request: NextRequest) {
     if (!isAdminRoot) {
       loginUrl.searchParams.set("from", pathname);
     }
-    return NextResponse.redirect(loginUrl);
+    const response = NextResponse.redirect(loginUrl);
+    response.headers.set("Cache-Control", "no-store, max-age=0, must-revalidate");
+    return response;
   }
 
   // 2. If authenticated admin visits login page, redirect to blogs dashboard

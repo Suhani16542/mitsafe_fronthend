@@ -6,16 +6,24 @@ import AdminSidebar from "@/components/admin/AdminSidebar";
 import AdminHeader from "@/components/admin/AdminHeader";
 import { AdminAuthProvider, useAdminAuth } from "@/context/AdminAuthContext";
 
-function AdminLayoutContent({ children }: { children: React.ReactNode }) {
+function AdminLayoutContent({
+  children,
+  initialAuthenticated,
+}: {
+  children: React.ReactNode;
+  initialAuthenticated?: boolean;
+}) {
   const pathname = usePathname();
   const router = useRouter();
   const { isAuthenticated, isLoading } = useAdminAuth();
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
+  const isLoginPage = pathname === "/admin/login";
+
   // Protection Logic Effect
   useEffect(() => {
     if (!isLoading) {
-      if (pathname === "/admin/login") {
+      if (isLoginPage) {
         if (isAuthenticated) {
           router.replace("/admin/blogs");
         }
@@ -29,10 +37,10 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
         }
       }
     }
-  }, [pathname, isAuthenticated, isLoading, router]);
+  }, [pathname, isLoginPage, isAuthenticated, isLoading, router]);
 
   // If on login route
-  if (pathname === "/admin/login") {
+  if (isLoginPage) {
     if (isLoading) {
       return (
         <div className="min-h-screen bg-slate-50 flex items-center justify-center font-sans">
@@ -61,7 +69,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
   }
 
   // Protected Admin Routes Loading State
-  if (isLoading) {
+  if (isLoading && !initialAuthenticated) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center font-sans">
         <div className="flex flex-col items-center gap-3">
@@ -75,7 +83,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
   }
 
   // If unauthenticated, show transition state while router redirects
-  if (!isAuthenticated) {
+  if (!isAuthenticated && !isLoading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center font-sans">
         <div className="flex flex-col items-center gap-3">
@@ -114,12 +122,16 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
 
 export default function AdminClientLayout({
   children,
+  initialAuthenticated,
 }: {
   children: React.ReactNode;
+  initialAuthenticated?: boolean;
 }) {
   return (
     <AdminAuthProvider>
-      <AdminLayoutContent>{children}</AdminLayoutContent>
+      <AdminLayoutContent initialAuthenticated={initialAuthenticated}>
+        {children}
+      </AdminLayoutContent>
     </AdminAuthProvider>
   );
 }

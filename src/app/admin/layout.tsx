@@ -1,6 +1,10 @@
 import React from "react";
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import AdminClientLayout from "@/components/admin/AdminClientLayout";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
@@ -16,10 +20,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <AdminClientLayout>{children}</AdminClientLayout>;
+  const cookieStore = await cookies();
+  const rawAdminToken = cookieStore.get("mitsafe_admin_token")?.value;
+  const adminToken = rawAdminToken ? decodeURIComponent(rawAdminToken).trim() : "";
+
+  const isAuthenticated = Boolean(
+    adminToken &&
+    adminToken !== "" &&
+    adminToken !== "undefined" &&
+    adminToken !== "null" &&
+    adminToken !== "false"
+  );
+
+  return (
+    <AdminClientLayout initialAuthenticated={isAuthenticated}>
+      {children}
+    </AdminClientLayout>
+  );
 }
