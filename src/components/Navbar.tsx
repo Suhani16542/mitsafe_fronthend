@@ -301,10 +301,10 @@ export default function Navbar() {
       <div className="fixed top-0 left-0 w-full z-50">
 
         {/* 1. Pure White Rectangular Topbar — NO Border Radius on Topbar */}
-        <div className="w-full h-[44px] sm:h-[46px] bg-white border-b border-slate-200/90 px-3 sm:px-8 lg:px-12 flex items-center justify-between pointer-events-auto relative z-20 font-sans text-black">
+        <div className="w-full h-[44px] sm:h-[46px] bg-white border-b border-slate-200/90 px-3 sm:px-8 lg:px-12 flex items-center justify-between gap-3 sm:gap-4 pointer-events-auto relative z-20 font-sans text-black">
 
-          {/* Main Structure: [Email] | [Phone] | [Continuous Word-by-Word Message] [Country Flag + Name Slider] */}
-          <div className="flex items-center gap-2 sm:gap-3.5 lg:gap-4 overflow-hidden">
+          {/* Left Side: Contact Info + Animated Message + Country Selector */}
+          <div className="flex items-center gap-2 sm:gap-3.5 lg:gap-4 shrink-0">
             {/* Email Icon + Email (Optional inline display) */}
             <a
               href="mailto:moderntechnologies12@gmail.com"
@@ -331,7 +331,7 @@ export default function Navbar() {
 
             <div className="hidden sm:block h-3.5 w-[1px] bg-slate-300 shrink-0" />
 
-            {/* 1. Continuous Word-by-Word Animated Message — Fixed container layout space so Country position remains static */}
+            {/* 1. Continuous Word-by-Word Animated Message */}
             <div className="hidden md:inline-flex items-center gap-1.5 text-[13px] sm:text-[13.5px] lg:text-[14px] font-medium text-slate-800 tracking-tight whitespace-nowrap shrink-0">
               {messageWords.map((word, idx) => {
                 const isVisible = idx < wordCount;
@@ -352,8 +352,8 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* 2. Country Flag Icon + Country Name — Fixed position after message space */}
-            <div className="relative h-6 sm:h-7 w-[115px] sm:w-[165px] px-2 sm:px-3.5 rounded-full bg-slate-100/90 border border-slate-200/80 flex items-center justify-center overflow-hidden shrink-0 shadow-2xs ml-1 sm:ml-2.5">
+            {/* 2. Country Flag Icon + Country Name Slider (Positioned forward on the left after Building message) */}
+            <div className="relative h-6 sm:h-7 w-[115px] sm:w-[165px] px-2 sm:px-3.5 rounded-full bg-slate-100/90 border border-slate-200/80 flex items-center justify-center overflow-hidden shrink-0 shadow-2xs">
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.div
                   key={countryIndex}
@@ -376,53 +376,68 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Right Side: Simple Black Social Icons */}
-          <div className="flex items-center gap-2.5 sm:gap-3.5 shrink-0">
-            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-              {/* LinkedIn */}
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-black hover:opacity-75 transition-opacity flex items-center justify-center"
-                title="LinkedIn"
-              >
-                <svg className="w-[17px] h-[17px] sm:w-[18px] sm:h-[18px] fill-current" viewBox="0 0 24 24">
-                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
-                </svg>
-              </a>
-
-              {/* Facebook */}
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-black hover:opacity-75 transition-opacity flex items-center justify-center"
-                title="Facebook"
-              >
-                <svg className="w-[17px] h-[17px] sm:w-[18px] sm:h-[18px] fill-current" viewBox="0 0 24 24">
-                  <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.69c0-2.47 1.47-3.83 3.72-3.83 1.08 0 2.2.19 2.2.19v2.42h-1.24c-1.23 0-1.63.76-1.63 1.54V12h2.72l-.43 3h-2.29v6.8c4.56-.93 8-4.96 8-9.8z" />
-                </svg>
-              </a>
-
-              {/* Instagram */}
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-black hover:opacity-75 transition-opacity flex items-center justify-center"
-                title="Instagram"
-              >
-                <svg className="w-[17px] h-[17px] sm:w-[18px] sm:h-[18px] fill-current" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                </svg>
-              </a>
-            </div>
+          {/* Middle/Right: Smooth continuous scrolling marquee in space between Country Selector and Social Icons */}
+          <div className="hidden lg:flex flex-1 min-w-0 overflow-hidden relative mx-3 xl:mx-6 items-center [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+            <motion.div
+              className="flex gap-10 whitespace-nowrap text-[12.5px] lg:text-[13px] text-slate-400 font-normal select-none tracking-normal shrink-0"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                repeat: Infinity,
+                ease: "linear",
+                duration: 20,
+              }}
+            >
+              <span>Empowering Businesses with Smart Digital Solutions Worldwide</span>
+              <span>Empowering Businesses with Smart Digital Solutions Worldwide</span>
+              <span>Empowering Businesses with Smart Digital Solutions Worldwide</span>
+              <span>Empowering Businesses with Smart Digital Solutions Worldwide</span>
+            </motion.div>
           </div>
 
-        </div>
+          {/* Right Side: Social Icons */}
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/company/modern-technology-indore/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black hover:opacity-75 transition-opacity flex items-center justify-center"
+              title="LinkedIn"
+            >
+              <svg className="w-[20px] h-[20px] sm:w-[23px] sm:h-[23px] fill-current" viewBox="0 0 24 24">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg>
+            </a>
 
-        {/* 2. Floating Navbar directly below Top Bar (Pure White Background #FFFFFF - Zero Shadow) */}
+            {/* Facebook */}
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black hover:opacity-75 transition-opacity flex items-center justify-center"
+              title="Facebook"
+            >
+              <svg className="w-[19px] h-[19px] sm:w-[22px] sm:h-[22px] fill-current" viewBox="0 0 24 24">
+                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.69c0-2.47 1.47-3.83 3.72-3.83 1.08 0 2.2.19 2.2.19v2.42h-1.24c-1.23 0-1.63.76-1.63 1.54V12h2.72l-.43 3h-2.29v6.8c4.56-.93 8-4.96 8-9.8z" />
+              </svg>
+            </a>
+
+            {/* Instagram */}
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-black hover:opacity-75 transition-opacity flex items-center justify-center"
+              title="Instagram"
+            >
+              <svg className="w-[19px] h-[19px] sm:w-[22px] sm:h-[22px] fill-current" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          {/* 2. Floating Navbar directly below Top Bar (Pure White Background #FFFFFF - Zero Shadow) */}
         <div className="w-full flex justify-center pt-2.5 pointer-events-auto">
           <header className="w-[94%] sm:w-[95%] max-w-[1360px] transition-all duration-300 border border-slate-200/80 rounded-2xl sm:rounded-3xl bg-white h-[64px] sm:h-[68px] flex items-center">
             <div className="w-full px-4 sm:px-8 lg:px-10 flex items-center justify-between relative z-10 h-full">

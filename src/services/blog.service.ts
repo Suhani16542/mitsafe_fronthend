@@ -140,6 +140,7 @@ export async function getBlogs(params: FetchBlogsParams = {}) {
         ...getAdminHeaders(),
       },
       next: { revalidate: 30 },
+      signal: AbortSignal.timeout(3500),
     });
 
     const responseText = await res.text();

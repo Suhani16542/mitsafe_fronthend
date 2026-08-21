@@ -48,7 +48,7 @@ export default function Footer() {
   }
   // Social media links in requested order: LinkedIn, Facebook, Instagram, X (Twitter), YouTube
   const socialLinks = [
-    { name: "LinkedIn", icon: LinkedinIcon, url: "https://linkedin.com" },
+    { name: "LinkedIn", icon: LinkedinIcon, url: "https://www.linkedin.com/company/modern-technology-indore/" },
     { name: "Facebook", icon: FacebookIcon, url: "https://facebook.com" },
     { name: "Instagram", icon: InstagramIcon, url: "https://instagram.com" },
     { name: "X (Twitter)", icon: XTwitterIcon, url: "https://x.com" },
@@ -175,15 +175,9 @@ export default function Footer() {
                     <span className="leading-snug">Sector 62, Noida, UP 201301</span>
                   </div>
                 </div>
-                <div className="flex flex-col gap-1 pt-2 border-t border-slate-200/60">
-                  <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-black font-semibold">
-                    <Phone className="w-3.5 h-3.5 text-black shrink-0" />
-                    <span>+91 6265944392</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-black font-semibold truncate">
-                    <Mail className="w-3.5 h-3.5 text-black shrink-0" />
-                    <span className="truncate">india@mitsafe.com</span>
-                  </div>
+                <div className="flex items-center gap-1.5 pt-2 border-t border-slate-200/60 text-xs sm:text-[13px] text-black font-semibold truncate">
+                  <Mail className="w-3.5 h-3.5 text-black shrink-0" />
+                  <span className="truncate">contact@mitsafe.com</span>
                 </div>
               </a>
 
@@ -205,15 +199,9 @@ export default function Footer() {
                     <span className="leading-snug">Business Bay, Dubai, UAE</span>
                   </div>
                 </div>
-                <div className="flex flex-col gap-1 pt-2 border-t border-slate-200/60">
-                  <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-black font-semibold">
-                    <Phone className="w-3.5 h-3.5 text-black shrink-0" />
-                    <span>+971 4 123 4567</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-black font-semibold truncate">
-                    <Mail className="w-3.5 h-3.5 text-black shrink-0" />
-                    <span className="truncate">dubai@mitsafe.com</span>
-                  </div>
+                <div className="flex items-center gap-1.5 pt-2 border-t border-slate-200/60 text-xs sm:text-[13px] text-black font-semibold truncate">
+                  <Mail className="w-3.5 h-3.5 text-black shrink-0" />
+                  <span className="truncate">contact@mitsafe.com</span>
                 </div>
               </a>
 
@@ -235,15 +223,9 @@ export default function Footer() {
                     <span className="leading-snug">100 Pine St, SF, CA 94111</span>
                   </div>
                 </div>
-                <div className="flex flex-col gap-1 pt-2 border-t border-slate-200/60">
-                  <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-black font-semibold">
-                    <Phone className="w-3.5 h-3.5 text-black shrink-0" />
-                    <span>+1 (415) 555-0199</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs sm:text-[13px] text-black font-semibold truncate">
-                    <Mail className="w-3.5 h-3.5 text-black shrink-0" />
-                    <span className="truncate">usa@mitsafe.com</span>
-                  </div>
+                <div className="flex items-center gap-1.5 pt-2 border-t border-slate-200/60 text-xs sm:text-[13px] text-black font-semibold truncate">
+                  <Mail className="w-3.5 h-3.5 text-black shrink-0" />
+                  <span className="truncate">contact@mitsafe.com</span>
                 </div>
               </a>
             </div>

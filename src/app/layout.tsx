@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/lib/lenis-provider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ParticleBackground from "@/components/ParticleBackground";
 import { ThemeProvider } from "@/components/ThemeProvider";
-
+import { ModalProvider } from "@/context/ModalContext";
 import JsonLd from "@/components/JsonLd";
 import { generateOrganizationSchema, generateWebSiteSchema } from "@/lib/jsonld";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mitsafe.com"),
@@ -64,8 +72,6 @@ export const metadata: Metadata = {
   },
 };
 
-import { ModalProvider } from "@/context/ModalContext";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -74,20 +80,24 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="scroll-smooth"
+      className={`${inter.variable} scroll-smooth`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
       style={{
-        ["--font-inter" as any]: "'Inter', sans-serif",
-        ["--font-manrope" as any]: "'Inter', sans-serif",
-        ["--font-outfit" as any]: "'Inter', sans-serif",
-        ["--font-space-grotesk" as any]: "'Inter', sans-serif",
+        ["--font-inter" as any]: "var(--font-inter), 'Inter', sans-serif",
+        ["--font-manrope" as any]: "var(--font-inter), 'Inter', sans-serif",
+        ["--font-outfit" as any]: "var(--font-inter), 'Inter', sans-serif",
+        ["--font-space-grotesk" as any]: "var(--font-inter), 'Inter', sans-serif",
       }}
     >
       <head>
+        {/* Preload primary LCP hero image for instant First Contentful Paint */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
+          rel="preload"
+          as="image"
+          href="/images/hero/light/hero-web-light-png-removebg-preview (1).png"
+          // @ts-ignore
+          fetchPriority="high"
         />
         {/* Inline script to enforce light theme site-wide */}
         <script
@@ -103,7 +113,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-background text-foreground font-sans antialiased selection:bg-[#00D4FF]/20 selection:text-white">
+      <body className={`${inter.className} bg-background text-foreground font-sans antialiased selection:bg-[#00D4FF]/20 selection:text-white`}>
         <JsonLd data={[generateOrganizationSchema(), generateWebSiteSchema()]} />
         <ThemeProvider>
           <ModalProvider>
@@ -121,4 +131,3 @@ export default function RootLayout({
     </html>
   );
 }
-

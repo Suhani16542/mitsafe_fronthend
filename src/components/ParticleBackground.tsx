@@ -176,32 +176,43 @@ export default function ParticleBackground() {
   const [targets, setTargets] = useState<Element[]>([]);
 
   useEffect(() => {
+    // Only run on desktop/pointer devices to preserve mobile performance & battery
+    if (typeof window === "undefined" || window.innerWidth < 768) return;
+
+    let ticking = false;
     const handleMouseMove = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const card = target.closest(
-        ".glow-border-hover, [class*='GlowCard'], [class*='glow-card'], [class*='GlowCardLight'], .portfolio-page-container a > div"
-      );
-      if (!card) return;
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const target = e.target as HTMLElement;
+        if (!target) return;
+        const card = target.closest(
+          ".glow-border-hover, [class*='GlowCard'], [class*='glow-card'], [class*='GlowCardLight'], .portfolio-page-container a > div"
+        );
+        if (!card) return;
 
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-      (card as HTMLElement).style.setProperty("--mouse-x", `${x}px`);
-      (card as HTMLElement).style.setProperty("--mouse-y", `${y}px`);
+        (card as HTMLElement).style.setProperty("--mouse-x", `${x}px`);
+        (card as HTMLElement).style.setProperty("--mouse-y", `${y}px`);
+      });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
   useEffect(() => {
+    if (typeof window === "undefined" || window.innerWidth < 768) return;
+
     let timeoutId: NodeJS.Timeout;
 
     const scanTargets = () => {
-      // Limit particle portals to footer section
       const selectors = "footer";
       const elements = Array.from(document.querySelectorAll(selectors));
       
@@ -214,14 +225,14 @@ export default function ParticleBackground() {
     };
 
     if ("requestIdleCallback" in window) {
-      (window as any).requestIdleCallback(scanTargets);
+      (window as any).requestIdleCallback(scanTargets, { timeout: 2000 });
     } else {
-      setTimeout(scanTargets, 100);
+      setTimeout(scanTargets, 500);
     }
 
     const observer = new MutationObserver(() => {
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(scanTargets, 300);
+      timeoutId = setTimeout(scanTargets, 500);
     });
     observer.observe(document.body, { childList: true, subtree: true });
 

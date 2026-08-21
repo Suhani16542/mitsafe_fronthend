@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Globe,
@@ -149,11 +150,18 @@ export function HeroImage({ service }: { service: HeroService }) {
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-20 w-full max-w-lg"
         >
-          <img
-            src={service.image || "/hero-transparent.png"}
-            alt={`${service.heading} ${service.highlight} - Mitsafe`}
-            className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-500 max-h-[360px] sm:max-h-[400px] lg:max-h-[420px] drop-shadow-[0_12px_24px_rgba(0,0,0,0.06)]"
-          />
+          <div className="relative w-full max-w-lg aspect-[4/3] flex items-center justify-center">
+            <Image
+              src={service.image || "/hero-transparent.png"}
+              alt={`${service.heading} ${service.highlight} - Mitsafe`}
+              width={560}
+              height={420}
+              priority
+              quality={85}
+              sizes="(max-width: 640px) 92vw, (max-width: 1024px) 50vw, 560px"
+              className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-500 max-h-[360px] sm:max-h-[400px] lg:max-h-[420px] drop-shadow-[0_12px_24px_rgba(0,0,0,0.06)]"
+            />
+          </div>
 
           {/* Sub-Image Highlights */}
           <div className="mt-3 flex flex-wrap items-center justify-center gap-2 z-20">
