@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   },
   description:
     "Mitsafe designs futuristic enterprise web platforms, custom AI automation agents, high-speed mobile apps, and robust cloud configurations.",
+  verification: {
+    google: "PASTE_GOOGLE_VERIFICATION_CODE_HERE",
+  },
   alternates: {
     canonical: "/",
   },
