@@ -14,7 +14,6 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -94,14 +93,6 @@ export default function RootLayout({
       }}
     >
       <head>
-        {/* Preload primary LCP hero image for instant First Contentful Paint */}
-        <link
-          rel="preload"
-          as="image"
-          href="/images/hero/light/hero-web-light-png-removebg-preview (1).png"
-          // @ts-ignore
-          fetchPriority="high"
-        />
         {/* Inline script to enforce light theme site-wide */}
         <script
           dangerouslySetInnerHTML={{

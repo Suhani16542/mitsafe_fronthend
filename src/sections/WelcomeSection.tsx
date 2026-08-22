@@ -7,22 +7,22 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 const sliderItems = [
   {
-    image: "/web-app-design-woman.png",
+    image: "/web-app-design-woman.webp",
     title: "Technology is best when it brings people together",
     desc: "We design premium website services & mobile applications that scale and grow."
   },
   {
-    image: "/metro-fintech-mockup.png",
+    image: "/metro-fintech-mockup.webp",
     title: "Fintech solutions that power global commerce",
     desc: "Seamless, secure, and user-centric interfaces for modern financial operations."
   },
   {
-    image: "/pricing-devices-mockup.png",
+    image: "/pricing-devices-mockup.webp",
     title: "Modern interfaces that engage and convert",
     desc: "Crafting digital journeys that turn visitors into loyal clients."
   },
   {
-    image: "/farming-sustainability-mockup.png",
+    image: "/farming-sustainability-mockup.webp",
     title: "Sustainable designs built for tomorrow's world",
     desc: "Merging aesthetic elegance with clean, optimized technical architecture."
   }

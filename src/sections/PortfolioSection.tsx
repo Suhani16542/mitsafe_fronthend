@@ -11,21 +11,21 @@ const caseStudiesRow1 = [
     title: "Metro Fintech",
     category: "Fintech Platform",
     summary: "Branding, layout designing and development for a financial services firm displaying real-time mutual fund charts & SIP calculators.",
-    img: "/metro-fintech-mockup.png",
+    img: "/metro-fintech-mockup.webp",
     slug: "metrofintech-mutual-fund-website-development"
   },
   {
     title: "Farming Sustainability",
     category: "AgriTech Solution",
     summary: "Clean eco-friendly interface design layout mockup for an agricultural sustainability startup with dashboard charts & IoT sensors.",
-    img: "/farming-sustainability-mockup.png",
+    img: "/farming-sustainability-mockup.webp",
     slug: "auro-terra-energy-website-design"
   },
   {
     title: "The Matrimony Portal",
     category: "Social Platform",
     summary: "Custom web development & matrimonial portal design featuring search filters, profile verification & real-time chat.",
-    img: "/wedding-matrimony-mockup.png",
+    img: "/wedding-matrimony-mockup.webp",
     slug: "more-matrimony"
   }
 ];
@@ -35,21 +35,21 @@ const caseStudiesRow2 = [
     title: "HealthPulse AI",
     category: "Healthcare Tech",
     summary: "Intelligent medical analytics platform & patient management dashboard with AI-driven diagnostic insights.",
-    img: "/portfolio_case_4.png",
+    img: "/portfolio_case_4.webp",
     slug: "healthpulse-ai-healthcare-dashboard"
   },
   {
     title: "NexStore Commerce",
     category: "E-Commerce Suite",
     summary: "High-conversion cross-platform mobile shopping app & admin console with instant checkout integrations.",
-    img: "/portfolio_case_5.png",
+    img: "/portfolio_case_5.webp",
     slug: "nexstore-ecommerce-mobile-suite"
   },
   {
     title: "CloudMatrix Ops",
     category: "DevOps & Cloud",
     summary: "Enterprise server management platform offering real-time node monitoring, auto-scaling & security logs.",
-    img: "/portfolio_case_6.png",
+    img: "/portfolio_case_6.webp",
     slug: "cloudmatrix-devops-infrastructure"
   }
 ];

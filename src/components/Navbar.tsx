@@ -446,7 +446,7 @@ export default function Navbar() {
                 {/* Logo (Dead-center vertical alignment) */}
                 <Link href="/" className="flex items-center justify-center shrink-0 h-full group">
                   <Image
-                    src="/image.png"
+                    src="/image.webp"
                     alt="Mitsafe - Enterprise Software & AI Automation"
                     width={260}
                     height={80}
@@ -901,7 +901,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center gap-2">
                     <Image
-                      src="/image_removebg-preview.png"
+                      src="/image_removebg-preview.webp"
                       alt="Mitsafe - Enterprise Software & AI Automation"
                       width={100}
                       height={40}

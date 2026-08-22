@@ -71,7 +71,7 @@ export default function Footer() {
           <div className="lg:col-span-4 xl:col-span-3 flex flex-col gap-4 pr-2 w-full">
             <Link href="/" className="flex items-center gap-3 w-fit">
               <Image
-                src="/image.png"
+                src="/image.webp"
                 alt="Modern Technology Logo"
                 width={320}
                 height={95}

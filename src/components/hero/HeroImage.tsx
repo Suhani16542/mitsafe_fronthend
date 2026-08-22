@@ -121,7 +121,7 @@ export function HeroImage({ service }: { service: HeroService }) {
         return (
           <motion.div
             key={badge.label}
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
             transition={{
               opacity: { duration: 0.4, delay: 0.1 + idx * 0.08 },
@@ -140,11 +140,11 @@ export function HeroImage({ service }: { service: HeroService }) {
       })}
 
       {/* 3D Mockup Image placed directly on background without container box */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={service.id}
           variants={cardVariants}
-          initial="enter"
+          initial={false}
           animate="center"
           exit="exit"
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
@@ -152,7 +152,7 @@ export function HeroImage({ service }: { service: HeroService }) {
         >
           <div className="relative w-full max-w-lg aspect-[4/3] flex items-center justify-center">
             <Image
-              src={service.image || "/hero-transparent.png"}
+              src={service.image || "/hero-transparent.webp"}
               alt={`${service.heading} ${service.highlight} - Mitsafe`}
               width={560}
               height={420}

@@ -9,7 +9,7 @@ export const heroServices: HeroService[] = [
     description:
       "Build fast, scalable, modern websites and web applications tailored to your business requirements with optimal search performance, seamless CMS integration, and responsive cross-device layouts for higher conversions.",
     illustration: "web",
-    image: "/images/hero/light/hero-web-light-png-removebg-preview (1).png",
+    image: "/images/hero/light/hero-web-light-png-removebg-preview (1).webp",
     category: "build",
     primaryCta: { label: "Get Free Consultation", href: "/get-a-quote" },
     secondaryCta: { label: "View Our Work", href: "/portfolio" },
@@ -34,7 +34,7 @@ export const heroServices: HeroService[] = [
     description:
       "Create high-performance Android and iOS mobile applications with intuitive user experiences, smooth animations, and native cloud sync built for maximum user retention and engagement.",
     illustration: "mobile",
-    image: "/images/hero/light/hero-mobile-light-removebg-preview.png",
+    image: "/images/hero/light/hero-mobile-light-removebg-preview.webp",
     category: "build",
     primaryCta: { label: "Start Mobile App", href: "/get-a-quote" },
     secondaryCta: { label: "View App Portfolio", href: "/portfolio" },
@@ -59,7 +59,7 @@ export const heroServices: HeroService[] = [
     description:
       "Design and develop immersive 2D and 3D games across mobile, web, and desktop platforms with high-performance graphics, physics engines, and cross-platform multiplayer support for players worldwide.",
     illustration: "game",
-    image: "/images/hero/light/hero-ai-light-png-removebg-preview.png",
+    image: "/images/hero/light/hero-ai-light-png-removebg-preview.webp",
     category: "build",
     primaryCta: { label: "Build Your Game", href: "/get-a-quote" },
     secondaryCta: { label: "View Games Demo", href: "/portfolio" },
@@ -84,7 +84,7 @@ export const heroServices: HeroService[] = [
     description:
       "Ready-to-deploy Point of Sale (POS) solutions for retail, restaurants, and chains featuring ultra-fast billing, real-time inventory tracking, and automated multi-store cloud sync to streamline daily operations.",
     illustration: "pos",
-    image: "/images/hero/light/hero-ecomerce-light-png-removebg-preview.png",
+    image: "/images/hero/light/hero-ecomerce-light-png-removebg-preview.webp",
     category: "growth",
     primaryCta: { label: "Get POS Demo", href: "/get-a-quote" },
     secondaryCta: { label: "Explore POS Features", href: "/services" },
@@ -109,7 +109,7 @@ export const heroServices: HeroService[] = [
     description:
       "Design clean, modern, user-focused web interfaces, stunning brand logos, and digital marketing creatives. Craft visual experiences that elevate overall brand authority and drive customer engagement.",
     illustration: "uiux",
-    image: "/images/hero/light/hero-uiux-light-removebg-preview.png",
+    image: "/images/hero/light/hero-uiux-light-removebg-preview.webp",
     category: "build",
     primaryCta: { label: "Start Design Project", href: "/get-a-quote" },
     secondaryCta: { label: "View Design Portfolio", href: "/portfolio" },
@@ -134,7 +134,7 @@ export const heroServices: HeroService[] = [
     description:
       "Complete educational management platform for schools and colleges, handling student admissions, fees, HR/payroll, automated exams, and parent mobile app portals for effortless administration.",
     illustration: "school",
-    image: "/images/hero/light/hero-api-light-png-removebg-preview.png",
+    image: "/images/hero/light/hero-api-light-png-removebg-preview.webp",
     category: "infra",
     primaryCta: { label: "Request ERP Demo", href: "/get-a-quote" },
     secondaryCta: { label: "View ERP Modules", href: "/services" },
@@ -159,7 +159,7 @@ export const heroServices: HeroService[] = [
     description:
       "Build customized CRM and enterprise ERP systems to manage customer relationships, sales pipelines, supply chain, automated workflows, and real-time business telemetry for sustainable business growth.",
     illustration: "crm",
-    image: "/images/hero/light/hero-software-light-removebg-preview (1).png",
+    image: "/images/hero/light/hero-software-light-removebg-preview (1).webp",
     category: "growth",
     primaryCta: { label: "Request CRM Demo", href: "/get-a-quote" },
     secondaryCta: { label: "Explore Features", href: "/services" },
@@ -184,7 +184,7 @@ export const heroServices: HeroService[] = [
     description:
       "Develop secure, scalable e-commerce storefronts with smooth shopping cart checkouts, custom payment gateways, and real-time automated inventory management optimized for maximum revenue.",
     illustration: "ecommerce",
-    image: "/images/hero/light/hero-ecomerce-light-png-removebg-preview.png",
+    image: "/images/hero/light/hero-ecomerce-light-png-removebg-preview.webp",
     category: "growth",
     primaryCta: { label: "Build Your Store", href: "/get-a-quote" },
     secondaryCta: { label: "View Solutions", href: "/services" },
@@ -209,7 +209,7 @@ export const heroServices: HeroService[] = [
     description:
       "Grow online search visibility through technical SEO audits, targeted social media ad campaigns, content marketing, and proven conversion-focused growth strategies to expand your customer reach.",
     illustration: "marketing",
-    image: "/images/hero/light/hero-digital-light-png-removebg-preview.png",
+    image: "/images/hero/light/hero-digital-light-png-removebg-preview.webp",
     category: "growth",
     primaryCta: { label: "Grow Online Today", href: "/get-a-quote" },
     secondaryCta: { label: "Marketing Audits", href: "/services" },
@@ -234,7 +234,7 @@ export const heroServices: HeroService[] = [
     description:
       "Develop custom software, multi-tenant SaaS platforms, and enterprise systems that solve complex business operations and scale seamlessly on modern cloud infrastructure with zero downtime.",
     illustration: "software",
-    image: "/images/hero/light/hero-software-light-removebg-preview (1).png",
+    image: "/images/hero/light/hero-software-light-removebg-preview (1).webp",
     category: "build",
     primaryCta: { label: "Build Custom Software", href: "/get-a-quote" },
     secondaryCta: { label: "Enterprise Plans", href: "/services" },

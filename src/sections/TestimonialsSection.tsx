@@ -23,7 +23,7 @@ const testimonials: TestimonialCard[] = [
     name: "Michelle Anne",
     role: "Founder",
     company: "Crazy Delivery",
-    image: "/showcase/app_1.png",
+    image: "/showcase/app_1.webp",
   },
   {
     id: "2",
@@ -34,7 +34,7 @@ const testimonials: TestimonialCard[] = [
     rating: 5,
     quote:
       "I think MITSAFE is passionate enough about what we're doing and really wants to help grow and support that. Our relationship has lasted as long as it has and continues to do so with top craftsmanship.",
-    image: "/showcase/web_1.png",
+    image: "/showcase/web_1.webp",
   },
   {
     id: "3",
@@ -42,7 +42,7 @@ const testimonials: TestimonialCard[] = [
     name: "Gerardin",
     role: "Founder",
     company: "Island Boyz",
-    image: "/showcase/app_2.png",
+    image: "/showcase/app_2.webp",
   },
   {
     id: "4",
@@ -53,7 +53,7 @@ const testimonials: TestimonialCard[] = [
     rating: 5,
     quote:
       "MITSAFE was an excellent partner to work with on the Safecity Mobile app which crowdsources safety data. The team was very attuned to our needs, worked in tandem with our team, and did a quality job.",
-    image: "/showcase/seo_1.png",
+    image: "/showcase/seo_1.webp",
   },
   {
     id: "5",
@@ -64,7 +64,7 @@ const testimonials: TestimonialCard[] = [
     rating: 5,
     quote:
       "I recently had the pleasure of working with Modern Technology for my website design needs. I am beyond impressed with their attention to detail, speed, and overall digital engineering excellence.",
-    image: "/showcase/hosting_1.png",
+    image: "/showcase/hosting_1.webp",
   },
   {
     id: "6",
@@ -75,7 +75,7 @@ const testimonials: TestimonialCard[] = [
     rating: 5,
     quote:
       "Fast response times, clean modular architecture, 99.9% uptime, and 24/7 dedicated cloud engineering support throughout our platform launch and traffic spikes.",
-    image: "/showcase/web_2.png",
+    image: "/showcase/web_2.webp",
   },
 ];
 

@@ -34,11 +34,11 @@ export function HeroContent({
         <span>{service.badge}</span>
       </div>
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={service.id}
           variants={containerVariants}
-          initial="enter"
+          initial={false}
           animate="center"
           exit="exit"
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
