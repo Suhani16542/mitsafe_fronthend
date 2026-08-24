@@ -112,10 +112,10 @@ export default function RootLayout({
         <ThemeProvider>
           <ModalProvider>
             <LenisProvider>
-              <div className="flex flex-col min-h-screen relative w-full max-w-[100vw] overflow-x-clip">
+              <div className="flex flex-col min-h-screen relative w-full max-w-[100vw]">
                 <ParticleBackground />
                 <Navbar />
-                <main className="flex-grow w-full max-w-full overflow-x-clip">{children}</main>
+                <main className="flex-grow w-full max-w-full">{children}</main>
                 <Footer />
               </div>
             </LenisProvider>

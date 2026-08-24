@@ -38,7 +38,7 @@ export default function BlogTableOfContents({
         });
       },
       {
-        rootMargin: "-100px 0% -65% 0%",
+        rootMargin: "-130px 0% -60% 0%",
         threshold: 0,
       }
     );
@@ -56,7 +56,7 @@ export default function BlogTableOfContents({
     if (!el) return;
 
     setActiveId(id);
-    const yOffset = -110;
+    const yOffset = -135;
     const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
     window.scrollTo({ top: y, behavior: "smooth" });

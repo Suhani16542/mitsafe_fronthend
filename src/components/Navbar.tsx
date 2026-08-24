@@ -165,10 +165,12 @@ const countryItems = [
 const messageWords = ["Building", "Digital", "Solutions", "Worldwide"];
 
 import { useModal } from "@/context/ModalContext";
+import ContactWhatsAppModal, { TOPBAR_PHONE_NUMBER } from "./ContactWhatsAppModal";
 
 export default function Navbar() {
   const { openModal } = useModal();
   const { theme, toggleTheme } = useTheme();
+  const [contactModalOpen, setContactModalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
@@ -289,6 +291,7 @@ export default function Navbar() {
     { name: "Industries", href: "#", hasDropdown: true },
     { name: "Portfolio", href: "/portfolio" },
     { name: "Hire Developers", href: "/hire-developers" },
+    { name: "Blog", href: "/blog" },
   ];
 
   if (pathname?.startsWith("/admin")) {
@@ -320,12 +323,12 @@ export default function Navbar() {
 
             {/* Phone Icon + Phone Number */}
             <a
-              href="tel:+916265944392"
+              href={`tel:${TOPBAR_PHONE_NUMBER.replace(/\s+/g, "")}`}
               className="flex items-center gap-1.5 text-black hover:opacity-75 transition-opacity shrink-0"
             >
               <Phone className="w-[15px] h-[15px] sm:w-[17px] sm:h-[17px] text-black shrink-0" />
               <span className="text-[11.5px] sm:text-[14px] font-normal text-black tracking-tight whitespace-nowrap">
-                +91 6265944392
+                {TOPBAR_PHONE_NUMBER}
               </span>
             </a>
 
@@ -440,23 +443,22 @@ export default function Navbar() {
           {/* 2. Floating Navbar directly below Top Bar (Pure White Background #FFFFFF - Zero Shadow) */}
         <div className="w-full flex justify-center pt-2.5 pointer-events-auto">
           <header className="w-[94%] sm:w-[95%] max-w-[1360px] transition-all duration-300 border border-slate-200/80 rounded-2xl sm:rounded-3xl bg-white h-[64px] sm:h-[68px] flex items-center">
-            <div className="w-full px-4 sm:px-8 lg:px-10 flex items-center justify-between relative z-10 h-full">
+            <div className="w-full px-4 sm:px-6 lg:px-6 xl:px-8 flex items-center justify-between relative z-10 h-full">
 
-              <div className="flex items-center gap-[24px] h-full">
-                {/* Logo (Dead-center vertical alignment) */}
-                <Link href="/" className="flex items-center justify-center shrink-0 h-full group">
-                  <Image
-                    src="/image.webp"
-                    alt="Mitsafe - Enterprise Software & AI Automation"
-                    width={260}
-                    height={80}
-                    className="h-[52px] sm:h-[58px] md:h-[62px] max-h-[85%] w-auto object-contain transition-transform duration-300 ease-out group-hover:scale-[1.03] origin-left"
-                    priority
-                  />
-                </Link>
+              {/* Logo (Dead-center vertical alignment on the left) */}
+              <Link href="/" className="flex items-center justify-center shrink-0 h-full group">
+                <Image
+                  src="/image.webp"
+                  alt="Mitsafe - Enterprise Software & AI Automation"
+                  width={240}
+                  height={75}
+                  className="h-[48px] sm:h-[52px] md:h-[56px] max-h-[82%] w-auto object-contain transition-transform duration-300 ease-out group-hover:scale-[1.03] origin-left"
+                  priority
+                />
+              </Link>
 
-                {/* Desktop Nav Links (font-medium instead of bold) */}
-                <nav className="hidden lg:flex items-center gap-4 xl:gap-7 justify-center h-full ml-4 font-sans">
+              {/* Desktop Nav Links (shifted towards Contact Us with equal consistent spacing) */}
+              <nav className="hidden lg:flex items-center justify-end gap-1 xl:gap-2.5 2xl:gap-3.5 h-full ml-auto mr-3 xl:mr-5 font-sans">
                   {navLinks.map((link) => {
                     const isServices = link.name === "Services";
                     const isIndustries = link.name === "Industries";
@@ -465,11 +467,12 @@ export default function Navbar() {
                       pathname === link.href ||
                       (link.name === "Home" && pathname === "/") ||
                       (isServices && pathname.startsWith("/services")) ||
-                      (isIndustries && pathname.startsWith("/industries"));
+                      (isIndustries && pathname.startsWith("/industries")) ||
+                      (link.name === "Blog" && pathname.startsWith("/blog"));
                     return (
                       <div
                         key={link.name}
-                        className="relative group flex items-center py-2 px-1.5 rounded-full h-full"
+                        className="relative group flex items-center py-2 px-0.5 rounded-full h-full"
                         onMouseEnter={() => {
                           setHoveredLink(link.name);
                           if (isServices) {
@@ -493,7 +496,7 @@ export default function Navbar() {
                         {isActive && (
                           <motion.span
                             layoutId="activeNavPill"
-                            className="absolute bottom-2 left-1/2 -translate-x-1/2 w-7 h-[3px] bg-[#305EFF] rounded-full shadow-xs"
+                            className="absolute bottom-2 left-1/2 -translate-x-1/2 w-6 h-[3px] bg-[#305EFF] rounded-full shadow-xs"
                             transition={{ type: "spring", stiffness: 380, damping: 30 }}
                           />
                         )}
@@ -512,7 +515,7 @@ export default function Navbar() {
                                   setServicesDropdownOpen((prev) => !prev);
                                 }
                               }}
-                              className={`font-medium text-[14.5px] tracking-normal transition-all duration-200 flex items-center gap-1 cursor-pointer select-none px-2 py-1.5 relative group/item whitespace-nowrap ${isActive
+                              className={`font-medium text-[13.5px] xl:text-[14px] tracking-normal transition-all duration-200 flex items-center gap-1 cursor-pointer select-none px-2 py-1.5 relative group/item whitespace-nowrap ${isActive
                                 ? "text-[#305EFF]"
                                 : "text-slate-800 hover:text-[#305EFF]"
                                 }`}
@@ -528,13 +531,13 @@ export default function Navbar() {
 
                               {/* Hover Underline effect */}
                               {!isActive && (
-                                <span className="absolute bottom-1.5 left-2 right-2 h-[2px] bg-[#305EFF] scale-x-0 group-hover/item:scale-x-100 transition-transform duration-200 origin-center" />
+                                <span className="absolute bottom-1 left-2 right-2 h-[2px] bg-[#305EFF] scale-x-0 group-hover/item:scale-x-100 transition-transform duration-200 origin-center" />
                               )}
                             </button>
                           ) : (
                             <Link
                               href={link.href}
-                              className={`font-medium text-[14.5px] tracking-normal transition-all duration-200 flex items-center gap-1 cursor-pointer select-none px-2 py-1.5 relative group/item whitespace-nowrap ${isActive
+                              className={`font-medium text-[13.5px] xl:text-[14px] tracking-normal transition-all duration-200 flex items-center gap-1 cursor-pointer select-none px-2 py-1.5 relative group/item whitespace-nowrap ${isActive
                                 ? "text-[#305EFF]"
                                 : "text-slate-800 hover:text-[#305EFF]"
                                 }`}
@@ -542,7 +545,7 @@ export default function Navbar() {
                               <span>{link.name}</span>
                               {/* Hover Underline effect */}
                               {!isActive && (
-                                <span className="absolute bottom-1.5 left-2 right-2 h-[2px] bg-[#305EFF] scale-x-0 group-hover/item:scale-x-100 transition-transform duration-200 origin-center" />
+                                <span className="absolute bottom-1 left-2 right-2 h-[2px] bg-[#305EFF] scale-x-0 group-hover/item:scale-x-100 transition-transform duration-200 origin-center" />
                               )}
                             </Link>
                           )}
@@ -846,17 +849,27 @@ export default function Navbar() {
                     );
                   })}
                 </nav>
-              </div>
 
-              {/* Action Button - font-medium text with smooth lift/scale, right arrow movement and subtle gradient transition */}
-              <div className="flex items-center gap-4">
-                <div className="hidden lg:block">
+              {/* Action Buttons: Contact Us (Secondary Outline) + Get a Quote (Primary Gradient) */}
+              <div className="flex items-center gap-2 xl:gap-2.5">
+                <div className="hidden lg:flex items-center gap-2 xl:gap-2.5">
+                  {/* Secondary Outline: Contact Us */}
                   <button
+                    type="button"
+                    onClick={() => setContactModalOpen(true)}
+                    className="h-[38px] px-3.5 xl:px-4 rounded-full border border-slate-200 hover:border-[#305EFF] bg-white hover:bg-slate-50 text-slate-700 hover:text-[#305EFF] font-medium text-[13px] xl:text-[13.5px] transition-all duration-200 inline-flex items-center justify-center cursor-pointer select-none whitespace-nowrap shadow-2xs"
+                  >
+                    Contact Us
+                  </button>
+
+                  {/* Primary Pill Gradient: Get a Quote */}
+                  <button
+                    type="button"
                     onClick={() => openModal("quote")}
-                    className="group inline-flex items-center gap-2.5 px-6 py-2.5 bg-gradient-to-r from-[#305EFF] via-indigo-600 to-[#305EFF] bg-[length:200%_auto] text-white font-medium text-[14px] rounded-full shadow-xs hover:shadow-md hover:bg-[position:100%_0] transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 cursor-pointer"
+                    className="group h-[38px] inline-flex items-center justify-center gap-2 px-4.5 xl:px-5 bg-gradient-to-r from-[#305EFF] via-indigo-600 to-[#305EFF] bg-[length:200%_auto] text-white font-medium text-[13px] xl:text-[13.5px] rounded-full shadow-xs hover:shadow-md hover:bg-[position:100%_0] transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5 cursor-pointer whitespace-nowrap"
                   >
                     <span>Get a Quote</span>
-                    <ArrowRight className="w-4 h-4 text-white transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
+                    <ArrowRight className="w-3.5 h-3.5 text-white transition-transform duration-300 ease-out group-hover:translate-x-1" />
                   </button>
                 </div>
               </div>
@@ -922,7 +935,8 @@ export default function Navbar() {
                       pathname === link.href ||
                       (link.name === "Home" && pathname === "/") ||
                       (link.name === "Services" && pathname.startsWith("/services")) ||
-                      (link.name === "Industries" && pathname.startsWith("/industries"));
+                      (link.name === "Industries" && pathname.startsWith("/industries")) ||
+                      (link.name === "Blog" && pathname.startsWith("/blog"));
                     return (
                       <div key={link.name}>
                         {link.name === "Services" ? (
@@ -1039,7 +1053,17 @@ export default function Navbar() {
                 </nav>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-[#008FED]/15 dark:border-[rgba(0,212,255,0.15)]">
+              <div className="mt-8 pt-6 border-t border-[#008FED]/15 dark:border-[rgba(0,212,255,0.15)] flex flex-col gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setContactModalOpen(true);
+                  }}
+                  className="w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-200 hover:text-[#008FED] hover:border-[#008FED] text-xs font-bold transition-colors flex items-center justify-center cursor-pointer"
+                >
+                  Contact Us
+                </button>
                 <Button
                   variant="primary"
                   icon={<Send className="w-4 h-4 text-white" />}
@@ -1056,6 +1080,12 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
+
+      {/* WhatsApp Quick Contact Modal */}
+      <ContactWhatsAppModal
+        isOpen={contactModalOpen}
+        onClose={() => setContactModalOpen(false)}
+      />
     </>
   );
 }

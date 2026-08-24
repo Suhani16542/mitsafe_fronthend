@@ -4,10 +4,6 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/components/hero/Hero";
 import JsonLd from "@/components/JsonLd";
 import { generateFaqSchema } from "@/lib/jsonld";
-import { getBlogs } from "@/services/blog.service";
-import { BlogPost } from "@/types/adminBlog";
-
-export const revalidate = 30;
 
 export const metadata: Metadata = {
   title: "Mitsafe | Software Development Company & Digital Marketing Agency",
@@ -90,26 +86,8 @@ const FAQSection = dynamic(() => import("@/sections/FAQSection"));
 const PortfolioSection = dynamic(() => import("@/sections/PortfolioSection"));
 const MovingCrossStripSection = dynamic(() => import("@/sections/MovingCrossStripSection"));
 const TestimonialsSection = dynamic(() => import("@/sections/TestimonialsSection"));
-const BlogSection = dynamic(() => import("@/sections/BlogSection"));
 
-export default async function Home() {
-  let initialPublishedBlogs: BlogPost[] = [];
-
-  try {
-    const res = await getBlogs({ status: "published", limit: 6, sort: "-publishedAt -createdAt" });
-    if (res.success && Array.isArray(res.data)) {
-      initialPublishedBlogs = res.data
-        .filter((b: BlogPost) => b.status === "published")
-        .sort((a: BlogPost, b: BlogPost) => {
-          const timeA = new Date(a.publishedAt || a.createdAt || 0).getTime();
-          const timeB = new Date(b.publishedAt || b.createdAt || 0).getTime();
-          return timeB - timeA;
-        });
-    }
-  } catch (err) {
-    console.error("Failed to SSR fetch published blogs on Home Page:", err);
-  }
-
+export default function Home() {
   return (
     <div className="cosmic-home-wrapper relative w-full">
       <JsonLd data={generateFaqSchema(homeFaqs)} />
@@ -123,7 +101,6 @@ export default async function Home() {
       <PortfolioSection />
       <MovingCrossStripSection />
       <TestimonialsSection />
-      <BlogSection initialPosts={initialPublishedBlogs} />
     </div>
   );
 }

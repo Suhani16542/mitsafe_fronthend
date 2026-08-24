@@ -236,8 +236,8 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
   };
 
   return (
-    <div className="bg-white dark:bg-[#071426] min-h-screen pt-28 sm:pt-32 pb-24 text-[#0F172A] dark:text-white transition-colors duration-300 font-sans">
-      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+    <div className="bg-white dark:bg-[#071426] min-h-screen pt-36 sm:pt-40 pb-24 text-[#0F172A] dark:text-white transition-colors duration-300 font-sans">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         
         {/* ═══════════════════════════════════════════════════════════════════
             TOP SECTION:
@@ -333,18 +333,18 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
             MAIN 3-COLUMN CONTENT SECTION:
             [ LEFT: TABLE OF CONTENT ] | [ CENTER: FEATURED IMAGE + ARTICLE ] | [ RIGHT: QUOTE FORM ]
            ═══════════════════════════════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
           
           {/* ─────────────────────────────────────────────────────────────
-              COLUMN 1 (LEFT): TABLE OF CONTENT (Sticky Desktop, 220–250px)
+              COLUMN 1 (LEFT): TABLE OF CONTENT (Sticky Desktop, 240–280px)
              ───────────────────────────────────────────────────────────── */}
-          <div className="hidden lg:block lg:col-span-3 sticky top-28 space-y-4">
+          <aside className="hidden lg:flex lg:flex-col lg:col-span-3 sticky top-[132px] self-start max-h-[calc(100vh-148px)] overflow-y-auto hide-scrollbar space-y-4 pr-1 z-20">
             <BlogTableOfContents items={tocItems} />
 
             {/* Back to All Articles link */}
             <Link
               href="/blog"
-              className="w-full py-2.5 px-4 rounded-2xl bg-white dark:bg-[#0B1A2E] border border-slate-200 dark:border-white/10 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-[#305EFF] hover:border-[#305EFF] transition-all flex items-center justify-between group"
+              className="w-full py-2.5 px-4 rounded-2xl bg-white dark:bg-[#0B1A2E] border border-slate-200 dark:border-white/10 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-[#305EFF] hover:border-[#305EFF] transition-all flex items-center justify-between group shadow-2xs shrink-0"
             >
               <span className="flex items-center gap-2">
                 <ArrowLeft className="w-4 h-4 text-slate-400 group-hover:-translate-x-1 group-hover:text-[#305EFF] transition-transform" />
@@ -352,10 +352,10 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
               </span>
               <span className="text-[10px] uppercase font-mono text-slate-400">Back</span>
             </Link>
-          </div>
+          </aside>
 
           {/* ─────────────────────────────────────────────────────────────
-              COLUMN 2 (CENTER): FEATURED IMAGE + FULL ARTICLE CONTENT (650–760px)
+              COLUMN 2 (CENTER): FEATURED IMAGE + FULL ARTICLE CONTENT (Main Scrolling Column)
              ───────────────────────────────────────────────────────────── */}
           <main className="lg:col-span-6 w-full min-w-0 space-y-8 text-left">
             
@@ -408,9 +408,9 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
               <div
                 dangerouslySetInnerHTML={{ __html: processedContent }}
                 className="flex flex-col gap-6
-                  [&>h2]:font-display [&>h2]:text-[24px] [&>h2]:sm:text-[28px] [&>h2]:font-black [&>h2]:text-[#0F172A] [&>h2]:dark:text-white [&>h2]:mt-10 [&>h2]:mb-3 [&>h2]:border-l-4 [&>h2]:border-[#305EFF] [&>h2]:pl-4 [&>h2]:tracking-tight [&>h2]:scroll-mt-28
-                  [&>h3]:font-display [&>h3]:text-[20px] [&>h3]:sm:text-[22px] [&>h3]:font-extrabold [&>h3]:text-[#0F172A] [&>h3]:dark:text-white [&>h3]:mt-8 [&>h3]:mb-2 [&>h3]:scroll-mt-28
-                  [&>h4]:font-display [&>h4]:text-[17px] [&>h4]:font-bold [&>h4]:text-[#0F172A] [&>h4]:dark:text-white [&>h4]:mt-6 [&>h4]:mb-2 [&>h4]:scroll-mt-28
+                  [&>h2]:font-display [&>h2]:text-[24px] [&>h2]:sm:text-[28px] [&>h2]:font-black [&>h2]:text-[#0F172A] [&>h2]:dark:text-white [&>h2]:mt-10 [&>h2]:mb-3 [&>h2]:border-l-4 [&>h2]:border-[#305EFF] [&>h2]:pl-4 [&>h2]:tracking-tight [&>h2]:scroll-mt-36
+                  [&>h3]:font-display [&>h3]:text-[20px] [&>h3]:sm:text-[22px] [&>h3]:font-extrabold [&>h3]:text-[#0F172A] [&>h3]:dark:text-white [&>h3]:mt-8 [&>h3]:mb-2 [&>h3]:scroll-mt-36
+                  [&>h4]:font-display [&>h4]:text-[17px] [&>h4]:font-bold [&>h4]:text-[#0F172A] [&>h4]:dark:text-white [&>h4]:mt-6 [&>h4]:mb-2 [&>h4]:scroll-mt-36
                   [&>h2:empty]:hidden [&>h3:empty]:hidden [&>h4:empty]:hidden [&>p:empty]:hidden
                   [&>p]:text-slate-700 [&>p]:dark:text-slate-300 [&>p]:text-[17px] [&>p]:sm:text-[18px] [&>p]:leading-[1.75] [&>p]:mb-3 [&>p]:font-normal
                   [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&>ul]:text-slate-700 [&>ul]:dark:text-slate-300 [&>ul]:text-[17px] [&>ul]:mb-4
@@ -529,11 +529,11 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
           </main>
 
           {/* ─────────────────────────────────────────────────────────────
-              COLUMN 3 (RIGHT): QUOTE FORM STICKY SIDEBAR (280–320px)
+              COLUMN 3 (RIGHT): QUOTE FORM STICKY SIDEBAR (Sticky Desktop, 280–320px)
              ───────────────────────────────────────────────────────────── */}
-          <div className="hidden lg:block lg:col-span-3 sticky top-28 space-y-6">
+          <aside className="hidden lg:block lg:col-span-3 sticky top-[132px] self-start max-h-[calc(100vh-148px)] overflow-y-auto hide-scrollbar space-y-6 z-20">
             <BlogQuoteSidebar postTitle={post.title} />
-          </div>
+          </aside>
 
         </div>
 

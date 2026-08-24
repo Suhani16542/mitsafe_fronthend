@@ -17,16 +17,26 @@ export default function BlogListClient() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function loadPublicBlogs() {
-      setIsLoading(true);
+    let isMounted = true;
+
+    async function loadPublicBlogs(attempt = 1) {
+      if (attempt === 1) setIsLoading(true);
       try {
         const [blogsRes, catRes] = await Promise.allSettled([
           getBlogs({ status: "published", limit: 100 }),
           getCategories(),
         ]);
 
+        if (!isMounted) return;
+
         if (blogsRes.status === "fulfilled" && blogsRes.value.success) {
           setPosts(blogsRes.value.data);
+        } else if (attempt < 2) {
+          // If first attempt failed due to sleeping backend, retry once after short pause
+          setTimeout(() => {
+            if (isMounted) loadPublicBlogs(attempt + 1);
+          }, 1500);
+          return;
         }
 
         if (catRes.status === "fulfilled" && catRes.value.success) {
@@ -35,11 +45,18 @@ export default function BlogListClient() {
       } catch (err) {
         console.error("Failed to load public blog directory:", err);
       } finally {
-        setIsLoading(false);
+        if (isMounted && attempt >= 2) {
+          setIsLoading(false);
+        } else if (isMounted) {
+          setIsLoading(false);
+        }
       }
     }
 
     loadPublicBlogs();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const filteredPosts = posts.filter((post) => {
@@ -125,12 +142,26 @@ export default function BlogListClient() {
                   ? post.author
                   : post.author?.name || "Mitsafe Team";
 
+              const displayDate = post.publishedAt
+                ? new Date(post.publishedAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })
+                : post.createdAt
+                ? new Date(post.createdAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })
+                : null;
+
               return (
                 <div
                   key={post.slug || post.id}
                   className="bg-white dark:bg-[#0B1A2E] rounded-3xl border border-slate-200/80 dark:border-white/10 p-5 sm:p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group h-full"
                 >
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-3.5">
                     {/* Featured Image */}
                     <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-100 dark:border-white/5">
                       <Image
@@ -163,6 +194,14 @@ export default function BlogListClient() {
                     <h3 className="font-display text-lg sm:text-xl font-extrabold text-[#0F172A] dark:text-white group-hover:text-[#305EFF] transition-colors leading-snug">
                       <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                     </h3>
+
+                    {/* Date */}
+                    {displayDate && (
+                      <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-400">
+                        <Calendar className="w-3.5 h-3.5 text-[#305EFF]" />
+                        <span>{displayDate}</span>
+                      </div>
+                    )}
                     
                     {/* Excerpt */}
                     <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-350 leading-relaxed line-clamp-3 font-normal">
