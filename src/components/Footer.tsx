@@ -158,7 +158,7 @@ export default function Footer() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mt-2 w-full items-stretch">
               <a
-                href="https://www.google.com/maps/search/Sector+62,+Noida,+UP+201301"
+                href="https://www.google.com/maps/search/202+Business+Island,+Nipaniya,+Indore,+452010"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white border border-slate-200 rounded-2xl p-3.5 flex flex-col justify-between h-full gap-2 hover:border-slate-350 transition-all duration-300 group/card w-full text-black hover:text-black"
@@ -172,7 +172,7 @@ export default function Footer() {
                   </div>
                   <div className="flex items-start gap-1.5 text-xs sm:text-[13px] text-black font-semibold mt-0.5">
                     <MapPin className="w-3.5 h-3.5 text-black shrink-0 mt-0.5" />
-                    <span className="leading-snug">Sector 62, Noida, UP 201301</span>
+                    <span className="leading-snug">202 Business Island, Nipaniya, Indore, 452010</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5 pt-2 border-t border-slate-200/60 text-xs sm:text-[13px] text-black font-semibold truncate">
