@@ -9,13 +9,26 @@ import { getStoredAdminToken } from "./admin.service";
  * 3. Fallback: https://mitsafe-backend.onrender.com
  */
 export function getApiBaseUrl(): string {
-  // 1. Read NEXT_PUBLIC_API_URL (injected at build time, accessible in browser and server)
+  // 1. Browser runtime: If running on localhost / 127.0.0.1, prioritize local backend (http://localhost:5000)
+  if (typeof window !== "undefined") {
+    const hostname = window.location.hostname;
+    const isLocalhost = hostname === "localhost" || hostname === "127.0.0.1";
+    if (isLocalhost) {
+      const publicApiUrl = process.env.NEXT_PUBLIC_API_URL?.trim().replace(/\/+$/, "");
+      if (publicApiUrl && (publicApiUrl.includes("localhost") || publicApiUrl.includes("127.0.0.1"))) {
+        return publicApiUrl;
+      }
+      return "http://localhost:5000";
+    }
+  }
+
+  // 2. Read NEXT_PUBLIC_API_URL (injected at build time, accessible in browser and server)
   const publicApiUrl = process.env.NEXT_PUBLIC_API_URL?.trim().replace(/\/+$/, "");
   if (publicApiUrl) {
     return publicApiUrl;
   }
 
-  // 2. Server-side only (Node.js runtime): Fall back to BACKEND_API_URL
+  // 3. Server-side only (Node.js runtime): Fall back to BACKEND_API_URL
   if (typeof window === "undefined") {
     const backendApiUrl = process.env.BACKEND_API_URL?.trim().replace(/\/+$/, "");
     if (backendApiUrl) {
@@ -23,7 +36,7 @@ export function getApiBaseUrl(): string {
     }
   }
 
-  // 3. Client & Server fallback: Production Render backend
+  // 4. Client & Server fallback: Production Render backend
   return "https://mitsafe-backend.onrender.com";
 }
 
@@ -232,7 +245,7 @@ export async function getCategories() {
       headers: {
         ...getAdminHeaders(),
       },
-      next: { revalidate: 60 },
+      cache: "no-store",
     });
 
     const responseText = await res.text();
@@ -248,14 +261,23 @@ export async function getCategories() {
       throw new Error(json.message || "Failed to fetch categories");
     }
 
+    let categoryNames: string[] = [];
+    if (Array.isArray(json.data)) {
+      categoryNames = json.data
+        .map((item: any) => {
+          if (typeof item === "string") return item.trim();
+          if (typeof item === "object" && item !== null && item.name) {
+            if (item.status && item.status !== "active") return null;
+            return String(item.name).trim();
+          }
+          return null;
+        })
+        .filter((cat: any): cat is string => Boolean(cat && typeof cat === "string" && cat.length > 0));
+    }
+
     return {
       success: true,
-      data: json.data || [
-        "Technology",
-        "AI & Automation",
-        "Cloud & Security",
-        "Software Engineering",
-      ],
+      data: categoryNames,
     };
   } catch (err: any) {
     console.error(`[BlogService Error] GET ${endpoint} failed:`, {
@@ -264,13 +286,9 @@ export async function getCategories() {
       errorMessage: err.message,
     });
     return {
-      success: true,
-      data: [
-        "Technology",
-        "AI & Automation",
-        "Cloud & Security",
-        "Software Engineering",
-      ],
+      success: false,
+      data: [] as string[],
+      error: err.message || "Failed to load categories from server",
     };
   }
 }

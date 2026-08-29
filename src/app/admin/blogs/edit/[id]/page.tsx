@@ -42,13 +42,8 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
   const [keywords, setKeywords] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [content, setContent] = useState("");
-  const [category, setCategory] = useState("Technology");
-  const [categoriesOptions, setCategoriesOptions] = useState<string[]>([
-    "Technology",
-    "AI & Automation",
-    "Cloud & Security",
-    "Software Engineering",
-  ]);
+  const [category, setCategory] = useState("");
+  const [categoriesOptions, setCategoriesOptions] = useState<string[]>([]);
   const [tagsInput, setTagsInput] = useState("");
   const [authorName, setAuthorName] = useState("Mitsafe Team");
   const [readTime, setReadTime] = useState("5 Min Read");
@@ -78,8 +73,10 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
           getCategories(),
         ]);
 
+        let fetchedCats: string[] = [];
         if (catRes.status === "fulfilled" && catRes.value.success) {
-          setCategoriesOptions(catRes.value.data);
+          fetchedCats = catRes.value.data;
+          setCategoriesOptions(fetchedCats);
         }
 
         if (blogsRes.status === "fulfilled" && blogsRes.value.success) {
@@ -94,6 +91,9 @@ export default function EditBlogPage({ params }: EditBlogPageProps) {
             setExcerpt(target.excerpt);
             setContent(target.content);
             setCategory(target.category);
+            if (target.category && !fetchedCats.includes(target.category)) {
+              setCategoriesOptions((prev) => [target.category, ...prev]);
+            }
             setTagsInput(Array.isArray(target.tags) ? target.tags.join(", ") : "");
             setAuthorName(
               typeof target.author === "string"

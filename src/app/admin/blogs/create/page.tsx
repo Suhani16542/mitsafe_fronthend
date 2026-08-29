@@ -37,13 +37,10 @@ export default function CreateBlogPage() {
   const [content, setContent] = useState(
     "<h2>Introduction</h2>\n<p>Start writing your groundbreaking article content here...</p>"
   );
-  const [category, setCategory] = useState("Technology");
-  const [categoriesOptions, setCategoriesOptions] = useState<string[]>([
-    "Technology",
-    "AI & Automation",
-    "Cloud & Security",
-    "Software Engineering",
-  ]);
+  const [category, setCategory] = useState("");
+  const [categoriesOptions, setCategoriesOptions] = useState<string[]>([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+  const [categoryError, setCategoryError] = useState("");
   const [tagsInput, setTagsInput] = useState("AI, Next.js, Engineering");
   const [authorName, setAuthorName] = useState("Mitsafe Team");
   const [readTime, setReadTime] = useState("5 Min Read");
@@ -63,17 +60,24 @@ export default function CreateBlogPage() {
   const [successToast, setSuccessToast] = useState("");
   const [errorToast, setErrorToast] = useState("");
 
-  // Load categories from API on mount
+  // Load categories dynamically from API on mount
   useEffect(() => {
     async function loadCategories() {
+      setIsLoadingCategories(true);
+      setCategoryError("");
       try {
         const res = await getCategories();
         if (res.success && res.data.length > 0) {
           setCategoriesOptions(res.data);
-          setCategory(res.data[0]);
+          setCategory((prev) => (prev && res.data.includes(prev) ? prev : res.data[0]));
+        } else if (res.data && res.data.length === 0) {
+          setCategoryError("No active categories found on server.");
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("Failed to load categories:", err);
+        setCategoryError(err.message || "Failed to load categories.");
+      } finally {
+        setIsLoadingCategories(false);
       }
     }
     loadCategories();
@@ -167,6 +171,11 @@ export default function CreateBlogPage() {
     }
     if (!content.trim()) {
       setErrorToast("Please enter Blog Body Content.");
+      setTimeout(() => setErrorToast(""), 4000);
+      return;
+    }
+    if (!category.trim()) {
+      setErrorToast("Please select a Category for the blog post.");
       setTimeout(() => setErrorToast(""), 4000);
       return;
     }
@@ -422,21 +431,42 @@ export default function CreateBlogPage() {
 
             {/* Category Selector */}
             <div>
-              <label className="block text-xs font-bold text-slate-800 mb-1.5 flex items-center gap-1.5">
-                <FolderTree className="w-3.5 h-3.5 text-[#305EFF]" />
-                <span>Category</span>
-              </label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-bold text-slate-800 flex items-center gap-1.5">
+                  <FolderTree className="w-3.5 h-3.5 text-[#305EFF]" />
+                  <span>Category</span>
+                  <span className="text-[#305EFF]">*</span>
+                </label>
+                {isLoadingCategories && (
+                  <span className="text-[10px] text-slate-400 font-medium flex items-center gap-1">
+                    <Loader2 className="w-3 h-3 animate-spin text-[#305EFF]" />
+                    <span>Loading...</span>
+                  </span>
+                )}
+              </div>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-2xl border border-slate-200 text-xs font-bold text-slate-800 bg-slate-50/70 focus:outline-none focus:border-[#305EFF] cursor-pointer"
+                disabled={isLoadingCategories || categoriesOptions.length === 0}
+                className="w-full px-3.5 py-2.5 rounded-2xl border border-slate-200 text-xs font-bold text-slate-800 bg-slate-50/70 focus:outline-none focus:border-[#305EFF] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {categoriesOptions.map((cat, idx) => (
-                  <option key={idx} value={cat}>
-                    {cat}
-                  </option>
-                ))}
+                {isLoadingCategories ? (
+                  <option value="">Loading active categories...</option>
+                ) : categoriesOptions.length === 0 ? (
+                  <option value="">No categories available</option>
+                ) : (
+                  categoriesOptions.map((cat, idx) => (
+                    <option key={idx} value={cat}>
+                      {cat}
+                    </option>
+                  ))
+                )}
               </select>
+              {categoryError && (
+                <p className="text-[11px] text-red-500 font-medium mt-1">
+                  {categoryError}
+                </p>
+              )}
             </div>
 
             {/* Featured Toggle */}

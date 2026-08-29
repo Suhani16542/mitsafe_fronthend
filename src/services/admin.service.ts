@@ -2,11 +2,24 @@ export const ADMIN_AUTH_COOKIE_NAME = "mitsafe_admin_token";
 export const ADMIN_USER_STORAGE_KEY = "mitsafe_admin_user";
 export const ADMIN_TOKEN_STORAGE_KEY = "mitsafe_admin_token";
 
-const API_BASE_URL = (
-  process.env.NEXT_PUBLIC_API_URL || "https://mitsafe-backend.onrender.com"
-).trim().replace(/\/+$/, "");
+export function getAdminApiBaseUrl(): string {
+  if (typeof window !== "undefined") {
+    const hostname = window.location.hostname;
+    const isLocalhost = hostname === "localhost" || hostname === "127.0.0.1";
+    if (isLocalhost) {
+      const publicApiUrl = process.env.NEXT_PUBLIC_API_URL?.trim().replace(/\/+$/, "");
+      if (publicApiUrl && (publicApiUrl.includes("localhost") || publicApiUrl.includes("127.0.0.1"))) {
+        return `${publicApiUrl}/api/v1/admin`;
+      }
+      return "http://localhost:5000/api/v1/admin";
+    }
+  }
 
-const ADMIN_API_BASE_URL = `${API_BASE_URL}/api/v1/admin`;
+  const base = (
+    process.env.NEXT_PUBLIC_API_URL || "https://mitsafe-backend.onrender.com"
+  ).trim().replace(/\/+$/, "");
+  return `${base}/api/v1/admin`;
+}
 
 export interface AdminUser {
   id?: string;
@@ -140,7 +153,8 @@ export function clearStoredAdminData(): void {
 export async function adminLoginApi(email: string, password: string): Promise<AdminLoginResponse> {
   try {
     const formattedEmail = email.trim().toLowerCase();
-    const res = await fetch(`${ADMIN_API_BASE_URL}/login`, {
+    const adminBase = getAdminApiBaseUrl();
+    const res = await fetch(`${adminBase}/login`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -236,7 +250,8 @@ export async function adminCheckSessionApi(): Promise<{
       Authorization: `Bearer ${token}`,
     };
 
-    const res = await fetch(`${ADMIN_API_BASE_URL}/me`, {
+    const adminBase = getAdminApiBaseUrl();
+    const res = await fetch(`${adminBase}/me`, {
       method: "GET",
       credentials: "include",
       headers,
@@ -293,7 +308,8 @@ export async function adminLogoutApi(): Promise<boolean> {
       headers["Authorization"] = `Bearer ${token}`;
     }
 
-    await fetch(`${ADMIN_API_BASE_URL}/logout`, {
+    const adminBase = getAdminApiBaseUrl();
+    await fetch(`${adminBase}/logout`, {
       method: "POST",
       credentials: "include",
       headers,
