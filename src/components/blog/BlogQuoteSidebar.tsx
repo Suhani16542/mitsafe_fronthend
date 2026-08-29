@@ -115,7 +115,7 @@ export default function BlogQuoteSidebar({ postTitle }: BlogQuoteSidebarProps) {
               Request Received!
             </h4>
             <p className="text-xs text-emerald-700 dark:text-emerald-300 mt-1 leading-relaxed">
-              Our engineering team will review your project and get back to you shortly.
+              Our support team will review your request and get back to you shortly.
             </p>
           </div>
           <button

@@ -396,7 +396,7 @@ export default function ConsultationModal({
                         </div>
                         <h3 className="text-lg font-extrabold text-slate-900 mb-1 font-display">Request Received!</h3>
                         <p className="text-xs text-slate-600 mb-4 max-w-xs leading-relaxed font-normal">
-                          Thank you for reaching out. Our engineering team will review your details and contact you shortly.
+                          Our support team will review your request and get back to you shortly.
                         </p>
                         <button
                           onClick={onClose}
