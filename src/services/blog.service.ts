@@ -20,23 +20,32 @@ export function getApiBaseUrl(): string {
       }
       return "http://localhost:5000";
     }
+    const publicApiUrl = process.env.NEXT_PUBLIC_API_URL?.trim().replace(/\/+$/, "");
+    if (publicApiUrl) {
+      return publicApiUrl;
+    }
+    return "https://mitsafe-backend.onrender.com";
   }
 
-  // 2. Read NEXT_PUBLIC_API_URL (injected at build time, accessible in browser and server)
+  // 2. Server-side runtime (Node.js / Next.js sitemap, SSR, API routes):
+  // Check BACKEND_API_URL first (specifically for server-to-backend communication in local/staging/prod)
+  const backendApiUrl = process.env.BACKEND_API_URL?.trim().replace(/\/+$/, "");
+  if (backendApiUrl) {
+    return backendApiUrl;
+  }
+
+  // Check NEXT_PUBLIC_API_URL next
   const publicApiUrl = process.env.NEXT_PUBLIC_API_URL?.trim().replace(/\/+$/, "");
   if (publicApiUrl) {
     return publicApiUrl;
   }
 
-  // 3. Server-side only (Node.js runtime): Fall back to BACKEND_API_URL
-  if (typeof window === "undefined") {
-    const backendApiUrl = process.env.BACKEND_API_URL?.trim().replace(/\/+$/, "");
-    if (backendApiUrl) {
-      return backendApiUrl;
-    }
+  // In development, default to local backend
+  if (process.env.NODE_ENV === "development") {
+    return "http://localhost:5000";
   }
 
-  // 4. Client & Server fallback: Production Render backend
+  // Production fallback
   return "https://mitsafe-backend.onrender.com";
 }
 
@@ -132,7 +141,7 @@ export interface FetchBlogsParams {
 /**
  * Fetch blogs list (supports page, limit, category, featured, search, sort, status)
  */
-export async function getBlogs(params: FetchBlogsParams = {}) {
+export async function getBlogs(params: FetchBlogsParams = {}, options: RequestInit = {}) {
   const BASE_URL = getApiBaseUrl();
   const query = new URLSearchParams();
 
@@ -151,9 +160,11 @@ export async function getBlogs(params: FetchBlogsParams = {}) {
       method: "GET",
       headers: {
         ...getAdminHeaders(),
+        ...(options.headers || {}),
       },
-      next: { revalidate: 30 },
-      signal: AbortSignal.timeout(15000),
+      next: options.next !== undefined ? options.next : { revalidate: 30 },
+      ...(options.cache ? { cache: options.cache } : {}),
+      signal: options.signal || AbortSignal.timeout(15000),
     });
 
     const responseText = await res.text();
@@ -186,6 +197,50 @@ export async function getBlogs(params: FetchBlogsParams = {}) {
       errorMessage: err.message,
     });
     throw err;
+  }
+}
+
+/**
+ * Fetch all published blogs for sitemap generation
+ */
+export async function getAllPublishedBlogs(): Promise<{ slug: string; updatedAt?: string }[]> {
+  try {
+    const firstPage = await getBlogs(
+      { status: "published", limit: 100, page: 1 },
+      { cache: "no-store" }
+    );
+
+    if (!firstPage.success || !Array.isArray(firstPage.data)) {
+      return [];
+    }
+
+    const allPosts = [...firstPage.data];
+    const totalPages = firstPage.totalPages || 1;
+
+    if (totalPages > 1) {
+      const pagePromises = [];
+      for (let p = 2; p <= totalPages; p++) {
+        pagePromises.push(
+          getBlogs({ status: "published", limit: 100, page: p }, { cache: "no-store" })
+            .then((res) => (res.success && Array.isArray(res.data) ? res.data : []))
+            .catch(() => [])
+        );
+      }
+      const restPages = await Promise.all(pagePromises);
+      restPages.forEach((pageData) => {
+        allPosts.push(...pageData);
+      });
+    }
+
+    return allPosts
+      .filter((post) => post && post.slug && typeof post.slug === "string" && post.slug.trim())
+      .map((post) => ({
+        slug: post.slug.trim(),
+        updatedAt: (post as any).updatedAt || post.publishedAt || post.createdAt || undefined,
+      }));
+  } catch (err) {
+    console.error("[BlogService] Failed to fetch all published blogs for sitemap:", err);
+    return [];
   }
 }
 

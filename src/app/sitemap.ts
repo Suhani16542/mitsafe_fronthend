@@ -3,12 +3,14 @@ import { servicesData } from "@/data/services";
 import { portfolioData } from "@/data/portfolio";
 import { rolesData } from "@/data/roles";
 import { navbarIndustriesData } from "@/data/industriesDataNavbar";
-import { getBlogs } from "@/services/blog.service";
+import { getAllPublishedBlogs } from "@/services/blog.service";
 
-import type { BlogPost } from "@/types/adminBlog";
+// Ensure sitemap is dynamically generated on-demand so new published blogs are immediately reflected
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://mitsafe.com";
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://mitsafe.com").replace(/\/+$/, "");
   const lastModified = new Date();
 
   // 1. Core static indexable pages
@@ -114,25 +116,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // 6. Dynamic blog articles (Fetch live published posts from backend API)
-  let dynamicBlogSlugs: { slug: string; updatedAt?: string }[] = [];
+  let blogRoutes: MetadataRoute.Sitemap = [];
   try {
-    const liveBlogsRes = await getBlogs({ status: "published", limit: 100 });
-    if (liveBlogsRes.success && liveBlogsRes.data && liveBlogsRes.data.length > 0) {
-      dynamicBlogSlugs = liveBlogsRes.data.map((post: BlogPost) => ({
-        slug: post.slug,
-        updatedAt: post.publishedAt || post.createdAt,
-      }));
-    }
+    const publishedBlogs = await getAllPublishedBlogs();
+    blogRoutes = publishedBlogs.map((post) => {
+      let parsedDate = lastModified;
+      if (post.updatedAt) {
+        const d = new Date(post.updatedAt);
+        if (!isNaN(d.getTime())) {
+          parsedDate = d;
+        }
+      }
+
+      const cleanSlug = post.slug.replace(/^\/+/, "");
+      return {
+        url: `${baseUrl}/blog/${cleanSlug}`,
+        lastModified: parsedDate,
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+      };
+    });
   } catch (err) {
     console.error("Error fetching live blogs for sitemap:", err);
   }
-
-  const blogRoutes: MetadataRoute.Sitemap = dynamicBlogSlugs.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.updatedAt ? new Date(post.updatedAt) : lastModified,
-    changeFrequency: "weekly",
-    priority: 0.6,
-  }));
 
   return [
     ...staticRoutes,
