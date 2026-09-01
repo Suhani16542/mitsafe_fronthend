@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { ModalProvider } from "@/context/ModalContext";
 import JsonLd from "@/components/JsonLd";
 import { generateOrganizationSchema, generateWebSiteSchema } from "@/lib/jsonld";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -108,6 +109,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} bg-background text-foreground font-sans antialiased selection:bg-[#00D4FF]/20 selection:text-white`}>
+        <GoogleAnalytics />
         <JsonLd data={[generateOrganizationSchema(), generateWebSiteSchema()]} />
         <ThemeProvider>
           <ModalProvider>
