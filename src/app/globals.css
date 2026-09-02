@@ -308,6 +308,35 @@ body, header, footer, section, .glow-card, h1, h2, h3, h4, p, span, a, button, b
   background: #305EFF;
 }
 
+/* Utility to completely hide scrollbars while allowing scroll */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* MITSafe Blue Scrollbar for TOC and scrollable panels */
+.mitsafe-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #305EFF rgba(48, 94, 255, 0.12);
+}
+.mitsafe-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.mitsafe-scrollbar::-webkit-scrollbar-track {
+  background: rgba(48, 94, 255, 0.06);
+  border-radius: 9999px;
+}
+.mitsafe-scrollbar::-webkit-scrollbar-thumb {
+  background: #305EFF;
+  border-radius: 9999px;
+}
+.mitsafe-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #2550E0;
+}
+
 /* Cyber grid background in space mode */
 .cyber-grid {
   background-image: 

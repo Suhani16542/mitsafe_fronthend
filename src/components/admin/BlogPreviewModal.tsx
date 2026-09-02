@@ -115,10 +115,18 @@ export default function BlogPreviewModal({
 
           {/* Article Main Rendered HTML Content */}
           <div
-            className="prose prose-slate max-w-none text-slate-800 text-sm sm:text-base leading-relaxed space-y-4 pt-2"
+            className="prose prose-slate max-w-none text-slate-800 text-sm sm:text-base leading-relaxed space-y-4 pt-2
+              [&>h1]:text-2xl [&>h1]:font-black [&>h1]:text-slate-900
+              [&>h2]:text-xl [&>h2]:sm:text-2xl [&>h2]:font-extrabold [&>h2]:text-slate-900 [&>h2]:border-l-4 [&>h2]:border-[#305EFF] [&>h2]:pl-3
+              [&>h3]:text-lg [&>h3]:sm:text-xl [&>h3]:font-bold [&>h3]:text-slate-900
+              [&>h4]:text-base [&>h4]:sm:text-lg [&>h4]:font-bold [&>h4]:text-slate-900
+              [&>h5]:text-sm [&>h5]:sm:text-base [&>h5]:font-bold [&>h5]:text-slate-900
+              [&>h6]:text-xs [&>h6]:sm:text-sm [&>h6]:font-bold [&>h6]:text-slate-900
+              [&_img]:w-full [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-2xl [&_img]:my-6 [&_img]:border [&_img]:border-slate-200 [&_img]:mx-auto [&_img]:block
+              [&_video]:w-full [&_video]:max-w-full [&_video]:h-auto [&_video]:rounded-2xl [&_video]:my-6 [&_video]:border [&_video]:border-slate-200 [&_video]:mx-auto [&_video]:block [&_video]:shadow-md [&_video]:bg-black"
             dangerouslySetInnerHTML={{
               __html:
-                blog.content ||
+                (blog.content ? blog.content.replace(/<h1([^>]*)>([\s\S]*?)<\/h1>/gi, "<h2$1>$2</h2>") : "") ||
                 "<p>Your article content will appear here when written...</p>",
             }}
           />

@@ -6,9 +6,10 @@ import { usePathname } from "next/navigation";
 
 interface BlogQuoteSidebarProps {
   postTitle?: string;
+  className?: string;
 }
 
-export default function BlogQuoteSidebar({ postTitle }: BlogQuoteSidebarProps) {
+export default function BlogQuoteSidebar({ postTitle, className = "" }: BlogQuoteSidebarProps) {
   const pathname = usePathname();
   const [formData, setFormData] = useState({
     name: "",
@@ -89,16 +90,16 @@ export default function BlogQuoteSidebar({ postTitle }: BlogQuoteSidebarProps) {
   };
 
   return (
-    <aside className="w-full bg-white dark:bg-[#0B1A2E] rounded-2xl border border-slate-200 dark:border-white/10 p-5 sm:p-6 text-left transition-all">
+    <div className={`w-full bg-white dark:bg-[#0B1A2E] rounded-2xl border border-slate-200 dark:border-white/10 p-5 sm:p-6 text-left transition-all flex flex-col overflow-hidden ${className}`}>
       {/* Header */}
-      <div className="space-y-1.5 mb-5">
+      <div className="space-y-1.5 mb-4 shrink-0">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#305EFF]/10 border border-[#305EFF]/20 text-[#305EFF] text-[11px] font-extrabold font-mono uppercase tracking-wider">
           <Sparkles className="w-3 h-3" />
           <span>Free Consultation</span>
         </div>
-        <h3 className="text-lg sm:text-xl font-extrabold text-[#0F172A] dark:text-white font-display tracking-tight leading-snug">
+        <div className="text-lg sm:text-xl font-extrabold text-[#0F172A] dark:text-white font-display tracking-tight leading-snug">
           Let&apos;s Build Your Dream App!
-        </h3>
+        </div>
         <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
           Have an idea or software requirements? Get expert technical guidance & cost estimate in 24 hours.
         </p>
@@ -127,7 +128,11 @@ export default function BlogQuoteSidebar({ postTitle }: BlogQuoteSidebarProps) {
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-3.5 relative z-10">
+        <form
+          onSubmit={handleSubmit}
+          data-lenis-prevent
+          className="space-y-3.5 overflow-y-auto mitsafe-scrollbar flex-1 min-h-0 pr-1.5"
+        >
           {errorMessage && (
             <div className="p-3 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 text-xs font-medium flex items-center gap-2">
               <AlertCircle className="w-4 h-4 shrink-0 text-red-500" />
@@ -227,6 +232,6 @@ export default function BlogQuoteSidebar({ postTitle }: BlogQuoteSidebarProps) {
           </div>
         </form>
       )}
-    </aside>
+    </div>
   );
 }

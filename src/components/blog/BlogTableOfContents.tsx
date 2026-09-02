@@ -56,10 +56,7 @@ export default function BlogTableOfContents({
     if (!el) return;
 
     setActiveId(id);
-    const yOffset = -135;
-    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-    window.scrollTo({ top: y, behavior: "smooth" });
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
     if (onItemClick) onItemClick();
   };
 
@@ -70,30 +67,34 @@ export default function BlogTableOfContents({
   return (
     <nav
       aria-label="Table of Content"
-      className={`w-full bg-white dark:bg-[#0B1A2E] rounded-2xl border border-slate-200 dark:border-white/10 p-5 text-left transition-all ${className}`}
+      className={`w-full bg-white dark:bg-[#0B1A2E] rounded-2xl border border-slate-200 dark:border-white/10 p-5 text-left transition-all flex flex-col overflow-hidden ${className}`}
     >
       {/* TOC Header */}
-      <div className="flex items-center gap-2 pb-3 mb-3 border-b border-slate-100 dark:border-white/10">
+      <div className="flex items-center gap-2 pb-3 mb-3 border-b border-slate-100 dark:border-white/10 shrink-0">
         <div className="w-6 h-6 rounded-lg bg-[#305EFF]/10 text-[#305EFF] flex items-center justify-center">
           <ListOrdered className="w-3.5 h-3.5" />
         </div>
-        <h3 className="text-xs font-extrabold font-mono uppercase tracking-wider text-[#0F172A] dark:text-white">
+        <div className="text-xs font-extrabold font-mono uppercase tracking-wider text-[#0F172A] dark:text-white">
           Table of Content
-        </h3>
+        </div>
       </div>
 
       {/* Headings List */}
-      <ul className="space-y-1 max-h-[calc(100vh-180px)] overflow-y-auto pr-1 text-xs">
+      <ul
+        data-lenis-prevent
+        className="space-y-1 text-xs overflow-y-auto mitsafe-scrollbar flex-1 min-h-0 pr-1.5"
+      >
         {items.map((item, idx) => {
           const isActive = activeId === item.id;
           const isH3 = item.level === 3;
-          const isH4 = item.level >= 4;
+          const isH4 = item.level === 4;
+          const isH5Or6 = item.level >= 5;
 
           return (
             <li
               key={`${item.id}-${idx}`}
               style={{
-                paddingLeft: isH4 ? "1.25rem" : isH3 ? "0.75rem" : "0rem",
+                paddingLeft: isH5Or6 ? "1.75rem" : isH4 ? "1.25rem" : isH3 ? "0.75rem" : "0rem",
               }}
             >
               <button

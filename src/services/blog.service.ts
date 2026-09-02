@@ -419,6 +419,104 @@ export async function uploadBlogImage(file: File) {
 }
 
 /**
+ * Upload a Video for a Blog post (inline article video) to Cloudinary
+ * Calls POST /api/v1/blogs/upload-video with multipart/form-data
+ */
+export async function uploadBlogVideo(file: File) {
+  const BASE_URL = getApiBaseUrl();
+  const endpoint = `${BASE_URL}/api/v1/blogs/upload-video`;
+  const fallbackEndpoint = `${BASE_URL}/api/blogs/upload-video`;
+
+  const formData = new FormData();
+  formData.append("video", file);
+  formData.append("file", file);
+
+  const endpointsToTry = [endpoint, fallbackEndpoint];
+  let lastError: Error | null = null;
+
+  for (const url of endpointsToTry) {
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          ...getAdminHeaders(),
+        },
+        body: formData,
+      });
+
+      // If route not found on this path, try unversioned fallback
+      if (res.status === 404 && url !== fallbackEndpoint) {
+        continue;
+      }
+
+      const responseText = await res.text();
+      let json: any = {};
+      try {
+        json = JSON.parse(responseText);
+      } catch {
+        json = { message: responseText };
+      }
+
+      if (!res.ok || json.success === false) {
+        let cleanErrorMessage = "Video upload failed on server.";
+
+        if (res.status === 413 || (typeof json.message === "string" && json.message.toLowerCase().includes("too large"))) {
+          cleanErrorMessage = "Video file too large. Maximum allowed size is 50MB.";
+        } else if (res.status === 400) {
+          cleanErrorMessage = typeof json.message === "string" ? json.message : "Invalid video format. Only MP4, WebM, and MOV files are supported.";
+        } else if (res.status === 401 || res.status === 403) {
+          cleanErrorMessage = "Authentication required. Please verify admin credentials.";
+        } else if (res.status >= 500) {
+          cleanErrorMessage = "Server encountered an error while uploading video to Cloudinary. Please try again.";
+        } else if (typeof json.message === "string" && json.message.trim()) {
+          cleanErrorMessage = json.message.trim();
+        } else if (typeof json.error === "string" && json.error.trim()) {
+          cleanErrorMessage = json.error.trim();
+        }
+
+        console.error(`[BlogService Error] POST ${url} returned ${res.status}:`, cleanErrorMessage);
+        throw new Error(cleanErrorMessage);
+      }
+
+      // Extract permanent Cloudinary video URL
+      const permanentVideoUrl =
+        json.videoUrl ||
+        json.data?.videoUrl ||
+        json.url ||
+        json.data?.url ||
+        json.data?.secure_url ||
+        json.secure_url;
+
+      const publicId =
+        json.publicId ||
+        json.data?.publicId ||
+        json.data?.id ||
+        json.id ||
+        "";
+
+      if (!permanentVideoUrl || permanentVideoUrl.startsWith("blob:")) {
+        throw new Error("Server did not return a valid permanent Cloudinary video URL.");
+      }
+
+      return {
+        success: true,
+        message: json.message || "Video uploaded successfully to Cloudinary",
+        videoUrl: permanentVideoUrl,
+        publicId: publicId,
+      };
+    } catch (err: any) {
+      lastError = err;
+      if (err.message && !err.message.includes("404")) {
+        break;
+      }
+    }
+  }
+
+  throw lastError || new Error("Failed to upload video to server. Please try again.");
+}
+
+
+/**
  * Create a new Blog article
  */
 export async function createBlog(

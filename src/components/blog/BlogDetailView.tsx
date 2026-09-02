@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -38,6 +38,19 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
   const [imageError, setImageError] = useState(false);
   const [isMobileTocOpen, setIsMobileTocOpen] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [isKeywordsOpen, setIsKeywordsOpen] = useState(false);
+  const [isTagsOpen, setIsTagsOpen] = useState(false);
+  const mainContentRef = useRef<HTMLElement>(null);
+
+  const handleOuterWheel = (e: React.WheelEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.closest("ul") || target.closest("form") || target.closest("main")) {
+      return;
+    }
+    if (mainContentRef.current) {
+      mainContentRef.current.scrollTop += e.deltaY;
+    }
+  };
 
   // Author details
   const authorName =
@@ -92,6 +105,15 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
         if (line.startsWith("•") || line.startsWith("- ") || line.startsWith("* ")) {
           const itemText = line.replace(/^[•\-\*]\s*/, "").trim();
           currentList.push(itemText);
+        } else if (line.startsWith("###### ")) {
+          flushList();
+          resultBlocks.push(`<h6>${line.replace(/^######\s+/, "")}</h6>`);
+        } else if (line.startsWith("##### ")) {
+          flushList();
+          resultBlocks.push(`<h5>${line.replace(/^#####\s+/, "")}</h5>`);
+        } else if (line.startsWith("#### ")) {
+          flushList();
+          resultBlocks.push(`<h4>${line.replace(/^####\s+/, "")}</h4>`);
         } else if (line.startsWith("### ")) {
           flushList();
           resultBlocks.push(`<h3>${line.replace(/^###\s+/, "")}</h3>`);
@@ -123,15 +145,19 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
       content = resultBlocks.join("\n");
     }
 
+    // Ensure strictly ONE H1 on the entire public page (the main Blog Title).
+    // Normalize any body H1 to H2 so the document hierarchy is valid for SEO.
+    content = content.replace(/<h1([^>]*)>([\s\S]*?)<\/h1>/gi, "<h2$1>$2</h2>");
+
     // Clean up empty headings or empty paragraph artifacts (e.g. <h2><br></h2> or <h2></h2>)
     content = content
-      .replace(/<(h[2-4])[^>]*>(\s*|<br\s*\/?>|&nbsp;|<span[^>]*><\/span>|<strong[^>]*><\/strong>)*<\/\1>/gi, "")
+      .replace(/<(h[2-6])[^>]*>(\s*|<br\s*\/?>|&nbsp;|<span[^>]*><\/span>|<strong[^>]*><\/strong>)*<\/\1>/gi, "")
       .replace(/<p[^>]*>(\s*|<br\s*\/?>|&nbsp;)*<\/p>/gi, "");
 
-    // Parse all <h2>, <h3>, <h4> tags to inject anchor IDs and construct TOC
+    // Parse all <h2> through <h6> tags to inject anchor IDs and construct TOC
     const toc: TocItem[] = [];
     let headingIndex = 0;
-    const headingRegex = /<(h[2-4])([^>]*)>([\s\S]*?)<\/\1>/gi;
+    const headingRegex = /<(h[2-6])([^>]*)>([\s\S]*?)<\/\1>/gi;
 
     const modifiedHtml = content.replace(
       headingRegex,
@@ -236,110 +262,22 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
   };
 
   return (
-    <div className="bg-white dark:bg-[#071426] min-h-screen pt-36 sm:pt-40 pb-24 text-[#0F172A] dark:text-white transition-colors duration-300 font-sans">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        
-        {/* ═══════════════════════════════════════════════════════════════════
-            TOP SECTION:
-            1. BREADCRUMBS
-            2. BLOG TITLE FIRST (Compact, balanced font size)
-            3. SHORT SUMMARY DIRECTLY BELOW TITLE (Symmetric blue borders)
-            4. DATE • READ TIME
-           ═══════════════════════════════════════════════════════════════════ */}
-        <header className="space-y-4 text-left max-w-4xl">
-          {/* Breadcrumb Navigation */}
-          <nav
-            aria-label="Breadcrumb"
-            className="flex items-center flex-wrap gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400"
-          >
-            <Link href="/" className="hover:text-[#305EFF] transition-colors">
-              Home
-            </Link>
-            <span className="text-slate-300 dark:text-slate-700">/</span>
-            <Link href="/blog" className="hover:text-[#305EFF] transition-colors">
-              Blog
-            </Link>
-            <span className="text-slate-300 dark:text-slate-700">/</span>
-            <span className="text-[#305EFF] font-bold truncate max-w-[220px] sm:max-w-md">
-              {post.title}
-            </span>
-          </nav>
-
-          {/* 1. Blog Title */}
-          <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[36px] font-black text-[#0F172A] dark:text-white leading-[1.2] tracking-tight">
-            {post.title}
-          </h1>
-
-          {/* 2. Short Summary / Excerpt Directly Below Title */}
-          {post.excerpt && (
-            <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-white/5 border-x-4 border-[#305EFF] text-slate-700 dark:text-slate-300 text-base sm:text-[17px] leading-relaxed italic">
-              {post.excerpt}
-            </div>
-          )}
-
-          {/* 3. Date + Read Time Sub-bar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 pt-1 text-xs text-slate-500 dark:text-slate-400 font-medium">
-            <div className="flex flex-wrap items-center gap-3">
-              {post.category && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#305EFF]/10 text-[#305EFF] border border-[#305EFF]/20 text-[11px] font-extrabold font-mono uppercase tracking-wider">
-                  <Tag className="w-3 h-3" />
-                  {post.category}
-                </span>
-              )}
-              <div className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-[#305EFF]" />
-                <span className="font-semibold text-slate-700 dark:text-slate-300">
-                  Date: {displayDate}
-                </span>
-              </div>
-              {post.readTime && (
-                <>
-                  <span className="text-slate-300 dark:text-slate-700">|</span>
-                  <div className="flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-[#305EFF]" />
-                    <span className="font-semibold text-slate-700 dark:text-slate-300">
-                      {post.readTime}
-                    </span>
-                  </div>
-                </>
-              )}
-            </div>
-
-            {/* Quick Share Action */}
-            <button
-              type="button"
-              onClick={handleCopyLink}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 hover:border-[#305EFF] text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-[#305EFF] transition-all cursor-pointer"
-            >
-              {copiedLink ? (
-                <>
-                  <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  <span className="text-emerald-600">Copied!</span>
-                </>
-              ) : (
-                <>
-                  <Share2 className="w-3.5 h-3.5" />
-                  <span>Share</span>
-                </>
-              )}
-            </button>
-          </div>
-        </header>
-
-        {/* Divider Line */}
-        <hr className="border-slate-100 dark:border-white/10 my-4" />
-
+    <div
+      onWheel={handleOuterWheel}
+      className="bg-white dark:bg-[#071426] min-h-screen lg:h-screen pt-36 sm:pt-40 lg:pt-[132px] pb-12 lg:pb-3 text-[#0F172A] dark:text-white transition-colors duration-300 font-sans lg:overflow-hidden flex flex-col"
+    >
+      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex-1 min-h-0 flex flex-col">
         {/* ═══════════════════════════════════════════════════════════════════
             MAIN 3-COLUMN CONTENT SECTION:
-            [ LEFT: TABLE OF CONTENT ] | [ CENTER: FEATURED IMAGE + ARTICLE ] | [ RIGHT: QUOTE FORM ]
+            [ LEFT: TABLE OF CONTENT (FIXED PLACE) ] | [ CENTER: BLOG ARTICLE (SCROLLS) ] | [ RIGHT: QUOTE FORM (FIXED PLACE) ]
            ═══════════════════════════════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-8 items-start w-full flex-1 min-h-0 lg:h-full lg:overflow-hidden relative">
           
           {/* ─────────────────────────────────────────────────────────────
-              COLUMN 1 (LEFT): TABLE OF CONTENT (Sticky Desktop, 240–280px)
+              COLUMN 1 (LEFT): TABLE OF CONTENT (Fixed in place on Desktop)
              ───────────────────────────────────────────────────────────── */}
-          <aside className="hidden lg:flex lg:flex-col lg:col-span-3 sticky top-[132px] self-start max-h-[calc(100vh-148px)] overflow-y-auto hide-scrollbar space-y-4 pr-1 z-20">
-            <BlogTableOfContents items={tocItems} />
+          <aside className="hidden lg:flex lg:flex-col lg:col-span-3 lg:h-full lg:max-h-full space-y-4 pr-1 shrink-0">
+            <BlogTableOfContents items={tocItems} className="max-h-[min(410px,calc(100vh-230px))]" />
 
             {/* Back to All Articles link */}
             <Link
@@ -357,7 +295,100 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
           {/* ─────────────────────────────────────────────────────────────
               COLUMN 2 (CENTER): FEATURED IMAGE + FULL ARTICLE CONTENT (Main Scrolling Column)
              ───────────────────────────────────────────────────────────── */}
-          <main className="lg:col-span-6 w-full min-w-0 space-y-8 text-left">
+          <main
+            ref={mainContentRef}
+            data-lenis-prevent
+            className="lg:col-span-6 w-full min-w-0 lg:h-full lg:overflow-y-auto custom-scrollbar pr-1 lg:pr-3 space-y-6 text-left"
+          >
+            {/* ═══════════════════════════════════════════════════════════════
+                TOP SECTION:
+                1. BREADCRUMBS
+                2. BLOG TITLE FIRST
+                3. SHORT SUMMARY DIRECTLY BELOW TITLE
+                4. DATE • READ TIME
+               ═══════════════════════════════════════════════════════════════ */}
+            <header className="space-y-4 text-left">
+              {/* Breadcrumb Navigation */}
+              <nav
+                aria-label="Breadcrumb"
+                className="flex items-center flex-wrap gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400"
+              >
+                <Link href="/" className="hover:text-[#305EFF] transition-colors">
+                  Home
+                </Link>
+                <span className="text-slate-300 dark:text-slate-700">/</span>
+                <Link href="/blog" className="hover:text-[#305EFF] transition-colors">
+                  Blog
+                </Link>
+                <span className="text-slate-300 dark:text-slate-700">/</span>
+                <span className="text-[#305EFF] font-bold truncate max-w-[220px] sm:max-w-md">
+                  {post.title}
+                </span>
+              </nav>
+
+              {/* 1. Blog Title */}
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[36px] font-black text-[#0F172A] dark:text-white leading-[1.2] tracking-tight">
+                {post.title}
+              </h1>
+
+              {/* 2. Short Summary / Excerpt Directly Below Title */}
+              {post.excerpt && (
+                <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-white/5 border-x-4 border-[#305EFF] text-slate-700 dark:text-slate-300 text-base sm:text-[17px] leading-relaxed italic">
+                  {post.excerpt}
+                </div>
+              )}
+
+              {/* 3. Date + Read Time Sub-bar */}
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-1 text-xs text-slate-500 dark:text-slate-400 font-medium">
+                <div className="flex flex-wrap items-center gap-3">
+                  {post.category && (
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#305EFF]/10 text-[#305EFF] border border-[#305EFF]/20 text-[11px] font-extrabold font-mono uppercase tracking-wider">
+                      <Tag className="w-3 h-3" />
+                      {post.category}
+                    </span>
+                  )}
+                  <div className="flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-[#305EFF]" />
+                    <span className="font-semibold text-slate-700 dark:text-slate-300">
+                      Date: {displayDate}
+                    </span>
+                  </div>
+                  {post.readTime && (
+                    <>
+                      <span className="text-slate-300 dark:text-slate-700">|</span>
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-[#305EFF]" />
+                        <span className="font-semibold text-slate-700 dark:text-slate-300">
+                          {post.readTime}
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                {/* Quick Share Action */}
+                <button
+                  type="button"
+                  onClick={handleCopyLink}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 hover:border-[#305EFF] text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-[#305EFF] transition-all cursor-pointer"
+                >
+                  {copiedLink ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                      <span className="text-emerald-600">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Share2 className="w-3.5 h-3.5" />
+                      <span>Share</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </header>
+
+            {/* Divider Line */}
+            <hr className="border-slate-100 dark:border-white/10 my-2" />
             
             {/* Mobile / Tablet Accordion Table of Content */}
             {tocItems.length > 0 && (
@@ -410,8 +441,10 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
                 className="flex flex-col gap-6
                   [&>h2]:font-display [&>h2]:text-[24px] [&>h2]:sm:text-[28px] [&>h2]:font-black [&>h2]:text-[#0F172A] [&>h2]:dark:text-white [&>h2]:mt-10 [&>h2]:mb-3 [&>h2]:border-l-4 [&>h2]:border-[#305EFF] [&>h2]:pl-4 [&>h2]:tracking-tight [&>h2]:scroll-mt-36
                   [&>h3]:font-display [&>h3]:text-[20px] [&>h3]:sm:text-[22px] [&>h3]:font-extrabold [&>h3]:text-[#0F172A] [&>h3]:dark:text-white [&>h3]:mt-8 [&>h3]:mb-2 [&>h3]:scroll-mt-36
-                  [&>h4]:font-display [&>h4]:text-[17px] [&>h4]:font-bold [&>h4]:text-[#0F172A] [&>h4]:dark:text-white [&>h4]:mt-6 [&>h4]:mb-2 [&>h4]:scroll-mt-36
-                  [&>h2:empty]:hidden [&>h3:empty]:hidden [&>h4:empty]:hidden [&>p:empty]:hidden
+                  [&>h4]:font-display [&>h4]:text-[17px] [&>h4]:sm:text-[19px] [&>h4]:font-bold [&>h4]:text-[#0F172A] [&>h4]:dark:text-white [&>h4]:mt-6 [&>h4]:mb-2 [&>h4]:scroll-mt-36
+                  [&>h5]:font-display [&>h5]:text-[16px] [&>h5]:sm:text-[17px] [&>h5]:font-bold [&>h5]:text-[#0F172A] [&>h5]:dark:text-white [&>h5]:mt-5 [&>h5]:mb-2 [&>h5]:scroll-mt-36
+                  [&>h6]:font-display [&>h6]:text-[14px] [&>h6]:sm:text-[15px] [&>h6]:font-semibold [&>h6]:text-[#0F172A] [&>h6]:dark:text-white [&>h6]:mt-4 [&>h6]:mb-1 [&>h6]:scroll-mt-36
+                  [&>h2:empty]:hidden [&>h3:empty]:hidden [&>h4:empty]:hidden [&>h5:empty]:hidden [&>h6:empty]:hidden [&>p:empty]:hidden
                   [&>p]:text-slate-700 [&>p]:dark:text-slate-300 [&>p]:text-[17px] [&>p]:sm:text-[18px] [&>p]:leading-[1.75] [&>p]:mb-3 [&>p]:font-normal
                   [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&>ul]:text-slate-700 [&>ul]:dark:text-slate-300 [&>ul]:text-[17px] [&>ul]:mb-4
                   [&>ol]:list-decimal [&>ol]:pl-6 [&>ol]:space-y-2 [&>ol]:text-slate-700 [&>ol]:dark:text-slate-300 [&>ol]:text-[17px] [&>ol]:mb-4
@@ -426,53 +459,84 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
                   [&>blockquote]:border-l-4 [&>blockquote]:border-[#305EFF] [&>blockquote]:bg-slate-50 dark:bg-white/5 [&>blockquote]:p-5 [&>blockquote]:rounded-r-2xl [&>blockquote]:italic [&>blockquote]:text-slate-800 [&>blockquote]:dark:text-slate-200 [&>blockquote]:my-6
                   [&>pre]:bg-slate-900 [&>pre]:text-slate-100 [&>pre]:p-5 [&>pre]:rounded-2xl [&>pre]:overflow-x-auto [&>pre]:my-6 [&>pre]:font-mono [&>pre]:text-xs [&>pre]:sm:text-sm
                   [&_img]:w-full [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-2xl [&_img]:my-6 [&_img]:border [&_img]:border-slate-200/80 [&_img]:dark:border-white/10 [&_img]:mx-auto [&_img]:block [&_img]:object-contain
+                  [&_video]:w-full [&_video]:max-w-full [&_video]:h-auto [&_video]:rounded-2xl [&_video]:my-6 [&_video]:border [&_video]:border-slate-200/80 [&_video]:dark:border-white/10 [&_video]:mx-auto [&_video]:block [&_video]:shadow-md [&_video]:bg-black
                   [&>table]:w-full [&>table]:border-collapse [&>table]:my-6 [&>table]:text-xs [&>table]:sm:text-sm
                   [&>table_th]:border [&>table_th]:border-slate-200 [&>table_th]:dark:border-white/10 [&>table_th]:bg-slate-100 [&>table_th]:dark:bg-white/5 [&>table_th]:p-3 [&>table_th]:font-bold [&>table_th]:text-left
                   [&>table_td]:border [&>table_td]:border-slate-200 [&>table_td]:dark:border-white/10 [&>table_td]:p-3"
               />
             </article>
 
-            {/* 11. KEYWORDS SECTION (Separate from Tags) */}
+            {/* 11. COLLAPSIBLE KEYWORDS SECTION */}
             {keywordsList.length > 0 && (
               <div className="pt-6 border-t border-slate-100 dark:border-white/10 space-y-3 text-left">
-                <div className="flex items-center gap-2">
-                  <Key className="w-4 h-4 text-[#305EFF]" />
-                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#0F172A] dark:text-white font-mono">
-                    Keywords
-                  </h4>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {keywordsList.map((keyword, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3.5 py-1.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200 text-xs font-semibold hover:border-[#305EFF] transition-colors"
-                    >
-                      {keyword}
-                    </span>
-                  ))}
-                </div>
+                <button
+                  type="button"
+                  id="toggle-keywords-btn"
+                  onClick={() => setIsKeywordsOpen((prev) => !prev)}
+                  aria-expanded={isKeywordsOpen}
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 hover:border-[#305EFF] text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-[#305EFF] transition-all cursor-pointer group select-none shadow-2xs"
+                >
+                  <Key className="w-3.5 h-3.5 text-[#305EFF]" />
+                  <span>Keywords</span>
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-md bg-slate-200/70 dark:bg-white/10 text-slate-600 dark:text-slate-400">
+                    {keywordsList.length}
+                  </span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 text-slate-400 group-hover:text-[#305EFF] transition-transform duration-200 ${
+                      isKeywordsOpen ? "rotate-180 text-[#305EFF]" : ""
+                    }`}
+                  />
+                </button>
+
+                {isKeywordsOpen && (
+                  <div className="flex flex-wrap gap-2 pt-1 transition-all">
+                    {keywordsList.map((keyword, idx) => (
+                      <span
+                        key={idx}
+                        className="px-3.5 py-1.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200 text-xs font-semibold hover:border-[#305EFF] transition-colors"
+                      >
+                        {keyword}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
-            {/* 12. TAGS SECTION */}
+            {/* 12. COLLAPSIBLE TAGS SECTION */}
             {tagsList.length > 0 && (
-              <div className="pt-4 space-y-3 text-left">
-                <div className="flex items-center gap-2">
-                  <Tag className="w-4 h-4 text-slate-400" />
-                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400 font-mono">
-                    Tags
-                  </h4>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {tagsList.map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 rounded-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 text-xs font-medium"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
+              <div className="pt-3 space-y-3 text-left">
+                <button
+                  type="button"
+                  id="toggle-tags-btn"
+                  onClick={() => setIsTagsOpen((prev) => !prev)}
+                  aria-expanded={isTagsOpen}
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 hover:border-[#305EFF] text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-[#305EFF] transition-all cursor-pointer group select-none shadow-2xs"
+                >
+                  <Tag className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#305EFF] transition-colors" />
+                  <span>Tags</span>
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-md bg-slate-200/70 dark:bg-white/10 text-slate-600 dark:text-slate-400">
+                    {tagsList.length}
+                  </span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 text-slate-400 group-hover:text-[#305EFF] transition-transform duration-200 ${
+                      isTagsOpen ? "rotate-180 text-[#305EFF]" : ""
+                    }`}
+                  />
+                </button>
+
+                {isTagsOpen && (
+                  <div className="flex flex-wrap gap-2 pt-1 transition-all">
+                    {tagsList.map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="px-3 py-1 rounded-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 text-xs font-medium"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
@@ -486,9 +550,9 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
                   <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                     Author
                   </div>
-                  <h4 className="font-display text-base font-extrabold text-[#0F172A] dark:text-white">
+                  <div className="font-display text-base font-extrabold text-[#0F172A] dark:text-white">
                     Written by {authorName}
-                  </h4>
+                  </div>
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-relaxed max-w-md">
                     Mitsafe Engineering Team — Architecting scalable cloud systems and AI automation workflows.
                   </p>
@@ -526,13 +590,16 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
             <div className="block lg:hidden pt-6">
               <BlogQuoteSidebar postTitle={post.title} />
             </div>
+
+            {/* Bottom spacer for clean scrolling */}
+            <div className="h-10 hidden lg:block" />
           </main>
 
           {/* ─────────────────────────────────────────────────────────────
-              COLUMN 3 (RIGHT): QUOTE FORM STICKY SIDEBAR (Sticky Desktop, 280–320px)
+              COLUMN 3 (RIGHT): QUOTE FORM (Fixed in place on Desktop)
              ───────────────────────────────────────────────────────────── */}
-          <aside className="hidden lg:block lg:col-span-3 sticky top-[132px] self-start max-h-[calc(100vh-148px)] overflow-y-auto hide-scrollbar space-y-6 z-20">
-            <BlogQuoteSidebar postTitle={post.title} />
+          <aside className="hidden lg:flex lg:flex-col lg:col-span-3 lg:h-full lg:max-h-full pr-1 shrink-0">
+            <BlogQuoteSidebar postTitle={post.title} className="max-h-[min(410px,calc(100vh-230px))]" />
           </aside>
 
         </div>
