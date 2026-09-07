@@ -42,6 +42,30 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/our-team",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/smm-services",
+        destination: "/services/digital-marketing",
+        permanent: true,
+      },
+      {
+        source: "/our-portfolio",
+        destination: "/portfolio",
+        permanent: true,
+      },
+      {
+        source: "/services",
+        destination: "/solutions",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
