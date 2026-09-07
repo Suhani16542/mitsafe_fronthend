@@ -272,7 +272,7 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
             [ LEFT: TABLE OF CONTENT (FIXED PLACE) ] | [ CENTER: BLOG ARTICLE (SCROLLS) ] | [ RIGHT: QUOTE FORM (FIXED PLACE) ]
            ═══════════════════════════════════════════════════════════════════ */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-8 items-start w-full flex-1 min-h-0 lg:h-full lg:overflow-hidden relative">
-          
+
           {/* ─────────────────────────────────────────────────────────────
               COLUMN 1 (LEFT): TABLE OF CONTENT (Fixed in place on Desktop)
              ───────────────────────────────────────────────────────────── */}
@@ -389,7 +389,7 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
 
             {/* Divider Line */}
             <hr className="border-slate-100 dark:border-white/10 my-2" />
-            
+
             {/* Mobile / Tablet Accordion Table of Content */}
             {tocItems.length > 0 && (
               <div className="block lg:hidden bg-slate-50 dark:bg-[#0B1A2E] rounded-2xl border border-slate-200/80 dark:border-white/10 p-4">
@@ -482,9 +482,8 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
                     {keywordsList.length}
                   </span>
                   <ChevronDown
-                    className={`w-3.5 h-3.5 text-slate-400 group-hover:text-[#305EFF] transition-transform duration-200 ${
-                      isKeywordsOpen ? "rotate-180 text-[#305EFF]" : ""
-                    }`}
+                    className={`w-3.5 h-3.5 text-slate-400 group-hover:text-[#305EFF] transition-transform duration-200 ${isKeywordsOpen ? "rotate-180 text-[#305EFF]" : ""
+                      }`}
                   />
                 </button>
 
@@ -519,9 +518,8 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
                     {tagsList.length}
                   </span>
                   <ChevronDown
-                    className={`w-3.5 h-3.5 text-slate-400 group-hover:text-[#305EFF] transition-transform duration-200 ${
-                      isTagsOpen ? "rotate-180 text-[#305EFF]" : ""
-                    }`}
+                    className={`w-3.5 h-3.5 text-slate-400 group-hover:text-[#305EFF] transition-transform duration-200 ${isTagsOpen ? "rotate-180 text-[#305EFF]" : ""
+                      }`}
                   />
                 </button>
 
