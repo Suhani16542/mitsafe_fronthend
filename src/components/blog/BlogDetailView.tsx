@@ -579,7 +579,8 @@ export default function BlogDetailView({ post, slug }: BlogDetailViewProps) {
               </Link>
 
               <Link
-                href="/get-a-quote"
+                href="#quote"
+                data-modal="quote"
                 className="px-6 py-2.5 rounded-full bg-[#305EFF] hover:bg-[#2550E0] text-white text-xs font-extrabold shadow-sm hover:scale-[1.01] transition-all inline-flex items-center gap-2"
               >
                 <span>Get a Free Quote →</span>

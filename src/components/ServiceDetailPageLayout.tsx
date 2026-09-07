@@ -98,7 +98,8 @@ export default function ServiceDetailPageLayout({ service }: ServiceDetailPageLa
               {/* CTAs — EXACTLY 1 "Get a Free Quote" here */}
               <div className="flex flex-wrap gap-3.5 pt-1 items-center">
                 <Link
-                  href="/get-a-quote"
+                  href="#quote"
+                  data-modal="quote"
                   className="group inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#305EFF] via-indigo-600 to-[#305EFF] bg-[length:200%_auto] text-white font-semibold text-xs sm:text-sm rounded-full shadow-sm hover:shadow-md hover:bg-[position:100%_0] transition-all duration-300 hover:scale-[1.02] cursor-pointer"
                 >
                   <span>Get a Free Quote</span>
@@ -603,7 +604,8 @@ export default function ServiceDetailPageLayout({ service }: ServiceDetailPageLa
 
             <div className="flex flex-wrap gap-3.5 justify-center mt-2 relative z-10">
               <Link
-                href="/get-a-quote"
+                href="#quote"
+                data-modal="quote"
                 className="group inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#305EFF] via-indigo-600 to-[#305EFF] bg-[length:200%_auto] text-white font-semibold text-xs sm:text-sm rounded-full shadow-sm hover:shadow-md hover:bg-[position:100%_0] transition-all duration-300 hover:scale-[1.02] cursor-pointer"
               >
                 <span>Get a Free Quote</span>

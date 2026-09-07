@@ -412,7 +412,8 @@ export default function PortfolioClient() {
             <div className="flex items-center justify-center relative z-10">
               {/* Using EXACT same button style from Navbar */}
               <Link
-                href="/get-a-quote"
+                href="#quote"
+                data-modal="quote"
                 className="group inline-flex items-center gap-2.5 px-6 py-3 bg-gradient-to-r from-[#305EFF] via-indigo-600 to-[#305EFF] bg-[length:200%_auto] text-white font-bold text-sm sm:text-[15px] rounded-full shadow-xs hover:shadow-md hover:bg-[position:100%_0] transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-0.5"
               >
                 <span>Get a Quote</span>

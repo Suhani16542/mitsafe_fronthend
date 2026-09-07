@@ -1188,7 +1188,8 @@ export default function RefundPolicyClient() {
                   </p>
                 </div>
                 <Link
-                  href="/get-a-quote"
+                  href="#quote"
+                  data-modal="quote"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#305EFF] hover:bg-[#254bdb] text-white font-bold text-sm rounded-full shadow-md hover:scale-105 transition-all shrink-0"
                 >
                   <span style={{ color: "#FFFFFF", WebkitTextFillColor: "#FFFFFF" }}>Contact Us</span>

@@ -219,7 +219,8 @@ export default function BlogSection({ initialPosts = [] }: BlogSectionProps) {
         >
           {/* Get a Quote Button */}
           <Link
-            href="/get-a-quote"
+            href="#quote"
+            data-modal="quote"
             className="btn-primary-blue group inline-flex items-center justify-center gap-2.5 h-11 px-6 bg-[#305EFF] hover:bg-[#2550E0] !text-white font-extrabold text-xs sm:text-sm rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto"
           >
             <span className="!text-white">Get a Quote</span>

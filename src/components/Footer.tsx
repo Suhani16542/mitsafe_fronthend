@@ -135,7 +135,7 @@ export default function Footer() {
                 { name: "About Us", href: "/about" },
                 { name: "Our Portfolio", href: "/portfolio" },
                 { name: "Terms & Conditions", href: "/terms" },
-                { name: "Privacy Policy", href: "#" },
+                { name: "Privacy Policy", href: "/terms#privacy-policy" },
                 { name: "Refund Policy", href: "/refund-policy" },
               ].map((item, idx) => (
                 <li key={idx}>
@@ -244,7 +244,7 @@ export default function Footer() {
               </p>
             </div>
           </div>
-          <Link href="/get-a-quote">
+          <Link href="#quote" data-modal="quote">
             <span
               className="group inline-flex items-center justify-center gap-2.5 h-11 px-6 bg-[#305EFF] hover:bg-[#305EFF] rounded-full shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 w-full sm:w-auto cursor-pointer"
             >
@@ -261,13 +261,13 @@ export default function Footer() {
             © {new Date().getFullYear()} Mitsafe Technologies. All Rights Reserved.
           </span>
           <div className="flex items-center gap-4 text-xs sm:text-[13px] font-bold tracking-wide text-slate-900">
-            <Link href="#" className="hover:text-black inline-block transition-transform duration-200 hover:scale-105">Privacy Policy</Link>
+            <Link href="/terms#privacy-policy" className="hover:text-black inline-block transition-transform duration-200 hover:scale-105">Privacy Policy</Link>
             <span className="opacity-40 text-slate-900">|</span>
             <Link href="/terms" className="hover:text-black inline-block transition-transform duration-200 hover:scale-105">Terms &amp; Conditions</Link>
             <span className="opacity-40 text-slate-900">|</span>
             <Link href="/refund-policy" className="hover:text-black inline-block transition-transform duration-200 hover:scale-105">Refund Policy</Link>
             <span className="opacity-40 text-slate-900">|</span>
-            <Link href="#" className="hover:text-[#305EFF] inline-block transition-transform duration-200 hover:scale-105">Sitemap</Link>
+            <Link href="/sitemap.xml" target="_blank" className="hover:text-[#305EFF] inline-block transition-transform duration-200 hover:scale-105">Sitemap</Link>
           </div>
         </div>
       </div>

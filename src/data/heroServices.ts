@@ -11,7 +11,7 @@ export const heroServices: HeroService[] = [
     illustration: "web",
     image: "/images/hero/light/hero-web-light-png-removebg-preview (1).webp",
     category: "build",
-    primaryCta: { label: "Get Free Consultation", href: "/get-a-quote" },
+    primaryCta: { label: "Get Free Consultation", href: "#quote" },
     secondaryCta: { label: "View Our Work", href: "/portfolio" },
     features: [
       { label: "Custom Frontend & Backend" },
@@ -36,7 +36,7 @@ export const heroServices: HeroService[] = [
     illustration: "mobile",
     image: "/images/hero/light/hero-mobile-light-removebg-preview.webp",
     category: "build",
-    primaryCta: { label: "Start Mobile App", href: "/get-a-quote" },
+    primaryCta: { label: "Start Mobile App", href: "#quote" },
     secondaryCta: { label: "View App Portfolio", href: "/portfolio" },
     features: [
       { label: "Flutter & React Native" },
@@ -61,7 +61,7 @@ export const heroServices: HeroService[] = [
     illustration: "game",
     image: "/images/hero/light/hero-ai-light-png-removebg-preview.webp",
     category: "build",
-    primaryCta: { label: "Build Your Game", href: "/get-a-quote" },
+    primaryCta: { label: "Build Your Game", href: "#quote" },
     secondaryCta: { label: "View Games Demo", href: "/portfolio" },
     features: [
       { label: "Unity & Unreal Engine" },
@@ -86,7 +86,7 @@ export const heroServices: HeroService[] = [
     illustration: "pos",
     image: "/images/hero/light/hero-ecomerce-light-png-removebg-preview.webp",
     category: "growth",
-    primaryCta: { label: "Get POS Demo", href: "/get-a-quote" },
+    primaryCta: { label: "Get POS Demo", href: "#quote" },
     secondaryCta: { label: "Explore POS Features", href: "/services" },
     features: [
       { label: "Instant Billing & Invoicing" },
@@ -111,7 +111,7 @@ export const heroServices: HeroService[] = [
     illustration: "uiux",
     image: "/images/hero/light/hero-uiux-light-removebg-preview.webp",
     category: "build",
-    primaryCta: { label: "Start Design Project", href: "/get-a-quote" },
+    primaryCta: { label: "Start Design Project", href: "#quote" },
     secondaryCta: { label: "View Design Portfolio", href: "/portfolio" },
     features: [
       { label: "Brand Identity & Logo Design" },
@@ -136,7 +136,7 @@ export const heroServices: HeroService[] = [
     illustration: "school",
     image: "/images/hero/light/hero-api-light-png-removebg-preview.webp",
     category: "infra",
-    primaryCta: { label: "Request ERP Demo", href: "/get-a-quote" },
+    primaryCta: { label: "Request ERP Demo", href: "#quote" },
     secondaryCta: { label: "View ERP Modules", href: "/services" },
     features: [
       { label: "Fee Collection & Invoicing" },
@@ -161,7 +161,7 @@ export const heroServices: HeroService[] = [
     illustration: "crm",
     image: "/images/hero/light/hero-software-light-removebg-preview (1).webp",
     category: "growth",
-    primaryCta: { label: "Request CRM Demo", href: "/get-a-quote" },
+    primaryCta: { label: "Request CRM Demo", href: "#quote" },
     secondaryCta: { label: "Explore Features", href: "/services" },
     features: [
       { label: "Lead & Pipeline Tracking" },
@@ -186,7 +186,7 @@ export const heroServices: HeroService[] = [
     illustration: "ecommerce",
     image: "/images/hero/light/hero-ecomerce-light-png-removebg-preview.webp",
     category: "growth",
-    primaryCta: { label: "Build Your Store", href: "/get-a-quote" },
+    primaryCta: { label: "Build Your Store", href: "#quote" },
     secondaryCta: { label: "View Solutions", href: "/services" },
     features: [
       { label: "Headless Commerce" },
@@ -211,7 +211,7 @@ export const heroServices: HeroService[] = [
     illustration: "marketing",
     image: "/images/hero/light/hero-digital-light-png-removebg-preview.webp",
     category: "growth",
-    primaryCta: { label: "Grow Online Today", href: "/get-a-quote" },
+    primaryCta: { label: "Grow Online Today", href: "#quote" },
     secondaryCta: { label: "Marketing Audits", href: "/services" },
     features: [
       { label: "Technical SEO Audits" },
@@ -236,7 +236,7 @@ export const heroServices: HeroService[] = [
     illustration: "software",
     image: "/images/hero/light/hero-software-light-removebg-preview (1).webp",
     category: "build",
-    primaryCta: { label: "Build Custom Software", href: "/get-a-quote" },
+    primaryCta: { label: "Build Custom Software", href: "#quote" },
     secondaryCta: { label: "Enterprise Plans", href: "/services" },
     features: [
       { label: "Multi-tenant Architecture" },
