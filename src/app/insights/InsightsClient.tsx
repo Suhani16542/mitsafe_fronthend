@@ -14,7 +14,6 @@ import {
   BookOpen,
   Loader2 
 } from "lucide-react";
-import Button from "@/components/Button";
 import LottieAnimation from "@/components/LottieAnimation";
 import { getBlogs, getCategories } from "@/services/blog.service";
 import { BlogPost } from "@/types/adminBlog";
@@ -27,44 +26,46 @@ const defaultCategories = [
   "Technology"
 ];
 
-const trendingTopics = [
-  { title: "React 19 Server Actions in production setups", reads: "1.2k reads" },
-  { title: "Securing vector embedding storage schemas", reads: "940 reads" },
-  { title: "Minimizing cold-boot times on AWS Lambda deployments", reads: "810 reads" }
-];
+interface InsightsClientProps {
+  initialPosts?: BlogPost[];
+  initialCategories?: string[];
+}
 
-export default function InsightsClient() {
+export default function InsightsClient({ initialPosts = [], initialCategories = defaultCategories }: InsightsClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [categories, setCategories] = useState<string[]>(defaultCategories);
-  const [isLoading, setIsLoading] = useState(true);
+  const [posts, setPosts] = useState<BlogPost[]>(initialPosts);
+  const [categories, setCategories] = useState<string[]>(initialCategories.length > 0 ? initialCategories : defaultCategories);
+  const [isLoading, setIsLoading] = useState(initialPosts.length === 0);
 
   useEffect(() => {
-    async function loadData() {
-      setIsLoading(true);
-      try {
-        const [blogsRes, catRes] = await Promise.allSettled([
-          getBlogs({ status: "published", limit: 100 }),
-          getCategories(),
-        ]);
+    // Only fetch if initialPosts was empty
+    if (initialPosts.length === 0) {
+      async function loadData() {
+        setIsLoading(true);
+        try {
+          const [blogsRes, catRes] = await Promise.allSettled([
+            getBlogs({ status: "published", limit: 100 }),
+            getCategories(),
+          ]);
 
-        if (blogsRes.status === "fulfilled" && blogsRes.value.success) {
-          setPosts(blogsRes.value.data);
-        }
+          if (blogsRes.status === "fulfilled" && blogsRes.value.success && Array.isArray(blogsRes.value.data)) {
+            setPosts(blogsRes.value.data);
+          }
 
-        if (catRes.status === "fulfilled" && catRes.value.success && catRes.value.data.length > 0) {
-          setCategories(["All", ...catRes.value.data]);
+          if (catRes.status === "fulfilled" && catRes.value.success && catRes.value.data.length > 0) {
+            setCategories(["All", ...catRes.value.data]);
+          }
+        } catch (err) {
+          console.error("Failed to load insights on client:", err);
+        } finally {
+          setIsLoading(false);
         }
-      } catch (err) {
-        console.error("Failed to load insights:", err);
-      } finally {
-        setIsLoading(false);
       }
-    }
 
-    loadData();
-  }, []);
+      loadData();
+    }
+  }, [initialPosts]);
 
   const filteredPosts = posts.filter((post) => {
     const matchesSearch =
@@ -103,7 +104,7 @@ export default function InsightsClient() {
               </span>
             </h1>
             
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-350 leading-relaxed font-normal max-w-xl">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal max-w-xl">
               Explore deep dives on API security, cloud scalability, UI/UX prototyping, clean architecture guidelines, and vector AI search workflows.
             </p>
           </div>
