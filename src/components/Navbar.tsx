@@ -286,7 +286,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Company", href: "/company" },
+    { name: "About Us", href: "/company" },
     { name: "Services", href: "/#premium-showcase", hasDropdown: true },
     { name: "Industries", href: "#", hasDropdown: true },
     { name: "Portfolio", href: "/portfolio" },

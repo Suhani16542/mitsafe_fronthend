@@ -5,51 +5,52 @@ import JsonLd from "@/components/JsonLd";
 import { generateBreadcrumbSchema } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
-  title: "IT Company & Software Development Company",
+  title: "About Us – Software Development & IT Solutions Company",
   description:
-    "Mitsafe is a premier IT company, software company, and digital marketing agency delivering enterprise IT services, custom software, and digital transformation solutions.",
+    "Mitsafe is a software development and IT solutions company helping startups, growing businesses, and enterprises build scalable digital products across India and international markets.",
   keywords: [
-    "it company",
-    "software company",
-    "digital marketing agency",
-    "digital marketing company",
-    "web development company",
+    "About Mitsafe",
     "software development company",
-    "it consulting company",
-    "custom software company",
-    "enterprise it services",
-    "technology solutions company",
-    "digital transformation agency",
-    "app development agency",
-    "web design and development agency",
-    "software engineering firm",
-    "dedicated software agency",
+    "IT solutions company",
+    "custom web development",
+    "mobile app development",
+    "AI and automation company",
+    "cloud infrastructure services",
+    "enterprise software development",
+    "UI UX design agency",
+    "digital transformation",
+    "technology solutions provider",
   ],
   alternates: {
     canonical: "/company",
   },
   openGraph: {
-    title: "IT Company & Software Development Company | Mitsafe",
+    title: "About Us – Software Development & IT Solutions Company | Mitsafe",
     description:
-      "Mitsafe is a premier IT company, software company, and digital marketing agency delivering enterprise IT services, custom software, and digital transformation solutions.",
+      "Mitsafe is a software development and IT solutions company helping startups, growing businesses, and enterprises build scalable digital products.",
     url: "https://mitsafe.com/company",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Mitsafe – Software Development & IT Solutions Company",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "IT Company & Software Development Company | Mitsafe",
+    title: "About Us – Software Development & IT Solutions Company | Mitsafe",
     description:
-      "Mitsafe is a premier IT company, software company, and digital marketing agency delivering enterprise IT services, custom software, and digital transformation solutions.",
-  },
-  other: {
-    keywords:
-      "it company, software company, digital marketing agency, digital marketing company, web development company, software development company, it consulting company, custom software company, enterprise it services, technology solutions company, digital transformation agency, app development agency, web design and development agency, software engineering firm, dedicated software agency",
+      "Mitsafe is a software development and IT solutions company helping startups, growing businesses, and enterprises build scalable digital products.",
+    images: ["/twitter-image.png"],
   },
 };
 
 const breadcrumbs = [
   { name: "Home", item: "/" },
-  { name: "Company", item: "/company" },
+  { name: "About Us", item: "/company" },
 ];
 
 export default function CompanyPage() {
