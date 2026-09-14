@@ -200,8 +200,11 @@ export async function getBlogs(params: FetchBlogsParams = {}, options: RequestIn
   }
 }
 
+// Resilient cache to prevent sitemap wipeout during temporary backend cold-starts
+let cachedPublishedBlogs: { slug: string; updatedAt?: string }[] = [];
+
 /**
- * Fetch all published blogs for sitemap generation
+ * Fetch all published blogs for sitemap generation with resilience against cold-starts
  */
 export async function getAllPublishedBlogs(): Promise<{ slug: string; updatedAt?: string }[]> {
   try {
@@ -211,7 +214,7 @@ export async function getAllPublishedBlogs(): Promise<{ slug: string; updatedAt?
     );
 
     if (!firstPage.success || !Array.isArray(firstPage.data)) {
-      return [];
+      return cachedPublishedBlogs;
     }
 
     const allPosts = [...firstPage.data];
@@ -232,15 +235,40 @@ export async function getAllPublishedBlogs(): Promise<{ slug: string; updatedAt?
       });
     }
 
-    return allPosts
+    const formatted = allPosts
       .filter((post) => post && post.slug && typeof post.slug === "string" && post.slug.trim())
       .map((post) => ({
         slug: post.slug.trim(),
         updatedAt: (post as any).updatedAt || post.publishedAt || post.createdAt || undefined,
       }));
+
+    if (formatted.length > 0) {
+      cachedPublishedBlogs = formatted;
+    }
+
+    return formatted.length > 0 ? formatted : cachedPublishedBlogs;
   } catch (err) {
-    console.error("[BlogService] Failed to fetch all published blogs for sitemap:", err);
-    return [];
+    console.error("[BlogService] Failed to fetch live blogs for sitemap, using fallback cache:", err);
+    return cachedPublishedBlogs;
+  }
+}
+
+/**
+ * Helper to dispatch search engine indexing notifications non-blockingly
+ */
+export async function triggerIndexingNotification(slug?: string) {
+  try {
+    if (typeof window !== "undefined") {
+      fetch("/api/indexing/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug, type: "blog" }),
+      }).catch((e) => {
+        console.warn("[BlogService] Non-blocking indexing notification notice:", e);
+      });
+    }
+  } catch {
+    // Non-blocking
   }
 }
 
@@ -569,10 +597,17 @@ export async function createBlog(
       throw new Error(json.message || "Failed to create blog post");
     }
 
+    const formattedPost = formatBlogPost(json.data);
+
+    // Auto-trigger search engine indexing if published
+    if (formattedPost?.status === "published" || bodyPayload.status === "published") {
+      triggerIndexingNotification(formattedPost.slug || bodyPayload.slug);
+    }
+
     return {
       success: true,
       message: json.message,
-      data: formatBlogPost(json.data),
+      data: formattedPost,
     };
   } catch (err: any) {
     console.error(`[BlogService Error] POST ${endpoint} failed:`, {
@@ -636,10 +671,17 @@ export async function updateBlog(
       throw new Error(json.message || "Failed to update blog post");
     }
 
+    const formattedPost = formatBlogPost(json.data);
+
+    // Auto-trigger search engine indexing update
+    if (formattedPost?.slug) {
+      triggerIndexingNotification(formattedPost.slug);
+    }
+
     return {
       success: true,
       message: json.message,
-      data: formatBlogPost(json.data),
+      data: formattedPost,
     };
   } catch (err: any) {
     console.error(`[BlogService Error] PUT ${endpoint} failed:`, {
@@ -686,10 +728,17 @@ export async function updateBlogStatus(id: string, status: BlogStatus) {
       throw new Error(errorMsg);
     }
 
+    const formattedPost = formatBlogPost(json.data);
+
+    // Auto-trigger search engine indexing update on status change
+    if (formattedPost?.slug) {
+      triggerIndexingNotification(formattedPost.slug);
+    }
+
     return {
       success: true,
       message: json.message,
-      data: formatBlogPost(json.data),
+      data: formattedPost,
     };
   } catch (err: any) {
     const isNetworkOrCors =
@@ -734,6 +783,9 @@ export async function deleteBlog(id: string) {
       console.error(`[BlogService Error] DELETE ${endpoint} returned ${res.status}:`, json);
       throw new Error(json.message || "Failed to delete blog post");
     }
+
+    // Auto-trigger indexing notification / cache purge on deletion
+    triggerIndexingNotification();
 
     return {
       success: true,

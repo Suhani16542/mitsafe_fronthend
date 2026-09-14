@@ -11,73 +11,75 @@ export const revalidate = 0;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://mitsafe.com").replace(/\/+$/, "");
-  const lastModified = new Date();
+
+  // Baseline stable release date for static pages to maintain Googlebot trust
+  const staticLastMod = new Date("2026-03-01T00:00:00.000Z");
 
   // 1. Core static indexable pages
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified,
+      lastModified: new Date(), // Home page updates with dynamic content
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified,
+      lastModified: staticLastMod,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/company`,
-      lastModified,
+      lastModified: staticLastMod,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/hire-developers`,
-      lastModified,
+      lastModified: staticLastMod,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/insights`,
-      lastModified,
+      lastModified: staticLastMod,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified,
+      lastModified: new Date(), // Blog index updates when new articles are published
       changeFrequency: "daily",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/portfolio`,
-      lastModified,
+      lastModified: staticLastMod,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/pricing`,
-      lastModified,
+      lastModified: staticLastMod,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/solutions`,
-      lastModified,
+      lastModified: staticLastMod,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/terms`,
-      lastModified,
+      lastModified: staticLastMod,
       changeFrequency: "yearly",
       priority: 0.4,
     },
     {
       url: `${baseUrl}/refund-policy`,
-      lastModified,
+      lastModified: staticLastMod,
       changeFrequency: "yearly",
       priority: 0.4,
     },
@@ -86,7 +88,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 2. Individual dedicated service pages (10 high-value services)
   const serviceRoutes: MetadataRoute.Sitemap = servicesData.map((service) => ({
     url: `${baseUrl}/services/${service.slug}`,
-    lastModified,
+    lastModified: staticLastMod,
     changeFrequency: "monthly",
     priority: 0.9,
   }));
@@ -94,7 +96,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 3. Industry vertical solution pages
   const industryRoutes: MetadataRoute.Sitemap = navbarIndustriesData.map((ind) => ({
     url: `${baseUrl}/industries/${ind.slug}`,
-    lastModified,
+    lastModified: staticLastMod,
     changeFrequency: "monthly",
     priority: 0.7,
   }));
@@ -102,7 +104,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 4. Portfolio case study pages
   const portfolioRoutes: MetadataRoute.Sitemap = portfolioData.map((project) => ({
     url: `${baseUrl}/portfolio/${project.slug}`,
-    lastModified,
+    lastModified: staticLastMod,
     changeFrequency: "monthly",
     priority: 0.7,
   }));
@@ -110,7 +112,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 5. Expert role engineering pages
   const roleRoutes: MetadataRoute.Sitemap = rolesData.map((role) => ({
     url: `${baseUrl}/roles/${role.slug}`,
-    lastModified,
+    lastModified: staticLastMod,
     changeFrequency: "monthly",
     priority: 0.7,
   }));
@@ -120,7 +122,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const publishedBlogs = await getAllPublishedBlogs();
     blogRoutes = publishedBlogs.map((post) => {
-      let parsedDate = lastModified;
+      let parsedDate = staticLastMod;
       if (post.updatedAt) {
         const d = new Date(post.updatedAt);
         if (!isNaN(d.getTime())) {
@@ -137,7 +139,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       };
     });
   } catch (err) {
-    console.error("Error fetching live blogs for sitemap:", err);
+    console.error("[Sitemap Generation] Error fetching live blogs:", err);
   }
 
   return [
