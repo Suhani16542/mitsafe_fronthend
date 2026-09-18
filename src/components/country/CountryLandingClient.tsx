@@ -587,48 +587,60 @@ export default function CountryLandingClient({ config }: Props) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {config.reviews.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between hover:border-[#305EFF]/50 hover:shadow-lg transition-all duration-300"
-              >
-                <div>
-                  {/* Review Header with Avatar & Star Rating */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-[#0F204A] text-white flex items-center justify-center font-bold text-sm shrink-0">
-                      {item.avatar}
-                    </div>
-                    <div>
-                      <div className="text-sm font-extrabold text-slate-900 leading-tight">
-                        {item.name}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {config.reviews.map((item, idx) => {
+              const initials =
+                item.avatar && item.avatar.length <= 3
+                  ? item.avatar
+                  : item.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")
+                      .slice(0, 2)
+                      .toUpperCase();
+
+              return (
+                <div
+                  key={idx}
+                  className="p-6 rounded-2xl bg-slate-50 border border-slate-200/90 flex flex-col justify-between hover:border-[#305EFF]/50 hover:shadow-lg transition-all duration-300"
+                >
+                  <div>
+                    {/* Review Header with Avatar & Star Rating */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#305EFF] to-[#0F204A] text-white flex items-center justify-center font-extrabold text-sm shrink-0 shadow-sm ring-2 ring-white">
+                        {initials}
                       </div>
-                      <div className="text-[11px] text-slate-500 font-medium">
-                        {item.location}
+                      <div>
+                        <div className="text-sm font-extrabold text-slate-900 leading-tight">
+                          {item.name}
+                        </div>
+                        <div className="text-[11px] text-slate-500 font-medium mt-0.5">
+                          {item.location}
+                        </div>
                       </div>
                     </div>
+
+                    {/* 5 Stars */}
+                    <div className="flex items-center gap-1 text-amber-400 mb-3">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                      ))}
+                    </div>
+
+                    {/* Review Quote */}
+                    <p className="text-slate-700 text-xs sm:text-[13px] leading-relaxed line-clamp-4">
+                      "{item.review}"
+                    </p>
                   </div>
 
-                  {/* 5 Stars */}
-                  <div className="flex items-center gap-1 text-amber-400 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    ))}
+                  {/* Google Verified Review Badge */}
+                  <div className="pt-4 mt-4 border-t border-slate-200/60 flex items-center justify-between text-[11px] font-bold text-slate-500">
+                    <span className="text-slate-900 font-extrabold">{item.role}</span>
+                    <span className="text-[#305EFF]">Google 5.0 ★</span>
                   </div>
-
-                  {/* Review Quote */}
-                  <p className="text-slate-700 text-xs sm:text-[13px] leading-relaxed line-clamp-4">
-                    "{item.review}"
-                  </p>
                 </div>
-
-                {/* Google Verified Review Badge */}
-                <div className="pt-4 mt-4 border-t border-slate-200/60 flex items-center justify-between text-[11px] font-bold text-slate-500">
-                  <span className="text-slate-900 font-extrabold">{item.role}</span>
-                  <span className="text-[#305EFF]">Google 5.0 ★</span>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
