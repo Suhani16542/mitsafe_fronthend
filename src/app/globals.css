@@ -1671,7 +1671,257 @@ footer p, footer span, footer a,
 
 
 
+.dark .cosmic-services-wrapper .bg-\[\#F3F0FA\]\/50 {
+  background-color: rgba(11, 26, 46, 0.5) !important;
+  border-color: rgba(0, 212, 255, 0.15) !important;
+}
+
+/* Dark Mode Cards Hover */
+.dark .cosmic-services-wrapper .glow-card:hover,
+.dark .cosmic-servicedetail-wrapper .bg-white\/70:hover,
+.dark .cosmic-portfolio-wrapper .bg-white\/70:hover,
+.dark .cosmic-hire-wrapper .bg-white\/70:hover,
+.dark .cosmic-insights-wrapper .bg-white\/70:hover,
+.dark .cosmic-contact-wrapper .bg-white\/70:hover {
+  background-color: rgba(15, 34, 61, 0.85) !important;
+  border-color: rgba(0, 212, 255, 0.4) !important;
+  box-shadow: 0 20px 45px rgba(0, 212, 255, 0.15) !important;
+}
+
+/* Dark Mode Text overrides */
+.dark .cosmic-services-wrapper h1,
+.dark .cosmic-services-wrapper h2,
+.dark .cosmic-services-wrapper h3,
+.dark .cosmic-services-wrapper h4,
+.dark .cosmic-servicedetail-wrapper h1,
+.dark .cosmic-servicedetail-wrapper h2,
+.dark .cosmic-servicedetail-wrapper h3,
+.dark .cosmic-servicedetail-wrapper h4,
+.dark .cosmic-portfolio-wrapper h1,
+.dark .cosmic-portfolio-wrapper h2,
+.dark .cosmic-portfolio-wrapper h3,
+.dark .cosmic-portfolio-wrapper h4,
+.dark .cosmic-hire-wrapper h1,
+.dark .cosmic-hire-wrapper h2,
+.dark .cosmic-hire-wrapper h3,
+.dark .cosmic-hire-wrapper h4,
+.dark .cosmic-insights-wrapper h1,
+.dark .cosmic-insights-wrapper h2,
+.dark .cosmic-insights-wrapper h3,
+.dark .cosmic-insights-wrapper h4,
+.dark .cosmic-contact-wrapper h1,
+.dark .cosmic-contact-wrapper h2,
+.dark .cosmic-contact-wrapper h3,
+.dark .cosmic-contact-wrapper h4 {
+  color: #FFFFFF !important;
+}
+
+.dark .cosmic-services-wrapper p,
+.dark .cosmic-servicedetail-wrapper p,
+.dark .cosmic-services-wrapper .text-slate-650,
+.dark .cosmic-services-wrapper .text-slate-600,
+.dark .cosmic-services-wrapper .text-slate-500,
+.dark .cosmic-servicedetail-wrapper .text-slate-600,
+.dark .cosmic-servicedetail-wrapper .text-slate-500,
+.dark .cosmic-portfolio-wrapper p,
+.dark .cosmic-portfolio-wrapper .text-slate-500,
+.dark .cosmic-hire-wrapper p,
+.dark .cosmic-hire-wrapper .text-slate-500,
+.dark .cosmic-insights-wrapper p,
+.dark .cosmic-insights-wrapper .text-slate-500,
+.dark .cosmic-contact-wrapper p,
+.dark .cosmic-contact-wrapper .text-slate-500 {
+  color: #94A3B8 !important;
+}
+
+.dark .cosmic-services-wrapper .text-slate-900,
+.dark .cosmic-servicedetail-wrapper .text-slate-800,
+.dark .cosmic-servicedetail-wrapper .text-\[\#1E1A39\],
+.dark .cosmic-portfolio-wrapper .text-\[\#1E1A39\],
+.dark .cosmic-hire-wrapper .text-\[\#1E1A39\],
+.dark .cosmic-insights-wrapper .text-\[\#1E1A39\],
+.dark .cosmic-contact-wrapper .text-\[\#1E1A39\],
+.dark .cosmic-contact-wrapper .text-\[\#0B1530\] {
+  color: #FFFFFF !important;
+}
+
+/* Accordions in dark mode */
+.dark .cosmic-servicedetail-wrapper .border-\[\#E5E2F0\]\/80 {
+  border-color: rgba(0, 212, 255, 0.15) !important;
+  background-color: rgba(11, 26, 46, 0.7) !important;
+}
+
+.dark .cosmic-servicedetail-wrapper .border-\[\#E5E2F0\]\/80 button {
+  color: #FFFFFF !important;
+}
+
+.dark .cosmic-servicedetail-wrapper .border-\[\#E5E2F0\]\/80 button:hover {
+  color: #00D4FF !important;
+}
+
+/* Timeline process overrides in dark mode */
+.dark .cosmic-servicedetail-wrapper .border-purple-100 {
+  border-color: rgba(0, 212, 255, 0.15) !important;
+}
+
+.dark .cosmic-servicedetail-wrapper .bg-white.shadow-sm {
+  background-color: rgba(11, 26, 46, 0.95) !important;
+  border-color: rgba(0, 212, 255, 0.25) !important;
+  color: #00D4FF !important;
+}
+
+/* Dark Mode accent colors (cyan) */
+.dark .cosmic-services-wrapper .text-\[\#7C3AED\],
+.dark .cosmic-servicedetail-wrapper .text-\[\#7C3AED\] {
+  color: #00D4FF !important;
+}
+
+.dark .cosmic-services-wrapper .bg-\[\#7C3AED\]\/5,
+.dark .cosmic-servicedetail-wrapper .bg-\[\#7C3AED\]\/5 {
+  background-color: rgba(0, 212, 255, 0.08) !important;
+}
+
+.dark .cosmic-services-wrapper .border-\[\#7C3AED\]\/15,
+.dark .cosmic-servicedetail-wrapper .border-\[\#7C3AED\]\/15 {
+  border-color: rgba(0, 212, 255, 0.25) !important;
+}
+
+/* Gradients */
+.dark .from-\[\#7C3AED\] {
+  --tw-gradient-from: #008FED !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, #00D4FF) !important;
+}
+
+.dark .to-\[\#A78BFA\] {
+  --tw-gradient-to: #00D4FF !important;
+}
+
+.dark .from-\[\#7C3AED\]\/90 {
+  --tw-gradient-from: #008FED !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, #00D4FF) !important;
+}
+
+.dark .to-\[\#A78BFA\]\/90 {
+  --tw-gradient-to: #00D4FF !important;
+}
+
+/* Timeline point and badges */
+.dark .cosmic-servicedetail-wrapper .bg-\[\#F3F0FA\] {
+  background-color: rgba(0, 212, 255, 0.08) !important;
+}
+
+.dark .cosmic-servicedetail-wrapper .bg-\[\#F3F0FA\]\/40 {
+  background-color: rgba(11, 26, 46, 0.4) !important;
+  border-color: rgba(0, 212, 255, 0.15) !important;
+}
+
+.dark .cosmic-servicedetail-wrapper .bg-gradient-to-tr.from-\[\#7C3AED\]\/90 {
+  background-image: linear-gradient(to top right, rgba(0, 119, 212, 0.95), rgba(0, 212, 255, 0.95)) !important;
+}
+
+.dark .cosmic-servicedetail-wrapper .bg-purple-300 {
+  background-color: rgba(0, 212, 255, 0.15) !important;
+}
+
+/* Infinite Carousel Marquee */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-scroll {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 40s linear infinite;
+}
+
+.animate-marquee-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Top Bar Announcement Marquee */
+@keyframes topbar-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-topbar-marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: topbar-marquee 35s linear infinite;
+}
+
+.animate-topbar-marquee:hover {
+  animation-play-state: paused;
+}
+
+
+
 
 .solid-black-text { background: none !important; -webkit-background-clip: initial !important; -webkit-text-fill-color: #000000 !important; color: #000000 !important; }
 
 .solid-blue-text { background: none !important; -webkit-background-clip: initial !important; -webkit-text-fill-color: #305EFF !important; color: #305EFF !important; }
+
+/* Force pure bright solid white on Home CTA section */
+.home-cta-white-heading,
+.home-cta-white-heading *,
+.home-cta-white-heading span,
+.home-cta-white-text,
+.home-cta-white-text *,
+.home-cta-white-text span {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  opacity: 1 !important;
+}
+
+/* Force pure bright solid white on USA landing page dark sections */
+.usa-white-heading,
+.usa-white-heading *,
+.usa-white-heading span,
+:root:not(.dark) .usa-white-heading,
+:root:not(.dark) .usa-white-heading *,
+:root:not(.dark) .usa-white-heading span {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  background: none !important;
+  background-image: none !important;
+  opacity: 1 !important;
+}
+
+.usa-white-text,
+.usa-white-text *,
+.usa-white-text span,
+:root:not(.dark) .usa-white-text,
+:root:not(.dark) .usa-white-text *,
+:root:not(.dark) .usa-white-text span {
+  color: #E2E8F0 !important;
+  -webkit-text-fill-color: #E2E8F0 !important;
+  opacity: 1 !important;
+}
+
+.usa-light-blue-text,
+.usa-light-blue-text *,
+:root:not(.dark) .usa-light-blue-text,
+:root:not(.dark) .usa-light-blue-text * {
+  color: #93C5FD !important;
+  -webkit-text-fill-color: #93C5FD !important;
+  opacity: 1 !important;
+}
+
+.usa-cyan-text,
+.usa-cyan-text *,
+:root:not(.dark) .usa-cyan-text,
+:root:not(.dark) .usa-cyan-text * {
+  color: #00D4FF !important;
+  -webkit-text-fill-color: #00D4FF !important;
+  opacity: 1 !important;
+}

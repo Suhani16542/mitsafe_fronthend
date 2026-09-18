@@ -10,6 +10,7 @@ import { ModalProvider } from "@/context/ModalContext";
 import JsonLd from "@/components/JsonLd";
 import { generateOrganizationSchema, generateWebSiteSchema } from "@/lib/jsonld";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import WhatsAppFloatingButton from "@/components/WhatsAppFloatingButton";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -119,6 +120,7 @@ export default function RootLayout({
                 <Navbar />
                 <main className="flex-grow w-full max-w-full">{children}</main>
                 <Footer />
+                <WhatsAppFloatingButton />
               </div>
             </LenisProvider>
           </ModalProvider>

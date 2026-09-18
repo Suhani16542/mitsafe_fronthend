@@ -229,6 +229,29 @@ export default function Footer() {
                 </div>
               </a>
             </div>
+
+            {/* Regional / Country Portals Option Below Global Cards */}
+            <div className="flex flex-wrap items-center gap-2 pt-1 text-xs">
+              <span className="font-extrabold text-slate-700 uppercase tracking-wider text-[11px]">Countries:</span>
+              {[
+                { name: "USA", flag: "🇺🇸", href: "/usa" },
+                { name: "UAE", flag: "🇦🇪", href: "/uae" },
+                { name: "UK", flag: "🇬🇧", href: "/uk" },
+                { name: "Australia", flag: "🇦🇺", href: "/australia" },
+                { name: "Switzerland", flag: "🇨🇭", href: "/switzerland" },
+                { name: "Netherlands", flag: "🇳🇱", href: "/netherlands" },
+                { name: "New Zealand", flag: "🇳🇿", href: "/new-zealand" },
+              ].map((country) => (
+                <Link
+                  key={country.name}
+                  href={country.href}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 hover:bg-[#305EFF] text-slate-900 hover:text-white font-bold transition-all duration-200 border border-slate-200 shadow-xs group"
+                >
+                  <span>{country.flag}</span>
+                  <span>{country.name}</span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
 
