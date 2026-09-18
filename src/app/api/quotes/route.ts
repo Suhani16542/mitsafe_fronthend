@@ -41,6 +41,14 @@ export async function POST(request: Request) {
       website_hp: website_hp || "",
     };
 
+    if (process.env.NODE_ENV !== "production") {
+      console.log("[Quotes API Route Proxy]", {
+        hasToken: Boolean(turnstileToken),
+        tokenLength: typeof turnstileToken === "string" ? turnstileToken.length : 0,
+        targetUrl: `${backendUrl}/api/v1/quotes`,
+      });
+    }
+
     try {
       const backendRes = await fetch(`${backendUrl}/api/v1/quotes`, {
         method: "POST",
@@ -52,20 +60,20 @@ export async function POST(request: Request) {
       return NextResponse.json(data, { status: backendRes.status });
     } catch (fetchErr) {
       console.error(
-        "[Quote API Route] Backend API unreachable at " + backendUrl + ":",
+        "[Quotes API Route] Backend API unreachable at " + backendUrl + ":",
         fetchErr instanceof Error ? fetchErr.message : fetchErr
       );
       return NextResponse.json(
         {
           success: false,
           error:
-            "Unable to connect to the backend server. Please ensure the backend service is running or try again later.",
+            "Unable to connect to the backend server. Please ensure the backend service is running.",
         },
         { status: 503 }
       );
     }
   } catch (error) {
-    console.error("Error proxying quote request to backend:", error);
+    console.error("Error proxying quotes request to backend:", error);
     return NextResponse.json(
       {
         error:
@@ -75,4 +83,3 @@ export async function POST(request: Request) {
     );
   }
 }
-

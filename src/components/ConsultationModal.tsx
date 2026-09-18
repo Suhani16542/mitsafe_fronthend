@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import TurnstileWidget, { TurnstileWidgetHandle } from "@/components/TurnstileWidget";
 
 export type ModalType = "quote" | "consultation";
 
@@ -115,6 +116,9 @@ export default function ConsultationModal({
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
+  const [websiteHp, setWebsiteHp] = useState<string>("");
+  const turnstileRef = useRef<TurnstileWidgetHandle>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -146,6 +150,9 @@ export default function ConsultationModal({
       setTimeout(() => {
         setSuccess(false);
         setErrorMsg("");
+        setTurnstileToken("");
+        setWebsiteHp("");
+        turnstileRef.current?.reset();
       }, 300);
     }
     return () => {
@@ -194,6 +201,12 @@ export default function ConsultationModal({
       return;
     }
 
+    // Validate Turnstile captcha token
+    if (!turnstileToken) {
+      setErrorMsg("Please complete the security verification (captcha) below before submitting.");
+      return;
+    }
+
     setLoading(true);
     setErrorMsg("");
 
@@ -213,6 +226,8 @@ export default function ConsultationModal({
       message: formData.message.trim(),
       sourcePage: pathname || "/",
       requestType: modalType || "quote",
+      turnstileToken: turnstileToken,
+      website_hp: websiteHp,
     };
 
     try {
@@ -225,33 +240,51 @@ export default function ConsultationModal({
       const data = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        if (response.status === 400 && Array.isArray(data.errors) && data.errors.length > 0) {
-          const combinedMsg = data.errors
-            .map((err: { message?: string; msg?: string }) => err.message || err.msg)
-            .filter(Boolean)
-            .join(". ");
-          throw new Error(combinedMsg || data.message || "Validation failed. Please check your inputs.");
+        // Reset turnstile on submission rejection
+        setTurnstileToken("");
+        turnstileRef.current?.reset();
+
+        if (response.status === 400) {
+          if (Array.isArray(data.errors) && data.errors.length > 0) {
+            const combinedMsg = data.errors
+              .map((err: { message?: string; msg?: string }) => err.message || err.msg)
+              .filter(Boolean)
+              .join(". ");
+            throw new Error(combinedMsg || data.message || "Please check your inputs and complete verification.");
+          } else {
+            throw new Error(data.message || data.error || "Validation or security check failed. Please check your inputs.");
+          }
+        } else if (response.status === 403) {
+          throw new Error(data.message || "Security verification failed. Please complete the captcha check and try again.");
+        } else if (response.status === 409) {
+          throw new Error(data.message || "An identical quote request was recently submitted. Please wait a few moments before trying again.");
         } else if (response.status === 429) {
-          throw new Error(data.message || "Too many requests. Please try again later.");
+          throw new Error(data.message || "Too many quote requests. Please wait a few minutes before trying again.");
         } else if (response.status >= 500) {
-          throw new Error(data.message || "Server error. Please try again later.");
+          throw new Error(data.message || data.error || "Server error. Please try again later.");
         } else {
           throw new Error(data.message || data.error || `Error (${response.status}): Failed to submit request.`);
         }
       }
 
       setSuccess(true);
+      setTurnstileToken("");
+      setWebsiteHp("");
+      turnstileRef.current?.reset();
       setFormData({
         name: "",
         email: "",
         phone: "",
         company: "",
         serviceCategory: defaultServiceOption,
-        budget: "Under ₹50K",
+        budget: "Under $1,000",
         timeline: "ASAP",
         message: "",
       });
     } catch (err: unknown) {
+      setTurnstileToken("");
+      turnstileRef.current?.reset();
+
       if (err instanceof Error) {
         if (err.name === "TypeError" && err.message.includes("fetch")) {
           setErrorMsg("Unable to connect to backend server. Please check your connection or backend status.");
@@ -259,7 +292,7 @@ export default function ConsultationModal({
           setErrorMsg(err.message);
         }
       } else {
-        setErrorMsg("An error occurred while processing your request. Please try again.");
+        setErrorMsg("An unexpected error occurred. Please try again.");
       }
     } finally {
       setLoading(false);
@@ -570,11 +603,48 @@ export default function ConsultationModal({
                           />
                         </div>
 
+                        {/* Honeypot field for bot spam protection - visually hidden */}
+                        <div
+                          className="opacity-0 absolute -left-[9999px] w-1 h-1 overflow-hidden pointer-events-none"
+                          aria-hidden="true"
+                        >
+                          <label htmlFor="modal_website_hp">Leave this field blank</label>
+                          <input
+                            type="text"
+                            id="modal_website_hp"
+                            name="website_hp"
+                            value={websiteHp}
+                            onChange={(e) => setWebsiteHp(e.target.value)}
+                            tabIndex={-1}
+                            autoComplete="off"
+                          />
+                        </div>
+
+                        {/* Turnstile Security Verification */}
+                        <div className="w-full flex flex-col items-center justify-center">
+                          <TurnstileWidget
+                            ref={turnstileRef}
+                            onSuccess={(token) => {
+                              setTurnstileToken(token);
+                              if (errorMsg && errorMsg.includes("verification")) {
+                                setErrorMsg("");
+                              }
+                            }}
+                            onError={() => {
+                              setTurnstileToken("");
+                            }}
+                            onExpire={() => {
+                              setTurnstileToken("");
+                            }}
+                            className="my-0.5"
+                          />
+                        </div>
+
                         {/* Full-width Mitsafe Blue Submit Button */}
                         <button
                           type="submit"
                           disabled={loading}
-                          className="w-full mt-1 py-3 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer font-sans"
+                          className="w-full mt-1 py-3 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer font-sans disabled:opacity-70 disabled:cursor-not-allowed"
                           style={{ backgroundColor: "#305EFF" }}
                         >
                           {loading ? (
