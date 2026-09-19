@@ -79,7 +79,6 @@ const homeFaqs = [
 // Dynamically load below-the-fold components to reduce First Load JS bundle size
 const PremiumServicesShowcase = dynamic(() => import("@/sections/PremiumServicesShowcase"));
 const ServicesSection = dynamic(() => import("@/sections/ServicesSection"));
-const HomeCTASection = dynamic(() => import("@/sections/HomeCTASection"));
 const MitsafeSection = dynamic(() => import("@/sections/MitsafeSection"));
 const WhyChooseUs = dynamic(() => import("@/sections/WhyChooseUs"));
 const WelcomeSection = dynamic(() => import("@/sections/WelcomeSection"));
@@ -96,7 +95,6 @@ export default function Home() {
       <Hero />
       <PremiumServicesShowcase />
       <ServicesSection />
-      <HomeCTASection />
       <MitsafeSection />
       <WhyChooseUs />
       <WelcomeSection />

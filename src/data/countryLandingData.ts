@@ -64,6 +64,7 @@ export interface CountryLandingConfig {
   };
   services: CountryService[];
   experienceFaqs: CountryFaq[];
+  experienceImage?: string;
   reviews: ClientReview[];
   stats: CountryStat[];
   mission: {
@@ -342,7 +343,7 @@ export const countryLandingData: Record<string, CountryLandingConfig> = {
         primaryBtnHref: "#quote",
         secondaryBtnText: "Explore Our Solutions",
         secondaryBtnHref: "#services",
-        image: "/images/uae_hero_bg.jpg",
+        image: "/images/uae_hero_1.jpg",
         badges: ["Gulf Time Zone Aligned (GST)", "Bilingual UX & RTL Support", "100% IP & Source Code Ownership"],
       },
       {
@@ -355,7 +356,7 @@ export const countryLandingData: Record<string, CountryLandingConfig> = {
         primaryBtnHref: "#quote",
         secondaryBtnText: "View Case Studies",
         secondaryBtnHref: "#services",
-        image: "/images/uae_about_workspace.jpg",
+        image: "/images/uae_hero_2.jpg",
         badges: ["Payment Gateway Ready", "99.99% Cloud SLA", "Strict Non-Disclosure"],
       },
       {
@@ -368,7 +369,7 @@ export const countryLandingData: Record<string, CountryLandingConfig> = {
         primaryBtnHref: "#quote",
         secondaryBtnText: "Explore Tech Stack",
         secondaryBtnHref: "#services",
-        image: "/engineering_hero_v2.webp",
+        image: "/images/uae_hero_3.jpg",
         badges: ["iOS & Android Store Ready", "Arabic Natural Language Processing", "Dedicated Account Leads"],
       },
     ],
@@ -387,7 +388,7 @@ export const countryLandingData: Record<string, CountryLandingConfig> = {
         "Dedicated Agile Sprints & Milestone Delivery",
         "Full Intellectual Property & Repository Transfer",
       ],
-      image: "/images/uae_about_workspace.jpg",
+      image: "/images/uae_about.jpg",
     },
     services: [
       {
@@ -495,6 +496,7 @@ export const countryLandingData: Record<string, CountryLandingConfig> = {
           "We sign comprehensive mutual NDAs and transfer 100% intellectual property rights to your organization. Code is hosted on your enterprise GitHub/GitLab repositories with end-to-end encryption.",
       },
     ],
+    experienceImage: "/images/uae_experience.jpg",
     reviews: [
       {
         name: "Tariq Al-Mansoor",
@@ -533,7 +535,7 @@ export const countryLandingData: Record<string, CountryLandingConfig> = {
     mission: {
       title: "Empowering the Next Generation of Middle East Digital Leaders",
       desc: "We partner with visionary enterprises across Dubai, Abu Dhabi, and the GCC to architect scalable, secure, and beautiful digital software that defines market leadership.",
-      image: "/images/uae_hero_bg.jpg",
+      image: "/images/uae_mission.jpg",
     },
     techStack: [
       "Next.js 15",

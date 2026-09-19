@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import type { Metadata } from "next";
 import BlogListClient from "./BlogListClient";
 import JsonLd from "@/components/JsonLd";
@@ -65,7 +65,9 @@ export default async function BlogPage() {
   return (
     <>
       <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
-      <BlogListClient initialPosts={initialPosts} initialCategories={initialCategories} />
+      <Suspense fallback={null}>
+        <BlogListClient initialPosts={initialPosts} initialCategories={initialCategories} />
+      </Suspense>
     </>
   );
 }

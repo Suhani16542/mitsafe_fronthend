@@ -20,7 +20,7 @@ export default function WhatsAppFloatingButton() {
     return null;
   }
 
-  const whatsappUrl = "https://wa.me/9162659444392";
+  const whatsappUrl = "https://wa.me/916265944392";
 
   return (
     <div className="fixed bottom-3.5 right-3.5 sm:bottom-5 sm:right-5 z-40 print:hidden select-none">

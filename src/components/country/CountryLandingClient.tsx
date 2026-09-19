@@ -463,7 +463,7 @@ export default function CountryLandingClient({ config }: Props) {
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-[460px] p-4 bg-slate-50 border border-slate-200 rounded-3xl shadow-lg">
                 <Image
-                  src="/pricing-devices-mockup.webp"
+                  src={config.experienceImage || "/pricing-devices-mockup.webp"}
                   alt={`Multi Device Responsive Software Engineering in ${config.countryName}`}
                   width={560}
                   height={420}

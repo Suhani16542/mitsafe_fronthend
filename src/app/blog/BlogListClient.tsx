@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, Calendar, User, Clock, ArrowRight, Loader2, BookOpen, Sparkles, Tag } from "lucide-react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { Search, Calendar, User, Clock, ArrowRight, Loader2, BookOpen, Tag, ChevronLeft, ChevronRight } from "lucide-react";
 import SectionHeader from "@/components/SectionHeader";
 import { getBlogs, getCategories, DEFAULT_BLOG_FALLBACK_IMAGE } from "@/services/blog.service";
 import { BlogPost } from "@/types/adminBlog";
@@ -13,7 +14,13 @@ interface BlogListClientProps {
   initialCategories?: string[];
 }
 
+const ITEMS_PER_PAGE = 6;
+
 export default function BlogListClient({ initialPosts = [], initialCategories = ["All"] }: BlogListClientProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -66,19 +73,103 @@ export default function BlogListClient({ initialPosts = [], initialCategories = 
     };
   }, [initialPosts]);
 
-  const filteredPosts = posts.filter((post) => {
-    const matchesSearch =
-      !searchQuery ||
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.category.toLowerCase().includes(searchQuery.toLowerCase());
+  // Ensure posts are sorted newest published/created first
+  const sortedPosts = useMemo(() => {
+    return [...posts].sort((a, b) => {
+      const timeA = new Date(a.publishedAt || a.createdAt || 0).getTime();
+      const timeB = new Date(b.publishedAt || b.createdAt || 0).getTime();
+      return timeB - timeA;
+    });
+  }, [posts]);
 
-    const matchesCategory =
-      selectedCategory === "All" ||
-      post.category.toLowerCase() === selectedCategory.toLowerCase();
+  // Filter posts based on search query and category
+  const filteredPosts = useMemo(() => {
+    return sortedPosts.filter((post) => {
+      const matchesSearch =
+        !searchQuery ||
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.category.toLowerCase().includes(searchQuery.toLowerCase());
 
-    return matchesSearch && matchesCategory;
-  });
+      const matchesCategory =
+        selectedCategory === "All" ||
+        post.category.toLowerCase() === selectedCategory.toLowerCase();
+
+      return matchesSearch && matchesCategory;
+    });
+  }, [sortedPosts, searchQuery, selectedCategory]);
+
+  const totalPages = Math.ceil(filteredPosts.length / ITEMS_PER_PAGE);
+
+  // Read page from URL query params (defaults to 1)
+  const pageParam = parseInt(searchParams.get("page") || "1", 10);
+  const currentPage = isNaN(pageParam) || pageParam < 1 ? 1 : totalPages > 0 ? Math.min(pageParam, totalPages) : 1;
+
+  // Paginated subset of posts
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedPosts = filteredPosts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  // Helper to update URL page parameter
+  const updateUrlPage = (newPage: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (newPage <= 1) {
+      params.delete("page");
+    } else {
+      params.set("page", String(newPage));
+    }
+    const queryStr = params.toString();
+    const targetUrl = queryStr ? `${pathname}?${queryStr}` : pathname;
+    router.push(targetUrl, { scroll: false });
+  };
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage < 1 || newPage > totalPages || newPage === currentPage) return;
+    updateUrlPage(newPage);
+
+    // Smooth scroll to top of articles section
+    const articlesSection = document.getElementById("articles-container");
+    if (articlesSection) {
+      articlesSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+    if (searchParams.has("page")) {
+      updateUrlPage(1);
+    }
+  };
+
+  const handleCategoryChange = (cat: string) => {
+    setSelectedCategory(cat);
+    if (searchParams.has("page")) {
+      updateUrlPage(1);
+    }
+  };
+
+  const handleResetFilters = () => {
+    setSearchQuery("");
+    setSelectedCategory("All");
+    if (searchParams.has("page")) {
+      updateUrlPage(1);
+    }
+  };
+
+  // Generate page numbers for pagination controls
+  const getPageNumbers = () => {
+    if (totalPages <= 7) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+    const pages: (number | string)[] = [];
+    if (currentPage <= 4) {
+      pages.push(1, 2, 3, 4, 5, "...", totalPages);
+    } else if (currentPage >= totalPages - 3) {
+      pages.push(1, "...", totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+    } else {
+      pages.push(1, "...", currentPage - 1, currentPage, currentPage + 1, "...", totalPages);
+    }
+    return pages;
+  };
 
   return (
     <div className="min-h-screen bg-[#FAFBFF] dark:bg-[#071426] text-slate-900 dark:text-white transition-colors duration-300">
@@ -102,7 +193,7 @@ export default function BlogListClient({ initialPosts = [], initialCategories = 
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 placeholder="Search articles by title, topic, or keyword..."
                 className="w-full pl-11 pr-4 py-3 rounded-full border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-white/5 backdrop-blur-md text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#305EFF] focus:border-transparent shadow-sm"
               />
@@ -116,7 +207,7 @@ export default function BlogListClient({ initialPosts = [], initialCategories = 
               {categoriesList.map((cat) => (
                 <button
                   key={cat}
-                  onClick={() => setSelectedCategory(cat)}
+                  onClick={() => handleCategoryChange(cat)}
                   className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
                     selectedCategory === cat
                       ? "bg-[#305EFF] text-white shadow-md shadow-[#305EFF]/25 scale-105"
@@ -133,7 +224,7 @@ export default function BlogListClient({ initialPosts = [], initialCategories = 
       </div>
 
       {/* Main Articles Listing */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+      <div id="articles-container" className="max-w-7xl mx-auto px-6 lg:px-8 py-16 scroll-mt-28">
         
         {/* Results stats */}
         <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-200/80 dark:border-white/10 text-xs font-semibold text-slate-500 dark:text-slate-400">
@@ -147,10 +238,7 @@ export default function BlogListClient({ initialPosts = [], initialCategories = 
 
           {(searchQuery || selectedCategory !== "All") && (
             <button
-              onClick={() => {
-                setSearchQuery("");
-                setSelectedCategory("All");
-              }}
+              onClick={handleResetFilters}
               className="text-[#305EFF] hover:underline cursor-pointer"
             >
               Reset filters
@@ -165,8 +253,8 @@ export default function BlogListClient({ initialPosts = [], initialCategories = 
               <Loader2 className="w-8 h-8 animate-spin text-[#305EFF]" />
               <span className="text-sm font-medium">Loading published articles...</span>
             </div>
-          ) : filteredPosts.length > 0 ? (
-            filteredPosts.map((post) => {
+          ) : paginatedPosts.length > 0 ? (
+            paginatedPosts.map((post) => {
               const authorName =
                 typeof post.author === "string"
                   ? post.author
@@ -255,6 +343,94 @@ export default function BlogListClient({ initialPosts = [], initialCategories = 
             </div>
           )}
         </div>
+
+        {/* Pagination Controls - Rendered only when total filtered articles > 6 */}
+        {!isLoading && totalPages > 1 && (
+          <div className="mt-14 pt-8 border-t border-slate-200/80 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            
+            {/* Range / Summary Counter */}
+            <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 order-2 sm:order-1 text-center sm:text-left">
+              Showing <span className="text-slate-900 dark:text-white font-bold">{startIndex + 1}–{Math.min(startIndex + ITEMS_PER_PAGE, filteredPosts.length)}</span> of{" "}
+              <span className="text-slate-900 dark:text-white font-bold">{filteredPosts.length}</span> articles &bull; Page{" "}
+              <span className="text-[#305EFF] font-bold">{currentPage}</span> of{" "}
+              <span className="text-slate-900 dark:text-white font-bold">{totalPages}</span>
+            </div>
+
+            {/* Navigation Buttons */}
+            <nav
+              aria-label="Blog pagination"
+              className="flex items-center gap-1.5 order-1 sm:order-2 flex-wrap justify-center"
+            >
+              {/* Previous Button */}
+              <button
+                type="button"
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage <= 1}
+                aria-label="Go to previous page"
+                className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                  currentPage <= 1
+                    ? "opacity-35 cursor-not-allowed bg-slate-100 dark:bg-white/5 text-slate-400 dark:text-slate-600 border border-slate-200/60 dark:border-white/5"
+                    : "cursor-pointer bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-[#305EFF] hover:text-[#305EFF] hover:bg-[#305EFF]/5 active:scale-95 shadow-2xs"
+                }`}
+              >
+                <ChevronLeft className="w-4 h-4" />
+                <span>Previous</span>
+              </button>
+
+              {/* Page Number Buttons */}
+              <div className="flex items-center gap-1">
+                {getPageNumbers().map((p, idx) => {
+                  if (p === "...") {
+                    return (
+                      <span
+                        key={`ellipsis-${idx}`}
+                        className="w-8 h-8 flex items-center justify-center text-xs text-slate-400 font-bold"
+                      >
+                        &hellip;
+                      </span>
+                    );
+                  }
+
+                  const pageNum = Number(p);
+                  const isActive = pageNum === currentPage;
+
+                  return (
+                    <button
+                      key={`page-${pageNum}`}
+                      type="button"
+                      onClick={() => handlePageChange(pageNum)}
+                      aria-current={isActive ? "page" : undefined}
+                      aria-label={`Page ${pageNum}`}
+                      className={`w-9 h-9 flex items-center justify-center rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                        isActive
+                          ? "bg-[#305EFF] text-white shadow-md shadow-[#305EFF]/30 scale-105"
+                          : "bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-[#305EFF] hover:text-[#305EFF] hover:bg-[#305EFF]/5"
+                      }`}
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Next Button */}
+              <button
+                type="button"
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage >= totalPages}
+                aria-label="Go to next page"
+                className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                  currentPage >= totalPages
+                    ? "opacity-35 cursor-not-allowed bg-slate-100 dark:bg-white/5 text-slate-400 dark:text-slate-600 border border-slate-200/60 dark:border-white/5"
+                    : "cursor-pointer bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-[#305EFF] hover:text-[#305EFF] hover:bg-[#305EFF]/5 active:scale-95 shadow-2xs"
+                }`}
+              >
+                <span>Next</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </nav>
+          </div>
+        )}
 
       </div>
     </div>
