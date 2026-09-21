@@ -1,41 +1,42 @@
 import React from "react";
 import type { Metadata } from "next";
-import CountryLandingClient from "@/components/country/CountryLandingClient";
-import { countryLandingData } from "@/data/countryLandingData";
+import UsaLandingClient from "./UsaLandingClient";
 import JsonLd from "@/components/JsonLd";
 import { generateBreadcrumbSchema } from "@/lib/jsonld";
 
-const config = countryLandingData.usa;
-
 export const metadata: Metadata = {
-  title: config.seo.title,
-  description: config.seo.description,
+  title: "Software & Web App Development Company in USA | Mitsafe",
+  description:
+    "Mitsafe delivers premier custom web applications, mobile app development, cloud architecture, and AI automation for fast-growing US enterprises and startups.",
   alternates: {
-    canonical: config.seo.canonical,
+    canonical: "/usa",
   },
   openGraph: {
-    title: config.seo.title,
-    description: config.seo.description,
-    url: `https://mitsafe.com${config.seo.canonical}`,
+    title: "Software & Web App Development Company in USA | Mitsafe",
+    description:
+      "Mitsafe delivers premier custom web applications, mobile app development, cloud architecture, and AI automation for fast-growing US enterprises and startups.",
+    url: "https://mitsafe.com/usa",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: config.seo.title,
-    description: config.seo.description,
+    title: "Software & Web App Development Company in USA | Mitsafe",
+    description:
+      "Mitsafe delivers premier custom web applications, mobile app development, cloud architecture, and AI automation for fast-growing US enterprises and startups.",
   },
 };
 
 const breadcrumbs = [
   { name: "Home", item: "/" },
-  { name: config.countryName, item: config.seo.canonical },
+  { name: "USA", item: "/usa" },
 ];
 
 export default function UsaPage() {
   return (
     <>
       <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
-      <CountryLandingClient config={config} />
+      <UsaLandingClient />
     </>
   );
 }
+

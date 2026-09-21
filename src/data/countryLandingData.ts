@@ -41,6 +41,56 @@ export interface CountryStat {
   label: string;
 }
 
+
+export interface ComplianceStandard {
+  code: string;
+  title: string;
+  desc: string;
+}
+
+export interface CountryCompliance {
+  badge: string;
+  title: string;
+  desc: string;
+  standards: ComplianceStandard[];
+}
+
+export interface IndustryItem {
+  title: string;
+  tag: string;
+  desc: string;
+}
+
+export interface IndustrySpecialization {
+  badge: string;
+  title: string;
+  desc: string;
+  items: IndustryItem[];
+}
+
+export interface CollaborationStep {
+  step: string;
+  title: string;
+  desc: string;
+}
+
+export interface WorkingModel {
+  badge: string;
+  title: string;
+  desc: string;
+  timeZone: string;
+  overlapHours: string;
+  slaResponse: string;
+  communicationTools: string[];
+  steps: CollaborationStep[];
+}
+
+export interface RegionalHub {
+  city: string;
+  stateOrRegion: string;
+  highlight: string;
+}
+
 export interface CountryLandingConfig {
   slug: string;
   countryName: string;
@@ -77,6 +127,10 @@ export interface CountryLandingConfig {
     title: string;
     desc: string;
   };
+  compliance?: CountryCompliance;
+  industries?: IndustrySpecialization;
+  workingModel?: WorkingModel;
+  regionalHubs?: RegionalHub[];
 }
 
 export const countryLandingData: Record<string, CountryLandingConfig> = {
@@ -316,6 +370,99 @@ export const countryLandingData: Record<string, CountryLandingConfig> = {
       title: "Ready to Scale Your US Digital Product?",
       desc: "Schedule a free technical discovery call with our solutions architects today.",
     },
+    compliance: {
+      badge: "US Regulatory Compliance & Data Security",
+      title: "Built to Meet Stringent US Enterprise Standards",
+      desc: "We engineer digital products complying with federal, state, and industry-specific US compliance frameworks.",
+      standards: [
+        {
+          code: "HIPAA",
+          title: "Health Insurance Portability and Accountability",
+          desc: "Full architectural compliance for US healthcare, EHR/EMR integrations, and encrypted ePHI transmission.",
+        },
+        {
+          code: "SOC 2 Type II",
+          title: "Enterprise Trust & Security Controls",
+          desc: "Rigorous security controls, role-based access governance, continuous audit trails, and zero-trust protocols.",
+        },
+        {
+          code: "CCPA / CPRA",
+          title: "California Privacy Rights Standards",
+          desc: "Transparent consumer data handling, automated data subject access request (DSAR) workflows, and cookie governance.",
+        },
+        {
+          code: "ADA Section 508",
+          title: "Accessibility & WCAG 2.1 AA",
+          desc: "Full web accessibility compliance ensuring universal access and legal liability mitigation for US enterprises.",
+        },
+      ],
+    },
+    industries: {
+      badge: "Targeted Industry Expertise",
+      title: "Proven Software Solutions for US Industry Leaders",
+      desc: "Delivering bespoke digital engineering across America's most demanding economic sectors.",
+      items: [
+        {
+          title: "FinTech, Trading & WealthTech",
+          tag: "Wall Street Ready",
+          desc: "Custom trading portals, ACH/Stripe orchestration, automated ledgering, and real-time market data visualizers.",
+        },
+        {
+          title: "HealthTech & Telehealth",
+          tag: "HIPAA Compliant",
+          desc: "Virtual consultation platforms, patient portals, remote health monitoring, and medical practice management SaaS.",
+        },
+        {
+          title: "Enterprise B2B SaaS & AI Systems",
+          tag: "High Concurrency",
+          desc: "Multi-tenant cloud platforms, automated workflow orchestration, generative AI agents, and enterprise CRM integrations.",
+        },
+        {
+          title: "High-Volume E-Commerce & D2C",
+          tag: "Sub-Second Speed",
+          desc: "Headless commerce, Next.js storefronts, custom ERP synchronization, and conversion-optimized checkout funnels.",
+        },
+      ],
+    },
+    workingModel: {
+      badge: "Seamless Cross-Border Delivery",
+      title: "Agile Collaboration Aligned with US Time Zones",
+      desc: "Experience frictionless communication with dedicated US overlap hours, direct engineering access, and transparent sprint cycles.",
+      timeZone: "EST (UTC-5) / CST (UTC-6) / PST (UTC-8)",
+      overlapHours: "4-6 Hours Daily Active Overlap",
+      slaResponse: "< 2 Hours Guaranteed Response Time",
+      communicationTools: ["Slack", "Microsoft Teams", "Jira", "GitHub Enterprise", "Zoom"],
+      steps: [
+        {
+          step: "01",
+          title: "Discovery & Mutual NDA",
+          desc: "We sign standard US NDA agreements and scope technical architecture, deliverables, and milestones upfront.",
+        },
+        {
+          step: "02",
+          title: "Timezone-Aligned Agile Sprints",
+          desc: "Daily standups, bi-weekly demo meetings, and live sprint boards fully coordinated in your local US time zone.",
+        },
+        {
+          step: "03",
+          title: "Transparent CI/CD Staging",
+          desc: "Instant access to live preview environments, automated unit test suites, and transparent GitHub commit logs.",
+        },
+        {
+          step: "04",
+          title: "100% IP Ownership & US Invoicing",
+          desc: "Complete transfer of intellectual property and source code with convenient US domestic payment processing.",
+        },
+      ],
+    },
+    regionalHubs: [
+      { city: "New York", stateOrRegion: "NY", highlight: "FinTech, Media & Global Corporate HQs" },
+      { city: "San Francisco / Bay Area", stateOrRegion: "CA", highlight: "Silicon Valley Tech, AI Labs & Startups" },
+      { city: "Austin", stateOrRegion: "TX", highlight: "High-Growth Scale-ups & E-Commerce Disruptors" },
+      { city: "Chicago", stateOrRegion: "IL", highlight: "Logistics, Industrial SaaS & Trading Platforms" },
+      { city: "Los Angeles", stateOrRegion: "CA", highlight: "Entertainment, Consumer Tech & Mobile Apps" },
+      { city: "Seattle", stateOrRegion: "WA", highlight: "Cloud Infrastructure, Big Data & Enterprise Systems" },
+    ],
   },
 
   // =========================================================================
@@ -555,6 +702,98 @@ export const countryLandingData: Record<string, CountryLandingConfig> = {
       title: "Ready to Build Scalable Software in the UAE?",
       desc: "Connect with our digital solutions architects for a tailored proposal within 24 hours.",
     },
+    compliance: {
+      badge: "UAE & Gulf Regulatory Compliance",
+      title: "Engineered for UAE Data Sovereignty & Standards",
+      desc: "Full adherence to regional compliance, digital tax mandates, and Arabic localization best practices.",
+      standards: [
+        {
+          code: "PDPL Federal Law 45/2021",
+          title: "UAE Personal Data Protection Law",
+          desc: "Strict compliance with UAE data protection regulations, regional data residency, and consumer consent management.",
+        },
+        {
+          code: "DESC / ISR Standards",
+          title: "Dubai Electronic Security Center Aligned",
+          desc: "Hardened security architecture aligned with Information Security Regulations (ISR) for government and enterprise systems.",
+        },
+        {
+          code: "Bilingual RTL UX",
+          title: "Native Arabic Right-to-Left Layouts",
+          desc: "Native RTL typographic rendering, bidirectional UI components, and cultural UX localization across all touchpoints.",
+        },
+        {
+          code: "FTA VAT & E-Invoicing",
+          title: "UAE Federal Tax Authority Compliant",
+          desc: "Automated VAT invoicing engines, seamless payment gateway integrations (Telr, PayTabs, Stripe UAE, Apple Pay).",
+        },
+      ],
+    },
+    industries: {
+      badge: "Tailored UAE Industry Solutions",
+      title: "Specialized Digital Solutions for Gulf Enterprises",
+      desc: "Accelerating digital transformation across key economic pillars in Dubai, Abu Dhabi, and the GCC.",
+      items: [
+        {
+          title: "PropTech & Real Estate Platforms",
+          tag: "Luxury Portals",
+          desc: "High-performance property portals, 3D interactive virtual tours, broker CRM automations, and escrow payment flows.",
+        },
+        {
+          title: "FinTech & Islamic Banking",
+          tag: "Sharia Compliant",
+          desc: "Digital wallet architectures, remittance apps, micro-financing portals, and Central Bank UAE compliant KYC workflows.",
+        },
+        {
+          title: "Logistics, Freezone & Supply Chain",
+          tag: "Smart Port Tech",
+          desc: "Custom fleet telemetry, customs clearance tracking portals, and integrated warehouse management systems.",
+        },
+        {
+          title: "Government & Smart City Portals",
+          tag: "Digital Dubai Aligned",
+          desc: "Citizen self-service portals, IoT municipal dashboards, and paperless business process automation.",
+        },
+      ],
+    },
+    workingModel: {
+      badge: "Gulf Collaboration Protocol",
+      title: "Direct Gulf Standard Time (GST) Agile Delivery",
+      desc: "Real-time communication during UAE business hours with dedicated Gulf-experienced software architects.",
+      timeZone: "GST (UTC+4) Gulf Standard Time",
+      overlapHours: "Full 8 Hours Business Overlap",
+      slaResponse: "< 1 Hour Direct SLA Response",
+      communicationTools: ["WhatsApp Business", "Microsoft Teams", "Slack", "Jira", "Zoom"],
+      steps: [
+        {
+          step: "01",
+          title: "Gulf Business Scoping",
+          desc: "Consultative discovery reviewing UAE corporate mandates, bilingual requirements, and regional integrations.",
+        },
+        {
+          step: "02",
+          title: "Active GST Working Hours",
+          desc: "Full daily synchronization during standard UAE working weeks, including Friday half-day team alignment.",
+        },
+        {
+          step: "03",
+          title: "Bilingual Arabic/English QA",
+          desc: "Rigorous dual-locale testing for RTL UI fidelity, performance under regional mobile networks, and cross-browser stability.",
+        },
+        {
+          step: "04",
+          title: "100% Code Transfer & Support",
+          desc: "Full IP ownership handover, UAE VAT compliant invoicing, and 24/7 post-deployment warranty maintenance.",
+        },
+      ],
+    },
+    regionalHubs: [
+      { city: "Dubai (DIFC & Downtown)", stateOrRegion: "Dubai", highlight: "FinTech, Web3, Luxury Commerce & Global HQs" },
+      { city: "Dubai Internet City & Media City", stateOrRegion: "Dubai", highlight: "Tech Startups, Media Conglomerates & SaaS" },
+      { city: "Abu Dhabi (ADGM & Masdar)", stateOrRegion: "Abu Dhabi", highlight: "Government Innovation, CleanTech & Sovereign Tech" },
+      { city: "Sharjah", stateOrRegion: "Sharjah", highlight: "Industrial SaaS, Publishing & Educational Technology" },
+      { city: "Ras Al Khaimah & Ajman", stateOrRegion: "Northern Emirates", highlight: "Freezone Portals, Tourism Apps & Manufacturing ERP" },
+    ],
   },
 
   // =========================================================================
@@ -793,6 +1032,99 @@ export const countryLandingData: Record<string, CountryLandingConfig> = {
       title: "Ready to Accelerate Your UK Software Development?",
       desc: "Speak with our UK solutions architects today for a comprehensive technical proposal.",
     },
+    compliance: {
+      badge: "UK & European Regulatory Standards",
+      title: "Rigorous UK Data Protection & Financial Compliance",
+      desc: "Engineered in strict alignment with British privacy laws, cybersecurity frameworks, and sector regulations.",
+      standards: [
+        {
+          code: "UK GDPR & DPA 2018",
+          title: "Data Protection Act Compliance",
+          desc: "Information Commissioner's Office (ICO) compliant data privacy, granular consent records, and subject access request mechanisms.",
+        },
+        {
+          code: "Cyber Essentials Plus",
+          title: "UK Security Hardening Framework",
+          desc: "Comprehensive perimeter protection, patch management governance, and boundary firewall configurations.",
+        },
+        {
+          code: "FCA Ready FinTech",
+          title: "Financial Conduct Authority Standards",
+          desc: "Strong Customer Authentication (SCA), immutable audit trails, and bank-grade end-to-end data encryption.",
+        },
+        {
+          code: "NHS Digital Standards",
+          title: "Clinical Risk & Healthcare Interoperability",
+          desc: "Designed to meet DCB0129 / DCB0160 clinical safety standards and HL7/FHIR healthcare API interoperability.",
+        },
+      ],
+    },
+    industries: {
+      badge: "UK Market Specializations",
+      title: "Strategic Software Engineering for British Industries",
+      desc: "Accelerating market-leading enterprises from Silicon Roundabout to Manchester's creative tech corridor.",
+      items: [
+        {
+          title: "FinTech & Open Banking",
+          tag: "London Financial Hub",
+          desc: "PSD2 open banking API integrations, multi-currency wallets, micro-investment apps, and automated AML/KYC checks.",
+        },
+        {
+          title: "InsurTech & LegalTech",
+          tag: "Risk & Automation",
+          desc: "Automated underwriting engines, digital policy self-service portals, and secure digital signature audit systems.",
+        },
+        {
+          title: "HealthTech & Digital Therapeutics",
+          tag: "NHS Compliant",
+          desc: "Remote clinic booking systems, doctor teleconsultation portals, digital prescription flows, and patient data analytics.",
+        },
+        {
+          title: "E-Commerce & High-Street Retail",
+          tag: "Omnichannel D2C",
+          desc: "Headless Next.js storefronts, bespoke inventory ERP sync, loyalty engine platforms, and fast UK payment checkouts.",
+        },
+      ],
+    },
+    workingModel: {
+      badge: "British Agile Workflow",
+      title: "Synchronized UK Time Zone Agile Engineering",
+      desc: "Full working-day overlap with London and Manchester teams ensuring rapid turnaround and zero communication lag.",
+      timeZone: "GMT (UTC+0) / BST (UTC+1)",
+      overlapHours: "5-7 Hours Daily Overlap",
+      slaResponse: "< 2 Hours Guaranteed Response Time",
+      communicationTools: ["Slack", "Microsoft Teams", "Jira", "Linear", "GitHub Enterprise"],
+      steps: [
+        {
+          step: "01",
+          title: "Confidentiality & UK NDA",
+          desc: "Formal UK-governed NDA execution and comprehensive solution architecture roadmap planning.",
+        },
+        {
+          step: "02",
+          title: "BST/GMT Sprint Ceremonies",
+          desc: "Sprint planning, daily asynchronous updates, and weekly video syncs perfectly timed for UK morning hours.",
+        },
+        {
+          step: "03",
+          title: "Automated CI/CD Staging",
+          desc: "Continuous deployment with isolated staging preview links for every Pull Request and automated QA tests.",
+        },
+        {
+          step: "04",
+          title: "GBP Invoicing & Full IP Handover",
+          desc: "Direct GBP invoicing, transparent milestones, and unconditional assignment of all intellectual property.",
+        },
+      ],
+    },
+    regionalHubs: [
+      { city: "London (City & Silicon Roundabout)", stateOrRegion: "Greater London", highlight: "Global FinTech, AI Labs & Venture Unicorns" },
+      { city: "Manchester (MediaCityUK)", stateOrRegion: "North West", highlight: "E-Commerce Giants, Creative Tech & B2B SaaS" },
+      { city: "Birmingham (Silicon Canal)", stateOrRegion: "West Midlands", highlight: "Industrial IoT, Logistics Tech & GovTech" },
+      { city: "Edinburgh & Glasgow", stateOrRegion: "Scotland", highlight: "Financial Software, GreenTech & Life Sciences" },
+      { city: "Cambridge & Oxford", stateOrRegion: "Oxbridge Arc", highlight: "DeepTech, AI Research & Biotechnology" },
+      { city: "Bristol", stateOrRegion: "South West", highlight: "Aerospace Tech, Robotics & Clean Energy" },
+    ],
   },
 
   // =========================================================================
@@ -1031,6 +1363,98 @@ export const countryLandingData: Record<string, CountryLandingConfig> = {
       title: "Ready to Build Your Next Australian Digital Venture?",
       desc: "Connect with our APAC solutions team today for a tailored technical discovery session.",
     },
+    compliance: {
+      badge: "Australian Privacy & Cybersecurity Standards",
+      title: "Engineered in Accordance with Australian Standards",
+      desc: "Built to comply with the Australian Privacy Principles, cybersecurity frameworks, and data governance regulations.",
+      standards: [
+        {
+          code: "Privacy Act 1988 & APPs",
+          title: "Australian Privacy Principles",
+          desc: "Strict compliance with OAIC privacy mandates, secure consumer data handling, and mandatory Notifiable Data Breaches (NDB) readiness.",
+        },
+        {
+          code: "ACSC Essential Eight",
+          title: "Cyber Security Mitigation Strategies",
+          desc: "Architected around Australian Cyber Security Centre (ACSC) maturity models, MFA enforcement, and rigorous access control.",
+        },
+        {
+          code: "Consumer Data Right (CDR)",
+          title: "Open Banking & Data Portability",
+          desc: "Compliant API architectures for CDR data sharing, consent management, and cryptographic security.",
+        },
+        {
+          code: "ADHA Health Standards",
+          title: "Australian Digital Health Agency Aligned",
+          desc: "Compliant clinical interfaces, secure digital messaging, and My Health Record integration compatibility.",
+        },
+      ],
+    },
+    industries: {
+      badge: "Australian Sector Focus",
+      title: "Tailored Solutions for Australia's Thriving Economy",
+      desc: "Engineering high-scale cloud platforms and apps for Australia's leading enterprises and disruptors.",
+      items: [
+        {
+          title: "FinTech & Buy-Now-Pay-Later",
+          tag: "APRA / ASIC Ready",
+          desc: "Consumer credit platforms, PayID / NPP instant payment integrations, wealth management portals, and automated KYC.",
+        },
+        {
+          title: "Mining, Resources & Energy Tech",
+          tag: "Remote & Heavy Industry",
+          desc: "Asset telemetry dashboards, offline-first mobile apps for field engineers, and IoT industrial safety monitoring.",
+        },
+        {
+          title: "AgTech & Environmental SaaS",
+          tag: "Precision Agriculture",
+          desc: "Livestock management systems, precision crop analytics, water usage telemetry, and drone mapping visualizers.",
+        },
+        {
+          title: "HealthTech & NDIS Portals",
+          tag: "Care & Clinical",
+          desc: "NDIS participant billing software, practice management SaaS, telehealth platforms, and aged-care compliance systems.",
+        },
+      ],
+    },
+    workingModel: {
+      badge: "Aussie Collaboration Framework",
+      title: "Aligned with AEST / AEDT Australian Business Hours",
+      desc: "Start your day with completed sprints and active morning standups with dedicated Australasia technical leads.",
+      timeZone: "AEST (UTC+10) / AEDT (UTC+11) / AWST (UTC+8)",
+      overlapHours: "4-6 Hours Active Morning Overlap",
+      slaResponse: "< 2 Hours Guaranteed Response Time",
+      communicationTools: ["Slack", "Microsoft Teams", "Jira", "Atlassian Suite", "Zoom"],
+      steps: [
+        {
+          step: "01",
+          title: "Aussie Business Scoping",
+          desc: "Comprehensive product roadmapping and transparent fixed-milestone scoping under Australian commercial standards.",
+        },
+        {
+          step: "02",
+          title: "Morning AEST Standups",
+          desc: "Daily morning standups aligned with Sydney and Melbourne business hours for seamless task synchronization.",
+        },
+        {
+          step: "03",
+          title: "Iterative Sprint Demos",
+          desc: "Fortnightly interactive sprint demos on live staging servers with comprehensive automated test coverage.",
+        },
+        {
+          step: "04",
+          title: "AUD Invoicing & Source Code Release",
+          desc: "Direct Australian Dollar invoicing, 100% source code ownership transfer, and post-launch SLA warranty support.",
+        },
+      ],
+    },
+    regionalHubs: [
+      { city: "Sydney", stateOrRegion: "NSW", highlight: "FinTech, Banking, Scale-ups & Global APAC HQs" },
+      { city: "Melbourne", stateOrRegion: "VIC", highlight: "HealthTech, Creative SaaS, E-Commerce & EdTech" },
+      { city: "Brisbane", stateOrRegion: "QLD", highlight: "AgTech, BioTech, Tourism Platforms & Clean Energy" },
+      { city: "Perth", stateOrRegion: "WA", highlight: "Mining Systems, Renewable Energy & Offshore Logistics" },
+      { city: "Adelaide", stateOrRegion: "SA", highlight: "Defense Tech, Space Systems & Smart Agriculture" },
+    ],
   },
 
   // =========================================================================
@@ -1269,6 +1693,98 @@ export const countryLandingData: Record<string, CountryLandingConfig> = {
       title: "Ready to Build High-Precision Software in Switzerland?",
       desc: "Schedule a confidential technical consultation with our solutions architects today.",
     },
+    compliance: {
+      badge: "Swiss Precision & Privacy Standards",
+      title: "High-Confidentiality Engineering for Swiss Enterprises",
+      desc: "Designed to satisfy Switzerland's rigorous data sovereignty laws, banking secrecy expectations, and FINMA guidelines.",
+      standards: [
+        {
+          code: "Swiss revFADP / nLPD",
+          title: "Federal Act on Data Protection",
+          desc: "Full adherence to the modernized Swiss data protection act, data subject rights, and zero unauthorized cross-border leakage.",
+        },
+        {
+          code: "FINMA Guidelines Aligned",
+          title: "Swiss Financial Market Standards",
+          desc: "Banking-grade cryptographic protection, role-segregated access controls, and detailed audit logging mechanisms.",
+        },
+        {
+          code: "Swiss Cloud Data Residency",
+          title: "Zurich / Geneva Cloud Hosting",
+          desc: "Architected for Swiss cloud datacenters (AWS Zurich, Azure Switzerland) ensuring total data sovereignty within Swiss borders.",
+        },
+        {
+          code: "Multilingual Localization",
+          title: "Swiss German, French, Italian & EN",
+          desc: "Precise multi-canton linguistic formatting, localized currencies (CHF), and Swiss typography standards.",
+        },
+      ],
+    },
+    industries: {
+      badge: "Swiss Market Specializations",
+      title: "Precision Digital Solutions for Swiss High-Value Industries",
+      desc: "Delivering institutional-grade digital products across Switzerland's world-leading tech and financial ecosystems.",
+      items: [
+        {
+          title: "Private Banking & WealthTech",
+          tag: "Swiss Banking Standard",
+          desc: "Ultra-secure client portals, portfolio analytics engines, digital onboarding vaults, and high-net-worth client tools.",
+        },
+        {
+          title: "MedTech & BioPharma Systems",
+          tag: "Precision Health",
+          desc: "Clinical trial management platforms, medical device telemetry dashboards, and Swiss-compliant laboratory SaaS.",
+        },
+        {
+          title: "Blockchain & Crypto Valley (Zug)",
+          tag: "Web3 & Institutional",
+          desc: "Institutional digital asset management portals, staking dashboards, and audited smart contract web interfaces.",
+        },
+        {
+          title: "Luxury, Horology & High-End Commerce",
+          tag: "Bespoke UX",
+          desc: "Exclusive clienteling applications, 3D luxury timepiece configurators, and anti-counterfeiting verification systems.",
+        },
+      ],
+    },
+    workingModel: {
+      badge: "Swiss Precision Delivery",
+      title: "Synchronized with Swiss Central European Time (CET)",
+      desc: "Flawless technical execution with daily overlapping business hours in Zurich, Geneva, and Basel.",
+      timeZone: "CET (UTC+1) / CEST (UTC+2)",
+      overlapHours: "5-7 Hours Daily Overlap",
+      slaResponse: "< 2 Hours Guaranteed Response Time",
+      communicationTools: ["Slack", "Microsoft Teams", "Jira", "Signal / Wire", "Zoom"],
+      steps: [
+        {
+          step: "01",
+          title: "Swiss Confidentiality & NDA",
+          desc: "Rigorous non-disclosure agreements compliant with Swiss legal standards and structured technical scoping.",
+        },
+        {
+          step: "02",
+          title: "CET Business Hours Alignment",
+          desc: "Daily asynchronous checkpoints and weekly video alignment sessions during Zurich and Geneva business hours.",
+        },
+        {
+          step: "03",
+          title: "Zero-Defect Code Staging",
+          desc: "Swiss-standard precision engineering with automated linting, security vulnerability scans, and CI/CD staging.",
+        },
+        {
+          step: "04",
+          title: "CHF Invoicing & Complete IP Transfer",
+          desc: "Direct Swiss Franc (CHF) invoicing, complete source code handover, and ongoing enterprise SLA guarantees.",
+        },
+      ],
+    },
+    regionalHubs: [
+      { city: "Zurich", stateOrRegion: "ZH", highlight: "Private Banking, FinTech, AI Labs & Global Corporate HQs" },
+      { city: "Geneva", stateOrRegion: "GE", highlight: "International Wealth, NGOs, Commodity Trade & Biotech" },
+      { city: "Zug (Crypto Valley)", stateOrRegion: "ZG", highlight: "Blockchain Foundations, Web3 Protocols & Digital Assets" },
+      { city: "Basel", stateOrRegion: "BS", highlight: "Pharmaceutical Giants, Life Sciences & Chemical Tech" },
+      { city: "Lausanne & Bern", stateOrRegion: "VD / BE", highlight: "EPFL Tech Spinoffs, MedTech & Federal GovTech" },
+    ],
   },
 
   // =========================================================================
@@ -1507,6 +2023,98 @@ export const countryLandingData: Record<string, CountryLandingConfig> = {
       title: "Ready to Scale Your Software Development in the Netherlands?",
       desc: "Contact our technical solutions team today for an in-depth project proposal.",
     },
+    compliance: {
+      badge: "Dutch & EU Regulatory Standards",
+      title: "Built in Full Compliance with EU GDPR & Dutch AVG",
+      desc: "Strict adherence to the Autoriteit Persoonsgegevens (AP) standards, ISO certification, and Dutch financial mandates.",
+      standards: [
+        {
+          code: "EU GDPR / Dutch AVG",
+          title: "Algemene Verordening Gegevensbescherming",
+          desc: "Comprehensive Dutch privacy law compliance, data minimization architectures, and cookie consent governance.",
+        },
+        {
+          code: "ISO 27001 & NEN 7510",
+          title: "Enterprise & Healthcare Security",
+          desc: "Certified information security management frameworks tailored for enterprise SaaS and Dutch medical data.",
+        },
+        {
+          code: "DigiD & iDEAL Ready",
+          title: "Dutch Digital Identity & Payments",
+          desc: "Native integration compatibility with DigiD citizen auth, iDEAL payment rails, and European Wero standards.",
+        },
+        {
+          code: "Maritime & Port Standards",
+          title: "Port of Rotterdam Community Standards",
+          desc: "Secure API connections conforming to European maritime customs and freight security exchange protocols.",
+        },
+      ],
+    },
+    industries: {
+      badge: "Dutch Market Specializations",
+      title: "Engineering Solutions for the Netherlands Tech Economy",
+      desc: "Powering innovative startups, scale-ups, and global leaders across Amsterdam, Rotterdam, and Brainport Eindhoven.",
+      items: [
+        {
+          title: "FinTech & Payment Orchestration",
+          tag: "Amsterdam Payment Capital",
+          desc: "Next-gen checkout engines, subscription billing SaaS, multi-currency processing, and instant iDEAL integrations.",
+        },
+        {
+          title: "Logistics, Port & Supply Chain",
+          tag: "Rotterdam Smart Port",
+          desc: "Automated container tracking portals, freight scheduling engines, customs API integration, and warehouse ERPs.",
+        },
+        {
+          title: "AgriTech & Smart Greenhouse SaaS",
+          tag: "Food Valley Innovation",
+          desc: "Greenhouse climate control software, crop yield predictive analytics, and automated farm-to-table traceability.",
+        },
+        {
+          title: "High-Tech & Semiconductors",
+          tag: "Brainport Eindhoven",
+          desc: "Precision engineering dashboards, real-time industrial telemetry, and high-frequency testing analytics portals.",
+        },
+      ],
+    },
+    workingModel: {
+      badge: "Dutch Agile Collaboration",
+      title: "Direct Collaboration Aligned with Dutch Business Hours",
+      desc: "Pragmatic, high-velocity agile sprints with dedicated English-fluent tech leads working in your CET timezone.",
+      timeZone: "CET (UTC+1) / CEST (UTC+2)",
+      overlapHours: "5-7 Hours Daily Overlap",
+      slaResponse: "< 2 Hours Guaranteed Response Time",
+      communicationTools: ["Slack", "Microsoft Teams", "Jira", "GitHub Enterprise", "Google Meet"],
+      steps: [
+        {
+          step: "01",
+          title: "Dutch NDA & Pragmatic Scoping",
+          desc: "Transparent scoping with fixed milestone roadmaps and straightforward commercial agreements.",
+        },
+        {
+          step: "02",
+          title: "CET Working Hours Collaboration",
+          desc: "Live daily communication during Dutch business hours with dedicated senior software engineers.",
+        },
+        {
+          step: "03",
+          title: "Continuous Delivery & Fast Staging",
+          desc: "High-speed bi-weekly releases on automated staging servers with fast feedback cycles.",
+        },
+        {
+          step: "04",
+          title: "EUR Invoicing & Complete Code Ownership",
+          desc: "Euro-denominated invoicing with EU intra-community VAT zero-rating and 100% intellectual property transfer.",
+        },
+      ],
+    },
+    regionalHubs: [
+      { city: "Amsterdam", stateOrRegion: "North Holland", highlight: "FinTech Unicorns, Creative Tech & Global SaaS HQs" },
+      { city: "Rotterdam", stateOrRegion: "South Holland", highlight: "Maritime Software, CleanTech & Logistics Infrastructure" },
+      { city: "Eindhoven (Brainport)", stateOrRegion: "North Brabant", highlight: "DeepTech, Semiconductors & Hardware-Software Systems" },
+      { city: "Utrecht", stateOrRegion: "Utrecht", highlight: "HealthTech, Gaming & Enterprise Digital Platforms" },
+      { city: "The Hague", stateOrRegion: "South Holland", highlight: "Cybersecurity Hub, GovTech & International LegalTech" },
+    ],
   },
 
   // =========================================================================
@@ -1745,5 +2353,97 @@ export const countryLandingData: Record<string, CountryLandingConfig> = {
       title: "Ready to Build Scalable Software in New Zealand?",
       desc: "Connect with our Australasia solutions team today for a comprehensive technical discovery session.",
     },
+    compliance: {
+      badge: "New Zealand Privacy & Digital Standards",
+      title: "Engineered in Accordance with NZ Privacy & Security",
+      desc: "Built to comply with the NZ Privacy Act 2020, Information Privacy Principles, and NZISM cloud guidelines.",
+      standards: [
+        {
+          code: "NZ Privacy Act 2020",
+          title: "Information Privacy Principles (IPPs)",
+          desc: "Strict compliance with the 13 Information Privacy Principles, cross-border data protection, and mandatory breach notification.",
+        },
+        {
+          code: "NZISM Framework",
+          title: "NZ Information Security Manual Aligned",
+          desc: "Architected around NZISM standards for cloud application security, access controls, and data integrity.",
+        },
+        {
+          code: "DISTF Identity Standards",
+          title: "Digital Identity Services Trust Framework",
+          desc: "Compliant digital identity verification, secure user authentication, and consumer data governance.",
+        },
+        {
+          code: "Te Tiriti Inclusivity",
+          title: "Bilingual English & Te Reo Māori Ready",
+          desc: "Culturally inclusive UX design, dual-language typographic support, and regional accessibility compliance.",
+        },
+      ],
+    },
+    industries: {
+      badge: "Kiwi Market Specializations",
+      title: "Tailored Software Solutions for New Zealand Innovators",
+      desc: "Engineering high-scale cloud platforms and apps for New Zealand's world-renowned primary and digital sectors.",
+      items: [
+        {
+          title: "AgriTech & Horticulture Tech",
+          tag: "Global Ag Leader",
+          desc: "Pasture management SaaS, livestock traceability apps, dairy supply chain systems, and orchard yield visualizers.",
+        },
+        {
+          title: "CleanTech & Renewable Energy",
+          tag: "Green Innovation",
+          desc: "Carbon offset tracking, geothermal grid monitoring, solar farm telemetry dashboards, and ESG compliance SaaS.",
+        },
+        {
+          title: "Tourism & Hospitality Platforms",
+          tag: "Experience & Booking",
+          desc: "Multi-currency activity booking engines, contactless guest portals, and tour operator management systems.",
+        },
+        {
+          title: "FinTech & Trans-Tasman Trade",
+          tag: "ANZ Cross-Border",
+          desc: "Real-time NZD/AUD currency exchange portals, merchant settlement systems, and automated IRD tax compliance tools.",
+        },
+      ],
+    },
+    workingModel: {
+      badge: "Kiwi Collaboration Model",
+      title: "Synchronized with New Zealand Time (NZST / NZDT)",
+      desc: "Start your working day with fresh sprint updates and dedicated morning collaboration with Australasia technical leads.",
+      timeZone: "NZST (UTC+12) / NZDT (UTC+13)",
+      overlapHours: "4-5 Hours Morning Overlap",
+      slaResponse: "< 2 Hours Guaranteed Response Time",
+      communicationTools: ["Slack", "Microsoft Teams", "Jira", "Zoom", "Google Meet"],
+      steps: [
+        {
+          step: "01",
+          title: "Kiwi Business Discovery",
+          desc: "Collaborative scoping with transparent milestone roadmaps and Kiwi commercial agreements.",
+        },
+        {
+          step: "02",
+          title: "NZST Aligned Morning Standups",
+          desc: "Dedicated early-morning agile checkpoints aligned with Auckland and Wellington business hours.",
+        },
+        {
+          step: "03",
+          title: "Iterative Cloud Staging",
+          desc: "Continuous deployment to cloud staging environments with automated regression and performance testing.",
+        },
+        {
+          step: "04",
+          title: "NZD Invoicing & Total IP Transfer",
+          desc: "Clean NZD invoicing terms, 100% intellectual property assignment, and ongoing SLA maintenance warranty.",
+        },
+      ],
+    },
+    regionalHubs: [
+      { city: "Auckland", stateOrRegion: "North Island", highlight: "Commercial Capital, FinTech, SaaS & Creative Tech" },
+      { city: "Wellington", stateOrRegion: "North Island", highlight: "GovTech, Digital Film & High-Tech Creative Hub" },
+      { city: "Christchurch", stateOrRegion: "South Island", highlight: "Aerospace, HealthTech & AgriTech Innovation" },
+      { city: "Hamilton & Tauranga", stateOrRegion: "Waikato / Bay of Plenty", highlight: "Horticulture Tech, Dairy Systems & Port Logistics" },
+      { city: "Queenstown & Dunedin", stateOrRegion: "South Island", highlight: "Tourism Tech, MedTech Spinoffs & GreenTech" },
+    ],
   },
 };

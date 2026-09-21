@@ -18,6 +18,12 @@ import {
   Database,
   Cpu,
   Server,
+  ShieldCheck,
+  Shield,
+  Clock,
+  MapPin,
+  Building2,
+  Sparkles,
 } from "lucide-react";
 import { CountryLandingConfig } from "@/data/countryLandingData";
 
@@ -440,6 +446,54 @@ export default function CountryLandingClient({ config }: Props) {
 
 
       {/* =========================================================================
+          3.5 INDUSTRY SPECIALIZATIONS SECTION
+          ========================================================================= */}
+      {config.industries && (
+        <section className="py-20 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 text-[#305EFF] text-xs font-extrabold uppercase tracking-wider">
+                <Sparkles className="w-3.5 h-3.5 text-[#305EFF]" />
+                <span>{config.industries.badge}</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
+                {config.industries.title}
+              </h2>
+              <p className="text-slate-600 text-xs sm:text-base font-medium">
+                {config.industries.desc}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {config.industries.items.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#305EFF] hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
+                >
+                  <div>
+                    <div className="inline-block px-2.5 py-1 rounded-md bg-blue-100 text-[#305EFF] text-[11px] font-extrabold tracking-wide mb-4">
+                      {item.tag}
+                    </div>
+                    <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-[#305EFF] transition-colors mb-2.5">
+                      {item.title}
+                    </h3>
+                    <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                  <div className="pt-4 mt-4 border-t border-slate-200 flex items-center gap-1 text-xs font-bold text-[#305EFF]">
+                    <span>Custom Engineered</span>
+                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+
+      {/* =========================================================================
           4. WHY CHOOSE US / CUSTOMER EXPERIENCE SECTION
           ========================================================================= */}
       <section className="py-20 lg:py-28 bg-white border-b border-slate-100">
@@ -530,6 +584,57 @@ export default function CountryLandingClient({ config }: Props) {
 
         </div>
       </section>
+
+
+      {/* =========================================================================
+          4.5 REGULATORY COMPLIANCE & DATA SECURITY SECTION
+          ========================================================================= */}
+      {config.compliance && (
+        <section className="py-20 bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-50 text-emerald-600 text-xs font-extrabold uppercase tracking-wider border border-emerald-200">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                <span>{config.compliance.badge}</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
+                {config.compliance.title}
+              </h2>
+              <p className="text-slate-600 text-xs sm:text-base font-medium">
+                {config.compliance.desc}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {config.compliance.standards.map((std, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-emerald-500 transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-black text-sm mb-4 border border-emerald-100">
+                      <Shield className="w-5 h-5" />
+                    </div>
+                    <div className="text-xs font-black text-emerald-700 tracking-wide uppercase mb-1">
+                      {std.code}
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 mb-2">
+                      {std.title}
+                    </h3>
+                    <p className="text-slate-600 text-xs leading-relaxed">
+                      {std.desc}
+                    </p>
+                  </div>
+                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-bold text-emerald-600">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Verified Standards</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
 
       {/* =========================================================================
@@ -665,6 +770,162 @@ export default function CountryLandingClient({ config }: Props) {
           </div>
         </div>
       </section>
+
+
+      {/* =========================================================================
+          7.5 CROSS-BORDER COLLABORATION, TIME ZONE OVERLAP & REGIONAL HUBS
+          ========================================================================= */}
+      {config.workingModel && (
+        <section className="py-20 lg:py-28 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            {/* Top Heading */}
+            <div className="text-center max-w-3xl mx-auto space-y-3">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-50 text-[#305EFF] text-xs font-extrabold uppercase tracking-wider">
+                <Clock className="w-3.5 h-3.5 text-[#305EFF]" />
+                <span>{config.workingModel.badge}</span>
+              </div>
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
+                {config.workingModel.title}
+              </h2>
+              <p className="text-slate-600 text-xs sm:text-base font-medium">
+                {config.workingModel.desc}
+              </p>
+            </div>
+
+            {/* 2-Column Working Model Overview */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+              
+              {/* Left Card: Overlap Highlights */}
+              <div className="lg:col-span-5 bg-[#0F204A] text-white p-8 rounded-3xl flex flex-col justify-between shadow-xl border border-blue-900/60">
+                <div className="space-y-6">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 text-[#00D4FF] text-xs font-black uppercase tracking-wider">
+                    <span className="w-2 h-2 rounded-full bg-[#00D4FF] animate-pulse" />
+                    <span>Active Timezone Synchronization</span>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="text-xs font-bold text-slate-300 uppercase tracking-wide">
+                      Target Timezone
+                    </div>
+                    <div className="text-xl sm:text-2xl font-black text-white">
+                      {config.workingModel.timeZone}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                      <div className="text-xs text-slate-400 font-bold">Daily Overlap</div>
+                      <div className="text-sm sm:text-base font-black text-[#00D4FF] mt-1">
+                        {config.workingModel.overlapHours}
+                      </div>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                      <div className="text-xs text-slate-400 font-bold">SLA Guarantee</div>
+                      <div className="text-sm sm:text-base font-black text-emerald-400 mt-1">
+                        {config.workingModel.slaResponse}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-2">
+                    <div className="text-xs font-bold text-slate-300 uppercase tracking-wide mb-3">
+                      Communication & Workflow Stack
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {config.workingModel.communicationTools.map((tool, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="px-3 py-1 rounded-lg bg-white/10 text-xs font-bold text-slate-200 border border-white/10"
+                        >
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6 mt-6 border-t border-white/10">
+                  <Link
+                    href="#quote"
+                    data-modal="quote"
+                    className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#305EFF] hover:bg-[#204ad8] text-white font-extrabold text-sm transition-all shadow-md"
+                  >
+                    <span>Schedule a Call in Your Timezone</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right Column: 4 Agile Steps */}
+              <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {config.workingModel.steps.map((st, idx) => (
+                  <div
+                    key={idx}
+                    className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-[#305EFF] transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="text-2xl font-black text-[#305EFF] font-mono mb-2">
+                        {st.step}
+                      </div>
+                      <h4 className="text-base font-black text-slate-900 mb-2">
+                        {st.title}
+                      </h4>
+                      <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed">
+                        {st.desc}
+                      </p>
+                    </div>
+                    <div className="pt-4 mt-3 flex items-center gap-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                      <span>Agile Milestone</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+            {/* Regional Hubs & Key Cities Served */}
+            {config.regionalHubs && config.regionalHubs.length > 0 && (
+              <div className="pt-10 border-t border-slate-200">
+                <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
+                  <div className="text-xs font-extrabold text-slate-500 uppercase tracking-widest flex items-center justify-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-[#305EFF]" />
+                    <span>Key Business & Tech Hubs Served in {config.countryName}</span>
+                  </div>
+                  <p className="text-slate-600 text-xs font-medium">
+                    Supporting enterprise brands and scale-ups across major regional commercial corridors.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {config.regionalHubs.map((hub, hIdx) => (
+                    <div
+                      key={hIdx}
+                      className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3 hover:border-slate-300 transition-colors"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-blue-100 text-[#305EFF] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                        <Building2 className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-black text-slate-900 flex items-center gap-1.5">
+                          <span>{hub.city}</span>
+                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-200 text-slate-700 font-bold uppercase">
+                            {hub.stateOrRegion}
+                          </span>
+                        </div>
+                        <div className="text-xs text-slate-600 font-medium mt-0.5">
+                          {hub.highlight}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+          </div>
+        </section>
+      )}
 
 
       {/* =========================================================================

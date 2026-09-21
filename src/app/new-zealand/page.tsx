@@ -1,41 +1,41 @@
 import React from "react";
 import type { Metadata } from "next";
-import CountryLandingClient from "@/components/country/CountryLandingClient";
-import { countryLandingData } from "@/data/countryLandingData";
+import NewZealandLandingClient from "./NewZealandLandingClient";
 import JsonLd from "@/components/JsonLd";
 import { generateBreadcrumbSchema } from "@/lib/jsonld";
 
-const config = countryLandingData["new-zealand"];
-
 export const metadata: Metadata = {
-  title: config.seo.title,
-  description: config.seo.description,
+  title: "Software & Web Development Company in New Zealand | Mitsafe Auckland",
+  description:
+    "Mitsafe delivers modern web applications, scalable SaaS platforms, mobile app development, Windcave integration, and AI automation for Kiwi enterprises across Auckland, Wellington, Christchurch, and Waikato.",
   alternates: {
-    canonical: config.seo.canonical,
+    canonical: "/new-zealand",
   },
   openGraph: {
-    title: config.seo.title,
-    description: config.seo.description,
-    url: `https://mitsafe.com${config.seo.canonical}`,
+    title: "Software & Web Development Company in New Zealand | Mitsafe",
+    description:
+      "Mitsafe delivers modern web applications, scalable SaaS platforms, mobile app development, and AI automation for New Zealand enterprises.",
+    url: "https://mitsafe.com/new-zealand",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: config.seo.title,
-    description: config.seo.description,
+    title: "Software & Web Development in New Zealand | Mitsafe",
+    description:
+      "Modern web applications, scalable SaaS platforms, and AI automation for Kiwi enterprises.",
   },
 };
 
 const breadcrumbs = [
   { name: "Home", item: "/" },
-  { name: config.countryName, item: config.seo.canonical },
+  { name: "New Zealand", item: "/new-zealand" },
 ];
 
 export default function NewZealandPage() {
   return (
     <>
       <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
-      <CountryLandingClient config={config} />
+      <NewZealandLandingClient />
     </>
   );
 }

@@ -61,14 +61,13 @@ import {
   RefreshCw,
   Sliders,
   ChevronDown,
-  DollarSign,
 } from "lucide-react";
 
 // ==========================================
 // 3D INTERACTIVE UTILITY COMPONENTS & ANIMATIONS
 // ==========================================
 
-// 3D Word-by-Word Scroll Reveal Component (Renders words with 3D perspective on scroll)
+// 3D Word-by-Word Scroll Reveal Component (Renders words from side on scroll)
 function ScrollHeading3D({
   text,
   className = "",
@@ -226,257 +225,252 @@ function LiveRadarPulse({ color = "bg-emerald-500" }: { color?: string }) {
 }
 
 // ==========================================
-// 1. DATA DEFINITIONS & USA CONTENT
+// 1. DATA DEFINITIONS & CONTENT
 // ==========================================
 
-// Hero Slides matching exact structure with USA focus
-const usaHeroSlides = [
+// Hero Slides matching exact git structure with UAE focus
+const uaeHeroSlides = [
   {
     id: 0,
-    eyebrow: "USA DIGITAL ENGINEERING PARTNER",
-    flag: "🇺🇸",
-    title: "Custom Software, Business Automation & Cloud Systems Built for USA Businesses",
-    desc: "From high-growth US startups to established enterprises, Mitsafe builds secure, scalable technology solutions that simplify operations, accelerate product velocity and drive business growth across America.",
+    eyebrow: "UAE BUSINESS TECHNOLOGY PARTNER",
+    flag: "🇦🇪",
+    title: "Custom Software, Business Automation & Digital Solutions Built for UAE Businesses",
+    desc: "From startups and growing SMEs to established enterprises, Mitsafe UAE builds secure, scalable technology solutions that simplify operations, improve customer experiences and help businesses grow across the UAE.",
     primaryBtnText: "Book a Free Consultation",
     primaryBtnHref: "#quote",
-    secondaryBtnText: "Explore Our USA Solutions",
+    secondaryBtnText: "Explore Our UAE Solutions",
     secondaryBtnHref: "#services",
-    image: "/images/usa_hero_bg.jpg",
-    badges: ["New York • San Francisco • Austin • Chicago • USA", "Custom ERP, CRM & FinTech", "100% Code & IP Ownership"],
+    image: "/images/uae_hero_1.jpg",
+    badges: ["Dubai • Abu Dhabi • Sharjah • Ajman • UAE", "Custom ERP, CRM & POS", "100% Code & IP Ownership"],
   },
   {
     id: 1,
     eyebrow: "Enterprise Cloud & Business Automation",
-    flag: "🇺🇸",
-    title: "Engineering Scalable Custom Software, SaaS & Cloud Infrastructure in the USA",
-    desc: "Connect finance, inventory, client pipelines, EHR/EMR records and multi-branch operations across US markets with high-reliability cloud architecture and intelligent automation.",
+    flag: "🇦🇪",
+    title: "Engineering Scalable Custom Software, ERP & Cloud Systems for the UAE",
+    desc: "Connect finance, inventory, sales, customer records and multi-branch operations across the Emirates with high-reliability cloud architecture and smart automation.",
     primaryBtnText: "Book a Free Consultation",
     primaryBtnHref: "#quote",
-    secondaryBtnText: "Explore Our USA Solutions",
+    secondaryBtnText: "Explore Our UAE Solutions",
     secondaryBtnHref: "#services",
-    image: "/images/usa_mission_bg.jpg",
-    badges: ["HIPAA & SOC 2 Ready", "EST / CST / PST Overlap", "99.99% Cloud SLA"],
+    image: "/images/uae_hero_2.jpg",
+    badges: ["Multi-Branch Cloud Ready", "VAT-Ready Workflows", "Proactive Tech Support"],
   },
   {
     id: 2,
     eyebrow: "Smart Digital Transformation",
-    flag: "🇺🇸",
-    title: "High-Performance Mobile Apps, Web Platforms & Generative AI Pipelines",
-    desc: "Turn complex business operations into modern, intuitive customer apps, staff portals, headless commerce engines and automated AI workflows designed for American market scale.",
+    flag: "🇦🇪",
+    title: "High-Performance Mobile Apps, Web Platforms & AI Workflows",
+    desc: "Turn complex business operations into modern, intuitive customer apps, staff portals, POS checkout engines and automated digital pipelines designed for UAE growth.",
     primaryBtnText: "Book a Free Consultation",
     primaryBtnHref: "#quote",
-    secondaryBtnText: "Explore Our USA Solutions",
+    secondaryBtnText: "Explore Our UAE Solutions",
     secondaryBtnHref: "#services",
-    image: "/images/usa_about_workspace.jpg",
-    badges: ["iOS & Android Native", "Bespoke SaaS Platforms", "Dedicated Agile Teams"],
+    image: "/images/uae_hero_3.jpg",
+    badges: ["iOS & Android Native", "Bespoke SaaS Platforms", "Ongoing Tech Partnership"],
   },
 ];
 
-// Stats Ribbon Data for USA
-const usaQuickStats = [
-  { label: "US Systems Delivered", value: "250+", icon: Boxes },
+// Stats Ribbon Data
+const uaeQuickStats = [
+  { label: "UAE Systems Delivered", value: "120+", icon: Boxes },
   { label: "Code & IP Ownership", value: "100%", icon: ShieldCheck },
-  { label: "US Cloud Hosted (AWS)", value: "99.99%", icon: Cloud },
-  { label: "HIPAA & SOC 2 Type II", value: "Compliant", icon: Shield },
-  { label: "EST / CST / PST Timezone", value: "Direct Support", icon: Clock },
+  { label: "AWS GCC Cloud Hosted", value: "99.99%", icon: Cloud },
+  { label: "Bilingual Operations", value: "EN / AR", icon: Globe },
+  { label: "GST / UAE Timezone", value: "Direct Support", icon: Clock },
 ];
 
 // 3 Major Solution Pillars for Vertical Interactive Showcase
-const usaServicePillars = [
+const servicePillars = [
   {
     id: "erp-ops",
     num: "01",
     badge: "Operations & Commerce",
-    title: "ERP, POS & Custom Enterprise Software",
-    headline: "Centralize Multi-Branch Operations & Stock Flow Across the US",
-    desc: "Connect your entire business into one synchronized digital operating platform. Eliminate data silos between regional facilities, sales teams, fulfillment centers, and corporate finance.",
-    image: "/images/usa_about_workspace.jpg",
-    imageAlt: "US Enterprise Software and Operations Dashboard",
-    techStack: ["Next.js 15", "PostgreSQL", "AWS us-east-1", "GraphQL", "TypeScript"],
-    liveStat: "⚡ Real-Time Multi-State Sync Active",
+    title: "ERP, POS & Custom Business Software",
+    headline: "Centralize Multi-Branch Operations & Stock Flow",
+    desc: "Connect your entire business into one synchronized digital nervous system. Eliminate data silos between branches, front-of-house, warehouse, and finance across all Emirates.",
+    image: "/images/uae_erp_pos_dashboard.jpg",
+    imageAlt: "UAE ERP and POS System Dashboard",
+    techStack: ["Next.js 15", "PostgreSQL", "AWS ME-South", "GraphQL", "Bilingual UI"],
+    liveStat: "⚡ Real-Time Multi-Branch Sync Active",
     services: [
-      { title: "Custom Enterprise Software", desc: "Software built around your exact commercial workflows instead of rigid templates." },
-      { title: "Enterprise ERP & Operations", desc: "Unify finance, supply chain, inventory, and staff management into one live platform." },
-      { title: "Modern POS & Multi-Store Tech", desc: "Touchscreen point-of-sale with live multi-location stock synchronization." },
+      { title: "Custom Business Software", desc: "Software built around your exact workflows instead of rigid generic templates." },
+      { title: "Enterprise ERP Solutions", desc: "Unify finance, inventory, purchasing, sales, and HR into one live platform." },
+      { title: "Modern POS & Retail Tech", desc: "Touchscreen point-of-sale with barcode checkout and automatic stock deduction." },
     ],
   },
   {
     id: "apps-sales",
     num: "02",
     badge: "Growth & Mobile",
-    title: "CRM, Headless E-Commerce & Mobile Apps",
-    headline: "Engage US Consumers & Automate High-Velocity Sales Pipelines",
-    desc: "Build intuitive customer touchpoints, seamless mobile shopping experiences, and automated sales pipelines with US payment integrations (Stripe, Apple Pay, PayPal, ACH).",
+    title: "CRM, E-Commerce & Mobile Applications",
+    headline: "Engage UAE Consumers & Automate Sales Pipelines",
+    desc: "Build intuitive customer touchpoints, seamless mobile shopping experiences, and automated sales pipelines that convert leads faster with local payment gateway integrations.",
     image: "/showcase/web_3.webp",
-    imageAlt: "US Mobile App and E-Commerce Platform",
-    techStack: ["React Native", "Flutter", "TailwindCSS", "Stripe Connect", "Shopify Plus"],
-    liveStat: "🚀 3.8x Faster US Checkout Speed",
+    imageAlt: "UAE E-Commerce and Mobile Application Platform",
+    techStack: ["React Native", "Flutter", "TailwindCSS", "Stripe UAE", "Telr / PayTabs"],
+    liveStat: "🚀 3.2x Faster UAE Checkout Speed",
     services: [
-      { title: "Lead & Sales CRM", desc: "Track client interactions, automated follow-ups, and commercial pipelines." },
-      { title: "Headless E-Commerce Engines", desc: "Sub-second digital storefronts with Stripe checkout and warehouse sync." },
-      { title: "Native iOS & Android Apps", desc: "Sleek mobile applications engineered for smartphone-first American consumers." },
+      { title: "Lead & Sales CRM", desc: "Track WhatsApp inquiries, client communications, and pipeline milestones." },
+      { title: "E-Commerce Engines", desc: "High-speed stores with Apple Pay, Telr, PayTabs, and warehouse sync." },
+      { title: "Native iOS & Android Apps", desc: "Sleek mobile applications built for smartphone-first Gulf consumers." },
     ],
   },
   {
     id: "ai-cloud",
     num: "03",
     badge: "Intelligence & Security",
-    title: "AI Automation, Cloud & Data Governance",
-    headline: "Automate Back-Office Workflows on Secure US Cloud Architecture",
-    desc: "Scale your back-office with AI agents, document parsing OCR, and resilient AWS US-East/West cloud infrastructure designed for strict HIPAA and SOC 2 enterprise compliance.",
-    image: "/showcase/seo_1.webp",
-    imageAlt: "AI Business Automation and US Cloud Infrastructure",
-    techStack: ["OpenAI LLM", "Python FastAPI", "AWS us-west-2", "Docker", "HIPAA / SOC 2"],
-    liveStat: "🤖 88% Automated Invoice & PO Processing",
+    title: "AI Automation, Cloud & Data Protection",
+    headline: "Automate Back-Office Tasks on Secure GCC Cloud",
+    desc: "Scale your back-office with AI agents, document parsing OCR, and resilient AWS Middle East cloud infrastructure designed for strict UAE enterprise compliance.",
+    image: "/illustrations/ai_automation.png",
+    imageAlt: "AI Business Automation and Cloud Infrastructure",
+    techStack: ["OpenAI LLM", "Python FastAPI", "AWS UAE Region", "Docker", "SOC2"],
+    liveStat: "🤖 85% Automated Document Parsing",
     services: [
-      { title: "AI Workflow Automation", desc: "Automate invoice reconciliation, data extraction, and repetitive manual tasks." },
-      { title: "Managed Cloud & DevOps", desc: "Hosted in secure US cloud datacenters with automated daily backups and 99.99% uptime." },
-      { title: "HIPAA & SOC 2 Compliance", desc: "Role-based access controls (RBAC), end-to-end data encryption, and audit logs." },
+      { title: "AI Workflow Automation", desc: "Automate invoice extraction, repetitive data entry, and email responses." },
+      { title: "Managed Cloud & IT", desc: "Hosted on AWS UAE region with daily automated backups and 99.99% uptime." },
+      { title: "Data Security & Compliance", desc: "Role-based access controls (RBAC), end-to-end encryption, and audit logs." },
     ],
   },
 ];
 
-// 10 USA Industries with rich details for Horizontal Running Cards Track
-const usaIndustries = [
-  {
-    id: "fintech",
-    title: "FinTech & WealthTech",
-    icon: DollarSign,
-    desc: "Custom trading portals, ACH/Stripe orchestration, automated ledgering, real-time analytics & FINRA-ready audit logs.",
-    badge: "Wall Street & Banking",
-    stat: "Sub-Second Trading Latency",
-    img: "/images/industry/fintech_banking_hero.png",
-  },
-  {
-    id: "healthcare",
-    title: "Healthcare & Telehealth",
-    icon: Stethoscope,
-    desc: "HIPAA-compliant patient portals, virtual teleconsultations, EHR/EMR integrations & automated patient reminders.",
-    badge: "HIPAA & HealthTech",
-    stat: "100% ePHI Encrypted",
-    img: "/images/industry/healthcare_tech_hero.png",
-  },
+// 10 UAE Industries with rich details for Horizontal Running Cards Track
+const uaeIndustries = [
   {
     id: "retail",
-    title: "Retail & D2C Brands",
+    title: "Retail & Supermarkets",
     icon: Store,
-    desc: "Point of Sale systems, real-time multi-branch stock tracking, barcode scanning, loyalty programs & auto stock alerts.",
-    badge: "Retail & Commerce",
+    desc: "POS systems, real-time multi-branch stock tracking, barcode scanning, loyalty programs & auto stock alerts.",
+    badge: "Retail & Multi-Branch",
     stat: "Zero Stock Discrepancy",
     img: "/showcase/web_1.webp",
   },
   {
-    id: "saas",
-    title: "Enterprise B2B SaaS & AI",
-    icon: Cpu,
-    desc: "Multi-tenant cloud architectures, automated customer onboarding, LLM AI assistants & enterprise CRM integrations.",
-    badge: "B2B SaaS Scale",
-    stat: "99.99% Cloud Uptime",
-    img: "/showcase/web_2.webp",
-  },
-  {
-    id: "services",
-    title: "Legal & Professional Services",
-    icon: Briefcase,
-    desc: "Client billing, automated retainer invoicing, employee timesheets, matter tracking & secure document vaults.",
-    badge: "Law & Corporate",
-    stat: "Automated Trust Billing",
-    img: "/images/usa_about_workspace.jpg",
-  },
-  {
-    id: "logistics",
-    title: "Logistics, 3PL & Freight",
-    icon: Truck,
-    desc: "Warehouse bin tracking, customs documentation, purchase orders, automated dispatch routing & fleet telemetry.",
-    badge: "Freight & 3PL",
-    stat: "Real-Time GPS Fleet Sync",
-    img: "/showcase/hosting_1.webp",
+    id: "hospitality",
+    title: "Restaurants & Hospitality",
+    icon: UtensilsCrossed,
+    desc: "Kitchen display systems (KDS), digital table ordering, recipe costing, reservations & multi-outlet reporting.",
+    badge: "Food & Beverage",
+    stat: "Instant KDS Kitchen Sync",
+    img: "/images/uae_erp_pos_dashboard.jpg",
   },
   {
     id: "realestate",
-    title: "Real Estate & PropTech",
+    title: "Real Estate & Property",
     icon: Building2,
-    desc: "MLS/IDX lead capture, 3D interactive virtual tours, broker CRM automations, and escrow payment workflows.",
+    desc: "Lead capture from property portals, unit listings, broker CRM, payment schedule tracking & tenant portals.",
     badge: "Property Tech",
     stat: "Automated Broker CRM",
-    img: "/engineering_culture.webp",
+    img: "/images/industry/fintech_banking_hero.png",
   },
   {
     id: "construction",
     title: "Construction & Contracting",
     icon: HardHat,
-    desc: "Project cost tracking, subcontractor management, AIA billing, job-site progress logs & milestone invoicing.",
+    desc: "Project cost tracking, subcontractor management, BOQ tracking, job-site progress logs & milestone invoicing.",
     badge: "Contracting & Jobs",
-    stat: "AIA Milestone Invoicing",
-    img: "/solutions_engineering.png",
+    stat: "BOQ & Milestone Invoicing",
+    img: "/engineering_culture.webp",
+  },
+  {
+    id: "healthcare",
+    title: "Healthcare & Clinics",
+    icon: Stethoscope,
+    desc: "Patient appointment scheduling, electronic health records (EHR), clinic billing & automated patient reminders.",
+    badge: "HealthTech",
+    stat: "EHR & Booking Engine",
+    img: "/images/industry/healthcare_tech_hero.png",
+  },
+  {
+    id: "services",
+    title: "Professional Services",
+    icon: Briefcase,
+    desc: "Client billing, automated retainer invoicing, employee timesheets, task tracking & secure document portals.",
+    badge: "Consulting & Legal",
+    stat: "Automated Retainer Billing",
+    img: "/images/uae_about.jpg",
+  },
+  {
+    id: "logistics",
+    title: "Logistics & Trading",
+    icon: Truck,
+    desc: "Warehouse inventory bins, customs documentation, purchase orders, delivery dispatch & multi-currency billing.",
+    badge: "Freight & Wholesale",
+    stat: "Multi-Currency Landed Cost",
+    img: "/showcase/hosting_1.webp",
+  },
+  {
+    id: "education",
+    title: "Education & Training",
+    icon: GraduationCap,
+    desc: "Student registration portals, course scheduling, LMS learning platforms & automated fee collection.",
+    badge: "EdTech",
+    stat: "Online LMS & Fee Portal",
+    img: "/showcase/app_1.webp",
   },
   {
     id: "manufacturing",
-    title: "Manufacturing & Plant IoT",
+    title: "Manufacturing & Plant",
     icon: Factory,
-    desc: "Production scheduling, bill of materials (BOM), raw material tracking & automated quality control dashboards.",
+    desc: "Production scheduling, bill of materials (BOM), raw material tracking & quality control checklists.",
     badge: "Industrial & Plant",
-    stat: "Predictive IoT Analytics",
-    img: "/pricing-devices-mockup.webp",
+    stat: "BOM & Material Tracking",
+    img: "/solutions_engineering.webp",
   },
   {
-    id: "media",
-    title: "Media & Streaming Apps",
-    icon: Radio,
-    desc: "Video-on-demand streaming platforms, creator monetization, DRM protection & live event ticketing portals.",
-    badge: "Media & Creator Tech",
-    stat: "Ultra-Low Latency Video",
-    img: "/showcase/app_1.webp",
+    id: "startups",
+    title: "Startups & SMEs",
+    icon: Rocket,
+    desc: "Rapid MVP development, scalable cloud backends, automated sales pipelines & lightweight management systems.",
+    badge: "Agile Scale",
+    stat: "Rapid MVP in 4-6 Weeks",
+    img: "/showcase/app_2.webp",
   },
 ];
 
-// USA Metro Coverage List
-const usaMetroHubs = [
-  { name: "New York City", hub: "Manhattan • Brooklyn • Silicon Alley • Wall Street", badge: "FinTech & Media", projects: "110+ Systems Deployed" },
-  { name: "San Francisco / Bay Area", hub: "Silicon Valley • SOMA • South Bay • Oakland", badge: "AI & Startups", projects: "95+ SaaS Systems" },
-  { name: "Austin", hub: "Downtown • Silicon Hills • Domain • Round Rock", badge: "Scale-ups & Tech", projects: "55+ Scale-up Systems" },
-  { name: "Chicago", hub: "Loop • River North • Fulton Market • West Loop", badge: "Logistics & Trading", projects: "45+ Enterprise Portals" },
-  { name: "Los Angeles", hub: "Silicon Beach • Santa Monica • Culver City • Downtown", badge: "Media & D2C", projects: "40+ Consumer Apps" },
-  { name: "Seattle", hub: "South Lake Union • Bellevue • Redmond • Pioneer Square", badge: "Cloud & Enterprise", projects: "35+ Cloud Pipelines" },
-  { name: "Boston", hub: "Route 128 • Cambridge • Seaport • Back Bay", badge: "BioTech & Health", projects: "30+ HealthTech Systems" },
-  { name: "Miami", hub: "Brickell • Wynwood • Downtown • Miami Beach", badge: "FinTech & Web3", projects: "25+ Digital Portals" },
+// UAE Emirates Coverage List
+const uaeEmirates = [
+  { name: "Dubai", hub: "Business Bay • DIFC • Downtown • JLT • Al Quoz • Silicon Oasis", badge: "Primary Hub", projects: "120+ Systems Deployed" },
+  { name: "Abu Dhabi", hub: "ADGM • Al Reem Island • Mussafah • Khalifa City", badge: "Enterprise & Gov", projects: "45+ Enterprise Systems" },
+  { name: "Sharjah", hub: "Industrial Areas • SAIF Zone • Al Majaz • University City", badge: "Trade & Industrial", projects: "35+ Warehouse & POS" },
+  { name: "Ajman", hub: "Free Zone • City Center • Al Jurf Industrial", badge: "Commercial Hub", projects: "20+ Retail Outlets" },
+  { name: "Ras Al Khaimah", hub: "RAKEZ • Al Hamra • Business District", badge: "Manufacturing & Tourism", projects: "15+ Plant Systems" },
+  { name: "Fujairah", hub: "Creative City • Port & Free Zone", badge: "Logistics & Maritime", projects: "10+ Freight Hubs" },
+  { name: "Umm Al Quwain", hub: "FTZ • Commercial Core", badge: "Growth Zone", projects: "8+ SME Pipelines" },
 ];
 
-// USA Operational FAQ Items
-const usaFaqs = [
+// UAE Operational FAQ Items
+const uaeFaqs = [
   {
-    q: "How does Mitsafe ensure software compliance with US regulatory frameworks like HIPAA and SOC 2?",
-    a: "We engineer applications with end-to-end data encryption (AES-256), strict role-based access control (RBAC), automated audit logs, and compliance protocols adhering to HIPAA (ePHI protection) and SOC 2 Type II governance.",
+    q: "How does Mitsafe ensure software compliance with UAE VAT and financial practices?",
+    a: "Our software engines generate compliant VAT invoices with itemized breakdowns, QR codes, TRN fields, and audit-ready reporting compatible with UAE Federal Tax Authority (FTA) guidelines.",
   },
   {
-    q: "Do we receive 100% intellectual property, source code, and database ownership?",
-    a: "Yes! Under our custom software development contracts, your business receives 100% intellectual property rights, complete GitHub repository access, and total database ownership with zero vendor lock-in.",
+    q: "Do we get full source code and database ownership upon project completion?",
+    a: "Yes! Under our Custom Software Development model, your business receives 100% intellectual property, full repository access, and complete database ownership without proprietary platform lock-in.",
   },
   {
-    q: "How does Mitsafe manage collaboration across US time zones?",
-    a: "We provide dedicated 4-6 hours of daily working overlap across Eastern (EST), Central (CST), and Pacific (PST) time zones. You communicate directly with solutions architects via Slack, Teams, Jira, and weekly video sprint demos.",
+    q: "Can Mitsafe connect multi-branch operations across different Emirates in real time?",
+    a: "Absolutely. Our cloud systems synchronize sales, stock levels, kitchen orders, and customer accounts across Dubai, Abu Dhabi, Sharjah, and other locations with sub-second latency.",
   },
   {
-    q: "What payment and contract terms do you provide for US companies?",
-    a: "We execute standard US-governed non-disclosure agreements (NDA) and milestone-based commercial agreements. Invoicing is processed cleanly in USD via domestic ACH bank transfer, wire, or major credit cards.",
-  },
-  {
-    q: "Can Mitsafe connect multi-branch operations and warehouses across different US states?",
-    a: "Absolutely. Our cloud systems synchronize sales, stock levels, orders, and customer accounts across all your US facilities in real time with sub-second latency on AWS cloud infrastructure.",
+    q: "What payment gateways and local integrations do you support?",
+    a: "We natively integrate with UAE and GCC payment providers including Apple Pay, Telr, PayTabs, Network International, Stripe, and direct bank debit APIs.",
   },
 ];
 
-export default function UsaLandingClient() {
+export default function UaeLandingClient() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
-
-  // Interactive State
+  
+  // Interactive Vertical Showcase State with Auto-Rotation
   const [activePillarIndex, setActivePillarIndex] = useState<number>(0);
   const [deliveryModelTab, setDeliveryModelTab] = useState<"custom" | "managed">("custom");
-  const [activeMetroIndex, setActiveMetroIndex] = useState<number>(0);
+  const [activeEmirateIndex, setActiveEmirateIndex] = useState<number>(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  const totalSlides = usaHeroSlides.length;
+  const totalSlides = uaeHeroSlides.length;
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -497,7 +491,7 @@ export default function UsaLandingClient() {
   // Auto-rotate vertical solution pillars every 5 seconds
   useEffect(() => {
     const pillarInterval = setInterval(() => {
-      setActivePillarIndex((prev) => (prev + 1) % usaServicePillars.length);
+      setActivePillarIndex((prev) => (prev + 1) % servicePillars.length);
     }, 5000);
     return () => clearInterval(pillarInterval);
   }, [activePillarIndex]);
@@ -519,7 +513,7 @@ export default function UsaLandingClient() {
     setTouchStart(null);
   };
 
-  const slide = usaHeroSlides[currentSlide] || usaHeroSlides[0];
+  const slide = uaeHeroSlides[currentSlide] || uaeHeroSlides[0];
 
   return (
     <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden font-sans selection:bg-[#305EFF] selection:text-white">
@@ -696,7 +690,7 @@ export default function UsaLandingClient() {
 
         {/* Carousel Progress Indicators / Dots */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/15">
-          {usaHeroSlides.map((_, idx) => (
+          {uaeHeroSlides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
@@ -713,11 +707,11 @@ export default function UsaLandingClient() {
 
 
       {/* =========================================================================
-          FLOATING USA METRIC RIBBON (Interactive Horizontal Quick Stats)
+          FLOATING UAE METRIC RIBBON (Interactive Horizontal Quick Stats)
           ========================================================================= */}
       <div className="relative z-20 -mt-7 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white/95 backdrop-blur-lg rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-2xl grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 items-center">
-          {usaQuickStats.map((stat, sIdx) => {
+          {uaeQuickStats.map((stat, sIdx) => {
             const IconC = stat.icon;
             return (
               <div key={sIdx} className="flex items-center gap-3 px-3 py-1 first:pt-0 sm:first:pt-1">
@@ -736,7 +730,7 @@ export default function UsaLandingClient() {
 
 
       {/* =========================================================================
-          2. USA BUSINESS INTRO (3D Word-by-Word Scroll Reveal + Framed Visual)
+          2. UAE BUSINESS INTRO (3D Word-by-Word Scroll Reveal + Framed Visual)
           ========================================================================= */}
       <section className="py-20 lg:py-24 bg-white border-b border-slate-100 relative overflow-hidden">
         <AmbientGlowingOrb className="top-10 left-10 w-96 h-96 bg-blue-100/50" duration={8} />
@@ -755,60 +749,75 @@ export default function UsaLandingClient() {
               <TiltCard3D tiltAmount={10} className="w-full max-w-[500px]">
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 bg-slate-900 group">
                   <Image
-                    src="/images/usa_about_workspace.jpg"
-                    alt="Mitsafe USA Software Engineering and Development Team"
+                    src="/images/uae_about.jpg"
+                    alt="Mitsafe UAE Software Engineering Team in Dubai Office"
                     width={640}
                     height={460}
                     className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   
-                  {/* Floating 3D Stat Badge */}
-                  <Floating3DObject duration={4} yOffset={6} rotateRange={2} className="absolute bottom-4 left-4 z-20">
-                    <div className="bg-slate-950/95 backdrop-blur-md p-3.5 rounded-2xl border border-white/20 shadow-2xl flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-xl bg-[#305EFF] text-white flex items-center justify-center font-black text-sm">
-                        10+
-                      </div>
-                      <div className="text-left">
-                        <div className="text-xs font-bold text-white uppercase tracking-tight">Years in Software Engineering</div>
-                        <div className="text-[10px] text-slate-300">USA &amp; Global Enterprise Delivery</div>
-                      </div>
+                  {/* Floating 3D Hub Active Badge */}
+                  <Floating3DObject duration={3.5} yOffset={8} rotateRange={3} className="absolute top-4 right-4 z-20">
+                    <div className="bg-slate-950/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-[#00D4FF] text-xs font-black shadow-xl flex items-center gap-2">
+                      <LiveRadarPulse color="bg-[#00D4FF]" />
+                      <span>Dubai Tech Hub</span>
                     </div>
                   </Floating3DObject>
+
+                  {/* Glassmorphic Stat Banner */}
+                  <div
+                    className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-slate-200/90 shadow-2xl flex items-center justify-between"
+                    style={{ transform: "translateZ(30px)" }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-[#305EFF] text-white flex items-center justify-center font-black shadow-md">
+                        <Building2 className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-black text-slate-900 uppercase">Dedicated UAE Delivery</div>
+                        <div className="text-[11px] text-slate-600">Aligned with Gulf business rhythms</div>
+                      </div>
+                    </div>
+                    <span className="px-3 py-1 rounded-full bg-blue-50 text-[#305EFF] text-xs font-extrabold border border-blue-100">
+                      GST Timezone
+                    </span>
+                  </div>
                 </div>
               </TiltCard3D>
             </motion.div>
 
             {/* Right Column: Editorial with 3D Word-by-Word Scroll Reveal */}
             <div className="lg:col-span-6 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 text-[#305EFF] text-xs font-extrabold uppercase tracking-wider">
-                <span>AMERICAN TECHNOLOGY PARTNER</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 text-[#305EFF] text-xs font-extrabold uppercase tracking-wider border border-blue-100">
+                <Sparkles className="w-3.5 h-3.5 text-[#305EFF]" />
+                <span>DIGITAL SOLUTIONS FOR THE UAE</span>
               </div>
 
-              <h2 className="text-2xl sm:text-4xl lg:text-[2.6rem] font-black text-slate-900 tracking-tight leading-[1.18]">
-                <ScrollHeading3D text="Software Built for How Modern American Businesses Operate" direction="left" />
+              <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+                <ScrollHeading3D text="Technology That Works the Way Your UAE Business Works" direction="left" />
               </h2>
 
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                American businesses operate in dynamic, fast-paced markets. Mitsafe helps companies replace disconnected tools and manual spreadsheets with custom software, SaaS, headless e-commerce, and AI workflows built around their operational flow.
+                UAE businesses operate in a fast-moving digital environment. Mitsafe helps companies replace disconnected tools and manual spreadsheets with custom software, ERP, POS, and AI workflows built around their operational flow.
               </p>
 
               {/* Vertical Highlight Stream */}
               <div className="space-y-3 pt-1">
                 {[
                   {
-                    icon: ShieldCheck,
-                    title: "HIPAA, SOC 2 & CCPA Compliant Systems",
-                    desc: "Systems built for stringent US regulatory standards with full audit trails and data encryption.",
+                    icon: CheckCircle2,
+                    title: "Bilingual & UAE-Compliant Workflows",
+                    desc: "Systems built for English/Arabic operations with full VAT-ready transaction logs.",
                   },
                   {
                     icon: Layers,
-                    title: "Multi-State Cloud Architecture",
-                    desc: "Synchronize inventory, POS, and financial records across New York, California, Texas, and nationwide.",
+                    title: "Multi-Branch Cloud Architecture",
+                    desc: "Synchronize inventory, POS, and cash flow across Dubai, Abu Dhabi, and Northern Emirates.",
                   },
                   {
                     icon: Headphones,
-                    title: "Direct US Timezone Technical Support",
-                    desc: "No call center middlemen. Direct access to senior software architects in EST, CST, and PST hours.",
+                    title: "Direct Technical Engineering Support",
+                    desc: "No call center middlemen. Direct access to solutions architects on UAE time.",
                   },
                 ].map((item, idx) => {
                   const IconComp = item.icon;
@@ -865,10 +874,10 @@ export default function UsaLandingClient() {
               <span>Comprehensive Digital Capabilities</span>
             </div>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-              <ScrollHeading3D text="Everything Your US Business Needs to Scale" direction="left" />
+              <ScrollHeading3D text="Everything Your Business Needs to Go Digital" direction="left" />
             </h2>
             <p className="text-slate-600 text-xs sm:text-base font-medium max-w-2xl mx-auto">
-              Select or watch the auto-advancing solution pillars below to explore real-time multi-branch sync and cloud architecture.
+              Select or watch the auto-advancing solution pillars below to explore real-time multi-branch sync and architecture.
             </p>
           </div>
 
@@ -877,7 +886,7 @@ export default function UsaLandingClient() {
             
             {/* Left Column: Vertical Solution Pillars (Auto-Rotating & Clickable) */}
             <div className="lg:col-span-5 space-y-3">
-              {usaServicePillars.map((pillar, idx) => {
+              {servicePillars.map((pillar, idx) => {
                 const isActive = activePillarIndex === idx;
                 return (
                   <button
@@ -940,27 +949,27 @@ export default function UsaLandingClient() {
                         <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
                       </div>
                       <span className="text-[10px] font-mono text-slate-400">
-                        usa-solution/{usaServicePillars[activePillarIndex].id}
+                        uae-solution/{servicePillars[activePillarIndex].id}
                       </span>
                       <div className="w-8" />
                     </div>
 
                     <div className="relative h-48 sm:h-56">
                       <Image
-                        src={usaServicePillars[activePillarIndex].image}
-                        alt={usaServicePillars[activePillarIndex].imageAlt}
+                        src={servicePillars[activePillarIndex].image}
+                        alt={servicePillars[activePillarIndex].imageAlt}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                       />
                       <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-slate-950/90 backdrop-blur-md text-[#00D4FF] text-[11px] font-extrabold border border-white/20 shadow-md flex items-center gap-1.5">
                         <LiveRadarPulse color="bg-[#00D4FF]" />
-                        <span>{usaServicePillars[activePillarIndex].liveStat}</span>
+                        <span>{servicePillars[activePillarIndex].liveStat}</span>
                       </div>
                     </div>
 
                     {/* Tech Stack Pills */}
                     <div className="px-3.5 py-2 bg-slate-900 border-t border-slate-800 flex flex-wrap items-center gap-1.5">
-                      {usaServicePillars[activePillarIndex].techStack.map((t, tIdx) => (
+                      {servicePillars[activePillarIndex].techStack.map((t, tIdx) => (
                         <span key={tIdx} className="text-[10px] font-mono text-slate-300 px-2 py-0.5 rounded bg-slate-800 border border-slate-700">
                           {t}
                         </span>
@@ -970,7 +979,7 @@ export default function UsaLandingClient() {
 
                   {/* Vertical Sub-Services */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    {usaServicePillars[activePillarIndex].services.map((srv, sIdx) => (
+                    {servicePillars[activePillarIndex].services.map((srv, sIdx) => (
                       <div
                         key={sIdx}
                         className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#305EFF] transition-all"
@@ -1012,7 +1021,7 @@ export default function UsaLandingClient() {
             <span>Dynamic Industry Coverage</span>
           </div>
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-            <ScrollHeading3D text="Technology Built Around Every US Industry" direction="right" />
+            <ScrollHeading3D text="Technology Built Around Every UAE Industry" direction="right" />
           </h2>
           <p className="text-slate-600 text-xs sm:text-base font-medium max-w-2xl mx-auto">
             Hover over any card to inspect localized capabilities and operational workflows.
@@ -1032,7 +1041,7 @@ export default function UsaLandingClient() {
             whileHover={{ transition: { duration: 999999 } }}
           >
             {/* Doubled array for seamless infinite looping */}
-            {[...usaIndustries, ...usaIndustries].map((ind, idx) => {
+            {[...uaeIndustries, ...uaeIndustries].map((ind, idx) => {
               const IconComp = ind.icon;
               return (
                 <div
@@ -1094,10 +1103,10 @@ export default function UsaLandingClient() {
               <span>Operational Transformation</span>
             </div>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-              <ScrollHeading3D text="Still Running Your US Business Across Disconnected Tools?" direction="left" />
+              <ScrollHeading3D text="Still Running Your Business Across Too Many Systems?" direction="left" />
             </h2>
             <p className="text-slate-600 text-xs sm:text-base font-medium max-w-2xl mx-auto">
-              Compare fragmented, manual spreadsheets with a single connected digital technology engine.
+              Compare fragmented, manual operations with a single connected technology engine.
             </p>
           </div>
 
@@ -1109,7 +1118,7 @@ export default function UsaLandingClient() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between border-b border-rose-100 pb-3">
                   <div>
-                    <span className="text-xs font-mono uppercase tracking-widest text-rose-500 font-bold">The Current Bottlenecks</span>
+                    <span className="text-xs font-mono uppercase tracking-widest text-rose-500 font-bold">The Current Pain</span>
                     <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-0.5">Disconnected Tools &amp; Manual Spreadsheets</h3>
                   </div>
                   <div className="w-9 h-9 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center border border-rose-200 shrink-0">
@@ -1119,11 +1128,11 @@ export default function UsaLandingClient() {
 
                 <div className="space-y-2.5">
                   {[
-                    "Scattered Excel spreadsheets and unlinked billing tools across teams",
-                    "Manual follow-ups causing missed enterprise leads and deal pipeline leakage",
-                    "Unsynchronized inventory leading to stock errors & shipping delays",
-                    "Slow manual document processing and lack of HIPAA/SOC2 governance",
-                    "No unified executive dashboards, forcing guesswork in commercial decisions",
+                    "Mismatched Excel spreadsheets scattered across branch staff",
+                    "Manual follow-ups leading to missed deals and lost leads",
+                    "Separate inventory tools resulting in stock errors & order delays",
+                    "Paper-based processes and slow internal sign-offs",
+                    "No real-time reporting, forcing blind executive decisions",
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
                       <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
@@ -1134,7 +1143,7 @@ export default function UsaLandingClient() {
               </div>
 
               <div className="pt-4 mt-4 border-t border-rose-100 text-xs text-rose-600 font-semibold">
-                Result: Slower velocity, higher operational overhead &amp; lost deals.
+                Result: Slower operations, higher overhead &amp; lost deals.
               </div>
             </div>
 
@@ -1143,7 +1152,7 @@ export default function UsaLandingClient() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between border-b border-blue-100 pb-3">
                   <div>
-                    <span className="text-xs font-mono uppercase tracking-widest text-[#305EFF] font-bold">After Mitsafe USA</span>
+                    <span className="text-xs font-mono uppercase tracking-widest text-[#305EFF] font-bold">After Mitsafe UAE</span>
                     <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-0.5">Unified Digital Operations Engine</h3>
                   </div>
                   <div className="w-9 h-9 rounded-xl bg-blue-50 text-[#305EFF] flex items-center justify-center border border-blue-200 shrink-0">
@@ -1153,11 +1162,11 @@ export default function UsaLandingClient() {
 
                 <div className="space-y-2.5">
                   {[
-                    "Single unified platform connecting CRM, billing, inventory and operations",
-                    "Automated AI workflows eliminating dozens of hours of manual data entry weekly",
-                    "Centralized customer records accessible securely across all US branches",
+                    "Connected systems uniting sales, finance, inventory and operations",
+                    "Automated workflows eliminating dozens of hours of manual entry weekly",
+                    "Centralized customer records accessible securely across all branches",
                     "Real-time executive dashboards delivering live cash and stock visibility",
-                    "Scalable cloud architecture engineered on AWS US-East/West with 99.99% uptime",
+                    "Scalable cloud infrastructure supporting multi-emirate expansion",
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-900 font-medium">
                       <CheckCircle2 className="w-4 h-4 text-[#305EFF] shrink-0 mt-0.5" />
@@ -1169,7 +1178,7 @@ export default function UsaLandingClient() {
 
               <div className="pt-4 mt-4 border-t border-blue-100 flex items-center justify-between">
                 <div className="text-xs text-[#305EFF] font-bold">
-                  Result: Complete visibility, high velocity &amp; total IP control.
+                  Result: Complete visibility, speed &amp; control.
                 </div>
                 <Link
                   href="#quote"
@@ -1188,7 +1197,7 @@ export default function UsaLandingClient() {
 
 
       {/* =========================================================================
-          6. USA FINANCIAL & OPERATIONS SOFTWARE (Dashboard Showcase + 3D Scroll Words)
+          6. UAE VAT & FINANCIAL SOFTWARE (Dashboard Showcase + 3D Scroll Words)
           ========================================================================= */}
       <section className="py-20 lg:py-24 bg-white border-b border-slate-100 relative overflow-hidden">
         <AmbientGlowingOrb className="top-10 right-10 w-80 h-80 bg-blue-100/50" duration={8} />
@@ -1196,27 +1205,27 @@ export default function UsaLandingClient() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Left Column: USA Financial & Operational Content */}
+            {/* Left Column: UAE VAT & Operational Content */}
             <div className="lg:col-span-6 space-y-6 text-left">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 text-[#305EFF] text-xs font-extrabold uppercase tracking-wider">
-                <span>ENTERPRISE USA BUSINESS SOFTWARE</span>
+                <span>UAE-READY BUSINESS SOFTWARE</span>
               </div>
 
               <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-                <ScrollHeading3D text="Run Your Business With Real-Time Financial & Operational Visibility" direction="left" />
+                <ScrollHeading3D text="Run Your Business With Better Financial & Operational Visibility" direction="left" />
               </h2>
 
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Manage sales pipelines, quotes, multi-currency invoicing, warehouse inventory, customer accounts, and automated financial reporting through a centralized software engine built for US companies.
+                Manage sales, quotes, invoices, inventory, customer accounts, and VAT-ready financial reporting through a centralized software engine built for UAE companies.
               </p>
 
               {/* Vertical Features */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                 {[
-                  { title: "Invoices & Billing", desc: "Automated recurring billing, ACH integration, and Stripe checkout." },
-                  { title: "Customer 360", desc: "Unified client credit limits, transaction histories, and contracts." },
-                  { title: "Inventory Sync", desc: "Low-stock alerts, multi-warehouse transfers, and barcode scanning." },
-                  { title: "Financial Reports", desc: "Real-time P&L, balance sheets, and tax-ready audit logs." },
+                  { title: "Invoices & Billing", desc: "Automated billing and quote creation with digital receipts." },
+                  { title: "Customer 360", desc: "Unified client credit limits and transaction ledgers." },
+                  { title: "Inventory Sync", desc: "Low-stock alerts and inter-branch warehouse transfers." },
+                  { title: "VAT-Ready Reports", desc: "Structured transaction logs for UAE tax compliance." },
                 ].map((feat, idx) => (
                   <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-200">
                     <div className="flex items-center gap-2 text-xs font-black text-slate-900">
@@ -1251,32 +1260,32 @@ export default function UsaLandingClient() {
                       <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
                     </div>
                     <span className="text-[10px] font-mono text-slate-400">
-                      usa-cloud-ops.mitsafe.com
+                      uae-finance-ops.mitsafe.ae
                     </span>
                     <div className="w-8" />
                   </div>
 
                   <div className="relative">
                     <Image
-                      src="/images/usa_mission_bg.jpg"
-                      alt="USA Business Operations and Financial Management Dashboard"
+                      src="/images/uae_vat_finance_dashboard.jpg"
+                      alt="UAE Business Operations and Financial Management Dashboard"
                       width={640}
                       height={420}
-                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out opacity-90"
+                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
 
                     {/* 3D Floating KPI Badges */}
                     <Floating3DObject duration={3.8} yOffset={7} rotateRange={2} className="absolute top-3 right-3 z-20">
                       <div className="bg-slate-900/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/20 text-[#00D4FF] text-xs font-black shadow-xl flex items-center gap-2">
                         <LiveRadarPulse color="bg-[#00D4FF]" />
-                        <span>USD Financial Engine</span>
+                        <span>AED Financial Engine</span>
                       </div>
                     </Floating3DObject>
                   </div>
 
                   <div className="p-3.5 bg-white text-slate-900 text-center border-t border-slate-200">
                     <div className="text-xs sm:text-sm font-extrabold text-[#305EFF]">
-                      USA Multi-Branch &amp; Financial Operations Platform
+                      UAE Multi-Branch &amp; Financial Operations Platform
                     </div>
                   </div>
                 </div>
@@ -1302,7 +1311,7 @@ export default function UsaLandingClient() {
               <ScrollHeading3D text="Own Your Software or Run It as a Service" direction="right" />
             </h2>
             <p className="text-slate-600 text-xs sm:text-base font-medium max-w-2xl mx-auto">
-              Choose the commercial engagement model that matches your business capital and product strategy.
+              Choose the commercial engagement model that matches your business capital and operational strategy.
             </p>
 
             {/* Interactive Model Toggle */}
@@ -1315,7 +1324,7 @@ export default function UsaLandingClient() {
                     : "text-slate-700 hover:text-slate-900"
                 }`}
               >
-                Model 01: Custom Development (100% IP Ownership)
+                Model 01: Custom Development (Ownership)
               </button>
               <button
                 onClick={() => setDeliveryModelTab("managed")}
@@ -1325,7 +1334,7 @@ export default function UsaLandingClient() {
                     : "text-slate-700 hover:text-slate-900"
                 }`}
               >
-                Model 02: Dedicated US Engineering Squads
+                Model 02: Managed Cloud (Subscription)
               </button>
             </div>
           </div>
@@ -1351,7 +1360,7 @@ export default function UsaLandingClient() {
                         100% Custom Software &amp; Full Code Ownership
                       </h3>
                       <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                        For businesses that need proprietary software designed specifically around their unique workflows, with 100% IP ownership transferred to you.
+                        For businesses that need software designed specifically around their proprietary workflows, with 100% IP ownership transferred to you.
                       </p>
                       <ul className="space-y-2.5 pt-2 text-xs sm:text-sm font-semibold text-slate-700">
                         <li className="flex items-center gap-2">
@@ -1360,18 +1369,18 @@ export default function UsaLandingClient() {
                         </li>
                         <li className="flex items-center gap-2">
                           <CheckCircle2 className="w-4 h-4 text-[#305EFF]" />
-                          <span>100% long-term code, database &amp; IP ownership with GitHub transfer</span>
+                          <span>100% long-term code, database &amp; IP ownership</span>
                         </li>
                         <li className="flex items-center gap-2">
                           <CheckCircle2 className="w-4 h-4 text-[#305EFF]" />
-                          <span>Scalable enterprise cloud architecture on AWS US-East / US-West</span>
+                          <span>Scalable enterprise cloud architecture on AWS UAE</span>
                         </li>
                       </ul>
                     </div>
 
                     <div className="md:col-span-5 bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center space-y-4">
                       <div className="text-xs font-bold text-slate-500 uppercase">Pricing Structure</div>
-                      <div className="text-2xl font-black text-slate-900">Milestone-Based (USD)</div>
+                      <div className="text-2xl font-black text-slate-900">Milestone-Based</div>
                       <p className="text-xs text-slate-500">Transparent phase-based pricing with fixed scope and timeline deliverables.</p>
                       <Link
                         href="#quote"
@@ -1386,40 +1395,40 @@ export default function UsaLandingClient() {
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                     <div className="md:col-span-7 space-y-4">
                       <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 text-xs font-extrabold uppercase">
-                        Dedicated US Squad Model
+                        OpEx Turnkey Solution
                       </span>
                       <h3 className="text-2xl sm:text-3xl font-black text-slate-900">
-                        Dedicated Senior Engineering Squads Working in Your Timezone
+                        Managed Software with Hosting &amp; Ongoing Support
                       </h3>
                       <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                        For engineering leaders looking to augment their in-house capacity with pre-vetted senior developers working directly in your Jira/GitHub sprints.
+                        For businesses that want a ready-to-deploy digital system with cloud hosting, automated daily backups, and continuous technical maintenance.
                       </p>
                       <ul className="space-y-2.5 pt-2 text-xs sm:text-sm font-semibold text-slate-700">
                         <li className="flex items-center gap-2">
                           <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                          <span>Full daily overlap with EST, CST, and PST working hours</span>
+                          <span>Lower upfront capital investment with predictable monthly/annual pricing</span>
                         </li>
                         <li className="flex items-center gap-2">
                           <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                          <span>Direct collaboration via Slack, Microsoft Teams, Jira, and GitHub</span>
+                          <span>Fully hosted on secure cloud servers with 99.99% uptime</span>
                         </li>
                         <li className="flex items-center gap-2">
                           <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                          <span>Flexible monthly capacity with zero recruitment friction or long-term lock-in</span>
+                          <span>Ongoing technical support, security patches, and feature updates</span>
                         </li>
                       </ul>
                     </div>
 
                     <div className="md:col-span-5 bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center space-y-4">
                       <div className="text-xs font-bold text-slate-500 uppercase">Pricing Structure</div>
-                      <div className="text-2xl font-black text-slate-900">Monthly Retainer</div>
-                      <p className="text-xs text-slate-500">Predictable monthly sprint cost with transparent developer allocation.</p>
+                      <div className="text-2xl font-black text-slate-900">Subscription SaaS</div>
+                      <p className="text-xs text-slate-500">Predictable recurring operational cost with maintenance and hosting included.</p>
                       <Link
                         href="#quote"
                         data-modal="quote"
                         className="w-full py-3 rounded-full bg-slate-900 hover:bg-[#305EFF] text-white font-extrabold text-xs block transition-transform hover:scale-105 shadow-md"
                       >
-                        Explore Dedicated Squads
+                        Explore Subscription Model
                       </Link>
                     </div>
                   </div>
@@ -1443,7 +1452,7 @@ export default function UsaLandingClient() {
               <span>Structured Execution</span>
             </div>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-              <ScrollHeading3D text="From Product Strategy to Scalable Production" direction="left" />
+              <ScrollHeading3D text="From Business Challenge to Working Technology" direction="left" />
             </h2>
             <p className="text-slate-600 text-xs sm:text-base font-medium max-w-2xl mx-auto">
               A transparent 5-step methodology delivering reliable software on time and without business disruption.
@@ -1455,33 +1464,33 @@ export default function UsaLandingClient() {
             {[
               {
                 step: "01",
-                title: "Discover & Mutual NDA",
-                desc: "We sign US confidentiality agreements, analyze your business workflows, and scope technical architecture.",
-                milestone: "Discovery & Scope Document",
+                title: "Discover & Analyze",
+                desc: "We analyze your existing workflows, spreadsheets, and operational bottlenecks before writing code.",
+                milestone: "Workflow Discovery Document",
               },
               {
                 step: "02",
-                title: "Plan Architecture & Tech Stack",
-                desc: "Define the right microservices, database schema, payment gateways, and delivery milestones.",
+                title: "Plan Architecture",
+                desc: "Define the right technology stack, database schema, payment gateways, and delivery milestones.",
                 milestone: "Architecture & Scope Roadmap",
               },
               {
                 step: "03",
-                title: "UX/UI Design & Prototyping",
-                desc: "Design intuitive, conversion-focused user interfaces that your users and customers actually enjoy using.",
-                milestone: "Interactive Figma Prototypes",
+                title: "UX/UI Design",
+                desc: "Design intuitive, bilingual user interfaces that your staff and customers actually enjoy using.",
+                milestone: "Interactive Prototypes",
               },
               {
                 step: "04",
-                title: "Agile Sprints & Automated QA",
-                desc: "Develop scalable code in fortnightly sprints with CI/CD previews, automated unit tests, and security scans.",
-                milestone: "Working Staging Releases",
+                title: "Build & Quality Assurance",
+                desc: "Develop scalable code, integrate UAE payment APIs, and execute rigorous stress and security tests.",
+                milestone: "Working Production Release",
               },
               {
                 step: "05",
-                title: "Production Launch & Code Transfer",
-                desc: "Deploy to live AWS cloud, transfer full source code and GitHub repositories, and provide post-launch warranty.",
-                milestone: "100% IP Transfer & Warranty",
+                title: "Support & Scaling",
+                desc: "Monitor live operations, provide user onboarding, and continuously scale features as your business expands.",
+                milestone: "Ongoing Partnership & SLA",
               },
             ].map((item, idx) => (
               <motion.div
@@ -1518,46 +1527,46 @@ export default function UsaLandingClient() {
 
 
       {/* =========================================================================
-          9. USA COVERAGE (Major Metros Footprint Selector)
+          9. UAE COVERAGE (7 Emirates Footprint Selector)
           ========================================================================= */}
       <section className="py-20 lg:py-24 bg-slate-50/70 border-b border-slate-200 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
             <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-100 text-[#305EFF] text-xs font-extrabold uppercase tracking-wider">
-              <span>Nationwide Coverage</span>
+              <span>National Coverage</span>
             </div>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-              <ScrollHeading3D text="Supporting Enterprises Across Major US Metros" direction="right" />
+              <ScrollHeading3D text="Supporting Businesses Across the UAE" direction="right" />
             </h2>
             <p className="text-slate-600 text-xs sm:text-base font-medium max-w-2xl mx-auto">
-              Mitsafe provides custom software and engineering teams for fast-growing businesses nationwide.
+              Mitsafe provides custom software and managed technology solutions for teams operating in every Emirate.
             </p>
 
-            {/* Horizontal Metros Pill Bar */}
+            {/* Horizontal Emirates Pill Bar */}
             <div className="flex flex-wrap items-center justify-center gap-2 pt-4">
-              {usaMetroHubs.map((metro, idx) => (
+              {uaeEmirates.map((em, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setActiveMetroIndex(idx)}
+                  onClick={() => setActiveEmirateIndex(idx)}
                   className={`px-4 py-2 rounded-full text-xs font-extrabold transition-all cursor-pointer flex items-center gap-1.5 ${
-                    activeMetroIndex === idx
+                    activeEmirateIndex === idx
                       ? "bg-[#305EFF] text-white shadow-md scale-105"
                       : "bg-white text-slate-700 border border-slate-200 hover:bg-slate-50"
                   }`}
                 >
-                  <span>🇺🇸</span>
-                  <span>{metro.name}</span>
+                  <span>🇦🇪</span>
+                  <span>{em.name}</span>
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Active Metro Spotlight Box */}
+          {/* Active Emirate Spotlight Box */}
           <div className="max-w-3xl mx-auto">
             <AnimatePresence mode="wait">
               <motion.div
-                key={activeMetroIndex}
+                key={activeEmirateIndex}
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
@@ -1566,23 +1575,23 @@ export default function UsaLandingClient() {
               >
                 <div className="space-y-2 text-left">
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl">🇺🇸</span>
+                    <span className="text-2xl">🇦🇪</span>
                     <h3 className="text-xl sm:text-2xl font-black text-slate-900">
-                      {usaMetroHubs[activeMetroIndex].name} Ecosystem
+                      {uaeEmirates[activeEmirateIndex].name} Operations
                     </h3>
                     <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-[#305EFF] text-xs font-bold">
-                      {usaMetroHubs[activeMetroIndex].badge}
+                      {uaeEmirates[activeEmirateIndex].badge}
                     </span>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-600">
-                    <span className="font-bold text-slate-900">Key Business Corridors:</span> {usaMetroHubs[activeMetroIndex].hub}
+                    <span className="font-bold text-slate-900">Key Business Zones:</span> {uaeEmirates[activeEmirateIndex].hub}
                   </p>
                 </div>
 
                 <div className="shrink-0 text-center sm:text-right">
                   <div className="text-xs font-bold text-slate-400 uppercase">Deployment Track Record</div>
                   <div className="text-lg sm:text-xl font-black text-[#305EFF]">
-                    {usaMetroHubs[activeMetroIndex].projects}
+                    {uaeEmirates[activeEmirateIndex].projects}
                   </div>
                 </div>
               </motion.div>
@@ -1594,7 +1603,7 @@ export default function UsaLandingClient() {
 
 
       {/* =========================================================================
-          10. USA BUSINESS OPERATIONAL FAQ (Interactive Vertical Accordion)
+          10. UAE BUSINESS OPERATIONAL FAQ (Interactive Vertical Accordion)
           ========================================================================= */}
       <section className="py-20 lg:py-24 bg-white border-b border-slate-100 relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1604,12 +1613,12 @@ export default function UsaLandingClient() {
               <span>Common Inquiries</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              <ScrollHeading3D text="Frequently Asked Questions by US Clients" direction="left" />
+              <ScrollHeading3D text="Frequently Asked Questions by UAE Businesses" direction="left" />
             </h2>
           </div>
 
           <div className="space-y-3">
-            {usaFaqs.map((faq, fIdx) => {
+            {uaeFaqs.map((faq, fIdx) => {
               const isOpen = openFaq === fIdx;
               return (
                 <div
@@ -1646,12 +1655,12 @@ export default function UsaLandingClient() {
 
 
       {/* =========================================================================
-          11. FINAL USA CTA SECTION (Solid Dark Navy Background, Clean White Text)
+          11. FINAL UAE CTA SECTION (Solid Dark Navy Background, Clean White Text)
           ========================================================================= */}
       <section className="py-20 lg:py-28 bg-[#060D1E] text-white relative overflow-hidden">
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-7">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#00D4FF] text-xs font-extrabold uppercase tracking-wider">
-            <span>🇺🇸 Let&apos;s Build in the USA</span>
+            <span>🇦🇪 Let&apos;s Build in the UAE</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
@@ -1662,7 +1671,7 @@ export default function UsaLandingClient() {
           </h2>
 
           <p className="text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed text-slate-200">
-            Tell us what is slowing your business down — manual processes, disconnected tools, outdated software or a digital product you want to launch. We&apos;ll help you identify the right technology approach.
+            Tell us what is slowing your business down — manual processes, disconnected systems, outdated software or a digital product you want to launch. We&apos;ll help you identify the right technology approach.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
@@ -1671,14 +1680,14 @@ export default function UsaLandingClient() {
               data-modal="quote"
               className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#305EFF] hover:bg-[#204ad8] text-white font-extrabold text-sm sm:text-base shadow-xl shadow-[#305EFF]/40 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer group"
             >
-              <span>Book a Free USA Consultation</span>
+              <span>Book a Free UAE Consultation</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
             </Link>
 
             <Link
               href="#quote"
               data-modal="quote"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white hover:bg-blue-50 text-slate-900 hover:text-[#305EFF] font-extrabold text-sm sm:text-base border border-slate-200 shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#0F204A] hover:bg-[#305EFF] text-white font-extrabold text-sm sm:text-base border border-blue-900/80 hover:border-[#305EFF] shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
             >
               <span>Talk to Our Team</span>
             </Link>
