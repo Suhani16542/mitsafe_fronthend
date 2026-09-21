@@ -1757,7 +1757,7 @@ export default function SwitzerlandLandingClient() {
             <Link
               href="#quote"
               data-modal="quote"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#0F204A] hover:bg-[#305EFF] text-white font-extrabold text-sm sm:text-base border border-blue-900/80 hover:border-[#305EFF] shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white hover:bg-blue-50 text-slate-900 hover:text-[#305EFF] font-extrabold text-sm sm:text-base border border-slate-200 shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
             >
               <span>Talk to Our Swiss Architects</span>
             </Link>
