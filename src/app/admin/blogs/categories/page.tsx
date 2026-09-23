@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import {
   FolderTree,
@@ -13,14 +13,27 @@ import {
   Search,
   ArrowLeft,
   Sparkles,
+  Loader2,
+  AlertCircle,
+  RefreshCw,
 } from "lucide-react";
 import CategoryModal from "@/components/admin/CategoryModal";
 import DeleteConfirmModal from "@/components/admin/DeleteConfirmModal";
-import { MOCK_CATEGORIES } from "@/data/mockAdminBlogs";
-import { BlogCategory } from "@/types/adminBlog";
+import { BlogCategory, BlogPost } from "@/types/adminBlog";
+import {
+  getAdminCategories,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+  getBlogs,
+} from "@/services/blog.service";
 
 export default function CategoriesPage() {
-  const [categories, setCategories] = useState<BlogCategory[]>(MOCK_CATEGORIES);
+  const [categories, setCategories] = useState<BlogCategory[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isActionLoading, setIsActionLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successToast, setSuccessToast] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
   // Modal States
@@ -28,54 +41,151 @@ export default function CategoriesPage() {
   const [editingCategory, setEditingCategory] = useState<BlogCategory | null>(null);
   const [deletingCategory, setDeletingCategory] = useState<BlogCategory | null>(null);
 
+  // Fetch live categories and count articles dynamically
+  const loadCategoriesData = useCallback(async () => {
+    setIsLoading(true);
+    setErrorMessage("");
+    try {
+      const [catsRes, blogsRes] = await Promise.allSettled([
+        getAdminCategories(),
+        getBlogs({ status: "all", limit: 500 }),
+      ]);
+
+      let loadedCats: BlogCategory[] = [];
+      if (catsRes.status === "fulfilled" && catsRes.value.success && Array.isArray(catsRes.value.data)) {
+        loadedCats = catsRes.value.data.map((cat) => {
+          const rawCount = Number(cat?.count);
+          const safeCount = Number.isFinite(rawCount) && rawCount >= 0 ? rawCount : 0;
+          return {
+            ...cat,
+            count: safeCount,
+          };
+        });
+      } else if (catsRes.status === "rejected") {
+        throw new Error(catsRes.reason?.message || "Failed to fetch categories from server");
+      }
+
+      // If blogs loaded, compute exact live count per category
+      if (blogsRes.status === "fulfilled" && blogsRes.value.success && Array.isArray(blogsRes.value.data)) {
+        const blogs = blogsRes.value.data;
+        loadedCats = loadedCats.map((cat) => {
+          const catName = (cat.name || "").toLowerCase().trim();
+          const catSlug = (cat.slug || "").toLowerCase().trim();
+          const matchingCount = blogs.filter((b: BlogPost) => {
+            if (!b || !b.category || typeof b.category !== "string") return false;
+            const blogCat = b.category.toLowerCase().trim();
+            return blogCat === catName || blogCat === catSlug;
+          }).length;
+          return {
+            ...cat,
+            count: typeof matchingCount === "number" && !isNaN(matchingCount) ? matchingCount : 0,
+          };
+        });
+      }
+
+      setCategories(loadedCats);
+    } catch (err: any) {
+      console.error("Error loading categories:", err);
+      setErrorMessage(err.message || "Failed to load categories.");
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadCategoriesData();
+  }, [loadCategoriesData]);
+
   // Filtered categories
   const filteredCategories = categories.filter(
     (cat) =>
-      cat.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      cat.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      cat.slug.toLowerCase().includes(searchQuery.toLowerCase())
+      (cat?.name && cat.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (cat?.description && cat.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (cat?.slug && cat.slug.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   // Stats
-  const activeCount = categories.filter((c) => c.status === "active").length;
-  const totalArticles = categories.reduce((sum, c) => sum + c.count, 0);
+  const activeCount = categories.filter((c) => c?.status === "active").length;
+  const totalArticles = categories.reduce((sum, c) => {
+    const val = Number(c?.count);
+    return sum + (Number.isFinite(val) && val >= 0 ? val : 0);
+  }, 0);
 
-  const handleSaveCategory = (catData: Partial<BlogCategory>) => {
-    if (editingCategory) {
-      setCategories((prev) =>
-        prev.map((c) => (c.id === catData.id ? ({ ...c, ...catData } as BlogCategory) : c))
-      );
-    } else {
-      setCategories((prev) => [
-        {
-          id: `cat-${Date.now()}`,
+  const handleSaveCategory = async (catData: Partial<BlogCategory>) => {
+    setIsActionLoading(true);
+    setErrorMessage("");
+    try {
+      if (editingCategory) {
+        const res = await updateCategory(editingCategory.id, {
+          name: catData.name,
+          slug: catData.slug,
+          description: catData.description,
+          status: catData.status,
+        });
+        if (!res.success) throw new Error(res.error || "Failed to update category.");
+        setSuccessToast(`Category "${catData.name}" updated successfully!`);
+      } else {
+        const res = await createCategory({
           name: catData.name || "New Category",
-          slug: catData.slug || "new-category",
+          slug: catData.slug || "",
           description: catData.description || "",
-          count: 0,
           status: catData.status || "active",
-          createdAt: new Date().toISOString().split("T")[0],
-        },
-        ...prev,
-      ]);
+        });
+        if (!res.success) throw new Error(res.error || "Failed to create category.");
+        setSuccessToast(`Category "${catData.name}" created successfully!`);
+      }
+      setTimeout(() => setSuccessToast(""), 3500);
+      await loadCategoriesData();
+    } catch (err: any) {
+      console.error("Failed to save category:", err);
+      setErrorMessage(err.message || "Failed to save category.");
+      setTimeout(() => setErrorMessage(""), 5000);
+    } finally {
+      setIsActionLoading(false);
+      setEditingCategory(null);
     }
-    setEditingCategory(null);
   };
 
-  const handleToggleStatus = (id: string) => {
+  const handleToggleStatus = async (cat: BlogCategory) => {
+    const newStatus = cat.status === "active" ? "inactive" : "active";
+    // Optimistic update
     setCategories((prev) =>
-      prev.map((c) =>
-        c.id === id
-          ? { ...c, status: c.status === "active" ? "inactive" : "active" }
-          : c
-      )
+      prev.map((c) => (c.id === cat.id ? { ...c, status: newStatus } : c))
     );
+    try {
+      const res = await updateCategory(cat.id, { status: newStatus });
+      if (!res.success) {
+        // Revert if failed
+        setCategories((prev) =>
+          prev.map((c) => (c.id === cat.id ? { ...c, status: cat.status } : c))
+        );
+        throw new Error(res.error || "Failed to update category status.");
+      }
+      setSuccessToast(`Category "${cat.name}" is now ${newStatus}.`);
+      setTimeout(() => setSuccessToast(""), 3000);
+    } catch (err: any) {
+      setErrorMessage(err.message || "Failed to toggle status.");
+      setTimeout(() => setErrorMessage(""), 4000);
+    }
   };
 
-  const handleDeleteConfirm = () => {
-    if (deletingCategory) {
-      setCategories((prev) => prev.filter((c) => c.id !== deletingCategory.id));
-      setDeletingCategory(null);
+  const handleDeleteConfirm = async () => {
+    if (!deletingCategory) return;
+    const catToDelete = deletingCategory;
+    setDeletingCategory(null);
+    setIsActionLoading(true);
+    try {
+      const res = await deleteCategory(catToDelete.id);
+      if (!res.success) throw new Error(res.error || "Failed to delete category.");
+      setSuccessToast(`Category "${catToDelete.name}" deleted successfully.`);
+      setTimeout(() => setSuccessToast(""), 3500);
+      await loadCategoriesData();
+    } catch (err: any) {
+      console.error("Failed to delete category:", err);
+      setErrorMessage(err.message || "Failed to delete category.");
+      setTimeout(() => setErrorMessage(""), 5000);
+    } finally {
+      setIsActionLoading(false);
     }
   };
 
@@ -101,17 +211,42 @@ export default function CategoriesPage() {
           </div>
         </div>
 
-        <button
-          onClick={() => {
-            setEditingCategory(null);
-            setIsCategoryModalOpen(true);
-          }}
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#305EFF] text-white text-xs font-extrabold rounded-2xl shadow-md hover:bg-[#305EFF]/90 hover:scale-[1.01] active:scale-[0.99] transition-all self-start sm:self-auto cursor-pointer"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Add New Category</span>
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={loadCategoriesData}
+            disabled={isLoading || isActionLoading}
+            className="p-2.5 rounded-2xl border border-slate-200 text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors cursor-pointer disabled:opacity-50"
+            title="Refresh Categories"
+          >
+            <RefreshCw className={`w-4 h-4 ${isLoading ? "animate-spin text-[#305EFF]" : ""}`} />
+          </button>
+          <button
+            onClick={() => {
+              setEditingCategory(null);
+              setIsCategoryModalOpen(true);
+            }}
+            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#305EFF] text-white text-xs font-extrabold rounded-2xl shadow-md hover:bg-[#305EFF]/90 hover:scale-[1.01] active:scale-[0.99] transition-all self-start sm:self-auto cursor-pointer"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Add New Category</span>
+          </button>
+        </div>
       </div>
+
+      {/* Toast Feedbacks */}
+      {successToast && (
+        <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold flex items-center gap-2 animate-in fade-in">
+          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+          <span>{successToast}</span>
+        </div>
+      )}
+
+      {errorMessage && (
+        <div className="p-3.5 rounded-2xl bg-red-50 border border-red-200 text-red-800 text-xs font-bold flex items-center gap-2 animate-in fade-in">
+          <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+          <span>{errorMessage}</span>
+        </div>
+      )}
 
       {/* Category Metric Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-sans">
@@ -222,14 +357,15 @@ export default function CategoriesPage() {
                     {/* Blog Count */}
                     <td className="py-4 px-4 text-center whitespace-nowrap">
                       <span className="px-2.5 py-1 rounded-full bg-slate-100 font-mono font-bold text-slate-800 text-[11px]">
-                        {cat.count} {cat.count === 1 ? "blog" : "blogs"}
+                        {Number.isFinite(Number(cat.count)) && Number(cat.count) >= 0 ? Number(cat.count) : 0}{" "}
+                        {Number(cat.count) === 1 ? "blog" : "blogs"}
                       </span>
                     </td>
 
                     {/* Status */}
                     <td className="py-4 px-4 whitespace-nowrap">
                       <button
-                        onClick={() => handleToggleStatus(cat.id)}
+                        onClick={() => handleToggleStatus(cat)}
                         className={`px-2.5 py-1 rounded-full text-[11px] font-bold inline-flex items-center gap-1.5 cursor-pointer transition-all ${
                           cat.status === "active"
                             ? "bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100"

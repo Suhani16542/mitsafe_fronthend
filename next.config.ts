@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "framer-motion", "clsx"],
   },
   images: {
+    qualities: [75, 85, 95],
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 2592000,
     remotePatterns: [

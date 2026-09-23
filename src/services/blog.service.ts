@@ -1,4 +1,4 @@
-import { BlogPost, BlogStatus } from "@/types/adminBlog";
+import { BlogPost, BlogStatus, BlogCategory } from "@/types/adminBlog";
 import { getStoredAdminToken } from "./admin.service";
 
 /**
@@ -316,62 +316,207 @@ export async function getBlogBySlug(slug: string) {
 }
 
 /**
- * Fetch list of categories
+ * Resolves local Next.js internal API base URL for Client and Server environments
  */
-export async function getCategories() {
-  const BASE_URL = getApiBaseUrl();
-  const endpoint = `${BASE_URL}/api/v1/blogs/categories`;
+function getLocalApiBase(): string {
+  if (typeof window !== "undefined") {
+    return ""; // Relative URL in browser
+  }
+  const port = process.env.PORT || 3000;
+  return `http://localhost:${port}`;
+}
 
+/**
+ * Fetch list of active category names for dropdowns
+ */
+export async function getCategories(): Promise<{ success: boolean; data: string[]; error?: string }> {
+  const localBase = getLocalApiBase();
+  const internalEndpoint = `${localBase}/api/categories?type=dropdown`;
+  const remoteEndpoint = `${getApiBaseUrl()}/api/v1/blogs/categories`;
+
+  // 1. Try internal Next.js Category API
   try {
-    const res = await fetch(endpoint, {
+    const res = await fetch(internalEndpoint, {
+      method: "GET",
+      cache: "no-store",
+    });
+    if (res.ok) {
+      const json = await res.json();
+      if (json && json.success && Array.isArray(json.data) && json.data.length > 0) {
+        return {
+          success: true,
+          data: json.data,
+        };
+      }
+    }
+  } catch (err) {
+    // Fallback to remote endpoint below
+  }
+
+  // 2. Fallback to remote backend endpoint
+  try {
+    const res = await fetch(remoteEndpoint, {
       method: "GET",
       headers: {
         ...getAdminHeaders(),
       },
       cache: "no-store",
     });
-
-    const responseText = await res.text();
-    let json: any = {};
-    try {
-      json = JSON.parse(responseText);
-    } catch {
-      json = { message: responseText };
+    const json = await res.json();
+    if (res.ok && json.success && Array.isArray(json.data)) {
+      const names = json.data
+        .map((c: any) => (typeof c === "string" ? c.trim() : String(c?.name || "").trim()))
+        .filter(Boolean);
+      return {
+        success: true,
+        data: Array.from(new Set(names)),
+      };
     }
+  } catch (err: any) {
+    return {
+      success: false,
+      data: [],
+      error: err.message || "Failed to load categories from server",
+    };
+  }
 
+  return {
+    success: false,
+    data: [],
+    error: "Failed to load categories from server",
+  };
+}
+
+/**
+ * Fetch full category objects for Category Management
+ */
+export async function getAdminCategories(): Promise<{ success: boolean; data: BlogCategory[]; error?: string }> {
+  const localBase = getLocalApiBase();
+  const internalEndpoint = `${localBase}/api/categories`;
+
+  try {
+    const res = await fetch(internalEndpoint, {
+      method: "GET",
+      cache: "no-store",
+    });
+    if (res.ok) {
+      const json = await res.json();
+      if (json && json.success && Array.isArray(json.data)) {
+        return {
+          success: true,
+          data: json.data,
+        };
+      }
+    }
+  } catch (err: any) {
+    console.error("[BlogService Error] getAdminCategories error:", err);
+  }
+
+  return {
+    success: false,
+    data: [],
+    error: "Failed to load categories",
+  };
+}
+
+/**
+ * Create a new category
+ */
+export async function createCategory(payload: {
+  name: string;
+  slug?: string;
+  description?: string;
+  status?: "active" | "inactive";
+}): Promise<{ success: boolean; data?: any; error?: string }> {
+  const localBase = getLocalApiBase();
+  const endpoint = `${localBase}/api/categories`;
+
+  try {
+    const res = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const json = await res.json();
     if (!res.ok || !json.success) {
-      console.error(`[BlogService Error] GET ${endpoint} returned ${res.status}:`, json);
-      throw new Error(json.message || "Failed to fetch categories");
-    }
-
-    let categoryNames: string[] = [];
-    if (Array.isArray(json.data)) {
-      categoryNames = json.data
-        .map((item: any) => {
-          if (typeof item === "string") return item.trim();
-          if (typeof item === "object" && item !== null && item.name) {
-            if (item.status && item.status !== "active") return null;
-            return String(item.name).trim();
-          }
-          return null;
-        })
-        .filter((cat: any): cat is string => Boolean(cat && typeof cat === "string" && cat.length > 0));
+      throw new Error(json.message || `Failed to create category (HTTP ${res.status})`);
     }
 
     return {
       success: true,
-      data: categoryNames,
+      data: json.data,
     };
   } catch (err: any) {
-    console.error(`[BlogService Error] GET ${endpoint} failed:`, {
-      url: endpoint,
-      errorName: err.name,
-      errorMessage: err.message,
-    });
     return {
       success: false,
-      data: [] as string[],
-      error: err.message || "Failed to load categories from server",
+      error: err.message || "Failed to create category on server",
+    };
+  }
+}
+
+/**
+ * Update an existing category
+ */
+export async function updateCategory(
+  id: string,
+  payload: Partial<BlogCategory>
+): Promise<{ success: boolean; data?: any; error?: string }> {
+  const localBase = getLocalApiBase();
+  const endpoint = `${localBase}/api/categories`;
+
+  try {
+    const res = await fetch(endpoint, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id, ...payload }),
+    });
+
+    const json = await res.json();
+    if (!res.ok || !json.success) {
+      throw new Error(json.message || `Failed to update category (HTTP ${res.status})`);
+    }
+
+    return {
+      success: true,
+      data: json.data,
+    };
+  } catch (err: any) {
+    return {
+      success: false,
+      error: err.message || "Failed to update category on server",
+    };
+  }
+}
+
+/**
+ * Delete a category
+ */
+export async function deleteCategory(id: string): Promise<{ success: boolean; error?: string }> {
+  const localBase = getLocalApiBase();
+  const endpoint = `${localBase}/api/categories?id=${encodeURIComponent(id)}`;
+
+  try {
+    const res = await fetch(endpoint, {
+      method: "DELETE",
+    });
+
+    const json = await res.json();
+    if (!res.ok || !json.success) {
+      throw new Error(json.message || `Failed to delete category (HTTP ${res.status})`);
+    }
+
+    return {
+      success: true,
+    };
+  } catch (err: any) {
+    return {
+      success: false,
+      error: err.message || "Failed to delete category on server",
     };
   }
 }
