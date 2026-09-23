@@ -316,111 +316,157 @@ export async function getBlogBySlug(slug: string) {
 }
 
 /**
- * Resolves local Next.js internal API base URL for Client and Server environments
- */
-function getLocalApiBase(): string {
-  if (typeof window !== "undefined") {
-    return ""; // Relative URL in browser
-  }
-  const port = process.env.PORT || 3000;
-  return `http://localhost:${port}`;
-}
-
-/**
- * Fetch list of active category names for dropdowns
+ * Fetch list of active category names for dropdowns from MongoDB backend
  */
 export async function getCategories(): Promise<{ success: boolean; data: string[]; error?: string }> {
-  const localBase = getLocalApiBase();
-  const internalEndpoint = `${localBase}/api/categories?type=dropdown`;
-  const remoteEndpoint = `${getApiBaseUrl()}/api/v1/blogs/categories`;
+  const BASE_URL = getApiBaseUrl();
+  const endpoint = `${BASE_URL}/api/v1/categories`;
 
-  // 1. Try internal Next.js Category API
   try {
-    const res = await fetch(internalEndpoint, {
-      method: "GET",
-      cache: "no-store",
-    });
-    if (res.ok) {
-      const json = await res.json();
-      if (json && json.success && Array.isArray(json.data) && json.data.length > 0) {
-        return {
-          success: true,
-          data: json.data,
-        };
-      }
-    }
-  } catch (err) {
-    // Fallback to remote endpoint below
-  }
-
-  // 2. Fallback to remote backend endpoint
-  try {
-    const res = await fetch(remoteEndpoint, {
+    const res = await fetch(endpoint, {
       method: "GET",
       headers: {
         ...getAdminHeaders(),
       },
       cache: "no-store",
     });
-    const json = await res.json();
-    if (res.ok && json.success && Array.isArray(json.data)) {
-      const names = json.data
-        .map((c: any) => (typeof c === "string" ? c.trim() : String(c?.name || "").trim()))
-        .filter(Boolean);
-      return {
-        success: true,
-        data: Array.from(new Set(names)),
-      };
+
+    const responseText = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(responseText);
+    } catch {
+      json = { message: responseText };
     }
+
+    if (!res.ok || !json.success) {
+      // Fallback to legacy blogs/categories if /api/v1/categories fails
+      const fallbackRes = await fetch(`${BASE_URL}/api/v1/blogs/categories`, {
+        method: "GET",
+        headers: { ...getAdminHeaders() },
+        cache: "no-store",
+      });
+      if (fallbackRes.ok) {
+        const fallbackJson = await fallbackRes.json();
+        if (fallbackJson.success && Array.isArray(fallbackJson.data)) {
+          const names = fallbackJson.data
+            .map((c: any) => (typeof c === "string" ? c.trim() : String(c?.name || "").trim()))
+            .filter(Boolean);
+          return { success: true, data: Array.from(new Set(names)) };
+        }
+      }
+      throw new Error(json.message || "Failed to fetch categories");
+    }
+
+    let categoryNames: string[] = [];
+    if (Array.isArray(json.data)) {
+      categoryNames = json.data
+        .map((item: any) => {
+          if (typeof item === "string") return item.trim();
+          if (typeof item === "object" && item !== null && item.name) {
+            // Strictly filter out inactive categories
+            if (item.status && item.status !== "active") return null;
+            return String(item.name).trim();
+          }
+          return null;
+        })
+        .filter((cat: any): cat is string => Boolean(cat && typeof cat === "string" && cat.length > 0));
+    }
+
+    return {
+      success: true,
+      data: Array.from(new Set(categoryNames)),
+    };
   } catch (err: any) {
+    console.error(`[BlogService Error] GET ${endpoint} failed:`, {
+      url: endpoint,
+      errorName: err.name,
+      errorMessage: err.message,
+    });
     return {
       success: false,
-      data: [],
+      data: [] as string[],
       error: err.message || "Failed to load categories from server",
     };
   }
-
-  return {
-    success: false,
-    data: [],
-    error: "Failed to load categories from server",
-  };
 }
 
 /**
- * Fetch full category objects for Category Management
+ * Fetch full category objects for Category Management from MongoDB backend
  */
 export async function getAdminCategories(): Promise<{ success: boolean; data: BlogCategory[]; error?: string }> {
-  const localBase = getLocalApiBase();
-  const internalEndpoint = `${localBase}/api/categories`;
+  const BASE_URL = getApiBaseUrl();
+  const endpoint = `${BASE_URL}/api/v1/categories`;
 
   try {
-    const res = await fetch(internalEndpoint, {
+    const res = await fetch(endpoint, {
       method: "GET",
+      headers: {
+        ...getAdminHeaders(),
+      },
       cache: "no-store",
     });
-    if (res.ok) {
-      const json = await res.json();
-      if (json && json.success && Array.isArray(json.data)) {
+
+    const responseText = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(responseText);
+    } catch {
+      json = { message: responseText };
+    }
+
+    if (!res.ok || !json.success) {
+      throw new Error(json.message || "Failed to fetch categories");
+    }
+
+    const rawList = Array.isArray(json.data) ? json.data : [];
+
+    const formattedCategories: BlogCategory[] = rawList.map((item: any, index: number) => {
+      if (typeof item === "string") {
+        const name = item.trim();
         return {
-          success: true,
-          data: json.data,
+          id: `cat-${index}-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+          name,
+          slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, ""),
+          description: "",
+          count: 0,
+          status: "active" as const,
+          createdAt: new Date().toISOString().split("T")[0],
         };
       }
-    }
-  } catch (err: any) {
-    console.error("[BlogService Error] getAdminCategories error:", err);
-  }
 
-  return {
-    success: false,
-    data: [],
-    error: "Failed to load categories",
-  };
+      const rawCount = Number(item.count !== undefined ? item.count : item.blogCount);
+      const safeCount = Number.isFinite(rawCount) && rawCount >= 0 ? rawCount : 0;
+
+      return {
+        id: item._id || item.id || `cat-${index}`,
+        name: String(item.name || "Untitled Category").trim(),
+        slug: String(item.slug || (item.name || "").toLowerCase().replace(/[^a-z0-9]+/g, "-")).trim(),
+        description: item.description || "",
+        count: safeCount,
+        status: item.status === "inactive" ? ("inactive" as const) : ("active" as const),
+        createdAt: item.createdAt
+          ? new Date(item.createdAt).toISOString().split("T")[0]
+          : new Date().toISOString().split("T")[0],
+      };
+    });
+
+    return {
+      success: true,
+      data: formattedCategories,
+    };
+  } catch (err: any) {
+    console.error(`[BlogService Error] GET ${endpoint} failed:`, err);
+    return {
+      success: false,
+      data: [],
+      error: err.message || "Failed to load categories",
+    };
+  }
 }
 
 /**
- * Create a new category
+ * Create a new category in backend MongoDB database
  */
 export async function createCategory(payload: {
   name: string;
@@ -428,26 +474,34 @@ export async function createCategory(payload: {
   description?: string;
   status?: "active" | "inactive";
 }): Promise<{ success: boolean; data?: any; error?: string }> {
-  const localBase = getLocalApiBase();
-  const endpoint = `${localBase}/api/categories`;
+  const BASE_URL = getApiBaseUrl();
+  const endpoint = `${BASE_URL}/api/v1/categories`;
 
   try {
     const res = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        ...getAdminHeaders(),
       },
       body: JSON.stringify(payload),
     });
 
-    const json = await res.json();
+    const responseText = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(responseText);
+    } catch {
+      json = { message: responseText };
+    }
+
     if (!res.ok || !json.success) {
       throw new Error(json.message || `Failed to create category (HTTP ${res.status})`);
     }
 
     return {
       success: true,
-      data: json.data,
+      data: json.data || json.category || json,
     };
   } catch (err: any) {
     return {
@@ -458,32 +512,40 @@ export async function createCategory(payload: {
 }
 
 /**
- * Update an existing category
+ * Update an existing category in backend MongoDB database
  */
 export async function updateCategory(
   id: string,
   payload: Partial<BlogCategory>
 ): Promise<{ success: boolean; data?: any; error?: string }> {
-  const localBase = getLocalApiBase();
-  const endpoint = `${localBase}/api/categories`;
+  const BASE_URL = getApiBaseUrl();
+  const endpoint = `${BASE_URL}/api/v1/categories/${encodeURIComponent(id)}`;
 
   try {
     const res = await fetch(endpoint, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        ...getAdminHeaders(),
       },
-      body: JSON.stringify({ id, ...payload }),
+      body: JSON.stringify(payload),
     });
 
-    const json = await res.json();
+    const responseText = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(responseText);
+    } catch {
+      json = { message: responseText };
+    }
+
     if (!res.ok || !json.success) {
       throw new Error(json.message || `Failed to update category (HTTP ${res.status})`);
     }
 
     return {
       success: true,
-      data: json.data,
+      data: json.data || json.category || json,
     };
   } catch (err: any) {
     return {
@@ -494,18 +556,28 @@ export async function updateCategory(
 }
 
 /**
- * Delete a category
+ * Delete a category in backend MongoDB database
  */
 export async function deleteCategory(id: string): Promise<{ success: boolean; error?: string }> {
-  const localBase = getLocalApiBase();
-  const endpoint = `${localBase}/api/categories?id=${encodeURIComponent(id)}`;
+  const BASE_URL = getApiBaseUrl();
+  const endpoint = `${BASE_URL}/api/v1/categories/${encodeURIComponent(id)}`;
 
   try {
     const res = await fetch(endpoint, {
       method: "DELETE",
+      headers: {
+        ...getAdminHeaders(),
+      },
     });
 
-    const json = await res.json();
+    const responseText = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(responseText);
+    } catch {
+      json = { message: responseText };
+    }
+
     if (!res.ok || !json.success) {
       throw new Error(json.message || `Failed to delete category (HTTP ${res.status})`);
     }
