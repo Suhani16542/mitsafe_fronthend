@@ -108,7 +108,6 @@ export default function ConsultationModal({
     phone: "",
     company: "",
     serviceCategory: defaultServiceOption,
-    budget: "Under $1,000",
     timeline: "ASAP",
     message: "",
   });
@@ -201,8 +200,17 @@ export default function ConsultationModal({
       return;
     }
 
+    // Resolve actual Turnstile challenge response token
+    const activeToken = turnstileToken || turnstileRef.current?.getResponse() || "";
+
+    // Temporary safe diagnostics before API request
+    console.log("[Turnstile Diagnostics]", {
+      tokenReceived: Boolean(activeToken),
+      tokenLength: activeToken?.length || 0,
+    });
+
     // Validate Turnstile captcha token
-    if (!turnstileToken) {
+    if (!activeToken) {
       setErrorMsg("Please complete the security verification (captcha) below before submitting.");
       return;
     }
@@ -221,12 +229,11 @@ export default function ConsultationModal({
       phone: formData.phone.trim(),
       companyName: formData.company.trim(),
       service: formData.serviceCategory.trim(),
-      budget: formData.budget,
       timeline: formData.timeline,
       message: formData.message.trim(),
       sourcePage: pathname || "/",
       requestType: modalType || "quote",
-      turnstileToken: turnstileToken,
+      turnstileToken: activeToken,
       website_hp: websiteHp,
     };
 
@@ -277,7 +284,6 @@ export default function ConsultationModal({
         phone: "",
         company: "",
         serviceCategory: defaultServiceOption,
-        budget: "Under $1,000",
         timeline: "ASAP",
         message: "",
       });
@@ -519,7 +525,7 @@ export default function ConsultationModal({
                           </div>
                         </div>
 
-                        {/* Row 3: Service Required * | Estimated Budget */}
+                        {/* Row 3: Service Required * | Expected Timeline */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 items-start w-full">
                           <div className="flex flex-col gap-1 w-full min-w-0">
                             <label className="text-[11.5px] font-bold text-slate-800">
@@ -544,46 +550,23 @@ export default function ConsultationModal({
 
                           <div className="flex flex-col gap-1 w-full min-w-0">
                             <label className="text-[11.5px] font-bold text-slate-800">
-                              Estimated Budget
+                              Expected Timeline
                             </label>
                             <div className="relative w-full min-w-0">
                               <select
-                                name="budget"
-                                value={formData.budget}
+                                name="timeline"
+                                value={formData.timeline}
                                 onChange={handleChange}
                                 className="w-full min-w-0 truncate pr-8 pl-3 py-2 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-white focus:bg-white text-slate-900 text-xs font-medium appearance-none focus:outline-none focus:border-[#305EFF] transition-all cursor-pointer"
                               >
-                                <option value="Under $1,000">Under $1,000</option>
-                                <option value="$1,000 – $5,000">$1,000 – $5,000</option>
-                                <option value="$5,000 – $10,000">$5,000 – $10,000</option>
-                                <option value="$10,000 – $25,000">$10,000 – $25,000</option>
-                                <option value="$25,000+">$25,000+</option>
+                                <option value="ASAP">ASAP</option>
+                                <option value="1–3 Months">1–3 Months</option>
+                                <option value="3–6 Months">3–6 Months</option>
+                                <option value="6+ Months">6+ Months</option>
                                 <option value="Not Sure Yet">Not Sure Yet</option>
                               </select>
                               <ChevronDown className="w-4 h-4 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none shrink-0" />
                             </div>
-                          </div>
-                        </div>
-
-                        {/* Row 4: Expected Timeline */}
-                        <div className="flex flex-col gap-1 w-full min-w-0">
-                          <label className="text-[11.5px] font-bold text-slate-800">
-                            Expected Timeline
-                          </label>
-                          <div className="relative w-full min-w-0">
-                            <select
-                              name="timeline"
-                              value={formData.timeline}
-                              onChange={handleChange}
-                              className="w-full min-w-0 truncate pr-8 pl-3 py-2 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-white focus:bg-white text-slate-900 text-xs font-medium appearance-none focus:outline-none focus:border-[#305EFF] transition-all cursor-pointer"
-                            >
-                              <option value="ASAP">ASAP</option>
-                              <option value="1–3 Months">1–3 Months</option>
-                              <option value="3–6 Months">3–6 Months</option>
-                              <option value="6+ Months">6+ Months</option>
-                              <option value="Not Sure Yet">Not Sure Yet</option>
-                            </select>
-                            <ChevronDown className="w-4 h-4 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none shrink-0" />
                           </div>
                         </div>
 

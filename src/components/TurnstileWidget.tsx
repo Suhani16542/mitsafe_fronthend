@@ -6,6 +6,7 @@ import { AlertCircle, RefreshCw, Loader2 } from "lucide-react";
 export interface TurnstileWidgetHandle {
   reset: () => void;
   remove: () => void;
+  getResponse: () => string | undefined;
 }
 
 interface TurnstileWidgetProps {
@@ -137,9 +138,21 @@ export const TurnstileWidget = forwardRef<TurnstileWidgetHandle, TurnstileWidget
       }
     }, [removeWidget]);
 
+    const getResponse = useCallback(() => {
+      if (widgetIdRef.current && typeof window !== "undefined" && window.turnstile) {
+        try {
+          return window.turnstile.getResponse(widgetIdRef.current);
+        } catch {
+          return undefined;
+        }
+      }
+      return undefined;
+    }, []);
+
     useImperativeHandle(ref, () => ({
       reset: resetWidget,
       remove: removeWidget,
+      getResponse: getResponse,
     }));
 
     useEffect(() => {

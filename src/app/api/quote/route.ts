@@ -12,7 +12,6 @@ export async function POST(request: Request) {
       company,
       service,
       serviceCategory,
-      budget,
       timeline,
       message,
       sourcePage,
@@ -32,7 +31,6 @@ export async function POST(request: Request) {
       phone: (phone || "").trim(),
       companyName: (companyName || company || "").trim(),
       service: (service || serviceCategory || "").trim(),
-      budget: budget || "",
       timeline: timeline || "",
       message: (message || "").trim(),
       sourcePage: sourcePage || "/",
@@ -40,6 +38,14 @@ export async function POST(request: Request) {
       turnstileToken: turnstileToken || "",
       website_hp: website_hp || "",
     };
+
+    if (process.env.NODE_ENV !== "production") {
+      console.log("[Quote API Route Proxy]", {
+        hasToken: Boolean(turnstileToken),
+        tokenLength: typeof turnstileToken === "string" ? turnstileToken.length : 0,
+        targetUrl: `${backendUrl}/api/v1/quotes`,
+      });
+    }
 
     try {
       const backendRes = await fetch(`${backendUrl}/api/v1/quotes`, {
