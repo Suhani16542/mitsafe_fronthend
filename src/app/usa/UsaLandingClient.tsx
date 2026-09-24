@@ -528,7 +528,7 @@ export default function UsaLandingClient() {
           1. HERO SECTION (Preserved exact structure: 3D Motion Carousel + Cascading Words)
           ========================================================================= */}
       <section
-        className="relative min-h-[600px] sm:min-h-[660px] lg:min-h-[720px] flex items-center justify-start overflow-hidden bg-[#060D1E]"
+        className="relative min-h-[640px] sm:min-h-[700px] lg:min-h-[760px] flex items-center justify-start overflow-hidden bg-[#060D1E]"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -561,7 +561,7 @@ export default function UsaLandingClient() {
         </div>
 
         {/* Content Container (Left Aligned with Fast 3D Slide-Up Motion from Bottom) */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 sm:pt-40 lg:pt-44 pb-16 sm:pb-20 lg:pb-24 w-full">
           <div className="max-w-2xl text-left" style={{ perspective: "1000px" }}>
             <AnimatePresence mode="wait">
               <motion.div
