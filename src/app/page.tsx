@@ -42,10 +42,6 @@ export const metadata: Metadata = {
     description:
       "Mitsafe is a leading software development company and digital marketing agency delivering custom software development, enterprise web application development, mobile apps, and IT services.",
   },
-  other: {
-    keywords:
-      "digital marketing, digital marketing agency, digital marketing company, digital marketing services, software development company, custom software development, web development company, web application development, mobile app development company, enterprise software development, it services company, ai automation solutions, cloud application development, full stack development company, digital transformation services",
-  },
 };
 
 const homeFaqs = [

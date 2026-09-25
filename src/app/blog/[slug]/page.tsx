@@ -36,7 +36,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       const description = post.excerpt || `${post.title} — Technical analysis and insights by Mitsafe.`;
       const publishedDate = post.publishedAt || post.createdAt || new Date().toISOString();
       const modifiedDate = (post as any).updatedAt || post.publishedAt || post.createdAt || new Date().toISOString();
-      const keywordsString = keywordsList.join(", ");
 
       return {
         title: `${post.title} | Mitsafe`,
@@ -79,7 +78,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           images: post.featuredImage ? [post.featuredImage] : ["https://mitsafe.com/opengraph-image.png"],
         },
         other: {
-          ...(keywordsString ? { keywords: keywordsString } : {}),
           "article:published_time": publishedDate,
           "article:modified_time": modifiedDate,
           "article:author": authorName,
