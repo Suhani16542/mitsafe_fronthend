@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "CRM & ERP Custom Systems | Mitsafe",
     description:
       "Custom CRM and ERP enterprise architectures, centralized data hubs, inventory trackers, and staff workflows built for security and efficiency.",
-    url: "https://mitsafe.com/services/crm-erp",
+    url: "https://www.mitsafe.com/services/crm-erp",
     type: "website",
   },
   twitter: {

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "UI/UX Product Design & Design Systems | Mitsafe",
     description:
       "Intuitive product interfaces, Figma design systems, rapid interactive prototypes, usability testing, and conversion-focused UX architecture.",
-    url: "https://mitsafe.com/services/ui-ux-design",
+    url: "https://www.mitsafe.com/services/ui-ux-design",
     type: "website",
   },
   twitter: {

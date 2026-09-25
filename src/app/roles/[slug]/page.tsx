@@ -32,7 +32,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${role.title} Expertise | Mitsafe`,
       description: role.shortDescription,
-      url: `https://mitsafe.com/roles/${role.slug}`,
+      url: `https://www.mitsafe.com/roles/${role.slug}`,
       type: "website",
     },
     twitter: {

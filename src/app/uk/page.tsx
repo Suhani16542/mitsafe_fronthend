@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     title: "Software Development Company in UK | Custom Software, ERP & CRM | Mitsafe",
     description:
       "Mitsafe UK empowers British enterprises across London, Manchester, Birmingham & Edinburgh with bespoke enterprise software, ERP, CRM, HMRC MTD finance integrations, cloud architecture and digital transformation.",
-    url: "https://mitsafe.com/uk",
+    url: "https://www.mitsafe.com/uk",
     type: "website",
     siteName: "Mitsafe UK",
     locale: "en_GB",
     images: [
       {
-        url: "https://mitsafe.com/images/uk_hero_1.jpg",
+        url: "https://www.mitsafe.com/images/uk_hero_1.jpg",
         width: 1200,
         height: 630,
         alt: "Mitsafe UK - Business Software & Digital Transformation",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "Software Development Company in UK | Custom Software, ERP & CRM | Mitsafe",
     description:
       "Mitsafe UK empowers British enterprises across London, Manchester, Birmingham & Edinburgh with bespoke enterprise software, ERP, CRM, HMRC MTD finance integrations, cloud architecture and digital transformation.",
-    images: ["https://mitsafe.com/images/uk_hero_1.jpg"],
+    images: ["https://www.mitsafe.com/images/uk_hero_1.jpg"],
   },
 };
 

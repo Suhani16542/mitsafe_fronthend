@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "Cloud Infrastructure & DevOps | Mitsafe",
     description:
       "Enterprise AWS, GCP, and Azure cloud migrations, Kubernetes clusters, Docker containers, CI/CD pipelines, and 24/7 reliability.",
-    url: "https://mitsafe.com/services/cloud-devops",
+    url: "https://www.mitsafe.com/services/cloud-devops",
     type: "website",
   },
   twitter: {

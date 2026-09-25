@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "Pricing Plans & Estimates | Mitsafe",
     description:
       "Explore flexible pricing packages and structured IT solutions tailored to your business needs, from startup websites to enterprise architectures.",
-    url: "https://mitsafe.com/pricing",
+    url: "https://www.mitsafe.com/pricing",
     type: "website",
   },
   twitter: {

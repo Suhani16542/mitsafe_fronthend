@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     title: "Software Development Company in UAE | Custom Software, ERP & CRM | Mitsafe",
     description:
       "Mitsafe UAE helps businesses across Dubai, Abu Dhabi & the Emirates build, automate and scale digital operations with custom software, ERP, CRM, POS, e-commerce, cloud and AI solutions.",
-    url: "https://mitsafe.com/uae",
+    url: "https://www.mitsafe.com/uae",
     type: "website",
     siteName: "Mitsafe UAE",
     locale: "en_AE",
     images: [
       {
-        url: "https://mitsafe.com/images/uae_hero_1.jpg",
+        url: "https://www.mitsafe.com/images/uae_hero_1.jpg",
         width: 1200,
         height: 630,
         alt: "Mitsafe UAE - Business Software & Digital Transformation",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: "Software Development Company in UAE | Custom Software, ERP & CRM | Mitsafe",
     description:
       "Mitsafe UAE helps businesses across Dubai, Abu Dhabi & the Emirates build, automate and scale digital operations with custom software, ERP, CRM, POS, e-commerce, cloud and AI solutions.",
-    images: ["https://mitsafe.com/images/uae_hero_1.jpg"],
+    images: ["https://www.mitsafe.com/images/uae_hero_1.jpg"],
   },
 };
 

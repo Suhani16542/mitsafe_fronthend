@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: "Engineering Insights & Guides | Mitsafe",
     description:
       "Explore architectural analyses, performance strategies, cloud scaling, and AI engineering insights from the Mitsafe technical team.",
-    url: "https://mitsafe.com/insights",
+    url: "https://www.mitsafe.com/insights",
     type: "website",
   },
   twitter: {

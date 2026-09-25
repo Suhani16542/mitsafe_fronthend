@@ -135,7 +135,7 @@ function discoverStaticAppRoutes(appDir: string, baseUrl: string): MetadataRoute
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://mitsafe.com").replace(/\/+$/, "");
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.mitsafe.com").replace(/\/+$/, "");
   const sitemapUrlMap = new Map<string, MetadataRoute.Sitemap[number]>();
 
   // 1. Automatically discover all public static pages from the filesystem (e.g., /, /about, /sitemap-auto-test-2026, etc.)

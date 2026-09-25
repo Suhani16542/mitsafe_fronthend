@@ -26,8 +26,8 @@ export function generateOrganizationSchema(props?: Partial<OrganizationSchemaPro
     "@type": "Organization",
     name: props?.name || "Mitsafe",
     alternateName: "Mitsafe Technologies",
-    url: props?.url || "https://mitsafe.com",
-    logo: props?.logo || "https://mitsafe.com/image.png",
+    url: props?.url || "https://www.mitsafe.com",
+    logo: props?.logo || "https://www.mitsafe.com/image.png",
     description:
       props?.description ||
       "Mitsafe engineers custom web platforms, scalable AI integrations, mobile applications, and enterprise cloud solutions.",
@@ -51,7 +51,7 @@ export function generateOrganizationSchema(props?: Partial<OrganizationSchemaPro
   };
 }
 
-export function generateWebSiteSchema(siteUrl = "https://mitsafe.com", siteName = "Mitsafe") {
+export function generateWebSiteSchema(siteUrl = "https://www.mitsafe.com", siteName = "Mitsafe") {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -104,7 +104,7 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: item.item.startsWith("http") ? item.item : `https://mitsafe.com${item.item}`,
+      item: item.item.startsWith("http") ? item.item : `https://www.mitsafe.com${item.item}`,
     })),
   };
 }
@@ -123,7 +123,7 @@ export function generateServiceSchema({
   description,
   url,
   providerName = "Mitsafe",
-  providerUrl = "https://mitsafe.com",
+  providerUrl = "https://www.mitsafe.com",
   serviceType,
 }: ServiceSchemaProps) {
   return {
@@ -131,7 +131,7 @@ export function generateServiceSchema({
     "@type": "Service",
     name,
     description,
-    url: url.startsWith("http") ? url : `https://mitsafe.com${url}`,
+    url: url.startsWith("http") ? url : `https://www.mitsafe.com${url}`,
     serviceType: serviceType || name,
     provider: {
       "@type": "Organization",
@@ -164,7 +164,7 @@ export function generateArticleSchema({
   authorName = "Mitsafe Team",
   keywords,
   publisherName = "Mitsafe",
-  publisherLogo = "https://mitsafe.com/image.png",
+  publisherLogo = "https://www.mitsafe.com/image.png",
 }: ArticleSchemaProps) {
   const keywordsString = Array.isArray(keywords)
     ? keywords.join(", ")
@@ -177,8 +177,8 @@ export function generateArticleSchema({
     "@type": "BlogPosting",
     headline: title,
     description: description || title,
-    url: url.startsWith("http") ? url : `https://mitsafe.com${url}`,
-    image: imageUrl ? [imageUrl] : ["https://mitsafe.com/opengraph-image.png"],
+    url: url.startsWith("http") ? url : `https://www.mitsafe.com${url}`,
+    image: imageUrl ? [imageUrl] : ["https://www.mitsafe.com/opengraph-image.png"],
     datePublished: datePublished || new Date().toISOString(),
     dateModified: dateModified || datePublished || new Date().toISOString(),
     keywords: keywordsString,
@@ -196,7 +196,7 @@ export function generateArticleSchema({
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": url.startsWith("http") ? url : `https://mitsafe.com${url}`,
+      "@id": url.startsWith("http") ? url : `https://www.mitsafe.com${url}`,
     },
   };
 }

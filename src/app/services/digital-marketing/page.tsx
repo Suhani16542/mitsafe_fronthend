@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "Digital Marketing & Performance SEO | Mitsafe",
     description:
       "Data-driven SEO strategies, conversion rate optimization, search ranking enhancements, and performance growth channels for modern brands.",
-    url: "https://mitsafe.com/services/digital-marketing",
+    url: "https://www.mitsafe.com/services/digital-marketing",
     type: "website",
   },
   twitter: {

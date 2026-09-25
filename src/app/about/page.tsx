@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "About Us | Mitsafe",
     description:
       "Learn about Mitsafe's mission, our elite engineering team, and our core development principles.",
-    url: "https://mitsafe.com/about",
+    url: "https://www.mitsafe.com/about",
     type: "website",
   },
   twitter: {

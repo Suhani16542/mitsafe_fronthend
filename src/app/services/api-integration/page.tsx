@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "API Integration & Microservices | Mitsafe",
     description:
       "Architect secure REST & GraphQL endpoints, third-party connectors, webhooks, and scalable microservices architectures.",
-    url: "https://mitsafe.com/services/api-integration",
+    url: "https://www.mitsafe.com/services/api-integration",
     type: "website",
   },
   twitter: {

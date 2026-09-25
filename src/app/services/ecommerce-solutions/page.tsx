@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "eCommerce Solutions & Headless Stores | Mitsafe",
     description:
       "High-speed custom eCommerce platforms, headless Shopify & WooCommerce systems, secure checkout gateways, and inventory automations.",
-    url: "https://mitsafe.com/services/ecommerce-solutions",
+    url: "https://www.mitsafe.com/services/ecommerce-solutions",
     type: "website",
   },
   twitter: {

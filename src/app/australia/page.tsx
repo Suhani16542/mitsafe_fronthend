@@ -35,13 +35,13 @@ export const metadata: Metadata = {
     title: "Software Development Company in Australia | Custom Software, ERP & CRM | Mitsafe",
     description:
       "Mitsafe Australia empowers businesses across Sydney, Melbourne, Brisbane, Perth & Adelaide with bespoke enterprise software, ERP, CRM, ATO Single Touch Payroll (STP) integrations, cloud architecture and digital transformation.",
-    url: "https://mitsafe.com/australia",
+    url: "https://www.mitsafe.com/australia",
     type: "website",
     siteName: "Mitsafe Australia",
     locale: "en_AU",
     images: [
       {
-        url: "https://mitsafe.com/images/australia_hero_1.jpg",
+        url: "https://www.mitsafe.com/images/australia_hero_1.jpg",
         width: 1200,
         height: 630,
         alt: "Mitsafe Australia - Business Software & Digital Transformation",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title: "Software Development Company in Australia | Custom Software, ERP & CRM | Mitsafe",
     description:
       "Mitsafe Australia empowers businesses across Sydney, Melbourne, Brisbane, Perth & Adelaide with bespoke enterprise software, ERP, CRM, ATO Single Touch Payroll (STP) integrations, cloud architecture and digital transformation.",
-    images: ["https://mitsafe.com/images/australia_hero_1.jpg"],
+    images: ["https://www.mitsafe.com/images/australia_hero_1.jpg"],
   },
 };
 

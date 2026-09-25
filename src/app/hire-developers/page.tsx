@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "Hire Dedicated Developers | Expert Software & Web Developers | Mitsafe",
     description:
       "Hire dedicated developers and remote software engineers from Mitsafe. Scale your engineering team with pre-vetted full stack developers, React, Node.js, and mobile app developers.",
-    url: "https://mitsafe.com/hire-developers",
+    url: "https://www.mitsafe.com/hire-developers",
     type: "website",
   },
   twitter: {

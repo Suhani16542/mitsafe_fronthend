@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "Custom Web Development Services | Mitsafe",
     description:
       "Secure, responsive, and performance-optimized enterprise web platforms, custom Next.js apps, headless CMS integrations, and high Core Web Vitals.",
-    url: "https://mitsafe.com/services/web-development",
+    url: "https://www.mitsafe.com/services/web-development",
     type: "website",
   },
   twitter: {

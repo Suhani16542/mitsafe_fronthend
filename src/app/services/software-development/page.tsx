@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "Custom Software Development | Mitsafe",
     description:
       "Enterprise-grade bespoke software engineering, multi-tenant SaaS platforms, secure backend microservices, and database optimizations.",
-    url: "https://mitsafe.com/services/software-development",
+    url: "https://www.mitsafe.com/services/software-development",
     type: "website",
   },
   twitter: {

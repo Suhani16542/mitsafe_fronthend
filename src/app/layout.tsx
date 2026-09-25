@@ -19,7 +19,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mitsafe.com"),
+  metadataBase: new URL("https://www.mitsafe.com"),
   title: {
     default: "Mitsafe | Premium Software Development & AI Automation Agency",
     template: "%s | Mitsafe",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: "Mitsafe | Enterprise Software & AI Automation",
     description:
       "Immersive futuristic web platforms and scalable AI integrations built for high-performance operations.",
-    url: "https://mitsafe.com",
+    url: "https://www.mitsafe.com",
     siteName: "Mitsafe",
     locale: "en_US",
     type: "website",

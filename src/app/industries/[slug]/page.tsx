@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: IndustryPageProps): Promise<M
     openGraph: {
       title: `${industry.title} Tech Solutions | Mitsafe`,
       description: industry.heroSubheadline,
-      url: `https://mitsafe.com/industries/${slug}`,
+      url: `https://www.mitsafe.com/industries/${slug}`,
       type: "website",
     },
     twitter: {

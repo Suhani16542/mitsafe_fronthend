@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: "Technical Blog & Engineering Journal | Mitsafe",
     description:
       "Explore architectural analyses, performance strategies, and engineering insights written by the Mitsafe software engineering team.",
-    url: "https://mitsafe.com/blog",
+    url: "https://www.mitsafe.com/blog",
     type: "website",
   },
   twitter: {

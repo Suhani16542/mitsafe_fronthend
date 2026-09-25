@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: `${project.title} - Case Study | Mitsafe`,
       description: project.summary,
-      url: `https://mitsafe.com/portfolio/${project.slug}`,
+      url: `https://www.mitsafe.com/portfolio/${project.slug}`,
       type: "article",
       images: project.img
         ? [
@@ -91,12 +91,12 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
     headline: project.title,
     description: project.summary,
     genre: project.category,
-    url: `https://mitsafe.com/portfolio/${project.slug}`,
-    image: project.img ? `https://mitsafe.com${project.img}` : undefined,
+    url: `https://www.mitsafe.com/portfolio/${project.slug}`,
+    image: project.img ? `https://www.mitsafe.com${project.img}` : undefined,
     creator: {
       "@type": "Organization",
       name: "Mitsafe",
-      url: "https://mitsafe.com",
+      url: "https://www.mitsafe.com",
     },
   };
 

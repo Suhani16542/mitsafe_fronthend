@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Read the official Refund Policy for Mitsafe's software development, web & mobile applications, AI automation, cloud, and digital technology services.",
   alternates: {
-    canonical: "https://mitsafe.com/refund-policy",
+    canonical: "/refund-policy",
   },
   robots: {
     index: true,
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "Refund Policy | Mitsafe",
     description:
       "Read the official Refund Policy for Mitsafe's software development, web & mobile applications, AI automation, cloud, and digital technology services.",
-    url: "https://mitsafe.com/refund-policy",
+    url: "https://www.mitsafe.com/refund-policy",
     type: "website",
   },
   twitter: {

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: "Mitsafe | Software Development Company & Digital Marketing Agency",
     description:
       "Mitsafe is a leading software development company and digital marketing agency delivering custom software development, enterprise web application development, mobile apps, and IT services.",
-    url: "https://mitsafe.com",
+    url: "https://www.mitsafe.com",
     type: "website",
   },
   twitter: {

@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           .filter(Boolean);
       }
 
-      const canonicalUrl = `https://mitsafe.com/blog/${resolvedParams.slug}`;
+      const canonicalUrl = `https://www.mitsafe.com/blog/${resolvedParams.slug}`;
       const description = post.excerpt || `${post.title} — Technical analysis and insights by Mitsafe.`;
       const publishedDate = post.publishedAt || post.createdAt || new Date().toISOString();
       const modifiedDate = (post as any).updatedAt || post.publishedAt || post.createdAt || new Date().toISOString();
@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
               ]
             : [
                 {
-                  url: "https://mitsafe.com/opengraph-image.png",
+                  url: "https://www.mitsafe.com/opengraph-image.png",
                   width: 1200,
                   height: 630,
                   alt: "Mitsafe Technologies",
@@ -75,7 +75,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           card: "summary_large_image",
           title: post.title,
           description,
-          images: post.featuredImage ? [post.featuredImage] : ["https://mitsafe.com/opengraph-image.png"],
+          images: post.featuredImage ? [post.featuredImage] : ["https://www.mitsafe.com/opengraph-image.png"],
         },
         other: {
           "article:published_time": publishedDate,

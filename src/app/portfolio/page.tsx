@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "Web Development Projects & Mobile App Development Portfolio | Mitsafe",
     description:
       "Explore our web development portfolio, mobile app development projects, enterprise web applications, and custom software development case studies.",
-    url: "https://mitsafe.com/portfolio",
+    url: "https://www.mitsafe.com/portfolio",
     type: "website",
   },
   twitter: {

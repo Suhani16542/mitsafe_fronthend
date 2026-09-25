@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "Swiss Enterprise Software, FINMA Compliance & ERP Solutions | Mitsafe",
     description:
       "Precision cloud engineering, Swiss QR-Bill ERP systems, and revFADP data sovereignty for Swiss corporations and multi-cantonal enterprises.",
-    url: "https://mitsafe.com/switzerland",
+    url: "https://www.mitsafe.com/switzerland",
     type: "website",
   },
   twitter: {

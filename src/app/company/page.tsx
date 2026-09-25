@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "About Us – Software Development & IT Solutions Company | Mitsafe",
     description:
       "Mitsafe is a software development and IT solutions company helping startups, growing businesses, and enterprises build scalable digital products.",
-    url: "https://mitsafe.com/company",
+    url: "https://www.mitsafe.com/company",
     type: "website",
     images: [
       {

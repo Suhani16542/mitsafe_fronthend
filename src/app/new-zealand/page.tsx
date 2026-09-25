@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "Software & Web Development Company in New Zealand | Mitsafe",
     description:
       "Mitsafe delivers modern web applications, scalable SaaS platforms, mobile app development, and AI automation for New Zealand enterprises.",
-    url: "https://mitsafe.com/new-zealand",
+    url: "https://www.mitsafe.com/new-zealand",
     type: "website",
   },
   twitter: {

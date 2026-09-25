@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "Mobile App Development (iOS & Android) | Mitsafe",
     description:
       "Cross-platform Flutter and React Native mobile applications, native performance optimizations, offline sync, and App Store deployments.",
-    url: "https://mitsafe.com/services/mobile-app-development",
+    url: "https://www.mitsafe.com/services/mobile-app-development",
     type: "website",
   },
   twitter: {

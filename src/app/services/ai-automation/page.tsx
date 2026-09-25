@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: "AI & Workflow Automation Services | Mitsafe",
     description:
       "Leverage intelligent custom LLM agents, vector database lookup RAG setups, and automated event pipelines to accelerate enterprise operations.",
-    url: "https://mitsafe.com/services/ai-automation",
+    url: "https://www.mitsafe.com/services/ai-automation",
     type: "website",
   },
   twitter: {

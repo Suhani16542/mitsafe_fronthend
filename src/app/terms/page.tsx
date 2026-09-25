@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "Terms & Conditions | Mitsafe",
     description:
       "Read the Terms & Conditions governing your engagement with Mitsafe's software services, platforms, and products.",
-    url: "https://mitsafe.com/terms",
+    url: "https://www.mitsafe.com/terms",
     type: "website",
   },
   twitter: {

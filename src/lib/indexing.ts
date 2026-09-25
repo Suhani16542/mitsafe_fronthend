@@ -7,7 +7,7 @@ export const INDEXNOW_KEY =
   process.env.INDEXNOW_KEY || "e7f9a2b84c31405986dc01893de72026";
 
 export function getBaseSiteUrl(): string {
-  return (process.env.NEXT_PUBLIC_SITE_URL || "https://mitsafe.com").replace(/\/+$/, "");
+  return (process.env.NEXT_PUBLIC_SITE_URL || "https://www.mitsafe.com").replace(/\/+$/, "");
 }
 
 export interface NotifyIndexNowOptions {
