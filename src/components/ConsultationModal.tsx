@@ -9,13 +9,68 @@ import {
   ChevronDown,
   Sparkles,
   ShieldCheck,
-  Zap
+  Zap,
+  Check,
+  Search,
 } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import TurnstileWidget, { TurnstileWidgetHandle } from "@/components/TurnstileWidget";
 
 export type ModalType = "quote" | "consultation";
+
+export interface CountryCodeOption {
+  name: string;
+  dialCode: string;
+  flag: string;
+}
+
+export const COUNTRY_OPTIONS: CountryCodeOption[] = [
+  // Top / Commonly used countries (Requirements list)
+  { name: "India", dialCode: "+91", flag: "🇮🇳" },
+  { name: "United States", dialCode: "+1", flag: "🇺🇸" },
+  { name: "United Arab Emirates", dialCode: "+971", flag: "🇦🇪" },
+  { name: "United Kingdom", dialCode: "+44", flag: "🇬🇧" },
+  { name: "Malaysia", dialCode: "+60", flag: "🇲🇾" },
+  { name: "Singapore", dialCode: "+65", flag: "🇸🇬" },
+  { name: "Australia", dialCode: "+61", flag: "🇦🇺" },
+  { name: "Canada", dialCode: "+1", flag: "🇨🇦" },
+  { name: "Saudi Arabia", dialCode: "+966", flag: "🇸🇦" },
+  { name: "Germany", dialCode: "+49", flag: "🇩🇪" },
+  { name: "France", dialCode: "+33", flag: "🇫🇷" },
+  { name: "Netherlands", dialCode: "+31", flag: "🇳🇱" },
+  // Additional international countries (~30 countries)
+  { name: "New Zealand", dialCode: "+64", flag: "🇳🇿" },
+  { name: "Ireland", dialCode: "+353", flag: "🇮🇪" },
+  { name: "Qatar", dialCode: "+974", flag: "🇶🇦" },
+  { name: "Oman", dialCode: "+968", flag: "🇴🇲" },
+  { name: "Kuwait", dialCode: "+965", flag: "🇰🇼" },
+  { name: "Bahrain", dialCode: "+973", flag: "🇧🇭" },
+  { name: "South Africa", dialCode: "+27", flag: "🇿🇦" },
+  { name: "Switzerland", dialCode: "+41", flag: "🇨🇭" },
+  { name: "Sweden", dialCode: "+46", flag: "🇸🇪" },
+  { name: "Norway", dialCode: "+47", flag: "🇳🇴" },
+  { name: "Denmark", dialCode: "+45", flag: "🇩🇰" },
+  { name: "Spain", dialCode: "+34", flag: "🇪🇸" },
+  { name: "Italy", dialCode: "+39", flag: "🇮🇹" },
+  { name: "Belgium", dialCode: "+32", flag: "🇧🇪" },
+  { name: "Austria", dialCode: "+43", flag: "🇦🇹" },
+  { name: "Japan", dialCode: "+81", flag: "🇯🇵" },
+  { name: "South Korea", dialCode: "+82", flag: "🇰🇷" },
+  { name: "Hong Kong", dialCode: "+852", flag: "🇭🇰" },
+  { name: "Indonesia", dialCode: "+62", flag: "🇮🇩" },
+  { name: "Philippines", dialCode: "+63", flag: "🇵🇭" },
+  { name: "Thailand", dialCode: "+66", flag: "🇹🇭" },
+  { name: "Vietnam", dialCode: "+84", flag: "🇻🇳" },
+  { name: "Bangladesh", dialCode: "+880", flag: "🇧🇩" },
+  { name: "Sri Lanka", dialCode: "+94", flag: "🇱🇰" },
+  { name: "Nepal", dialCode: "+977", flag: "🇳🇵" },
+  { name: "Egypt", dialCode: "+20", flag: "🇪🇬" },
+  { name: "Nigeria", dialCode: "+234", flag: "🇳🇬" },
+  { name: "Kenya", dialCode: "+254", flag: "🇰🇪" },
+  { name: "Brazil", dialCode: "+55", flag: "🇧🇷" },
+  { name: "Mexico", dialCode: "+52", flag: "🇲🇽" },
+];
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -119,6 +174,11 @@ export default function ConsultationModal({
   const [websiteHp, setWebsiteHp] = useState<string>("");
   const turnstileRef = useRef<TurnstileWidgetHandle>(null);
 
+  const [selectedCountry, setSelectedCountry] = useState<CountryCodeOption>(COUNTRY_OPTIONS[0]);
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const [searchCountryQuery, setSearchCountryQuery] = useState("");
+  const countryDropdownRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (isOpen) {
       const syncedOption = getServiceOptionByQuery(initialService || pathname);
@@ -138,7 +198,13 @@ export default function ConsultationModal({
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        if (isCountryDropdownOpen) {
+          setIsCountryDropdownOpen(false);
+        } else {
+          onClose();
+        }
+      }
     };
 
     if (isOpen) {
@@ -151,6 +217,9 @@ export default function ConsultationModal({
         setErrorMsg("");
         setTurnstileToken("");
         setWebsiteHp("");
+        setSelectedCountry(COUNTRY_OPTIONS[0]);
+        setIsCountryDropdownOpen(false);
+        setSearchCountryQuery("");
         turnstileRef.current?.reset();
       }, 300);
     }
@@ -158,7 +227,38 @@ export default function ConsultationModal({
       document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleEsc);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, isCountryDropdownOpen]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (
+        countryDropdownRef.current &&
+        !countryDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsCountryDropdownOpen(false);
+        setSearchCountryQuery("");
+      }
+    };
+
+    if (isCountryDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isCountryDropdownOpen]);
+
+  const filteredCountries = useMemo(() => {
+    if (!searchCountryQuery.trim()) return COUNTRY_OPTIONS;
+    const query = searchCountryQuery.toLowerCase().trim();
+    return COUNTRY_OPTIONS.filter(
+      (c) =>
+        c.name.toLowerCase().includes(query) ||
+        c.dialCode.toLowerCase().includes(query)
+    );
+  }, [searchCountryQuery]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -223,10 +323,17 @@ export default function ConsultationModal({
         ? `${process.env.NEXT_PUBLIC_API_URL}/api/v1/quotes`
         : "/api/quote";
 
+    const trimmedPhone = formData.phone.trim();
+    const formattedPhone = trimmedPhone
+      ? trimmedPhone.startsWith("+")
+        ? trimmedPhone
+        : `${selectedCountry.dialCode} ${trimmedPhone}`
+      : "";
+
     const payload = {
       fullName: formData.name.trim(),
       email: formData.email.trim(),
-      phone: formData.phone.trim(),
+      phone: formattedPhone,
       companyName: formData.company.trim(),
       service: formData.serviceCategory.trim(),
       timeline: formData.timeline,
@@ -278,6 +385,9 @@ export default function ConsultationModal({
       setTurnstileToken("");
       setWebsiteHp("");
       turnstileRef.current?.reset();
+      setSelectedCountry(COUNTRY_OPTIONS[0]);
+      setIsCountryDropdownOpen(false);
+      setSearchCountryQuery("");
       setFormData({
         name: "",
         email: "",
@@ -493,19 +603,88 @@ export default function ConsultationModal({
                             <label className="text-[11.5px] font-bold text-slate-800">
                               Phone Number
                             </label>
-                            <div className="relative flex items-center bg-slate-50/70 hover:bg-white border border-slate-200 rounded-xl focus-within:border-[#305EFF] transition-all focus-within:bg-white overflow-hidden w-full">
-                              <div className="flex items-center gap-1 pl-3 pr-2 py-2 border-r border-slate-200 shrink-0 select-none bg-slate-100/80">
-                                <span className="text-xs">🇮🇳</span>
-                                <span className="text-xs font-semibold text-slate-700">+91</span>
-                                <ChevronDown className="w-3 h-3 text-slate-400 shrink-0" />
+                            <div className="relative flex items-center bg-slate-50/70 hover:bg-white border border-slate-200 rounded-xl focus-within:border-[#305EFF] transition-all focus-within:bg-white w-full">
+                              <div ref={countryDropdownRef} className="relative shrink-0">
+                                <button
+                                  type="button"
+                                  onClick={() => setIsCountryDropdownOpen((prev) => !prev)}
+                                  className="flex items-center gap-1 pl-3 pr-2 py-2 border-r border-slate-200 shrink-0 select-none bg-slate-100/80 hover:bg-slate-200/70 focus:outline-none transition-colors cursor-pointer rounded-l-xl"
+                                  aria-expanded={isCountryDropdownOpen}
+                                  aria-haspopup="listbox"
+                                  aria-label="Select country code"
+                                >
+                                  <span className="text-xs">{selectedCountry.flag}</span>
+                                  <span className="text-xs font-semibold text-slate-700">{selectedCountry.dialCode}</span>
+                                  <ChevronDown className={`w-3 h-3 text-slate-400 shrink-0 transition-transform duration-200 ${isCountryDropdownOpen ? "rotate-180" : ""}`} />
+                                </button>
+
+                                {/* Downward Country Dropdown Menu */}
+                                {isCountryDropdownOpen && (
+                                  <div className="absolute top-full left-0 mt-1.5 w-64 sm:w-72 max-h-56 bg-white border border-slate-200 rounded-xl shadow-xl z-50 flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+                                    <div className="p-2 border-b border-slate-100 bg-slate-50/80 sticky top-0 z-10">
+                                      <div className="relative">
+                                        <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                                        <input
+                                          type="text"
+                                          value={searchCountryQuery}
+                                          onChange={(e) => setSearchCountryQuery(e.target.value)}
+                                          placeholder="Search country or code..."
+                                          className="w-full pl-8 pr-2.5 py-1 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:border-[#305EFF] text-slate-900 placeholder-slate-400"
+                                          autoFocus
+                                        />
+                                      </div>
+                                    </div>
+
+                                    <div className="overflow-y-auto overscroll-contain custom-scrollbar py-1 divide-y divide-slate-50 max-h-44">
+                                      {filteredCountries.length > 0 ? (
+                                        filteredCountries.map((country) => {
+                                          const isSelected =
+                                            selectedCountry.dialCode === country.dialCode &&
+                                            selectedCountry.name === country.name;
+                                          return (
+                                            <button
+                                              key={`${country.name}-${country.dialCode}`}
+                                              type="button"
+                                              onClick={() => {
+                                                setSelectedCountry(country);
+                                                setIsCountryDropdownOpen(false);
+                                                setSearchCountryQuery("");
+                                              }}
+                                              className={`w-full px-3 py-2 text-left text-xs flex items-center justify-between transition-colors cursor-pointer ${
+                                                isSelected
+                                                  ? "bg-[#305EFF]/10 text-[#305EFF] font-semibold"
+                                                  : "text-slate-700 hover:bg-slate-50 font-normal"
+                                              }`}
+                                            >
+                                              <div className="flex items-center gap-2 truncate">
+                                                <span className="text-sm shrink-0">{country.flag}</span>
+                                                <span className="truncate">
+                                                  {country.name} ({country.dialCode})
+                                                </span>
+                                              </div>
+                                              {isSelected && (
+                                                <Check className="w-3.5 h-3.5 text-[#305EFF] shrink-0 ml-2" />
+                                              )}
+                                            </button>
+                                          );
+                                        })
+                                      ) : (
+                                        <div className="p-3 text-center text-xs text-slate-400">
+                                          No countries found
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                )}
                               </div>
+
                               <input
                                 type="tel"
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}
                                 placeholder="98765 43210"
-                                className="w-full min-w-0 px-2.5 py-2 bg-transparent border-none text-slate-900 text-xs font-medium focus:outline-none focus:ring-0"
+                                className="w-full min-w-0 px-2.5 py-2 bg-transparent border-none text-slate-900 text-xs font-medium focus:outline-none focus:ring-0 rounded-r-xl"
                               />
                             </div>
                           </div>
