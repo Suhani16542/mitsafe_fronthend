@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   title: "AI & Workflow Automation Services",
   description:
     "Leverage intelligent custom LLM agents, vector database lookup RAG setups, and automated event pipelines to accelerate enterprise operations.",
+  keywords: [
+    "AI automation services",
+    "AI development services",
+    "business process automation",
+    "workflow automation",
+    "AI agents development",
+    "LLM development",
+    "AI integration services",
+  ],
   alternates: {
     canonical: "/services/ai-automation",
   },

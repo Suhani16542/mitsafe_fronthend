@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   title: "Custom Software Development",
   description:
     "Enterprise-grade bespoke software engineering, multi-tenant SaaS platforms, secure backend microservices, and database optimizations.",
+  keywords: [
+    "custom software development",
+    "software development services",
+    "custom software solutions",
+    "enterprise software development",
+    "bespoke software development",
+    "SaaS development",
+    "software engineering services",
+  ],
   alternates: {
     canonical: "/services/software-development",
   },

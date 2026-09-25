@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   title: "Custom Web Development Services",
   description:
     "Secure, responsive, and performance-optimized enterprise web platforms, custom Next.js apps, headless CMS integrations, and high Core Web Vitals.",
+  keywords: [
+    "web development services",
+    "custom web development",
+    "website development company",
+    "custom website development",
+    "Next.js development",
+    "enterprise web development",
+    "responsive web development",
+  ],
   alternates: {
     canonical: "/services/web-development",
   },

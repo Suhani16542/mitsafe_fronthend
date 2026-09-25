@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   title: "API Integration & Microservices",
   description:
     "Architect secure REST & GraphQL endpoints, third-party connectors, webhooks, and scalable microservices architectures.",
+  keywords: [
+    "API integration services",
+    "API development",
+    "REST API development",
+    "GraphQL development",
+    "third party API integration",
+    "microservices development",
+    "webhook integration",
+  ],
   alternates: {
     canonical: "/services/api-integration",
   },

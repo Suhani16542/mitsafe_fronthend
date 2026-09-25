@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   title: "CRM & ERP Custom Systems",
   description:
     "Custom CRM and ERP enterprise architectures, centralized data hubs, inventory trackers, and staff workflows built for security and efficiency.",
+  keywords: [
+    "CRM development services",
+    "ERP development services",
+    "custom CRM software",
+    "custom ERP software",
+    "CRM ERP solutions",
+    "enterprise CRM development",
+    "enterprise ERP development",
+  ],
   alternates: {
     canonical: "/services/crm-erp",
   },

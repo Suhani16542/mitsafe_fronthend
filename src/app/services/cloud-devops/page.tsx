@@ -12,6 +12,16 @@ export const metadata: Metadata = {
   title: "Cloud Infrastructure & DevOps",
   description:
     "Enterprise AWS, GCP, and Azure cloud migrations, Kubernetes clusters, Docker containers, CI/CD pipelines, and 24/7 reliability.",
+  keywords: [
+    "cloud DevOps services",
+    "DevOps consulting",
+    "cloud infrastructure services",
+    "AWS cloud services",
+    "Azure cloud services",
+    "Google Cloud services",
+    "Kubernetes services",
+    "CI/CD implementation",
+  ],
   alternates: {
     canonical: "/services/cloud-devops",
   },

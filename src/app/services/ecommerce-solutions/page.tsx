@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   title: "eCommerce Solutions & Headless Stores",
   description:
     "High-speed custom eCommerce platforms, headless Shopify & WooCommerce systems, secure checkout gateways, and inventory automations.",
+  keywords: [
+    "eCommerce development services",
+    "eCommerce solutions",
+    "custom eCommerce development",
+    "Shopify development",
+    "WooCommerce development",
+    "headless eCommerce development",
+    "online store development",
+  ],
   alternates: {
     canonical: "/services/ecommerce-solutions",
   },

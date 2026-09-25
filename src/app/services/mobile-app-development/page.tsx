@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   title: "Mobile App Development (iOS & Android)",
   description:
     "Cross-platform Flutter and React Native mobile applications, native performance optimizations, offline sync, and App Store deployments.",
+  keywords: [
+    "mobile app development",
+    "mobile app development services",
+    "iOS app development",
+    "Android app development",
+    "Flutter app development",
+    "React Native app development",
+    "cross platform app development",
+  ],
   alternates: {
     canonical: "/services/mobile-app-development",
   },

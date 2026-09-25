@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   title: "UI/UX Product Design & Design Systems",
   description:
     "Intuitive product interfaces, Figma design systems, rapid interactive prototypes, usability testing, and conversion-focused UX architecture.",
+  keywords: [
+    "UI UX design services",
+    "UI design services",
+    "UX design services",
+    "product design services",
+    "Figma design services",
+    "UX research",
+    "design system services",
+  ],
   alternates: {
     canonical: "/services/ui-ux-design",
   },

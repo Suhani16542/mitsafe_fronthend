@@ -12,6 +12,15 @@ export const metadata: Metadata = {
   title: "Digital Marketing & Performance SEO",
   description:
     "Data-driven SEO strategies, conversion rate optimization, search ranking enhancements, and performance growth channels for modern brands.",
+  keywords: [
+    "digital marketing services",
+    "SEO services",
+    "performance SEO",
+    "search engine optimization",
+    "digital marketing company",
+    "conversion rate optimization",
+    "SEO strategy services",
+  ],
   alternates: {
     canonical: "/services/digital-marketing",
   },
