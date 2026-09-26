@@ -38,7 +38,19 @@ const breadcrumbs = [
 
 export default async function BlogPage() {
   let initialPosts: BlogPost[] = [];
-  let initialCategories: string[] = ["All", "AI & Automation", "Web Development", "Cloud & DevOps", "UI/UX Design"];
+  let initialCategories: string[] = [
+    "All",
+    "Web Development",
+    "Mobile App Development",
+    "SEO & Digital Marketing",
+    "AI & Technology",
+    "FinTech",
+    "E-commerce",
+    "Business Growth",
+    "UI/UX Design",
+    "Cloud & DevOps",
+    "Tips & Guides",
+  ];
 
   try {
     const [blogsRes, catRes] = await Promise.allSettled([
@@ -48,10 +60,12 @@ export default async function BlogPage() {
 
     if (blogsRes.status === "fulfilled" && blogsRes.value.success && Array.isArray(blogsRes.value.data) && blogsRes.value.data.length > 0) {
       initialPosts = blogsRes.value.data;
+      const catsFromBlogs = initialPosts.map((p) => p.category?.trim()).filter(Boolean);
+      initialCategories = Array.from(new Set([...initialCategories, ...catsFromBlogs]));
     }
 
     if (catRes.status === "fulfilled" && catRes.value.success && Array.isArray(catRes.value.data) && catRes.value.data.length > 0) {
-      initialCategories = ["All", ...catRes.value.data];
+      initialCategories = Array.from(new Set(["All", ...catRes.value.data, ...initialCategories.filter((c) => c !== "All")]));
     }
   } catch (err) {
     console.error("[BlogPage SSR] Error pre-fetching data:", err);
